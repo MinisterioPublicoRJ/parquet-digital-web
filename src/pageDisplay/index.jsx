@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Router from '../router';
+
 import './styles.css';
 
 class PageDisplay extends React.Component {
@@ -42,7 +44,11 @@ class PageDisplay extends React.Component {
             </TouchableOpacity> */}
           </div>
 
-          {isCompact && <div className="infoView">{/* <Router /> */}</div>}
+          {isCompact && (
+            <div className="infoView">
+              <Router />
+            </div>
+          )}
 
           {!isCompact && (
             <div className="infoView">

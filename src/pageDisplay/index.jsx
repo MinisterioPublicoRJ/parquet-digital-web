@@ -43,12 +43,12 @@ class PageDisplay extends React.Component {
         <div className="mainView">
           <div className="headerView">
             <MainTitle value={greeting} />
-            {/* <TouchableOpacity onPress={() => this.handleModeChange()}>
+            <button type="button" onClick={() => this.handleModeChange()}>
               <div>
                 modo
                 {isCompact ? ' dashboard' : ' compacto'}
               </div>
-            </TouchableOpacity> */}
+            </button>
           </div>
 
           {isCompact && (

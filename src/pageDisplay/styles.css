@@ -1,15 +1,35 @@
 @import "../themes/index.css";
 
 .outerView {
-  background-color: var(--success);
-  display: grid;
-  height: 100vh;
-  grid-template-columns: auto 20%;
-  grid-template-rows: 15% auto;
-  width: 100vw;
-  /* flex-wrap: wrap;
-  flex-direction: row; */
-  /* justify-content: space-between; */
-  /* padding: 5rem; */
-  /* overflow: hidden; */
-}
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: calc(100vh - 2 * var(--pagePadding));
+    justify-content: space-between;
+    padding: var(--pagePadding);
+    overflow: hidden;
+  }
+
+  .mainView {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+    /* overflow: hidden; */
+  }
+
+  .headerView {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--elementPadding) 0;
+  }
+
+  .alertsView {
+    width: 15%;
+    background-color: var(--danger);
+    margin-left: var(--pageMargin);
+  }
+
+  .infoView {
+    flex: 1;
+  }

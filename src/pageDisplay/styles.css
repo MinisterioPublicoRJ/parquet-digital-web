@@ -1,0 +1,15 @@
+@import "../themes/index.css";
+
+.outerView {
+  background-color: var(--success);
+  display: grid;
+  height: 100vh;
+  grid-template-columns: auto 20%;
+  grid-template-rows: 15% auto;
+  width: 100vw;
+  /* flex-wrap: wrap;
+  flex-direction: row; */
+  /* justify-content: space-between; */
+  /* padding: 5rem; */
+  /* overflow: hidden; */
+}

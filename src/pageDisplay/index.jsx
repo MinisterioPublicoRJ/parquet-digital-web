@@ -22,7 +22,7 @@ class PageDisplay extends React.Component {
 
   /**
    * [TO BE CHANGED IN THE FUTURE] just returns the greeting to be shown on the page, obeying the rules we'll set
-   * @return {[type]} [description]
+   * @return {string} [description]
    */
   getGreetingString() {
     return 'Olá Dr. Sidney, bom dia! ';
@@ -30,7 +30,7 @@ class PageDisplay extends React.Component {
 
   /**
    * Updates the state when the user goes from 'compacto' to 'dashboard' and vice versa
-   * @return {[type]} [description]
+   * @return {void}
    */
   handleModeChange() {
     this.setState(prevState => ({ isCompact: !prevState.isCompact }));

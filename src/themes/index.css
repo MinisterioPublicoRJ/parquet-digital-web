@@ -14,14 +14,16 @@
   --shadowColor: rgba(0, 0, 0, .3);
 
   /* FONTS */
-  --paragraphFont: Montserrat;
-
   --defaultFont:Montserrat;
+
   --titleWeight: bold;
   --titleSize: 5vw;
 
+  --subtitleFont: Roboto Slab;
+  --subtitleWeight: regular;
+  --subtitleSize: 3.5vw;
+
   /* --defaultFont: 'montserrat-regular';
-  --subtitleFont: 'roboto-slab';
   --spotlightFont: 'nunitosans-bold';
   --paragraphBold: 'montserrat-bold'; */
 

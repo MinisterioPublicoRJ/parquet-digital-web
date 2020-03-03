@@ -16,6 +16,7 @@
 
   /* FONTS */
   --defaultFont:Montserrat;
+  --defaultTextSize: 1.75vw;
 
   --titleWeight: bold;
   --titleSize: 5vw;

@@ -6,16 +6,15 @@
     flex-direction: row;
     height: calc(100vh - 2 * var(--pagePadding));
     justify-content: space-between;
-    padding: var(--pagePadding);
     overflow: hidden;
+    padding: var(--pagePadding);
   }
 
   .mainView {
     display: flex;
     flex-direction: column;
     height: 100%;
-    flex: 1;
-    /* overflow: hidden; */
+    flex: 3;
   }
 
   .headerView {
@@ -25,11 +24,13 @@
   }
 
   .alertsView {
-    width: 15%;
     background-color: var(--danger);
+    flex: 1;
     margin-left: var(--pageMargin);
+    overflow-y: scroll;
   }
 
   .infoView {
     flex: 1;
+    overflow-y: scroll;
   }

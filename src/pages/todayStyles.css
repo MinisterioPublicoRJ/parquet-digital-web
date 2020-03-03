@@ -1,50 +1,14 @@
 @import './styles.css';
 
 .leftView {
-  /* background-color: pink; */
   height: 100%;
   width: 75%;
   z-index: 1;
 }
 
 .rightView {
-  /* background-color: yellow; */
   position: absolute;
   bottom: 0;
   right: 0;
   z-index: 0;
 }
-
-/* rightView: {
-    bottom: 0,
-    display: 'block',
-    position: 'absolute',
-    right: 0,
-    zIndex: -1,
-  },
-
-  leftView: {
-    minHeight: '50%',
-    width: '75%',
-  },
-
-  promotron: {
-    width: '40 * $vw',
-  },
-
-  paragraph: {
-    paddingVertical: '3rem',
-    paddingHorizontal: '1rem',
-  },
-
-  paragraphs: {
-    fontFamily: '$paragraphFont',
-    color: '$dark',
-    fontSize: '3.5rem',
-  },
-
-  bold: {
-    fontFamily: '$paragraphBold',
-    color: '$dark',
-    fontSize: '3.5rem',
-  }, */

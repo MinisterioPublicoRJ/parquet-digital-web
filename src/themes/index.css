@@ -32,8 +32,8 @@
   --paragraphBold: 'montserrat-bold'; */
 
   /* SIZING */
-  --pagePadding: 2.5vw;
-  --pageMargin: 2.5vw;
+  --pagePadding: 2.5vh;
+  --pageMargin: 2.5vh;
 
-  --elementPadding: 1.5vw;
+  --elementPadding: 1.5vh;
 }

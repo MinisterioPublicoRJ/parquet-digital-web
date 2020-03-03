@@ -18,8 +18,11 @@
   }
 
   .headerView {
-    flex-direction: row;
+    /* background-color: lightgreen; */
+    display: flex;
+    height: 10vh;
     justify-content: space-between;
+    min-height: 30px;
     padding: var(--elementPadding) 0;
   }
 
@@ -31,6 +34,10 @@
   }
 
   .infoView {
+    /* background-color: gray; */
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    /* justify-content: space-around; */
     overflow-y: scroll;
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+// TODO: add proptypes
 
 export default function({ height, width }) {
   return (
@@ -491,5 +492,5 @@ export default function({ height, width }) {
         </g>
       </g>
     </svg>
-  )
+  );
 }

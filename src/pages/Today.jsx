@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { SectionTitle } from '../components';
-import'./todayStyles.css';
-// import Promotron from '../../assets/svgs/promotronPaineis';
+import './todayStyles.css';
+import Promotron from '../assets/svg/promotronPaineis';
 import Api from '../api';
 import { COD_PROM, COD_PES } from '../constants';
 import NOMES_PROMOTORIAS from '../utils/nomesPromotorias';
@@ -23,7 +23,7 @@ class Today extends React.Component {
   getUserData() {
     this.loadPercentages();
     this.loadCollection();
-    // this.loadEntriesInfo();
+    this.loadEntriesInfo();
   }
 
   /**
@@ -72,24 +72,24 @@ class Today extends React.Component {
    * @return {Node}        React element to be inserted on View
    */
   analyzeEntries(hout, lout, amount) {
-    // if (!amount) {
-    //   return (
-    //     <Text style={Styles.paragraphs}>Percebi que ainda não temos vistas abertas para hoje!</Text>
-    //   );
-    // }
-    // let dayTipe = 'típico';
-    // if (amount < lout || amount > hout) {
-    //   dayTipe = 'atípico';
-    // }
-    // return (
-    //   <Text style={Styles.paragraphs}>
-    //     Hoje temos um dia
-    //     <Text style={Styles.bold}>{` ${dayTipe} `}</Text>
-    //     com a entrada de
-    //     <Text style={Styles.bold}>{` ${amount} `}</Text>
-    //     novos feitos.
-    //   </Text>
-    // );
+    if (!amount) {
+      return (
+        <p className="paragraphWrapper">Percebi que ainda não temos vistas abertas para hoje!</p>
+      );
+    }
+    let dayTipe = 'típico';
+    if (amount < lout || amount > hout) {
+      dayTipe = 'atípico';
+    }
+    return (
+      <p className="paragraphWrapper">
+        Hoje temos um dia
+        <span style={{ fontWeight: 'bold' }}>{` ${dayTipe} `}</span>
+        com a entrada de
+        <span style={{ fontWeight: 'bold' }}>{` ${amount} `}</span>
+        novos feitos.
+      </p>
+    );
   }
 
   /**
@@ -113,35 +113,32 @@ class Today extends React.Component {
 
   render() {
     const { percentile, collectionPhrase, groupName, dayAnalysisComponent } = this.state;
-
-    // if (!percentile || !collectionPhrase || !dayAnalysisComponent)
-    //   return <div>CARREGANDO...</div>;
+    const { dashboard } = this.props;
+    // TODO: proper loading style/spinner
+    if (!percentile || !collectionPhrase || !dayAnalysisComponent) return <div>CARREGANDO...</div>;
 
     return (
-      <div className="outerWrapper">
+      <article className={`page ${dashboard ? 'dashboard' : 'compact'}`}>
+        <SectionTitle value="resumo do dia" />
         <div className="leftView">
-          <SectionTitle value="resumo do dia" />
-          {/*<View style={Styles.paragraph}>
-            <Text style={Styles.paragraphs}>
-              Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
-              <Text style={Styles.bold}>{` ${percentile} `}</Text>
-              da casa entre aquelas de mesma atribuição.
-              {percentile > 0.5 && <Text style={Styles.bold}>Parabéns!</Text>}
-            </Text>
-          </View>*/}
-          {/*<View style={Styles.paragraph}>
-            <Text style={Styles.paragraphs}>
-              Você sabia que seu acervo é<Text style={Styles.bold}>{` ${collectionPhrase} `}</Text>
-              dos seus colegas das
-              <Text style={Styles.bold}>{` ${groupName} `}</Text>?
-            </Text>
-          </View>
-          <View style={Styles.paragraph}>{dayAnalysisComponent}</View>
-        </View>*/}
-        {/*<View style={Styles.rightView}>
-          <Promotron width={Styles._promotron.width} />*/}
+          <p className="paragraphWrapper">
+            Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
+            <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
+            da casa entre aquelas de mesma atribuição.
+            {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+          </p>
+          <p className="paragraphWrapper">
+            Você sabia que seu acervo é
+            <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
+            dos seus colegas das
+            <span style={{ fontWeight: 'bold' }}>{` ${groupName} `}</span>?
+          </p>
+          {dayAnalysisComponent}
         </div>
-      </div>
+        <div className="rightView">
+          <Promotron width="35vw" />
+        </div>
+      </article>
     );
   }
 }

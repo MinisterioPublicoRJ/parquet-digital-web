@@ -1,0 +1,20 @@
+@import '../themes/index.css';
+
+:root {
+  --finalAddedPadding: calc(2 * var(--pagePadding) + 2 * var(--elementPadding));
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 35vh;
+  padding: var(--elementPadding);
+  position: relative;
+}
+
+.paragraphWrapper {
+  color: var(--dark);
+  font-family: var(--defaultFont);
+  font-size: var(--defaultTextSize);
+}

@@ -1,35 +1,35 @@
-@import "../themes/index.css";
+@import '../themes/index.css';
 
 .outerView {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    height: calc(100vh - 2 * var(--pagePadding));
-    justify-content: space-between;
-    padding: var(--pagePadding);
-    overflow: hidden;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: calc(100vh - 2 * var(--pagePadding));
+  justify-content: space-between;
+  padding: var(--pagePadding);
+  overflow: hidden;
+}
 
-  .mainView {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    flex: 1;
-    /* overflow: hidden; */
-  }
+.mainView {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+  /* overflow: hidden; */
+}
 
-  .headerView {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: var(--elementPadding) 0;
-  }
+.headerView {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: var(--elementPadding) 0;
+}
 
-  .alertsView {
-    width: 15%;
-    background-color: var(--danger);
-    margin-left: var(--pageMargin);
-  }
+.alertsView {
+  width: 15%;
+  background-color: var(--danger);
+  margin-left: var(--pageMargin);
+}
 
-  .infoView {
-    flex: 1;
-  }
+.infoView {
+  flex: 1;
+}

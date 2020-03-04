@@ -181,7 +181,7 @@ class Today extends Component {
               Você sabia que seu acervo é
               <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
               dos seus colegas das
-              <span style={{ fontWeight: 'bold' }}>{` ${groupName} `}</span>?
+              <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
             </p>,
             loadingTodayOutliers,
             errorTodayOutliers,

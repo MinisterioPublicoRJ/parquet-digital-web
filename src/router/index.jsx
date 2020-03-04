@@ -8,12 +8,12 @@ import Progress from '../pages/Progress';
 import SuccessIndicators from '../pages/SuccessIndicators';
 import Decisions from '../pages/Decisions';
 
-// import { NavBar } from '../components';
+import { NavBar } from '../components';
 
 export default function Router() {
   return (
     <HashRouter>
-      {/* <NavBar /> */}
+      <NavBar />
       <Switch>
         <Route path="/" exact component={Today} />
         <Route path="/suamesa" component={YourDesk} />

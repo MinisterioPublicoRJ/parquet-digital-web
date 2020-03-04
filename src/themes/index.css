@@ -10,6 +10,7 @@
   --white: #ffffff;
   --gray: #b5b5b5;
   --grayLight: #e8e8e8;
+  --grayLinks: #CECECE;
 
   --shadowColor: rgba(0, 0, 0, .3);
 
@@ -22,6 +23,8 @@
   --subtitleFont: Roboto Slab;
   --subtitleWeight: regular;
   --subtitleSize: 3.5vw;
+
+  --linkSize: 2vw;
 
   /* --defaultFont: 'montserrat-regular';
   --spotlightFont: 'nunitosans-bold';

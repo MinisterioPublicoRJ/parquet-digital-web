@@ -1,7 +1,14 @@
 import React from 'react';
 
 import Router from '../router';
+import Today from '../pages/Today';
+import YourDesk from '../pages/YourDesk';
+import PerformanceRadar from '../pages/PerformanceRadar';
+import Progress from '../pages/Progress';
+import SuccessIndicators from '../pages/SuccessIndicators';
+import Decisions from '../pages/Decisions';
 
+import { MainTitle } from '../components/layoutPieces';
 import './styles.css';
 
 class PageDisplay extends React.Component {
@@ -35,8 +42,8 @@ class PageDisplay extends React.Component {
       <div className="outerView">
         <div className="mainView">
           <div className="headerView">
-            {/* <MainTitle value={greeting} />
-          <TouchableOpacity onPress={() => this.handleModeChange()}>
+            <MainTitle value={greeting} />
+            {/* <TouchableOpacity onPress={() => this.handleModeChange()}>
               <div>
                 modo
                 {isCompact ? ' dashboard' : ' compacto'}
@@ -52,12 +59,12 @@ class PageDisplay extends React.Component {
 
           {!isCompact && (
             <div className="infoView">
-              {/* <Today dashboard />
+              <Today dashboard />
               <YourDesk dashboard />
               <PerformanceRadar dashboard />
               <Progress dashboard />
               <SuccessIndicators dashboard />
-              <Decisions dashboard /> */}
+              <Decisions dashboard />
             </div>
           )}
         </div>

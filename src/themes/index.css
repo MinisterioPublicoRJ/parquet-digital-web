@@ -1,0 +1,31 @@
+:root {
+  /* COLORS */
+  --primary: #28a7e0;
+  --secondary: #b5b5b5;
+  --dark: #3b3b3b;
+  --darkBlue: #374354;
+  --success: #71d0a4;
+  --warning: #f8bd6c;
+  --danger: #f86c72;
+  --white: #ffffff;
+  --gray: #b5b5b5;
+  --grayLight: #e8e8e8;
+
+  --shadowColor: rgba(0, 0, 0, .3);
+
+  /* FONTS */
+  --defaultFont:Montserrat;
+
+  --titleWeight: bold;
+  --titleSize: 5vw;
+
+  --subtitleFont: Roboto Slab;
+  --subtitleWeight: regular;
+  --subtitleSize: 3.5vw;
+
+  /* --defaultFont: 'montserrat-regular';
+  --spotlightFont: 'nunitosans-bold';
+  --paragraphBold: 'montserrat-bold'; */
+
+  /* SIZING */
+}

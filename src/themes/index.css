@@ -10,12 +10,12 @@
   --white: #ffffff;
   --gray: #b5b5b5;
   --grayLight: #e8e8e8;
-  --grayLinks: #CECECE;
+  --grayLinks: #cecece;
 
-  --shadowColor: rgba(0, 0, 0, .3);
+  --shadowColor: rgba(0, 0, 0, 0.3);
 
   /* FONTS */
-  --defaultFont:Montserrat;
+  --defaultFont: Montserrat;
   --defaultTextSize: 1.75vw;
 
   --titleWeight: bold;

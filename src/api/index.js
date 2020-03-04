@@ -1,8 +1,28 @@
 import axios from 'axios';
 
-import { TODAY_OUT, TODAY_OUTLIERS, TODAY_ENTRIES } from './endpoints';
+import {
+  TODAY_OUT,
+  TODAY_OUTLIERS,
+  TODAY_ENTRIES,
+  OPEN_CASES_URL,
+  OPEN_CASES_DETAILS_URL,
+  OPEN_INVESTIGATIONS_URL,
+  COURT_CASES_URL,
+  CLOSED_CASES_URL,
+  COURT_CASES_DETAILS_URL,
+  OPEN_INVESTIGATIONS_DETAILS_URL,
+} from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
+import {
+  openInvestigationsTransform,
+  openInvestigationsDetailsTransform,
+  openCasesTransform,
+  openCasesDetailsTransform,
+  courtCasesTransform,
+  courtCasesDetailsTransform,
+  closedCasesTransform,
+} from './transforms';
 
 const Api = (() => {
   /**
@@ -62,10 +82,59 @@ const Api = (() => {
     return resObj;
   }
 
+  async function getOpenCases(id, cpf) {
+    const { data } = await axios.get(OPEN_CASES_URL({ id, cpf }));
+
+    return openCasesTransform(data);
+  }
+
+  async function getOpenCasesDetails(id, cpf) {
+    const { data } = await axios.get(OPEN_CASES_DETAILS_URL({ id, cpf }));
+
+    return openCasesDetailsTransform(data);
+  }
+
+  async function getOpenInvestigations(id) {
+    const { data } = await axios.get(OPEN_INVESTIGATIONS_URL({ id }));
+
+    return openInvestigationsTransform(data);
+  }
+
+  async function getOpenInvestigationsDetails(id) {
+    const { data } = await axios.get(OPEN_INVESTIGATIONS_DETAILS_URL({ id }));
+
+    return openInvestigationsDetailsTransform(data);
+  }
+
+  async function getCourtCases(id) {
+    const { data } = await axios.get(COURT_CASES_URL({ id }));
+
+    return courtCasesTransform(data);
+  }
+
+  async function getCourtCasesDetails(id) {
+    const { data } = await axios.get(COURT_CASES_DETAILS_URL({ id }));
+
+    return courtCasesDetailsTransform(data);
+  }
+
+  async function getClosedCases(id) {
+    const { data } = await axios.get(CLOSED_CASES_URL({ id }));
+
+    return closedCasesTransform(data);
+  }
+
   return {
     getTodayOutData,
     getTodayCollectionData,
     getTodayEntriesData,
+    getOpenCases,
+    getOpenCasesDetails,
+    getOpenInvestigations,
+    getCourtCases,
+    getClosedCases,
+    getOpenInvestigationsDetails,
+    getCourtCasesDetails,
   };
 })();
 

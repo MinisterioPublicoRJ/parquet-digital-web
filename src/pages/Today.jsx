@@ -120,7 +120,7 @@ class Today extends React.Component {
     return (
       <article className={`page ${dashboard ? 'dashboard' : 'compact'}`}>
         <SectionTitle value="resumo do dia" />
-        <div className="leftView">
+        <div className="todayLeftView">
           <p className="paragraphWrapper">
             Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
             <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
@@ -135,7 +135,7 @@ class Today extends React.Component {
           </p>
           {dayAnalysisComponent}
         </div>
-        <div className="rightView">
+        <div className="todayRightView">
           <Promotron width="35vw" />
         </div>
       </article>

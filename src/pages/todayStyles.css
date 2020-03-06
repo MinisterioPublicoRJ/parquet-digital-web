@@ -1,12 +1,12 @@
 @import './styles.css';
 
-.leftView {
+.todayLeftView {
   height: 100%;
   width: 75%;
   z-index: 1;
 }
 
-.rightView {
+.todayRightView {
   position: absolute;
   bottom: 0;
   right: 0;

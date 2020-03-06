@@ -15,17 +15,17 @@
   --shadowColor: rgba(0, 0, 0, 0.3);
 
   /* FONTS */
-  --defaultFont: Montserrat;
-  --defaultTextSize: 1.75vw;
+  --defaultFont:Montserrat;
+  --defaultTextSize: 1.75vh;
 
   --titleWeight: bold;
-  --titleSize: 5vw;
+  --titleSize: 4vh;
 
   --subtitleFont: Roboto Slab;
   --subtitleWeight: regular;
-  --subtitleSize: 3.5vw;
+  --subtitleSize: 3vh;
 
-  --linkSize: 2vw;
+  --linkSize: 2vh;
 
   /* --defaultFont: 'montserrat-regular';
   --spotlightFont: 'nunitosans-bold';

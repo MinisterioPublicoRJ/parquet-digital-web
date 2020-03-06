@@ -1,35 +1,43 @@
 @import '../themes/index.css';
 
 .outerView {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  height: calc(100vh - 2 * var(--pagePadding));
-  justify-content: space-between;
-  padding: var(--pagePadding);
-  overflow: hidden;
-}
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: calc(100vh - 2 * var(--pagePadding));
+    justify-content: space-between;
+    overflow: hidden;
+    padding: var(--pagePadding);
+  }
 
-.mainView {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  flex: 1;
-  /* overflow: hidden; */
-}
+  .mainView {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 3;
+  }
 
-.headerView {
-  flex-direction: row;
-  justify-content: space-between;
-  padding: var(--elementPadding) 0;
-}
+  .headerView {
+    /* background-color: lightgreen; */
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    min-height: 30px;
+    padding: var(--elementPadding) 0;
+  }
 
-.alertsView {
-  width: 15%;
-  background-color: var(--danger);
-  margin-left: var(--pageMargin);
-}
+  .alertsView {
+    background-color: var(--danger);
+    flex: 1;
+    margin-left: var(--pageMargin);
+    overflow-y: scroll;
+  }
 
-.infoView {
-  flex: 1;
-}
+  .infoView {
+    /* background-color: gray; */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* justify-content: space-around; */
+    overflow-y: scroll;
+  }

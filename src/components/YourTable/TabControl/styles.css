@@ -1,0 +1,73 @@
+.tab-control {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  flex-direction: row;
+}
+.tab-control-item {
+  background-color: var(--white);
+  width: var(--tabControlItemSize);
+  height: var(--tabControlItemSize);
+  border-radius: 7px;
+  box-shadow: 0 3px 8px var(--shadowColor);
+
+  text-align: center;
+  font-family: var(--spotlightFont);
+  font-weight: var(--spotlightWeight);
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.tab-control-spotlight {
+  font-size: var(--spotlightSize);
+  letter-spacing: 0;
+  color: var(--gray);
+
+  text-decoration: none;
+}
+.tab-control-subtitle {
+  font-size: 1vw;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-decoration: none;
+  padding: 0 1vw;
+  height: 3vw;
+}
+.tab-control-item--active {
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  width: var(--tabControlItemActiveWidth);
+  height: var(--tabControlItemActiveHeight);
+  border-bottom: 5px solid var(--primary);
+  justify-content: flex-start;
+}
+.tab-control-spotlight--active {
+  color: var(--primary);
+  font-size: var(--spotilightActiveSize);
+  text-shadow: 0 3px 6px var(--shadowColor);
+  margin-top: -1.4vw;
+  margin-bottom: 0.8vw;
+}
+.tab-control-subtitle--active {
+  color: var(--primary);
+  font-size: 1.1vw;
+  letter-spacing: 0.3vw;
+}
+.tab-control-item--success {
+  background-color: var(--success);
+}
+.tab-control-spotlight--success {
+  color: var(--white);
+}
+.tab-control-subtitle--success {
+  color: var(--white);
+}
+.tab-control-item-link {
+  text-decoration: none;
+}

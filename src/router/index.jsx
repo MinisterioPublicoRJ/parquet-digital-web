@@ -16,7 +16,8 @@ export default function Router() {
       <NavBar />
       <Switch>
         <Route path="/" exact component={Today} />
-        <Route path="/suamesa" component={YourDesk} />
+        <Route path="/suamesa" exact component={YourDesk} />
+        <Route path="/suamesa/:tab" component={YourDesk} />
         <Route path="/radar" component={PerformanceRadar} />
         <Route path="/andamentos" component={Progress} />
         <Route path="/indicadores" component={SuccessIndicators} />

@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-direction: row;
+  overflow: show;
+}
+.process-item {
+  width: 30%;
+  padding-top: 10;
+  padding-bottom: 5;
+  flex-direction: row;
+  align-items: center;
+}
+.process-item-days {
+  margin-left: 25;
+}
+.process-count {
+  font-size: 68;
+  letter-spacing: 0;
+  color: var(--gray);
+  font-family: var(--spotlightFont);
+  text-align: center;
+  margin-top: -15;
+  text-shadow: 0 3px 6px var(--shadowColor);
+}
+.process-days {
+  font-size: 12;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--gray);
+  font-family: var(--spotlightFont);
+  text-align: center;
+  margin-top: -15;
+}

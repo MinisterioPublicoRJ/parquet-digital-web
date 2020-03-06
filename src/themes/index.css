@@ -21,6 +21,14 @@
   --titleWeight: bold;
   --titleSize: 5vw;
 
+  --spotlightFont: Nunito Sans;
+  --spotlightWeight: 700;
+  --spotlightSize: 4.3vw;
+
+  --spotlightSubtitleSize: 0;
+
+  --spotilightActiveSize: calc(var(--spotlightSize) * 1.5);
+
   --subtitleFont: Roboto Slab;
   --subtitleWeight: regular;
   --subtitleSize: 3.5vw;
@@ -28,7 +36,6 @@
   --linkSize: 2vw;
 
   /* --defaultFont: 'montserrat-regular';
-  --spotlightFont: 'nunitosans-bold';
   --paragraphBold: 'montserrat-bold'; */
 
   /* SIZING */
@@ -36,4 +43,8 @@
   --pageMargin: 2.5vh;
 
   --elementPadding: 1.5vh;
+
+  --tabControlItemSize: 11vw;
+  --tabControlItemActiveHeight: calc(var(--tabControlItemSize) * 1.15);
+  --tabControlItemActiveWidth: calc(var(--tabControlItemSize) * 1.4);
 }

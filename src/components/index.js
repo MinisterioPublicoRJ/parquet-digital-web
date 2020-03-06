@@ -1,4 +1,3 @@
-// export { default as ProcessIndicator } from './ProcessIndicator';
-// export { default as TabControl } from './TabControl';
 export * from './layoutPieces';
+export * from './YourTable';
 export { default as NavBar } from './navbar';

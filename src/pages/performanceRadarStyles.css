@@ -5,17 +5,15 @@
 }
 
 .radarLeft {
-  background-color: lightblue;
+  /* background-color: lightblue; */
   display: flex;
   flex: 1;
   flex-direction: column;
 }
 
 .radarRight {
-  /* background-color: lightpink; */
   display: flex;
   flex: 1;
   flex-direction: column;
   padding: var(--elementPadding);
-  /* padding: 100px; */
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SectionTitle } from '../components';
+import { PerformanceChart } from '../components';
 import './performanceRadarStyles.css';
 
 class PerformanceRadar extends React.Component {
@@ -8,7 +8,7 @@ class PerformanceRadar extends React.Component {
     super(props);
     const percentagePhrase = ' 10% abaixo ';
     const movements = 58;
-    this.state = { percentagePhrase, movements};
+    this.state = { percentagePhrase, movements };
     this.getPerformanceData();
   }
 
@@ -22,11 +22,36 @@ class PerformanceRadar extends React.Component {
 
     if (!percentagePhrase || !movements) return <div>Carregando</div>;
 
+    const characterData = [
+      [
+        { x: 'arquivamentos', y: 50 },
+        { x: 'ações civil públicas', y: 103 },
+        { x: 'indeferimentos de plano', y: 250 },
+        { x: 'instauração de investigações', y: 40 },
+        { x: 'termos de ajuste de conduuta', y: 103 },
+      ],
+      [
+        { x: 'arquivamentos', y: 90 },
+        { x: 'ações civil públicas', y: 205 },
+        { x: 'indeferimentos de plano', y: 300 },
+        { x: 'instauração de investigações', y: 80 },
+        { x: 'termos de ajuste de conduuta', y: 205 },
+      ],
+      [
+        { x: 'arquivamentos', y: 120 },
+        { x: 'ações civil públicas', y: 400 },
+        { x: 'indeferimentos de plano', y: 225 },
+        { x: 'instauração de investigações', y: 60 },
+        { x: 'termos de ajuste de conduuta', y: 308 },
+      ],
+    ];
+
     return (
       <article className="page radar">
-        <div className="radarLeft">graph goes here</div>
+        <div className="radarLeft">
+          <PerformanceChart data={characterData} />
+        </div>
         <div className="radarRight">
-          {/* <SectionTitle value="resumo do dia" /> */}
           <p className="paragraphWrapper">
             Analisamos a atuação da sua promotoria e percebemos que a quantidade de arquivamento
             está

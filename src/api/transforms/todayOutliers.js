@@ -1,4 +1,4 @@
-const tadayOutliersTransform = ({
+const todayOutliersTransform = ({
   acervo_qtd = 0,
   primeiro_quartil = 0,
   mediana = 0,
@@ -12,4 +12,4 @@ const tadayOutliersTransform = ({
   cod: cod_atribuicao,
 });
 
-export default tadayOutliersTransform;
+export default todayOutliersTransform;

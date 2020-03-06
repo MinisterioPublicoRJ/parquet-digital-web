@@ -8,29 +8,30 @@
 }
 .process-item {
   width: 30%;
-  padding-top: 10;
-  padding-bottom: 5;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  display: flex;
   flex-direction: row;
   align-items: center;
 }
 .process-item-days {
-  margin-left: 25;
+  margin-left: 25px;
 }
 .process-count {
-  font-size: 68;
+  font-size: 68px;
   letter-spacing: 0;
   color: var(--gray);
   font-family: var(--spotlightFont);
   text-align: center;
-  margin-top: -15;
+  margin-top: -15px;
   text-shadow: 0 3px 6px var(--shadowColor);
 }
 .process-days {
-  font-size: 12;
+  font-size: 12px;
   letter-spacing: 0;
   text-transform: uppercase;
   color: var(--gray);
   font-family: var(--spotlightFont);
   text-align: center;
-  margin-top: -15;
+  margin-top: -15px;
 }

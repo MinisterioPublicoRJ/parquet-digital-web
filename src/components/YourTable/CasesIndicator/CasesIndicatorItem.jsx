@@ -25,6 +25,13 @@ const CasesIndicatorItem = ({ type, data }) => {
   const colorDanger = cssVars.getPropertyValue('--danger');
   const colorGray = cssVars.getPropertyValue('--grayLight');
 
+  const vw = Math.round(
+    Math.max(window.document.documentElement.clientWidth, window.innerWidth || 0) / 100,
+  );
+  const radius = 3 * vw;
+  const innerRadius = radius * 0.75;
+  const canvasSize = radius * 2;
+
   const typeTable = {
     sumUntil20: {
       colorScale: [colorPrimary, colorGray, colorGray],
@@ -55,10 +62,12 @@ const CasesIndicatorItem = ({ type, data }) => {
         ]}
         colorScale={colorScale}
         labels={[]}
-        innerRadius={30}
-        radius={40}
-        containerComponent={<VictoryContainer responsive={false} width={80} height={80} />}
-        origin={{ x: 40, y: 40 }}
+        innerRadius={innerRadius}
+        radius={radius}
+        containerComponent={
+          <VictoryContainer responsive={false} width={canvasSize} height={canvasSize} />
+        }
+        origin={{ x: radius, y: radius }}
       />
 
       <div className="process-item-days">

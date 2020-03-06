@@ -16,10 +16,10 @@
 
   /* FONTS */
   --defaultFont: Montserrat;
-  --defaultTextSize: 1.75vw;
+  --defaultTextSize: 1.5vw;
 
   --titleWeight: bold;
-  --titleSize: 5vw;
+  --titleSize: calc(var(--defaultTextSize) * 2);
 
   --spotlightFont: Nunito Sans;
   --spotlightWeight: 700;
@@ -31,9 +31,9 @@
 
   --subtitleFont: Roboto Slab;
   --subtitleWeight: regular;
-  --subtitleSize: 3.5vw;
+  --subtitleSize: calc(var(--defaultTextSize) * 1.1);
 
-  --linkSize: 2vw;
+  --linkSize: calc(var(--defaultTextSize) * 1);
 
   /* --defaultFont: 'montserrat-regular';
   --paragraphBold: 'montserrat-bold'; */
@@ -44,7 +44,7 @@
 
   --elementPadding: 1.5vh;
 
-  --tabControlItemSize: 11vw;
+  --tabControlItemSize: calc(var(--defaultTextSize) * 7);
   --tabControlItemActiveHeight: calc(var(--tabControlItemSize) * 1.15);
   --tabControlItemActiveWidth: calc(var(--tabControlItemSize) * 1.4);
 }

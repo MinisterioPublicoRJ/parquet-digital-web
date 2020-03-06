@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { VictoryPie, VictoryContainer } from 'victory';
 
-import { leftPad } from '../../../utils';
+import { leftPad, getViewWidth } from '../../../utils';
 import './styles.css';
 
 const propTypes = {
@@ -25,9 +25,7 @@ const CasesIndicatorItem = ({ type, data }) => {
   const colorDanger = cssVars.getPropertyValue('--danger');
   const colorGray = cssVars.getPropertyValue('--grayLight');
 
-  const vw = Math.round(
-    Math.max(window.document.documentElement.clientWidth, window.innerWidth || 0) / 100,
-  );
+  const vw = getViewWidth();
   const radius = 3 * vw;
   const innerRadius = radius * 0.75;
   const canvasSize = radius * 2;

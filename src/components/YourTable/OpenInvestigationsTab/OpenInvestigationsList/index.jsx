@@ -16,10 +16,10 @@ const OpenInvestigationsTab = ({ topProsecutors }) => {
   return (
     <section>
       <h3 className="subtitle">Maiores Reduções do Mês</h3>
-      <ul>
+      <ul className="list-top-n">
         {topProsecutors.map(({ name, collectionVariation30Days }, i) => {
           return (
-            <li key={i}>
+            <li key={i} className="list-top-n-item">
               {i + 1}. <strong>{formatPercent(collectionVariation30Days)}</strong> {name}
             </li>
           );

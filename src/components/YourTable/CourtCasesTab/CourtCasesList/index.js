@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { getViewWidth, leftPad } from '../../../../utils';
+
+import Badge from '../../../../assets/svg/badge';
+
 const propTypes = {
   topProsecutors: PropTypes.arrayOf(
     PropTypes.shape({
@@ -11,15 +15,21 @@ const propTypes = {
 };
 
 const CourtCasesTab = ({ topProsecutors }) => {
+  const vw = getViewWidth();
   return (
     <section>
       <h3 className="subtitle">Recorde de Ações Ajuizadas no Mês</h3>
-      <ul>
+      <ul className="list-top-n">
         {topProsecutors.map(({ name, proposedActions30Days }, i) => {
           return (
-            <li key={i}>
-              {i + 1}. <strong>{proposedActions30Days}</strong>
-              {name}
+            <li key={i} className="list-top-n-item">
+              <span className="list-top-n-icon">
+                <Badge width={2 * vw} height={3 * vw} />
+              </span>
+              <strong className="list-top-n-featured">
+                {leftPad(proposedActions30Days, 2, 0)}
+              </strong>
+              <span className="list-top-n-main">{name}</span>
             </li>
           );
         })}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Router from '../router';
-import Today from '../pages/Today';
+import Today from '../pages/Today/';
 import YourDesk from '../pages/YourDesk';
 import PerformanceRadar from '../pages/PerformanceRadar';
 import Progress from '../pages/Progress';

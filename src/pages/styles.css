@@ -6,7 +6,7 @@
 
 .page {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   min-height: 35vh;
   padding: var(--elementPadding);

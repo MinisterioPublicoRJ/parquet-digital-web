@@ -41,11 +41,11 @@ class OpenInvestigationsTab extends Component {
     } = this.state;
 
     if (openInvestigationsDetailsLoading) {
-      return <div>Carregando...</div>;
+      return <p className="paragraphWrapper">Carregando...</p>;
     }
 
     if (openInvestigationsDetailsError) {
-      return <div>Ocorreu um problema, contate o suporte</div>;
+      return <p className="paragraphWrapper">Ocorreu um problema, contate o suporte</p>;
     }
 
     return (
@@ -53,7 +53,7 @@ class OpenInvestigationsTab extends Component {
         <OpenInvestigationsDetails collectionVariation30Days={collectionVariation30Days} />
         <div>
           <OpenInvestigationsList topProsecutors={topProsecutors} />
-          <div>Mapa</div>
+          <h3 className="subtitle">Mapa</h3>
         </div>
       </div>
     );

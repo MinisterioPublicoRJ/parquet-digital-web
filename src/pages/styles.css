@@ -18,3 +18,11 @@
   font-family: var(--defaultFont);
   font-size: var(--defaultTextSize);
 }
+
+.subtitle {
+  color: var(--dark);
+  font-family: var(--defaultFont);
+  font-size: var(--defaultTextSize);
+  text-transform: uppercase;
+  font-weight: 400;
+}

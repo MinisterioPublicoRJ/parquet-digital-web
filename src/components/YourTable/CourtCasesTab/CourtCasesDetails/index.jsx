@@ -14,16 +14,15 @@ const defaultProps = {
 
 const CourtCasesDetails = ({ proposedActions60Days, proposedActionsVariation12Months }) => {
   return (
-    <div>
-      Você propos <strong>{proposedActions60Days} ações</strong>
-      nos últimos 60 dias, com{' '}
+    <p className="paragraphWrapper">
+      Você propos <strong>{proposedActions60Days} ações</strong> nos últimos 60 dias, com{' '}
       <strong>
         {proposedActionsVariation12Months >= 0
           ? `um aumento de ${formatPercent(proposedActionsVariation12Months)} `
           : `uma redução de ${formatPercent(proposedActionsVariation12Months)} `}
       </strong>
       nos últimos 12 meses.
-    </div>
+    </p>
   );
 };
 

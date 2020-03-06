@@ -12,8 +12,8 @@ const propTypes = {
 
 const CourtCasesTab = ({ topProsecutors }) => {
   return (
-    <div>
-      <div>Recorde de Ações Ajuizadas no Mês</div>
+    <section>
+      <h3 className="subtitle">Recorde de Ações Ajuizadas no Mês</h3>
       <ul>
         {topProsecutors.map(({ name, proposedActions30Days }, i) => {
           return (
@@ -24,7 +24,7 @@ const CourtCasesTab = ({ topProsecutors }) => {
           );
         })}
       </ul>
-    </div>
+    </section>
   );
 };
 

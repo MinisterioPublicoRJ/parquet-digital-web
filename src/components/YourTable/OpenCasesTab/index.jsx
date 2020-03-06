@@ -42,11 +42,11 @@ class OpenCasesTab extends Component {
     } = this.state;
 
     if (openCasesDetailsLoading) {
-      return <div>Carregando...</div>;
+      return <p className="paragraphWrapper">Carregando...</p>;
     }
 
     if (openCasesDetailsError) {
-      return <div>Ocorreu um problema, contate o suporte</div>;
+      return <p className="paragraphWrapper">Ocorreu um problema, contate o suporte</p>;
     }
 
     return <CasesIndicator data={{ sumUntil20, sumBetween20And30, sumBeyond30 }} />;

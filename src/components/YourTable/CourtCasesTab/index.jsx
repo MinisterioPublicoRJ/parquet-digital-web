@@ -43,11 +43,11 @@ class CourtCasesTab extends Component {
     } = this.state;
 
     if (courtCasesDetailsLoading) {
-      return <div>Carregando...</div>;
+      return <p className="paragraphWrapper">Carregando...</p>;
     }
 
     if (courtCasesDetailsError) {
-      return <div>Ocorreu um problema, contate o suporte</div>;
+      return <p className="paragraphWrapper">Ocorreu um problema, contate o suporte</p>;
     }
 
     return (
@@ -58,7 +58,7 @@ class CourtCasesTab extends Component {
         />
         <div>
           <CourtCasesList topProsecutors={topProsecutors} />
-          <div>Mapa</div>
+          <h3 className="subtitle">Mapa</h3>
         </div>
       </div>
     );

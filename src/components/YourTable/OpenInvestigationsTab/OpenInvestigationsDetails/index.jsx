@@ -13,7 +13,7 @@ const defaultProps = {
 
 const OpenInvestigationsDetails = ({ collectionVariation30Days }) => {
   return (
-    <div>
+    <p className="paragraphWrapper">
       Seu acervo{' '}
       <strong>
         {collectionVariation30Days > 0
@@ -22,7 +22,7 @@ const OpenInvestigationsDetails = ({ collectionVariation30Days }) => {
           ? `reduziu ${formatPercent(collectionVariation30Days)} `
           : 'se manteve o mesmo '}
       </strong>
-    </div>
+    </p>
   );
 };
 

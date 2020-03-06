@@ -7,11 +7,13 @@ import {
   OpenCasesTab,
   OpenInvestigationsTab,
   CourtCasesTab,
-} from '../components';
+} from '../../components';
 
-import Api from '../api';
+import Api from '../../api';
 
-import { COD_PROM, COD_PES } from '../constants';
+import './styles.css';
+
+import { COD_PROM, COD_PES } from '../../constants';
 
 const Tab = ({ tab }) => {
   if (!tab || tab === 'vistas-abertas') {
@@ -76,12 +78,12 @@ class YourDesk extends Component {
   }
 
   render() {
-    const { match } = this.props;
+    const { match, dashboard } = this.props;
     const { tab } = match.params;
     const { openCases, openInvestigations, courtCases, closedCases } = this.state;
 
     return (
-      <div>
+      <article className={`page ${dashboard ? 'dashboard' : 'compact'}`}>
         <SectionTitle value="Sua Mesa" />
         <TabControl
           match={match}
@@ -90,7 +92,7 @@ class YourDesk extends Component {
         <div>
           <Tab tab={tab} />
         </div>
-      </div>
+      </article>
     );
   }
 }

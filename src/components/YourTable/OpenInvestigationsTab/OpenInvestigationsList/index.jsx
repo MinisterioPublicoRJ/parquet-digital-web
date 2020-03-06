@@ -14,8 +14,8 @@ const propTypes = {
 
 const OpenInvestigationsTab = ({ topProsecutors }) => {
   return (
-    <div>
-      <div>Maiores Reduções do Mês</div>
+    <section>
+      <h3 className="subtitle">Maiores Reduções do Mês</h3>
       <ul>
         {topProsecutors.map(({ name, collectionVariation30Days }, i) => {
           return (
@@ -25,7 +25,7 @@ const OpenInvestigationsTab = ({ topProsecutors }) => {
           );
         })}
       </ul>
-    </div>
+    </section>
   );
 };
 

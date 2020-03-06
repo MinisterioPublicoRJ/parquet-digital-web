@@ -1,8 +1,8 @@
-@import '../../../themes/index.css';
+@import "../../../themes/index.css";
 
 .mainTitleText {
-  color: var(--darkBlue);
-  font-family: var(--defaultFont);
-  font-size: var(--titleSize);
-  font-weight: var(--titleWeight);
-}
+    color: var(--darkBlue);
+    font-family: var(--defaultFont);
+    font-size: var(--titleSize);
+    font-weight: var(--titleWeight);
+  };

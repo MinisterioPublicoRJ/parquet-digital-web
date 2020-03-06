@@ -54,7 +54,7 @@
 
 .list-top-n-featured {
   font-size: calc(var(--defaultTextSize) * 2.1);
-  width: 19vw;
+  min-width: 8vw;
 }
 
 .list-top-n-icon {

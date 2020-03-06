@@ -3,6 +3,7 @@
   justify-content: space-around;
   align-items: flex-end;
   flex-direction: row;
+  margin-bottom: calc(var(--elementPadding) * 4);
 }
 .tab-control-item {
   background-color: var(--white);

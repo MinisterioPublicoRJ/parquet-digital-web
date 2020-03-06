@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatPercent } from '../../../../utils';
+import Badge from '../../../../assets/svg/badge';
+
+import { getViewWidth, formatPercentage, leftPad } from '../../../../utils';
 
 const propTypes = {
   topProsecutors: PropTypes.arrayOf(
@@ -13,6 +15,8 @@ const propTypes = {
 };
 
 const OpenInvestigationsTab = ({ topProsecutors }) => {
+  const vw = getViewWidth();
+
   return (
     <section>
       <h3 className="subtitle">Maiores Reduções do Mês</h3>
@@ -20,7 +24,13 @@ const OpenInvestigationsTab = ({ topProsecutors }) => {
         {topProsecutors.map(({ name, collectionVariation30Days }, i) => {
           return (
             <li key={i} className="list-top-n-item">
-              {i + 1}. <strong>{formatPercent(collectionVariation30Days)}</strong> {name}
+              <span className="list-top-n-icon">
+                <Badge width={2 * vw} height={3 * vw} />
+              </span>
+              <strong className="list-top-n-featured">
+                {leftPad(formatPercentage(collectionVariation30Days), 3, 0)}
+              </strong>
+              <span className="list-top-n-main">{name}</span>
             </li>
           );
         })}

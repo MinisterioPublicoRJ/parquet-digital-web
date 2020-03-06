@@ -16,6 +16,7 @@ const propTypes = {
 
 const CourtCasesTab = ({ topProsecutors }) => {
   const vw = getViewWidth();
+
   return (
     <section>
       <h3 className="subtitle">Recorde de Ações Ajuizadas no Mês</h3>

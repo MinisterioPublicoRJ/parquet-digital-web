@@ -26,5 +26,9 @@ const CHART_THEME = {
   gridGroup: {
     data: { fillOpacity: 0, strokeWidth: 1, stroke: gray, strokeOpacity: 0.5 },
   },
+  axisLabel: {
+    fill: darkBlue,
+    fontSize: 7,
+  },
 };
 export default CHART_THEME;

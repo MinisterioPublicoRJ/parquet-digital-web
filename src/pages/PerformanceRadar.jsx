@@ -23,27 +23,11 @@ class PerformanceRadar extends React.Component {
     if (!percentagePhrase || !movements) return <div>Carregando</div>;
 
     const characterData = [
-      [
-        { x: 'arquivamentos', y: 50 },
-        { x: 'ações civil públicas', y: 103 },
-        { x: 'indeferimentos de plano', y: 250 },
-        { x: 'instauração de investigações', y: 40 },
-        { x: 'termos de ajuste de conduuta', y: 103 },
-      ],
-      [
-        { x: 'arquivamentos', y: 90 },
-        { x: 'ações civil públicas', y: 205 },
-        { x: 'indeferimentos de plano', y: 300 },
-        { x: 'instauração de investigações', y: 80 },
-        { x: 'termos de ajuste de conduuta', y: 205 },
-      ],
-      [
-        { x: 'arquivamentos', y: 120 },
-        { x: 'ações civil públicas', y: 400 },
-        { x: 'indeferimentos de plano', y: 225 },
-        { x: 'instauração de investigações', y: 60 },
-        { x: 'termos de ajuste de conduuta', y: 308 },
-      ],
+      { x: 'arquivamentos', y: 50 },
+      { x: 'ações civil públicas', y: 103 },
+      { x: 'indeferimentos de plano', y: 250 },
+      { x: 'instauração de investigações', y: 60 },
+      { x: 'termos de ajuste de conduta', y: 103 },
     ];
 
     return (

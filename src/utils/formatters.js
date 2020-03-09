@@ -35,4 +35,25 @@ export const leftPad = (w, len, char) => {
   return str;
 };
 
+/**
+ * takes in a single word and capitalizes its first letter. Can be used for sentences,
+ * but only the first word will have its firts letter capitalized
+ * @param  {string} word   a word or sentence
+ * @return {string}        same word or sentence but with the first letter uppercased
+ */
+export function capitalizeWord(word) {
+  return word.charAt(0).toLocaleUpperCase() + word.substring(1);
+}
+
+/**
+ * gives title-style capitalization to a sentence (a.k.a. every word in it gets a capital letter)
+ * note that it will remove any uppercasing that is in the middle as well, "normalizing" the string
+ * @param  {string} sentence sentence or single word
+ * @return {string}          same sentence but with every word capitalized
+ */
+export function capitalizeTitle(sentence) {
+  const lowercaseWords = sentence.toLocaleLowerCase().split(' ');
+  return lowercaseWords.map(word => capitalizeWord(word)).join(' ');
+}
+
 export const formatPercent = n => `${(Math.abs(n) * 100).toFixed(2)}%`;

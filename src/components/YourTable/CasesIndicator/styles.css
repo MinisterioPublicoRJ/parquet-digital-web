@@ -5,6 +5,7 @@
   align-items: stretch;
   flex-direction: row;
   overflow: show;
+  margin-bottom: 3vw;
 }
 .process-item {
   width: 30%;

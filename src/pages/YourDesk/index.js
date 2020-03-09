@@ -111,7 +111,7 @@ class YourDesk extends Component {
   render() {
     const { match, dashboard } = this.props;
     const { tab, table } = match.params;
-    console.log(match.params);
+
     const {
       openCases,
       openInvestigations,

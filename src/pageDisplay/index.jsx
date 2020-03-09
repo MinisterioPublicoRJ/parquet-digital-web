@@ -16,7 +16,7 @@ class PageDisplay extends React.Component {
     super(props);
     this.state = {
       greeting: this.getGreetingString(),
-      isCompact: true,
+      isCompact: false,
     };
   }
 

@@ -56,7 +56,7 @@ class CourtCasesTab extends Component {
           proposedActions60Days={proposedActions60Days}
           proposedActionsVariation12Months={proposedActionsVariation12Months}
         />
-        <div class="columns-2">
+        <div className="columns-2">
           <CourtCasesList topProsecutors={topProsecutors} />
           <section>
             <h3 className="subtitle">Mapa da sua atuação</h3>

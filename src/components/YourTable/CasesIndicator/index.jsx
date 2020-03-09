@@ -10,18 +10,24 @@ const propTypes = {
     sumBetween20And30: PropTypes.number.isRequired,
     sumBeyond30: PropTypes.number.isRequired,
   }).isRequired,
+  selected: PropTypes.oneOf(['ate-20-dias', '20-a-30-dias', '30-ou-mais-dias']),
 };
 
-const CasesIndicator = ({ data }) => {
+const defaultProps = {
+  selected: 'ate-20-dias',
+};
+
+const CasesIndicator = ({ data, selected }) => {
   return (
     <div className="container">
-      <CasesIndicatorItem type="sumUntil20" data={data} />
-      <CasesIndicatorItem type="sumBetween20And30" data={data} />
-      <CasesIndicatorItem type="sumBeyond30" data={data} />
+      <CasesIndicatorItem type="sumUntil20" data={data} selected={selected} />
+      <CasesIndicatorItem type="sumBetween20And30" data={data} selected={selected} />
+      <CasesIndicatorItem type="sumBeyond30" data={data} selected={selected} />
     </div>
   );
 };
 
 CasesIndicator.propTypes = propTypes;
+CasesIndicator.defaultProps = defaultProps;
 
 export default CasesIndicator;

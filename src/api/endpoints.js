@@ -16,3 +16,5 @@ export const COURT_CASES_DETAILS_URL = t(`${BASE_URL}/suamesa/detalhe/processos/
 export const OPEN_INVESTIGATIONS_DETAILS_URL = t(
   `${BASE_URL}/suamesa/detalhe/investigacoes/\${id}`,
 );
+
+export const OPEN_CASES_LIST = t(`${BASE_URL}/suamesa/lista/vistas/\${id}/\${cpf}/\${list}`);

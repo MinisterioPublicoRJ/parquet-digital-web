@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import CasesIndicator from '../CasesIndicator';
 import Api from '../../../api';
+import { dataStateWrapper } from '../../../utils';
 
 import { COD_PROM, COD_PES } from '../../../constants';
 
@@ -20,7 +21,7 @@ class OpenCasesTab extends Component {
 
       this.setState({ ...openCasesDetails, openCasesDetailsLoading: false });
     } catch (e) {
-      console.error('ERROUUUU', e);
+      console.error('OpenCasesTab#getOpenCasesDetails: error', e);
       this.setState({
         openCasesDetailsError: true,
         openCasesDetailsLoading: false,
@@ -33,6 +34,7 @@ class OpenCasesTab extends Component {
   }
 
   render() {
+    const { table } = this.props;
     const {
       openCasesDetailsLoading,
       openCasesDetailsError,
@@ -41,15 +43,13 @@ class OpenCasesTab extends Component {
       sumBeyond30,
     } = this.state;
 
-    if (openCasesDetailsLoading) {
-      return <p className="paragraphWrapper">Carregando...</p>;
-    }
-
-    if (openCasesDetailsError) {
-      return <p className="paragraphWrapper">Ocorreu um problema, contate o suporte</p>;
-    }
-
-    return <CasesIndicator data={{ sumUntil20, sumBetween20And30, sumBeyond30 }} />;
+    return dataStateWrapper(
+      <>
+        <CasesIndicator data={{ sumUntil20, sumBetween20And30, sumBeyond30 }} selected={table} />
+      </>,
+      openCasesDetailsLoading,
+      openCasesDetailsError,
+    );
   }
 }
 

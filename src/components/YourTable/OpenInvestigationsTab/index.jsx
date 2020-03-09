@@ -51,7 +51,7 @@ class OpenInvestigationsTab extends Component {
     return (
       <div>
         <OpenInvestigationsDetails collectionVariation30Days={collectionVariation30Days} />
-        <div class="columns-2">
+        <div className="columns-2">
           <OpenInvestigationsList topProsecutors={topProsecutors} />
           <section>
             <h3 className="subtitle">Mapa da sua atuação</h3>

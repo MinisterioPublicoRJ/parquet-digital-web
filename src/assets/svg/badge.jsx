@@ -1,12 +1,18 @@
 import React from 'react';
 
+const defaultProps = {
+  width: null,
+  height: null,
+};
+
 const badge = ({ height, width }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={width || '25.844'}
-    height={height || '32.228'}
+    // width={width || '25.844'}
+    // height={height || '32.228'}
     viewBox="0 0 25.844 32.228"
-    preserveAspectRatio="meet"
+    preserveAspectRatio="xMidYMid meet"
+    style={{ width, height }}
   >
     <g transform="translate(-50.71)">
       <g transform="translate(54.711 3.142)">
@@ -34,5 +40,7 @@ const badge = ({ height, width }) => (
     </g>
   </svg>
 );
+
+badge.defaultProps = defaultProps;
 
 export default badge;

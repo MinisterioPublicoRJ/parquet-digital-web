@@ -7,7 +7,7 @@ import './styles.css';
 
 const propTypes = {
   success: PropTypes.bool,
-  spotlight: PropTypes.number.isRequired,
+  spotlight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   subtitle: PropTypes.string.isRequired,
   to: PropTypes.string,
   forfeit: PropTypes.bool,
@@ -49,17 +49,14 @@ const TabControlItem = ({ spotlight, subtitle, success, to, match, forfeit }) =>
     subtitleStyle.push('tab-control-subtitle--active');
   }
 
-  let Wrapper;
-
-  if (!success && !isActive && to) {
-    Wrapper = ({ children }) => (
-      <NavLink className="tab-control-item-link" to={`/suamesa/${to}`}>
-        {children}
-      </NavLink>
-    );
-  } else {
-    Wrapper = ({ children }) => <>{children}</>;
-  }
+  const Wrapper =
+    !success && !isActive && to
+      ? ({ children }) => (
+          <NavLink className="tab-control-item-link" to={`/suamesa/${to}`}>
+            {children}
+          </NavLink>
+        )
+      : ({ children }) => <>{children}</>;
 
   return (
     <Wrapper>

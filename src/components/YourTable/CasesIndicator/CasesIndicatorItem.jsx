@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import { VictoryPie, VictoryContainer } from 'victory';
 
@@ -13,9 +14,14 @@ const propTypes = {
     sumBetween20And30: PropTypes.number.isRequired,
     sumBeyond30: PropTypes.number.isRequired,
   }).isRequired,
+  selected: PropTypes.oneOf(['ate-20-dias', '20-a-30-dias', '30-ou-mais-dias']),
 };
 
-const CasesIndicatorItem = ({ type, data }) => {
+const defaultProps = {
+  selected: 'ate-20-dias',
+};
+
+const CasesIndicatorItem = ({ type, data, selected }) => {
   const { sumUntil20, sumBetween20And30, sumBeyond30 } = data;
 
   const cssVars = window.getComputedStyle(window.document.documentElement);
@@ -35,23 +41,35 @@ const CasesIndicatorItem = ({ type, data }) => {
       colorScale: [colorPrimary, colorGray, colorGray],
       color: colorPrimary,
       label: 'Até 20 dias',
+      to: 'ate-20-dias',
     },
     sumBetween20And30: {
       colorScale: [colorGray, colorWarning, colorGray],
       color: colorWarning,
       label: '20 a 30 dias',
+      to: '20-a-30-dias',
     },
     sumBeyond30: {
       colorScale: [colorGray, colorGray, colorDanger],
       color: colorDanger,
       label: '30+ dias',
+      to: '30-ou-mais-dias',
     },
   };
 
-  const { colorScale, color, label } = typeTable[type];
+  const { colorScale, color, label, to } = typeTable[type];
+
+  const Wrapper =
+    selected === to
+      ? ({ children }) => <div className="process-item process-item--selected">{children}</div>
+      : ({ children }) => (
+          <NavLink className="process-item" to={`/suamesa/vistas-abertas/${to}`}>
+            {children}
+          </NavLink>
+        );
 
   return (
-    <div className="process-item">
+    <Wrapper>
       <VictoryPie
         data={[
           { x: '', y: sumUntil20 },
@@ -76,10 +94,11 @@ const CasesIndicatorItem = ({ type, data }) => {
           {label}
         </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 
 CasesIndicatorItem.propTypes = propTypes;
+CasesIndicatorItem.defaultProps = defaultProps;
 
 export default CasesIndicatorItem;

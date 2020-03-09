@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: stretch;
   flex-direction: row;
   overflow: show;
@@ -12,6 +12,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+}
+.process-item--selected {
+  background: #ccc;
 }
 .process-item-days {
   margin-left: 1.5vw;

@@ -14,7 +14,7 @@ const Promotron = ({ height, width }) => {
         // width="374.967"
         // height="254.328"
         viewBox="0 0 374.967 254.328"
-        preserveAspectRatio="meet"
+        preserveAspectRatio="xMidYMid meet"
         style={{ width: '100%' }}
       >
         <g id="robo_main" transform="translate(-2858.612 -918.69)">

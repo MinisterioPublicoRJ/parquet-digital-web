@@ -12,10 +12,10 @@ const propTypes = {
     path: PropTypes.string.isRequired,
   }).isRequired,
   data: PropTypes.shape({
-    openCases: PropTypes.number,
-    openInvestigations: PropTypes.number,
-    courtCases: PropTypes.number,
-    closedCases: PropTypes.number,
+    openCases: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    openInvestigations: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    courtCases: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    closedCases: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   }).isRequired,
 };
 

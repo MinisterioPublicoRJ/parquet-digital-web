@@ -10,15 +10,17 @@ import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
 import { dataStateWrapper, formatPercentage } from '../../utils';
 
 class Today extends Component {
-  state = {
-    loadingTodayOut: true,
-    loadingTodayEntries: true,
-    loadingTodayOutliers: true,
-
-    errorTodayOut: false,
-    errorTodayEntries: false,
-    errorTodayOutliers: false,
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      loadingTodayOut: true,
+      loadingTodayEntries: true,
+      loadingTodayOutliers: true,
+      errorTodayOut: false,
+      errorTodayEntries: false,
+      errorTodayOutliers: false,
+    };
+  }
 
   componentDidMount() {
     this.getUserData();
@@ -164,8 +166,8 @@ class Today extends Component {
 
     return (
       <article className={`page ${dashboard ? 'dashboard' : 'compact'}`}>
-        <SectionTitle value="resumo do dia" />
         <div className="leftView">
+          <SectionTitle value="resumo do dia" />
           {dataStateWrapper(
             <p className="paragraphWrapper">
               Nos últimos 30 dias a sua Promotoria foi mais resolutiva que

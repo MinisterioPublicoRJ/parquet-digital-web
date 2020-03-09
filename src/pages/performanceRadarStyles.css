@@ -1,0 +1,19 @@
+@import './styles.css';
+
+.radar {
+  flex-direction: row;
+}
+
+.radarLeft {
+  /* background-color: lightblue; */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.radarRight {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--elementPadding);
+}

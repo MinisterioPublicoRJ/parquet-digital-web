@@ -1,0 +1,29 @@
+@import '../../../themes/index.css';
+
+table {
+  color: #8998AC;
+  font-family: var(--defaultFont);
+  width: 100%;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #F8F9FB;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #FFFFFF;
+}
+
+thead tr {
+  background-color: #F8F9FB;
+  color: #39475B;
+  font-weight: normal;
+}
+
+td {
+  padding: 5px;
+}
+
+th{
+  padding: 10px;
+}

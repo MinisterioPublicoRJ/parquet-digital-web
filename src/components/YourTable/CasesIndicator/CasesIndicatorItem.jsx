@@ -26,10 +26,10 @@ const CasesIndicatorItem = ({ type, data, selected }) => {
 
   const cssVars = window.getComputedStyle(window.document.documentElement);
 
-  const colorPrimary = cssVars.getPropertyValue('--primary');
-  const colorWarning = cssVars.getPropertyValue('--warning');
-  const colorDanger = cssVars.getPropertyValue('--danger');
-  const colorGray = cssVars.getPropertyValue('--grayLight');
+  const colorPrimary = cssVars.getPropertyValue('--primary').trim();
+  const colorWarning = cssVars.getPropertyValue('--warning').trim();
+  const colorDanger = cssVars.getPropertyValue('--danger').trim();
+  const colorGray = cssVars.getPropertyValue('--grayLight').trim();
 
   const vw = getViewWidth();
   const radius = 3 * vw;
@@ -59,9 +59,11 @@ const CasesIndicatorItem = ({ type, data, selected }) => {
 
   const { colorScale, color, label, to } = typeTable[type];
 
+  const selectedClass = `process-item process-item--selected process-item--${to}`;
+
   const Wrapper =
     selected === to
-      ? ({ children }) => <div className="process-item process-item--selected">{children}</div>
+      ? ({ children }) => <div className={selectedClass}>{children}</div>
       : ({ children }) => (
           <NavLink className="process-item" to={`/suamesa/vistas-abertas/${to}`}>
             {children}

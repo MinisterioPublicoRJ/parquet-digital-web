@@ -16,6 +16,7 @@
   height: 100%;
   flex: 3;
   /* overflow: scroll; */
+  position: relative;
 }
 
 .headerView {
@@ -41,4 +42,10 @@
   flex: 1;
   /* justify-content: space-around; */
   overflow-y: scroll;
+}
+
+.change-mode-button {
+  position: absolute;
+  top: 7vh;
+  right: 0;
 }

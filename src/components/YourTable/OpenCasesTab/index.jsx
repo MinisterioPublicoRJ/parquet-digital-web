@@ -44,7 +44,7 @@ class OpenCasesTab extends Component {
   }
 
   render() {
-    const { table } = this.props;
+    const { table, match } = this.props;
     const {
       openCasesDetailsLoading,
       openCasesDetailsError,
@@ -55,7 +55,11 @@ class OpenCasesTab extends Component {
 
     return dataStateWrapper(
       <>
-        <CasesIndicator data={{ sumUntil20, sumBetween20And30, sumBeyond30 }} selected={table} />
+        <CasesIndicator
+          data={{ sumUntil20, sumBetween20And30, sumBeyond30 }}
+          selected={table}
+          match={match}
+        />
         <OpenCasesTable table={table} />
       </>,
       openCasesDetailsLoading,

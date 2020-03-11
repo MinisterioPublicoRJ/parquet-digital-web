@@ -8,11 +8,12 @@ import Progress from '../pages/Progress';
 import SuccessIndicators from '../pages/SuccessIndicators';
 import Decisions from '../pages/Decisions';
 
-import { NavBar } from '../components';
+import { NavBar, ChangeModeButton } from '../components';
 
-export default function Router() {
+export default function Router({ handleModeChange }) {
   return (
     <HashRouter>
+      <ChangeModeButton cb={handleModeChange} isCompact />
       <NavBar />
       <Switch>
         <Route path="/" exact component={Today} />

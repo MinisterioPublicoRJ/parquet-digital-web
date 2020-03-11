@@ -4,6 +4,8 @@ import CourtCasesDetails from './CourtCasesDetails';
 import CourtCasesList from './CourtCasesList';
 import Api from '../../../api';
 
+import { dataStateWrapper } from '../../../utils';
+
 import { COD_PROM } from '../../../constants';
 
 class CourtCasesTab extends Component {
@@ -21,7 +23,7 @@ class CourtCasesTab extends Component {
 
       this.setState({ ...courtCasesDetails, courtCasesDetailsLoading: false });
     } catch (e) {
-      console.error('ERROUUUU', e);
+      console.error('CourtCasesTab#getCourtCasesDetails', e);
       this.setState({
         courtCasesDetailsError: true,
         courtCasesDetailsLoading: false,
@@ -42,15 +44,7 @@ class CourtCasesTab extends Component {
       topProsecutors,
     } = this.state;
 
-    if (courtCasesDetailsLoading) {
-      return <p className="paragraphWrapper">Carregando...</p>;
-    }
-
-    if (courtCasesDetailsError) {
-      return <p className="paragraphWrapper">Ocorreu um problema, contate o suporte</p>;
-    }
-
-    return (
+    return dataStateWrapper(
       <div>
         <CourtCasesDetails
           proposedActions60Days={proposedActions60Days}
@@ -62,7 +56,9 @@ class CourtCasesTab extends Component {
             <h3 className="subtitle">Mapa da sua atuação</h3>
           </section>
         </div>
-      </div>
+      </div>,
+      courtCasesDetailsLoading,
+      courtCasesDetailsError,
     );
   }
 }

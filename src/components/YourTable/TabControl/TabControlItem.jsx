@@ -30,7 +30,7 @@ const defaultProps = {
 };
 
 const TabControlItem = ({ spotlight, subtitle, success, to, match, forfeit }) => {
-  const { path, params } = match;
+  const { path, params, url = '' } = match;
 
   const viewStyle = ['tab-control-item'];
   const spotlightStyle = ['tab-control-spotlight'];
@@ -42,17 +42,28 @@ const TabControlItem = ({ spotlight, subtitle, success, to, match, forfeit }) =>
     viewStyle.push('tab-control-item--success');
     spotlightStyle.push('tab-control-spotlight--success');
     subtitleStyle.push('tab-control-subtitle--success');
-  } else if ((path === '/suamesa' && forfeit) || (to && params.tab === to)) {
+  } else if ((['/', '/suamesa'].includes(path) && forfeit) || (to && params.tab === to)) {
     isActive = true;
     viewStyle.push('tab-control-item--active');
     spotlightStyle.push('tab-control-spotlight--active');
     subtitleStyle.push('tab-control-subtitle--active');
   }
 
+  let destination;
+  if (url === '/suamesa') {
+    destination = url;
+  } else {
+    destination = url.split('/');
+    destination.pop();
+    destination = destination.join('/');
+  }
+
+  destination = destination.replace('/vistas-abertas', '');
+
   const Wrapper =
     !success && !isActive && to
       ? ({ children }) => (
-          <NavLink className="tab-control-item-link" to={`/suamesa/${to}`}>
+          <NavLink className="tab-control-item-link" to={`${destination}/${to}`}>
             {children}
           </NavLink>
         )

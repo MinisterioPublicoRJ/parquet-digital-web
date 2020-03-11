@@ -16,9 +16,9 @@ import './styles.css';
 
 import { COD_PROM, COD_PES } from '../../constants';
 
-const Tab = ({ tab, table }) => {
+const Tab = ({ tab, table, match }) => {
   if (!tab || tab === 'vistas-abertas') {
-    return <OpenCasesTab table={table} />;
+    return <OpenCasesTab table={table} match={match} />;
   }
 
   if (tab === 'investigacoes-em-curso') {
@@ -110,7 +110,7 @@ class YourDesk extends Component {
 
   render() {
     const { match, dashboard } = this.props;
-    const { tab, table } = match.params;
+    const { tab, table } = match?.params;
 
     const {
       openCases,
@@ -158,7 +158,7 @@ class YourDesk extends Component {
           }}
         />
         <div>
-          <Tab tab={tab} table={table} />
+          <Tab tab={tab} table={table} match={match} />
         </div>
       </article>
     );

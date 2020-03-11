@@ -21,7 +21,7 @@ const defaultProps = {
   selected: 'ate-20-dias',
 };
 
-const CasesIndicatorItem = ({ type, data, selected }) => {
+const CasesIndicatorItem = ({ type, data, selected, match }) => {
   const { sumUntil20, sumBetween20And30, sumBeyond30 } = data;
 
   const cssVars = window.getComputedStyle(window.document.documentElement);
@@ -61,11 +61,22 @@ const CasesIndicatorItem = ({ type, data, selected }) => {
 
   const selectedClass = `process-item process-item--selected process-item--${to}`;
 
+  let destination;
+  if (['/suamesa', '/suamesa/vistas-abertas'].includes(match.url)) {
+    destination = match.url;
+  } else {
+    destination = match.url.split('/');
+    destination.pop();
+    destination = destination.join('/');
+  }
+
+  destination = destination.replace('/vistas-abertas', '');
+
   const Wrapper =
     selected === to
       ? ({ children }) => <div className={selectedClass}>{children}</div>
       : ({ children }) => (
-          <NavLink className="process-item" to={`/suamesa/vistas-abertas/${to}`}>
+          <NavLink className="process-item" to={`${destination}/vistas-abertas/${to}`}>
             {children}
           </NavLink>
         );

@@ -5,6 +5,7 @@ import OpenInvestigationsList from './OpenInvestigationsList';
 import Api from '../../../api';
 
 import { COD_PROM } from '../../../constants';
+import { dataStateWrapper } from '../../../utils';
 
 class OpenInvestigationsTab extends Component {
   state = {
@@ -20,7 +21,7 @@ class OpenInvestigationsTab extends Component {
 
       this.setState({ ...openInvestigationsDetails, openInvestigationsDetailsLoading: false });
     } catch (e) {
-      console.error('ERROUUUU', e);
+      console.error('OpenInvestigationsTab#getOpenInvestigationsDetails', e);
       this.setState({
         openInvestigationsDetailsError: true,
         openInvestigationsDetailsLoading: false,
@@ -40,15 +41,7 @@ class OpenInvestigationsTab extends Component {
       topProsecutors,
     } = this.state;
 
-    if (openInvestigationsDetailsLoading) {
-      return <p className="paragraphWrapper">Carregando...</p>;
-    }
-
-    if (openInvestigationsDetailsError) {
-      return <p className="paragraphWrapper">Ocorreu um problema, contate o suporte</p>;
-    }
-
-    return (
+    return dataStateWrapper(
       <div>
         <OpenInvestigationsDetails collectionVariation30Days={collectionVariation30Days} />
         <div className="columns-2">
@@ -57,7 +50,9 @@ class OpenInvestigationsTab extends Component {
             <h3 className="subtitle">Mapa da sua atuação</h3>
           </section>
         </div>
-      </div>
+      </div>,
+      openInvestigationsDetailsLoading,
+      openInvestigationsDetailsError,
     );
   }
 }

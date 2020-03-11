@@ -12,7 +12,7 @@ import { NavBar } from '../components';
 
 export default function Router() {
   return (
-    <HashRouter>
+    <HashRouter basename="/promotron">
       <NavBar />
       <Switch>
         <Route path="/" exact component={Today} />

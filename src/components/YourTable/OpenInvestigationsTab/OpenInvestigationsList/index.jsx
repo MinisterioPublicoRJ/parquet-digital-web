@@ -25,7 +25,7 @@ const OpenInvestigationsTab = ({ topProsecutors }) => {
           return (
             <li key={i} className="list-top-n-item">
               <span className="list-top-n-icon">
-                <Badge width={2 * vw} height={3 * vw} />
+                <Badge width={2 * vw} height={3 * vw} number={i + 1} />
               </span>
               <strong className="list-top-n-featured">
                 {leftPad(formatPercentage(collectionVariation30Days), 3, 0)}

@@ -8,15 +8,18 @@ import Progress from '../pages/Progress';
 import SuccessIndicators from '../pages/SuccessIndicators';
 import Decisions from '../pages/Decisions';
 
-import { NavBar } from '../components';
+import { NavBar, ChangeModeButton } from '../components';
 
-export default function Router() {
+export default function Router({ handleModeChange }) {
   return (
     <HashRouter>
+      <ChangeModeButton cb={handleModeChange} isCompact />
       <NavBar />
       <Switch>
         <Route path="/" exact component={Today} />
-        <Route path="/suamesa" component={YourDesk} />
+        <Route path="/suamesa" exact component={YourDesk} />
+        <Route path="/suamesa/:tab" exact component={YourDesk} />
+        <Route path="/suamesa/:tab/:table" exact component={YourDesk} />
         <Route path="/radar" component={PerformanceRadar} />
         <Route path="/andamentos" component={Progress} />
         <Route path="/indicadores" component={SuccessIndicators} />

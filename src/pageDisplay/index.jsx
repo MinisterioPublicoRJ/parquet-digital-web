@@ -1,4 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-no-bind */
 import React from 'react';
+import { HashRouter, Route, useHistory } from 'react-router-dom';
 
 import Router from '../router';
 import Today from '../pages/Today/';
@@ -8,7 +11,7 @@ import Progress from '../pages/Progress';
 import SuccessIndicators from '../pages/SuccessIndicators';
 import Decisions from '../pages/Decisions';
 
-import { MainTitle } from '../components/layoutPieces';
+import { MainTitle, ChangeModeButton } from '../components';
 import './styles.css';
 
 class PageDisplay extends React.Component {
@@ -30,10 +33,10 @@ class PageDisplay extends React.Component {
 
   /**
    * Updates the state when the user goes from 'compacto' to 'dashboard' and vice versa
-   * @return {void}
+   * @return {Promise}
    */
-  handleModeChange() {
-    this.setState(prevState => ({ isCompact: !prevState.isCompact }));
+  async handleModeChange() {
+    return this.setState(prevState => ({ isCompact: !prevState.isCompact }));
   }
 
   render() {
@@ -43,28 +46,35 @@ class PageDisplay extends React.Component {
         <div className="mainView">
           <div className="headerView">
             <MainTitle value={greeting} />
-            <button type="button" onClick={() => this.handleModeChange()}>
-              <div>
-                modo
-                {isCompact ? ' dashboard' : ' compacto'}
-              </div>
-            </button>
           </div>
 
           {isCompact && (
+            // MODO COMPACTO
             <div className="infoView">
-              <Router />
+              <Router handleModeChange={this.handleModeChange.bind(this)} />
             </div>
           )}
 
           {!isCompact && (
+            // MODO DASHBOARD
             <div className="infoView">
-              <Today dashboard />
-              <YourDesk dashboard />
-              <PerformanceRadar dashboard />
-              <Progress dashboard />
-              <SuccessIndicators dashboard />
-              <Decisions dashboard />
+              <HashRouter>
+                <>
+                  <ChangeModeButton cb={this.handleModeChange.bind(this)} />
+                  <Route path="/" render={props => <Today dashboard {...props} />} />
+                  <Route path="/" exact render={props => <YourDesk dashboard {...props} />} />
+                  <Route path="/:tab" exact render={props => <YourDesk dashboard {...props} />} />
+                  <Route
+                    path="/:tab/:table"
+                    exact
+                    render={props => <YourDesk dashboard {...props} />}
+                  />
+                  <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+                  <Route path="/" render={props => <Progress dashboard {...props} />} />
+                  <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
+                  <Route path="/" render={props => <Decisions dashboard {...props} />} />
+                </>
+              </HashRouter>
             </div>
           )}
         </div>

@@ -54,7 +54,7 @@ class PerformanceRadar extends React.Component {
       );
     }
     return (
-      <article className="page radar">
+      <article className="page page-radar columns-2">
         <div className="radarLeft">
           <PerformanceChart data={characterData} />
         </div>

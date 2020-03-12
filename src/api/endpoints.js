@@ -1,6 +1,6 @@
 import t from 'lodash.template';
 
-export const BASE_URL = 'http://d-apimpmapas-devmpmapas.devcloud.mprj.mp.br/dominio';
+export const BASE_URL = `${process.env.REACT_APP_BASE_URL}/dominio`;
 
 export const TODAY_OUT = t(`${BASE_URL}/saidas/\${id}`);
 export const TODAY_OUTLIERS = t(`${BASE_URL}/outliers/\${id}/\${date}`);

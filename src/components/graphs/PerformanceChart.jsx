@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { VictoryChart, VictoryPolarAxis, VictoryArea, VictoryGroup, VictoryLabel } from 'victory';
 
 import CHART_THEME from '../../themes/chartThemes';
 
-export default function PerformanceChart(props) {
-  const { data } = props;
+export default function PerformanceChart({ data }) {
   const xAxis = [
     { category: 'arquivamentos', label: 'arquivamentos' },
     { category: 'ações civil públicas', label: 'ações\ncivil\npúblicas' },

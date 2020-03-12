@@ -3,3 +3,4 @@
 export * from './layoutPieces';
 export * from './graphs';
 export { default as NavBar } from './navbar';
+export { default as AlertBadge } from './AlertBadge';

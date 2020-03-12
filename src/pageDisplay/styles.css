@@ -18,7 +18,6 @@
   }
 
   .headerView {
-    /* background-color: lightgreen; */
     display: flex;
     height: 10vh;
     justify-content: space-between;
@@ -27,17 +26,13 @@
   }
 
   .alertsView {
-    background-color: var(--danger);
     flex: 1;
     margin-left: var(--pageMargin);
-    overflow-y: scroll;
   }
 
   .infoView {
-    /* background-color: gray; */
     display: flex;
     flex-direction: column;
     flex: 1;
-    /* justify-content: space-around; */
     overflow-y: scroll;
   }

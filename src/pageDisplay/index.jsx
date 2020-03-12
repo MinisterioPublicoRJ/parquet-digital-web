@@ -7,6 +7,7 @@ import PerformanceRadar from '../pages/PerformanceRadar';
 import Progress from '../pages/Progress';
 import SuccessIndicators from '../pages/SuccessIndicators';
 import Decisions from '../pages/Decisions';
+import Alerts from '../pages/Alerts'
 
 import { MainTitle } from '../components/layoutPieces';
 import './styles.css';
@@ -70,7 +71,7 @@ class PageDisplay extends React.Component {
         </div>
 
         <div className="alertsView">
-          <div> ALERTS GO HERE!</div>
+          <Alerts />
         </div>
       </div>
     );

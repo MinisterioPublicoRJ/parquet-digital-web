@@ -11,8 +11,8 @@
 
 .navLinks {
   color: var(--grayLinks);
-  fontfamily: var(--subtitleFont);
-  fontsize: var(--linkSize);
+  font-family: var(--subtitleFont);
+  font-size: var(--linkSize);
   padding: 0 2px;
   text-align: center;
   text-decoration: none;

@@ -11,7 +11,7 @@ import { dataStateWrapper, formatPercentage } from '../../utils';
 
 class Today extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       loadingTodayOut: true,
       loadingTodayEntries: true,
@@ -165,33 +165,35 @@ class Today extends Component {
     const { dashboard } = this.props;
 
     return (
-      <article className={`page ${dashboard ? 'dashboard' : 'compact'}`}>
-        <div className="leftView">
-          <SectionTitle value="resumo do dia" />
-          {dataStateWrapper(
-            <p className="paragraphWrapper">
-              Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
-              <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
-              da casa entre aquelas de mesma atribuição.
-              {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
-            </p>,
-            loadingTodayOut,
-            errorTodayOut,
-          )}
-          {dataStateWrapper(
-            <p className="paragraphWrapper">
-              Você sabia que seu acervo é
-              <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
-              dos seus colegas das
-              <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
-            </p>,
-            loadingTodayOutliers,
-            errorTodayOutliers,
-          )}
-          {dataStateWrapper(dayAnalysisComponent, loadingTodayEntries, errorTodayEntries)}
-        </div>
-        <div className="rightView">
-          <Promotron width="35vw" />
+      <article className={`page ${dashboard ? 'dashboard' : 'compact'} page-today`}>
+        <SectionTitle value="resumo do dia" />
+        <div className="today-featured">
+          <div className="today-featured-data">
+            {dataStateWrapper(
+              <p className="paragraphWrapper">
+                Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
+                <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
+                da casa entre aquelas de mesma atribuição.
+                {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+              </p>,
+              loadingTodayOut,
+              errorTodayOut,
+            )}
+            {dataStateWrapper(
+              <p className="paragraphWrapper">
+                Você sabia que seu acervo é
+                <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
+                dos seus colegas das
+                <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+              </p>,
+              loadingTodayOutliers,
+              errorTodayOutliers,
+            )}
+            {dataStateWrapper(dayAnalysisComponent, loadingTodayEntries, errorTodayEntries)}
+          </div>
+          <div className="robo-today">
+            <Promotron width="100%" />
+          </div>
         </div>
       </article>
     );

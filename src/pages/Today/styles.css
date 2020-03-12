@@ -1,14 +1,25 @@
 @import '../styles.css';
 
-.todayLeftView {
-  height: 100%;
-  width: 75%;
-  z-index: 1;
+.page-today {
+  overflow: hidden;
+  min-height: 35vh;
 }
 
-.todayRightView {
+.today-featured {
+  min-height: 17vw;
+  position: relative;
+}
+
+.today-featured-data {
+  width: 70%;
+  z-index: 1;
+  position: relative;
+}
+
+.robo-today {
   position: absolute;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   z-index: 0;
+  width: 30vw;
 }

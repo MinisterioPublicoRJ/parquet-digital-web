@@ -9,3 +9,4 @@ export const openCasesTransform = ({ suamesa_vistas }) => suamesa_vistas;
 export const openInvestigationsTransform = ({ suamesa_investigacoes }) => suamesa_investigacoes;
 export const courtCasesTransform = ({ suamesa_processos }) => suamesa_processos;
 export const todayOutTransform = ({ percent_rank }) => percent_rank;
+export const openCasesListTransform = data => data;

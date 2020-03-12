@@ -1,38 +1,44 @@
 @import '../themes/index.css';
 
 .outerView {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    height: calc(100vh - 2 * var(--pagePadding));
-    justify-content: space-between;
-    overflow: hidden;
-    padding: var(--pagePadding);
-  }
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: calc(100vh - 2 * var(--pagePadding));
+  justify-content: space-between;
+  overflow: hidden;
+  padding: var(--pagePadding);
+}
 
-  .mainView {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    flex: 3;
-  }
+.mainView {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 3;
+  position: relative;
+}
 
-  .headerView {
-    display: flex;
-    height: 10vh;
-    justify-content: space-between;
-    min-height: 30px;
-    padding: var(--elementPadding) 0;
-  }
+.alertsView {
+  flex: 1;
+  margin-left: var(--pageMargin);
+}
 
-  .alertsView {
-    flex: 1;
-    margin-left: var(--pageMargin);
-  }
+.infoView {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: scroll;
+}
+.headerView {
+  display: flex;
+  height: 10vh;
+  justify-content: space-between;
+  min-height: 30px;
+  padding: var(--elementPadding) 0;
+}
 
-  .infoView {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    overflow-y: scroll;
-  }
+.change-mode-button {
+  position: absolute;
+  top: 7vh;
+  right: 0;
+}

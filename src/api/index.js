@@ -11,6 +11,7 @@ import {
   CLOSED_CASES_URL,
   COURT_CASES_DETAILS_URL,
   OPEN_INVESTIGATIONS_DETAILS_URL,
+  OPEN_CASES_LIST,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -25,6 +26,7 @@ import {
   todayOutTransform,
   todayOutliersTransform,
   todayEntriesTransform,
+  openCasesListTransform,
 } from './transforms';
 
 const Api = (() => {
@@ -100,6 +102,12 @@ const Api = (() => {
     return closedCasesTransform(data);
   }
 
+  async function getOpenCasesList(id, cpf, list) {
+    const { data } = await axios.get(OPEN_CASES_LIST({ id, cpf, list }));
+
+    return openCasesListTransform(data);
+  }
+
   return {
     getTodayOutData,
     getTodayOutliersData,
@@ -111,6 +119,7 @@ const Api = (() => {
     getClosedCases,
     getOpenInvestigationsDetails,
     getCourtCasesDetails,
+    getOpenCasesList,
   };
 })();
 

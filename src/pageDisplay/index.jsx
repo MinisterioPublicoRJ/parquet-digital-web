@@ -3,6 +3,8 @@
 import React from 'react';
 import { HashRouter, Route, useHistory } from 'react-router-dom';
 
+import { SectionTitle } from '../components';
+
 import Router from '../router';
 import Today from '../pages/Today/';
 import YourDesk from '../pages/YourDesk';
@@ -42,45 +44,58 @@ class PageDisplay extends React.Component {
   render() {
     const { greeting, isCompact } = this.state;
     return (
-      <div className="outerView">
-        <div className="mainView">
-          <div className="headerView">
-            <MainTitle value={greeting} />
-          </div>
-
-          {isCompact && (
-            // MODO COMPACTO
-            <div className="infoView">
-              <Router handleModeChange={this.handleModeChange.bind(this)} />
-            </div>
-          )}
-
-          {!isCompact && (
-            // MODO DASHBOARD
-            <div className="infoView">
-              <HashRouter>
-                <>
-                  <ChangeModeButton cb={this.handleModeChange.bind(this)} />
-                  <Route path="/" render={props => <Today dashboard {...props} />} />
-                  <Route path="/" exact render={props => <YourDesk dashboard {...props} />} />
-                  <Route path="/:tab" exact render={props => <YourDesk dashboard {...props} />} />
-                  <Route
-                    path="/:tab/:table"
-                    exact
-                    render={props => <YourDesk dashboard {...props} />}
-                  />
-                  <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
-                  <Route path="/" render={props => <Progress dashboard {...props} />} />
-                  <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
-                  <Route path="/" render={props => <Decisions dashboard {...props} />} />
-                </>
-              </HashRouter>
-            </div>
-          )}
+      <div className="outerGridView">
+        <div className="headerGridView">
+          <MainTitle value={greeting} />
         </div>
 
-        <div className="alertsView">
-          <div> ALERTS GO HERE!</div>
+        {isCompact && (
+          // MODO COMPACTO
+          <div className="infoGridView">
+            <Router handleModeChange={this.handleModeChange.bind(this)} />
+          </div>
+        )}
+
+        {!isCompact && (
+          // MODO DASHBOARD
+          <div className="infoGridView">
+            <HashRouter>
+              <>
+                <ChangeModeButton cb={this.handleModeChange.bind(this)} />
+                <Route path="/" render={props => <Today dashboard {...props} />} />
+                <Route path="/" exact render={props => <YourDesk dashboard {...props} />} />
+                <Route path="/:tab" exact render={props => <YourDesk dashboard {...props} />} />
+                <Route
+                  path="/:tab/:table"
+                  exact
+                  render={props => <YourDesk dashboard {...props} />}
+                />
+                <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+                <Route path="/" render={props => <Progress dashboard {...props} />} />
+                <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
+                <Route path="/" render={props => <Decisions dashboard {...props} />} />
+              </>
+            </HashRouter>
+          </div>
+        )}
+        <div className="radarGridView">
+          <div>
+            <SectionTitle value="RADAR GOES HERE!" />
+          </div>
+        </div>
+        <div className="alertsGridView">
+          <div>
+            <SectionTitle value="ALERTAS GOES HERE!" />
+          </div>
+        </div>
+        <div className="andamentosGridView">
+          <SectionTitle value="ANDAMENTOS GOES HERE!" />
+        </div>
+        <div className="indicadoresGridView">
+          <SectionTitle value="INDICADORES GOES HERE!" />
+        </div>
+        <div className="decisaoGridView">
+          <SectionTitle value="DECISAO GOES HERE!" />
         </div>
       </div>
     );

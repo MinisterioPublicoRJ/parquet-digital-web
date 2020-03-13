@@ -20,6 +20,10 @@ class PerformanceRadar extends React.Component {
     console.log('I HELPS!', res);
   }
 
+  cleanGraphData(data) {
+
+  }
+
   render() {
     const { dashboard } = this.props;
     const { percentagePhrase, movements } = this.state;

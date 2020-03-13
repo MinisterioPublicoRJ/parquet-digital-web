@@ -1,3 +1,3 @@
-import PageDisplay from './pageDisplay'
+import PageDisplay from './pageDisplay';
 
 export default PageDisplay;

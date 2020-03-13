@@ -10,6 +10,10 @@ import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
 import { dataStateWrapper, formatPercentage } from '../../utils';
 
 class Today extends Component {
+  static defaultProps = {
+    loadedCallback: () => {},
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +38,13 @@ class Today extends Component {
     this.loadPercentages();
     this.loadCollection();
     this.loadEntriesInfo();
+  }
+
+  doneLoading() {
+    const { loadedCallback } = this.props;
+    const { loadingTodayOut, loadingTodayEntries, loadingTodayOutliers } = this.state;
+
+    if (!loadingTodayOut && !loadingTodayEntries && !loadingTodayOutliers) loadedCallback();
   }
 
   /**

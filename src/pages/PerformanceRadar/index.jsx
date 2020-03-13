@@ -1,19 +1,23 @@
 import React from 'react';
 
-import { PerformanceChart } from '../components';
-import './performanceRadarStyles.css';
+import { PerformanceChart } from '../../components';
+import { COD_PROM } from '../../constants';
+import Api from '../../api';
+import './styles.css';
 
 class PerformanceRadar extends React.Component {
   constructor(props) {
     super(props);
-    const percentagePhrase = ' 10% abaixo ';
-    const movements = 58;
-    this.state = { percentagePhrase, movements };
+    this.state = {};
+  }
+
+  componentDidMount() {
     this.getPerformanceData();
   }
 
-  getPerformanceData() {
-    console.log('I HELPS!');
+  async getPerformanceData() {
+    const res = await Api.getRadarData(COD_PROM)
+    console.log('I HELPS!', res);
   }
 
   render() {

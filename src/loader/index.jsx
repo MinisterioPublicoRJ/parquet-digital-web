@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typist from 'react-typist';
-
+import 'react-typist/dist/Typist.css';
 import './styles.css';
 
 const propTypes = {
@@ -14,31 +14,34 @@ const defaultProps = {
 
 const Loader = ({ handleAnimateDone }) => {
   return (
-    <Typist className="loading-page" onTypingDone={() => handleAnimateDone()}>
+    // TODO: build a more generic component that abstracts Typyst
+    <Typist
+      className="loading-page"
+      // FIXME: find why cursor animation isnt working
+      cursor={{
+        show: true,
+        blink: true,
+        element: '_',
+        hideWhenDone: false,
+        hideWhenDoneDelay: 1000,
+      }}
+      onTypingDone={() => setTimeout(handleAnimateDone, 1000)}
+    >
+      {/* TODO: build a generic component for paragraphWrapper */}
       <p className="paragraphWrapper">
-        Oi, eu sou o <strong>Promotron</strong>!
+        &gt; Oi, eu sou o <strong>Promotron</strong>!
       </p>
       <p className="paragraphWrapper">
-        Eu sou um robô que está aqui para te ajudar nas suas tarefas de promotor de justiça.
+        &gt; Sou um robô criado para ajudar nas suas tarefas de promotor de justiça.
       </p>
+      <p className="paragraphWrapper">&gt; Espero que nossa amizade seja longa e prospera.</p>
       <p className="paragraphWrapper">
-        Mas, lembre-se, não posso fazer tudo, pois sou obrigado a seguir as 3 Leis de Assimov, que
-        são:
+        &gt; Por favor, aguarde um momento enquanto carrego minha interface gráfica
+        {'.'.repeat(Math.floor(Math.random() * 57) + 7) /* TODO: think about move it to a utils */}
       </p>
-      <p className="paragraphWrapper">
-        1. A robot may not injure a human being or, through inaction, allow a human being to come to
-        harm..
-      </p>
-      <p className="paragraphWrapper">
-        2. A robot must obey orders given it by human beings except where such orders would conflict
-        with the First Law.
-      </p>
-      <p className="paragraphWrapper">
-        3. A robot must protect its own existence as long as such protection does not conflict with
-        the First or Second Law.
-      </p>
-      <p className="paragraphWrapper">Espero que nossa amizade seja longa e prospera.</p>
-      <p className="paragraphWrapper">Isto fica feliz em ser útil.</p>
+      <p className="paragraphWrapper">&gt; Obrigado.</p>
+      <p className="paragraphWrapper">&gt; Isto fica feliz em ser útil.</p>
+      <p className="paragraphWrapper">&gt; _</p>
     </Typist>
   );
 };

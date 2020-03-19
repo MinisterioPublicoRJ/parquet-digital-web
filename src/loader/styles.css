@@ -1,5 +1,17 @@
-.loading-page {
+.loading-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
   background: #000;
-  color: #0f0 !important;
+}
+
+.loading-page {
   padding: 1vw 2vw;
+}
+
+.loading-page p {
+  color: #0f0 !important;
 }

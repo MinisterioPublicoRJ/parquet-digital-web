@@ -1,40 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { VictoryChart, VictoryPolarAxis, VictoryArea, VictoryGroup, VictoryLabel } from 'victory';
 
 import CHART_THEME from '../../themes/chartThemes';
-
-// export default class PerformanceChart {
-//   constructor() {
-//     this.xAxis = [
-//       { category: 'archives', label: 'arquivamentos' },
-//       { category: 'actions', label: 'ações\ncivil\npúblicas' },
-//       { category: 'rejections', label: 'indeferimentos\nde plano' },
-//       { category: 'instaurations', label: 'instauração de\ninvestigações' },
-//       { category: 'tac', label: 'termos\nde ajuste\nde conduta' },
-//     ];
-//
-//     this.grid = this.generateGrid(this.xAxis);
-//   }
-//
-//   generateGrid(xAxis) {
-//     const axisGrid = [];
-//     for (let i = 0; i < 5; i++) {
-//       const gridLevel = [];
-//       xAxis.forEach(catObj =>
-//         gridLevel.push({
-//           x: catObj.category,
-//           y: (i + 1) * 20,
-//         }),
-//       );
-//       axisGrid.push(gridLevel);
-//     }
-//     return axisGrid;
-//   }
-//
-//   render() {
-//
-//   }
-// }
 
 function generateGrid(xAxis) {
   const axisGrid = [];
@@ -64,8 +32,14 @@ function generateAxis(axisExpansion) {
   ];
 }
 
-export default function PerformanceChart2({ data, axis }) {
-  console.log('chartData', data, axis);
+const propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({ x: PropTypes.string, y: PropTypes.number, label: PropTypes.number }),
+  ).isRequired,
+  axis: PropTypes.shape({ category: PropTypes.string }).isRequired,
+};
+
+function PerformanceChart({ data, axis }) {
   const xAxis = generateAxis(axis);
   const grid = generateGrid(xAxis);
 
@@ -121,3 +95,5 @@ export default function PerformanceChart2({ data, axis }) {
     </>
   );
 }
+PerformanceChart.propTypes = propTypes;
+export default PerformanceChart;

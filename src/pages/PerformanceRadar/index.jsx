@@ -1,10 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { PerformanceChart } from '../../components';
-import { COD_PROM } from '../../constants';
-import Api from '../../api';
-import { formatPercent } from '../../utils';
 import './styles.css';
+import Api from '../../api';
+import { COD_PROM } from '../../constants';
+import { formatPercent } from '../../utils';
+import { PerformanceChart } from '../../components';
+
+const propTypes = {
+  dashboard: PropTypes.bool.isRequired,
+};
 
 class PerformanceRadar extends React.Component {
   constructor(props) {
@@ -22,7 +27,6 @@ class PerformanceRadar extends React.Component {
   }
 
   cleanGraphData(data) {
-    console.log('raw', data);
     const chartData = [];
     const axisData = {};
     const categories = Object.keys(data);
@@ -34,7 +38,6 @@ class PerformanceRadar extends React.Component {
       chartData.push(chartRow);
     });
 
-    console.log('data', chartData, axisData);
     this.setState({ chartData, axisData });
   }
 
@@ -43,14 +46,6 @@ class PerformanceRadar extends React.Component {
     const { percentagePhrase, movements, chartData, axisData } = this.state;
 
     if (!chartData || !axisData) return <div>Carregando</div>;
-
-    // const characterData = [
-    //   { x: 'arquivamentos', y: 50 },
-    //   { x: 'ações civil públicas', y: 103 },
-    //   { x: 'indeferimentos de plano', y: 250 },
-    //   { x: 'instauração de investigações', y: 60 },
-    //   { x: 'termos de ajuste de conduta', y: 103 },
-    // ];
 
     if (!dashboard) {
       return (
@@ -86,4 +81,5 @@ class PerformanceRadar extends React.Component {
   }
 }
 
+PerformanceRadar.propTypes = propTypes;
 export default PerformanceRadar;

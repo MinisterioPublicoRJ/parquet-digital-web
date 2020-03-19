@@ -6,7 +6,7 @@ import OpenCasesTable from './OpenCasesTable';
 import Api from '../../../api';
 import { dataStateWrapper } from '../../../utils';
 
-import { COD_PROM, COD_PES } from '../../../constants';
+import { getUser } from '../../../user';
 
 class OpenCasesTab extends Component {
   static propTypes = {
@@ -27,7 +27,7 @@ class OpenCasesTab extends Component {
 
   async getOpenCasesDetails() {
     try {
-      const openCasesDetails = await Api.getOpenCasesDetails(COD_PROM, COD_PES);
+      const openCasesDetails = await Api.getOpenCasesDetails(getUser());
 
       this.setState({ ...openCasesDetails, openCasesDetailsLoading: false });
     } catch (e) {

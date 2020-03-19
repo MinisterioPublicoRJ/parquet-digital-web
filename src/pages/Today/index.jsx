@@ -40,6 +40,15 @@ class Today extends Component {
     this.loadEntriesInfo();
   }
 
+  componentDidUpdate(prevProps, { loadingTodayOut, loadingTodayEntries, loadingTodayOutliers }) {
+    if (
+      loadingTodayOut !== this.state.loadingTodayOut ||
+      loadingTodayEntries !== this.state.loadingTodayEntries ||
+      loadingTodayOutliers !== this.state.loadingTodayOutliers
+    )
+      this.doneLoading();
+  }
+
   doneLoading() {
     const { loadedCallback } = this.props;
     const { loadingTodayOut, loadingTodayEntries, loadingTodayOutliers } = this.state;

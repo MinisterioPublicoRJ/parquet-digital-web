@@ -57,6 +57,37 @@ class YourDesk extends Component {
     errorClosedCases: false,
   };
 
+  componentDidUpdate(
+    prevProps,
+    { loadingClosedCases, loadingOpenInvestigations, loadingCourtCases, loadingOpenCases },
+  ) {
+    if (
+      loadingOpenInvestigations !== this.state.loadingOpenInvestigations ||
+      loadingCourtCases !== this.state.loadingCourtCases ||
+      loadingOpenCases !== this.state.loadingOpenCases ||
+      loadingClosedCases !== this.state.loadingClosedCases
+    )
+      this.doneLoading();
+  }
+
+  doneLoading() {
+    const { loadedCallback } = this.props;
+    const {
+      loadingOpenCases,
+      loadingOpenInvestigations,
+      loadingCourtCases,
+      loadingClosedCases,
+    } = this.state;
+
+    if (
+      !loadingOpenCases &&
+      !loadingOpenInvestigations &&
+      !loadingCourtCases &&
+      !loadingClosedCases
+    )
+      loadedCallback();
+  }
+
   async getOpenCases() {
     try {
       const openCases = await Api.getOpenCases(getUser());

@@ -14,7 +14,7 @@ import { dataStateWrapper } from '../../utils';
 
 import './styles.css';
 
-import { COD_PROM, COD_PES } from '../../constants';
+import { getUser } from '../../user';
 
 const Tab = ({ tab, table, match }) => {
   if (!tab || tab === 'vistas-abertas') {
@@ -59,7 +59,7 @@ class YourDesk extends Component {
 
   async getOpenCases() {
     try {
-      const openCases = await Api.getOpenCases(COD_PROM, COD_PES);
+      const openCases = await Api.getOpenCases(getUser());
 
       this.setState({ openCases, loadingOpenCases: false });
     } catch (e) {
@@ -70,7 +70,7 @@ class YourDesk extends Component {
 
   async getOpenInvestigations() {
     try {
-      const openInvestigations = await Api.getOpenInvestigations(COD_PROM);
+      const openInvestigations = await Api.getOpenInvestigations(getUser());
 
       this.setState({ openInvestigations, loadingOpenInvestigations: false });
     } catch (e) {
@@ -81,7 +81,7 @@ class YourDesk extends Component {
 
   async getClosedCases() {
     try {
-      const closedCases = await Api.getClosedCases(COD_PROM);
+      const closedCases = await Api.getClosedCases(getUser());
 
       this.setState({ closedCases, loadingClosedCases: false });
     } catch (e) {
@@ -92,7 +92,7 @@ class YourDesk extends Component {
 
   async getCourtCases() {
     try {
-      const courtCases = await Api.getCourtCases(COD_PROM);
+      const courtCases = await Api.getCourtCases(getUser());
 
       this.setState({ courtCases, loadingCourtCases: false });
     } catch (e) {

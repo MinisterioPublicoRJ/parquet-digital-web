@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import OpenInvestigationsDetails from './OpenInvestigationsDetails';
 import OpenInvestigationsList from './OpenInvestigationsList';
 import Api from '../../../api';
+import { getUser } from '../../../user';
 
-import { COD_PROM } from '../../../constants';
 import { dataStateWrapper } from '../../../utils';
 
 class OpenInvestigationsTab extends Component {
@@ -17,7 +17,7 @@ class OpenInvestigationsTab extends Component {
 
   async getOpenInvestigationsDetails() {
     try {
-      const openInvestigationsDetails = await Api.getOpenInvestigationsDetails(COD_PROM);
+      const openInvestigationsDetails = await Api.getOpenInvestigationsDetails(getUser());
 
       this.setState({ ...openInvestigationsDetails, openInvestigationsDetailsLoading: false });
     } catch (e) {

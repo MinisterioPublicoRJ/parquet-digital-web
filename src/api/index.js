@@ -13,6 +13,7 @@ import {
   COURT_CASES_DETAILS_URL,
   OPEN_INVESTIGATIONS_DETAILS_URL,
   OPEN_CASES_LIST,
+  RADAR_DATA,
   ALERTS_LIST,
 } from './endpoints';
 
@@ -29,6 +30,7 @@ import {
   todayOutliersTransform,
   todayEntriesTransform,
   openCasesListTransform,
+  radarTransform,
   alertsTransform,
 } from './transforms';
 
@@ -136,6 +138,10 @@ const Api = (() => {
     return openCasesListTransform(data);
   }
 
+  async function getRadarData({ orgao, token }) {
+    const { data } = await axios.get(RADAR_DATA({ orgao }), buildRequestConfig(token));
+
+    return radarTransform(data);
   async function getAlertsList(id) {
     // const { data } = await axios.get(ALERTS_LIST({ id }));
     const data = [
@@ -182,6 +188,7 @@ const Api = (() => {
     getOpenInvestigationsDetails,
     getCourtCasesDetails,
     getOpenCasesList,
+    getRadarData,
   };
 })();
 

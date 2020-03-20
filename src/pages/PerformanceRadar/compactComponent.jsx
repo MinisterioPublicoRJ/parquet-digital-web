@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { PerformanceChart } from '../components';
-import './performanceRadarStyles.css';
+import { PerformanceChart } from '../../components';
+import './styles.css';
 
 class PerformanceRadar extends React.Component {
   constructor(props) {
@@ -30,24 +30,33 @@ class PerformanceRadar extends React.Component {
       { x: 'termos de ajuste de conduta', y: 103 },
     ];
 
+    if (!dashboard) {
+      return (
+        <article className="page radar">
+          <div className="radarLeft">
+            <PerformanceChart data={characterData} />
+          </div>
+          <div className="radarRight">
+            <p className="paragraphWrapper">
+              Analisamos a atuação da sua promotoria e percebemos que a quantidade de arquivamento
+              está
+              <span style={{ fontWeight: 'bold' }}>{percentagePhrase}</span>
+              da média da casa.
+            </p>
+            <p className="paragraphWrapper">
+              <span style={{ fontWeight: 'bold' }}>Parabéns </span>
+              pela instauração dos novos TACs. ACPs e investigações, totalizando
+              <span style={{ fontWeight: 'bold' }}>{` ${movements} movimentos `}</span>
+              em prol da sociedade nos últimos dias.
+            </p>
+          </div>
+        </article>
+      );
+    }
     return (
       <article className="page page-radar columns-2">
         <div className="radarLeft">
           <PerformanceChart data={characterData} />
-        </div>
-        <div className="radarRight">
-          <p className="paragraphWrapper">
-            Analisamos a atuação da sua promotoria e percebemos que a quantidade de arquivamento
-            está
-            <span style={{ fontWeight: 'bold' }}>{percentagePhrase}</span>
-            da média da casa.
-          </p>
-          <p className="paragraphWrapper">
-            <span style={{ fontWeight: 'bold' }}>Parabéns </span>
-            pela instauração dos novos TACs. ACPs e investigações, totalizando
-            <span style={{ fontWeight: 'bold' }}>{` ${movements} movimentos `}</span>
-            em prol da sociedade nos últimos dias.
-          </p>
         </div>
       </article>
     );

@@ -5,7 +5,7 @@ import Api from '../../../api';
 
 import { Table } from '../../../components';
 
-import { COD_PROM, COD_PES } from '../../../constants';
+import { getUser } from '../../../user';
 
 class OpenCasesTable extends Component {
   static propTypes = {
@@ -37,7 +37,7 @@ class OpenCasesTable extends Component {
     };
 
     try {
-      const openCasesList = await Api.getOpenCasesList(COD_PROM, COD_PES, tablesHash[table]);
+      const openCasesList = await Api.getOpenCasesList(getUser(), tablesHash[table]);
 
       this.setState({ openCasesList, openCasesListLoading: false });
     } catch (e) {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 import Api from '../../api';
-import { COD_PROM } from '../../constants';
+import { getUser } from '../../user';
 import { formatPercent } from '../../utils';
 import { PerformanceChart } from '../../components';
 
@@ -22,7 +22,7 @@ class PerformanceRadar extends React.Component {
   }
 
   async getPerformanceData() {
-    const res = await Api.getRadarData(COD_PROM);
+    const res = await Api.getRadarData(getUser());
     this.cleanGraphData(res);
   }
 

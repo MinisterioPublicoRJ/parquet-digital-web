@@ -3,6 +3,7 @@ export { default as todayOutliersTransform } from './todayOutliers';
 export { default as openCasesDetailsTransform } from './openCasesDetails';
 export { default as courtCasesDetailsTransform } from './courtCasesDetails';
 export { default as openInvestigationsDetailsTransform } from './openInvestigationsDetails';
+export { default as alertsTransform } from './alertsTransform';
 
 export const closedCasesTransform = ({ suamesa_finalizados }) => suamesa_finalizados;
 export const openCasesTransform = ({ suamesa_vistas }) => suamesa_vistas;

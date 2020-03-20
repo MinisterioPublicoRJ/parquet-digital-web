@@ -3,10 +3,9 @@ import React, { Component } from 'react';
 import CourtCasesDetails from './CourtCasesDetails';
 import CourtCasesList from './CourtCasesList';
 import Api from '../../../api';
+import { getUser } from '../../../user';
 
 import { dataStateWrapper } from '../../../utils';
-
-import { COD_PROM } from '../../../constants';
 
 class CourtCasesTab extends Component {
   state = {
@@ -19,7 +18,7 @@ class CourtCasesTab extends Component {
 
   async getCourtCasesDetails() {
     try {
-      const courtCasesDetails = await Api.getCourtCasesDetails(COD_PROM);
+      const courtCasesDetails = await Api.getCourtCasesDetails(getUser());
 
       this.setState({ ...courtCasesDetails, courtCasesDetailsLoading: false });
     } catch (e) {

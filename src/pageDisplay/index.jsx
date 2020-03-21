@@ -3,18 +3,19 @@
 import React from 'react';
 import { HashRouter, Route, useHistory } from 'react-router-dom';
 
-import { SectionTitle } from '../components';
+import { SectionTitle, MainTitle, ChangeModeButton } from '../components';
 
 import Router from '../router';
-import Today from '../pages/Today/';
+import Today from '../pages/Today';
 import YourDesk from '../pages/YourDesk';
 import PerformanceRadar from '../pages/PerformanceRadar';
 import Progress from '../pages/Progress';
 import SuccessIndicators from '../pages/SuccessIndicators';
 import Decisions from '../pages/Decisions';
+import Header from '../components/header/index';
 
-import { MainTitle, ChangeModeButton } from '../components';
 import './styles.css';
+import './grid.css';
 
 class PageDisplay extends React.Component {
   constructor(props) {
@@ -44,58 +45,57 @@ class PageDisplay extends React.Component {
   render() {
     const { greeting, isCompact } = this.state;
     return (
-      <div className="outerGridView">
-        <div className="headerGridView">
-          <MainTitle value={greeting} />
-        </div>
+      <div>
+        <Header />
+        <div className="">
+          <div className="headerGridView">
+            <MainTitle value={greeting} />
+          </div>
 
-        {isCompact && (
-          // MODO COMPACTO
-          <div className="infoGridView">
-            <Router handleModeChange={this.handleModeChange.bind(this)} />
-          </div>
-        )}
+          {isCompact && (
+            // MODO COMPACTO
+            <div className="infoGridView">
+              <Router handleModeChange={this.handleModeChange.bind(this)} />
+            </div>
+          )}
 
-        {!isCompact && (
-          // MODO DASHBOARD
-          <div className="infoGridView">
-            <HashRouter>
-              <>
-                <ChangeModeButton cb={this.handleModeChange.bind(this)} />
-                <Route path="/" render={props => <Today dashboard {...props} />} />
-                <Route path="/" exact render={props => <YourDesk dashboard {...props} />} />
-                <Route path="/:tab" exact render={props => <YourDesk dashboard {...props} />} />
-                <Route
-                  path="/:tab/:table"
-                  exact
-                  render={props => <YourDesk dashboard {...props} />}
-                />
-                <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
-                <Route path="/" render={props => <Progress dashboard {...props} />} />
-                <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
-                <Route path="/" render={props => <Decisions dashboard {...props} />} />
-              </>
-            </HashRouter>
-          </div>
-        )}
-        <div className="radarGridView">
-          <div>
-            <SectionTitle value="RADAR GOES HERE!" />
-          </div>
-        </div>
-        <div className="alertsGridView">
-          <div>
-            <SectionTitle value="ALERTAS GOES HERE!" />
-          </div>
-        </div>
-        <div className="andamentosGridView">
-          <SectionTitle value="ANDAMENTOS GOES HERE!" />
-        </div>
-        <div className="indicadoresGridView">
-          <SectionTitle value="INDICADORES GOES HERE!" />
-        </div>
-        <div className="decisaoGridView">
-          <SectionTitle value="DECISAO GOES HERE!" />
+          {!isCompact && (
+            // MODO DASHBOARD
+            <div className="infoGridView">
+              <HashRouter>
+                <>
+                  <ChangeModeButton cb={this.handleModeChange.bind(this)} />
+                  <div className="resumeGridView">
+                    <Route path="/" render={props => <Today dashboard {...props} />} />
+                  </div>
+                  <div className="radarGridView">
+                    <p>Radar de perfomance</p>
+                    <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+                  </div>
+                  <div className="alertsGridView">
+                    <p>Central de alertas</p>
+                  </div>
+                  <div className="yourDeskGridView">
+                    <Route path="/" exact render={props => <YourDesk dashboard {...props} />} />
+                    <Route path="/:tab" exact render={props => <YourDesk dashboard {...props} />} />
+                    <Route
+                      path="/:tab/:table"
+                      exact
+                      render={props => <YourDesk dashboard {...props} />}
+                    />
+                  </div>
+                  <div className="indicadoresGridView">
+                    <p>Indicadores de sucesso</p>
+                    <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
+                  </div>
+                  <div className="decisaoGridView">
+                    <p>Aguardando decisão</p>
+                    <Route path="/" render={props => <Decisions dashboard {...props} />} />
+                  </div>
+                </>
+              </HashRouter>
+            </div>
+          )}
         </div>
       </div>
     );

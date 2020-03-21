@@ -1,0 +1,79 @@
+@import '../themes/index.css';
+
+.infoGridView{
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 50% 25% 25%;
+    margin-top: 20px;
+    padding: 20px;
+}
+@media (min-width: 900px) {
+
+ .resumeGridView{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1 ;
+    grid-row-end: 2 ;
+}
+
+.radarGridView {
+    grid-column: 2;
+    grid-column-end: 3;
+    grid-row-start:1 ;
+    grid-row-end: 2 ;
+}
+
+.yourDeskGridView {
+    grid-row-start: 2 ;
+    grid-row-end: 3 ;
+}
+
+/*.andamentosGridView {
+    grid-row-start: 2 ;
+    grid-row-end: 3 ;
+}*/
+.alertsGridView {
+    margin-right: 20px;
+    width: 230px;
+
+}
+  
+.indicadoresGridView {
+    grid-row-start: 2 ;
+    grid-row-end: 3 ;
+  }
+
+.decisaoGridView {
+    grid-row-start: 2 ;
+    grid-row-end:  3 ;
+    width: 230px;
+  }
+}
+/*phone-only 599 */ /*tablet-portrait-down 600*/
+@media (max-width: 599px) {
+
+  .infoGridView {
+    grid-template-columns: 100%;
+
+  }
+
+  .radarGridView {
+   
+  }
+
+  .alertsGridView {
+    
+  }
+
+  .andamentosGridView {
+   
+  }
+
+  .indicadoresGridView {
+   
+  }
+
+  .decisaoGridView {
+
+   }
+}

@@ -1,10 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
 import { SectionTitle, AlertBadge } from '../../components';
+
+import ClockIcon from '../../assets/svg/clock';
 
 class Alerts extends React.Component {
   constructor(props) {
@@ -13,20 +14,32 @@ class Alerts extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
     this.getAlertsList();
   }
 
   async getAlertsList() {
-    console.log('getAlertsList');
     const res = await Api.getAlertsList(getUser());
-    console.log("ALERTS", res);
     this.setState({ alerts: res, isLoading: false });
   }
 
-  // async updateAlertsList() {
-  //
-  // }
+  cleanAlert(alert) {
+    // this will be completed for all alert types later
+    let icon = null;
+    let message = null;
+    let action = null;
+    let actionLink = null;
+    let background = null;
+
+    switch (alert.alertCode) {
+      case 'PPFP':
+        icon = <ClockIcon />;
+        message = `O documento ${alert.docNum} está sem prorrogação por mais de um ano`;
+        background = '#f86c72';
+        break;
+    }
+
+    return { icon, message, action, actionLink, background };
+  }
 
   render() {
     const { alerts, isLoading } = this.state;
@@ -39,14 +52,19 @@ class Alerts extends React.Component {
           <SectionTitle value="central de alertas" />
         </div>
         <div className="alertsBody">
-          {alerts.map(alert => (
-            <AlertBadge
-              type={alert.type}
-              message={alert.message}
-              action={alert.actionCaption}
-              actionLink={alert.link}
-            />
-          ))}
+          {alerts.map(alert => {
+            const { icon, message, action, actionLink, background } = this.cleanAlert(alert);
+            return (
+              <AlertBadge
+                key={alert.docNum + alert.date}
+                icon={icon}
+                iconBg={background}
+                message={message}
+                action={action}
+                actionLink={actionLink}
+              />
+            );
+          })}
         </div>
       </aside>
     );

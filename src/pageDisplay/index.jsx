@@ -68,13 +68,6 @@ class PageDisplay extends React.Component {
                   <div className="resumeGridView">
                     <Route path="/" render={props => <Today dashboard {...props} />} />
                   </div>
-                  <div className="radarGridView">
-                    <p>Radar de perfomance</p>
-                    <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
-                  </div>
-                  <div className="alertsGridView">
-                    <p>Central de alertas</p>
-                  </div>
                   <div className="yourDeskGridView">
                     <Route path="/" exact render={props => <YourDesk dashboard {...props} />} />
                     <Route path="/:tab" exact render={props => <YourDesk dashboard {...props} />} />
@@ -83,6 +76,13 @@ class PageDisplay extends React.Component {
                       exact
                       render={props => <YourDesk dashboard {...props} />}
                     />
+                  </div>
+                  <div className="alertsGridView">
+                    <p>Central de alertas</p>
+                  </div>
+                  <div className="radarGridView">
+                    <p>Radar de perfomance</p>
+                    <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
                   </div>
                   <div className="indicadoresGridView">
                     <p>Indicadores de sucesso</p>

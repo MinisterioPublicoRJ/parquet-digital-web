@@ -8,9 +8,6 @@
   justify-content: space-between;
   overflow: hidden;
   padding: var(--pagePadding);
-
-  @include for-tablet-portrait-down, for-tablet-landscape-down {
-  }
 }
 
 .mainView {
@@ -49,18 +46,6 @@
 
 /* autoprefixer grid: autoplace */
 
-/*.infoGridView{
-  display: grid;
-  grid-gap: 5px;
-  grid-auto-rows: minmax(50px, auto);
-  margin-top: 20px;
-}
-.headerGridView {
-}
-
-.infoGridView {
-}*/
-
 .alertsGridView {
   background-color: var(--danger);
   overflow-y: scroll;
@@ -79,125 +64,6 @@
   background-color: var(--secondary);
 
 }
-
-/*phone-only 599 */ /*tablet-portrait-down 600*/
-/*@media (max-width: 599px) {
-  .outerGridView {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .headerGridView {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .infoGridView {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .radarGridView {
-    grid-column: 1;
-    grid-row: 3/9;
-  }
-
-  .alertsGridView {
-    grid-column: 1;
-    grid-row: 9/12;
-  }
-
-  .andamentosGridView {
-    grid-column: 1;
-    grid-row: 12/16;
-  }
-
-  .indicadoresGridView {
-    grid-column: 1;
-    grid-row: 16 / 21;
-  }
-
-  .decisaoGridView {
-    grid-column: 1;
-    grid-row: 21 / 26;
-  }
-}
-
-/*phone-only 599 */ /*tablet-portrait-down 600*/
-/*@media (min-width: 600px) {
-  .outerGridView {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .headerGridView {
-    grid-column: 1 / 3;
-    grid-row: 1;
-  }
-
-  .infoGridView {
-    grid-column: 1 / 3;
-    grid-row: 2;
-  }
-
-  .radarGridView {
-    grid-column: 1;
-    grid-row: 3/9;
-  }
-
-  .alertsGridView {
-    grid-column: 2;
-    grid-row: 3/9;
-  }
-
-  .andamentosGridView {
-    grid-column: 1 / 3;
-    grid-row: 9/13;
-  }
-
-  .indicadoresGridView {
-    grid-column: 1 / 2;
-    grid-row: 13 / 18;
-  }
-
-  .decisaoGridView {
-    grid-column: 2 / 3;
-    grid-row: 13 / 18;
-  }
-}
-
-/*tablet-landscape-down desktop-up 1200 big-desktop-up 1800 */
-/*@media (min-width: 900px) {
-
-  .resumeGridView{
-    grid-column: 2;
-    grid-row: 1/6;
-  }
-
-  .radarGridView {
-    grid-column: 3;
-    grid-row: 1/6;
-  }
-
-  .alertsGridView {
-    grid-column: 4;
-    grid-row: 1/6;
-  }
-
-  .andamentosGridView {
-    grid-column: 3 / 5;
-    grid-row: 6/10;
-  }
-
-  .indicadoresGridView {
-    grid-column: 3 / 4;
-    grid-row: 10 / 15;
-  }
-
-  .decisaoGridView {
-    grid-column: 4 / 5;
-    grid-row: 10 / 15;
-  }
-}*/
 
 .change-mode-button {
   position: absolute;

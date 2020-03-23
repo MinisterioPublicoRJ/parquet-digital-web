@@ -13,6 +13,7 @@ import {
   COURT_CASES_DETAILS_URL,
   OPEN_INVESTIGATIONS_DETAILS_URL,
   OPEN_CASES_LIST,
+  RADAR_DATA,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -28,6 +29,7 @@ import {
   todayOutliersTransform,
   todayEntriesTransform,
   openCasesListTransform,
+  radarTransform,
 } from './transforms';
 
 import { setUser } from '../user';
@@ -134,6 +136,12 @@ const Api = (() => {
     return openCasesListTransform(data);
   }
 
+  async function getRadarData({ orgao, token }) {
+    const { data } = await axios.get(RADAR_DATA({ orgao }), buildRequestConfig(token));
+
+    return radarTransform(data);
+  }
+
   return {
     login,
     getTodayOutData,
@@ -147,6 +155,7 @@ const Api = (() => {
     getOpenInvestigationsDetails,
     getCourtCasesDetails,
     getOpenCasesList,
+    getRadarData,
   };
 })();
 

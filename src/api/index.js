@@ -142,36 +142,11 @@ const Api = (() => {
     const { data } = await axios.get(RADAR_DATA({ orgao }), buildRequestConfig(token));
 
     return radarTransform(data);
-  async function getAlertsList(id) {
-    // const { data } = await axios.get(ALERTS_LIST({ id }));
-    const data = [
-      {
-        sigla: 'SIGLA 1',
-        descricao: 'Descrição 1',
-        doc_dk: 12345678,
-        num_doc: '123456789',
-        num_ext: null,
-        etiqueta: 'ETIQUETA 1',
-        classe_doc: 'Classe Doc 1',
-        data_alerta: '2016-12-06T00:00:00Z',
-        orgao: 123456,
-        classe_hier: 'CLASSE|HIERARQUIA',
-        dias_passados: -1,
-      },
-      {
-        sigla: 'SIGLA 2',
-        descricao: 'Descrição 2',
-        doc_dk: 12345678,
-        num_doc: '123456789',
-        num_ext: null,
-        etiqueta: 'ETIQUETA 2',
-        classe_doc: 'Classe Doc 2',
-        data_alerta: '2016-12-06T00:00:00Z',
-        orgao: 123456,
-        classe_hier: 'CLASSE|HIERARQUIA',
-        dias_passados: -1,
-      },
-    ];
+  }
+
+  async function getAlertsList({ orgao, token }) {
+    const { data } = await axios.get(ALERTS_LIST({ orgao }), buildRequestConfig(token));
+
     return alertsTransform(data);
   }
 
@@ -189,6 +164,7 @@ const Api = (() => {
     getCourtCasesDetails,
     getOpenCasesList,
     getRadarData,
+    getAlertsList,
   };
 })();
 

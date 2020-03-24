@@ -244,8 +244,8 @@ class PageDisplay extends React.Component {
   render() {
     return (
       <>
-        {/* {this.renderLoader()}
-        {this.renderLoginError()} */}
+        {this.renderLoader()}
+        {this.renderLoginError()}
         {this.renderPromotron()}
       </>
     );

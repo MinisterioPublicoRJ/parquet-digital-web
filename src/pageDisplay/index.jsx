@@ -9,15 +9,10 @@ import { HashRouter, Route } from 'react-router-dom';
 
 import { SectionTitle, MainTitle, ChangeModeButton } from '../components';
 
-import Router from '../router';
 import Today from '../pages/Today';
 import YourDesk from '../pages/YourDesk';
 import Alerts from '../pages/Alerts';
 import PerformanceRadar from '../pages/PerformanceRadar';
-// import Progress from '../pages/Progress';
-import SuccessIndicators from '../pages/SuccessIndicators';
-import Decisions from '../pages/Decisions';
-import Header from '../components/header/index';
 import Loader from '../loader';
 import Api from '../api';
 import { getUser } from '../user';
@@ -199,8 +194,6 @@ class PageDisplay extends React.Component {
                 />
                 <Alerts />
                 <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
-                <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
-                <Route path="/" render={props => <Decisions dashboard {...props} />} />
               </HashRouter>
             </div>
           )}

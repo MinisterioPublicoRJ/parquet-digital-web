@@ -3,10 +3,22 @@
 @import '../themes/index.css';
 
 .infoGridView {
-  background-color: yellow;
   display: grid;
   grid-template-columns: repeat(4, 25vw);
   grid-template-rows: repeat(12, calc(100vh/12));
+  grid-template-areas:
+  "today today radar alerts"
+  "today today radar alerts"
+  "today today radar alerts"
+  "today today radar alerts"
+  "desk desk radar alerts"
+  "desk desk radar alerts"
+  "desk desk . ."
+  "desk desk . ."
+  "desk desk . ."
+  "desk desk . ."
+  "desk desk . ."
+  "desk desk . .";
   /* grid-gap: 15px; */
   /* margin-top: 20px; */
 }

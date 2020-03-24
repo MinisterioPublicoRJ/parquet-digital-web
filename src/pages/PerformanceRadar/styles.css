@@ -2,6 +2,7 @@
 
 .radar {
   flex-direction: row;
+  grid-area: radar;
 }
 
 .radarLeft {

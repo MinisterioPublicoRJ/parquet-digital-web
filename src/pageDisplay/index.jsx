@@ -58,12 +58,14 @@ class PageDisplay extends React.Component {
 
     if (user) {
       const hours = new Date().getHours();
+      const u = user.split(' ')[0].toLowerCase();
+      const name = u[0].toUpperCase() + u.substring(1);
 
-      if (hours < 12) return `Olá, ${user}, bom dia!`;
+      if (hours < 12) return `Olá, ${name}, bom dia!`;
 
-      if (hours > 17) return `Olá, ${user}, boa noite!`;
+      if (hours > 17) return `Olá, ${name}, boa noite!`;
 
-      return `Olá, ${user}, boa tarde!`;
+      return `Olá, Dr. ${name}, boa tarde!`;
     }
 
     return undefined;
@@ -140,35 +142,39 @@ class PageDisplay extends React.Component {
     return null;
   }
 
+  renderHeader() {
+    const greeting = this.getGreeting();
+
+    return (
+      <header className="headerGridView">
+        <MainTitle value={greeting} />
+      </header>
+    );
+  }
+
   renderPromotron() {
     const { isCompact, isLogging, loginError } = this.state;
 
     if (isLogging || loginError) return null;
 
-    const greeting = this.getGreeting();
-
     return (
       <>
         <Header />
-        <div className="headerGridView">
-          <MainTitle value={greeting} />
-        </div>
 
-        {isCompact && (
-          // MODO COMPACTO
-          <div className="infoGridView">
+        <main className="infoGridView">
+          {this.renderHeader()}
+
+          {isCompact && (
+            // MODO COMPACTO
             <Router handleModeChange={this.handleModeChange.bind(this)} />
-          </div>
-        )}
+          )}
 
-        {!isCompact && (
-          // MODO DASHBOARD
-          <div className="infoGridView">
+          {!isCompact && (
+            // MODO DASHBOARD
             <HashRouter>
               <>
                 {/* TODO: descomentar esse botao quando voltarmos a ter o modo compacto  */}
                 {/* <ChangeModeButton cb={this.handleModeChange.bind(this)} /> */}
-
                 <div className="resumeGridView">
                   <Route
                     path="/"
@@ -225,6 +231,7 @@ class PageDisplay extends React.Component {
                   <p>Radar de perfomance</p>
                   <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
                 </div>
+                <div className="andamentosGridView"></div>
                 <div className="indicadoresGridView">
                   <p>Indicadores de sucesso</p>
                   <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
@@ -235,8 +242,8 @@ class PageDisplay extends React.Component {
                 </div>
               </>
             </HashRouter>
-          </div>
-        )}
+          )}
+        </main>
       </>
     );
   }

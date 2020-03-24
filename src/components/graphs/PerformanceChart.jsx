@@ -1,55 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { VictoryChart, VictoryPolarAxis, VictoryArea, VictoryGroup, VictoryLabel } from 'victory';
 
 import CHART_THEME from '../../themes/chartThemes';
 
-export default function PerformanceChart(props) {
-  const { data } = props;
-  const xAxis = [
-    { category: 'arquivamentos', label: 'arquivamentos' },
-    { category: 'ações civil públicas', label: 'ações\ncivil\npúblicas' },
-    { category: 'indeferimentos de plano', label: 'indeferimentos\nde plano' },
-    { category: 'instauração de investigações', label: 'instauração de\ninvestigações' },
-    { category: 'termos de ajuste de conduta', label: 'termos\nde ajuste\nde conduta' },
-  ];
+function generateGrid(xAxis) {
+  const axisGrid = [];
+  for (let i = 0; i < 5; i++) {
+    const gridLevel = [];
+    xAxis.forEach(catObj =>
+      gridLevel.push({
+        x: catObj.category,
+        y: (i + 1) * 20,
+      }),
+    );
+    axisGrid.push(gridLevel);
+  }
+  return axisGrid;
+}
 
-  // TODO: use effect hook to enhance component performance
-  // useEffect(
-  //   () => {}, [data]
-  // )
-  // let grid;
-
-  // TODO: improve gird creation
-  const grid = [
-    [
-      { x: 'arquivamentos', y: 100 },
-      { x: 'ações civil públicas', y: 100 },
-      { x: 'indeferimentos de plano', y: 100 },
-      { x: 'instauração de investigações', y: 100 },
-      { x: 'termos de ajuste de conduta', y: 100 },
-    ],
-    [
-      { x: 'arquivamentos', y: 200 },
-      { x: 'ações civil públicas', y: 200 },
-      { x: 'indeferimentos de plano', y: 200 },
-      { x: 'instauração de investigações', y: 200 },
-      { x: 'termos de ajuste de conduta', y: 200 },
-    ],
-    [
-      { x: 'arquivamentos', y: 300 },
-      { x: 'ações civil públicas', y: 300 },
-      { x: 'indeferimentos de plano', y: 300 },
-      { x: 'instauração de investigações', y: 300 },
-      { x: 'termos de ajuste de conduta', y: 300 },
-    ],
-    [
-      { x: 'arquivamentos', y: 400 },
-      { x: 'ações civil públicas', y: 400 },
-      { x: 'indeferimentos de plano', y: 400 },
-      { x: 'instauração de investigações', y: 400 },
-      { x: 'termos de ajuste de conduta', y: 400 },
-    ],
+function generateAxis(axisExpansion) {
+  return [
+    { category: 'archives', label: `arquivamentos\n${axisExpansion.archives}` },
+    { category: 'actions', label: `ações\ncivil\npúblicas\n${axisExpansion.actions}` },
+    { category: 'rejections', label: `indeferimentos\nde plano\n${axisExpansion.rejections}` },
+    {
+      category: 'instaurations',
+      label: `instauração de\ninvestigações\n${axisExpansion.instaurations}`,
+    },
+    { category: 'tac', label: `termos\nde ajuste\nde conduta\n${axisExpansion.tac}` },
   ];
+}
+
+const propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({ x: PropTypes.string, y: PropTypes.number, label: PropTypes.number }),
+  ).isRequired,
+  axis: PropTypes.shape({ category: PropTypes.string }).isRequired,
+};
+
+function PerformanceChart({ data, axis }) {
+  const xAxis = generateAxis(axis);
+  const grid = generateGrid(xAxis);
 
   // TODO: animate VictoryChart
   return (
@@ -68,12 +60,20 @@ export default function PerformanceChart(props) {
           </linearGradient>
         </defs>
       </svg>
-      <VictoryChart polar domain={{ y: [0, 400] }} height={250} width={250}>
+      <VictoryChart
+        polar
+        domain={{ y: [0, 100] }}
+        responsive
+        startAngle={90}
+        endAngle={450}
+        padding={25}
+      >
         {xAxis.map(item => (
           <VictoryPolarAxis
-            key={item.category}
             dependentAxis
+            key={item.category}
             label={item.label.toLocaleUpperCase()}
+            labelRadius={0}
             labelPlacement="vertical"
             axisValue={item.category}
             style={CHART_THEME.polarAxis}
@@ -95,3 +95,5 @@ export default function PerformanceChart(props) {
     </>
   );
 }
+PerformanceChart.propTypes = propTypes;
+export default PerformanceChart;

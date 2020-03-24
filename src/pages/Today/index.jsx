@@ -4,12 +4,16 @@ import { SectionTitle } from '../../components';
 import './styles.css';
 import Promotron from '../../assets/svg/promotronPaineis';
 import Api from '../../api';
-import { COD_PROM, COD_PES } from '../../constants';
+import { getUser } from '../../user';
 import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
 
 import { dataStateWrapper, formatPercentage } from '../../utils';
 
 class Today extends Component {
+  static defaultProps = {
+    loadedCallback: () => {},
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -36,14 +40,30 @@ class Today extends Component {
     this.loadEntriesInfo();
   }
 
+  componentDidUpdate(prevProps, { loadingTodayOut, loadingTodayEntries, loadingTodayOutliers }) {
+    if (
+      loadingTodayOut !== this.state.loadingTodayOut ||
+      loadingTodayEntries !== this.state.loadingTodayEntries ||
+      loadingTodayOutliers !== this.state.loadingTodayOutliers
+    )
+      this.doneLoading();
+  }
+
+  doneLoading() {
+    const { loadedCallback } = this.props;
+    const { loadingTodayOut, loadingTodayEntries, loadingTodayOutliers } = this.state;
+
+    if (!loadingTodayOut && !loadingTodayEntries && !loadingTodayOutliers) loadedCallback();
+  }
+
   /**
    * laods percentage data for the first sentence
    * @return {void}
    */
   async loadPercentages() {
     try {
-      const res = await Api.getTodayOutData(COD_PROM);
-      const percentile = formatPercentage(res || 0.657); // mock value as the database isn't complete yet
+      const res = await Api.getTodayOutData(getUser());
+      const percentile = formatPercentage(res);
 
       this.setState({ percentile, loadingTodayOut: false });
     } catch (e) {
@@ -62,7 +82,7 @@ class Today extends Component {
   async loadCollection() {
     try {
       const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(COD_PROM, today);
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(getUser(), today);
 
       const collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
       const groupName = NOMES_PROMOTORIAS[cod];
@@ -87,7 +107,7 @@ class Today extends Component {
    */
   async loadEntriesInfo() {
     try {
-      const { hout, lout, numEntries } = await Api.getTodayEntriesData(COD_PROM, COD_PES);
+      const { hout, lout, numEntries } = await Api.getTodayEntriesData(getUser());
 
       const dayAnalysisComponent = this.analyzeEntries(hout, lout, numEntries);
       this.setState({ dayAnalysisComponent, loadingTodayEntries: false });

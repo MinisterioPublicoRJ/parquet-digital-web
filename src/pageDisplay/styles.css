@@ -29,6 +29,7 @@
   flex: 1;
   overflow-y: scroll;
 }
+
 .headerView {
   display: flex;
   height: 10vh;
@@ -36,8 +37,6 @@
   min-height: 30px;
   padding: var(--elementPadding) 0;
 }
-
-/* autoprefixer grid: autoplace */
 
 .alertsGridView {
 }

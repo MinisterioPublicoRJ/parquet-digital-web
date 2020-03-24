@@ -16,7 +16,7 @@
 
   /* FONTS */
   --defaultFont: Montserrat;
-  --defaultTextSize: 1.5vw;
+  --defaultTextSize: 1vw;
 
   --titleWeight: bold;
   --titleSize: calc(var(--defaultTextSize) * 2);

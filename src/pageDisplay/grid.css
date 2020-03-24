@@ -2,12 +2,32 @@
 
 @import '../themes/index.css';
 
-.infoGridView {
+.root {
   display: grid;
-  /* grid-gap: 15px; */
-  grid-template-columns: 50% 25% 25%;
-  grid-template-rows: 66% 17% 17%;
-  /* margin-top: 20px; */
+  grid-template-rows: 6vh 94vh;
+}
+
+.header {
+  grid-row: 1 / 2;
+  height: 100%;
+}
+
+.infoGridView {
+  grid-row-start: 2;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 6vh repeat(9, calc(94vh / 16)) auto;
+  grid-gap: 2vh 4vw;
+  padding: 2vh 3vw;
+}
+
+.infoGridView > * {
+  overflow: hidden;
+  height: 100%;
 }
 /*phone-only 479 */
 @media (max-width: 479px) {
@@ -84,48 +104,44 @@
 }
 /*phone-only 900 Desktop */
 @media (min-width: 900px) {
-  .resumeGridView {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
+  .headerGridView {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
   }
 
-  .radarGridView {
-    grid-column: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
+  .resumeGridView {
+    grid-column: 1 / 2;
+    grid-row: 2 / 5;
   }
 
   .yourDeskGridView {
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-column: 1 / 2;
+    grid-row: 5 / 12;
   }
 
-  .andamentosGridView {
-    grid-row-start: 2;
-    grid-row-end: 3;
+  .radarGridView {
+    grid-column: 2 / 3;
+    grid-row: 1 / 6;
   }
 
   .alertsGridView {
-    grid-column: 3;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
+    grid-column: 3 / 4;
+    grid-row: 1 / 6;
     overflow-y: scroll;
-    height: 22vw;
+  }
+
+  .andamentosGridView {
+    grid-column: 2 / 4;
+    grid-row: 6 / 8;
   }
 
   .indicadoresGridView {
-    grid-row-start: 2;
-    grid-row-end: 3;
-    width: 100%;
+    grid-column: 2 / 3;
+    grid-row: 8 / 12;
   }
 
   .decisaoGridView {
-    grid-row-start: 2;
-    grid-row-end: 3;
-    width: 100%;
+    grid-column: 3 / 4;
+    grid-row: 8 / 12;
   }
 }

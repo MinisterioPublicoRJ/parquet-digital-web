@@ -3,10 +3,8 @@
 .mainTitleText {
   align-items: center;
   color: var(--darkBlue);
-  display: inline-flex;
   font-family: var(--defaultFont);
   font-size: var(--titleSize);
   font-weight: var(--titleWeight);
   margin: 0;
-  padding: var(--elementPadding);
 }

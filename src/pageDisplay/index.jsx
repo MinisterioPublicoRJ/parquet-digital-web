@@ -159,14 +159,13 @@ class PageDisplay extends React.Component {
 
     return (
       <>
-        <Header />
-
         <main className="infoGridView">
-          {this.renderHeader()}
-
           {isCompact && (
             // MODO COMPACTO
-            <Router handleModeChange={this.handleModeChange.bind(this)} />
+            <>
+              {this.renderHeader()}
+              <Router handleModeChange={this.handleModeChange.bind(this)} />
+            </>
           )}
 
           {!isCompact && (
@@ -176,6 +175,7 @@ class PageDisplay extends React.Component {
                 {/* TODO: descomentar esse botao quando voltarmos a ter o modo compacto  */}
                 {/* <ChangeModeButton cb={this.handleModeChange.bind(this)} /> */}
                 <div className="resumeGridView">
+                  {this.renderHeader()}
                   <Route
                     path="/"
                     render={props => (
@@ -231,6 +231,7 @@ class PageDisplay extends React.Component {
                   <p>Radar de perfomance</p>
                   <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
                 </div>
+                {/* <div className="andamentosGridView"></div>
                 <div className="indicadoresGridView">
                   <p>Indicadores de sucesso</p>
                   <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
@@ -238,7 +239,7 @@ class PageDisplay extends React.Component {
                 <div className="decisaoGridView">
                   <p>Aguardando decisão</p>
                   <Route path="/" render={props => <Decisions dashboard {...props} />} />
-                </div>
+                </div> */}
               </>
             </HashRouter>
           )}

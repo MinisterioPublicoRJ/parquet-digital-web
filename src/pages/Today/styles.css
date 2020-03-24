@@ -1,8 +1,8 @@
 @import '../styles.css';
 
 .page-today {
-  overflow: hidden;
-  /*min-height: 35vh;*/
+  height: 100%;
+  padding-bottom: var(--elementPadding);
 }
 
 .today-featured {
@@ -18,7 +18,7 @@
 .robo-today {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -5px;
   z-index: 0;
-  width: 30vw;
+  width: 45%;
 }

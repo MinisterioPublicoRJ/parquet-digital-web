@@ -2,108 +2,111 @@
 
 @import '../themes/index.css';
 
-.root {
-  display: grid;
-  grid-template-rows: 6vh 94vh;
-}
-
-.header {
-  grid-row: 1 / 2;
-  height: 100%;
-}
-
 .infoGridView {
-  grid-row-start: 2;
-  height: 100%;
-  overflow: hidden;
   box-sizing: border-box;
-
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 6vh repeat(9, calc(94vh / 16)) auto;
-  grid-gap: 2vh 4vw;
   padding: 2vh 3vw;
 }
 
-.infoGridView > * {
-  overflow: hidden;
-  height: 100%;
+.alertsGridView {
+  height: 20vh;
+  overflow-y: scroll;
 }
-/*phone-only 479 */
-@media (max-width: 479px) {
-  .infoGridView {
-    grid-template-columns: 100%;
-    grid-template-rows: 15%;
-  }
-  .resumeGridView {
-    height: 50vh;
-    grid-row-start: 1;
-    grid-row-end: 2;
+
+.andamentosGridView {
+}
+
+.indicadoresGridView {
+}
+
+.decisaoGridView {
+}
+
+@media (min-width: 480px) {
+  .root {
+    display: grid;
+    grid-template-rows: 2vh 98vh;
   }
 
-  .radarGridView {
-    height: 50vh;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  .header {
+    grid-row: 1 / 2;
+    height: 100%;
+  }
+
+  .infoGridView {
+    grid-row-start: 2;
+
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2vh repeat(12, calc(94vh / 16)) auto;
+    grid-gap: 1vh 2vw;
+    padding: 1vh 3vw;
+  }
+
+  .infoGridView > * {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .headerGridView {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .resumeGridView {
+    grid-column: 1 / 3;
+    grid-row: 2 / 4;
   }
 
   .yourDeskGridView {
-    height: 70vh;
+    grid-column: 1 / 3;
+    grid-row: 4 / 11;
   }
 
-  .alertsGridView {
-    height: 50vh;
-  }
-  .indicadoresGridView {
-    height: 50vh;
-  }
-
-  .decisaoGridView {
-    height: 50vh;
-  }
-}
-@media (min-width: 480px) and (max-width: 899px) {
-  .infoGridView {
-    grid-template-rows: 33.33% 33.33% 33.33% 33.33%;
-  }
-
-  .resumeGridView {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
-  }
   .radarGridView {
-    grid-column: 1;
-    grid-column-end: 2;
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-column: 1 / 2;
+    grid-row: 11 / 14;
   }
-  .yourDeskGridView {
-    grid-column: 1;
-    grid-column-end: 4;
-  }
-  .indicadoresGridView {
-    grid-column: 2;
-    grid-column-end: 4;
-  }
-  .decisaoGridView {
-    grid-column: 1;
-    grid-column-end: 2;
-    grid-row-start: 4;
-    grid-row-end: 5;
-  }
+
   .alertsGridView {
-    grid-column: 2;
-    grid-column-end: 4;
-    grid-row-start: 3;
-    grid-row-end: 4;
+    height: 100%;
+    grid-column: 2 / 3;
+    grid-row: 11 / 14;
+  }
+
+  .andamentosGridView {
+    grid-column: 2 / 4;
+    grid-row: 14;
+  }
+
+  .indicadoresGridView {
+    grid-column: 1 / 2;
+    grid-row: 14;
+  }
+
+  .decisaoGridView {
+    grid-column: 2 / 3;
+    grid-row: 14;
   }
 }
 /*phone-only 900 Desktop */
 @media (min-width: 900px) {
+  .root {
+    grid-template-rows: 6vh 94vh;
+  }
+
+  .infoGridView {
+    grid-gap: 2vh 4vw;
+    padding: 2vh 3vw;
+
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 6vh repeat(9, calc(94vh / 16)) auto;
+  }
+
   .headerGridView {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
@@ -127,7 +130,6 @@
   .alertsGridView {
     grid-column: 3 / 4;
     grid-row: 1 / 6;
-    overflow-y: scroll;
   }
 
   .andamentosGridView {

@@ -15,12 +15,21 @@
   flex-direction: column;
   height: 100%;
   flex: 3;
-  /* overflow: scroll; */
   position: relative;
 }
 
+.alertsView {
+  flex: 1;
+  margin-left: var(--pageMargin);
+}
+
+.infoView {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: scroll;
+}
 .headerView {
-  /* background-color: lightgreen; */
   display: flex;
   height: 10vh;
   justify-content: space-between;
@@ -28,28 +37,9 @@
   padding: var(--elementPadding) 0;
 }
 
-.alertsView {
-  background-color: var(--danger);
-  flex: 1;
-  margin-left: var(--pageMargin);
-  overflow-y: scroll;
-}
-
-.infoView {
-  /* background-color: gray; */
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  /* justify-content: space-around; */
-  overflow-y: scroll;
-}
-
 /* autoprefixer grid: autoplace */
 
 .alertsGridView {
-  background-color: var(--danger);
-  overflow-y: scroll;
-
 }
 
 .andamentosGridView {
@@ -62,7 +52,6 @@
 
 .decisaoGridView {
   background-color: var(--secondary);
-
 }
 
 .change-mode-button {

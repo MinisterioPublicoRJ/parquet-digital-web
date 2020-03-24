@@ -12,6 +12,7 @@ import { SectionTitle, MainTitle, ChangeModeButton } from '../components';
 import Router from '../router';
 import Today from '../pages/Today';
 import YourDesk from '../pages/YourDesk';
+import Alerts from '../pages/Alerts';
 import PerformanceRadar from '../pages/PerformanceRadar';
 import Progress from '../pages/Progress';
 import SuccessIndicators from '../pages/SuccessIndicators';
@@ -215,7 +216,9 @@ class PageDisplay extends React.Component {
                     />
                   </div>
                   <div className="alertsGridView">
-                    <p>Central de alertas</p>
+                    <div className="alertsView">
+                      <Alerts />
+                    </div>
                   </div>
                   <div className="radarGridView">
                     <p>Radar de perfomance</p>

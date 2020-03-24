@@ -107,9 +107,14 @@
     grid-row-start: 2;
     grid-row-end: 3;
   }
+
   .alertsGridView {
-    margin-right: 20px;
-    width: 100%;
+    grid-column: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    overflow-y: scroll;
+    height: 22vw;
   }
 
   .indicadoresGridView {

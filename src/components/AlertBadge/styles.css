@@ -1,0 +1,33 @@
+@import '../../themes/index.css';
+
+.alertBadgeContainer {
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0px 3px 8px #00000029;
+  display: flex;
+  font-family: var(--defaultFont);
+  margin: 1vh;
+}
+
+.badgeLeft {
+  align-items: center;
+  background-color: gray;
+  border-radius: 7px 0 0 7px;
+  display: flex;
+  justify-content: center;
+  width: 20%;
+}
+
+.badgeRight {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.badgeRight a {
+  color: orange;
+  text-align: left;
+}

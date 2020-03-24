@@ -2,7 +2,7 @@
 
 .page-today {
   overflow: hidden;
-  /*min-height: 35vh;*/
+  grid-area: today;
 }
 
 .today-featured {

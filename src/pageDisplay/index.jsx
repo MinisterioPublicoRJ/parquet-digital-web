@@ -9,15 +9,10 @@ import { HashRouter, Route } from 'react-router-dom';
 
 import { SectionTitle, MainTitle, ChangeModeButton } from '../components';
 
-import Router from '../router';
 import Today from '../pages/Today';
 import YourDesk from '../pages/YourDesk';
 import Alerts from '../pages/Alerts';
 import PerformanceRadar from '../pages/PerformanceRadar';
-import Progress from '../pages/Progress';
-import SuccessIndicators from '../pages/SuccessIndicators';
-import Decisions from '../pages/Decisions';
-import Header from '../components/header/index';
 import Loader from '../loader';
 import Api from '../api';
 import { getUser } from '../user';
@@ -149,90 +144,56 @@ class PageDisplay extends React.Component {
 
     return (
       <div>
-        <Header />
         <div>
-          <div className="headerGridView">
-            <MainTitle value={greeting} />
-          </div>
-
-          {isCompact && (
-            // MODO COMPACTO
-            <div className="infoGridView">
-              <Router handleModeChange={this.handleModeChange.bind(this)} />
-            </div>
-          )}
-
           {!isCompact && (
             // MODO DASHBOARD
             <div className="infoGridView">
               <HashRouter>
-                <>
-                  <ChangeModeButton cb={this.handleModeChange.bind(this)} />
-                  <div className="resumeGridView">
-                    <Route
-                      path="/"
-                      render={props => (
-                        <Today
-                          dashboard
-                          loadedCallback={() => this.setExternalResourcesLoaded('home')}
-                          {...props}
-                        />
-                      )}
+                <Route
+                  path="/"
+                  render={props => (
+                    <Today
+                      dashboard
+                      loadedCallback={() => this.setExternalResourcesLoaded('home')}
+                      {...props}
                     />
-                  </div>
-                  <div className="yourDeskGridView">
-                    <Route
-                      path="/"
-                      exact
-                      render={props => (
-                        <YourDesk
-                          dashboard
-                          loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                          {...props}
-                        />
-                      )}
+                  )}
+                />
+                <Route
+                  path="/"
+                  exact
+                  render={props => (
+                    <YourDesk
+                      dashboard
+                      loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                      {...props}
                     />
-                    <Route
-                      path="/:tab"
-                      exact
-                      render={props => (
-                        <YourDesk
-                          dashboard
-                          loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                          {...props}
-                        />
-                      )}
+                  )}
+                />
+                <Route
+                  path="/:tab"
+                  exact
+                  render={props => (
+                    <YourDesk
+                      dashboard
+                      loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                      {...props}
                     />
-                    <Route
-                      path="/:tab/:table"
-                      exact
-                      render={props => (
-                        <YourDesk
-                          dashboard
-                          loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                          {...props}
-                        />
-                      )}
+                  )}
+                />
+                <Route
+                  path="/:tab/:table"
+                  exact
+                  render={props => (
+                    <YourDesk
+                      dashboard
+                      loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                      {...props}
                     />
-                  </div>
-                  <div className="alertsGridView">
-                    <div className="alertsView">
-                      <Alerts />
-                    </div>
-                  </div>
-                  <div className="radarGridView">
-                    <p>Radar de perfomance</p>
-                    <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
-                  </div>
-                  <div className="indicadoresGridView">
-                    <p>Indicadores de sucesso</p>
-                    <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
-                  </div>
-                  <div className="decisaoGridView">
-                    <p>Aguardando decisão</p>
-                    <Route path="/" render={props => <Decisions dashboard {...props} />} />
-                  </div>
-                </>
+                  )}
+                />
+                <Alerts />
+                <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
               </HashRouter>
             </div>
           )}

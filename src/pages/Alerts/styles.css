@@ -1,6 +1,7 @@
 @import '../styles.css';
 
 .alertsWrapper {
+  grid-area: alerts;
   height: 100%;
   overflow-y: scroll;
 }

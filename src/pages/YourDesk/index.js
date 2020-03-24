@@ -159,7 +159,7 @@ class YourDesk extends Component {
     } = this.state;
 
     return (
-      <article className={`page ${dashboard ? 'dashboard' : 'compact'}`}>
+      <article className={`page ${dashboard ? 'dashboard' : 'compact'} yourDesk`}>
         <SectionTitle value="Sua Mesa" />
         <TabControl
           match={match}

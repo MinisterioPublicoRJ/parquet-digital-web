@@ -44,6 +44,27 @@
   overflow-y: scroll;
 }
 
+/* autoprefixer grid: autoplace */
+
+.alertsGridView {
+  background-color: var(--danger);
+  overflow-y: scroll;
+
+}
+
+.andamentosGridView {
+  background-color: var(--primary);
+}
+
+.indicadoresGridView {
+  background-color: var(--warning);
+}
+
+.decisaoGridView {
+  background-color: var(--secondary);
+
+}
+
 .change-mode-button {
   position: absolute;
   top: 7vh;

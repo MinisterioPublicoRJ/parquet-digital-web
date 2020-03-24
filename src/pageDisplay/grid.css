@@ -74,6 +74,7 @@
 
   .alertsGridView {
     height: 100%;
+    overflow-y: scroll;
     grid-column: 2 / 3;
     grid-row: 11 / 14;
   }

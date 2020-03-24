@@ -5,7 +5,6 @@
   border-radius: 7px;
   box-shadow: 0px 3px 8px #00000029;
   display: flex;
-  height: 10vh;
   font-family: var(--defaultFont);
   margin: 1vh;
 }

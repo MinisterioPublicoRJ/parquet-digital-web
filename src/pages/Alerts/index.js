@@ -52,11 +52,11 @@ class Alerts extends React.Component {
           <SectionTitle value="central de alertas" />
         </div>
         <div className="alertsBody">
-          {alerts.map(alert => {
+          {alerts.map((alert, i) => {
             const { icon, message, action, actionLink, background } = this.cleanAlert(alert);
             return (
               <AlertBadge
-                key={alert.docNum + alert.date}
+                key={alert.docNum + alert.date + i}
                 icon={icon}
                 iconBg={background}
                 message={message}

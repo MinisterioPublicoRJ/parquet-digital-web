@@ -7,20 +7,23 @@ import React from 'react';
 import Typist from 'react-typist';
 import { HashRouter, Route } from 'react-router-dom';
 
+import { SectionTitle, MainTitle, ChangeModeButton } from '../components';
+
 import Router from '../router';
-import Today from '../pages/Today/';
+import Today from '../pages/Today';
 import YourDesk from '../pages/YourDesk';
 import Alerts from '../pages/Alerts';
 import PerformanceRadar from '../pages/PerformanceRadar';
 import Progress from '../pages/Progress';
 import SuccessIndicators from '../pages/SuccessIndicators';
 import Decisions from '../pages/Decisions';
+import Header from '../components/header/index';
 import Loader from '../loader';
 import Api from '../api';
 import { getUser } from '../user';
 
-import { MainTitle, ChangeModeButton } from '../components';
 import './styles.css';
+import './grid.css';
 
 class PageDisplay extends React.Component {
   constructor(props) {
@@ -145,81 +148,94 @@ class PageDisplay extends React.Component {
     const greeting = this.getGreeting();
 
     return (
-      <div className="outerView">
-        <div className="mainView">
-          <div className="headerView">
-            <MainTitle value={greeting || 'Bom dia, Dr. Sydney, seja bem-vindo.'} />
-            {/* FIXME:remove this hardcoded string when login is ready ^ */}
+      <div>
+        <Header />
+        <div>
+          <div className="headerGridView">
+            <MainTitle value={greeting} />
           </div>
 
           {isCompact && (
             // MODO COMPACTO
-            <div className="infoView">
+            <div className="infoGridView">
               <Router handleModeChange={this.handleModeChange.bind(this)} />
             </div>
           )}
 
           {!isCompact && (
             // MODO DASHBOARD
-            <div className="infoView">
+            <div className="infoGridView">
               <HashRouter>
                 <>
                   <ChangeModeButton cb={this.handleModeChange.bind(this)} />
-                  <Route
-                    path="/"
-                    render={props => (
-                      <Today
-                        dashboard
-                        loadedCallback={() => this.setExternalResourcesLoaded('home')}
-                        {...props}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/"
-                    exact
-                    render={props => (
-                      <YourDesk
-                        dashboard
-                        loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                        {...props}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/:tab"
-                    exact
-                    render={props => (
-                      <YourDesk
-                        dashboard
-                        loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                        {...props}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/:tab/:table"
-                    exact
-                    render={props => (
-                      <YourDesk
-                        dashboard
-                        loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                        {...props}
-                      />
-                    )}
-                  />
-                  <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
-                  <Route path="/" render={props => <Progress dashboard {...props} />} />
-                  <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
-                  <Route path="/" render={props => <Decisions dashboard {...props} />} />
+                  <div className="resumeGridView">
+                    <Route
+                      path="/"
+                      render={props => (
+                        <Today
+                          dashboard
+                          loadedCallback={() => this.setExternalResourcesLoaded('home')}
+                          {...props}
+                        />
+                      )}
+                    />
+                  </div>
+                  <div className="yourDeskGridView">
+                    <Route
+                      path="/"
+                      exact
+                      render={props => (
+                        <YourDesk
+                          dashboard
+                          loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                          {...props}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/:tab"
+                      exact
+                      render={props => (
+                        <YourDesk
+                          dashboard
+                          loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                          {...props}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/:tab/:table"
+                      exact
+                      render={props => (
+                        <YourDesk
+                          dashboard
+                          loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                          {...props}
+                        />
+                      )}
+                    />
+                  </div>
+                  <div className="alertsGridView">
+                    <div className="alertsView">
+                      <Alerts />
+                    </div>
+                  </div>
+                  <div className="radarGridView">
+                    <p>Radar de perfomance</p>
+                    <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+                  </div>
+                  <div className="indicadoresGridView">
+                    <p>Indicadores de sucesso</p>
+                    <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />
+                  </div>
+                  <div className="decisaoGridView">
+                    <p>Aguardando decisão</p>
+                    <Route path="/" render={props => <Decisions dashboard {...props} />} />
+                  </div>
                 </>
               </HashRouter>
             </div>
           )}
-        </div>
-
-        <div className="alertsView">
-          <Alerts />
         </div>
       </div>
     );
@@ -228,8 +244,8 @@ class PageDisplay extends React.Component {
   render() {
     return (
       <>
-        {this.renderLoader()}
-        {this.renderLoginError()}
+        {/* {this.renderLoader()}
+        {this.renderLoginError()} */}
         {this.renderPromotron()}
       </>
     );

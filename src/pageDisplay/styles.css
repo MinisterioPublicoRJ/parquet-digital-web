@@ -37,6 +37,23 @@
   padding: var(--elementPadding) 0;
 }
 
+/* autoprefixer grid: autoplace */
+
+.alertsGridView {
+}
+
+.andamentosGridView {
+  background-color: var(--primary);
+}
+
+.indicadoresGridView {
+  background-color: var(--warning);
+}
+
+.decisaoGridView {
+  background-color: var(--secondary);
+}
+
 .change-mode-button {
   position: absolute;
   top: 7vh;

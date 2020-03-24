@@ -166,7 +166,9 @@ class PageDisplay extends React.Component {
           <div className="infoGridView">
             <HashRouter>
               <>
-                <ChangeModeButton cb={this.handleModeChange.bind(this)} />
+                {/* TODO: descomentar esse botao quando voltarmos a ter o modo compacto  */}
+                {/* <ChangeModeButton cb={this.handleModeChange.bind(this)} /> */}
+
                 <div className="resumeGridView">
                   <Route
                     path="/"

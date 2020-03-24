@@ -231,7 +231,6 @@ class PageDisplay extends React.Component {
                   <p>Radar de perfomance</p>
                   <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
                 </div>
-                <div className="andamentosGridView"></div>
                 <div className="indicadoresGridView">
                   <p>Indicadores de sucesso</p>
                   <Route path="/" render={props => <SuccessIndicators dashboard {...props} />} />

@@ -3,14 +3,15 @@
 @import '../themes/index.css';
 
 .infoGridView {
+  background-color: yellow;
   display: grid;
-  grid-gap: 15px;
-  grid-template-columns: 50% 25% 25%;
-  grid-template-rows: 66% 17% 17%;
-  margin-top: 20px;
+  grid-template-columns: repeat(4, 25vw);
+  grid-template-rows: repeat(12, calc(100vh/12));
+  /* grid-gap: 15px; */
+  /* margin-top: 20px; */
 }
 /*phone-only 479 */
-@media (max-width: 479px) {
+/* @media (max-width: 479px) {
   .infoGridView {
     grid-template-columns: 100%;
     grid-template-rows: 15%;
@@ -43,8 +44,8 @@
   .decisaoGridView {
     height: 50vh;
   }
-}
-@media (min-width: 480px) and (max-width: 899px) {
+} */
+/* @media (min-width: 480px) and (max-width: 899px) {
   .infoGridView {
     grid-template-rows: 33.33% 33.33% 33.33% 33.33%;
   }
@@ -81,9 +82,9 @@
     grid-row-start: 3;
     grid-row-end: 4;
   }
-}
+} */
 /*phone-only 900 Desktop */
-@media (min-width: 900px) {
+/* @media (min-width: 900px) {
   .resumeGridView {
     grid-column-start: 1;
     grid-column-end: 2;
@@ -128,4 +129,4 @@
     grid-row-end: 3;
     width: 100%;
   }
-}
+} */

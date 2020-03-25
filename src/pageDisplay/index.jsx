@@ -13,6 +13,7 @@ import Today from '../pages/Today';
 import YourDesk from '../pages/YourDesk';
 import Alerts from '../pages/Alerts';
 import PerformanceRadar from '../pages/PerformanceRadar';
+import TempoTramitacao from '../pages/TempoTramitacao'
 import Loader from '../loader';
 import Api from '../api';
 import { getUser } from '../user';
@@ -194,6 +195,7 @@ class PageDisplay extends React.Component {
                 />
                 <Alerts />
                 <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+                <TempoTramitacao />
               </HashRouter>
             </div>
           )}

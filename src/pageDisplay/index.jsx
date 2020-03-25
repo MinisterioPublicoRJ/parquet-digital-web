@@ -143,61 +143,54 @@ class PageDisplay extends React.Component {
     const greeting = this.getGreeting();
 
     return (
-      <div>
-        <div>
-          {!isCompact && (
-            // MODO DASHBOARD
-            <div className="infoGridView">
-              <HashRouter>
-                <Route
-                  path="/"
-                  render={props => (
-                    <Today
-                      dashboard
-                      loadedCallback={() => this.setExternalResourcesLoaded('home')}
-                      {...props}
-                    />
-                  )}
-                />
-                <Route
-                  path="/"
-                  exact
-                  render={props => (
-                    <YourDesk
-                      dashboard
-                      loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                      {...props}
-                    />
-                  )}
-                />
-                <Route
-                  path="/:tab"
-                  exact
-                  render={props => (
-                    <YourDesk
-                      dashboard
-                      loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                      {...props}
-                    />
-                  )}
-                />
-                <Route
-                  path="/:tab/:table"
-                  exact
-                  render={props => (
-                    <YourDesk
-                      dashboard
-                      loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                      {...props}
-                    />
-                  )}
-                />
-                <Alerts />
-                <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
-              </HashRouter>
-            </div>
-          )}
-        </div>
+      <div className="infoGridView">
+        <HashRouter>
+          <Route
+            path="/"
+            render={props => (
+              <Today
+                dashboard
+                loadedCallback={() => this.setExternalResourcesLoaded('home')}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/"
+            exact
+            render={props => (
+              <YourDesk
+                dashboard
+                loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/:tab"
+            exact
+            render={props => (
+              <YourDesk
+                dashboard
+                loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/:tab/:table"
+            exact
+            render={props => (
+              <YourDesk
+                dashboard
+                loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                {...props}
+              />
+            )}
+          />
+          <Alerts />
+          <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+        </HashRouter>
       </div>
     );
   }

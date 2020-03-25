@@ -42,6 +42,8 @@
   --pagePadding: 2.5vh;
   --pageMargin: 2.5vh;
 
+  --dashboardAreaMargin: 2vh;
+
   --elementPadding: 1.5vh;
 
   --tabControlItemSize: calc(var(--defaultTextSize) * 7);

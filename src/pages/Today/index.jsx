@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-import { SectionTitle } from '../../components';
+import { SectionTitle, MainTitle } from '../../components';
 import './styles.css';
 import Promotron from '../../assets/svg/promotronPaineis';
 import Api from '../../api';
 import { getUser } from '../../user';
 import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
 
-import { dataStateWrapper, formatPercentage } from '../../utils';
+import { dataStateWrapper, formatPercentage, capitalizeTitle } from '../../utils';
 
 class Today extends Component {
-  static defaultProps = {
-    loadedCallback: () => {},
-  };
+  // static defaultProps = {
+  //   loadedCallback: () => {},
+  // };
 
   constructor(props) {
     super(props);
@@ -167,6 +167,37 @@ class Today extends Component {
     return 'de volume regular comparado aos';
   }
 
+  /**
+   * Returns the greeting to be shown on the page
+   * @return {string} [description]
+   */
+  getGreeting() {
+    const user = this.cleanUsername();
+    let timeGreeting;
+
+    if (user) {
+      const hours = new Date().getHours();
+
+      if (hours < 12) return `Olá, ${user}, bom dia!`;
+
+      if (hours > 17) return `Olá, ${user}, boa noite!`;
+
+      return `Olá, ${user}, boa tarde!`;
+    }
+
+    return `Olá, ${user}, ${timeGreeting}!`;
+  }
+
+  cleanUsername() {
+    const { user } = this.props;
+    const cleanUsername = user.split(/(\s).+\s/).join('');
+    return capitalizeTitle(cleanUsername);
+  }
+
+  redimensionSVG() {
+
+  }
+
   render() {
     const {
       percentile,
@@ -184,36 +215,64 @@ class Today extends Component {
 
     const { dashboard } = this.props;
 
+    const greeting = this.getGreeting();
+
+    // return (
+    //   <article className="page-today">
+    //     <SectionTitle value="resumo do dia" />
+    //     <div className="today-featured">
+    //       <div className="today-featured-data">
+    //         {dataStateWrapper(
+    //           <p className="paragraphWrapper">
+    //             Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
+    //             <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
+    //             da casa entre aquelas de mesma atribuição.
+    //             {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+    //           </p>,
+    //           loadingTodayOut,
+    //           errorTodayOut,
+    //         )}
+    //         {dataStateWrapper(
+    //           <p className="paragraphWrapper">
+    //             Você sabia que seu acervo é
+    //             <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
+    //             dos seus colegas das
+    //             <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+    //           </p>,
+    //           loadingTodayOutliers,
+    //           errorTodayOutliers,
+    //         )}
+    //         {dataStateWrapper(dayAnalysisComponent, loadingTodayEntries, errorTodayEntries)}
+    //       </div>
+    //     </div>
+    //   </article>
+    // );
+
     return (
-      <article className={`page ${dashboard ? 'dashboard' : 'compact'} page-today`}>
-        <SectionTitle value="resumo do dia" />
-        <div className="today-featured">
+      <article className="page-today">
+        <div className="today-header">
+          <MainTitle value={greeting} />
+        </div>
+        <div className="today-content">
+          <SectionTitle value="resumo do dia" />
           <div className="today-featured-data">
-            {dataStateWrapper(
-              <p className="paragraphWrapper">
-                Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
-                <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
-                da casa entre aquelas de mesma atribuição.
-                {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
-              </p>,
-              loadingTodayOut,
-              errorTodayOut,
-            )}
-            {dataStateWrapper(
-              <p className="paragraphWrapper">
-                Você sabia que seu acervo é
-                <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
-                dos seus colegas das
-                <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
-              </p>,
-              loadingTodayOutliers,
-              errorTodayOutliers,
-            )}
-            {dataStateWrapper(dayAnalysisComponent, loadingTodayEntries, errorTodayEntries)}
+            <p className="paragraphWrapper">
+              Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
+              <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
+              da casa entre aquelas de mesma atribuição.
+              {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+            </p>
+            <p className="paragraphWrapper">
+              Você sabia que seu acervo é
+              <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
+              dos seus colegas das
+              <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+            </p>
+            {this.analyzeEntries()}
           </div>
-          <div className="robo-today">
-            <Promotron width="100%" />
-          </div>
+        </div>
+        <div className="robo-today">
+          <Promotron height="100%" />
         </div>
       </article>
     );

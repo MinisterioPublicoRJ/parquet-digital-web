@@ -1,25 +1,41 @@
 @import '../styles.css';
 
 .page-today {
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   grid-area: today;
-}
-
-.today-featured {
-  min-height: 17vw;
   position: relative;
+  overflow: hidden;
 }
 
-.today-featured-data {
-  width: 70%;
+.today-header {
+  display: flex;
+  align-items: center;
+  height: 25%;
+}
+
+.today-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  max-height: 75%;
+  width: 75%;
   z-index: 1;
-  position: relative;
 }
 
 .robo-today {
+  align-items: flex-end;
+  display: flex;
+  height: 75%;
+  justify-content: flex-end;
   position: absolute;
   right: 0;
   bottom: 0;
   z-index: 0;
-  width: 30vw;
+}
+
+@media (max-width: 480px) {
+  .robo-today {
+    height: 50%;
+  }
 }

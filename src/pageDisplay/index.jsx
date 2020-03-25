@@ -44,26 +44,6 @@ class PageDisplay extends React.Component {
     this.setState({ [`${resource}Loaded`]: true });
   }
 
-  /**
-   * Returns the greeting to be shown on the page
-   * @return {string} [description]
-   */
-  getGreeting() {
-    const { user } = this.state;
-
-    if (user) {
-      const hours = new Date().getHours();
-
-      if (hours < 12) return `Olá, ${user}, bom dia!`;
-
-      if (hours > 17) return `Olá, ${user}, boa noite!`;
-
-      return `Olá, ${user}, boa tarde!`;
-    }
-
-    return undefined;
-  }
-
   async loadResources() {
     return this.login();
   }
@@ -136,11 +116,9 @@ class PageDisplay extends React.Component {
   }
 
   renderPromotron() {
-    const { isCompact, isLogging, loginError } = this.state;
+    const { isCompact, isLogging, loginError, user } = this.state;
 
     if (isLogging || loginError) return null;
-
-    const greeting = this.getGreeting();
 
     return (
       <div className="infoGridView">
@@ -150,6 +128,7 @@ class PageDisplay extends React.Component {
             render={props => (
               <Today
                 dashboard
+                user={user}
                 loadedCallback={() => this.setExternalResourcesLoaded('home')}
                 {...props}
               />

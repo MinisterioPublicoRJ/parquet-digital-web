@@ -42,21 +42,15 @@ class TempoTramitacao extends React.Component {
   }
 
   render() {
-    const { percentagePhrase, chartData, axisData } = this.state;
-
-    if (!chartData || !axisData) return <div>Carregando</div>;
     return (
       <article className="page-tramitacao">
         <p>Tempo de tramitação (em dias)</p>
-        <div className="tramitacao-chart">
-          <ProcessingTimeChart  data={chartData} axis={axisData}  />
-        </div>
-        <span style={{ fontWeight: 'bold' }}>{percentagePhrase}</span>
-
+        <div className="tramitacao-chart" />
+        <span style={{ fontWeight: 'bold' }}>Frase</span>
       </article>
     );
   }
 }
 
-/* TempoTramitacao.propTypes = propTypes; */
+/*TempoTramitacao.propTypes = propTypes;*/
 export default TempoTramitacao;

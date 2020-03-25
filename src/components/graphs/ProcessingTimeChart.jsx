@@ -3,12 +3,6 @@ import PropTypes from 'prop-types';
 import { VictoryChart, VictoryPolarAxis, VictoryArea, VictoryGroup, VictoryLabel } from 'victory';
 import CHART_THEME from '../../themes/chartThemes';
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { VictoryChart, VictoryPolarAxis, VictoryArea, VictoryGroup, VictoryLabel } from 'victory';
-
-import CHART_THEME from '../../themes/chartThemes';
-
 function generateGrid(xAxis) {
   const axisGrid = [];
   for (let i = 0; i < 5; i++) {
@@ -24,6 +18,9 @@ function generateGrid(xAxis) {
   return axisGrid;
 }
 
+function generateAxis(axisExpansion) {
+  return [{ category: 'archives', label: `arquivamentos\n${axisExpansion.archives}` }];
+}
 
 const propTypes = {
   data: PropTypes.arrayOf(
@@ -88,5 +85,5 @@ function TempoTramitacaoChart({ data, axis }) {
     </>
   );
 }
-TempoTramitacaoChart.propTypes = propTypes;
+/* TempoTramitacaoChart.propTypes = propTypes; */
 export default TempoTramitacaoChart;

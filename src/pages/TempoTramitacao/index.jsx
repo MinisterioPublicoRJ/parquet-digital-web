@@ -5,7 +5,7 @@ import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
 import { formatPercent } from '../../utils';
-import { ProcessingTimeChart } from '../../components/graphs/ProcessingTimeChart';
+import { ProcessingTimeChart } from '../../components/graphs';
 
 /* const propTypes = {
   dashboard: PropTypes.bool.isRequired,
@@ -44,13 +44,20 @@ class TempoTramitacao extends React.Component {
   render() {
     return (
       <article className="page-tramitacao">
-        <p>Tempo de tramitação (em dias)</p>
-        <div className="tramitacao-chart" />
-        <span style={{ fontWeight: 'bold' }}>Frase</span>
+        <div className="tramitacao-texts">
+          <h3>Tempo de tramitação</h3>
+          <p>
+            Avaliei que o período de tramitação de processos na sua promotoria está mais rápido que
+            a média da casa entre aquelas de mesma atribuição. Muito Bom!
+          </p>
+        </div>
+        <div className="ProcessingTimeChart" />
+        <ProcessingTimeChart />
+        <div />
       </article>
     );
   }
 }
 
-/*TempoTramitacao.propTypes = propTypes;*/
+/* TempoTramitacao.propTypes = propTypes; */
 export default TempoTramitacao;

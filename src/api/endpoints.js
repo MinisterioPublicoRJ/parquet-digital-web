@@ -26,3 +26,5 @@ export const OPEN_CASES_LIST = t(`${BASE_URL}/suamesa/lista/vistas/\${orgao}/\${
 export const RADAR_DATA = t(`${BASE_URL}/radar/\${orgao}`);
 
 export const ALERTS_LIST = t(`${BASE_URL}/alertas/\${orgao}`);
+
+export const TRAMITACAO_DATA = t(`${BASE_URL}/tempoTramitacao/\${orgao}`);

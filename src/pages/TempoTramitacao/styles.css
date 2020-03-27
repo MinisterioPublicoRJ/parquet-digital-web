@@ -2,6 +2,7 @@
 
 .page-tramitacao {
     grid-area: processingTime;
+    display: flex;
 }
 
 .processingTimeChart {

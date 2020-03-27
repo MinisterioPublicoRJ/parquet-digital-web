@@ -16,6 +16,7 @@ function TempoTramitacaoChart() {
         ]}
         startAngle={90}
         endAngle={-90}
+        height={400}
       />
     </>
   );

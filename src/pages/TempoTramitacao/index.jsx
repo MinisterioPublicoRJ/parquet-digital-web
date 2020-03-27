@@ -1,21 +1,29 @@
 import React from 'react';
-import ProTypes from 'prop-types';
 
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
-import { formatPercent } from '../../utils';
 import { ProcessingTimeChart } from '../../components/graphs';
-
-/* const propTypes = {
-  dashboard: PropTypes.bool.isRequired,
-}; */
 
 class TempoTramitacao extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  /*componentDidMount() {
+    this.getTempoTramitacaoData();
+  }
+
+  async getTempoTramitacaoData() {
+    const res = await Api.getTempoTramitacaoData(getUser());
+    this.showGraphData(res);
+  }
+
+  showGraphData(){
+    const chartData = [];
+    const axisData = {};
+  }*/
 
   render() {
     return (
@@ -30,10 +38,12 @@ class TempoTramitacao extends React.Component {
         <div className="processingTimeChart" />
         <ProcessingTimeChart />
         <div />
+        <div className='box-time'>
+          <p>620 dias</p>
+        </div>
       </article>
     );
   }
 }
 
-/* TempoTramitacao.propTypes = propTypes; */
 export default TempoTramitacao;

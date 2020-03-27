@@ -17,30 +17,6 @@ class TempoTramitacao extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    this.getTramitacaoData();
-  }
-
-  async getTramitacaoData() {
-    const res = await Api.getRadarData(getUser());
-    this.cleanGraphData(res);
-  }
-
-  cleanGraphData(data) {
-    const chartData = [];
-    const axisData = {};
-    const categories = Object.keys(data);
-
-    categories.forEach(cat => {
-      if (cat === 'meta') return;
-      const chartRow = { x: cat, y: data[cat].percentages, label: data[cat].numbers };
-      axisData[cat] = formatPercent(data[cat].variations);
-      chartData.push(chartRow);
-    });
-
-    this.setState({ chartData, axisData });
-  }
-
   render() {
     return (
       <article className="page-tramitacao">
@@ -51,7 +27,7 @@ class TempoTramitacao extends React.Component {
             a média da casa entre aquelas de mesma atribuição. Muito Bom!
           </p>
         </div>
-        <div className="ProcessingTimeChart" />
+        <div className="processingTimeChart" />
         <ProcessingTimeChart />
         <div />
       </article>

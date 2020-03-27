@@ -13,10 +13,10 @@
   "today today radar alerts"
   "today today radar alerts"
   "desk desk radar alerts"
-  "desk desk radar alerts "
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . ."
+  "desk desk radar alerts"
+  "desk desk processingTime processingTime"
+  "desk desk processingTime processingTime"
+  "desk desk processingTime processingTime"
   "desk desk . ."
   "desk desk . ."
   "desk desk . .";
@@ -27,10 +27,11 @@
   .infoGridView {
     height: 200vh;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 33vh 66vh 50vh 50vh;
+    grid-template-rows: 33vh 66vh 66vh 50vh 50vh;
     grid-template-areas:
     "today today"
     "desk desk"
+    "processingTime processingTime"
     "radar alerts";
   }
 }
@@ -44,6 +45,7 @@
     grid-template-areas:
     "today"
     "desk"
+    "processingTime"
     "radar"
     "alerts"
     "."

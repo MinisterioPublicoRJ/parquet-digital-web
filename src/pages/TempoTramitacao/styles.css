@@ -1,0 +1,11 @@
+@import '../styles.css';
+
+.page-tramitacao {
+    grid-area: processingTime;
+}
+
+.processingTimeChart {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}

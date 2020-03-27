@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { SectionTitle, MainTitle } from '../../components';
 import './styles.css';
-import Promotron from '../../assets/svg/promotronPaineis';
 import Api from '../../api';
 import { getUser } from '../../user';
+import Promotron from '../../assets/svg/promotronPaineis';
 import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
+import { SectionTitle, MainTitle, Spinner } from '../../components';
 
-import { dataStateWrapper, formatPercentage, capitalizeTitle } from '../../utils';
+import { formatPercentage, capitalizeTitle } from '../../utils';
+
+const propTypes = {
+  user: PropTypes.string.isRequired,
+  loadedCallback: PropTypes.func.isRequired,
+};
 
 class Today extends Component {
-  // static defaultProps = {
-  //   loadedCallback: () => {},
-  // };
-
   constructor(props) {
     super(props);
     this.state = {
       loadingTodayOut: true,
       loadingTodayEntries: true,
       loadingTodayOutliers: true,
-      errorTodayOut: false,
-      errorTodayEntries: false,
-      errorTodayOutliers: false,
     };
   }
 
@@ -40,20 +39,20 @@ class Today extends Component {
     this.loadEntriesInfo();
   }
 
-  componentDidUpdate(prevProps, { loadingTodayOut, loadingTodayEntries, loadingTodayOutliers }) {
-    if (
-      loadingTodayOut !== this.state.loadingTodayOut ||
-      loadingTodayEntries !== this.state.loadingTodayEntries ||
-      loadingTodayOutliers !== this.state.loadingTodayOutliers
-    )
-      this.doneLoading();
-  }
-
-  doneLoading() {
-    const { loadedCallback } = this.props;
-    const { loadingTodayOut, loadingTodayEntries, loadingTodayOutliers } = this.state;
-
-    if (!loadingTodayOut && !loadingTodayEntries && !loadingTodayOutliers) loadedCallback();
+  /**
+   * checks if all the info was fetched from aPI, warns parent when done
+   * @param  {boolean} loadingTodayOut
+   * @param  {boolean} loadingTodayEntries
+   * @param  {boolean} loadingTodayOutliers
+   * @return {boolean}
+   */
+  doneLoading(loadingTodayOut, loadingTodayEntries, loadingTodayOutliers) {
+    if (!loadingTodayOut && !loadingTodayEntries && !loadingTodayOutliers) {
+      const { loadedCallback } = this.props;
+      loadedCallback();
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -61,16 +60,18 @@ class Today extends Component {
    * @return {void}
    */
   async loadPercentages() {
+    const loadingTodayOut = false;
+    let errorTodayOut = false;
+    let percentile;
     try {
       const res = await Api.getTodayOutData(getUser());
-      const percentile = formatPercentage(res);
-
-      this.setState({ percentile, loadingTodayOut: false });
+      percentile = formatPercentage(res);
     } catch (e) {
-      console.error('Today#loadPercentages error', e);
-      this.setState({
-        errorTodayOut: true,
-        loadingTodayOut: false,
+      errorTodayOut = true;
+    } finally {
+      this.setState(({ loadingTodayEntries, loadingTodayOutliers }) => {
+        const doneLoading = this.doneLoading(false, loadingTodayEntries, loadingTodayOutliers);
+        return { percentile, loadingTodayOut, errorTodayOut, doneLoading };
       });
     }
   }
@@ -80,23 +81,27 @@ class Today extends Component {
    * @return {void}
    */
   async loadCollection() {
+    let collectionPhrase;
+    let groupName;
+    let errorTodayOutliers = false;
     try {
       const today = new Date();
       const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(getUser(), today);
 
-      const collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
-      const groupName = NOMES_PROMOTORIAS[cod];
-
-      this.setState({
-        collectionPhrase,
-        groupName,
-        loadingTodayOutliers: false,
-      });
+      collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
+      groupName = NOMES_PROMOTORIAS[cod];
     } catch (e) {
-      console.error('Today#loadCollection error', e);
-      this.setState({
-        errorTodayOutliers: true,
-        loadingTodayOutliers: false,
+      errorTodayOutliers = true;
+    } finally {
+      this.setState(({ loadingTodayEntries, loadingTodayOut }) => {
+        const doneLoading = this.doneLoading(loadingTodayOut, loadingTodayEntries, false);
+        return {
+          collectionPhrase,
+          loadingTodayOutliers: false,
+          errorTodayOutliers,
+          doneLoading,
+          groupName,
+        };
       });
     }
   }
@@ -106,16 +111,18 @@ class Today extends Component {
    * @return {void}
    */
   async loadEntriesInfo() {
+    let entriesParagraph;
+    let errorTodayEntries = false;
     try {
       const { hout, lout, numEntries } = await Api.getTodayEntriesData(getUser());
 
-      const dayAnalysisComponent = this.analyzeEntries(hout, lout, numEntries);
-      this.setState({ dayAnalysisComponent, loadingTodayEntries: false });
+      entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
     } catch (e) {
-      console.error('Today#loadEntriesInfo error', e);
-      this.setState({
-        errorTodayEntries: true,
-        loadingTodayEntries: false,
+      errorTodayEntries = true;
+    } finally {
+      this.setState(({ loadingTodayOut, loadingTodayOutliers }) => {
+        const doneLoading = this.doneLoading(loadingTodayOut, false, loadingTodayOutliers);
+        return { entriesParagraph, loadingTodayEntries: false, errorTodayEntries, doneLoading };
       });
     }
   }
@@ -171,7 +178,7 @@ class Today extends Component {
    * Returns the greeting to be shown on the page
    * @return {string} [description]
    */
-  getGreeting() {
+  assembleGreeting() {
     const user = this.cleanUsername();
     let timeGreeting;
 
@@ -194,81 +201,45 @@ class Today extends Component {
     return capitalizeTitle(cleanUsername);
   }
 
-  redimensionSVG() {
-
-  }
-
   render() {
-    const {
-      percentile,
-      collectionPhrase,
-      groupName,
-      dayAnalysisComponent,
-      loadingTodayOut,
-      loadingTodayEntries,
-      loadingTodayOutliers,
+    const { percentile, collectionPhrase, groupName, entriesParagraph, doneLoading } = this.state;
 
-      errorTodayOut,
-      errorTodayEntries,
-      errorTodayOutliers,
-    } = this.state;
+    const greeting = this.assembleGreeting();
 
-    const { dashboard } = this.props;
+    const percentParagraph = !percentile ? null : (
+      <p className="paragraphWrapper">
+        Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
+        <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
+        da casa entre aquelas de mesma atribuição.
+        {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+      </p>
+    );
 
-    const greeting = this.getGreeting();
-
-    // return (
-    //   <article className="page-today">
-    //     <SectionTitle value="resumo do dia" />
-    //     <div className="today-featured">
-    //       <div className="today-featured-data">
-    //         {dataStateWrapper(
-    //           <p className="paragraphWrapper">
-    //             Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
-    //             <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
-    //             da casa entre aquelas de mesma atribuição.
-    //             {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
-    //           </p>,
-    //           loadingTodayOut,
-    //           errorTodayOut,
-    //         )}
-    //         {dataStateWrapper(
-    //           <p className="paragraphWrapper">
-    //             Você sabia que seu acervo é
-    //             <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
-    //             dos seus colegas das
-    //             <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
-    //           </p>,
-    //           loadingTodayOutliers,
-    //           errorTodayOutliers,
-    //         )}
-    //         {dataStateWrapper(dayAnalysisComponent, loadingTodayEntries, errorTodayEntries)}
-    //       </div>
-    //     </div>
-    //   </article>
-    // );
+    const collectionParagraph = !collectionPhrase ? null : (
+      <p className="paragraphWrapper">
+        Você sabia que seu acervo é
+        <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
+        dos seus colegas das
+        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+      </p>
+    );
 
     return (
       <article className="page-today">
         <div className="today-header">
           <MainTitle value={greeting} />
         </div>
+        {!doneLoading && (
+          <div className="today-spinner">
+            <Spinner size="medium" />
+          </div>
+        )}
         <div className="today-content">
           <SectionTitle value="resumo do dia" />
           <div className="today-featured-data">
-            <p className="paragraphWrapper">
-              Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
-              <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
-              da casa entre aquelas de mesma atribuição.
-              {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
-            </p>
-            <p className="paragraphWrapper">
-              Você sabia que seu acervo é
-              <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
-              dos seus colegas das
-              <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
-            </p>
-            {this.analyzeEntries()}
+            {doneLoading && percentParagraph}
+            {doneLoading && collectionParagraph}
+            {doneLoading && entriesParagraph}
           </div>
         </div>
         <div className="robo-today">
@@ -279,4 +250,5 @@ class Today extends Component {
   }
 }
 
+Today.propTypes = propTypes;
 export default Today;

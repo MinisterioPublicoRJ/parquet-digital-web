@@ -16,7 +16,7 @@
 
   /* FONTS */
   --defaultFont: Montserrat;
-  --defaultTextSize: 1.5vw;
+  --defaultTextSize: 2vh;
 
   --titleWeight: bold;
   --titleSize: calc(var(--defaultTextSize) * 2);
@@ -35,9 +35,6 @@
 
   --linkSize: calc(var(--defaultTextSize) * 1);
 
-  /* --defaultFont: 'montserrat-regular';
-  --paragraphBold: 'montserrat-bold'; */
-
   /* SIZING */
   --pagePadding: 2.5vh;
   --pageMargin: 2.5vh;
@@ -49,4 +46,17 @@
   --tabControlItemSize: calc(var(--defaultTextSize) * 7);
   --tabControlItemActiveHeight: calc(var(--tabControlItemSize) * 1.15);
   --tabControlItemActiveWidth: calc(var(--tabControlItemSize) * 1.4);
+}
+
+
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+  :root {
+
+  }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+
 }

@@ -24,6 +24,7 @@
   color: var(--dark);
   font-family: var(--defaultFont);
   font-size: var(--defaultTextSize);
+  margin: 0;
 }
 
 .subtitle {

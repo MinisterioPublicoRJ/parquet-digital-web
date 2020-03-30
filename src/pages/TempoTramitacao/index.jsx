@@ -11,19 +11,19 @@ class TempoTramitacao extends React.Component {
     this.state = {};
   }
 
-  /*componentDidMount() {
+  componentDidMount() {
     this.getTempoTramitacaoData();
   }
 
   async getTempoTramitacaoData() {
     const res = await Api.getTempoTramitacaoData(getUser());
-    this.showGraphData(res);
+    this.buildGraphData(res);
   }
 
-  showGraphData(){
+  buildGraphData() {
     const chartData = [];
     const axisData = {};
-  }*/
+  }
 
   render() {
     return (
@@ -38,7 +38,7 @@ class TempoTramitacao extends React.Component {
         <div className="processingTimeChart" />
         <ProcessingTimeChart />
         <div />
-        <div className='box-time'>
+        <div className="box-time">
           <p>620 dias</p>
         </div>
       </article>

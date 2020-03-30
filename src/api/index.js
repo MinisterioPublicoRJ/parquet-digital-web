@@ -145,7 +145,7 @@ const Api = (() => {
 
     return radarTransform(data);
   }
-  async function getTempoTramitacaoData({ orgao, id }) {
+  async function getTempoTramitacaoData({ orgao, token }) {
     const { data } = await axios.get(TRAMITACAO_DATA({ orgao }), buildRequestConfig(token));
 
     return tramitacaoTransform(data);

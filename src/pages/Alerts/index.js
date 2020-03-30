@@ -20,6 +20,8 @@ class Alerts extends React.Component {
   async getAlertsList() {
     const res = await Api.getAlertsList(getUser());
     this.setState({ alerts: res, isLoading: false });
+    // eslint-disable-next-line no-console
+    console.log(res);
   }
 
   cleanAlert(alert) {

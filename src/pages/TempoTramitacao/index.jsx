@@ -18,6 +18,8 @@ class TempoTramitacao extends React.Component {
   async getTempoTramitacaoData() {
     const res = await Api.getTempoTramitacaoData(getUser());
     this.buildGraphData(res);
+    // eslint-disable-next-line no-console
+    console.log(res);
   }
 
   buildGraphData() {

@@ -180,21 +180,24 @@ class Today extends Component {
    */
   assembleGreeting() {
     const user = this.cleanUsername();
+    const hours = new Date().getHours();
     let timeGreeting;
 
-    if (user) {
-      const hours = new Date().getHours();
-
-      if (hours < 12) return `Olá, ${user}, bom dia!`;
-
-      if (hours > 17) return `Olá, ${user}, boa noite!`;
-
-      return `Olá, ${user}, boa tarde!`;
+    if (hours >= 6 && hours < 12) {
+      timeGreeting = 'bom dia';
+    } else if (hours >= 12 && hours < 18) {
+      timeGreeting = 'boa tarde';
+    } else {
+      timeGreeting = 'boa noite';
     }
 
-    return `Olá, ${user}, ${timeGreeting}!`;
+    return `Olá ${user}, ${timeGreeting}!`;
   }
 
+  /**
+   * Gets the original string returned from the API, trims and prettifies it.
+   * @return {string} First and last names, just the first letter of each capitalized
+   */
   cleanUsername() {
     const { user } = this.props;
     const cleanUsername = user.split(/(\s).+\s/).join('');

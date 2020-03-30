@@ -3,6 +3,7 @@ import React from 'react';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
+import { formatPercent } from '../../utils';
 import { ProcessingTimeChart } from '../../components/graphs';
 
 class TempoTramitacao extends React.Component {
@@ -22,12 +23,26 @@ class TempoTramitacao extends React.Component {
     console.log(res);
   }
 
-  buildGraphData() {
+  buildGraphData(data) {
     const chartData = [];
     const axisData = {};
+    const time = Object.keys(data);
+
+    time.forEach(t => {
+      if (t === 'meta') return;
+      const chartRow = { x: t, y: data[t].percentages, label: data[t].numbers };
+      axisData[t] = formatPercent(data[t].variations);
+      chartData.push(chartRow);
+    });
+
+    this.setState({ chartData, axisData });
   }
 
   render() {
+    const { number, chartData, axisData } = this.state
+
+    if (!chartData || !axisData) return <div>Carregando</div>;
+
     return (
       <article className="page-tramitacao">
         <div className="tramitacao-texts">
@@ -38,7 +53,7 @@ class TempoTramitacao extends React.Component {
           </p>
         </div>
         <div className="processingTimeChart" />
-        <ProcessingTimeChart />
+        <ProcessingTimeChart data={chartData} axis={axisData} />
         <div />
         <div className="box-time">
           <p>620 dias</p>

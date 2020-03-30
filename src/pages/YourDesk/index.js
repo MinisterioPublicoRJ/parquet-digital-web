@@ -188,7 +188,7 @@ class YourDesk extends Component {
             ),
           }}
         />
-        <div>
+        <div className="table">
           <Tab tab={tab} table={table} match={match} />
         </div>
       </article>

@@ -1,7 +1,7 @@
 export default function tramitacaoTransform(data) {
-  const meta = {
+  return data;
+ /* const meta = {
     id: data.orgao_id,
-    date: new Date(data.dt_calculo),
   };
   const time = {
     maxTime: data.maximo_pacote,
@@ -12,5 +12,5 @@ export default function tramitacaoTransform(data) {
   return {
     meta,
     time,
-  };
+  };*/
 }

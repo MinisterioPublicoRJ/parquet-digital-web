@@ -8,8 +8,16 @@
 .processingTimeChart {
     display: flex;
     flex-direction: column;
-    width: 200px;
 }
 .tramitacao-texts {
     max-width: 500px;
 }
+.main-box-time{
+    display: flex;
+}
+
+@media (min-width: 481px) and (max-width: 1025px) {
+    .infoGridView {
+     
+    }
+  }

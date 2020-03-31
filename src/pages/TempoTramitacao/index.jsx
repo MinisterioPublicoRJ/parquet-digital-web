@@ -17,29 +17,23 @@ class TempoTramitacao extends React.Component {
   }
 
   async getTempoTramitacaoData() {
-    const res = await Api.getTempoTramitacaoData(getUser());
-    this.buildGraphData(res);
+    const response = await Api.getTempoTramitacaoData(getUser());
+    this.buildGraphData(response);
+    this.setState({ medias: response });
     // eslint-disable-next-line no-console
-    console.log(res);
+    console.log(response);
   }
 
   buildGraphData(data) {
     const chartData = [];
     const axisData = {};
-    const time = Object.keys(data);
-
-    time.forEach(t => {
-      if (t === 'meta') return;
-      const chartRow = { x: t, y: data[t].percentages, label: data[t].numbers };
-      axisData[t] = formatPercent(data[t].variations);
-      chartData.push(chartRow);
-    });
+    const timeTramitation = Object.keys(data);
 
     this.setState({ chartData, axisData });
   }
 
   render() {
-    const { number, chartData, axisData } = this.state
+    const { chartData, axisData } = this.state;
 
     if (!chartData || !axisData) return <div>Carregando</div>;
 
@@ -55,8 +49,23 @@ class TempoTramitacao extends React.Component {
         <div className="processingTimeChart" />
         <ProcessingTimeChart data={chartData} axis={axisData} />
         <div />
-        <div className="box-time">
-          <p>620 dias</p>
+        <div className="main-box-time">
+          <div className="texts-box-time">
+            <p>140 dias</p>
+            <p>Transito mais rápido da sua promotoria</p>
+            <p>2100 dias</p>
+            <p>Transito mais lento da sua promotoria</p>
+            <p>620 dias</p>
+            <p>Transito médio da sua promotoria</p>
+          </div>
+          <div className="box-time">
+            <p>120 dias</p>
+            <p>Transito mais rápido da sua atribuição</p>
+            <p>2800 dias</p>
+            <p>Transito mais lento da sua atribuição</p>
+            <p>548 dias</p>
+            <p>Transito médio da sua atribuição</p>
+          </div>
         </div>
       </article>
     );

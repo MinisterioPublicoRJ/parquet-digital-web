@@ -1,5 +1,18 @@
 @import '../styles.css';
 
 .yourDesk {
+  display: flex;
+  flex-direction: column;
   grid-area: desk;
+}
+
+.desk-controlers {
+  background-color: orange;
+  height: 30%;
+}
+
+.desk-tabs {
+  background-color: lightblue;
+  display: flex;
+  flex: 1;
 }

@@ -1,135 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  SectionTitle,
-  TabControl,
-  OpenCasesTab,
-  OpenInvestigationsTab,
-  CourtCasesTab,
-} from '../../components';
-
-import Api from '../../api';
-import { dataStateWrapper } from '../../utils';
-
 import './styles.css';
-
+import { SectionTitle } from '../../components';
+import Api from '../../api';
 import { getUser } from '../../user';
 
-const Tab = ({ tab, table, match }) => {
-  if (!tab || tab === 'vistas-abertas') {
-    return <OpenCasesTab table={table} match={match} />;
-  }
-
-  if (tab === 'investigacoes-em-curso') {
-    return <OpenInvestigationsTab />;
-  }
-
-  if (tab === 'processos-em-juizo') {
-    return <CourtCasesTab />;
-  }
-};
-
-class YourDesk extends Component {
-  static propTypes = {
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        tab: PropTypes.string,
-      }).isRequired,
-      path: PropTypes.string.isRequired,
-    }).isRequired,
-  };
-
-  state = {
-    openCases: 0,
-    openInvestigations: 0,
-    courtCases: 0,
-    closedCases: 0,
-
-    loadingOpenCases: true,
-    loadingOpenInvestigations: true,
-    loadingCourtCases: true,
-    loadingClosedCases: true,
-
-    errorOpenCases: false,
-    errorOpenInvestigations: false,
-    errorCourtCases: false,
-    errorClosedCases: false,
-  };
-
-  componentDidUpdate(
-    prevProps,
-    { loadingClosedCases, loadingOpenInvestigations, loadingCourtCases, loadingOpenCases },
-  ) {
-    if (
-      loadingOpenInvestigations !== this.state.loadingOpenInvestigations ||
-      loadingCourtCases !== this.state.loadingCourtCases ||
-      loadingOpenCases !== this.state.loadingOpenCases ||
-      loadingClosedCases !== this.state.loadingClosedCases
-    )
-      this.doneLoading();
-  }
-
-  doneLoading() {
-    const { loadedCallback } = this.props;
-    const {
-      loadingOpenCases,
-      loadingOpenInvestigations,
-      loadingCourtCases,
-      loadingClosedCases,
-    } = this.state;
-
-    if (
-      !loadingOpenCases &&
-      !loadingOpenInvestigations &&
-      !loadingCourtCases &&
-      !loadingClosedCases
-    )
-      loadedCallback();
-  }
-
-  async getOpenCases() {
-    try {
-      const openCases = await Api.getOpenCases(getUser());
-
-      this.setState({ openCases, loadingOpenCases: false });
-    } catch (e) {
-      console.error('YourDesk#getOpenCases(): error', e);
-      this.setState({ loadingOpenCases: false, errorOpenCases: true });
-    }
-  }
-
-  async getOpenInvestigations() {
-    try {
-      const openInvestigations = await Api.getOpenInvestigations(getUser());
-
-      this.setState({ openInvestigations, loadingOpenInvestigations: false });
-    } catch (e) {
-      console.error('YourDesk#getOpenInvestigations(): error', e);
-      this.setState({ loadingOpenInvestigations: false, errorOpenInvestigations: true });
-    }
-  }
-
-  async getClosedCases() {
-    try {
-      const closedCases = await Api.getClosedCases(getUser());
-
-      this.setState({ closedCases, loadingClosedCases: false });
-    } catch (e) {
-      console.error('YourDesk#getClosedCases(): error', e);
-      this.setState({ loadingClosedCases: false, errorClosedCases: true });
-    }
-  }
-
-  async getCourtCases() {
-    try {
-      const courtCases = await Api.getCourtCases(getUser());
-
-      this.setState({ courtCases, loadingCourtCases: false });
-    } catch (e) {
-      console.error('YourDesk#getCourtCases(): error', e);
-      this.setState({ loadingCourtCases: false, errorCourtCases: true });
-    }
+class YourDesk extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loadingOpenCases: true,
+      loadingOpenInvestigations: true,
+      loadingCourtCases: true,
+      loadingClosedCases: true,
+      activeTab: 'openCases',
+    };
   }
 
   componentDidMount() {
@@ -139,58 +25,73 @@ class YourDesk extends Component {
     this.getCourtCases();
   }
 
+ /**
+  * load the number of open cases for the first button
+  * @return {void} just saves it to the state
+  */
+  async getOpenCases() {
+    let openCases;
+    let errorOpenCases = false;
+    try {
+      openCases = await Api.getOpenCases(getUser());
+    } catch (e) {
+      errorOpenCases = true;
+    } finally {
+      this.setState({ openCases, errorOpenCases, loadingOpenCases: false });
+    }
+  }
+
+  /**
+   * load the number of open investigations for the second button
+   * @return {void} just saves it to the state
+   */
+  async getOpenInvestigations() {
+    let openInvestigations;
+    let errorOpenInvestigations = false;
+    try {
+      openInvestigations = await Api.getOpenInvestigations(getUser());
+      console.log('openInvestigations', openInvestigations);
+    } catch (e) {
+      errorOpenInvestigations = true;
+    } finally {
+      this.setState({
+        openInvestigations,
+        errorOpenInvestigations,
+        loadingOpenInvestigations: false,
+      });
+    }
+  }
+
+  async getClosedCases() {
+    let closedCases;
+    let errorClosedCases;
+    try {
+      closedCases = await Api.getClosedCases(getUser());
+    } catch (e) {
+      errorClosedCases = true;
+    } finally {
+      this.setState({ closedCases, loadingClosedCases: false, errorClosedCases });
+    }
+  }
+
+  async getCourtCases() {
+    let courtCases;
+    let errorCourtCases;
+    try {
+      courtCases = await Api.getCourtCases(getUser());
+    } catch (e) {
+      errorCourtCases = true;
+    } finally {
+      this.setState({ courtCases, errorCourtCases, loadingCourtCases: false });
+    }
+  }
+
   render() {
-    const { match, dashboard } = this.props;
-    const { tab, table } = match?.params;
-
-    const {
-      openCases,
-      openInvestigations,
-      courtCases,
-      closedCases,
-      loadingOpenCases,
-      loadingOpenInvestigations,
-      loadingCourtCases,
-      loadingClosedCases,
-      errorOpenCases,
-      errorOpenInvestigations,
-      errorCourtCases,
-      errorClosedCases,
-    } = this.state;
-
     return (
-      <article className={`page ${dashboard ? 'dashboard' : 'compact'} yourDesk`}>
+      <article className="yourDesk">
         <SectionTitle value="Sua Mesa" />
-        <TabControl
-          match={match}
-          data={{
-            openCases: dataStateWrapper(openCases, loadingOpenCases, errorOpenCases, 'ERR', '...'),
-            openInvestigations: dataStateWrapper(
-              openInvestigations,
-              loadingOpenInvestigations,
-              errorOpenInvestigations,
-              'ERR',
-              '...',
-            ),
-            courtCases: dataStateWrapper(
-              courtCases,
-              loadingCourtCases,
-              errorCourtCases,
-              'ERR',
-              '...',
-            ),
-            closedCases: dataStateWrapper(
-              closedCases,
-              loadingClosedCases,
-              errorClosedCases,
-              'ERR',
-              '...',
-            ),
-          }}
-        />
-        <div>
-          <Tab tab={tab} table={table} match={match} />
-        </div>
+        <div className="desk-controlers"></div>
+        <div className="desk-tabs"></div>
       </article>
     );
   }

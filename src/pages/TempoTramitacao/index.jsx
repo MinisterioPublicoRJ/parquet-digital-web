@@ -32,7 +32,7 @@ class TempoTramitacao extends React.Component {
   }
 
   render() {
-    const { chartData, axisData, medias} = this.state;
+    const { chartData, axisData, medias } = this.state;
 
     if (!chartData || !axisData) return <div>Carregando</div>;
 
@@ -41,8 +41,8 @@ class TempoTramitacao extends React.Component {
         <div className="tramitacao-texts">
           <h3>Tempo de tramitação</h3>
           <p>
-            Avaliei que o período de tramitação de processos na sua promotoria está mais rápido que
-            a média da casa entre aquelas de mesma atribuição. Muito Bom!
+            Avaliei que o período de tramitação de processos na sua promotoria
+            <span> está mais rápido que a média da casa </span>entre aquelas de mesma atribuição.Muito Bom!
           </p>
         </div>
         <div className="processingTimeChart" />

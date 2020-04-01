@@ -1,4 +1,5 @@
 @import '../styles.css';
+@import '../../themes/index.css';
 
 .page-tramitacao {
     grid-area: processingTime;
@@ -12,8 +13,22 @@
 .tramitacao-texts {
     max-width: 500px;
 }
+.tramitacao-texts h3{
+    color: var(--darkBlue);
+    font-size: 24px;
+    font-family: Rockwell,Regular;
+}
+.tramitacao-texts p{
+    color: var(--dark);
+    font-family: var(--defaultFont);
+    font-size: 16px;
+}
 .main-box-time{
     display: flex;
+}
+.main-box-time{
+    font-size: 10px;
+    color: #B3B3B3;
 }
 
 @media (min-width: 481px) and (max-width: 1025px) {

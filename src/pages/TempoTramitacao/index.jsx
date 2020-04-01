@@ -19,8 +19,8 @@ class TempoTramitacao extends React.Component {
   async getTempoTramitacaoData() {
     const response = await Api.getTempoTramitacaoData(getUser());
     this.buildGraphData(response);
-    // eslint-disable-next-line react/no-unused-state
     this.setState({ medias: response });
+    console.log(response);
   }
 
   buildGraphData(data) {
@@ -33,7 +33,7 @@ class TempoTramitacao extends React.Component {
 
   render() {
     const { chartData, axisData, medias } = this.state;
-
+    console.log(this.state);
     if (!chartData || !axisData) return <div>Carregando</div>;
 
     return (

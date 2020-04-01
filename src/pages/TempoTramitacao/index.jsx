@@ -19,9 +19,8 @@ class TempoTramitacao extends React.Component {
   async getTempoTramitacaoData() {
     const response = await Api.getTempoTramitacaoData(getUser());
     this.buildGraphData(response);
+    // eslint-disable-next-line react/no-unused-state
     this.setState({ medias: response });
-    // eslint-disable-next-line no-console
-    console.log(response);
   }
 
   buildGraphData(data) {
@@ -33,7 +32,7 @@ class TempoTramitacao extends React.Component {
   }
 
   render() {
-    const { chartData, axisData } = this.state;
+    const { chartData, axisData, medias} = this.state;
 
     if (!chartData || !axisData) return <div>Carregando</div>;
 
@@ -51,19 +50,19 @@ class TempoTramitacao extends React.Component {
         <div />
         <div className="main-box-time">
           <div className="texts-box-time">
-            <p>140 dias</p>
+            <p>{this.state.maxTimeOrgao}</p>
             <p>Transito mais rápido da sua promotoria</p>
-            <p>2100 dias</p>
+            <p>{this.state.minTimeOrgao}</p>
             <p>Transito mais lento da sua promotoria</p>
-            <p>620 dias</p>
+            <p>{this.state.mediaTimeOrgao}</p>
             <p>Transito médio da sua promotoria</p>
           </div>
           <div className="box-time">
-            <p>120 dias</p>
+            <p>{this.state.maxTime}</p>
             <p>Transito mais rápido da sua atribuição</p>
-            <p>2800 dias</p>
+            <p>{this.state.minTime}</p>
             <p>Transito mais lento da sua atribuição</p>
-            <p>548 dias</p>
+            <p>{this.state.mediaPromo}</p>
             <p>Transito médio da sua atribuição</p>
           </div>
         </div>

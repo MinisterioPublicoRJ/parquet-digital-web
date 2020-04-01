@@ -5,8 +5,8 @@
   height: 100vh;
   width: 100vw;
   grid-gap: 3vh;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(12, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(12, minmax(0, 1fr));
   grid-template-areas:
   "today today radar alerts"
   "today today radar alerts"

@@ -44,26 +44,6 @@ class PageDisplay extends React.Component {
     this.setState({ [`${resource}Loaded`]: true });
   }
 
-  /**
-   * Returns the greeting to be shown on the page
-   * @return {string} [description]
-   */
-  getGreeting() {
-    const { user } = this.state;
-
-    if (user) {
-      const hours = new Date().getHours();
-
-      if (hours < 12) return `Olá, ${user}, bom dia!`;
-
-      if (hours > 17) return `Olá, ${user}, boa noite!`;
-
-      return `Olá, ${user}, boa tarde!`;
-    }
-
-    return undefined;
-  }
-
   async loadResources() {
     return this.login();
   }
@@ -136,68 +116,60 @@ class PageDisplay extends React.Component {
   }
 
   renderPromotron() {
-    const { isCompact, isLogging, loginError } = this.state;
+    const { isCompact, isLogging, loginError, user } = this.state;
 
     if (isLogging || loginError) return null;
 
-    const greeting = this.getGreeting();
-
     return (
-      <div>
-        <div>
-          {!isCompact && (
-            // MODO DASHBOARD
-            <div className="infoGridView">
-              <HashRouter>
-                <Route
-                  path="/"
-                  render={props => (
-                    <Today
-                      dashboard
-                      loadedCallback={() => this.setExternalResourcesLoaded('home')}
-                      {...props}
-                    />
-                  )}
-                />
-                <Route
-                  path="/"
-                  exact
-                  render={props => (
-                    <YourDesk
-                      dashboard
-                      loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                      {...props}
-                    />
-                  )}
-                />
-                <Route
-                  path="/:tab"
-                  exact
-                  render={props => (
-                    <YourDesk
-                      dashboard
-                      loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                      {...props}
-                    />
-                  )}
-                />
-                <Route
-                  path="/:tab/:table"
-                  exact
-                  render={props => (
-                    <YourDesk
-                      dashboard
-                      loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
-                      {...props}
-                    />
-                  )}
-                />
-                <Alerts />
-                <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
-              </HashRouter>
-            </div>
-          )}
-        </div>
+      <div className="infoGridView">
+        <HashRouter>
+          <Route
+            path="/"
+            render={props => (
+              <Today
+                dashboard
+                user={user}
+                loadedCallback={() => this.setExternalResourcesLoaded('home')}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/"
+            exact
+            render={props => (
+              <YourDesk
+                dashboard
+                loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/:tab"
+            exact
+            render={props => (
+              <YourDesk
+                dashboard
+                loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/:tab/:table"
+            exact
+            render={props => (
+              <YourDesk
+                dashboard
+                loadedCallback={() => this.setExternalResourcesLoaded('yourDesk')}
+                {...props}
+              />
+            )}
+          />
+          <Alerts />
+          <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+        </HashRouter>
       </div>
     );
   }

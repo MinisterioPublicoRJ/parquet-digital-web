@@ -6,10 +6,19 @@ import { getUser } from '../../user';
 import { formatPercent } from '../../utils';
 import { ProcessingTimeChart } from '../../components/graphs';
 
+import MarkFaster from '../../assets/svg/markFaster';
+import MarkMind from '../../assets/svg/markMind';
+import PinAzul from '../../assets/svg/pinAzul';
+import PinPreto from '../../assets/svg/pinPreto';
+import PinVermelho from '../../assets/svg/pinVermelho';
+
 class TempoTramitacao extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      time: [],
+    };
+    this.getTempoTramitacaoData = this.getTempoTramitacaoData.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +42,7 @@ class TempoTramitacao extends React.Component {
 
   render() {
     const { chartData, axisData, medias } = this.state;
+
     console.log(this.state);
     if (!chartData || !axisData) return <div>Carregando</div>;
 
@@ -42,7 +52,8 @@ class TempoTramitacao extends React.Component {
           <h3>Tempo de tramitação</h3>
           <p>
             Avaliei que o período de tramitação de processos na sua promotoria
-            <span> está mais rápido que a média da casa </span>entre aquelas de mesma atribuição.Muito Bom!
+            <span> está mais rápido que a média da casa </span>
+            entre aquelas de mesma atribuição.Muito Bom!
           </p>
         </div>
         <div className="processingTimeChart" />
@@ -50,20 +61,38 @@ class TempoTramitacao extends React.Component {
         <div />
         <div className="main-box-time">
           <div className="texts-box-time">
-            <p>{this.state.maxTimeOrgao}</p>
-            <p>Transito mais rápido da sua promotoria</p>
-            <p>{this.state.minTimeOrgao}</p>
-            <p>Transito mais lento da sua promotoria</p>
-            <p>{this.state.mediaTimeOrgao}</p>
-            <p>Transito médio da sua promotoria</p>
+            <div className="second-box-time">
+              <PinAzul />
+              <p>{this.state.maxTimeOrgao}</p>
+              <p>Transito mais rápido da sua promotoria</p>
+            </div>
+            <div className="second-box-time">
+              <PinVermelho />
+              <p>{this.state.minTimeOrgao}</p>
+              <p>Transito mais lento da sua promotoria</p>
+            </div>
+            <div className="second-box-time">
+              <PinPreto />
+              <p>{this.state.mediaTimeOrgao}</p>
+              <p>Transito médio da sua promotoria</p>
+            </div>
           </div>
           <div className="box-time">
-            <p>{this.state.maxTime}</p>
-            <p>Transito mais rápido da sua atribuição</p>
-            <p>{this.state.minTime}</p>
-            <p>Transito mais lento da sua atribuição</p>
-            <p>{this.state.mediaPromo}</p>
-            <p>Transito médio da sua atribuição</p>
+            <div className="second-box-time">
+              <MarkFaster />
+              <span>{this.state.maxTime}</span>
+              <p>Transito mais rápido da sua atribuição</p>
+            </div>
+            <div className="second-box-time">
+              <MarkMind />
+              <p>{this.state.minTime}</p>
+              <p>Transito mais lento da sua atribuição</p>
+            </div>
+            <div className="second-box-time">
+              <MarkMind />
+              <p>{this.state.mediaPromo}</p>
+              <p>Transito médio da sua atribuição</p>
+            </div>
           </div>
         </div>
       </article>

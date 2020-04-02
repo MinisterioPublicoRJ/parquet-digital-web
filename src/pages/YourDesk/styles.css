@@ -7,8 +7,9 @@
 }
 
 .desk-controlers {
-  background-color: orange;
-  height: 30%;
+  display: flex;
+  justify-content: space-around;
+  height: 25%;
 }
 
 .desk-tabs {

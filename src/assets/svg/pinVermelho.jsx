@@ -24,6 +24,7 @@ export default function pinVermelho() {
         </linearGradient>
       </defs>
       <path
+        fill="#FF0086"
         className="a"
         d="M408.866,806.623l-7.949,10.434-8.364-10.107a10.42,10.42,0,0,1-.258-12.957h0a10.422,10.422,0,0,1,16.314-.327h0A10.421,10.421,0,0,1,408.866,806.623Z"
         transform="translate(-789.889 410.999) rotate(-90)"

@@ -1,12 +1,13 @@
 import React from 'react';
 import { VictoryPie, VictoryLabel, VictoryTooltip } from 'victory';
 
-function TempoTramitacaoChart() {
+function TempoTramitacaoChart({ data, axis}) {
+  
   // TODO: animate VictoryPie
   return (
     <>
       <svg width={180} height={180}>
-        <circle cx={100} cy={100} r={30} fill="#c43a31" />
+        <circle cx={100} cy={100} r={30} fill="#B3B3B3" />
         <VictoryPie
           standalone={false}
           width={200}

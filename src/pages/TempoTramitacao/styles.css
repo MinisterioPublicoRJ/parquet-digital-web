@@ -8,10 +8,9 @@
 
 .processingTimeChart {
     display: flex;
-    flex-direction: column;
 }
 .tramitacao-texts {
-    max-width: 500px;
+    max-width: 200px;
 }
 .tramitacao-texts h3{
     color: var(--darkBlue);
@@ -23,15 +22,16 @@
     font-family: var(--defaultFont);
     font-size: 16px;
 }
-.second-box-time{
-    display: flex;
-}
-.main-box-time{
-    display: flex;
-}
 .main-box-time{
     font-size: 10px;
     color: #B3B3B3;
+    margin-left: 50px;
+}
+.main-box-time h3{
+    font-size: 18px;
+}
+.second-box-time{
+    display: flex;
 }
 
 @media (min-width: 481px) and (max-width: 1025px) {

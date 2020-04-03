@@ -23,6 +23,7 @@ export default function pinPreto() {
         </linearGradient>
       </defs>
       <path
+        fill="#474757"
         className="a"
         d="M409.117,764.642l-7.95,10.434L392.8,764.968a10.417,10.417,0,0,1-.259-12.956h0a10.419,10.419,0,0,1,16.314-.327h0A10.423,10.423,0,0,1,409.117,764.642Z"
         transform="translate(-747.908 411.249) rotate(-90)"

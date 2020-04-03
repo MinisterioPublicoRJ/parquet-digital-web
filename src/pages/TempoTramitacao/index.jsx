@@ -22,11 +22,14 @@ const TempoTramitacao = () => {
     loadData();
   }, []);
 
+ /* buildGraphData(data){
+    
+  }*/
+
   return (
     <article className="page-tramitacao">
       <div className="tramitacao-texts">
         <h3>Tempo de tramitação</h3>
-        {tempoTramitacao.media_orgao && tempoTramitacao.media_pacote <span>Verdade</span>}
         <p>
           Avaliei que o período de tramitação de processos na sua promotoria
           <strong> está mais rápido que a média da casa </strong>
@@ -34,14 +37,14 @@ const TempoTramitacao = () => {
         </p>
       </div>
       <div className="processingTimeChart" />
-      <ProcessingTimeChart />
+      <ProcessingTimeChart data={tempoTramitacao} />
       <div />
       <div className="main-box-time">
         <div className="second-box-time">
           <PinPreto />
           <div className="third-box-time">
             <h3 style={{ color: '#474757' }}>
-            {tempoTramitacao.minimo_orgao} dias</h3>
+              {tempoTramitacao.minimo_orgao} dias</h3>
             <p>Transito mais rápido da sua promotoria</p>
           </div>
         </div>

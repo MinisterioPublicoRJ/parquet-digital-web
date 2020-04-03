@@ -15,7 +15,7 @@
 .tramitacao-texts h3{
     color: var(--darkBlue);
     font-size: 24px;
-    font-family: Rockwell,Regular;
+    font-family: Rockwell;
 }
 .tramitacao-texts p{
     color: var(--dark);

@@ -1,7 +1,8 @@
 .time-charts-view {
-  background-color: lightpink;
-  flex: 1;
+  align-items: center;
   display: flex;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .open-cases-table-view {

@@ -13,6 +13,7 @@ flex-direction: column;
 }
 
 .desk-controlers {
+  align-items: center;
   display: flex;
   justify-content: space-around;
   flex: 1;

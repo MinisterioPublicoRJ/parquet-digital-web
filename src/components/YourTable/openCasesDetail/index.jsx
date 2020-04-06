@@ -70,7 +70,7 @@ class OpenCasesDetail extends React.Component {
         categoryChart[item] = {
           x: item,
           y: data[item],
-          fill: item === cat ? this.mainData[cat][0] : '#E8E8E8',
+          color: item === cat ? this.mainData[cat][0] : '#E8E8E8',
         };
       });
       cleanData[cat] = categoryChart;
@@ -79,12 +79,23 @@ class OpenCasesDetail extends React.Component {
     return cleanData;
   }
 
+  handleChangeActiveTab(tabName) {
+    if (!this.state[`${tabName}Details`]) {
+      this.getOpenCasesList(tabName);
+    }
+    this.setState({ activeTab: tabName });
+  }
+
   renderCharts(data) {
+    const { activeTab } = this.state;
     const cleanData = this.cleanChartData(data);
     const categories = Object.keys(data);
 
     return categories.map(cat => (
       <DeskCasesChart
+        active={activeTab === cat}
+        buttonPressed={tab => this.handleChangeActiveTab(tab)}
+        category={cat}
         data={cleanData[cat]}
         name={this.mainData[cat][1]}
         color={this.mainData[cat][0]}
@@ -94,17 +105,28 @@ class OpenCasesDetail extends React.Component {
 
   render() {
     const { isLoading, chartData } = this.props;
-    const { under20Details } = this.state;
+    const { activeTab } = this.state;
 
     if (isLoading) {
       return <Spinner size="large" />;
     }
 
+    console.log('activeTab ', activeTab, 'details: ', this.state[`${activeTab}Details`]);
+
     return (
       <>
-        <div className="time-charts-view">{/*this.renderCharts(chartData)*/}</div>
+        <div className="time-charts-view">{this.renderCharts(chartData)}</div>
         <div className="open-cases-table-view">
-          {under20Details && <Table data={under20Details} columns={this.tableColumns} showHeader />}
+          {!this.state[`${activeTab}Details`] && !this.state[`${activeTab}Error`] && (
+            <Spinner size="medium" />
+          )}
+          {this.state[`${activeTab}Details`] && (
+            <Table
+              data={this.state[`${activeTab}Details`]}
+              columns={this.tableColumns}
+              showHeader
+            />
+          )}
         </div>
       </>
     );

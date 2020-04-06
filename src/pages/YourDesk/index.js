@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import { SectionTitle, ControlButton } from '../../components';
+import { SectionTitle, ControlButton, OpenCasesDetail } from '../../components';
 import Api from '../../api';
 import { getUser } from '../../user';
 
@@ -23,6 +23,7 @@ class YourDesk extends React.Component {
     this.getOpenInvestigations();
     this.getClosedCases();
     this.getCourtCases();
+    this.getOpenCasesDetails();
   }
 
   /**
@@ -38,6 +39,22 @@ class YourDesk extends React.Component {
       errorOpenCases = true;
     } finally {
       this.setState({ openCases, errorOpenCases, loadingOpenCases: false });
+    }
+  }
+
+  /**
+   * [getOpenCasesDetails description]
+   * @return {void} saves details to the state
+   */
+  async getOpenCasesDetails() {
+    let openCasesDetails;
+    let openCasesDetailsError = false;
+    try {
+      openCasesDetails = await Api.getOpenCasesDetails(getUser());
+    } catch (e) {
+      openCasesDetailsError = true;
+    } finally {
+      this.setState({ openCasesDetails, openCasesDetailsError, openCasesDetailsLoading: false });
     }
   }
 
@@ -94,7 +111,6 @@ class YourDesk extends React.Component {
   }
 
   handleChangeActiveTab(tabName) {
-    console.log('buttonPressed ', tabName);
     if (!this.state[tabName]) {
       switch (tabName) {
         case 'openCases':
@@ -109,6 +125,8 @@ class YourDesk extends React.Component {
         case 'closedCases':
           this.getClosedCases();
           break;
+        default:
+          break;
       }
     }
     this.setState({ activeTab: tabName });
@@ -121,6 +139,8 @@ class YourDesk extends React.Component {
       courtCases,
       openInvestigations,
       openCases,
+      openCasesDetails,
+      openCasesDetailsError,
       loadingOpenCases,
       loadingOpenInvestigations,
       loadingCourtCases,
@@ -129,39 +149,49 @@ class YourDesk extends React.Component {
 
     return (
       <article className="yourDesk">
-        <SectionTitle value="Sua Mesa" />
-        <div className="desk-controlers">
-          <ControlButton
-            isButton
-            buttonPressed={() => this.handleChangeActiveTab('openCases')}
-            isActive={activeTab === 'openCases'}
-            text={`vistas\nabertas`}
-            number={openCases}
-            loading={loadingOpenCases}
-          />
-          <ControlButton
-            isButton
-            buttonPressed={() => this.handleChangeActiveTab('openInvestigations')}
-            isActive={activeTab === 'openInvestigations'}
-            text={`investigações\nem curso`}
-            number={openInvestigations}
-            loading={loadingOpenInvestigations}
-          />
-          <ControlButton
-            isButton
-            buttonPressed={() => this.handleChangeActiveTab('courtCases')}
-            isActive={activeTab === 'courtCases'}
-            text={`processos\nem juízo`}
-            number={courtCases}
-            loading={loadingCourtCases}
-          />
-          <ControlButton
-            text={`finalizados\núltimos 30 dias`}
-            number={closedCases}
-            loading={loadingClosedCases}
-          />
+        <div className="desk-header">
+          <SectionTitle value="Sua Mesa" />
+          <div className="desk-controlers">
+            <ControlButton
+              isButton
+              buttonPressed={() => this.handleChangeActiveTab('openCases')}
+              isActive={activeTab === 'openCases'}
+              text={`vistas\nabertas`}
+              number={openCases}
+              loading={loadingOpenCases}
+            />
+            <ControlButton
+              isButton
+              buttonPressed={() => this.handleChangeActiveTab('openInvestigations')}
+              isActive={activeTab === 'openInvestigations'}
+              text={`investigações\nem curso`}
+              number={openInvestigations}
+              loading={loadingOpenInvestigations}
+            />
+            <ControlButton
+              isButton
+              buttonPressed={() => this.handleChangeActiveTab('courtCases')}
+              isActive={activeTab === 'courtCases'}
+              text={`processos\nem juízo`}
+              number={courtCases}
+              loading={loadingCourtCases}
+            />
+            <ControlButton
+              text={`finalizados\núltimos 30 dias`}
+              number={closedCases}
+              loading={loadingClosedCases}
+            />
+          </div>
         </div>
-        <div className="desk-tabs"></div>
+        <div className="desk-tabs">
+          {activeTab === 'openCases' && (
+            <OpenCasesDetail
+              getUser={getUser}
+              chartData={openCasesDetails}
+              isLoading={!openCasesDetails && !openCasesDetailsError}
+            />
+          )}
+        </div>
       </article>
     );
   }

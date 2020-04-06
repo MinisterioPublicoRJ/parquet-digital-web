@@ -1,0 +1,11 @@
+.time-charts-view {
+  background-color: lightpink;
+  flex: 1;
+  display: flex;
+}
+
+.open-cases-table-view {
+  display: flex;
+  flex: 2;
+  overflow-y: scroll;
+}

@@ -6,14 +6,20 @@
   grid-area: desk;
 }
 
+.desk-header {
+display: flex;
+flex: 1;
+flex-direction: column;
+}
+
 .desk-controlers {
   display: flex;
   justify-content: space-around;
-  height: 25%;
+  flex: 1;
 }
 
 .desk-tabs {
-  background-color: lightblue;
   display: flex;
-  flex: 1;
+  flex-direction: column;
+  height: 65%;
 }

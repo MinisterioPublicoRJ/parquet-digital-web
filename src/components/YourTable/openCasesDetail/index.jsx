@@ -10,7 +10,14 @@ import './styles.css';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  getUser: PropTypes.func.isRequired,
+  chartData: PropTypes.shape({
+    under20: PropTypes.number,
+    between20And30: PropTypes.number,
+    over30: PropTypes.number,
+  }).isRequired,
 };
+const defaultProps = {};
 
 class OpenCasesDetail extends React.Component {
   constructor(props) {
@@ -96,9 +103,9 @@ class OpenCasesDetail extends React.Component {
         active={activeTab === cat}
         buttonPressed={tab => this.handleChangeActiveTab(tab)}
         category={cat}
+        color={this.mainData[cat][0]}
         data={cleanData[cat]}
         name={this.mainData[cat][1]}
-        color={this.mainData[cat][0]}
       />
     ));
   }
@@ -110,8 +117,6 @@ class OpenCasesDetail extends React.Component {
     if (isLoading) {
       return <Spinner size="large" />;
     }
-
-    console.log('activeTab ', activeTab, 'details: ', this.state[`${activeTab}Details`]);
 
     return (
       <>
@@ -134,4 +139,5 @@ class OpenCasesDetail extends React.Component {
 }
 
 OpenCasesDetail.propTypes = propTypes;
+OpenCasesDetail.defaultProps = defaultProps;
 export default OpenCasesDetail;

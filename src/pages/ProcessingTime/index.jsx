@@ -14,11 +14,15 @@ const ProcessingTime = () => {
   useEffect(() => {
     const loadData = async () => {
       const response = await Api.getProcessingTimeData(getUser());
-      setProcessingTime(response.data);
+      setProcessingTime(response);
       console.log(response);
     };
     loadData();
   }, []);
+
+  if (!processingTime.meta) {
+    return <div>loading</div>
+  }
 
   return (
     <article className="page-tramitacao">
@@ -38,7 +42,7 @@ const ProcessingTime = () => {
           <PinPreto />
           <div className="third-box-time">
             <h3 style={{ color: '#474757' }}>
-              {processingTime.minimo_orgao} dias</h3>
+              {processingTime.orgaoData.min} dias</h3>
             <p>Transito mais rápido da sua promotoria</p>
           </div>
         </div>
@@ -46,7 +50,7 @@ const ProcessingTime = () => {
           <PinAzul />
           <div className="third-box-time">
             <h3 style={{ color: '#56E8E1' }}>
-            {processingTime.maximo_orgao} dias</h3>
+            {processingTime.orgaoData.max} dias</h3>
             <p>Transito mais lento da sua promotoria</p>
           </div>
         </div>
@@ -54,7 +58,7 @@ const ProcessingTime = () => {
           <PinVermelho />
           <div className="third-box-time">
             <h3 style={{ color: '#FF0086' }}>
-            {processingTime.mediana_orgao} dias</h3>
+            {processingTime.orgaoData.average} dias</h3>
             <p>Transito médio da sua promotoria</p>
           </div>
         </div>

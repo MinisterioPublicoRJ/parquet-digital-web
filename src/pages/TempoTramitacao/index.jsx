@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
-import { formatPercent } from '../../utils';
 import { ProcessingTimeChart } from '../../components/graphs';
-
 import PinAzul from '../../assets/svg/pinAzul';
 import PinPreto from '../../assets/svg/pinPreto';
 import PinVermelho from '../../assets/svg/pinVermelho';
@@ -21,10 +19,6 @@ const TempoTramitacao = () => {
     };
     loadData();
   }, []);
-
- /* buildGraphData(data){
-    
-  }*/
 
   return (
     <article className="page-tramitacao">

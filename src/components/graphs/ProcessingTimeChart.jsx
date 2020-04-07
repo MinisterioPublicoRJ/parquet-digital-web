@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { VictoryPie, VictoryLabel, VictoryTooltip } from 'victory';
+import { VictoryPie, VictoryLabel } from 'victory';
 
 const graphicColorMain = ['#A256BA', '#56E8E1', '#A256BA', '#42DCA7']; // Colors
 const graphicColor = ['#F8F9FB']; // Colors
@@ -17,26 +17,42 @@ function TempoTramitacaoChart() {
   return (
     <>
       <svg width={350} height={300}>
-        <circle cx={150} cy={150} r={40} fill="#E1377B" />
         <VictoryPie
           labelComponent={<VictoryLabel dy={30} />}
           standalone={false}
           width={280}
           height={300}
-          innerRadius={100}
-          endAngle={90}
-          startAngle={-120}
+          innerRadius={80}
+          endAngle={80}
+          startAngle={-110}
+          padAngle={2}
           colorScale={graphicColorMain}
           data={graphicData}
+          padding={5}
+          labels={d => `${d.agent} : ${d.reqCount}`}
+          style={{
+            labels: { fontSize: 15, fontWeight: '400', height: 10 },
+            data: {
+              fillOpacity: 0.7,
+            },
+          }}
+        />
+        <VictoryLabel
+          textAnchor="middle"
+          style={{ fontSize: 30, border: '1px solid #ccc' }}
+          x={150}
+          y={150}
+          text="620"
         />
         <VictoryPie
           standalone={false}
           width={300}
           height={315}
           innerRadius={65}
-          endAngle={110}
-          startAngle={-110}
+          endAngle={130}
+          startAngle={-130}
           colorScale={graphicColor}
+          style={{ fontSize: 30, Opacity: 0.1, border: '1px solid #ccc' }}
         />
       </svg>
     </>

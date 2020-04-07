@@ -14,7 +14,7 @@ import {
   OPEN_INVESTIGATIONS_DETAILS_URL,
   OPEN_CASES_LIST,
   RADAR_DATA,
-  TRAMITACAO_DATA,
+  PROCESSING_TIME_DATA,
   ALERTS_LIST,
 } from './endpoints';
 
@@ -145,8 +145,8 @@ const Api = (() => {
 
     return radarTransform(data);
   }
-  async function getTempoTramitacaoData({ orgao, token }) {
-    const { data } = await axios.get(TRAMITACAO_DATA({ orgao }), buildRequestConfig(token));
+  async function getProcessingTimeData({ orgao, token }) {
+    const { data } = await axios.get(PROCESSING_TIME_DATA({ orgao }), buildRequestConfig(token));
 
     return tramitacaoTransform(data);
   }
@@ -172,7 +172,7 @@ const Api = (() => {
     getOpenCasesList,
     getRadarData,
     getAlertsList,
-    getTempoTramitacaoData,
+    getProcessingTimeData,
   };
 })();
 

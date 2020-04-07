@@ -8,13 +8,13 @@ import PinAzul from '../../assets/svg/pinAzul';
 import PinPreto from '../../assets/svg/pinPreto';
 import PinVermelho from '../../assets/svg/pinVermelho';
 
-const TempoTramitacao = () => {
-  const [tempoTramitacao, setTempoTramitacao] = useState({});
+const ProcessingTime = () => {
+  const [processingTime, setProcessingTime] = useState({});
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await Api.getTempoTramitacaoData(getUser());
-      setTempoTramitacao(response.data);
+      const response = await Api.getProcessingTimeData(getUser());
+      setProcessingTime(response.data);
       console.log(response);
     };
     loadData();
@@ -31,14 +31,14 @@ const TempoTramitacao = () => {
         </p>
       </div>
       <div className="processingTimeChart" />
-      <ProcessingTimeChart data={tempoTramitacao} />
+      <ProcessingTimeChart data={processingTime} />
       <div />
       <div className="main-box-time">
         <div className="second-box-time">
           <PinPreto />
           <div className="third-box-time">
             <h3 style={{ color: '#474757' }}>
-              {tempoTramitacao.minimo_orgao} dias</h3>
+              {processingTime.minimo_orgao} dias</h3>
             <p>Transito mais rápido da sua promotoria</p>
           </div>
         </div>
@@ -46,7 +46,7 @@ const TempoTramitacao = () => {
           <PinAzul />
           <div className="third-box-time">
             <h3 style={{ color: '#56E8E1' }}>
-            {tempoTramitacao.maximo_orgao} dias</h3>
+            {processingTime.maximo_orgao} dias</h3>
             <p>Transito mais lento da sua promotoria</p>
           </div>
         </div>
@@ -54,7 +54,7 @@ const TempoTramitacao = () => {
           <PinVermelho />
           <div className="third-box-time">
             <h3 style={{ color: '#FF0086' }}>
-            {tempoTramitacao.mediana_orgao} dias</h3>
+            {processingTime.mediana_orgao} dias</h3>
             <p>Transito médio da sua promotoria</p>
           </div>
         </div>
@@ -63,4 +63,4 @@ const TempoTramitacao = () => {
   );
 };
 
-export default TempoTramitacao;
+export default ProcessingTime;

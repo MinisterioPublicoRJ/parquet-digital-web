@@ -6,7 +6,7 @@ const graphicColor = ['#F8F9FB']; // Colors
 const wantedGraphicData = [{ y: 10 }, { y: 50 }, { y: 40 }, { y: 20 }]; // Data that we want to display
 const defaultGraphicData = [{ y: 0 }, { y: 0 }, { y: 100 }, { y: 90 }]; // Data used to make the animate prop work
 
-function TempoTramitacaoChart() {
+function ProcessingTimeChart() {
   // TODO: animate VictoryPie
   const [graphicData, setGraphicData] = useState(defaultGraphicData);
 
@@ -58,5 +58,5 @@ function TempoTramitacaoChart() {
     </>
   );
 }
-/* TempoTramitacaoChart.propTypes = propTypes; */
-export default TempoTramitacaoChart;
+/* ProcessingTimeChart.propTypes = propTypes; */
+export default ProcessingTimeChart;

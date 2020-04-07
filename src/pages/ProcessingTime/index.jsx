@@ -14,6 +14,7 @@ const ProcessingTime = () => {
 
   const cleanChartData = raw => {
     const { min, max, average } = raw.pacoteData;
+    console.log('min, max, average', min, max, average);
 
     // calculating the points exactly between the values
     const halfMinAvg = (average - min) / 2;
@@ -22,11 +23,11 @@ const ProcessingTime = () => {
     // using the midpoints, make three sections to draw "good", "average" and "bad" time ranges
     const pieData = [
       // 'good' section from min until halfway to average
-      { x: 1, y: halfMaxAvg - halfMinAvg, color: '#42DCA7' },
+      { x: 2, y: halfMinAvg / max, color: '#42DCA7' },
       // 'average' section, from the end of the last section until halfway to max
-      { x: 2, y: halfMaxAvg - halfMinAvg, color: '#6D86EC' },
+      { x: 1, y: (halfMaxAvg - halfMinAvg) / max, color: '#6D86EC' },
       // 'bad' section, from the last section all the way to max
-      { x: 3, y: max - halfMaxAvg, color: '#A256BA' },
+      { x: 0, y: (max - halfMaxAvg) / max, color: '#A256BA' },
     ];
 
     const points = null;

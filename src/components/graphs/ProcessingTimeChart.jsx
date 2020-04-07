@@ -6,10 +6,10 @@ const graphicColor = ['#F8F9FB']; // Colors
 const wantedGraphicData = [{ y: 10 }, { y: 50 }, { y: 40 }, { y: 20 }]; // Data that we want to display
 const defaultGraphicData = [{ y: 0 }, { y: 0 }, { y: 100 }, { y: 90 }]; // Data used to make the animate prop work
 
-function TempoTramitacaoChart() {
+function ProcessingTimeChart({ data }) {
   // TODO: animate VictoryPie
   const [graphicData, setGraphicData] = useState(defaultGraphicData);
-
+  console.log('data', data);
   useEffect(() => {
     setGraphicData(wantedGraphicData); // Setting the data that we want to display
   }, []);
@@ -27,13 +27,15 @@ function TempoTramitacaoChart() {
           startAngle={-110}
           padAngle={2}
           colorScale={graphicColorMain}
-          data={graphicData}
+          data={data}
+          sortKey="x"
           padding={5}
           labels={d => `${d.agent} : ${d.reqCount}`}
           style={{
             labels: { fontSize: 15, fontWeight: '400', height: 10 },
             data: {
               fillOpacity: 0.7,
+              fill: ({ datum }) => datum.color,
             },
           }}
         />
@@ -58,5 +60,5 @@ function TempoTramitacaoChart() {
     </>
   );
 }
-/* TempoTramitacaoChart.propTypes = propTypes; */
-export default TempoTramitacaoChart;
+/* ProcessingTimeChart.propTypes = propTypes; */
+export default ProcessingTimeChart;

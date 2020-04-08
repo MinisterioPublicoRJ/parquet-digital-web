@@ -4,6 +4,15 @@
 .page-tramitacao {
     grid-area: processingTime;
     display: flex;
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    grid-gap: 3vh;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+    "texts processingTime mainBoxTime"
+    "texts processingTime mainBoxTime"
 }
 
 .processingTimeChart {
@@ -11,6 +20,7 @@
 }
 .tramitacao-texts {
     max-width: 200px;
+    grid-area: texts;
 }
 .tramitacao-texts h3{
     color: var(--darkBlue);
@@ -24,8 +34,10 @@
 }
 .main-box-time{
     font-size: 10px;
-    color: #B3B3B3;
+    color: var(--grayTexts);
     margin-left: 50px;
+    grid-area: mainBoxTime;
+
 }
 .main-box-time h3{
     font-size: 18px;
@@ -33,9 +45,17 @@
 .second-box-time{
     display: flex;
 }
-
+.pin{
+    margin-top: 20px;
+}
+/* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
-    .infoGridView {
-     
+    .page-tramitacao {
+      height: 200vh;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+      "texts texts"
+      "processingTime processingTime"
+      "mainBoxTime";
     }
   }

@@ -7,6 +7,7 @@ export default function pinPreto() {
       width="27.168"
       height="20.836"
       viewBox="0 0 27.168 20.836"
+      top="20"
     >
       <defs>
         <linearGradient

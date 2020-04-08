@@ -63,21 +63,27 @@ const ProcessingTime = () => {
       <div />
       <div className="main-box-time">
         <div className="second-box-time">
-          <PinPreto />
+          <div className="pin">
+            <PinPreto />
+          </div>
           <div className="third-box-time">
             <h3 style={{ color: '#474757' }}>{processingTime.orgaoData.min} dias</h3>
             <p>Transito mais rápido da sua promotoria</p>
           </div>
         </div>
         <div className="second-box-time">
-          <PinAzul />
+         <div className="pin">
+            <PinAzul />
+         </div>
           <div className="third-box-time">
             <h3 style={{ color: '#56E8E1' }}>{processingTime.orgaoData.max} dias</h3>
             <p>Transito mais lento da sua promotoria</p>
           </div>
         </div>
         <div className="second-box-time">
+        <div className="pin">
           <PinVermelho />
+        </div>
           <div className="third-box-time">
             <h3 style={{ color: '#FF0086' }}>{processingTime.orgaoData.average} dias</h3>
             <p>Transito médio da sua promotoria</p>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { VictoryPie, VictoryLabel, VictoryChart, VictoryPolarAxis } from 'victory';
+import { VictoryPie, VictoryLabel, VictoryChart, VictoryScatter } from 'victory';
 
 const graphicColorMain = ['#A256BA', '#56E8E1', '#A256BA', '#42DCA7']; // Colors
-const graphicColor = ['#56E8E1']; // Colors
+const graphicColor = ['#F8F9FB']; // Colors
 const wantedGraphicData = [{ y: 10 }, { y: 50 }, { y: 40 }, { y: 20 }]; // Data that we want to display
 const defaultGraphicData = [{ y: 0 }, { y: 0 }, { y: 100 }, { y: 90 }]; // Data used to make the animate prop work
 
@@ -15,35 +15,40 @@ function TempoTramitacaoChart() {
   }, []);
 
   return (
-    <div>
-      <VictoryChart padding={5} height={300} width={300} startAngle={0} endAngle={180}>
-        <VictoryPolarAxis
-          colorScale={graphicColorMain}
-          tickValues={[0, 45, 90, 135, 180]}
-          labelPlacement="vertical"
-          width={400}
-          height={400}
-          padding={5}
-        />
-        <VictoryLabel
-          textAnchor="middle"
-          style={{ fontSize: 30, border: '1px solid #ccc' }}
-          x={140}
-          y={140}
-          text="620"
-        />
-        <VictoryPie
-          standalone={false}
-          width={290}
-          height={320}
-          innerRadius={45}
-          endAngle={130}
-          startAngle={-130}
-          colorScale={graphicColor}
-          style={{ fontSize: 30, Opacity: 0.1, border: '1px solid #ccc' }}
-        />
-      </VictoryChart>
-    </div>
+    <>
+      <svg width={380} height={300}>
+        <VictoryChart width={300} height={300} standalone={false} domain={{ x: 'none' }}>
+          <VictoryPie
+            width={480}
+            height={450}
+            innerRadius={50}
+            endAngle={120}
+            startAngle={-120}
+            colorScale={graphicColor}
+            opacity={0.1}
+            padding={5}
+          />
+          <circle cx="150" cy="150" r="40" fill="none" stroke="#B3B3B3" strokeWidth={1} />
+          <VictoryLabel textAnchor="middle" x={150} y={150} text="620" />
+          <VictoryPie
+            width={380}
+            height={400}
+            innerRadius={110}
+            endAngle={80}
+            startAngle={-110}
+            padAngle={2}
+            opacity={0.1}
+            colorScale={graphicColorMain}
+            padding={5}
+            data={graphicData}
+            labels={({ datum }) => datum.y}
+            style={{
+              labels: { fontSize: 15, fontWeight: '400', height: 10 },
+            }}
+          />
+        </VictoryChart>
+      </svg>
+    </>
   );
 }
 /* TempoTramitacaoChart.propTypes = propTypes; */

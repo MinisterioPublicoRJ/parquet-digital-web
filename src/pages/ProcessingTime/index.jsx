@@ -46,7 +46,6 @@ const ProcessingTime = () => {
   if (!processingTime.meta || !chartData) {
     return <div>loading</div>;
   }
-
   return (
     <article className="page-tramitacao">
       <div className="tramitacao-texts">

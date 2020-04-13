@@ -5,7 +5,7 @@ import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
 import { formatPercent } from '../../utils';
-import { PerformanceChart } from '../../components';
+import { PerformanceChart, SectionTitle } from '../../components';
 
 const propTypes = {
   dashboard: PropTypes.bool.isRequired,
@@ -27,31 +27,36 @@ class PerformanceRadar extends React.Component {
   }
 
   cleanGraphData(data) {
-    const chartData = [];
-    const axisData = {};
-    const categories = Object.keys(data);
-
-    categories.forEach(cat => {
-      if (cat === 'meta') return;
-      const chartRow = { x: cat, y: data[cat].percentages, label: data[cat].numbers };
-      axisData[cat] = formatPercent(data[cat].variations);
-      chartData.push(chartRow);
-    });
-
-    this.setState({ chartData, axisData });
+    console.log(data);
+    const chartData = Object.entries(data)
+      .filter(cat => cat[0] !== 'meta')
+      .map(([category, { variations, percentages, numbers }]) => ({
+        axis: {
+          category,
+          value: variations == null || variations === -1 ? '—' : formatPercent(variations),
+          isAboveAverage: variations == null || variations === -1 ? null : variations >= 0,
+        },
+        chart: {
+          x: category,
+          y: percentages * 100 + 20,
+          label: numbers,
+        },
+      }));
+    console.log(chartData);
+    this.setState({ chartData });
   }
 
   render() {
     const { dashboard } = this.props;
-    const { percentagePhrase, movements, chartData, axisData } = this.state;
+    const { percentagePhrase, movements, chartData } = this.state;
 
-    if (!chartData || !axisData) return <div>Carregando</div>;
+    if (!chartData) return <div>Carregando</div>;
 
     if (!dashboard) {
       return (
-        <article className="page radar">
+        <article className="page radar page-radar">
           <div className="radarLeft">
-            <PerformanceChart data={chartData} axis={axisData} />
+            <PerformanceChart data={chartData} />
           </div>
           <div className="radarRight">
             <p className="paragraphWrapper">
@@ -72,9 +77,12 @@ class PerformanceRadar extends React.Component {
     }
 
     return (
-      <article className="page page-radar columns-2">
-        <div className="radarLeft">
-          <PerformanceChart data={chartData} axis={axisData} />
+      <article className="page page-radar-dashboard">
+        <div className="radar-header">
+          <SectionTitle value="Radar de Performance" />
+        </div>
+        <div>
+          <PerformanceChart data={chartData} />
         </div>
       </article>
     );

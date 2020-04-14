@@ -234,7 +234,6 @@ class YourDesk extends React.Component {
           )}
           {activeTab === 'courtCases' && (
             <CourtCasesDetail
-              getUser={getUser}
               data={courtCasesDetails}
               isLoading={!courtCasesDetails && !courtCasesDetailsError}
             />

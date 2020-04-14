@@ -13,11 +13,10 @@ function TempoTramitacaoChart() {
   useEffect(() => {
     setGraphicData(wantedGraphicData); // Setting the data that we want to display
   }, []);
-
   return (
     <>
       <svg width={380} height={300}>
-        <VictoryChart width={300} height={300} standalone={false} domain={{ x: 'none' }}>
+        <VictoryChart width={300} height={300} standalone={false}>
           <VictoryPie
             width={480}
             height={450}
@@ -30,6 +29,16 @@ function TempoTramitacaoChart() {
           />
           <circle cx="150" cy="150" r="40" fill="none" stroke="#B3B3B3" strokeWidth={1} />
           <VictoryLabel textAnchor="middle" x={150} y={150} text="620" />
+          <VictoryScatter
+            style={{ data: { fill: '#FF0086' } }}
+            size={9}
+            data={[
+              { x: 1, y: 20 },
+              { x: 2, y: 50 },
+              { x: 3, y: 50 },
+              { x: 4, y: 50 },
+            ]}
+          />
           <VictoryPie
             width={380}
             height={400}
@@ -51,5 +60,4 @@ function TempoTramitacaoChart() {
     </>
   );
 }
-/* TempoTramitacaoChart.propTypes = propTypes; */
 export default TempoTramitacaoChart;

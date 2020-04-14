@@ -121,6 +121,7 @@ class OpenCasesDetail extends React.Component {
 
     return categories.map(cat => (
       <DeskCasesChart
+        key={cat}
         active={activeTab === cat}
         buttonPressed={tab => this.handleChangeActiveTab(tab)}
         category={cat}

@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import { SectionTitle, ControlButton, OpenCasesDetail } from '../../components';
+import {
+  SectionTitle,
+  ControlButton,
+  OpenCasesDetail,
+  OpenInvestigationsDetail,
+  CourtCasesDetail,
+} from '../../components';
 import Api from '../../api';
 import { getUser } from '../../user';
 
@@ -20,10 +26,10 @@ class YourDesk extends React.Component {
 
   componentDidMount() {
     this.getOpenCases();
-    this.getOpenInvestigations();
-    this.getClosedCases();
-    this.getCourtCases();
     this.getOpenCasesDetails();
+    this.getOpenInvestigations();
+    this.getCourtCases();
+    this.getClosedCases();
   }
 
   /**
@@ -78,6 +84,22 @@ class YourDesk extends React.Component {
     }
   }
 
+  async getOpenInvestigationsDetails() {
+    let openInvestigationsDetails;
+    let errorOpenInvestigationsDetails = false;
+    try {
+      openInvestigationsDetails = await Api.getOpenInvestigationsDetails(getUser());
+    } catch (e) {
+      errorOpenInvestigationsDetails = true;
+    } finally {
+      this.setState({
+        openInvestigationsDetails,
+        errorOpenInvestigationsDetails,
+        loadingOpenInvestigationsDetails: false,
+      });
+    }
+  }
+
   /**
    * load the number of cases in court for the third button
    * @return {void} just saves it to the state
@@ -91,6 +113,18 @@ class YourDesk extends React.Component {
       errorCourtCases = true;
     } finally {
       this.setState({ courtCases, errorCourtCases, loadingCourtCases: false });
+    }
+  }
+
+  async getCourtCasesDetails() {
+    let courtCasesDetails;
+    let errorCourtCasesDetails;
+    try {
+      courtCasesDetails = await Api.getCourtCasesDetails(getUser());
+    } catch (e) {
+      errorCourtCasesDetails = true;
+    } finally {
+      this.setState({ courtCasesDetails, errorCourtCasesDetails, loadingCourtCasesDetails: false });
     }
   }
 
@@ -111,19 +145,16 @@ class YourDesk extends React.Component {
   }
 
   handleChangeActiveTab(tabName) {
-    if (!this.state[tabName]) {
+    if (!this.state[`${tabName}Details`]) {
       switch (tabName) {
         case 'openCases':
-          this.getOpenCases();
+          this.getOpenCasesDetails();
           break;
         case 'openInvestigations':
-          this.getOpenInvestigations();
+          this.getOpenInvestigationsDetails();
           break;
         case 'courtCases':
-          this.getCourtCases();
-          break;
-        case 'closedCases':
-          this.getClosedCases();
+          this.getCourtCasesDetails();
           break;
         default:
           break;
@@ -135,15 +166,19 @@ class YourDesk extends React.Component {
   render() {
     const {
       activeTab,
-      closedCases,
-      courtCases,
-      openInvestigations,
       openCases,
       openCasesDetails,
       openCasesDetailsError,
       loadingOpenCases,
+      openInvestigations,
+      openInvestigationsDetails,
+      openInvestigationsDetailsError,
       loadingOpenInvestigations,
+      courtCases,
+      courtCasesDetails,
+      courtCasesDetailsError,
       loadingCourtCases,
+      closedCases,
       loadingClosedCases,
     } = this.state;
 
@@ -189,6 +224,19 @@ class YourDesk extends React.Component {
               getUser={getUser}
               chartData={openCasesDetails}
               isLoading={!openCasesDetails && !openCasesDetailsError}
+            />
+          )}
+          {activeTab === 'openInvestigations' && (
+            <OpenInvestigationsDetail
+              data={openInvestigationsDetails}
+              isLoading={!openInvestigationsDetails && !openInvestigationsDetailsError}
+            />
+          )}
+          {activeTab === 'courtCases' && (
+            <CourtCasesDetail
+              getUser={getUser}
+              data={courtCasesDetails}
+              isLoading={!courtCasesDetails && !courtCasesDetailsError}
             />
           )}
         </div>

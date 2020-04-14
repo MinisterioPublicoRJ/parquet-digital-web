@@ -1,0 +1,38 @@
+.openInv-outer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.openInv-upper {
+  display: flex;
+  height: 15%;
+  padding-top: 2%;
+}
+
+.openInv-lower {
+  display: flex;
+  height: 85%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.openInv-lower-right {
+  display: inline-flex;
+  /* flex: 1; */
+}
+
+.openInv-lower-left {
+  /* flex: 1; */
+  display: inline-flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.openInv-ranking {
+  color: var(--dark);
+  font-family: var(--defaultFont);
+  font-size: var(--defaultTextSize);
+  padding: 0;
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './styles.css';
 import {
@@ -49,7 +48,7 @@ class YourDesk extends React.Component {
   }
 
   /**
-   * [getOpenCasesDetails description]
+   * Loads the data used in the OpenCases tab
    * @return {void} saves details to the state
    */
   async getOpenCasesDetails() {
@@ -84,6 +83,10 @@ class YourDesk extends React.Component {
     }
   }
 
+  /**
+   * Loads the data used in the openInvestigations tab
+   * @return {void} saves details to the state
+   */
   async getOpenInvestigationsDetails() {
     let openInvestigationsDetails;
     let errorOpenInvestigationsDetails = false;
@@ -116,6 +119,9 @@ class YourDesk extends React.Component {
     }
   }
 
+  /** Loads the data used in the OpenCases tab
+   * @return {void} saves details to the state
+   */
   async getCourtCasesDetails() {
     let courtCasesDetails;
     let errorCourtCasesDetails;
@@ -144,6 +150,12 @@ class YourDesk extends React.Component {
     }
   }
 
+  /**
+   * Triggered by buttonPress, updates the state
+   * @param  {string} tabName the name of the next active tab,
+   * one of [openCases, openInvestigations, courtCases]
+   * @return {void}
+   */
   handleChangeActiveTab(tabName) {
     if (!this.state[`${tabName}Details`]) {
       switch (tabName) {

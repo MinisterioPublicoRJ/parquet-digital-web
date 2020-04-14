@@ -5,7 +5,21 @@ import './styles.css';
 
 import { Spinner } from '../../layoutPieces';
 import Badge from '../../../assets/svg/badge';
-import { formatPercent, getViewWidth, leftPad, formatPercentage } from '../../../utils';
+import { formatPercent, getViewWidth, leftPad } from '../../../utils';
+
+const propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  data: PropTypes.shape({
+    proposedActions60Days: PropTypes.number,
+    proposedActionsVariation12Months: PropTypes.number,
+    topProsecutors: PropTypes.arrayOf(
+      PropTypes.shape({
+        proposedActions60Days: PropTypes.number,
+        name: PropTypes.string,
+      }),
+    ),
+  }).isRequired,
+};
 
 function OpenInvestigationDetail({ data, isLoading }) {
   if (isLoading) {
@@ -20,7 +34,10 @@ function OpenInvestigationDetail({ data, isLoading }) {
       <div className="courtCases-upper">
         <p className="paragraphWrapper">
           Você propôs
-          <strong>{` ${proposedActions60Days} `} ações</strong> nos últimos 60 dias, com
+          <strong>
+            {` ${proposedActions60Days} ações `}
+          </strong>
+          nos últimos 60 dias, com
           <strong>
             {proposedActionsVariation12Months >= 0
               ? ` um aumento de ${formatPercent(proposedActionsVariation12Months)} `
@@ -54,4 +71,5 @@ function OpenInvestigationDetail({ data, isLoading }) {
   );
 }
 
+OpenInvestigationDetail.propTypes = propTypes;
 export default OpenInvestigationDetail;

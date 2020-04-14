@@ -7,6 +7,25 @@ import { Spinner } from '../../layoutPieces';
 import Badge from '../../../assets/svg/badge';
 import { formatPercent, getViewWidth, leftPad, formatPercentage } from '../../../utils';
 
+const propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  data: PropTypes.shape({
+    collectionVariation30Days: PropTypes.number,
+    topProsecutors: PropTypes.arrayOf(
+      PropTypes.shape({
+        collectionVariation30Days: PropTypes.number,
+        name: PropTypes.string,
+      }),
+    ),
+  }).isRequired,
+};
+const defaultProps = {};
+
+/**
+ * uses variation data to pick what sentence to show
+ * @param  {number} variation collectionVariation30Days prop
+ * @return {string}           phrase with analyses
+ */
 function getCollectionPhrase(variation) {
   let ans = ' se manteve o mesmo ';
 
@@ -20,7 +39,6 @@ function getCollectionPhrase(variation) {
 }
 
 function OpenInvestigationDetail({ data, isLoading }) {
-
   if (isLoading) {
     return <Spinner size="large" />;
   }
@@ -63,4 +81,6 @@ function OpenInvestigationDetail({ data, isLoading }) {
   );
 }
 
+OpenInvestigationDetail.propTypes = propTypes;
+OpenInvestigationDetail.defaultProps = defaultProps;
 export default OpenInvestigationDetail;

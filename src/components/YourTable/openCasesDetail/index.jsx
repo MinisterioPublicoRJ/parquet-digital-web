@@ -43,6 +43,11 @@ class OpenCasesDetail extends React.Component {
     this.getOpenCasesList(activeTab);
   }
 
+  /**
+   * Generic function that fetches the detailed data from each of the 3 time periods
+   * @param  {string}  tab one of [under20, between20And30, over30]
+   * @return {void}     just saves to state
+   */
   async getOpenCasesList(tab) {
     const { getUser } = this.props;
     const tabMatcher = {
@@ -65,6 +70,12 @@ class OpenCasesDetail extends React.Component {
     }
   }
 
+  /**
+   * [cleanChartData description]
+   * @param  {json} data the chartData prop
+   * @return {json}      same keys as chartData, each key has again same keys as
+   *                     chartData and point to an object with x/y/color values
+   */
   cleanChartData(data) {
     const categories = Object.keys(data);
     const cleanData = {};
@@ -82,10 +93,15 @@ class OpenCasesDetail extends React.Component {
       });
       cleanData[cat] = categoryChart;
     });
-
     return cleanData;
   }
 
+  /**
+   * Triggered by buttonPress, updates the state
+   * @param  {string} tabName the name of the next active tab,
+   * one of [under20, between20And30, over30]
+   * @return {void}
+   */
   handleChangeActiveTab(tabName) {
     if (!this.state[`${tabName}Details`]) {
       this.getOpenCasesList(tabName);
@@ -93,6 +109,11 @@ class OpenCasesDetail extends React.Component {
     this.setState({ activeTab: tabName });
   }
 
+  /**
+   * Cleans chartData prop data, then draws PieChart buttons
+   * @param  {[type]} data chartData prop
+   * @return {Array}      JSX for PieChart buttons
+   */
   renderCharts(data) {
     const { activeTab } = this.state;
     const cleanData = this.cleanChartData(data);

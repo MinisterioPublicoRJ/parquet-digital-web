@@ -27,3 +27,26 @@ td {
 th{
   padding: 10px;
 }
+
+/* PHONES */
+@media (max-width: 480px) {
+  table {
+    table-layout: fixed;
+    width: 100vw;
+  }
+
+  tbody tr {
+    background-color: pink;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  tbody td {
+    min-width: 45%;
+  }
+
+  tbody th {
+    text-align: left;
+    width: 45%;
+  }
+}

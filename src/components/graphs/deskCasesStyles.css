@@ -59,3 +59,25 @@
   text-align: center;
   margin-top: -0.9vw;
 }
+
+/* PHONES */
+@media (max-width: 480px) {
+  .cases-chart-graph {
+    display: none;
+  }
+
+  .cases-chart-subs {
+    align-items: center;
+  }
+
+  .process-count {
+    font-size: calc(2 * var(--spotlightSize));
+    letter-spacing: 0;
+    margin-top: 0;
+  }
+
+  .process-days {
+    font-size: 4vw;
+    margin-top: 0;
+  }
+}

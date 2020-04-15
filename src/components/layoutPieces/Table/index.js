@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
-import { capitalizeTitle } from '../../../utils'
+import { capitalizeTitle } from '../../../utils';
 
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -41,15 +41,24 @@ function generateHeader(headerPropArray) {
  * creates a row for every object in the dataset and orders it's cells to make sure they respect the column theme
  * @param  {json} dataUnit whatever data we want to add to the table
  * @param  {json} columns  a dict containing pretty names and field names
+ * @param  {bool} isPhone  true if width <= 480px
+ * @param  {number} rowN   number of the current row
  * @return {node}          JSX for the table body
  */
-function generateRow(dataUnit, columns) {
+function generateRow(dataUnit, columns, isPhone, rowN) {
   const sections = Object.keys(columns);
 
   return (
-    <tr>
-      {sections.map(key => (
-        <td key={dataUnit[columns[key]]}>{capitalizeTitle(dataUnit[columns[key]])}</td>
+    <tr key={`table-row-${rowN}`}>
+      {sections.map((key, i) => (
+        <>
+          {isPhone && (
+            <th scope="row" key={`${key}-${i}`}>
+              {key}
+            </th>
+          )}
+          <td key={dataUnit[columns[key]]}>{capitalizeTitle(dataUnit[columns[key]])}</td>
+        </>
       ))}
     </tr>
   );
@@ -62,10 +71,11 @@ function generateRow(dataUnit, columns) {
  * @constructor
  */
 function Table({ data, columns, showHeader }) {
+  const isPhone = window.innerWidth <= 480;
   return (
     <table>
-      {showHeader && generateHeader(columns)}
-      <tbody>{data.map(processo => generateRow(processo, columns))}</tbody>
+      {showHeader && !isPhone && generateHeader(columns)}
+      <tbody>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
     </table>
   );
 }

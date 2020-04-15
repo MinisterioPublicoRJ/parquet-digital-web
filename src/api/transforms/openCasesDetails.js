@@ -4,9 +4,9 @@ const openCasesDetailsTransform = ({
   soma_vinte_trinta = 0,
   soma_trinta_mais = 0,
 }) => ({
-  sumUntil20: soma_ate_vinte,
-  sumBetween20And30: soma_vinte_trinta,
-  sumBeyond30: soma_trinta_mais,
+  under20: soma_ate_vinte,
+  between20And30: soma_vinte_trinta,
+  over30: soma_trinta_mais,
 });
 
 export default openCasesDetailsTransform;

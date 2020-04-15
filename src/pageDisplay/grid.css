@@ -41,11 +41,12 @@
   .infoGridView {
     height: 350vh;
     grid-template-columns: 100%;
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     grid-template-areas:
     "today"
     "desk"
     "processingTime"
+    "desk"
     "radar"
     "alerts"
     "."

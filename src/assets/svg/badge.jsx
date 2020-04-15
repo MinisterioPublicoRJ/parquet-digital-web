@@ -99,7 +99,7 @@ const badge = ({ height, width, number }) => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 25.8 32.2"
     // style="enable-background:new 0 0 25.8 32.2;"
-    preserveAspectRatio="xMidYMid meet"
+    preserveAspectRatio="xMinYMid meet"
     style={{ width, height }}
   >
     <g id="first_3_" transform="translate(-50.71)">

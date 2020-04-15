@@ -27,7 +27,7 @@
 
   --spotlightFont: Nunito Sans;
   --spotlightWeight: 700;
-  --spotlightSize: 4.3vw;
+  --spotlightSize: 4vw;
 
   --spotlightSubtitleSize: 0;
 
@@ -46,21 +46,22 @@
   --dashboardAreaMargin: 2vh;
 
   --elementPadding: 1.5vh;
-
+  /*
   --tabControlItemSize: calc(var(--defaultTextSize) * 7);
   --tabControlItemActiveHeight: calc(var(--tabControlItemSize) * 1.15);
-  --tabControlItemActiveWidth: calc(var(--tabControlItemSize) * 1.4);
+  --tabControlItemActiveWidth: calc(var(--tabControlItemSize) * 1.4); */
 }
-
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
   :root {
-
+    --spotlightSize: 6vw;
   }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-
+  :root {
+    --spotlightSize: 7vw;
+  }
 }

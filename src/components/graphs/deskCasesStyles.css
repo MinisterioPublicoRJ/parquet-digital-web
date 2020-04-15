@@ -1,24 +1,29 @@
-.container {
-  width: 100%;
+.cases-chart-outer {
+  background-color: transparent;
+  border: 0;
   display: flex;
-  justify-content: space-around;
-  align-items: stretch;
-  flex-direction: row;
-  overflow: show;
-  margin-bottom: 3vw;
+  height: 80%;
+  padding: 0;
+  width: 25%;
 }
-.process-item {
-  width: 30%;
+
+.cases-chart-graph {
   display: flex;
-  flex-direction: row;
+  flex: 1;
+}
+
+.cases-chart-subs {
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-decoration: none;
 }
-.process-item--selected {
+
+.cases-button-active {
   position: relative;
 }
-.process-item--selected::after {
+.cases-button-active::after {
   content: '';
   width: 0;
   height: 0;
@@ -29,26 +34,11 @@
   border-top-style: solid;
 
   position: absolute;
-  bottom: -20px;
+  bottom: 0px;
   left: 50%;
   transform: translate(-5px, 0);
 }
 
-.process-item--ate-20-dias::after {
-  border-top-color: var(--primary);
-}
-
-.process-item--20-a-30-dias::after {
-  border-top-color: var(--warning);
-}
-
-.process-item--30-ou-mais-dias::after {
-  border-top-color: var(--danger);
-}
-
-.process-item--selected-- .process-item-days {
-  margin-left: 1.5vw;
-}
 .process-count {
   font-size: var(--spotlightSize);
   letter-spacing: 0;
@@ -59,6 +49,7 @@
   margin-top: -0.7vw;
   text-shadow: 0 3px 6px var(--shadowColor);
 }
+
 .process-days {
   font-size: 0.8vw;
   letter-spacing: 0;
@@ -67,4 +58,26 @@
   font-family: var(--spotlightFont);
   text-align: center;
   margin-top: -0.9vw;
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .cases-chart-graph {
+    display: none;
+  }
+
+  .cases-chart-subs {
+    align-items: center;
+  }
+
+  .process-count {
+    font-size: calc(2 * var(--spotlightSize));
+    letter-spacing: 0;
+    margin-top: 0;
+  }
+
+  .process-days {
+    font-size: 4vw;
+    margin-top: 0;
+  }
 }

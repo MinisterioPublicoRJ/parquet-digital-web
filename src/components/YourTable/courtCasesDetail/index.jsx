@@ -52,14 +52,14 @@ function OpenInvestigationDetail({ data, isLoading }) {
           <ul className="courtCases-ranking">
             {topProsecutors.map(({ name, proposedActions30Days }, i) => {
               return (
-                <li key={i} className="list-top-n-item">
-                  <span className="list-top-n-icon">
-                    <Badge width={2 * vw} height={3 * vw} number={i + 1} />
+                <li key={i} className="courtCases-li">
+                  <span className="courtCases-icon">
+                    <Badge width="100%" number={i + 1} />
                   </span>
-                  <strong className="list-top-n-featured">
+                  <strong className="courtCases-featured">
                     {leftPad(proposedActions30Days, 2, 0)}
                   </strong>
-                  <span className="list-top-n-main">{name}</span>
+                  <span className="courtCases-label">{name}</span>
                 </li>
               );
             })}

@@ -8,8 +8,6 @@ const ChartPoint = () => {
   const [chartPointGraphic, setchartPointGraphic] = useState(null);
 
   const buildPoints = raw =>{
-      
-
   }
 
   return (

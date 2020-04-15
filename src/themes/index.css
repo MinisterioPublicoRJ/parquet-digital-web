@@ -19,6 +19,9 @@
   --defaultFont: Montserrat;
   --defaultTextSize: 2vh;
 
+  --defaultTitleProcessing: Rockwell;
+  --subtitleProcessing: MyriadPro-Regular;
+
   --titleWeight: bold;
   --titleSize: calc(var(--defaultTextSize) * 2);
 

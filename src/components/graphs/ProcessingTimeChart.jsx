@@ -29,10 +29,7 @@ function TempoTramitacaoChart() {
           />
           <circle cx="150" cy="150" r="40" fill="none" stroke="#B3B3B3" strokeWidth={1} />
           <VictoryLabel textAnchor="middle" x={150} y={150} text="620" />
-          <VictoryScatter
-            dataComponent={<ScatterComponent />}
-            samples={15}
-          />
+          <VictoryScatter dataComponent={<ScatterComponent />} />
           <VictoryPie
             width={380}
             height={400}

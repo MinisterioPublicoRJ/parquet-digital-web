@@ -40,15 +40,16 @@ function generateHeader(headerPropArray) {
 /**
  * creates a row for every object in the dataset and orders it's cells to make sure they respect the column theme
  * @param  {json} dataUnit whatever data we want to add to the table
- * @param  {bool} isPhone  true if width <= 480px
  * @param  {json} columns  a dict containing pretty names and field names
+ * @param  {bool} isPhone  true if width <= 480px
+ * @param  {number} rowN   number of the current row
  * @return {node}          JSX for the table body
  */
-function generateRow(dataUnit, columns, isPhone) {
+function generateRow(dataUnit, columns, isPhone, rowN) {
   const sections = Object.keys(columns);
 
   return (
-    <tr>
+    <tr key={`table-row-${rowN}`}>
       {sections.map((key, i) => (
         <>
           {isPhone && (
@@ -74,7 +75,7 @@ function Table({ data, columns, showHeader }) {
   return (
     <table>
       {showHeader && !isPhone && generateHeader(columns)}
-      <tbody>{data.map(processo => generateRow(processo, columns, isPhone))}</tbody>
+      <tbody>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
     </table>
   );
 }

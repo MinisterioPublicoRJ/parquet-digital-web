@@ -103,7 +103,10 @@ class OpenCasesDetail extends React.Component {
    * @return {void}
    */
   handleChangeActiveTab(tabName) {
-    if (!this.state[`${tabName}Details`]) {
+    const { chartData } = this.props;
+    const hasItems = chartData[tabName];
+
+    if (hasItems && !this.state[`${tabName}Details`]) {
       this.getOpenCasesList(tabName);
     }
     this.setState({ activeTab: tabName });
@@ -140,20 +143,23 @@ class OpenCasesDetail extends React.Component {
       return <Spinner size="large" />;
     }
 
+    const emptyTab = !chartData[activeTab];
+    const tabLoading =
+      !emptyTab && !this.state[`${activeTab}Details`] && !this.state[`${activeTab}Error`];
+
     return (
       <>
         <div className="time-charts-view">{this.renderCharts(chartData)}</div>
         <div className="open-cases-table-view">
-          {!this.state[`${activeTab}Details`] && !this.state[`${activeTab}Error`] && (
-            <Spinner size="medium" />
-          )}
-          {this.state[`${activeTab}Details`] && (
+          {tabLoading && <Spinner size="medium" />}
+          {!emptyTab && this.state[`${activeTab}Details`] && (
             <Table
               data={this.state[`${activeTab}Details`]}
               columns={this.tableColumns}
               showHeader
             />
           )}
+          {emptyTab && <p className="paragraphWrapper"> Nenhum processo para exibir </p>}
         </div>
       </>
     );

@@ -62,14 +62,14 @@ function OpenInvestigationDetail({ data, isLoading }) {
           <ul className="openInv-ranking">
             {topProsecutors.map((item, i) => {
               return (
-                <li key={i} className="list-top-n-item">
-                  <span className="list-top-n-icon">
-                    <Badge width={2 * vw} height={3 * vw} number={i + 1} />
+                <li key={i} className="openInv-li">
+                  <span className="openInv-icon">
+                    <Badge width="100%" number={i + 1} />
                   </span>
-                  <strong className="list-top-n-featured">
+                  <strong className="openInv-featured">
                     {leftPad(formatPercentage(item.collectionVariation30Days), 3, 0)}
                   </strong>
-                  <span className="list-top-n-main">{item.name}</span>
+                  <span className="openInv-label">{item.name}</span>
                 </li>
               );
             })}

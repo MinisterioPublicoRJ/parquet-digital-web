@@ -4,16 +4,36 @@
 .page-tramitacao {
     grid-area: processingTime;
     display: grid;
-    height: 100vh;
+    grid-template-columns: 30% 40% 30%;
+    grid-auto-rows: 100%;
+    grid-template-areas:
+    "texts graph mainBoxTime";
+    overflow: hidden;
+    /* height: 100vh;
     width: 100%;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(12, minmax(0, 1fr));
     grid-template-areas:
     "texts processingTime mainBoxTime"
-    "texts processingTime mainBoxTime"
+    "texts processingTime mainBoxTime" */
 }
 
-.processingTimeChart {
+.pt-Texts {
+  background-color: purple;
+  grid-area: texts;
+}
+
+.pt-mainBox {
+  background-color: lightblue;
+  grid-area: mainBoxTime;
+}
+
+.pt-graph {
+  /* background-color: orange; */
+  grid-area: graph;
+}
+
+/* .processingTimeChart {
     display: flex;
 }
 .tramitacao-texts {
@@ -48,23 +68,30 @@
 }
 .pin{
     margin-top: 20px;
-}
+} */
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
-    .page-tramitacao {
+    /* .page-tramitacao {
       height: 200vh;
       grid-template-columns: repeat(2, 1fr);
       grid-template-areas:
       "texts texts"
       "processingTime processingTime"
       "mainBoxTime";
+    } */
+    .page-tramitacao {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-areas:
+      "texts mainBoxTime"
+      "graph graph";
     }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-    .page-tramitacao {
+    /* .page-tramitacao {
       align-items: center;
       display: flex;
       flex-direction: column;
@@ -78,5 +105,13 @@
       "."
       "."
       ;
+    } */
+    .page-tramitacao {
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-areas:
+      "texts"
+      "mainBoxTime"
+      "graph";
     }
 }

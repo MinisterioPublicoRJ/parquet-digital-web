@@ -7,7 +7,7 @@ import { ProcessingTimeChart } from '../../components/graphs';
 import PinAzul from '../../assets/svg/pinAzul';
 import PinPreto from '../../assets/svg/pinPreto';
 import PinVermelho from '../../assets/svg/pinVermelho';
-
+import ChartPointComponent from '../../pages/ProcessingTime/chartPointComponent'
 const ProcessingTime = () => {
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
@@ -49,6 +49,7 @@ const ProcessingTime = () => {
   return (
     <article className="page-tramitacao">
       <div className="tramitacao-texts">
+        <ChartPointComponent />
         <h3>Tempo de tramitação</h3>
         <p>
           Avaliei que o período de tramitação de processos na sua promotoria

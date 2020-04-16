@@ -16,6 +16,7 @@ export default function MarkSlower() {
           rx="12.499"
           ry="12.499"
           transform="translate(2.672 2.678)"
+          fill="#ffff"
         />
         <path
           fill="#FF0086"
@@ -24,7 +25,7 @@ export default function MarkSlower() {
           transform="translate(-943.463 -680.643)"
         />
         <g transform="translate(10.193 10.2)">
-          <ellipse className="b" cx="4.978" cy="4.978" rx="4.978" ry="4.978" />
+          <ellipse className="b" cx="4.978" cy="4.978" rx="4.978" ry="4.978" fill="#FF0086" />
         </g>
       </g>
     </svg>

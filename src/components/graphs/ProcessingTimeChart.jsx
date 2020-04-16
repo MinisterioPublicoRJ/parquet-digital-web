@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { VictoryPie, VictoryLabel, VictoryChart, VictoryScatter } from 'victory';
-import ScatterComponent from '../../pages/ProcessingTime/scatterComponent';
+import ChartPointComponent from '../../pages/ProcessingTime/chartPointComponent';
 
 const graphicColorMain = ['#A256BA', '#56E8E1', '#A256BA', '#42DCA7']; // Colors
 const graphicColor = ['#F8F9FB']; // Colors
@@ -16,7 +16,7 @@ function TempoTramitacaoChart() {
   return (
     <>
       <svg width={380} height={300}>
-        <VictoryChart domain={{ x: [0, 5], y: [0, 8] }} width={300} height={300} standalone={false}>
+        <VictoryChart width={300} height={300} standalone={false}>
           <VictoryPie
             width={480}
             height={450}
@@ -27,9 +27,16 @@ function TempoTramitacaoChart() {
             opacity={0.1}
             padding={5}
           />
-          <circle cx="150" cy="150" r="40" fill="none" stroke="#B3B3B3" strokeWidth={1} />
+          <circle
+            cx="150"
+            cy="150"
+            r="40"
+            fill="none"
+            stroke="#B3B3B3"
+            style={{ fontSize: 20, fontWeight: 'bold' }}
+          />
           <VictoryLabel textAnchor="middle" x={150} y={150} text="620" />
-          <VictoryScatter dataComponent={<ScatterComponent />} />
+          <VictoryScatter data={graphicData} dataComponent={<ChartPointComponent />} />
           <VictoryPie
             width={380}
             height={400}

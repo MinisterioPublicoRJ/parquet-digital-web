@@ -4,14 +4,11 @@ import MarkMind from '../../assets/svg/markMind';
 import Markfaster from '../../assets/svg/markFaster';
 import MarkSlower from '../../assets/svg/markSlower';
 
-const ChartPoint = () => {
-  const [chartPointGraphic, setchartPointGraphic] = useState(null);
-
-  const buildPoints = raw =>{
-  }
+const ChartPointComponent = () => {
+  const [ChartPointComponent, setchartPointComponent] = useState(null);
 
   return (
-    <div>
+    <div className="box-chart-point">
       <MarkMind />
       <MarkSlower />
       <Markfaster />
@@ -19,4 +16,4 @@ const ChartPoint = () => {
   );
 };
 
-export default ChartPoint;
+export default ChartPointComponent;

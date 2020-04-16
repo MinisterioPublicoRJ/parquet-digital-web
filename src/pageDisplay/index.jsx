@@ -169,7 +169,7 @@ class PageDisplay extends React.Component {
             )}
           />
 {/*           <Alerts />
- */}          <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+ */}      <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
           <ProcessingTime />
         </HashRouter>
       </div>

@@ -1,12 +1,14 @@
 import React from 'react';
 
-export default function MarkMind() {
+export default function MarkMind({ x, y }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="30.358"
       height="30.357"
       viewBox="0 0 30.358 30.357"
+      x={x -15}
+      y={y -15}
     >
       <g transform="translate(0)">
         <ellipse

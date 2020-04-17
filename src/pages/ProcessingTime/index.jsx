@@ -32,9 +32,9 @@ const ProcessingTime = () => {
     ];
 
     const points = [
-      { x: min, y: 100, type: 'min' },
-      { x: average, y: 100, type: 'average' },
-      { x: max, y: 100, type: 'max' },
+      { x: 2, y: min/max, type: 'min' },
+      { x: 1, y: (average - min) / max, type: 'average' },
+      { x: 0, y: (max - average) / max, type: 'max' },
     ];
     setChartData({ pieData, points, domain, organAvg });
   };

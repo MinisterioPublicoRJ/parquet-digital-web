@@ -1,21 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { VictoryPie, VictoryLabel, VictoryChart, VictoryScatter, VictoryAxis } from 'victory';
+import React from 'react';
+import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
 import ChartPointComponent from '../../pages/ProcessingTime/chartPointComponent';
 import CHART_THEME from '../../themes/chartThemes';
 
-const graphicColorMain = ['#A256BA', '#56E8E1', '#A256BA', '#42DCA7']; // Colors
 const graphicColor = ['#F8F9FB']; // Colors
-// const wantedGraphicData = [{ y: 310 }, { y: 350 }, { y: 740 }, { y: 120 }]; // Data that we want to display
 
 function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
   const { min, max } = domain;
-  console.log('domain', min, max, scatter);
-  // TODO: animate VictoryPie
-  // const [graphicData, setGraphicData] = useState(data);
-  //
-  // useEffect(() => {
-  //   setGraphicData(wantedGraphicData); // Setting the data that we want to display
-  // }, []);
 
   const victoryChartSettings = {
     domain: { x: [min, max], y: [0, 100] },
@@ -24,13 +15,6 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
     padding: { top: 20, bottom: -20, left: 0, right: 0 },
     standalone: false,
     startAngle: 10,
-    style: {
-      parent: {
-        maxHeight: '100%',
-        padding: 0,
-        margin: 0,
-      },
-    },
     width: 200,
   };
 
@@ -44,26 +28,42 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
     startAngle: -120,
     style: {
       data: { fill: '#F4F5FA' },
-    }
+    },
   };
 
   const chartPieSettings = {
     endAngle: 80,
     innerRadius: 90,
     height: 200,
-    labelPosition: 'endAngle',
+    labelRadius: 105,
+    // labelPosition: 'endAngle',
     radius: 100,
     startAngle: -110,
     padAngle: 2,
     sortKey: 'x',
     style: {
-      labels: { fontSize: 15, fontWeight: '400', height: 10, fill: ({ datum }) => datum.color },
+      labels: {
+        fontSize: 15,
+        fontWeight: '400',
+        height: 10,
+        fill: ({ datum }) => datum.color,
+        angle: ({ datum }) => 90
+      },
       data: { fill: ({ datum }) => datum.color },
     },
   };
 
-  const scatterSettings = {
-    style: { data: { fill: '#c43a31' } },
+  const labelsPieSettings = {
+    endAngle: 80,
+    height: 200,
+    innerRadius: 90,
+    labelComponent: <ChartPointComponent />,
+    labelPosition: 'endAngle',
+    labelRadius: 95,
+    radius: 100,
+    sortKey: 'x',
+    startAngle: -110,
+    style: { data: { opacity: 0 } },
   };
 
   return (
@@ -77,7 +77,7 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
         {/* GRAPHS AND AXIS */}
         <VictoryAxis style={{ axis: { stroke: 'none' } }} />
         <VictoryPie {...chartPieSettings} data={data} />
-        <VictoryScatter data={scatter} {...scatterSettings} />
+        <VictoryPie {...labelsPieSettings} data={scatter} />
       </VictoryChart>
     </svg>
   );

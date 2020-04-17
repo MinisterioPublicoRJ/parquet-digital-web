@@ -16,6 +16,7 @@ import {
   RADAR_DATA,
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
+  PROCESSES_LIST,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -34,6 +35,7 @@ import {
   radarTransform,
   alertsTransform,
   tramitacaoTransform,
+  listProcesses,
 } from './transforms';
 
 import { setUser } from '../user';
@@ -156,6 +158,11 @@ const Api = (() => {
 
     return tramitacaoTransform(data);
   }
+  async function getListProcesses({ orgao, token }) {
+    const { data } = await axios.get(PROCESSES_LIST({ orgao }), buildRequestConfig(token));
+
+    return listProcesses(data);
+  }
 
   return {
     login,
@@ -173,6 +180,7 @@ const Api = (() => {
     getRadarData,
     getAlertsList,
     getProcessingTimeData,
+    getListProcesses,
   };
 })();
 

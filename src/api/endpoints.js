@@ -29,4 +29,4 @@ export const ALERTS_LIST = t(`${BASE_URL}/alertas/\${orgao}`);
 
 export const PROCESSING_TIME_DATA = t(`${BASE_URL}/tempo-tramitacao/\${orgao}`);
 
-export const PROCESSES_LIST = t(`${BASE_URL}/lista/processos/\${orgao}`);
+export const PROCESSES_LIST = t(`${BASE_URL}/lista/processos/\${400554}`);

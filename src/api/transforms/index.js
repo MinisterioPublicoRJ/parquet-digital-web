@@ -6,7 +6,6 @@ export { default as openInvestigationsDetailsTransform } from './openInvestigati
 export { default as radarTransform } from './radar';
 export { default as alertsTransform } from './alertsTransform';
 export { default as tramitacaoTransform } from './processing';
-export { default as listProcesses } from './listProcesses';
 
 export const closedCasesTransform = ({ suamesa_finalizados }) => suamesa_finalizados;
 export const openCasesTransform = ({ suamesa_vistas }) => suamesa_vistas;
@@ -14,3 +13,4 @@ export const openInvestigationsTransform = ({ suamesa_investigacoes }) => suames
 export const courtCasesTransform = ({ suamesa_processos }) => suamesa_processos;
 export const todayOutTransform = ({ percent_rank }) => percent_rank;
 export const openCasesListTransform = data => data;
+export const listProcessesTransform = data => data;

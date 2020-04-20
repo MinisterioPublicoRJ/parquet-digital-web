@@ -4,6 +4,8 @@ import './styles.css';
 import { getUser } from '../../user';
 import Api from '../../api';
 import { Spinner } from '..';
+import { Table } from '../../components/layoutPieces/Table';
+
 import TableProcesses from '../../components/TableProcesses';
 
 const ListProcesses = () => {
@@ -44,10 +46,17 @@ const ListProcesses = () => {
     };
     loadData();
   }, []);
+
+  /*if (!ListProcesses) {
+    return <div>loading</div>;
+  }*/
+
   return (
     <div className="page-lista-processos">
       <h3>Lista de processos</h3>
-      <TableProcesses data={data} />
+      <div className="lista-processos">
+        <TableProcesses data={data} />
+      </div>
     </div>
   );
 };

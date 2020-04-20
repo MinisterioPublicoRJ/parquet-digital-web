@@ -18,8 +18,13 @@
   flex: 1;
   justify-content: space-between;
 }
+.page-lista-processos{
+  display: flex;
+  flex-direction: column;
+  flex: 2 1;
+  overflow-y: scroll;
+}
 
-.page-lista-processos {
-  flex: 2;
+.lista-processos {
   overflow-y: scroll;
 }

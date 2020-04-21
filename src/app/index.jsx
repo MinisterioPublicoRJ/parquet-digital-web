@@ -197,8 +197,12 @@ class PageDisplay extends React.Component {
       <HashRouter>
         <Switch>
           <Redirect exact from="/" to="/tutela" />
-          <Route path="/pip" component={Pip} />
-          <Route path="/tutela" component={Tutela} />
+          <Route path="/pip">
+            <Pip user={user} />
+          </Route>
+          <Route path="/tutela">
+            <Tutela user={user} />
+          </Route>
         </Switch>
       </HashRouter>
     );

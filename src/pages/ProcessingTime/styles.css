@@ -141,7 +141,6 @@
 
     .pt-Texts p {
       width: 80%;
-      /* background-color: pink; */
     }
 }
 
@@ -164,10 +163,21 @@
     } */
     .page-tramitacao {
       grid-template-columns: 100%;
-      grid-template-rows: repeat(3, 1fr);
+      grid-template-rows: 15% 45% 40%;
       grid-template-areas:
       "texts"
-      "mainBoxTime"
-      "graph";
+      "graph"
+      "mainBoxTime";
+    }
+
+    .pt-mainBox {
+      font-size: var(--defaultTextSize);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .pt-legends-highlight {
+      font-size: calc(var(--defaultTextSize) * 1.2);
     }
 }

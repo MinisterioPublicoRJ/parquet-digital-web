@@ -10,19 +10,19 @@ const Row = ({ record }) => {
     </tr>
   );
 };
-const TableProcesses = ({ data }) => {
+const TableProcesses = ({ data, listProcesses }) => {
   const keys = Object.keys(data[0]);
   return (
     <table>
       <thead>
         <tr>
           {keys.map(key => (
-            <th key={key}>{key}</th>
+            <th scope="col" key={key}>{key}</th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {data.map(record => (
+        {listProcesses.map(record => (
           <Row record={record} />
         ))}
       </tbody>

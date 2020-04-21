@@ -7,7 +7,6 @@ import MarkSlower from '../../assets/svg/markSlower';
 const ChartPointComponent = ({ x, y, datum, origin, ...props }) => {
   const { type } = datum;
   let point;
-  console.log('origin', x, y, datum);
 
   switch (type) {
     case 'min':

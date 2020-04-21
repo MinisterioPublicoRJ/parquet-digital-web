@@ -5,7 +5,11 @@ import CHART_THEME from '../../themes/chartThemes';
 
 const graphicColor = ['#F8F9FB']; // Colors
 
-function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
+function LabelWrapper(props) {
+  return <VictoryLabel {...props} angle={props.datum.startAngle} />
+};
+
+function TempoTramitacaoChart({ data, scatter, labelText, domain, isBetter }) {
   const { min, max } = domain;
 
   const victoryChartSettings = {
@@ -35,8 +39,9 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
     endAngle: 80,
     innerRadius: 90,
     height: 200,
-    labelRadius: 105,
-    // labelPosition: 'endAngle',
+    labelComponent: <LabelWrapper />,
+    labelRadius: 110,
+    labelPosition: 'endAngle',
     radius: 100,
     startAngle: -110,
     padAngle: 2,
@@ -47,7 +52,6 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
         fontWeight: '400',
         height: 10,
         fill: ({ datum }) => datum.color,
-        angle: ({ datum }) => 90
       },
       data: { fill: ({ datum }) => datum.color },
     },

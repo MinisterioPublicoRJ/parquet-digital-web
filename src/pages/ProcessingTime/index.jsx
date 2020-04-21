@@ -3,11 +3,15 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
+import { SectionTitle } from '../../components';
 import { ProcessingTimeChart } from '../../components/graphs';
 import PinAzul from '../../assets/svg/pinAzul';
-import PinPreto from '../../assets/svg/pinPreto';
 import PinVermelho from '../../assets/svg/pinVermelho';
-import ChartPointComponent from '../../pages/ProcessingTime/chartPointComponent';
+import MarkMind from '../../assets/svg/markMind';
+import Markfaster from '../../assets/svg/markFaster';
+import MarkSlower from '../../assets/svg/markSlower';
+// import ChartPointComponent from './chartPointComponent';
+
 const ProcessingTime = () => {
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
@@ -32,7 +36,7 @@ const ProcessingTime = () => {
     ];
 
     const points = [
-      { x: 2, y: min/max, type: 'min' },
+      { x: 2, y: min / max, type: 'min' },
       { x: 1, y: (average - min) / max, type: 'average' },
       { x: 0, y: (max - average) / max, type: 'max' },
     ];
@@ -51,6 +55,8 @@ const ProcessingTime = () => {
   if (!processingTime.meta || !chartData) {
     return <div>loading</div>;
   }
+
+  const isBetter = processingTime.orgaoData.average >= processingTime.pacoteData.average;
   // return (
   //   <article className="page-tramitacao">
   //     <div className="tramitacao-texts">
@@ -100,16 +106,83 @@ const ProcessingTime = () => {
 
   return (
     <article className="page-tramitacao">
-      <div className="pt-Texts">a</div>
+      <div className="pt-Texts">
+        <SectionTitle value="tempo de tramitação" />
+        <p>
+          Avaliei que o período de tramitação de processos na sua promotoria
+          <strong>
+            {isBetter ? ' está mais rápido que a média da casa ' : 'está abaixo da média da casa'}
+          </strong>
+          entre aquelas de mesma atribuição.
+          {'\n'}
+          {isBetter && <strong>Muito Bom!</strong>}
+        </p>
+      </div>
       <div className="pt-graph">
         <ProcessingTimeChart
           data={chartData.pieData}
           scatter={chartData.points}
           domain={chartData.domain}
-          labelText={chartData.organAvg}
+          labelText={isBetter ? `${chartData.organAvg}\nMuito bom` : chartData.organAvg}
         />
       </div>
-      <div className="pt-mainBox">a</div>
+      <div className="pt-mainBox">
+        <div className="pt-legends">
+          <div className="pt-legends-icon">
+            <PinAzul />
+          </div>
+          <div className="pt-legends-text">
+            <span className="pt-legends-highlight" style={{ color: '#56E8E1' }}>
+              {processingTime.orgaoData.min.toFixed(0)}
+            </span>
+            trânsito mais rápido da sua promotoria
+          </div>
+        </div>
+        <div className="pt-legends">
+          <div className="pt-legends-icon">
+            <PinVermelho />
+          </div>
+          <div className="pt-legends-text">
+            <span className="pt-legends-highlight" style={{ color: '#FF0086' }}>
+              {processingTime.orgaoData.max.toFixed(0)}
+            </span>
+            trânsito mais lento da sua promotoria
+          </div>
+        </div>
+        <div className="pt-legends">
+          <div className="pt-legends-icon">
+            <Markfaster />
+          </div>
+          <div className="pt-legends-text">
+            <span className="pt-legends-highlight" style={{ color: '#42DCA7' }}>
+              {processingTime.pacoteData.min.toFixed(0)}
+            </span>
+            trânsito mais rápido do pacote
+          </div>
+        </div>
+        <div className="pt-legends">
+          <div className="pt-legends-icon">
+            <MarkMind />
+          </div>
+          <div className="pt-legends-text">
+            <span className="pt-legends-highlight" style={{ color: '#6D86EC' }}>
+              {processingTime.pacoteData.average.toFixed(0)}
+            </span>
+            trânsito médio do seu pacote
+          </div>
+        </div>
+        <div className="pt-legends">
+          <div className="pt-legends-icon">
+            <MarkSlower />
+          </div>
+          <div className="pt-legends-text">
+            <span className="pt-legends-highlight" style={{ color: '#FF0086' }}>
+              {processingTime.pacoteData.max.toFixed(0)}
+            </span>
+            trânsito mais lento do seu pacote
+          </div>
+        </div>
+      </div>
     </article>
   );
 };

@@ -9,10 +9,10 @@ import { HashRouter, Route } from 'react-router-dom';
 
 import { SectionTitle, MainTitle, ChangeModeButton } from '../components';
 
-import Today from '../pages/Today';
-import YourDesk from '../pages/YourDesk';
-import Alerts from '../pages/Alerts';
-import PerformanceRadar from '../pages/PerformanceRadar';
+import Today from '../sections/Today';
+import YourDesk from '../sections/YourDesk';
+import Alerts from '../sections/Alerts';
+import PerformanceRadar from '../sections/PerformanceRadar';
 import Loader from '../loader';
 import Api from '../api';
 import { getUser } from '../user';

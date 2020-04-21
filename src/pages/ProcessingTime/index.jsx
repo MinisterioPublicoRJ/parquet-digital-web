@@ -5,12 +5,12 @@ import Api from '../../api';
 import { getUser } from '../../user';
 import { SectionTitle } from '../../components';
 import { ProcessingTimeChart } from '../../components/graphs';
+
 import PinAzul from '../../assets/svg/pinAzul';
 import PinVermelho from '../../assets/svg/pinVermelho';
 import MarkMind from '../../assets/svg/markMind';
 import Markfaster from '../../assets/svg/markFaster';
 import MarkSlower from '../../assets/svg/markSlower';
-// import ChartPointComponent from './chartPointComponent';
 
 const ProcessingTime = () => {
   const [processingTime, setProcessingTime] = useState({});
@@ -57,56 +57,10 @@ const ProcessingTime = () => {
   }
 
   const isBetter = processingTime.orgaoData.average >= processingTime.pacoteData.average;
-  // return (
-  //   <article className="page-tramitacao">
-  //     <div className="tramitacao-texts">
-  //       <ChartPointComponent />
-  //       <h3>Tempo de tramitação</h3>
-  //       <p>
-  //         Avaliei que o período de tramitação de processos na sua promotoria
-  //         <strong> está mais rápido que a média da casa </strong>
-  //         entre aquelas de mesma atribuição.
-  //         <strong>Muito Bom</strong>
-  //       </p>
-  //     </div>
-  //     <div className="processingTimeChart" />
-  //     <ProcessingTimeChart data={chartData.pieData} />
-  //     <div />
-  //     <div className="main-box-time">
-  //       <div className="second-box-time">
-  //         <div className="pin">
-  //           <PinPreto />
-  //         </div>
-  //         <div className="third-box-time">
-  //           <h3 style={{ color: '#474757' }}>{processingTime.orgaoData.min} dias</h3>
-  //           <p>Transito mais rápido da sua promotoria</p>
-  //         </div>
-  //       </div>
-  //       <div className="second-box-time">
-  //        <div className="pin">
-  //           <PinAzul />
-  //        </div>
-  //         <div className="third-box-time">
-  //           <h3 style={{ color: '#56E8E1' }}>{processingTime.orgaoData.max} dias</h3>
-  //           <p>Transito mais lento da sua promotoria</p>
-  //         </div>
-  //       </div>
-  //       <div className="second-box-time">
-  //       <div className="pin">
-  //         <PinVermelho />
-  //       </div>
-  //         <div className="third-box-time">
-  //           <h3 style={{ color: '#FF0086' }}>{processingTime.orgaoData.average} dias</h3>
-  //           <p>Transito médio da sua promotoria</p>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </article>
-  // );
 
   return (
     <article className="page-tramitacao">
-      <div className="pt-Texts">
+      <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
         <p>
           Avaliei que o período de tramitação de processos na sua promotoria

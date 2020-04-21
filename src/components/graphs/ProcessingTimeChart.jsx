@@ -1,15 +1,37 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
 import ChartPointComponent from '../../pages/ProcessingTime/chartPointComponent';
-import CHART_THEME from '../../themes/chartThemes';
 
 const graphicColor = ['#F8F9FB']; // Colors
 
+// workaround to use dynamic angles when placing the labels outside the pie
+// props come from Victory itself
+// https://formidable.com/open-source/victory/docs/victory-label/
 function LabelWrapper(props) {
-  return <VictoryLabel {...props} angle={props.datum.startAngle} />
+  return <VictoryLabel {...props} angle={props.datum.startAngle} />;
+}
+
+const propTypes = {
+  data: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+    label: PropTypes.string,
+    color: PropTypes.string,
+  }).isRequired,
+  scatter: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+    type: PropTypes.string,
+  }).isRequired,
+  labelText: PropTypes.string.isRequired,
+  domain: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }).isRequired,
 };
 
-function TempoTramitacaoChart({ data, scatter, labelText, domain, isBetter }) {
+function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
   const { min, max } = domain;
 
   const victoryChartSettings = {
@@ -86,4 +108,6 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain, isBetter }) {
     </svg>
   );
 }
+
+TempoTramitacaoChart.propTypes = propTypes;
 export default TempoTramitacaoChart;

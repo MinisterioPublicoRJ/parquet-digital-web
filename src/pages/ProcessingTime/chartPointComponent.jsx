@@ -1,10 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './styles.css';
 import MarkMind from '../../assets/svg/markMind';
 import Markfaster from '../../assets/svg/markFaster';
 import MarkSlower from '../../assets/svg/markSlower';
 
-const ChartPointComponent = ({ x, y, datum, origin, ...props }) => {
+// This props are supplied by Victory itself
+// https://formidable.com/open-source/victory/docs/common-props/#labelcomponent
+const proptypes = {
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  datum: PropTypes.shape({ type: PropTypes.string }).isRequired,
+};
+
+const ChartPointComponent = ({ x, y, datum }) => {
   const { type } = datum;
   let point;
 
@@ -25,4 +35,5 @@ const ChartPointComponent = ({ x, y, datum, origin, ...props }) => {
   return point;
 };
 
+ChartPointComponent.proptypes = proptypes;
 export default ChartPointComponent;

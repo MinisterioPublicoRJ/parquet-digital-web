@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { getUser } from '../../user';
 import Api from '../../api';
-import { Spinner } from '..';
 import TableProcesses from '../../components/TableProcesses';
 
 const ListProcesses = () => {
@@ -28,24 +27,17 @@ const ListProcesses = () => {
     loadData();
   }, []);
 
-  /* if (!ListProcesses) {
+  if (!ListProcesses) {
     return <div>loading</div>;
-  } */
-
+  }
   return (
     <div className="page-lista-processos">
       <h3>Lista de processos</h3>
       <div className="lista-processos">
-        <TableProcesses listProcesses={listProcesses} data={data} />
+        <TableProcesses list={listProcesses} data={data} />
       </div>
     </div>
   );
 };
 
 export default ListProcesses;
-
-/*<div className="box-main">
-  {listProcesses.map((listProcesses, index) => {
-    return <p key={index}>{listProcesses.ultimo_andamento}</p>;
-  })}
-</div>;*/

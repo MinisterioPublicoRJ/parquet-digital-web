@@ -1,28 +1,33 @@
 import React from 'react';
 
-const Row = ({ record }) => {
-  const keys = Object.keys(record);
+const Head = ({keys}) => {
   return (
-    <tr key={record.id}>
-      {
-        keys.map(key => <td key={key}>{record[key]}</td> )
-      }
+    <thead>
+      <tr>
+        {keys.map(key => (
+          <th key={key}>{key}</th>
+        ))}
+      </tr>
+    </thead>
+  );
+};
+const Row = ({ record }) => {
+  return (
+    <tr>
+      <td>{record.docu_nr_mp}</td>
+      <td>{record.docu_nr_externo}</td>
+      <td>{record.dt_ultimo_andamento}</td>
+      <td>{record.classe_documento}</td>
     </tr>
   );
 };
-const TableProcesses = ({ data, listProcesses }) => {
+const TableProcesses = ({ data, list }) => {
   const keys = Object.keys(data[0]);
   return (
     <table>
-      <thead>
-        <tr>
-          {keys.map(key => (
-            <th scope="col" key={key}>{key}</th>
-          ))}
-        </tr>
-      </thead>
+      <Head keys={keys}/>
       <tbody>
-        {listProcesses.map(record => (
+        {list.map(record => (
           <Row record={record} />
         ))}
       </tbody>

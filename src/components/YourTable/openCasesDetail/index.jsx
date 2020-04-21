@@ -147,6 +147,7 @@ class OpenCasesDetail extends React.Component {
     const tabLoading =
       !emptyTab && !this.state[`${activeTab}Details`] && !this.state[`${activeTab}Error`];
 
+      console.log('sua mesa', this.state[`${activeTab}Details`]);
     return (
       <>
         <div className="time-charts-view">{this.renderCharts(chartData)}</div>

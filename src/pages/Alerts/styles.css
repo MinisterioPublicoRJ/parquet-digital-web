@@ -5,3 +5,21 @@
   height: 100%;
   overflow-y: scroll;
 }
+.alertsHeader{
+  display: flex;
+  justify-content: space-around;
+}
+.totalAlerts{
+  margin-top: 10px;
+  width: 44px;
+  height: 23px;
+  background-color: #f86c72 ;
+  border-radius: 20px;
+}
+.totalAlerts span{
+  color: white;
+  font-size: 15px;
+  margin-left: 15px;
+  margin-top: 5px;
+  font-weight: bold;
+}

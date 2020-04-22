@@ -7,6 +7,8 @@
   display: flex;
   font-family: var(--defaultFont);
   margin: 1vh;
+  width: 391px;
+  height: 85px;
 }
 
 .badgeLeft {
@@ -15,7 +17,8 @@
   border-radius: 7px 0 0 7px;
   display: flex;
   justify-content: center;
-  width: 20%;
+  height: 85px;
+  width: 61px;
 }
 
 .badgeRight {

@@ -36,7 +36,7 @@ class Alerts extends React.Component {
     switch (alert.alertCode) {
       case 'PPFP':
         icon = <ClockIcon />;
-        message = `O documento ${alert.docNum} está sem prorrogação por mais de um ano`;
+        message = `Há 01 procedimento preparatório com prazo próximo de vencer ${alert.docNum} Converter em Inquérito Civil`;
         background = '#f86c72';
         break;
 
@@ -50,6 +50,12 @@ class Alerts extends React.Component {
         icon = <Law />;
         message = `Você obteve uma decisão favorável no processo ${alert.docDk}`;
         background = '#71D0A4';
+        break;
+
+      case 'VADF':
+        icon = <ClockIcon />;
+        message = `O procedimento ${alert.docNum} completará 01 ano em 09 dias!`;
+        background = '#f86c72';
         break;
     }
 
@@ -65,6 +71,9 @@ class Alerts extends React.Component {
       <aside className="alertsWrapper">
         <div className="alertsHeader">
           <SectionTitle value="central de alertas" />
+          <div className="totalAlerts">
+            <span>25</span>
+          </div>
         </div>
         <div className="alertsBody">
           {alerts.map((alert, i) => {

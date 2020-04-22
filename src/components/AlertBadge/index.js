@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css'
+import './styles.css';
 
 function AlertBadge({ icon, message, action, actionLink,iconBg }) {
   return (

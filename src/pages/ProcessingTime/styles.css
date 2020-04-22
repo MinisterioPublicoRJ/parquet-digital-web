@@ -56,6 +56,22 @@
   font-size: calc(var(--defaultTextSize) * 0.9);
 }
 
+.turquoise {
+  color: var(--pt-turquoise);
+}
+
+.pink {
+  color: var(--pt-pink);
+}
+
+.green {
+  color: var(--pt-green);
+}
+
+.purple {
+  color: var(--pt-purple);
+}
+
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
     .page-tramitacao {

@@ -154,7 +154,7 @@ const Api = (() => {
   async function getAlertsList({ orgao, token }) {
     const { data } = await axios.get(ALERTS_LIST({ orgao }), buildRequestConfig(token));
 
-    return tramitacaoTransform(data);
+    return alertsTransform(data);
   }
 
   return {

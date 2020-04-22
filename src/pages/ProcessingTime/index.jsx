@@ -5,6 +5,7 @@ import Api from '../../api';
 import { getUser } from '../../user';
 import { SectionTitle } from '../../components';
 import { ProcessingTimeChart } from '../../components/graphs';
+import { PT_PIE_COLORS } from '../../themes/chartThemes';
 
 import PinAzul from '../../assets/svg/pinAzul';
 import PinVermelho from '../../assets/svg/pinVermelho';
@@ -28,11 +29,16 @@ const ProcessingTime = () => {
     // using the midpoints, make three sections to draw "good", "average" and "bad" time ranges
     const pieData = [
       // 'good' section from min until halfway to average
-      { x: 2, y: halfMinAvg / max, color: '#42DCA7', label: halfMinAvg.toFixed(0) },
+      { x: 2, y: halfMinAvg / max, color: PT_PIE_COLORS[0], label: halfMinAvg.toFixed(0) },
       // 'average' section, from the end of the last section until halfway to max
-      { x: 1, y: (halfMaxAvg - halfMinAvg) / max, color: '#6D86EC', label: halfMaxAvg.toFixed(0) },
+      {
+        x: 1,
+        y: (halfMaxAvg - halfMinAvg) / max,
+        color: PT_PIE_COLORS[1],
+        label: halfMaxAvg.toFixed(0),
+      },
       // 'bad' section, from the last section all the way to max
-      { x: 0, y: (max - halfMaxAvg) / max, color: '#A256BA', label: max.toFixed(0) },
+      { x: 0, y: (max - halfMaxAvg) / max, color: PT_PIE_COLORS[2], label: max.toFixed(0) },
     ];
 
     const points = [
@@ -86,7 +92,7 @@ const ProcessingTime = () => {
             <PinAzul />
           </div>
           <div className="pt-legends-text">
-            <span className="pt-legends-highlight" style={{ color: '#56E8E1' }}>
+            <span className="pt-legends-highlight turquoise">
               {processingTime.orgaoData.min.toFixed(0)}
             </span>
             trânsito mais rápido da sua promotoria
@@ -97,7 +103,7 @@ const ProcessingTime = () => {
             <PinVermelho />
           </div>
           <div className="pt-legends-text">
-            <span className="pt-legends-highlight" style={{ color: '#FF0086' }}>
+            <span className="pt-legends-highlight pink">
               {processingTime.orgaoData.max.toFixed(0)}
             </span>
             trânsito mais lento da sua promotoria
@@ -108,7 +114,7 @@ const ProcessingTime = () => {
             <Markfaster />
           </div>
           <div className="pt-legends-text">
-            <span className="pt-legends-highlight" style={{ color: '#42DCA7' }}>
+            <span className="pt-legends-highlight green">
               {processingTime.pacoteData.min.toFixed(0)}
             </span>
             trânsito mais rápido do pacote
@@ -119,7 +125,7 @@ const ProcessingTime = () => {
             <MarkMind />
           </div>
           <div className="pt-legends-text">
-            <span className="pt-legends-highlight" style={{ color: '#6D86EC' }}>
+            <span className="pt-legends-highlight purple">
               {processingTime.pacoteData.average.toFixed(0)}
             </span>
             trânsito médio do seu pacote
@@ -130,7 +136,7 @@ const ProcessingTime = () => {
             <MarkSlower />
           </div>
           <div className="pt-legends-text">
-            <span className="pt-legends-highlight" style={{ color: '#FF0086' }}>
+            <span className="pt-legends-highlight pink">
               {processingTime.pacoteData.max.toFixed(0)}
             </span>
             trânsito mais lento do seu pacote

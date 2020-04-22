@@ -7,6 +7,7 @@ import { SectionTitle, AlertBadge } from '../../components';
 
 import ClockIcon from '../../assets/svg/clock';
 import CorujaGate from '../../assets/svg/corujaGate';
+import Law from '../../assets/svg/law';
 
 class Alerts extends React.Component {
   constructor(props) {
@@ -28,8 +29,8 @@ class Alerts extends React.Component {
     // this will be completed for all alert types later
     let icon = null;
     let message = null;
-    let action = null;
-    let actionLink = null;
+    const action = null;
+    const actionLink = null;
     let background = null;
 
     switch (alert.alertCode) {
@@ -39,17 +40,17 @@ class Alerts extends React.Component {
         background = '#f86c72';
         break;
 
-        case 'DCTJ':
+      case 'DCTJ':
         icon = <CorujaGate />;
         message = `O Gate finalizou a IT solicitada no procedimento ${alert.docNum}`;
         background = '#374354';
         break;
 
-        case 'IC1A':
-          icon = <CorujaGate />;
-          message = `Você obteve uma decisão favorável no processo ${alert.docDk}`;
-          background = '#71D0A4';
-          break;
+      case 'IC1A':
+        icon = <Law />;
+        message = `Você obteve uma decisão favorável no processo ${alert.docDk}`;
+        background = '#71D0A4';
+        break;
     }
 
     return { icon, message, action, actionLink, background };

@@ -6,6 +6,7 @@ import { getUser } from '../../user';
 import { SectionTitle, AlertBadge } from '../../components';
 
 import ClockIcon from '../../assets/svg/clock';
+import CorujaGate from '../../assets/svg/corujaGate';
 
 class Alerts extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class Alerts extends React.Component {
 
   async getAlertsList() {
     const res = await Api.getAlertsList(getUser());
+    console.log(res);
     this.setState({ alerts: res, isLoading: false });
   }
 
@@ -36,6 +38,18 @@ class Alerts extends React.Component {
         message = `O documento ${alert.docNum} está sem prorrogação por mais de um ano`;
         background = '#f86c72';
         break;
+
+        case 'DCTJ':
+        icon = <CorujaGate />;
+        message = `O Gate finalizou a IT solicitada no procedimento ${alert.docNum}`;
+        background = '#374354';
+        break;
+
+        case 'IC1A':
+          icon = <CorujaGate />;
+          message = `Você obteve uma decisão favorável no processo ${alert.docDk}`;
+          background = '#71D0A4';
+          break;
     }
 
     return { icon, message, action, actionLink, background };

@@ -2,8 +2,6 @@
 
 .alertsWrapper {
   grid-area: alerts;
-  height: 100%;
-  overflow-y: scroll;
 }
 .alertsHeader{
   display: flex;
@@ -13,7 +11,7 @@
   margin-top: 10px;
   width: 44px;
   height: 23px;
-  background-color: #f86c72 ;
+  background-color: var(--danger);
   border-radius: 20px;
 }
 .totalAlerts span{
@@ -22,4 +20,16 @@
   margin-left: 15px;
   margin-top: 5px;
   font-weight: bold;
+}
+.alertsBody{
+  overflow-y: scroll;
+  height: 100%;
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .alertsWrapper {
+    overflow-y: scroll;
+    width: 100%;
+  }
 }

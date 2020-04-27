@@ -7,8 +7,10 @@
   display: flex;
   font-family: var(--defaultFont);
   margin: 1vh;
-  width: 391px;
   height: 85px;
+  color: var(--dark);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .badgeLeft {
@@ -34,3 +36,4 @@
   color: orange;
   text-align: left;
 }
+

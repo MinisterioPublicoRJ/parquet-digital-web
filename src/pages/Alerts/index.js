@@ -36,10 +36,10 @@ class Alerts extends React.Component {
     switch (alert.alertCode) {
       case 'PPFP':
         icon = <ClockIcon />;
-        message = `Há 01 procedimento preparatório com prazo próximo de vencer ${alert.docNum} Converter em Inquérito Civil`;
+        message =  "Há 01 procedimento preparatório com prazo próximo de vencer" + `<span>${alert.docNum} converter em inquerito policial</span>`;
         background = '#f86c72';
         break;
-
+        
       case 'DCTJ':
         icon = <CorujaGate />;
         message = `O Gate finalizou a IT solicitada no procedimento ${alert.docNum}`;
@@ -66,7 +66,6 @@ class Alerts extends React.Component {
     const { alerts, isLoading } = this.state;
 
     if (isLoading) return <aside>...</aside>;
-
     return (
       <aside className="alertsWrapper">
         <div className="alertsHeader">

@@ -25,12 +25,13 @@
   overflow-y: scroll;
   height: 100%;
 }
-.featuredMessage{
+.positiveDecision{
   color: var(--primary);
   border-bottom: 2px solid ;
 }
-.featuredMessageDecision{
-  color: var(--success);
+.negativeDecision{
+  color: var(--warning);
+  border-bottom: 2px solid ;
 }
 
 /* PHONES */

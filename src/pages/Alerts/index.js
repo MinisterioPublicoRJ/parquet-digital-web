@@ -9,10 +9,11 @@ import ClockIcon from '../../assets/svg/clock';
 import CorujaGate from '../../assets/svg/corujaGate';
 import Law from '../../assets/svg/law';
 import Home from '../../assets/svg/home';
-import MPRJ from '../../assets/svg/mprj';
-import TJRJ from '../../assets/svg/tjrj';
-import OUVIDORIA from '../../assets/svg/ouvidoria';
-
+import Mprj from '../../assets/svg/mprj';
+import Ouvidoria from '../../assets/svg/ouvidoria';
+import Va from '../../assets/svg/va';
+import Tjrj from '../../assets/svg/tjrj';
+import Csi from '../../assets/svg/csi';
 
 class Alerts extends React.Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class Alerts extends React.Component {
     const res = await Api.getAlertsList(getUser());
     console.log(res);
     this.setState({ alerts: res, isLoading: false });
+    let totalAlerts = res.reduce((totalAlerts, alertCode) => totalAlerts + res.alertCode);
   }
 
   cleanAlert(alert) {
@@ -41,7 +43,7 @@ class Alerts extends React.Component {
     switch (alert.alertCode) {
       case 'PPFP':
         icon = <ClockIcon />;
-        message = <span>Há 01 procedimento preparatório com prazo próximo de vencer<strong className="featuredMessage"> {alert.docNum} converter em inquerito policial -></strong></span>;
+        message = <span>Há 01 <strong>procedimento preparatório</strong> com prazo próximo de vencer </span>;
         background = '#f86c72';
         break;
 
@@ -63,22 +65,34 @@ class Alerts extends React.Component {
         background = '#f86c72';
         break;
 
-      case 'DCTJ':
+      case 'GATE':
         icon = <CorujaGate />;
         message = <span>O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento <strong>{alert.docNum}</strong></span>;
         background = '#374354';
         break;
 
-      case 'IC1A':
+      case 'CSI':
+        icon = <Csi />;
+        message = <span>A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento <strong>{alert.docNum}</strong></span>;
+        background = '#192440';
+        break;
+
+      case 'DECISAO':
         icon = <Law />;
-        message = <span>Você obteve uma <strong className="featuredMessageDecision">decisão favorável</strong> no processo <strong>{alert.docDk}</strong></span>;
+        message = <span>Você obteve uma <strong className="positiveDecision"> decisão favorável </strong> no processo <strong>{alert.docNum}</strong></span>;
         background = '#71D0A4';
         break;
 
+      case 'DECISAO':
+        icon = <Law />;
+        message = <span>Você obteve uma <strong className="negativeDecision"> decisão desfavorável </strong> no processo <strong>{alert.docNum}</strong></span>;
+        background = '#F86C72';
+        break;
+
       case 'VADF':
-        icon = <TJRJ />;
-        message = <span>O procedimento <strong>{alert.docNum}</strong> completará <strong>{alert.daysPassed}</strong> ano! <stron className="featuredMessage">{alert.docNum} realizar uma prorogação</stron></span>;
-        background = '#f86c72';
+        icon = <Va />;
+        message = <span>Você tem <strong>10 vistas abertas</strong> em <strong>documentos sinalizados como fechado</strong></span>;
+        background = '#28A7E0';
         break;
 
       case 'VADF':
@@ -88,20 +102,50 @@ class Alerts extends React.Component {
         break;
 
       case 'DCTJ':
-        icon = <MPRJ />;
-        message = <span>Há <strong>01 processo </strong>cujo <strong>orgão responsável</strong> está possivelmente <strong>desatualizado</strong></span>;
-        background = '#374354';
+        icon = <Tjrj />;
+        message = <span>Há <strong>10 processos criminais</strong>no TJRJ há <strong>mais de 60 dias</strong> sem retorno</span>;
+        background = '#F86C72';
         break;
 
-      case 'VADF':
-        icon = <OUVIDORIA />;
-        message = <span>O procedimento <strong>{alert.docNum}</strong> completará <strong>{alert.daysPassed}</strong> ano! <stron className="featuredMessage">{alert.docNum} realizar uma prorogação</stron></span>;
+      case 'DNTJ':
+        icon = <Tjrj />;
+        message = <span>Há <strong>20 processos não criminais</strong>no TJRJ há <strong>mais de 120 dias</strong> sem retorno</span>;
+        background = '#F86C72';
+        break;
+
+      case 'MVVD':
+        icon = <Ouvidoria />;
+        message = <span>Há <strong>10 processos</strong> com <strong>vitimas recorrentes</strong> de <spa>violência domestica</spa></span>;
+        background = '#F86C72';
+        break;
+
+      case 'DORD':
+        icon = <Mprj />;
+        message = <span>Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong> está possivelmente<strong> desatualizado</strong></span>;
         background = '#5C6FD9';
         break;
 
-      case 'DCTJ':
-        icon = <TJRJ />;
-        message = <span>O procedimento <strong>{alert.docNum}</strong> completará <strong>{alert.daysPassed}</strong> ano! <stron className="featuredMessage">{alert.docNum} realizar uma prorogação</stron></span>;
+      case 'OUVI':
+        icon = <Ouvidoria />;
+        message = <span>Há <strong>01 expediente</strong> de ouvidoria enviado porém<strong> não recebido</strong></span>;
+        background = '#5C6FD9';
+        break;
+
+      case 'OUVI':
+        icon = <ClockIcon />;
+        message = <span>Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong> está possivelmente<strong> desatualizado</strong></span>;
+        background = '#5C6FD9';
+        break;
+
+      case 'DT2I':
+        icon = <Home />;
+        message = <span>Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong> está possivelmente<strong> desatualizado</strong></span>;
+        background = '#5C6FD9';
+        break;
+
+      case 'PA1A':
+        icon = <ClockIcon />;
+        message = <span>Há <strong>05 processos administrativos</strong> abertos <strong>há mais de 1 ano</strong></span>;
         background = '#5C6FD9';
         break;
     }

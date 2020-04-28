@@ -7,7 +7,7 @@
   display: flex;
   font-family: var(--defaultFont);
   margin: 1vh;
-  height: 85px;
+  height: 64px;
   color: var(--dark);
   font-size: 14px;
   font-weight: 500;
@@ -19,7 +19,7 @@
   border-radius: 7px 0 0 7px;
   display: flex;
   justify-content: center;
-  height: 85px;
+  height: 64px;
   width: 61px;
 }
 

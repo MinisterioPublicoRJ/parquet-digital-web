@@ -7,6 +7,8 @@ import Radar from '../../sections/PerformanceRadar';
 import Alerts from '../../sections/Alerts';
 
 export default function({ user }) {
+  if (!user) return (<div> loading </div>);
+  
   return (
     <div className="tutela-grid">
       <Today user={user} />

@@ -36,25 +36,25 @@ class Alerts extends React.Component {
     switch (alert.alertCode) {
       case 'PPFP':
         icon = <ClockIcon />;
-        message =  "Há 01 procedimento preparatório com prazo próximo de vencer" + `<span>${alert.docNum} converter em inquerito policial</span>`;
+        message =  <span>Há 01 procedimento preparatório com prazo próximo de vencer<strong className="featuredMessage"> {alert.docNum} converter em inquerito policial -></strong></span>;
         background = '#f86c72';
         break;
         
       case 'DCTJ':
         icon = <CorujaGate />;
-        message = `O Gate finalizou a IT solicitada no procedimento ${alert.docNum}`;
+        message = <span>O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento <strong>{alert.docNum}</strong></span>;
         background = '#374354';
         break;
 
       case 'IC1A':
         icon = <Law />;
-        message = `Você obteve uma decisão favorável no processo ${alert.docDk}`;
+        message = <span>Você obteve uma <strong className="featuredMessageDecision">decisão favorável</strong> no processo <strong>{alert.docDk}</strong></span>;
         background = '#71D0A4';
         break;
 
       case 'VADF':
         icon = <ClockIcon />;
-        message = `O procedimento ${alert.docNum} completará 01 ano em 09 dias!`;
+        message = <span>O procedimento <strong>{alert.docNum}</strong> completará <strong>{alert.daysPassed}</strong> ano! <stron className="featuredMessage">{alert.docNum} realizar uma prorogação</stron></span>;
         background = '#f86c72';
         break;
     }

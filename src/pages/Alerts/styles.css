@@ -15,7 +15,7 @@
   border-radius: 20px;
 }
 .totalAlerts span{
-  color: white;
+  color: var(--white);
   font-size: 15px;
   margin-left: 15px;
   margin-top: 5px;
@@ -24,6 +24,13 @@
 .alertsBody{
   overflow-y: scroll;
   height: 100%;
+}
+.featuredMessage{
+  color: var(--primary);
+  border-bottom: 2px solid ;
+}
+.featuredMessageDecision{
+  color: var(--success);
 }
 
 /* PHONES */

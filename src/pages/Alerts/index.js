@@ -8,6 +8,11 @@ import { SectionTitle, AlertBadge } from '../../components';
 import ClockIcon from '../../assets/svg/clock';
 import CorujaGate from '../../assets/svg/corujaGate';
 import Law from '../../assets/svg/law';
+import Home from '../../assets/svg/home';
+import MPRJ from '../../assets/svg/mprj';
+import TJRJ from '../../assets/svg/tjrj';
+import OUVIDORIA from '../../assets/svg/ouvidoria';
+
 
 class Alerts extends React.Component {
   constructor(props) {
@@ -36,10 +41,28 @@ class Alerts extends React.Component {
     switch (alert.alertCode) {
       case 'PPFP':
         icon = <ClockIcon />;
-        message =  <span>Há 01 procedimento preparatório com prazo próximo de vencer<strong className="featuredMessage"> {alert.docNum} converter em inquerito policial -></strong></span>;
+        message = <span>Há 01 procedimento preparatório com prazo próximo de vencer<strong className="featuredMessage"> {alert.docNum} converter em inquerito policial -></strong></span>;
         background = '#f86c72';
         break;
-        
+
+      case 'NF30':
+        icon = <ClockIcon />;
+        message = <span>Há 01 <strong> noticia de fato </strong>autuada há mais de <strong>120 dias</strong> e ainda está <strong>sem tratamento</strong></span>;
+        background = '#f86c72';
+        break;
+
+      case 'OFFP':
+        icon = <ClockIcon />;
+        message = <span>Há 01 <strong> oficio </strong>com  <strong> prazo de apreciação esgotado </strong></span>;
+        background = '#f86c72';
+        break;
+
+      case 'IC1A':
+        icon = <ClockIcon />;
+        message = <span>Há 01 <strong> inquérito civil </strong> ativo <strong> sem prorrogação </strong> há <strong>mais de 1 ano</strong></span>;
+        background = '#f86c72';
+        break;
+
       case 'DCTJ':
         icon = <CorujaGate />;
         message = <span>O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento <strong>{alert.docNum}</strong></span>;
@@ -53,9 +76,33 @@ class Alerts extends React.Component {
         break;
 
       case 'VADF':
-        icon = <ClockIcon />;
+        icon = <TJRJ />;
         message = <span>O procedimento <strong>{alert.docNum}</strong> completará <strong>{alert.daysPassed}</strong> ano! <stron className="featuredMessage">{alert.docNum} realizar uma prorogação</stron></span>;
         background = '#f86c72';
+        break;
+
+      case 'VADF':
+        icon = <Home />;
+        message = <span><strong>10 Movimentações</strong> em processo desta promotoria na segunda instância</span>;
+        background = '#5C6FD9';
+        break;
+
+      case 'DCTJ':
+        icon = <MPRJ />;
+        message = <span>Há <strong>01 processo </strong>cujo <strong>orgão responsável</strong> está possivelmente <strong>desatualizado</strong></span>;
+        background = '#374354';
+        break;
+
+      case 'VADF':
+        icon = <OUVIDORIA />;
+        message = <span>O procedimento <strong>{alert.docNum}</strong> completará <strong>{alert.daysPassed}</strong> ano! <stron className="featuredMessage">{alert.docNum} realizar uma prorogação</stron></span>;
+        background = '#5C6FD9';
+        break;
+
+      case 'DCTJ':
+        icon = <TJRJ />;
+        message = <span>O procedimento <strong>{alert.docNum}</strong> completará <strong>{alert.daysPassed}</strong> ano! <stron className="featuredMessage">{alert.docNum} realizar uma prorogação</stron></span>;
+        background = '#5C6FD9';
         break;
     }
 

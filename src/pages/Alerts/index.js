@@ -27,9 +27,8 @@ class Alerts extends React.Component {
 
   async getAlertsList() {
     const res = await Api.getAlertsList(getUser());
-    console.log(res);
+    console.log(res.length);
     this.setState({ alerts: res, isLoading: false });
-    let totalAlerts = res.reduce((totalAlerts, alertCode) => totalAlerts + res.alertCode);
   }
 
   cleanAlert(alert) {
@@ -162,7 +161,7 @@ class Alerts extends React.Component {
         <div className="alertsHeader">
           <SectionTitle value="central de alertas" />
           <div className="totalAlerts">
-            <span>25</span>
+            <span>{alerts.length}</span>
           </div>
         </div>
         <div className="alertsBody">

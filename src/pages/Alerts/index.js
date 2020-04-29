@@ -27,8 +27,8 @@ class Alerts extends React.Component {
 
   async getAlertsList() {
     const res = await Api.getAlertsList(getUser());
-    console.log(res.length);
     this.setState({ alerts: res, isLoading: false });
+    console.log(res);
   }
 
   cleanAlert(alert) {
@@ -42,7 +42,7 @@ class Alerts extends React.Component {
     switch (alert.alertCode) {
       case 'PPFP':
         icon = <ClockIcon />;
-        message = <span>Há 01 <strong>procedimento preparatório</strong> com prazo próximo de vencer </span>;
+        message = <span>O<strong> procedimento preparatório {alert.docNum} </strong> está com prazo próximo de vencer </span>;
         background = '#f86c72';
         break;
 
@@ -54,13 +54,13 @@ class Alerts extends React.Component {
 
       case 'OFFP':
         icon = <ClockIcon />;
-        message = <span>Há 01 <strong> oficio </strong>com  <strong> prazo de apreciação esgotado </strong></span>;
+        message = <span>O  ofício <strong>{alert.docNum}</strong> está com o <strong> prazo de apreciação esgotado </strong></span>;
         background = '#f86c72';
         break;
 
       case 'IC1A':
         icon = <ClockIcon />;
-        message = <span>Há 01 <strong> inquérito civil </strong> ativo <strong> sem prorrogação </strong> há <strong>mais de 1 ano</strong></span>;
+        message = <span>O inquérito civil <strong> {alert.docNum} </strong> ativo <strong> está sem prorrogação </strong> há <strong>mais de 1 ano</strong></span>;
         background = '#f86c72';
         break;
 
@@ -102,25 +102,25 @@ class Alerts extends React.Component {
 
       case 'DCTJ':
         icon = <Tjrj />;
-        message = <span>Há <strong>10 processos criminais</strong>no TJRJ há <strong>mais de 60 dias</strong> sem retorno</span>;
+        message = <span>O <strong> processo criminal {alert.docNum}</strong> está no TJRJ há <strong>mais de 60 dias</strong> sem retorno</span>;
         background = '#F86C72';
         break;
 
       case 'DNTJ':
         icon = <Tjrj />;
-        message = <span>Há <strong>20 processos não criminais</strong>no TJRJ há <strong>mais de 120 dias</strong> sem retorno</span>;
+        message = <span>O <strong>processo {alert.docNum} não criminal</strong>está no TJRJ há <strong>mais de 120 dias</strong> sem retorno</span>;
         background = '#F86C72';
         break;
 
       case 'MVVD':
         icon = <Ouvidoria />;
-        message = <span>Há <strong>10 processos</strong> com <strong>vitimas recorrentes</strong> de <spa>violência domestica</spa></span>;
+        message = <span>O <strong> {alert.docNum} processo</strong> com <strong>vitimas recorrentes</strong> de <spa>violência domestica</spa></span>;
         background = '#F86C72';
         break;
 
       case 'DORD':
         icon = <Mprj />;
-        message = <span>Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong> está possivelmente<strong> desatualizado</strong></span>;
+        message = <span>Há <strong> 01 processo</strong> cujo <strong>orgão responsável</strong> está possivelmente<strong> desatualizado</strong></span>;
         background = '#5C6FD9';
         break;
 

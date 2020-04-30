@@ -10,6 +10,8 @@ const white = '#ffffff';
 const gray = '#b5b5b5';
 const grayLight = '#e8e8e8';
 const grayLinks = '#CECECE';
+const red = '#FB745B';
+const green = '#7ED321';
 
 export const PT_PIE_COLORS = ['#42DCA7', '#6D86EC', '#A256BA'];
 
@@ -24,7 +26,20 @@ const CHART_THEME = {
   },
   axisLabel: {
     fill: darkBlue,
-    fontSize: 7,
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  axisLabelBad: {
+    fill: red,
+    fontSize: 12,
+  },
+  axisLabelGood: {
+    fill: green,
+    fontSize: 12,
+  },
+  axisLabelNeutral: {
+    fill: gray,
+    fontSize: 12,
   },
 };
 export default CHART_THEME;

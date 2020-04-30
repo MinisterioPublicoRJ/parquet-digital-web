@@ -44,8 +44,8 @@ class App extends React.Component {
 
     if (!loginError) {
       switch (tipo_orgao) {
-        case 0:
-          // case 1:
+        // case 0:
+        case 1:
           page = <Tutela user={nome} />;
           break;
         case 2:

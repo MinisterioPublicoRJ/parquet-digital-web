@@ -139,8 +139,6 @@ function PerformanceChart({ data }) {
         </defs>
       </svg>
       <VictoryChart
-        // width="100%"
-        // height="auto"
         polar
         domain={{ y: [0, 100] }}
         responsive

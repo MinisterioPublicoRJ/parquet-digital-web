@@ -1,12 +1,12 @@
 import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 
-import Today from '../pages/Today';
-import YourDesk from '../pages/YourDesk';
-import PerformanceRadar from '../pages/PerformanceRadar';
-import Progress from '../pages/Progress';
-import SuccessIndicators from '../pages/SuccessIndicators';
-import Decisions from '../pages/Decisions';
+import Today from '../sections/Today';
+import YourDesk from '../sections/YourDesk';
+import PerformanceRadar from '../sections/PerformanceRadar';
+import Progress from '../sections/Progress';
+import SuccessIndicators from '../sections/SuccessIndicators';
+import Decisions from '../sections/Decisions';
 
 import { NavBar, ChangeModeButton } from '../components';
 

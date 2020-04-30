@@ -51,30 +51,6 @@ class PerformanceRadar extends React.Component {
 
     if (!chartData) return <div>Carregando</div>;
 
-    if (!dashboard) {
-      return (
-        <article className="page radar page-radar">
-          <div className="radarLeft">
-            <PerformanceChart data={chartData} />
-          </div>
-          <div className="radarRight">
-            <p className="paragraphWrapper">
-              Analisamos a atuação da sua promotoria e percebemos que a quantidade de arquivamento
-              está
-              <span style={{ fontWeight: 'bold' }}>{percentagePhrase}</span>
-              da média da casa.
-            </p>
-            <p className="paragraphWrapper">
-              <span style={{ fontWeight: 'bold' }}>Parabéns </span>
-              pela instauração dos novos TACs. ACPs e investigações, totalizando
-              <span style={{ fontWeight: 'bold' }}>{` ${movements} movimentos `}</span>
-              em prol da sociedade nos últimos dias.
-            </p>
-          </div>
-        </article>
-      );
-    }
-
     return (
       <article className="page page-radar-dashboard">
         <div className="radar-header">

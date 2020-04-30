@@ -133,8 +133,8 @@ function PerformanceChart({ data }) {
             y2="0.976"
             gradientUnits="objectBoundingBox"
           >
-            <stop offset="0" stopColor="#ff36f0" />
-            <stop offset="1" stopColor="#009bff" />
+            <stop offset="0" stopColor="#ff36f0" stopOpacity=".8" />
+            <stop offset="1" stopColor="#009bff" stopOpacity=".8" />
           </linearGradient>
         </defs>
       </svg>
@@ -144,34 +144,72 @@ function PerformanceChart({ data }) {
         responsive
         startAngle={90}
         endAngle={450}
-        padding={25}
+        padding={{ top: 60, left: -10, right: -10, bottom: 50 }}
       >
-        {xAxis.map(item => (
+        {xAxis.map(({ category, label, isGood, dx, dy, textAnchor }) => (
           <VictoryPolarAxis
             dependentAxis
-            key={item.category}
-            label={item.label.toLocaleUpperCase()}
-            labelRadius={0}
+            key={category}
+            label={label}
+            labelRadius={10}
             labelPlacement="vertical"
-            axisValue={item.category}
+            axisValue={category}
             style={CHART_THEME.polarAxis}
-            axisLabelComponent={<VictoryLabel style={CHART_THEME.axisLabel} />}
+            axisLabelComponent={
+              <VictoryLabel
+                textAnchor={textAnchor}
+                dx={dx}
+                dy={dy}
+                style={buildLabelStyles(label, isGood)}
+              />
+            }
           />
         ))}
         <VictoryGroup style={CHART_THEME.gridGroup}>
-          {grid.map((data1, i) => {
-            return <VictoryArea key={i} data={data1} />;
-          })}
+          {grid.map((data1, i) => (
+            <VictoryArea key={i} data={data1} />
+          ))}
         </VictoryGroup>
         <VictoryArea
-          data={data}
+          data={areaData}
           style={{
             data: { fill: 'url(#myGradient)' },
           }}
+          labelComponent={<AreaLabel />}
         />
       </VictoryChart>
     </>
   );
 }
+
+const AreaLabel = props => {
+  const { datum, style } = props;
+
+  delete datum._x;
+  delete datum._x0;
+  delete datum._x1;
+  delete datum._y;
+  delete datum._y0;
+  delete datum._y1;
+  datum.x = 0;
+  datum.y = 0;
+
+  return (
+    <g>
+      <VictoryLabel
+        {...props}
+        datum={datum}
+        className="chart-inner-label"
+        labelPlacement="vertical"
+        style={{
+          ...style,
+          fill: '#009bff',
+          fontWeight: 'bold',
+        }}
+      />
+    </g>
+  );
+};
+
 PerformanceChart.propTypes = propTypes;
 export default PerformanceChart;

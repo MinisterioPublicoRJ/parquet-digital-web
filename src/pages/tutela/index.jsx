@@ -5,6 +5,8 @@ import Today from '../../sections/Today';
 import YourDesk from '../../sections/YourDesk';
 import Radar from '../../sections/PerformanceRadar';
 import Alerts from '../../sections/Alerts';
+import ListProcesses from '../../sections/ListProcesses';
+import ProcessingTime from '../../sections/ProcessingTime';
 
 export default function({ user }) {
   return (
@@ -13,6 +15,8 @@ export default function({ user }) {
       <YourDesk user={user} />
       <Radar user={user} />
       <Alerts user={user} />
+      <ListProcesses user={user} />
+      <ProcessingTime user={user} />
     </div>
   );
 }

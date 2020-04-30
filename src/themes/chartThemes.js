@@ -11,11 +11,7 @@ const gray = '#b5b5b5';
 const grayLight = '#e8e8e8';
 const grayLinks = '#CECECE';
 
-// style={{
-//   axis: { stroke: 'none' },
-//   tickLabels: { fill: 'none' },
-//   grid: { stroke: 'grey', strokeDasharray: '4, 8' },
-// }}
+export const PT_PIE_COLORS = ['#42DCA7', '#6D86EC', '#A256BA'];
 
 const CHART_THEME = {
   polarAxis: {

@@ -14,7 +14,9 @@ import {
   OPEN_INVESTIGATIONS_DETAILS_URL,
   OPEN_CASES_LIST,
   RADAR_DATA,
+  PROCESSING_TIME_DATA,
   ALERTS_LIST,
+  PROCESSES_LIST,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -32,6 +34,8 @@ import {
   openCasesListTransform,
   radarTransform,
   alertsTransform,
+  tramitacaoTransform,
+  listProcessesTransform,
 } from './transforms';
 
 import { setUser } from '../user';
@@ -143,11 +147,25 @@ const Api = (() => {
 
     return radarTransform(data);
   }
+  async function getProcessingTimeData({ orgao, token }) {
+    const { data } = await axios.get(PROCESSING_TIME_DATA({ orgao }), buildRequestConfig(token));
+
+    return tramitacaoTransform(data);
+  }
 
   async function getAlertsList({ orgao, token }) {
     const { data } = await axios.get(ALERTS_LIST({ orgao }), buildRequestConfig(token));
 
     return alertsTransform(data);
+  }
+
+  async function getListProcesses({ orgao, cpf, token }, list) {
+    const { data } = await axios.get(
+      PROCESSES_LIST({ orgao, cpf, list }),
+      buildRequestConfig(token),
+    );
+
+    return listProcessesTransform(data);
   }
 
   return {
@@ -165,6 +183,8 @@ const Api = (() => {
     getOpenCasesList,
     getRadarData,
     getAlertsList,
+    getProcessingTimeData,
+    getListProcesses,
   };
 })();
 

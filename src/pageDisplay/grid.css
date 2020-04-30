@@ -14,41 +14,45 @@
   "today today radar alerts"
   "desk desk radar alerts"
   "desk desk radar alerts"
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . .";
+  "desk desk processes processes"
+  "desk desk processes processes"
+  "desk desk processes processes"
+  "desk desk processingTime processingTime"
+  "desk desk processingTime processingTime"
+  "desk desk processingTime processingTime";
 }
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
   .infoGridView {
-    height: 200vh;
+    /* sum of all rows + 4 grid gaps of 3vh */
+    height: calc(252vh);
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 33vh 66vh 50vh 50vh;
+    grid-template-rows: 33vh 66vh 50vh 50vh 40vh;
     grid-template-areas:
     "today today"
     "desk desk"
-    "radar alerts";
+    "radar alerts"
+    "processes processes"
+    "processingTime processingTime";
   }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
   .infoGridView {
-    height: 350vh;
+    height: 400vh;
     grid-template-columns: 100%;
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: repeat(8, 1fr);
     grid-template-areas:
     "today"
     "desk"
     "desk"
     "radar"
     "alerts"
-    "."
-    "."
+    "processes"
+    "processingTime"
+    "processingTime"
     ;
   }
 }

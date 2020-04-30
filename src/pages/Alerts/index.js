@@ -7,13 +7,13 @@ import { SectionTitle, AlertBadge } from '../../components';
 
 import ClockIcon from '../../assets/svg/clock';
 import CorujaGate from '../../assets/svg/corujaGate';
-import Law from '../../assets/svg/law';
 import Home from '../../assets/svg/home';
-import Mprj from '../../assets/svg/mprj';
 import Ouvidoria from '../../assets/svg/ouvidoria';
 import Va from '../../assets/svg/va';
 import Tjrj from '../../assets/svg/tjrj';
-import Csi from '../../assets/svg/csi';
+// import Law from '../../assets/svg/law';
+// import Mprj from '../../assets/svg/mprj';
+// import Csi from '../../assets/svg/csi';
 
 class Alerts extends React.Component {
   constructor(props) {
@@ -28,7 +28,6 @@ class Alerts extends React.Component {
   async getAlertsList() {
     const res = await Api.getAlertsList(getUser());
     this.setState({ alerts: res, isLoading: false });
-    console.log(res);
   }
 
   cleanAlert(alert) {
@@ -40,108 +39,247 @@ class Alerts extends React.Component {
     let background = null;
 
     switch (alert.alertCode) {
-      case 'PPFP':
-        icon = <ClockIcon />;
-        message = <span>O<strong> procedimento preparatório {alert.docNum} </strong> está com prazo próximo de vencer </span>;
-        background = '#f86c72';
-        break;
-
-      case 'NF30':
-        icon = <ClockIcon />;
-        message = <span>O <strong> noticia de fato N: {alert.docNum}</strong>autuada há mais de <strong>120 dias</strong> e ainda está <strong>sem tratamento</strong></span>;
-        background = '#f86c72';
-        break;
-
-      case 'OFFP':
-        icon = <ClockIcon />;
-        message = <span>O  ofício <strong>{alert.docNum}</strong> está com o <strong> prazo de apreciação esgotado </strong></span>;
-        background = '#f86c72';
-        break;
-
-      case 'IC1A':
-        icon = <ClockIcon />;
-        message = <span>O inquérito civil <strong> ativo {alert.docNum} </strong>  <strong> está sem prorrogação </strong> há <strong>mais de 1 ano</strong></span>;
-        background = '#f86c72';
-        break;
-
-      case 'GATE':
-        icon = <CorujaGate />;
-        message = <span>O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento <strong>{alert.docNum}</strong></span>;
-        background = '#374354';
-        break;
-
-      case 'CSI':
-        icon = <Csi />;
-        message = <span>A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento <strong>{alert.docNum}</strong></span>;
-        background = '#192440';
-        break;
-
-        // Alerta de decisões aguardando o codigo do back
-      case 'DECISAO':
-        icon = <Law />;
-        message = <span>Você obteve uma <strong className="positiveDecision"> decisão favorável </strong> no processo <strong>{alert.docNum}</strong></span>;
-        background = '#71D0A4';
-        break;
-
-        // Alerta de decisões aguardando o codigo do back
-      case 'DECISAO':
-        icon = <Law />;
-        message = <span>Você obteve uma <strong className="negativeDecision"> decisão desfavorável </strong> no processo <strong>{alert.docNum}</strong></span>;
-        background = '#F86C72';
-        break;
-
-      case 'VADF':
-        icon = <Va />;
-        message = <span>Você tem <strong>10 vistas abertas</strong> em <strong>documentos sinalizados como fechado</strong></span>;
-        background = '#28A7E0';
-        break;
-
-      case 'VADF':
-        icon = <Home />;
-        message = <span><strong> Movimentação N: {alert.docNum} </strong> em processo desta promotoria na segunda instância</span>;
-        background = '#5C6FD9';
-        break;
-
+      // ALERTAS DA TUTELA
       case 'DCTJ':
         icon = <Tjrj />;
-        message = <span>O <strong> processo criminal {alert.docNum}</strong> está no TJRJ há <strong>mais de 60 dias</strong> sem retorno</span>;
+        message = (
+          <span>
+            O <strong> processo criminal {alert.docNum}</strong> está no TJRJ há{' '}
+            <strong>mais de 60 dias</strong> sem retorno.
+          </span>
+        );
         background = '#F86C72';
         break;
 
       case 'DNTJ':
         icon = <Tjrj />;
-        message = <span>O <strong>processo não criminal {alert.docNum}</strong>está no TJRJ há <strong>mais de 120 dias</strong> sem retorno</span>;
+        message = (
+          <span>
+            O <strong>processo não criminal {alert.docNum}</strong>está no TJRJ há{' '}
+            <strong>mais de 120 dias</strong> sem retorno.
+          </span>
+        );
         background = '#F86C72';
-        break;
-
-      case 'MVVD':
-        icon = <Ouvidoria />;
-        message = <span>O <strong> {alert.docNum} processo</strong> com <strong>vitimas recorrentes</strong> de <spa>violência domestica</spa></span>;
-        background = '#F86C72';
-        break;
-
-      case 'DORD':
-        icon = <Mprj />;
-        message = <span>Há <strong> 01 processo</strong> cujo <strong>orgão responsável</strong> está possivelmente<strong> desatualizado</strong></span>;
-        background = '#5C6FD9';
-        break;
-
-      case 'OUVI':
-        icon = <Ouvidoria />;
-        message = <span>Há <strong>01 expediente</strong> de ouvidoria enviado porém<strong> não recebido</strong></span>;
-        background = '#5C6FD9';
         break;
 
       case 'DT2I':
         icon = <Home />;
-        message = <span>Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong> está possivelmente<strong> desatualizado</strong></span>;
+        // message = (
+        //   <span>
+        //     Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong>
+        //     está possivelmente
+        //     <strong> desatualizado</strong>
+        //   </span>
+        // );
+        message = (
+          <span>
+            O <strong>orgão responsável</strong>
+            pelo processo
+            <strong>{alert.docNum}</strong>
+            está possivelmente
+            <strong> desatualizado</strong>.
+          </span>
+        );
         background = '#5C6FD9';
+        break;
+
+      case 'MVVD':
+        icon = <Ouvidoria />;
+        message = (
+          <span>
+            O processo <strong> {alert.docNum}</strong> possui <strong>vitimas recorrentes</strong>
+            de violência domestica.
+          </span>
+        );
+        background = '#F86C72';
         break;
 
       case 'PA1A':
         icon = <ClockIcon />;
-        message = <span>Há <strong>05 processos administrativos</strong> abertos <strong>há mais de 1 ano</strong></span>;
+        // message = (
+        //   <span>
+        //     Há <strong>05 processos administrativos</strong> abertos{' '}
+        //     <strong>há mais de 1 ano</strong>
+        //   </span>
+        // );
+        message = (
+          <span>
+            O <strong> processo administrativo{alert.docNum}</strong>
+            está aberto
+            <strong>há mais de 1 ano</strong>.
+          </span>
+        );
         background = '#5C6FD9';
+        break;
+
+      case 'PPFP':
+        icon = <ClockIcon />;
+        message = (
+          <span>
+            O <strong> procedimento preparatório {alert.docNum} </strong>
+            está com prazo próximo de vencer.
+        </span>
+        );
+        background = '#f86c72';
+        break;
+
+      case 'IC1A':
+        icon = <ClockIcon />;
+        message = (
+          <span>
+            O inquérito civil ativo <strong> {alert.docNum} </strong>
+            <strong> está sem prorrogação </strong> há
+            <strong>mais de 1 ano</strong>.
+          </span>
+        );
+        background = '#f86c72';
+        break;
+
+        case 'NF30':
+        icon = <ClockIcon />;
+        message = (
+          <span>
+            A <strong> noticia de fato {alert.docNum}</strong> foi autuada há mais de
+            <strong>120 dias</strong> e ainda está
+            <strong>sem tratamento</strong>.
+            </span>
+          );
+          background = '#f86c72';
+          break;
+
+        case 'OFFP':
+        icon = <ClockIcon />;
+        message = (
+          <span>
+            O ofício <strong>{alert.docNum}</strong> está com o
+            <strong> prazo de apreciação esgotado </strong>.
+          </span>
+        );
+        background = '#f86c72';
+        break;
+
+      case 'OUVI':
+        icon = <Ouvidoria />;
+        // message = (
+        //   <span>
+        //     Há <strong>01 expediente</strong>
+        //     de ouvidoria enviado porém
+        //     <strong> não recebido</strong>
+        //   </span>
+        // );
+        message = (
+          <span>
+            O <strong>expediente de ouvidoria {alert.docNum}</strong>
+            foi enviado porém
+            <strong> não recebido</strong>
+          </span>
+        );
+        background = '#5C6FD9';
+        break;
+
+      case 'VADF':
+        icon = <Va />;
+        message = (
+          <span>
+            Você tem uma<strong> vista aberta</strong> no
+            <strong>documento {alert.docNum}, sinalizado como fechado</strong>
+          </span>
+        );
+        background = '#28A7E0';
+        break;
+
+      // ALERTAS DA PIP
+      case 'GATE':
+      icon = <CorujaGate />;
+      message = (
+        <span>
+          O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento{' '}
+          <strong>{alert.docNum}</strong>
+        </span>
+      );
+      background = '#374354';
+      break;
+
+      // AINDA NÃO IMPLEMENTADOS NO BACK
+//       case 'CSI':
+//         icon = <Csi />;
+//         message = (
+//           <span>
+//             A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento{' '}
+//             <strong>{alert.docNum}</strong>
+//           </span>
+//         );
+//         background = '#192440';
+//         break;
+//
+//       case 'DECISAO':
+//         icon = <Law />;
+//         message = (
+//           <span>
+//             Você obteve uma <strong className="positiveDecision"> decisão favorável </strong>
+// {' '}
+// no
+//             processo
+// <strong>{alert.docNum}</strong>
+//           </span>
+//         );
+//         background = '#71D0A4';
+//         break;
+//
+//       case 'DECISAO':
+//         icon = <Law />;
+//         message = (
+//           <span>
+//             Você obteve uma <strong className="negativeDecision"> decisão desfavorável </strong>
+// {' '}
+// no
+//             processo
+// <strong>{alert.docNum}</strong>
+//           </span>
+//         );
+//         background = '#F86C72';
+//         break;
+
+      // case 'VADF':
+      //   icon = <Home />;
+      //   message = (
+      //     <span>
+      //       <strong> Movimentação N:{alert.docNum} </strong> em processo desta promotoria na segunda
+      //       instância
+      //     </span>
+      //   );
+      //   background = '#5C6FD9';
+      //   break;
+//
+//       case 'DORD':
+//         icon = <Mprj />;
+//         message = (
+//           <span>
+//             Há <strong> 01 processo</strong> cujo <strong>orgão responsável</strong>
+// {' '}
+// está
+//             possivelmente
+// <strong> desatualizado</strong>
+//           </span>
+//         );
+//         background = '#5C6FD9';
+//         break;
+//
+//       case 'DT2I':
+//         icon = <Home />;
+//         message = (
+//           <span>
+//             Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong>
+// {' '}
+// está
+//             possivelmente
+// <strong> desatualizado</strong>
+//           </span>
+//         );
+//         background = '#5C6FD9';
+//         break;
+
+      default:
         break;
     }
 

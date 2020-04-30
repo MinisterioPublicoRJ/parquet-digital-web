@@ -14,9 +14,10 @@
   "today today radar alerts"
   "desk desk radar alerts"
   "desk desk radar alerts"
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . ."
+  "desk desk processes processes"
+  "desk desk processes processes"
+  "desk desk processes processes"
+  "desk desk processes processes"
   "desk desk processingTime processingTime"
   "desk desk processingTime processingTime"
   "desk desk processingTime processingTime";
@@ -33,7 +34,7 @@
     "today today"
     "desk desk"
     "radar alerts"
-    ". ."
+    "processes processes"
     "processingTime processingTime";
   }
 }
@@ -50,7 +51,7 @@
     "desk"
     "radar"
     "alerts"
-    "."
+    "processes"
     "processingTime"
     "processingTime"
     ;

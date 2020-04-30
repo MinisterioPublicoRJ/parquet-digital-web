@@ -14,6 +14,7 @@ import YourDesk from '../pages/YourDesk';
 import Alerts from '../pages/Alerts';
 import PerformanceRadar from '../pages/PerformanceRadar';
 import ProcessingTime from '../pages/ProcessingTime';
+import ListProcesses from '../pages/ListProcesses';
 import Loader from '../loader';
 import Api from '../api';
 import { getUser } from '../user';
@@ -170,6 +171,7 @@ class PageDisplay extends React.Component {
           />
 {/*           <Alerts />
  */}      <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+          <ListProcesses />
           <ProcessingTime />
         </HashRouter>
       </div>

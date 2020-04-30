@@ -1,0 +1,30 @@
+@import '../styles.css';
+
+.page-lista-processos {
+  grid-area: processes;
+ 
+}
+.page-lista-processos h3{
+  color: var(--darkBlue);
+  font-size: 24px ;
+  text-transform: uppercase;
+  font-family: var(--defaultTitleProcessing);
+  font-weight: var(--subtitleWeight);
+}
+
+.time-charts-view {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+.page-lista-processos{
+  display: flex;
+  flex-direction: column;
+  flex: 2 1;
+  overflow-y: scroll;
+}
+
+.lista-processos {
+  overflow-y: scroll;
+}

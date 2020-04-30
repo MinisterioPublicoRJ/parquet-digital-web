@@ -1,6 +1,10 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
+import Api from '../api';
+import { getUser } from '../user';
+
+import { Spinner } from '../components';
 import Pip from '../pages/pip';
 import Tutela from '../pages/tutela';
 import BlankPage from '../pages/blankPage';
@@ -15,26 +19,59 @@ class App extends React.Component {
     };
   }
 
-  handleUserData(user, history, path) {
-    console.log('user', user, history);
-    this.setState({ user });
-    // history.push(path);
+  componentDidMount() {
+    this.login();
+  }
+
+  async login() {
+    let loginError = false;
+    let user;
+    try {
+      const token = window.localStorage.getItem('access_token');
+      await Api.login(token);
+      user = getUser();
+    } catch (e) {
+      loginError = true;
+    } finally {
+      this.setState({ user, loginError });
+    }
+  }
+
+  pageSelector() {
+    const { user, loginError } = this.state;
+    const { tipo_orgao, nome } = user;
+    let page = <BlankPage />;
+
+    if (!loginError) {
+      switch (tipo_orgao) {
+        case 0:
+          // case 1:
+          page = <Tutela user={nome} />;
+          break;
+        case 2:
+          page = <Pip user={nome} />;
+          break;
+        default: // if we don't have a dashboard yet, just show blank screen
+          break;
+      }
+    }
+
+    return page;
   }
 
   render() {
-    const { user } = this.state;
+    const { user, loginError } = this.state;
+    const isLoading = !user && !loginError;
+
+    if (isLoading) {
+      return <Spinner size="large" />;
+    }
 
     return (
       <HashRouter>
         <Switch>
           <Route exact path="/">
-            <BlankPage onFetchedUser={user => this.handleUserData(user)} />
-          </Route>
-          <Route path="/pip">
-            <Pip user={user} />
-          </Route>
-          <Route path="/tutela">
-            <Tutela user={user} />
+            {this.pageSelector()}
           </Route>
         </Switch>
       </HashRouter>

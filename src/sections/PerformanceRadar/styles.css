@@ -10,9 +10,3 @@
   flex-direction: row;
   grid-area: radar;
 }
-
-@media (min-width: 1025px) {
-.radar-graph {
-    margin-top: 25%;
-  }
-}

@@ -169,8 +169,8 @@ class PageDisplay extends React.Component {
               />
             )}
           />
-{/*           <Alerts />
- */}      <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+          <Alerts />
+          <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
           <ListProcesses />
           <ProcessingTime />
         </HashRouter>

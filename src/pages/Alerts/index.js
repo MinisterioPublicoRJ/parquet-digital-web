@@ -291,7 +291,7 @@ class Alerts extends React.Component {
 
     if (isLoading) return <aside>...</aside>;
     return (
-      <aside className="alertsWrapper">
+      <article className="alertsWrapper">
         <div className="alertsHeader">
           <SectionTitle value="central de alertas" />
           <div className="totalAlerts">
@@ -313,7 +313,7 @@ class Alerts extends React.Component {
             );
           })}
         </div>
-      </aside>
+      </article>
     );
   }
 }

@@ -1,0 +1,26 @@
+@import '../../themes/index.css';
+
+.navBarOuter {
+  align-items: center;
+  height: 5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navLinks {
+  color: var(--grayLinks);
+  font-family: var(--subtitleFont);
+  font-size: var(--linkSize);
+  padding: 0 2px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.active {
+  color: var(--darkBlue);
+  text-decoration: underline;
+  text-decoration-color: var(--darkBlue);
+}

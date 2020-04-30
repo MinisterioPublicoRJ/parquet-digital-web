@@ -1,0 +1,12 @@
+@import '../styles.css';
+
+.page-radar-dashboard {
+  grid-area: radar;
+  display: flex;
+  flex-direction: column;
+}
+
+.radar {
+  flex-direction: row;
+  grid-area: radar;
+}

@@ -1,0 +1,59 @@
+@import '../styles.css';
+
+.page-today {
+  display: flex;
+  flex-direction: column;
+  grid-area: today;
+  position: relative;
+  overflow: hidden;
+}
+
+.today-header {
+  display: flex;
+  align-items: center;
+  height: 25%;
+}
+
+.today-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  max-height: 75%;
+  width: 75%;
+  z-index: 1;
+}
+
+.today-featured-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.robo-today {
+  align-items: flex-end;
+  display: flex;
+  height: 75%;
+  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.today-spinner {
+  align-items: center;
+  display: flex;
+  width: 100%;
+  height: 75%;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+@media (max-width: 480px) {
+  .robo-today {
+    height: 50%;
+  }
+}

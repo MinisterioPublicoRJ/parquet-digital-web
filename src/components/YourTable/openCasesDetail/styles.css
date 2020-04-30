@@ -1,0 +1,12 @@
+.time-charts-view {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.open-cases-table-view {
+  display: flex;
+  flex: 2;
+  overflow-y: scroll;
+}

@@ -1,0 +1,45 @@
+@import '../styles.css';
+
+.alertsWrapper {
+  grid-area: alerts;
+  display: flex;
+  flex-direction: column;
+}
+.alertsHeader{
+  display: flex;
+  justify-content: space-around;
+}
+.totalAlerts{
+  margin-top: 14px;
+  width: 44px;
+  height: 23px;
+  background-color: var(--danger);
+  border-radius: 20px;
+}
+.totalAlerts span{
+  color: var(--white);
+  font-size: 15px;
+  margin-left: 15px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+.alertsBody{
+  overflow-y: scroll;
+  /* height: 100%; */
+}
+.positiveDecision{
+  color: var(--primary);
+  border-bottom: 2px solid ;
+}
+.negativeDecision{
+  color: var(--warning);
+  border-bottom: 2px solid ;
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .alertsWrapper {
+    overflow-y: scroll;
+    width: 100%;
+  }
+}

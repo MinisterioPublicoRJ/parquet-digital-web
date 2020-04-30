@@ -1,0 +1,41 @@
+@import '../styles.css';
+
+.yourDesk {
+  display: flex;
+  flex-direction: column;
+  grid-area: desk;
+}
+
+.desk-header {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.desk-controlers {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+}
+
+.desk-tabs {
+  display: flex;
+  flex-direction: column;
+  height: 65%;
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .desk-header {
+    display: flex;
+    height: 25vh;
+    flex-direction: column;
+  }
+
+  .desk-tabs {
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+  }
+}

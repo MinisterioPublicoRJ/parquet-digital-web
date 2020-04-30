@@ -1,22 +1,18 @@
 @import '../styles.css';
 
+.page-radar-dashboard {
+  grid-area: radar;
+  display: flex;
+  flex-direction: column;
+}
+
 .radar {
   flex-direction: row;
   grid-area: radar;
 }
 
-.radarLeft {
-  /* background-color: lightblue; */
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  width: 200px;
-}
-
-.radarRight {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  padding: var(--elementPadding);
-  display: none;
+@media (min-width: 1025px) {
+.radar-graph {
+    margin-top: 25%;
+  }
 }

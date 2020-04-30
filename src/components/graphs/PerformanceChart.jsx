@@ -19,18 +19,95 @@ function generateGrid(xAxis) {
   return axisGrid;
 }
 
-function generateAxis(axisExpansion) {
-  return [
-    { category: 'archives', label: `arquivamentos\n${axisExpansion.archives}` },
-    { category: 'actions', label: `ações\ncivil\npúblicas\n${axisExpansion.actions}` },
-    { category: 'rejections', label: `indeferimentos\nde plano\n${axisExpansion.rejections}` },
-    {
-      category: 'instaurations',
-      label: `instauração de\ninvestigações\n${axisExpansion.instaurations}`,
-    },
-    { category: 'tac', label: `termos\nde ajuste\nde conduta\n${axisExpansion.tac}` },
-  ];
-}
+const buildLabelStyles = (labels, isGood) =>
+  labels.map((_, i) => {
+    if (i !== labels.length - 1) return CHART_THEME.axisLabel;
+
+    if (isGood) return CHART_THEME.axisLabelGood;
+
+    if (isGood != null) return CHART_THEME.axisLabelBad;
+
+    return CHART_THEME.axisLabelNeutral;
+  });
+
+const buildLabel = (str, val) => [...str.toLocaleUpperCase().split('_'), val];
+
+const labelPositionsTable = {
+  N: {
+    order: 1,
+    dx: 0,
+    dy: 20,
+    textAnchor: 'middle',
+  },
+  W: {
+    order: 2,
+    dx: 15,
+    dy: 0,
+    textAnchor: 'end',
+  },
+  SW: {
+    order: 3,
+    dx: 10,
+    dy: -15,
+    textAnchor: 'end',
+  },
+  SE: {
+    order: 4,
+    dx: -10,
+    dy: -15,
+    textAnchor: 'start',
+  },
+  E: {
+    order: 5,
+    dx: -15,
+    dy: 0,
+    textAnchor: 'start',
+  },
+};
+
+const axisLabelsTable = {
+  archives: {
+    label: 'Arquivamentos',
+    position: 'N',
+  },
+  actions: {
+    label: 'Ações_Civil_Públicas',
+    position: 'E',
+  },
+  rejections: {
+    label: 'Indeferimentos_de Plano',
+    position: 'SE',
+  },
+  instaurations: {
+    label: 'Instauração de_Investigações',
+    position: 'SW',
+  },
+  tac: {
+    label: 'Termos_de Ajuste_de Conduta',
+    position: 'W',
+  },
+};
+
+const generateAreaData = data => data.map(({ chart }) => chart);
+
+const generateAxis = data =>
+  data
+    .map(({ axis }) => {
+      const { category, value, isAboveAverage } = axis;
+      const { label, position } = axisLabelsTable[category];
+      const { dx, dy, textAnchor, order } = labelPositionsTable[position];
+
+      return {
+        category,
+        label: buildLabel(label, value),
+        isGood: isAboveAverage,
+        dx,
+        dy,
+        textAnchor,
+        order,
+      };
+    })
+    .sort((a, b) => a.order - b.order);
 
 const propTypes = {
   data: PropTypes.arrayOf(
@@ -39,8 +116,9 @@ const propTypes = {
   axis: PropTypes.shape({ category: PropTypes.string }).isRequired,
 };
 
-function PerformanceChart({ data, axis }) {
-  const xAxis = generateAxis(axis);
+function PerformanceChart({ data }) {
+  const areaData = generateAreaData(data);
+  const xAxis = generateAxis(data);
   const grid = generateGrid(xAxis);
 
   // TODO: animate VictoryChart

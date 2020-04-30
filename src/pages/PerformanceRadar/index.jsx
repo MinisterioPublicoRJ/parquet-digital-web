@@ -37,7 +37,7 @@ class PerformanceRadar extends React.Component {
         },
         chart: {
           x: category,
-          y: percentages * 100 + 20,
+          y: percentages * 100 + 20, // FIXME: remove this +20 before go to production
           label: numbers,
         },
       }));

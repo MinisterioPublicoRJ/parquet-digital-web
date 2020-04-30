@@ -48,7 +48,7 @@ class Alerts extends React.Component {
 
       case 'NF30':
         icon = <ClockIcon />;
-        message = <span>Há 01 <strong> noticia de fato </strong>autuada há mais de <strong>120 dias</strong> e ainda está <strong>sem tratamento</strong></span>;
+        message = <span>O <strong> noticia de fato N: {alert.docNum}</strong>autuada há mais de <strong>120 dias</strong> e ainda está <strong>sem tratamento</strong></span>;
         background = '#f86c72';
         break;
 
@@ -60,7 +60,7 @@ class Alerts extends React.Component {
 
       case 'IC1A':
         icon = <ClockIcon />;
-        message = <span>O inquérito civil <strong> {alert.docNum} </strong> ativo <strong> está sem prorrogação </strong> há <strong>mais de 1 ano</strong></span>;
+        message = <span>O inquérito civil <strong> ativo {alert.docNum} </strong>  <strong> está sem prorrogação </strong> há <strong>mais de 1 ano</strong></span>;
         background = '#f86c72';
         break;
 
@@ -76,12 +76,14 @@ class Alerts extends React.Component {
         background = '#192440';
         break;
 
+        // Alerta de decisões aguardando o codigo do back
       case 'DECISAO':
         icon = <Law />;
         message = <span>Você obteve uma <strong className="positiveDecision"> decisão favorável </strong> no processo <strong>{alert.docNum}</strong></span>;
         background = '#71D0A4';
         break;
 
+        // Alerta de decisões aguardando o codigo do back
       case 'DECISAO':
         icon = <Law />;
         message = <span>Você obteve uma <strong className="negativeDecision"> decisão desfavorável </strong> no processo <strong>{alert.docNum}</strong></span>;
@@ -96,7 +98,7 @@ class Alerts extends React.Component {
 
       case 'VADF':
         icon = <Home />;
-        message = <span><strong>10 Movimentações</strong> em processo desta promotoria na segunda instância</span>;
+        message = <span><strong> Movimentação N: {alert.docNum} </strong> em processo desta promotoria na segunda instância</span>;
         background = '#5C6FD9';
         break;
 
@@ -108,7 +110,7 @@ class Alerts extends React.Component {
 
       case 'DNTJ':
         icon = <Tjrj />;
-        message = <span>O <strong>processo {alert.docNum} não criminal</strong>está no TJRJ há <strong>mais de 120 dias</strong> sem retorno</span>;
+        message = <span>O <strong>processo não criminal {alert.docNum}</strong>está no TJRJ há <strong>mais de 120 dias</strong> sem retorno</span>;
         background = '#F86C72';
         break;
 
@@ -127,12 +129,6 @@ class Alerts extends React.Component {
       case 'OUVI':
         icon = <Ouvidoria />;
         message = <span>Há <strong>01 expediente</strong> de ouvidoria enviado porém<strong> não recebido</strong></span>;
-        background = '#5C6FD9';
-        break;
-
-      case 'OUVI':
-        icon = <ClockIcon />;
-        message = <span>Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong> está possivelmente<strong> desatualizado</strong></span>;
         background = '#5C6FD9';
         break;
 

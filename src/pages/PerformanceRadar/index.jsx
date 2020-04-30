@@ -37,7 +37,7 @@ class PerformanceRadar extends React.Component {
         },
         chart: {
           x: category,
-          y: percentages * 100 + 20, // FIXME: remove this +20 before go to production
+          y: percentages * 100,
           label: numbers,
         },
       }));
@@ -80,7 +80,7 @@ class PerformanceRadar extends React.Component {
         <div className="radar-header">
           <SectionTitle value="Radar de Performance" />
         </div>
-        <div>
+        <div className="radar-graph">
           <PerformanceChart data={chartData} />
         </div>
       </article>

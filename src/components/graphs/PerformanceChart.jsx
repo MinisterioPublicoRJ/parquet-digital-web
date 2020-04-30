@@ -139,12 +139,14 @@ function PerformanceChart({ data }) {
         </defs>
       </svg>
       <VictoryChart
+        // width="100%"
+        // height="auto"
         polar
         domain={{ y: [0, 100] }}
         responsive
         startAngle={90}
         endAngle={450}
-        padding={{ top: 60, left: -10, right: -10, bottom: 50 }}
+        padding={{ top: 40, left: -40, right: -40, bottom: 10 }}
       >
         {xAxis.map(({ category, label, isGood, dx, dy, textAnchor }) => (
           <VictoryPolarAxis

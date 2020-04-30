@@ -13,6 +13,7 @@ import Today from '../sections/Today';
 import YourDesk from '../sections/YourDesk';
 import Alerts from '../sections/Alerts';
 import PerformanceRadar from '../sections/PerformanceRadar';
+import SuccesIndicators from '../sections/SuccessIndicators';
 import Loader from '../loader';
 import Api from '../api';
 import { getUser } from '../user';
@@ -168,6 +169,7 @@ class PageDisplay extends React.Component {
             )}
           />
           <Alerts />
+          <SuccesIndicators />
           <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
         </HashRouter>
       </div>

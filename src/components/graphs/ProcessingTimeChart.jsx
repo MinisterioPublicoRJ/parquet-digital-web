@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
-import ChartPointComponent from '../../pages/ProcessingTime/chartPointComponent';
+import ChartPointComponent from '../../sections/ProcessingTime/chartPointComponent';
 
 const graphicColor = ['#F8F9FB']; // Colors
 

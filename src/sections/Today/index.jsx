@@ -48,8 +48,8 @@ class Today extends Component {
    */
   doneLoading(loadingTodayOut, loadingTodayEntries, loadingTodayOutliers) {
     if (!loadingTodayOut && !loadingTodayEntries && !loadingTodayOutliers) {
-      const { loadedCallback } = this.props;
-      loadedCallback();
+      // const { loadedCallback } = this.props;
+      // loadedCallback();
       return true;
     }
     return false;

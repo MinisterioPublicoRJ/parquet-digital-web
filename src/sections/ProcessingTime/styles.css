@@ -110,7 +110,7 @@
 @media (max-width: 480px) {
     .page-tramitacao {
       grid-template-columns: 100%;
-      grid-template-rows: 15% 45% 40%;
+      grid-template-rows: 20% 40% 40%;
       grid-template-areas:
       "texts"
       "graph"

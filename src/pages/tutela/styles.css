@@ -1,8 +1,9 @@
 .tutela-grid {
   display: grid;
-  height: 100vh;
-  width: 100vw;
-  grid-gap: 3vh;
+  height: calc(100vh - 2 * var(--bodyPadding));
+  width: calc(100vw - 2 * var(--bodyPadding));
+  grid-column-gap: 4vh;
+  grid-row-gap: 3vh;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(12, minmax(0, 1fr));
   grid-template-areas:
@@ -23,8 +24,8 @@
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
   .tutela-grid {
-    /* sum of all rows + 4 grid gaps of 3vh */
-    height: calc(252vh);
+    /* 252 = sum of all rows + 4 grid gaps of 3vh */
+    height: calc(252vh + var(--bodyPadding));
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 33vh 66vh 50vh 50vh 40vh;
     grid-template-areas:

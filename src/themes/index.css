@@ -51,6 +51,7 @@
   --dashboardAreaMargin: 2vh;
 
   --elementPadding: 1.5vh;
+  --bodyPadding: 5vh;
   /*
   --tabControlItemSize: calc(var(--defaultTextSize) * 7);
   --tabControlItemActiveHeight: calc(var(--tabControlItemSize) * 1.15);
@@ -61,6 +62,7 @@
 @media (min-width: 481px) and (max-width: 1025px) {
   :root {
     --spotlightSize: 6vw;
+    --bodyPadding: 3vh;
   }
 }
 

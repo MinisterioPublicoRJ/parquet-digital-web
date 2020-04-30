@@ -9,10 +9,12 @@ import { HashRouter, Route } from 'react-router-dom';
 
 import { SectionTitle, MainTitle, ChangeModeButton } from '../components';
 
-import Today from '../sections/Today';
-import YourDesk from '../sections/YourDesk';
-import Alerts from '../sections/Alerts';
-import PerformanceRadar from '../sections/PerformanceRadar';
+import Today from '../pages/Today';
+import YourDesk from '../pages/YourDesk';
+import Alerts from '../pages/Alerts';
+import PerformanceRadar from '../pages/PerformanceRadar';
+import ProcessingTime from '../pages/ProcessingTime';
+import ListProcesses from '../pages/ListProcesses';
 import Loader from '../loader';
 import Api from '../api';
 import { getUser } from '../user';
@@ -169,6 +171,8 @@ class PageDisplay extends React.Component {
           />
           <Alerts />
           <Route path="/" render={props => <PerformanceRadar dashboard {...props} />} />
+          <ListProcesses />
+          <ProcessingTime />
         </HashRouter>
       </div>
     );

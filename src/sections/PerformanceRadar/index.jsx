@@ -5,7 +5,7 @@ import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
 import { formatPercent } from '../../utils';
-import { PerformanceChart } from '../../components';
+import { PerformanceChart, SectionTitle } from '../../components';
 
 const propTypes = {
   dashboard: PropTypes.bool.isRequired,
@@ -27,54 +27,37 @@ class PerformanceRadar extends React.Component {
   }
 
   cleanGraphData(data) {
-    const chartData = [];
-    const axisData = {};
-    const categories = Object.keys(data);
+    const chartData = Object.entries(data)
+      .filter(cat => cat[0] !== 'meta')
+      .map(([category, { variations, percentages, numbers }]) => ({
+        axis: {
+          category,
+          value: variations == null || variations === -1 ? '—' : formatPercent(variations),
+          isAboveAverage: variations == null || variations === -1 ? null : variations >= 0,
+        },
+        chart: {
+          x: category,
+          y: percentages * 100,
+          label: numbers,
+        },
+      }));
 
-    categories.forEach(cat => {
-      if (cat === 'meta') return;
-      const chartRow = { x: cat, y: data[cat].percentages, label: data[cat].numbers };
-      axisData[cat] = formatPercent(data[cat].variations);
-      chartData.push(chartRow);
-    });
-
-    this.setState({ chartData, axisData });
+    this.setState({ chartData });
   }
 
   render() {
     const { dashboard } = this.props;
-    const { percentagePhrase, movements, chartData, axisData } = this.state;
+    const { percentagePhrase, movements, chartData } = this.state;
 
-    if (!chartData || !axisData) return <div>Carregando</div>;
-
-    if (!dashboard) {
-      return (
-        <article className="page radar">
-          <div className="radarLeft">
-            <PerformanceChart data={chartData} axis={axisData} />
-          </div>
-          <div className="radarRight">
-            <p className="paragraphWrapper">
-              Analisamos a atuação da sua promotoria e percebemos que a quantidade de arquivamento
-              está
-              <span style={{ fontWeight: 'bold' }}>{percentagePhrase}</span>
-              da média da casa.
-            </p>
-            <p className="paragraphWrapper">
-              <span style={{ fontWeight: 'bold' }}>Parabéns </span>
-              pela instauração dos novos TACs. ACPs e investigações, totalizando
-              <span style={{ fontWeight: 'bold' }}>{` ${movements} movimentos `}</span>
-              em prol da sociedade nos últimos dias.
-            </p>
-          </div>
-        </article>
-      );
-    }
+    if (!chartData) return <div>Carregando</div>;
 
     return (
-      <article className="page page-radar columns-2">
-        <div className="radarLeft">
-          <PerformanceChart data={chartData} axis={axisData} />
+      <article className="page page-radar-dashboard">
+        <div className="radar-header">
+          <SectionTitle value="Radar de Performance" />
+        </div>
+        <div className="radar-graph">
+          <PerformanceChart data={chartData} />
         </div>
       </article>
     );

@@ -11,12 +11,21 @@
   --gray: #b5b5b5;
   --grayLight: #e8e8e8;
   --grayLinks: #cecece;
+  --grayTexts: #B3B3B3;
+
+  --pt-turquoise: #56E8E1;
+  --pt-pink: #FF0086;
+  --pt-green: #42DCA7;
+  --pt-purple: #6D86EC;
 
   --shadowColor: rgba(0, 0, 0, 0.3);
 
   /* FONTS */
   --defaultFont: Montserrat;
   --defaultTextSize: 2vh;
+
+  --defaultTitleProcessing: Rockwell;
+  --subtitleProcessing: MyriadPro-Regular;
 
   --titleWeight: bold;
   --titleSize: calc(var(--defaultTextSize) * 2);
@@ -42,6 +51,7 @@
   --dashboardAreaMargin: 2vh;
 
   --elementPadding: 1.5vh;
+  --bodyPadding: 5vh;
   /*
   --tabControlItemSize: calc(var(--defaultTextSize) * 7);
   --tabControlItemActiveHeight: calc(var(--tabControlItemSize) * 1.15);
@@ -52,6 +62,7 @@
 @media (min-width: 481px) and (max-width: 1025px) {
   :root {
     --spotlightSize: 6vw;
+    --bodyPadding: 3vh;
   }
 }
 

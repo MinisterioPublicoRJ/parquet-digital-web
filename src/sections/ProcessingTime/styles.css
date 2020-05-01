@@ -1,0 +1,138 @@
+@import '../styles.css';
+@import '../../themes/index.css';
+
+.page-tramitacao {
+    grid-area: processingTime;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-auto-rows: 100%;
+    grid-template-areas:
+    "texts graph mainBoxTime";
+    overflow: hidden;
+}
+
+.pt-texts {
+  grid-area: texts;
+  color: var(--dark);
+  font-size: calc(var(--defaultTextSize) * 0.75);
+  font-family: var(--defaultFont);
+  margin: 0;
+}
+
+.pt-mainBox {
+  grid-area: mainBoxTime;
+  color: var(--dark);
+  font-size: calc(var(--defaultTextSize) * 0.5);
+  font-family: var(--defaultFont);
+}
+
+.pt-graph {
+  grid-area: graph;
+}
+
+.pt-legends {
+  align-items: center;
+  display: flex;
+  height: 20%;
+}
+
+.pt-legends-icon {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  justify-content: center;
+  margin-right: 10%;
+}
+
+.pt-legends-text {
+  display: flex;
+  flex: 5;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.pt-legends-highlight {
+  font-size: calc(var(--defaultTextSize) * 0.9);
+}
+
+.turquoise {
+  color: var(--pt-turquoise);
+}
+
+.pink {
+  color: var(--pt-pink);
+}
+
+.green {
+  color: var(--pt-green);
+}
+
+.purple {
+  color: var(--pt-purple);
+}
+
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+    .page-tramitacao {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: 33% 66%;
+      grid-template-areas:
+      "texts texts"
+      "graph mainBoxTime";
+    }
+
+    .pt-mainBox {
+      font-size: calc(var(--defaultTextSize) * 0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .pt-legends-highlight {
+      font-size: var(--defaultTextSize);
+    }
+
+    .pt-legends {
+      height: auto;
+    }
+
+    .pt-legends-icon {
+      margin-right: 0;
+    }
+
+    .pt-texts p {
+      width: 80%;
+    }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+    .page-tramitacao {
+      grid-template-columns: 100%;
+      grid-template-rows: 20% 40% 40%;
+      grid-template-areas:
+      "texts"
+      "graph"
+      "mainBoxTime";
+    }
+
+    .pt-mainBox {
+      font-size: var(--defaultTextSize);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .pt-legends-highlight {
+      font-size: calc(var(--defaultTextSize) * 1.5);
+    }
+
+    .pt-legends-icon {
+      margin-right: 0;
+    }
+
+    .pt-texts {
+      font-size: var(--defaultTextSize);
+    }
+}

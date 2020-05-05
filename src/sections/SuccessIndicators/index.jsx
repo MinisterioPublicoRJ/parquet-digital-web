@@ -4,6 +4,7 @@ import './styles.css';
 import Api from '../../api';
 import { SectionTitle } from '../../components';
 import { getUser } from '../../user';
+import SuccessIndicatorsChart from '../../components/graphs/SuccessIndicatorsChart';
 
 const SuccessIndicators = () => {
   // eslint-disable-next-line no-shadow
@@ -24,10 +25,11 @@ const SuccessIndicators = () => {
     <div className="page-success-indicators">
       <SectionTitle value="Indicadores de sucesso" />
       <p>
-        Percebi que dentre suas denúncias oferecidas 35% são relacionadas com Tráfico. Seguido de
-        perto por Roubo com (20%) e Estelionato com (10%). Todas as outras denúncias totalizam 35%.
+        Percebi que dentre suas denúncias oferecidas <strong>35%</strong> são relacionadas com <strong>Tráfico</strong>. Seguido
+        <strong>por Roubo com (20%)</strong> e <strong>Estelionato com (10%)</strong>.
       </p>
-      <p>Sua Taxa de Resolutividade</p>
+      <p>Todas as outras denúncias totalizam <strong>35%.</strong></p>
+      <SuccessIndicatorsChart />
     </div>
   );
 };

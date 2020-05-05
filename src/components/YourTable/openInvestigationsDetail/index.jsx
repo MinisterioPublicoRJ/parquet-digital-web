@@ -38,7 +38,7 @@ function getCollectionPhrase(variation) {
   return ans;
 }
 
-function OpenInvestigationDetail({ data, isLoading }) {
+function OpenInvestigationsDetail({ data, isLoading }) {
   if (isLoading) {
     return <Spinner size="large" />;
   }
@@ -81,6 +81,6 @@ function OpenInvestigationDetail({ data, isLoading }) {
   );
 }
 
-OpenInvestigationDetail.propTypes = propTypes;
-OpenInvestigationDetail.defaultProps = defaultProps;
-export default OpenInvestigationDetail;
+OpenInvestigationsDetail.propTypes = propTypes;
+OpenInvestigationsDetail.defaultProps = defaultProps;
+export default OpenInvestigationsDetail;

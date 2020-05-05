@@ -21,7 +21,7 @@ const propTypes = {
   }).isRequired,
 };
 
-function OpenInvestigationDetail({ data, isLoading }) {
+function courtCasesDetail({ data, isLoading }) {
   if (isLoading) {
     return <Spinner size="large" />;
   }
@@ -71,5 +71,5 @@ function OpenInvestigationDetail({ data, isLoading }) {
   );
 }
 
-OpenInvestigationDetail.propTypes = propTypes;
-export default OpenInvestigationDetail;
+courtCasesDetail.propTypes = propTypes;
+export default courtCasesDetail;

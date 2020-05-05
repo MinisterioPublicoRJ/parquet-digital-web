@@ -51,7 +51,8 @@ class App extends React.Component {
         case 2:
           page = <Pip user={nome} />;
           break;
-        default: // if we don't have a dashboard yet, just show blank screen
+        default:
+          // if we don't have a dashboard yet, just show blank screen
           break;
       }
     }

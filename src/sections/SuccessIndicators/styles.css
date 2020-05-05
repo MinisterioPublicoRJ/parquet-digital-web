@@ -1,0 +1,6 @@
+@import '../styles.css';
+
+.page-success-indicators{
+    grid-area: indicators;
+
+}

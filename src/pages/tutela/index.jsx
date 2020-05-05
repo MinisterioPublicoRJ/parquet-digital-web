@@ -10,7 +10,6 @@ import ProcessingTime from '../../sections/ProcessingTime';
 
 export default function({ user }) {
   if (!user) return (<div> loading </div>);
-  
   return (
     <div className="tutela-grid">
       <Today user={user} />

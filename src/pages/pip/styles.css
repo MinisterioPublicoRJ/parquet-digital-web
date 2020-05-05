@@ -12,12 +12,12 @@
   "today today radar alerts"
   "desk desk radar alerts"
   "desk desk radar alerts"
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . ."
-  "desk desk . .";
+  "desk desk indicators indicators "
+  "desk desk indicators indicators"
+  "desk desk indicators indicators "
+  "desk desk processingTime processingTime"
+  "desk desk processingTime processingTime"
+  "desk desk processingTime processingTime";
 }
 
 /* TABLETS */
@@ -29,7 +29,9 @@
     grid-template-areas:
     "today today"
     "desk desk"
-    "radar alerts";
+    "radar alerts"
+    "indicators indicators"
+    "processingTime processingTime";
   }
 }
 
@@ -45,8 +47,8 @@
     "desk"
     "radar"
     "alerts"
-    "."
-    "."
-    ;
+    "indicators"
+    "processingTime"
+    "processingTime";
   }
 }

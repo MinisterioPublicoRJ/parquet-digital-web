@@ -34,7 +34,7 @@ import {
   openCasesListTransform,
   radarTransform,
   alertsTransform,
-  tramitacaoTransform,
+  processingTimeTransform,
   listProcessesTransform,
 } from './transforms';
 
@@ -150,7 +150,7 @@ const Api = (() => {
   async function getProcessingTimeData({ orgao, token }) {
     const { data } = await axios.get(PROCESSING_TIME_DATA({ orgao }), buildRequestConfig(token));
 
-    return tramitacaoTransform(data);
+    return processingTimeTransform(data);
   }
 
   async function getAlertsList({ orgao, token }) {

@@ -46,10 +46,10 @@ class App extends React.Component {
       switch (tipo_orgao) {
         case 0:
           // case 1:
-          page = <Tutela user={nome} />;
+          page = <Tutela userName={nome} />;
           break;
         case 2:
-          page = <Pip user={nome} />;
+          page = <Pip userName={nome} />;
           break;
         default:
           // if we don't have a dashboard yet, just show blank screen

@@ -18,11 +18,11 @@
   flex-wrap: wrap;
 }
 
-.courtCases-lower-right {
+.courtCases-lowerRight {
   display: inline-flex;
 }
 
-.courtCases-lower-left {
+.courtCases-lowerLeft {
   display: inline-flex;
   flex-direction: column;
   height: 100%;

@@ -5,7 +5,7 @@ import './styles.css';
 
 import { Spinner } from '../../layoutPieces';
 import Badge from '../../../assets/svg/badge';
-import { formatPercent, getViewWidth, leftPad } from '../../../utils';
+import { formatPercent, leftPad } from '../../../utils';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
@@ -27,7 +27,6 @@ function courtCasesDetail({ data, isLoading }) {
   }
 
   const { proposedActions60Days, proposedActionsVariation12Months, topProsecutors } = data;
-  const vw = getViewWidth();
 
   return (
     <div className="courtCases-outer">
@@ -47,7 +46,7 @@ function courtCasesDetail({ data, isLoading }) {
         </p>
       </div>
       <div className="courtCases-lower">
-        <div className="courtCases-lower-left">
+        <div className="courtCases-lowerLeft">
           <h3 className="subtitle">Recorde de Ações Ajuizadas no Mês</h3>
           <ul className="courtCases-ranking">
             {topProsecutors.map(({ name, proposedActions30Days }, i) => {
@@ -65,7 +64,7 @@ function courtCasesDetail({ data, isLoading }) {
             })}
           </ul>
         </div>
-        <div className="courtCases-lower-right" />
+        <div className="courtCases-lowerRight" />
       </div>
     </div>
   );

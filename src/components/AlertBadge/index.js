@@ -17,11 +17,11 @@ const defaultProps = {
 
 function AlertBadge({ icon, message, action, actionLink, iconBg }) {
   return (
-    <div className="alertBadge--outerContainer">
-      <div className="alertBadge--leftContainer" style={{ backgroundColor: iconBg }}>
+    <div className="alertBadge-outerContainer">
+      <div className="alertBadge-leftContainer" style={{ backgroundColor: iconBg }}>
         {icon}
       </div>
-      <div className="alertBadge--rightContainer">
+      <div className="alertBadge-rightContainer">
         {message}
         {action && <a href={actionLink}>{action}</a>}
       </div>

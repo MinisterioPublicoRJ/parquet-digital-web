@@ -9,7 +9,7 @@ export { default as todayOutliersTransform } from './todayOutliersTransform';
 
 export const closedCasesTransform = ({ suamesa_finalizados }) => suamesa_finalizados;
 export const courtCasesTransform = ({ suamesa_processos }) => suamesa_processos;
-export const listProcessesTransform = data => data;
+export const processListTransform = data => data;
 export const openCasesListTransform = data => data;
 export const openCasesTransform = ({ suamesa_vistas }) => suamesa_vistas;
 export const openInvestigationsTransform = ({ suamesa_investigacoes }) => suamesa_investigacoes;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import {
   Alerts,
-  ListProcesses,
+  ProcessList,
   PerformanceRadar,
   ProcessingTime,
   Today,
@@ -19,7 +19,7 @@ function Tutela({ userName }) {
   return (
     <div className="tutela-grid">
       <Alerts user={userName} />
-      <ListProcesses user={userName} />
+      <ProcessList user={userName} />
       <PerformanceRadar user={userName} />
       <ProcessingTime user={userName} />
       <Today user={userName} />

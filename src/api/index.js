@@ -35,7 +35,7 @@ import {
   radarTransform,
   alertsTransform,
   processingTimeTransform,
-  listProcessesTransform,
+  processListTransform,
 } from './transforms';
 
 import { setUser } from '../user';
@@ -159,13 +159,13 @@ const Api = (() => {
     return alertsTransform(data);
   }
 
-  async function getListProcesses({ orgao, cpf, token }, list) {
+  async function getProcessList({ orgao, cpf, token }, list) {
     const { data } = await axios.get(
       PROCESSES_LIST({ orgao, cpf, list }),
       buildRequestConfig(token),
     );
 
-    return listProcessesTransform(data);
+    return processListTransform(data);
   }
 
   return {
@@ -184,7 +184,7 @@ const Api = (() => {
     getRadarData,
     getAlertsList,
     getProcessingTimeData,
-    getListProcesses,
+    getProcessList,
   };
 })();
 

@@ -23,7 +23,6 @@
 }
 .alertsBody{
   overflow-y: scroll;
-  /* height: 100%; */
 }
 .positiveDecision{
   color: var(--primary);

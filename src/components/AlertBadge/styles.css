@@ -8,8 +8,8 @@
   font-family: var(--defaultFont);
   margin: 1vh;
   height: 75px;
+  font-size: 1.6vh;
   color: var(--dark);
-  font-size: 14px;
   font-weight: 500;
 }
 
@@ -29,7 +29,8 @@
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  text-align: left;
+  margin-left: 10px;
 }
 
 .badgeRight a {

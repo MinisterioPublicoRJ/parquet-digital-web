@@ -55,7 +55,7 @@ class Alerts extends React.Component {
         icon = <Tjrj />;
         message = (
           <span>
-            O <strong>processo não criminal {alert.docNum}</strong>está no TJRJ há{' '}
+            O <strong>processo não criminal {alert.docNum}</strong> está no TJRJ há{' '}
             <strong>mais de 120 dias</strong> sem retorno.
           </span>
         );
@@ -128,9 +128,7 @@ class Alerts extends React.Component {
         message = (
           <span>
             O inquérito civil ativo <strong> {alert.docNum} </strong>
-            <strong> está sem prorrogação </strong> há
-            <strong>mais de 1 ano</strong>.
-          </span>
+            <strong> está sem prorrogação </strong> há <strong>mais de 1 ano</strong>.</span>
         );
         background = '#f86c72';
         break;
@@ -181,8 +179,7 @@ class Alerts extends React.Component {
         icon = <Va />;
         message = (
           <span>
-            Você tem uma<strong> vista aberta</strong> no
-            <strong>documento {alert.docNum}, sinalizado como fechado</strong>
+            Você tem uma<strong> vista aberta</strong> no <strong>documento {alert.docNum}, sinalizado como fechado</strong>
           </span>
         );
         background = '#28A7E0';

@@ -7,18 +7,18 @@
 }
 .alertsHeader{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .totalAlerts{
-  margin-top: 14px;
-  width: 40px;
-  height: 20px;
+  margin-top: 10px;
+  width: 35px;
+  height: 17px;
   background-color: var(--danger);
-  border-radius: 20px;
+  border-radius: 50px;
 }
 .totalAlerts span{
   color: var(--white);
-  margin-left: 12px;
+  margin-left: 10px;
   font-size: 15px;
 }
 .alertsBody{

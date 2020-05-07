@@ -1,6 +1,4 @@
-@import '../styles.css';
-
-.page-today {
+.today-outer {
   display: flex;
   flex-direction: column;
   grid-area: today;
@@ -23,13 +21,13 @@
   z-index: 1;
 }
 
-.today-featured-data {
+.today-textArea {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.robo-today {
+.today-robotPic {
   align-items: flex-end;
   display: flex;
   height: 75%;
@@ -53,7 +51,7 @@
 }
 
 @media (max-width: 480px) {
-  .robo-today {
+  .today-robotPic {
     height: 50%;
   }
 }

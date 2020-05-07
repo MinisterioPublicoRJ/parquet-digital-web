@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import { Spinner } from '../../index';
+import { Spinner } from '../../layoutPieces';
 
 const propTypes = {
   isActive: PropTypes.bool,
@@ -25,10 +25,14 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
       return (
         <button
           type="button"
-          className="control-button-outer control-button-active"
+          className="controlButton-outer controlButton--active"
           onClick={() => buttonPressed()}
         >
-          {loading ? <Spinner size="small" /> : <span className="big-number">{number}</span>}
+          {loading ? (
+            <Spinner size="small" />
+          ) : (
+            <span className="controlButton-bigNumber">{number}</span>
+          )}
           {text}
         </button>
       );
@@ -36,17 +40,25 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
     return (
       <button
         type="button"
-        className="control-button-outer control-button-inactive"
+        className="controlButton-outer controlButton--inactive"
         onClick={() => buttonPressed()}
       >
-        {loading ? <Spinner size="small" /> : <span className="big-number">{number}</span>}
+        {loading ? (
+          <Spinner size="small" />
+        ) : (
+          <span className="controlButton-bigNumber">{number}</span>
+        )}
         {text}
       </button>
     );
   }
   return (
-    <div className="control-button-outer control-button-inactive not-button">
-      {loading ? <Spinner size="small" /> : <span className="big-number">{number}</span>}
+    <div className="controlButton-outer controlButton--inactive controlButton-notButton">
+      {loading ? (
+        <Spinner size="small" />
+      ) : (
+        <span className="controlButton-bigNumber">{number}</span>
+      )}
       {text}
     </div>
   );

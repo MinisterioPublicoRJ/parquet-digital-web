@@ -18,11 +18,11 @@
   flex-wrap: wrap;
 }
 
-.openInv-lower-right {
+.openInv-lowerRight {
   display: inline-flex;
 }
 
-.openInv-lower-left {
+.openInv-lowerLeft {
   display: inline-flex;
   flex-direction: column;
   height: 100%;

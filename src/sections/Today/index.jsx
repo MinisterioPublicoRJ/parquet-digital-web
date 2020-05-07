@@ -228,7 +228,7 @@ class Today extends Component {
     );
 
     return (
-      <article className="page-today">
+      <article className="today-outer">
         <div className="today-header">
           <MainTitle value={greeting} />
         </div>
@@ -239,13 +239,13 @@ class Today extends Component {
         )}
         <div className="today-content">
           <SectionTitle value="resumo do dia" />
-          <div className="today-featured-data">
+          <div className="today-textArea">
             {doneLoading && percentParagraph}
             {doneLoading && collectionParagraph}
             {doneLoading && entriesParagraph}
           </div>
         </div>
-        <div className="robo-today">
+        <div className="today-robotPic">
           <Promotron height="100%" />
         </div>
       </article>

@@ -25,12 +25,21 @@ class Alerts extends React.Component {
     this.getAlertsList();
   }
 
+  /**
+   * Fetches array of alerts from API and saves to state
+   * @return {void} saves to state
+   */
   async getAlertsList() {
     const res = await Api.getAlertsList(getUser());
     this.setState({ alerts: res, isLoading: false });
     console.log(res);
   }
 
+  /**
+   * Finds the details for each alert type
+   * @param  {json} alert {alertCode}
+   * @return {json}       { icon: node, message: node, action: null, actionLink: null, background: string }
+   */
   cleanAlert(alert) {
     // this will be completed for all alert types later
     let icon = null;
@@ -202,6 +211,16 @@ class Alerts extends React.Component {
         background = '#28A7E0';
         break;
 
+        case 'DORD':
+          icon = <Mprj />;
+          message = (
+            <span>
+              O processo <strong> {alert.docNum}</strong> está possivelmente <strong> desatualizado</strong>.
+            </span>
+          );
+          background = '#5C6FD9';
+          break;
+
       // ALERTAS DA PIP
       case 'GATE':
         icon = <CorujaGate />;
@@ -265,16 +284,6 @@ class Alerts extends React.Component {
       //   background = '#5C6FD9';
       //   break;
       //
-      case 'DORD':
-        icon = <Mprj />;
-        message = (
-          <span>
-            O {' '} <strong>processo {alert.docNum}</strong> está possivelmente <strong> desatualizado</strong>
-          </span>
-        );
-        background = '#5C6FD9';
-        break;
-
       //       case 'DT2I':
       //         icon = <Home />;
       //         message = (
@@ -301,14 +310,14 @@ class Alerts extends React.Component {
 
     if (isLoading) return <aside>...</aside>;
     return (
-      <article className="alertsWrapper">
-        <div className="alertsHeader">
+      <article className="alerts-wrapper">
+        <div className="alerts-header">
           <SectionTitle value="central de alertas" />
-          <div className="totalAlerts">
+          <div className="alerts-total">
             <span>{alerts.length}</span>
           </div>
         </div>
-        <div className="alertsBody">
+        <div className="alerts-body">
           {alerts.map((alert, i) => {
             const { icon, message, action, actionLink, background } = this.cleanAlert(alert);
             return (

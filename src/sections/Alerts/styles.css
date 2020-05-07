@@ -1,41 +1,44 @@
-@import '../styles.css';
-
-.alertsWrapper {
+.alerts-wrapper {
   grid-area: alerts;
   display: flex;
   flex-direction: column;
 }
-.alertsHeader{
+
+.alerts-header {
   display: flex;
   justify-content: space-between;
 }
-.totalAlerts{
+
+.alerts-total {
   margin-top: 10px;
   width: 35px;
   height: 17px;
   background-color: var(--danger);
   border-radius: 50px;
 }
-.totalAlerts span{
+
+.alerts-total span {
   color: var(--white);
   margin-left: 10px;
   font-size: 15px;
 }
-.alertsBody{
+
+.alerts-body {
   overflow-y: scroll;
 }
-.positiveDecision{
+
+.alerts-decision--positive {
   color: var(--primary);
-  border-bottom: 2px solid ;
+  border-bottom: 2px solid;
 }
-.negativeDecision{
+.alerts-decision--negative {
   color: var(--warning);
-  border-bottom: 2px solid ;
+  border-bottom: 2px solid;
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-  .alertsWrapper {
+  .alerts-wrapper {
     overflow-y: scroll;
     width: 100%;
   }

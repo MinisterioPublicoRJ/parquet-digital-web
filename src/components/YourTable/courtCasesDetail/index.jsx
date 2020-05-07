@@ -5,7 +5,7 @@ import './styles.css';
 
 import { Spinner } from '../../layoutPieces';
 import Badge from '../../../assets/svg/badge';
-import { formatPercent, getViewWidth, leftPad } from '../../../utils';
+import { formatPercent, leftPad } from '../../../utils';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
@@ -21,13 +21,12 @@ const propTypes = {
   }).isRequired,
 };
 
-function OpenInvestigationDetail({ data, isLoading }) {
+function courtCasesDetail({ data, isLoading }) {
   if (isLoading) {
     return <Spinner size="large" />;
   }
 
   const { proposedActions60Days, proposedActionsVariation12Months, topProsecutors } = data;
-  const vw = getViewWidth();
 
   return (
     <div className="courtCases-outer">
@@ -47,7 +46,7 @@ function OpenInvestigationDetail({ data, isLoading }) {
         </p>
       </div>
       <div className="courtCases-lower">
-        <div className="courtCases-lower-left">
+        <div className="courtCases-lowerLeft">
           <h3 className="subtitle">Recorde de Ações Ajuizadas no Mês</h3>
           <ul className="courtCases-ranking">
             {topProsecutors.map(({ name, proposedActions30Days }, i) => {
@@ -65,11 +64,11 @@ function OpenInvestigationDetail({ data, isLoading }) {
             })}
           </ul>
         </div>
-        <div className="courtCases-lower-right" />
+        <div className="courtCases-lowerRight" />
       </div>
     </div>
   );
 }
 
-OpenInvestigationDetail.propTypes = propTypes;
-export default OpenInvestigationDetail;
+courtCasesDetail.propTypes = propTypes;
+export default courtCasesDetail;

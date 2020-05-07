@@ -1,18 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
-import Today from '../../sections/Today';
-import YourDesk from '../../sections/YourDesk';
-import Radar from '../../sections/PerformanceRadar';
-import Alerts from '../../sections/Alerts';
+import { Alerts, PerformanceRadar, Today, YourDesk } from '../../sections';
 
-export default function({ user }) {
+const propTypes = { userName: PropTypes.string.isRequired };
+
+function Pip({ userName }) {
   return (
-    <div className="tutela-grid">
-      <Today user={user} />
-      <YourDesk user={user} />
-      <Radar user={user} />
-      <Alerts user={user} />
+    <div className="pip-grid">
+      <Alerts user={userName} />
+      <PerformanceRadar user={userName} />
+      <Today user={userName} />
+      <YourDesk user={userName} />
     </div>
   );
 }
+Pip.propTypes = propTypes;
+export default Pip;

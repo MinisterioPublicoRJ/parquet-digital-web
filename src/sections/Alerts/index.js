@@ -18,7 +18,9 @@ import Mprj from '../../assets/svg/mprj';
 class Alerts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isLoading: true };
+    this.state = {
+      loading: true,
+    };
   }
 
   componentDidMount() {
@@ -26,8 +28,15 @@ class Alerts extends React.Component {
   }
 
   async getAlertsList() {
-    const res = await Api.getAlertsList(getUser());
-    this.setState({ alerts: res, isLoading: false });
+    let alerts;
+    let errorAlerts = false;
+    try {
+      alerts = await Api.getAlertsList(getUser());
+    } catch (e) {
+      errorAlerts = true;
+    } finally {
+      this.setState({ alerts, errorAlerts, loading: false });
+    }
   }
 
   cleanAlert(alert) {
@@ -44,8 +53,8 @@ class Alerts extends React.Component {
         icon = <Tjrj />;
         message = (
           <span>
-            O <strong> processo criminal {alert.docNum}</strong> está no TJRJ há{' '}
-            <strong>mais de 60 dias</strong> sem retorno.
+            O <strong> processo criminal {alert.docNum}</strong> está no TJRJ há {' '}
+             <strong>mais de 60 dias</strong> sem retorno.
           </span>
         );
         background = '#F86C72';
@@ -138,7 +147,7 @@ class Alerts extends React.Component {
         message = (
           <span>
             O inquérito civil ativo <strong> {alert.docNum} </strong>
-            <strong> está sem prorrogação </strong> há<strong>mais de 1 ano</strong>.
+            <strong> está sem prorrogação </strong> há <strong>mais de 1 ano</strong>.
           </span>
         );
         background = '#f86c72';
@@ -195,7 +204,8 @@ class Alerts extends React.Component {
         message = (
           <span>
             Você tem uma
-            <strong> vista aberta</strong>{' '} no {' '}<strong>documento {alert.docNum}, sinalizado como fechado</strong>
+            <strong> vista aberta</strong>{' '}no{' '}
+            <strong>documento{alert.docNum}, sinalizado como fechado</strong>
           </span>
         );
         background = '#28A7E0';
@@ -268,7 +278,11 @@ class Alerts extends React.Component {
         icon = <Mprj />;
         message = (
           <span>
-            O {' '} <strong>processo {alert.docNum}</strong> está possivelmente <strong> desatualizado</strong>
+            O 
+{' '}
+<strong>processo {alert.docNum}</strong> está possivelmente
+{' '}
+            <strong> desatualizado</strong>
           </span>
         );
         background = '#5C6FD9';
@@ -296,9 +310,9 @@ class Alerts extends React.Component {
   }
 
   render() {
-    const { alerts, isLoading } = this.state;
+    const { alerts, loading, errorAlerts } = this.state;
 
-    if (isLoading) return <aside>...</aside>;
+    if (loading) return <aside>Carregando...</aside>;
     return (
       <article className="alertsWrapper">
         <div className="alertsHeader">
@@ -318,6 +332,7 @@ class Alerts extends React.Component {
                 message={message}
                 action={action}
                 actionLink={actionLink}
+                loading={errorAlerts}
               />
             );
           })}

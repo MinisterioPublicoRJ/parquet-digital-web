@@ -28,7 +28,6 @@ class Alerts extends React.Component {
   async getAlertsList() {
     const res = await Api.getAlertsList(getUser());
     this.setState({ alerts: res, isLoading: false });
-    console.log(res);
   }
 
   cleanAlert(alert) {

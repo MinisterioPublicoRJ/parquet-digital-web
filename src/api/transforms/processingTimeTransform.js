@@ -1,4 +1,4 @@
-export default function tramitacaoTransform(data) {
+export default function processingTimeTransform(data) {
   const meta = { id: data.id_orgao };
   const pacoteData = {
     max: data.maximo_pacote,

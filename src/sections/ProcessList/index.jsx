@@ -5,9 +5,9 @@ import Api from '../../api';
 import { Table, SectionTitle } from '../../components';
 import { getUser } from '../../user';
 
-const ListProcesses = () => {
+const ProcessList = () => {
   // eslint-disable-next-line no-shadow
-  const [listProcesses, setListProcesses] = useState([]);
+  const [processListData, setProcessListData] = useState([]);
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
@@ -19,23 +19,23 @@ const ListProcesses = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await Api.getListProcesses(getUser());
-      setListProcesses(response);
+      const response = await Api.getProcessList(getUser());
+      setProcessListData(response);
     };
     loadData();
   }, []);
 
-  if (!listProcesses) {
+  if (!processListData) {
     return <div>loading</div>;
   }
   return (
-    <div className="page-lista-processos">
+    <div className="processList-outer">
       <SectionTitle value="Lista de Processos" />
-      <div className="lista-processos">
-        <Table data={listProcesses} columns={tableColumns} showHeader />
+      <div className="processList-tableWrapper">
+        <Table data={processListData} columns={tableColumns} showHeader />
       </div>
     </div>
   );
 };
 
-export default ListProcesses;
+export default ProcessList;

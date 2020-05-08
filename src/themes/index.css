@@ -52,10 +52,6 @@
 
   --elementPadding: 1.5vh;
   --bodyPadding: 5vh;
-  /*
-  --tabControlItemSize: calc(var(--defaultTextSize) * 7);
-  --tabControlItemActiveHeight: calc(var(--tabControlItemSize) * 1.15);
-  --tabControlItemActiveWidth: calc(var(--tabControlItemSize) * 1.4); */
 }
 
 /* TABLETS */

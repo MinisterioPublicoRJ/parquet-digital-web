@@ -1,6 +1,4 @@
-@import '../../../themes/index.css';
-
-.mainTitleText {
+.mainTitle-text {
   align-items: center;
   color: var(--darkBlue);
   display: inline-flex;

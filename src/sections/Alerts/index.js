@@ -25,11 +25,20 @@ class Alerts extends React.Component {
     this.getAlertsList();
   }
 
+  /**
+   * Fetches array of alerts from API and saves to state
+   * @return {void} saves to state
+   */
   async getAlertsList() {
     const res = await Api.getAlertsList(getUser());
     this.setState({ alerts: res, isLoading: false });
   }
 
+  /**
+   * Finds the details for each alert type
+   * @param  {json} alert {alertCode}
+   * @return {json}       { icon: node, message: node, action: null, actionLink: null, background: string }
+   */
   cleanAlert(alert) {
     // this will be completed for all alert types later
     let icon = null;
@@ -216,7 +225,7 @@ class Alerts extends React.Component {
 //         icon = <Law />;
 //         message = (
 //           <span>
-//             Você obteve uma <strong className="positiveDecision"> decisão favorável </strong>
+//             Você obteve uma <strong className="alerts-decision--positive"> decisão favorável </strong>
 // {' '}
 // no
 //             processo
@@ -230,7 +239,7 @@ class Alerts extends React.Component {
 //         icon = <Law />;
 //         message = (
 //           <span>
-//             Você obteve uma <strong className="negativeDecision"> decisão desfavorável </strong>
+//             Você obteve uma <strong className="alerts-decision--negative"> decisão desfavorável </strong>
 // {' '}
 // no
 //             processo
@@ -291,14 +300,14 @@ class Alerts extends React.Component {
 
     if (isLoading) return <aside>...</aside>;
     return (
-      <article className="alertsWrapper">
-        <div className="alertsHeader">
+      <article className="alerts-wrapper">
+        <div className="alerts-header">
           <SectionTitle value="central de alertas" />
-          <div className="totalAlerts">
+          <div className="alerts-total">
             <span>{alerts.length}</span>
           </div>
         </div>
-        <div className="alertsBody">
+        <div className="alerts-body">
           {alerts.map((alert, i) => {
             const { icon, message, action, actionLink, background } = this.cleanAlert(alert);
             return (

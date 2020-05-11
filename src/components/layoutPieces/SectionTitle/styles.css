@@ -1,6 +1,4 @@
-@import '../../../themes/index.css';
-
-.sectionTitleText {
+.sectionTitle-text {
   color: var(--darkBlue);
   font-family: var(--subtitleFont);
   font-size: var(--subtitleSize);

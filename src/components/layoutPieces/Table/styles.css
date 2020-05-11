@@ -2,6 +2,7 @@ table {
   color: #8998AC;
   font-family: var(--defaultFont);
   width: 100%;
+  font-size: 15px;
 }
 
 tbody tr:nth-child(even) {

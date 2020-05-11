@@ -20,6 +20,7 @@ const ProcessList = () => {
   useEffect(() => {
     const loadData = async () => {
       const response = await Api.getProcessList(getUser());
+      console.log(response);
       setProcessListData(response);
     };
     loadData();

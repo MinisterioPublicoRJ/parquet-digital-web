@@ -33,7 +33,7 @@ td{
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis; 
-  max-width: 20px;
+  max-width: 100px;
 }
 
 
@@ -43,7 +43,9 @@ td{
     table-layout: fixed;
     width: 100vw;
   }
-
+  td {
+    width: 100%;
+  }
   tbody tr {
     display: flex;
     flex-wrap: wrap;

@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
-import Api from '../../api';
-import { getUser } from '../../user';
-import { formatPercent } from '../../utils';
-import { PerformanceChart, SectionTitle } from '../../components';
-
-const propTypes = {
-  dashboard: PropTypes.bool.isRequired,
-};
+import '../styles.css';
+import Api from '../../../api';
+import { getUser } from '../../../user';
+import { formatPercent } from '../../../utils';
+import { PerformanceChart, SectionTitle } from '../../../components';
 
 class PerformanceRadar extends React.Component {
   constructor(props) {
@@ -46,8 +42,7 @@ class PerformanceRadar extends React.Component {
   }
 
   render() {
-    const { dashboard } = this.props;
-    const { percentagePhrase, movements, chartData } = this.state;
+    const { chartData } = this.state;
 
     if (!chartData) return <div>Carregando</div>;
 

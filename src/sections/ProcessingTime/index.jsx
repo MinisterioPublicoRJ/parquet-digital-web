@@ -59,7 +59,7 @@ const ProcessingTime = () => {
   }, []);
 
   if (!processingTime.meta || !chartData) {
-    return <div>loading</div>;
+    return <div>Carregando...</div>;
   }
 
   const isBetter = processingTime.orgaoData.average >= processingTime.pacoteData.average;

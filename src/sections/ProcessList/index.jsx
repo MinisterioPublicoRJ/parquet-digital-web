@@ -8,6 +8,7 @@ import { getUser } from '../../user';
 const ProcessList = () => {
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
@@ -19,22 +20,29 @@ const ProcessList = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await Api.getProcessList(getUser());
-      console.log(response);
-      setProcessListData(response);
+      setLoading(true);
+      try {
+        const response = await Api.getProcessList(getUser());
+        setProcessListData(response);
+      } catch (e) {
+        setLoading(true);
+      } finally {
+        setLoading(false);
+      }
     };
     loadData();
   }, []);
 
-  if (!processListData) {
-    return <div>loading</div>;
-  }
   return (
     <div className="processList-outer">
       <SectionTitle value="Lista de Processos" />
-      <div className="processList-tableWrapper">
-        <Table data={processListData} columns={tableColumns} showHeader />
-      </div>
+      {loading ? (
+        <p>Carregando...</p>
+      ) : (
+        <div className="processList-tableWrapper">
+          <Table data={processListData} columns={tableColumns} showHeader />
+        </div>
+      )}
     </div>
   );
 };

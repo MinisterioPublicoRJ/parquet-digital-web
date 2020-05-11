@@ -5,9 +5,9 @@
   display: flex;
   font-family: var(--defaultFont);
   margin: 1vh;
-  height: 75px;
+  font-size: 12px;
+  line-height: 18px;
   color: var(--dark);
-  font-size: 14px;
   font-weight: 500;
 }
 
@@ -17,7 +17,6 @@
   border-radius: 7px 0 0 7px;
   display: flex;
   justify-content: center;
-  height: 100%;
   width: 61px;
 }
 
@@ -27,7 +26,10 @@
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  text-align: left;
+  margin-left: 10px;
+  height: 85px;
+
 }
 
 .alertBadge-rightContainer a {

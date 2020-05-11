@@ -1,5 +1,3 @@
-@import '../../../themes/index.css';
-
 table {
   color: #8998AC;
   font-family: var(--defaultFont);
@@ -36,7 +34,6 @@ th{
   }
 
   tbody tr {
-    background-color: pink;
     display: flex;
     flex-wrap: wrap;
   }

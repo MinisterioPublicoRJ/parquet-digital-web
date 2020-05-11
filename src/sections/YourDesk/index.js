@@ -195,7 +195,7 @@ class YourDesk extends React.Component {
     } = this.state;
 
     return (
-      <article className="yourDesk">
+      <article className="desk-outer">
         <div className="desk-header">
           <SectionTitle value="Sua Mesa" />
           <div className="desk-controlers">
@@ -234,7 +234,7 @@ class YourDesk extends React.Component {
           {activeTab === 'openCases' && (
             <OpenCasesDetail
               getUser={getUser}
-              chartData={openCasesDetails}
+              chartData={openCasesDetails || []}
               isLoading={!openCasesDetails && !openCasesDetailsError}
             />
           )}

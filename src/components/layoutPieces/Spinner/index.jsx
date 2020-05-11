@@ -7,7 +7,7 @@ const propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
 };
 
-const Spinner = ({ size }) => <div className={`spinner-${size}`} />;
+const Spinner = ({ size }) => <div className={`spinner--${size}`} />;
 
 Spinner.propTypes = propTypes;
 export default Spinner;

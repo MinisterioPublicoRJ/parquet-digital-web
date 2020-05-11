@@ -49,9 +49,10 @@ class App extends React.Component {
           page = <Tutela user={nome} />;
           break;
         case 2:
-          page = <Pip user={nome} />;
+          page = <Pip userName={nome} />;
           break;
-        default: // if we don't have a dashboard yet, just show blank screen
+        default:
+          // if we don't have a dashboard yet, just show blank screen
           break;
       }
     }

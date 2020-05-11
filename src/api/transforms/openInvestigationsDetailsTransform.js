@@ -1,4 +1,4 @@
-const openCasesDetailsTransform = ({ variacao_acervo = 0, top_n = [] }) => ({
+const openInvestigationsDetailsTransform = ({ variacao_acervo = 0, top_n = [] }) => ({
   collectionVariation30Days: variacao_acervo,
   topProsecutors: top_n.map(p => ({
     name: p.nm_promotoria,
@@ -6,4 +6,4 @@ const openCasesDetailsTransform = ({ variacao_acervo = 0, top_n = [] }) => ({
   })),
 });
 
-export default openCasesDetailsTransform;
+export default openInvestigationsDetailsTransform;

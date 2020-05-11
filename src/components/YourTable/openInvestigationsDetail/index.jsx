@@ -5,7 +5,7 @@ import './styles.css';
 
 import { Spinner } from '../../layoutPieces';
 import Badge from '../../../assets/svg/badge';
-import { formatPercent, getViewWidth, leftPad, formatPercentage } from '../../../utils';
+import { formatPercent, leftPad, formatPercentage } from '../../../utils';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
@@ -19,7 +19,6 @@ const propTypes = {
     ),
   }).isRequired,
 };
-const defaultProps = {};
 
 /**
  * uses variation data to pick what sentence to show
@@ -38,14 +37,13 @@ function getCollectionPhrase(variation) {
   return ans;
 }
 
-function OpenInvestigationDetail({ data, isLoading }) {
+function OpenInvestigationsDetail({ data, isLoading }) {
   if (isLoading) {
     return <Spinner size="large" />;
   }
 
   const { collectionVariation30Days, topProsecutors } = data;
   const collectionPhrase = getCollectionPhrase(collectionVariation30Days);
-  const vw = getViewWidth();
 
   return (
     <div className="openInv-outer">
@@ -57,7 +55,7 @@ function OpenInvestigationDetail({ data, isLoading }) {
         </p>
       </div>
       <div className="openInv-lower">
-        <div className="openInv-lower-left">
+        <div className="openInv-lowerLeft">
           <h3 className="subtitle">Maiores Reduções do Mês</h3>
           <ul className="openInv-ranking">
             {topProsecutors.map((item, i) => {
@@ -75,12 +73,11 @@ function OpenInvestigationDetail({ data, isLoading }) {
             })}
           </ul>
         </div>
-        <div className="openInv-lower-right" />
+        <div className="openInv-lowerRight" />
       </div>
     </div>
   );
 }
 
-OpenInvestigationDetail.propTypes = propTypes;
-OpenInvestigationDetail.defaultProps = defaultProps;
-export default OpenInvestigationDetail;
+OpenInvestigationsDetail.propTypes = propTypes;
+export default OpenInvestigationsDetail;

@@ -2,7 +2,7 @@ table {
   color: #8998AC;
   font-family: var(--defaultFont);
   width: 100%;
-  font-size: 15px;
+  font-size: 1.8vh;
 }
 
 tbody tr:nth-child(even) {
@@ -21,11 +21,21 @@ thead tr {
 
 td {
   padding: 5px;
+
 }
 
 th{
   padding: 10px;
+
 }
+
+td{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  max-width: 20px;
+}
+
 
 /* PHONES */
 @media (max-width: 480px) {

@@ -29,16 +29,20 @@ class PerformanceRadar extends React.Component {
   cleanGraphData(data) {
     const chartData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
-      .map(([category, { variations, percentages, numbers }]) => ({
+      .map(([category, { maxValues, averages, variations, percentages, numbers }]) => ({
         axis: {
           category,
-          value: variations == null || variations === -1 ? '—' : formatPercent(variations),
-          isAboveAverage: variations == null || variations === -1 ? null : variations >= 0,
+          value: numbers, // variations == null || variations === -1 ? '—' : formatPercent(variations),
+          isAboveAverage: true, // variations == null || variations === -1 ? null : variations >= 0,
         },
         chart: {
           x: category,
           y: percentages * 100,
-          label: numbers,
+          label: `${Math.round(percentages * 100)}%`,
+        },
+        med: {
+          x: category,
+          y: 100 * (averages / maxValues),
         },
       }));
 

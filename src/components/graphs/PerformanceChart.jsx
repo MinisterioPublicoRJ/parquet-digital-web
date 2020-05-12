@@ -109,6 +109,18 @@ const generateAxis = data =>
     })
     .sort((a, b) => a.order - b.order);
 
+const generateMedData = data => {
+  return data
+    .map(({ med }) => {
+      const { position } = axisLabelsTable[med.x];
+      const { order } = labelPositionsTable[position];
+
+      return { ...med, order };
+    })
+    .sort((a, b) => a.order - b.order)
+    .map(({ y, x }) => ({ y, x }));
+};
+
 const propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({ x: PropTypes.string, y: PropTypes.number, label: PropTypes.number }),
@@ -120,6 +132,10 @@ function PerformanceChart({ data }) {
   const areaData = generateAreaData(data);
   const xAxis = generateAxis(data);
   const grid = generateGrid(xAxis);
+  const medData = generateMedData(data);
+
+  console.log('>>>>medianas:', medData);
+  console.log('>>>area', areaData);
 
   // TODO: animate VictoryChart
   return (
@@ -174,6 +190,18 @@ function PerformanceChart({ data }) {
           data={areaData}
           style={{
             data: { fill: 'url(#myGradient)' },
+          }}
+          labelComponent={<AreaLabel />}
+        />
+        <VictoryArea
+          data={medData}
+          style={{
+            data: {
+              fill: 'transparent',
+              stroke: '#c43a31',
+              strokeWidth: 2,
+              strokeLinecap: 'round',
+            },
           }}
           labelComponent={<AreaLabel />}
         />

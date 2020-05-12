@@ -19,13 +19,15 @@ const ChartPoints = ({ x, y, datum, ...props }) => {
 
   switch (type) {
     case 'min':
-    console.log('ChartPoints MIN', props);
       point = <Markfaster x={x} y={y} />;
       break;
     case 'average':
       point = <MarkMind x={x} y={y} />;
       break;
     case 'max':
+      point = <MarkSlower x={x} y={y} />;
+      break;
+    case 'pointer':
       point = <MarkSlower x={x} y={y} />;
       break;
     default:

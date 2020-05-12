@@ -46,7 +46,12 @@ const ProcessingTime = () => {
       { x: 1, y: (average - min) / max, type: 'average' },
       { x: 0, y: (max - average) / max, type: 'max' },
     ];
-    setChartData({ pieData, points, domain, organAvg });
+
+    const pointerPosition = [
+      { x: 1, y: organAvg / max, type: 'pointer' },
+      { x: 0, y: (max - organAvg) / max },
+    ];
+    setChartData({ pieData, points, domain, organAvg, pointerPosition });
   };
 
   useEffect(() => {
@@ -69,7 +74,7 @@ const ProcessingTime = () => {
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
         <p>
-          Avaliei que otempo médio de tramitação de processos na sua promotoria
+          Avaliei que o tempo médio de tramitação de processos na sua promotoria
           <strong>
             {isBetter ? ' está mais rápido que a média da casa ' : 'está abaixo da média da casa'}
           </strong>
@@ -84,6 +89,7 @@ const ProcessingTime = () => {
           scatter={chartData.points}
           domain={chartData.domain}
           labelText={chartData.organAvg}
+          pointerPosition={chartData.pointerPosition}
           labelCompliment={isBetter ? 'Muito bom' : ''}
         />
       </div>

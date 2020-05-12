@@ -21,10 +21,18 @@ const propTypes = {
     type: PropTypes.string,
   }).isRequired,
   labelText: PropTypes.string.isRequired,
+  labelCompliment: PropTypes.string.isRequired,
   domain: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }).isRequired,
 };
 
-function TempoTramitacaoChart({ data, scatter, labelText, domain, labelCompliment }) {
+function TempoTramitacaoChart({
+  data,
+  scatter,
+  labelText,
+  domain,
+  labelCompliment,
+  pointerPosition,
+}) {
   const { min, max } = domain;
 
   const victoryChartSettings = {
@@ -92,8 +100,17 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain, labelComplimen
 
   const labelComplimentStyle = {
     fontSize: 10,
-    // fontWeight: '600',
     fill: '#3FA9F5',
+  };
+
+  const pointerPieSettings = {
+    endAngle: 80,
+    height: 200,
+    labelComponent: <ChartPoints />,
+    labelRadius: 50,
+    sortKey: 'x',
+    startAngle: -110,
+    style: { data: { opacity: 0 } },
   };
 
   return (
@@ -115,6 +132,7 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain, labelComplimen
         <VictoryAxis style={{ axis: { stroke: 'none' } }} />
         <VictoryPie {...chartPieSettings} data={data} />
         <VictoryPie {...labelsPieSettings} data={scatter} />
+        <VictoryPie {...pointerPieSettings} data={pointerPosition} />
       </VictoryChart>
     </svg>
   );

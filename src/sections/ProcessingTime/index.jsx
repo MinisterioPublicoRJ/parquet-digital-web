@@ -83,7 +83,8 @@ const ProcessingTime = () => {
           data={chartData.pieData}
           scatter={chartData.points}
           domain={chartData.domain}
-          labelText={isBetter ? `${chartData.organAvg}\nMuito bom` : chartData.organAvg}
+          labelText={chartData.organAvg}
+          labelCompliment={isBetter ? 'Muito bom' : ''}
         />
       </div>
       <div className="pt-mainBox">

@@ -24,7 +24,7 @@ const propTypes = {
   domain: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }).isRequired,
 };
 
-function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
+function TempoTramitacaoChart({ data, scatter, labelText, domain, labelCompliment }) {
   const { min, max } = domain;
 
   const victoryChartSettings = {
@@ -55,7 +55,7 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
     innerRadius: 90,
     height: 200,
     labelComponent: <LabelWrapper />,
-  labelRadius: 105,
+    labelRadius: 105,
     labelPosition: 'endAngle',
     radius: 100,
     startAngle: -110,
@@ -85,12 +85,30 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
     style: { data: { opacity: 0 } },
   };
 
+  const labelTextStyle = {
+    fontSize: 18,
+    fontWeight: '600',
+  };
+
+  const labelComplimentStyle = {
+    fontSize: 10,
+    // fontWeight: '600',
+    fill: '#3FA9F5',
+  };
+
   return (
     <svg width="100%" height="100%" viewBox="0 0 200 200">
       <VictoryChart polar {...victoryChartSettings}>
         {/* DECORATIONS */}
         <circle cx="100" cy="140" r="40" fill="none" stroke="#B3B3B3" />
-        <VictoryLabel textAnchor="middle" x={100} y={140} text={labelText} />
+        <VictoryLabel textAnchor="middle" x={100} y={133} text={labelText} style={labelTextStyle} />
+        <VictoryLabel
+          textAnchor="middle"
+          x={100}
+          y={148}
+          text={labelCompliment}
+          style={labelComplimentStyle}
+        />
         <VictoryPie {...decorationPieSettings} />
 
         {/* GRAPHS AND AXIS */}

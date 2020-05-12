@@ -3,13 +3,12 @@ import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
 
 import './styles.css';
 
-// workaround to use dynamic angles when placing the labels outside the pie
+// manually change labels position to make them fit the design in a way Victory wouldn't let me
 // props come from Victory itself
 // https://formidable.com/open-source/victory/docs/victory-label/
 export default function LabelWrapper(props) {
   let customProps;
   const { datum, text, x, y, heigth, slice } = props;
-  console.log('props', props);
 
   switch (datum.x) {
     case 0: // max value
@@ -27,10 +26,6 @@ export default function LabelWrapper(props) {
         x: x - 43,
         verticalAnchor: 'start',
       };
-      // customProps.text = `${text}\ndias`;
-      // customProps.y = y + 25;
-      // customProps.x = x - 45;
-      // customProps.verticalAnchor = 'start';
       break;
     default:
   }

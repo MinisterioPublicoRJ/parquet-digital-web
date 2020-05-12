@@ -4,12 +4,9 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
-import { formatPercent } from '../../utils';
 import { PerformanceChart, SectionTitle } from '../../components';
 
-const propTypes = {
-  dashboard: PropTypes.bool.isRequired,
-};
+const propTypes = {};
 
 class PerformanceRadar extends React.Component {
   constructor(props) {

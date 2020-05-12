@@ -136,18 +136,6 @@ const generateAreasData = data =>
       [[], [], []],
     );
 
-// const generateMedData = data => {
-//   return data
-//     .map(({ med }) => {
-//       const { position } = axisLabelsTable[med.x];
-//       const { order } = labelPositionsTable[position];
-
-//       return { ...med, order };
-//     })
-//     .sort((a, b) => a.order - b.order)
-//     .map(({ y, x }) => ({ y, x }));
-// };
-
 const propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({ x: PropTypes.string, y: PropTypes.number, label: PropTypes.number }),
@@ -156,7 +144,6 @@ const propTypes = {
 };
 
 function PerformanceChart({ data }) {
-  console.log('>>>>>>>>>>>>>>>>>', data);
   const [xAxis, medianData, areaData] = generateAreasData(data);
   const grid = generateGrid(xAxis);
 

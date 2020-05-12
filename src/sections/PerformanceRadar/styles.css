@@ -10,3 +10,7 @@
   flex-direction: row;
   grid-area: radar;
 }
+
+.radar-graph {
+  margin: auto 0;
+}

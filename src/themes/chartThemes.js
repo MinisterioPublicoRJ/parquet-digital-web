@@ -29,8 +29,11 @@ const CHART_THEME = {
     fontSize: 12,
   },
   axisLabelNeutral: {
-    fill: gray,
+    fill: '#555',
     fontSize: 12,
+    lineHeight: 20,
+    fontWeight: 'bold',
+    marginBottom: 5,
   },
 };
 export default CHART_THEME;

@@ -32,13 +32,13 @@ class PerformanceRadar extends React.Component {
       .map(([category, { maxValues, averages, variations, percentages, numbers }]) => ({
         axis: {
           category,
-          value: numbers, // variations == null || variations === -1 ? '—' : formatPercent(variations),
-          isAboveAverage: true, // variations == null || variations === -1 ? null : variations >= 0,
+          value: `max: ${maxValues}`, // variations == null || variations === -1 ? '—' : formatPercent(variations),
+          isAboveAverage: null, // variations == null || variations === -1 ? null : variations >= 0,
         },
         chart: {
           x: category,
           y: percentages * 100,
-          label: `${Math.round(percentages * 100)}%`,
+          label: numbers,
         },
         med: {
           x: category,
@@ -58,7 +58,7 @@ class PerformanceRadar extends React.Component {
     return (
       <article className="page-radar-dashboard">
         <div className="radar-header">
-          <SectionTitle value="Radar de Performance" />
+          <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" />
         </div>
         <div className="radar-graph">
           <PerformanceChart data={chartData} />

@@ -19,9 +19,9 @@ function generateGrid(xAxis) {
   return axisGrid;
 }
 
-const buildLabelStyles = (labels, isGood) =>
+const buildLabelStyles = (labels, isGood, invert) =>
   labels.map((_, i) => {
-    if (i !== labels.length - 1) return CHART_THEME.axisLabel;
+    if ((invert && i !== 0) || (!invert && i !== labels.length - 1)) return CHART_THEME.axisLabel;
 
     if (isGood) return CHART_THEME.axisLabelGood;
 
@@ -30,7 +30,10 @@ const buildLabelStyles = (labels, isGood) =>
     return CHART_THEME.axisLabelNeutral;
   });
 
-const buildLabel = (str, val) => [...str.toLocaleUpperCase().split('_'), val];
+const buildLabel = (str, val, invert) =>
+  invert
+    ? [val, ...str.toLocaleUpperCase().split('_')]
+    : [...str.toLocaleUpperCase().split('_'), val];
 
 const labelPositionsTable = {
   N: {
@@ -42,7 +45,7 @@ const labelPositionsTable = {
   W: {
     order: 2,
     dx: 15,
-    dy: 0,
+    dy: -15,
     textAnchor: 'end',
   },
   SW: {
@@ -50,17 +53,19 @@ const labelPositionsTable = {
     dx: 10,
     dy: -15,
     textAnchor: 'end',
+    invert: true,
   },
   SE: {
     order: 4,
     dx: -10,
     dy: -15,
     textAnchor: 'start',
+    invert: true,
   },
   E: {
     order: 5,
     dx: -15,
-    dy: 0,
+    dy: -15,
     textAnchor: 'start',
   },
 };
@@ -95,11 +100,12 @@ const generateAxis = data =>
     .map(({ axis }) => {
       const { category, value, isAboveAverage } = axis;
       const { label, position } = axisLabelsTable[category];
-      const { dx, dy, textAnchor, order } = labelPositionsTable[position];
+      const { dx, dy, textAnchor, order, invert } = labelPositionsTable[position];
 
       return {
         category,
-        label: buildLabel(label, value),
+        label: buildLabel(label, value, invert),
+        invert,
         isGood: isAboveAverage,
         dx,
         dy,
@@ -134,9 +140,6 @@ function PerformanceChart({ data }) {
   const grid = generateGrid(xAxis);
   const medData = generateMedData(data);
 
-  console.log('>>>>medianas:', medData);
-  console.log('>>>area', areaData);
-
   // TODO: animate VictoryChart
   return (
     <>
@@ -156,13 +159,13 @@ function PerformanceChart({ data }) {
       </svg>
       <VictoryChart
         polar
-        domain={{ y: [0, 100] }}
+        domain={{ y: [-5, 100] }}
         responsive
         startAngle={90}
         endAngle={450}
         padding={{ top: 40, left: -40, right: -40, bottom: 10 }}
       >
-        {xAxis.map(({ category, label, isGood, dx, dy, textAnchor }) => (
+        {xAxis.map(({ category, label, isGood, dx, dy, textAnchor, invert }) => (
           <VictoryPolarAxis
             dependentAxis
             key={category}
@@ -176,7 +179,7 @@ function PerformanceChart({ data }) {
                 textAnchor={textAnchor}
                 dx={dx}
                 dy={dy}
-                style={buildLabelStyles(label, isGood)}
+                style={buildLabelStyles(label, isGood, invert)}
               />
             }
           />
@@ -186,6 +189,7 @@ function PerformanceChart({ data }) {
             <VictoryArea key={i} data={data1} />
           ))}
         </VictoryGroup>
+
         <VictoryArea
           data={areaData}
           style={{
@@ -204,6 +208,13 @@ function PerformanceChart({ data }) {
             },
           }}
           labelComponent={<AreaLabel />}
+        />
+
+        <VictoryArea
+          data={[{ y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }]}
+          style={{
+            data: { fill: 'rgb(92, 111, 217, .6)' },
+          }}
         />
       </VictoryChart>
     </>

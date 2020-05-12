@@ -36,6 +36,7 @@ class Alerts extends React.Component {
     let errorAlerts = false;
     try {
       alerts = await Api.getAlertsList(getUser());
+      console.log(alerts)
     } catch (e) {
       errorAlerts = true;
     } finally {

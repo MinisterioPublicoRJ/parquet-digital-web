@@ -24,6 +24,7 @@ const ProcessList = () => {
       try {
         const response = await Api.getProcessList(getUser());
         setProcessListData(response);
+        console.log(response);
       } catch (e) {
         setLoading(true);
       } finally {

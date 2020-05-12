@@ -4,16 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
-import ChartPointComponent from '../../sections/ProcessingTime/chartPointComponent';
+import { ChartPoints, LabelWrapper } from '../ProcessingTime';
 
 const graphicColor = ['#F8F9FB']; // Colors
-
-// workaround to use dynamic angles when placing the labels outside the pie
-// props come from Victory itself
-// https://formidable.com/open-source/victory/docs/victory-label/
-function LabelWrapper(props) {
-  return <VictoryLabel {...props} angle={props.datum.startAngle} />;
-}
 
 const propTypes = {
   data: PropTypes.shape({
@@ -62,7 +55,7 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
     innerRadius: 90,
     height: 200,
     labelComponent: <LabelWrapper />,
-    labelRadius: 110,
+  labelRadius: 105,
     labelPosition: 'endAngle',
     radius: 100,
     startAngle: -110,
@@ -70,9 +63,9 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
     sortKey: 'x',
     style: {
       labels: {
-        fontSize: 15,
+        fontSize: 12,
         fontWeight: '400',
-        height: 10,
+        height: 12,
         fill: ({ datum }) => datum.color,
       },
       data: { fill: ({ datum }) => datum.color },
@@ -83,7 +76,7 @@ function TempoTramitacaoChart({ data, scatter, labelText, domain }) {
     endAngle: 80,
     height: 200,
     innerRadius: 90,
-    labelComponent: <ChartPointComponent />,
+    labelComponent: <ChartPoints />,
     labelPosition: 'endAngle',
     labelRadius: 95,
     radius: 100,

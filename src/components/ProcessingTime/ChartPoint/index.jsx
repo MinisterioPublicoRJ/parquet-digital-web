@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
-import MarkMind from '../../assets/svg/markMind';
-import Markfaster from '../../assets/svg/markFaster';
-import MarkSlower from '../../assets/svg/markSlower';
+import MarkMind from '../../../assets/svg/markMind';
+import Markfaster from '../../../assets/svg/markFaster';
+import MarkSlower from '../../../assets/svg/markSlower';
 
 // This props are supplied by Victory itself
 // https://formidable.com/open-source/victory/docs/common-props/#labelcomponent
@@ -14,12 +13,13 @@ const proptypes = {
   datum: PropTypes.shape({ type: PropTypes.string }).isRequired,
 };
 
-const ChartPointComponent = ({ x, y, datum }) => {
+const ChartPoints = ({ x, y, datum, ...props }) => {
   const { type } = datum;
   let point;
 
   switch (type) {
     case 'min':
+    console.log('ChartPoints MIN', props);
       point = <Markfaster x={x} y={y} />;
       break;
     case 'average':
@@ -35,5 +35,5 @@ const ChartPointComponent = ({ x, y, datum }) => {
   return point;
 };
 
-ChartPointComponent.proptypes = proptypes;
-export default ChartPointComponent;
+ChartPoints.proptypes = proptypes;
+export default ChartPoints;

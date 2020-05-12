@@ -18,7 +18,7 @@ const ProcessingTime = () => {
   const [chartData, setChartData] = useState(null);
 
   const cleanChartData = raw => {
-    const organAvg = raw.orgaoData.average.toFixed(2);
+    const organAvg = raw.orgaoData.average.toFixed(0);
     const { min, max, average } = raw.pacoteData;
     const domain = { min, max };
 
@@ -69,7 +69,7 @@ const ProcessingTime = () => {
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
         <p>
-          Avaliei que o período de tramitação de processos na sua promotoria
+          Avaliei que otempo médio de tramitação de processos na sua promotoria
           <strong>
             {isBetter ? ' está mais rápido que a média da casa ' : 'está abaixo da média da casa'}
           </strong>
@@ -93,7 +93,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight turquoise">
-              {processingTime.orgaoData.min.toFixed(0)}
+              {`${processingTime.orgaoData.min.toFixed(0)} dias`}
             </span>
             trânsito mais rápido da sua promotoria
           </div>
@@ -104,7 +104,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {processingTime.orgaoData.max.toFixed(0)}
+              {`${processingTime.orgaoData.max.toFixed(0)} dias`}
             </span>
             trânsito mais lento da sua promotoria
           </div>
@@ -115,7 +115,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight green">
-              {processingTime.pacoteData.min.toFixed(0)}
+              {`${processingTime.pacoteData.min.toFixed(0)} dias`}
             </span>
             trânsito mais rápido do pacote
           </div>
@@ -126,7 +126,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight purple">
-              {processingTime.pacoteData.average.toFixed(0)}
+              {`${processingTime.pacoteData.average.toFixed(0)} dias`}
             </span>
             trânsito médio do seu pacote
           </div>
@@ -137,7 +137,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {processingTime.pacoteData.max.toFixed(0)}
+              {`${processingTime.pacoteData.max.toFixed(0)} dias`}
             </span>
             trânsito mais lento do seu pacote
           </div>

@@ -17,6 +17,7 @@ thead tr {
   background-color: #F8F9FB;
   color: #39475B;
   font-weight: normal;
+  text-align: left;
 }
 
 td {
@@ -35,7 +36,6 @@ td{
   text-overflow: ellipsis; 
   max-width: 100px;
 }
-
 
 /* PHONES */
 @media (max-width: 480px) {

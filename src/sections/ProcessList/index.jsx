@@ -35,7 +35,7 @@ const ProcessList = () => {
 
   return (
     <div className="processList-outer">
-      <SectionTitle value="Lista de Processos" />
+      <SectionTitle value="Últimos processos movimentados" />
       {loading ? (
         <p>Carregando...</p>
       ) : (

@@ -93,39 +93,60 @@ const axisLabelsTable = {
   },
 };
 
-const generateAreaData = data => data.map(({ chart }) => chart);
-
-const generateAxis = data =>
+const generateAreasData = data =>
   data
-    .map(({ axis }) => {
-      const { category, value, isAboveAverage } = axis;
+    .map(({ category, value, isAboveAverage, median, numbers, y }) => {
       const { label, position } = axisLabelsTable[category];
       const { dx, dy, textAnchor, order, invert } = labelPositionsTable[position];
 
-      return {
-        category,
-        label: buildLabel(label, value, invert),
-        invert,
-        isGood: isAboveAverage,
-        dx,
-        dy,
-        textAnchor,
+      return [
         order,
-      };
+        {
+          // xAxis
+          category,
+          label: buildLabel(label, value, invert),
+          invert,
+          isGood: isAboveAverage,
+          dx,
+          dy,
+          textAnchor,
+        },
+        {
+          // medianData
+          x: category,
+          y: median,
+        },
+        {
+          // areaData
+          x: category,
+          y,
+          label: numbers,
+        },
+      ];
     })
-    .sort((a, b) => a.order - b.order);
+    .sort((a, b) => a[0] - b[0])
+    .reduce(
+      (acc, it) => {
+        acc[0].push(it[1]);
+        acc[1].push(it[2]);
+        acc[2].push(it[3]);
 
-const generateMedData = data => {
-  return data
-    .map(({ med }) => {
-      const { position } = axisLabelsTable[med.x];
-      const { order } = labelPositionsTable[position];
+        return acc;
+      },
+      [[], [], []],
+    );
 
-      return { ...med, order };
-    })
-    .sort((a, b) => a.order - b.order)
-    .map(({ y, x }) => ({ y, x }));
-};
+// const generateMedData = data => {
+//   return data
+//     .map(({ med }) => {
+//       const { position } = axisLabelsTable[med.x];
+//       const { order } = labelPositionsTable[position];
+
+//       return { ...med, order };
+//     })
+//     .sort((a, b) => a.order - b.order)
+//     .map(({ y, x }) => ({ y, x }));
+// };
 
 const propTypes = {
   data: PropTypes.arrayOf(
@@ -135,10 +156,9 @@ const propTypes = {
 };
 
 function PerformanceChart({ data }) {
-  const areaData = generateAreaData(data);
-  const xAxis = generateAxis(data);
+  console.log('>>>>>>>>>>>>>>>>>', data);
+  const [xAxis, medianData, areaData] = generateAreasData(data);
   const grid = generateGrid(xAxis);
-  const medData = generateMedData(data);
 
   // TODO: animate VictoryChart
   return (
@@ -197,8 +217,9 @@ function PerformanceChart({ data }) {
           }}
           labelComponent={<AreaLabel />}
         />
+
         <VictoryArea
-          data={medData}
+          data={medianData}
           style={{
             data: {
               fill: 'transparent',

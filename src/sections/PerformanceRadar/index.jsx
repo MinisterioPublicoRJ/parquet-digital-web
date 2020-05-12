@@ -30,28 +30,20 @@ class PerformanceRadar extends React.Component {
     const chartData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
       .map(([category, { maxValues, averages, variations, percentages, numbers }]) => ({
-        axis: {
-          category,
-          value: `max: ${maxValues}`, // variations == null || variations === -1 ? '—' : formatPercent(variations),
-          isAboveAverage: null, // variations == null || variations === -1 ? null : variations >= 0,
-        },
-        chart: {
-          x: category,
-          y: percentages * 100,
-          label: numbers,
-        },
-        med: {
-          x: category,
-          y: 100 * (averages / maxValues),
-        },
+        category,
+        value: `max: ${maxValues}`, // variations == null || variations === -1 ? '—' : formatPercent(variations),
+        isAboveAverage: null, // variations == null || variations === -1 ? null : variations >= 0,
+        median: 100 * (averages / maxValues),
+        x: category,
+        y: percentages * 100,
+        numbers,
       }));
 
     this.setState({ chartData });
   }
 
   render() {
-    const { dashboard } = this.props;
-    const { percentagePhrase, movements, chartData } = this.state;
+    const { chartData } = this.state;
 
     if (!chartData) return <div>Carregando</div>;
 

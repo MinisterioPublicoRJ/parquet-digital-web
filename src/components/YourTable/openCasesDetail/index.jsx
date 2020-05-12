@@ -58,6 +58,7 @@ class OpenCasesDetail extends React.Component {
 
     try {
       res = await Api.getOpenCasesList(getUser(), tabMatcher[tab]);
+      console.log(res);
     } catch (e) {
       error = true;
     } finally {

@@ -12,10 +12,10 @@ const ProcessList = () => {
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
-    MPRJ: 'docu_nr_mp',
-    'Nº Externo': 'docu_nr_externo',
-    'Último Andamento': 'dt_ultimo_andamento',
-    Classe: 'classe_documento',
+    MPRJ: 'docuNrMp',
+    'Nº Externo': 'docuNrExterno',
+    'Último Andamento': 'dtUltimoAndamento',
+    Classe: 'classeDocumento',
   };
 
   useEffect(() => {

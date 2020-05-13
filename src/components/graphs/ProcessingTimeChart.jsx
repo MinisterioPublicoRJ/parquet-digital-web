@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
 import { ChartPoints, LabelWrapper } from '../ProcessingTime';
+import ProcessingTimeArrow from '../../assets/svg/processingTimeArrow';
 
 const graphicColor = ['#F8F9FB']; // Colors
 
@@ -104,13 +105,16 @@ function TempoTramitacaoChart({
   };
 
   const pointerPieSettings = {
+    colorScale: ['transparent', '#3FA9F5'],
     endAngle: 80,
     height: 200,
+    innerRadius: 50,
+    radius: 60,
     labelComponent: <ChartPoints />,
     labelRadius: 50,
     sortKey: 'x',
     startAngle: -110,
-    style: { data: { opacity: 0 } },
+    // style: { data: { opacity: 0 } },
   };
 
   return (

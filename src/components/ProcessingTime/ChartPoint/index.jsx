@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import MarkMind from '../../../assets/svg/markMind';
 import Markfaster from '../../../assets/svg/markFaster';
 import MarkSlower from '../../../assets/svg/markSlower';
+// import ProcessingTimeArrow from '../../../assets/svg/processingTimeArrow';
 
 // This props are supplied by Victory itself
 // https://formidable.com/open-source/victory/docs/common-props/#labelcomponent
@@ -27,9 +28,10 @@ const ChartPoints = ({ x, y, datum, ...props }) => {
     case 'max':
       point = <MarkSlower x={x} y={y} />;
       break;
-    case 'pointer':
-      point = <MarkSlower x={x} y={y} />;
-      break;
+    // case 'pointer':
+    //   console.log('PROPS', props);
+    //   point = <ProcessingTimeArrow x={x} y={y} angle={props.slice.endAngle} />;
+    //   break;
     default:
       point = null;
       break;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import Api from '../../api';
-import { Table, SectionTitle } from '../../components';
+import { Table, Spinner, SectionTitle } from '../../components';
 import { getUser } from '../../user';
 
 const ProcessList = () => {
@@ -33,11 +33,15 @@ const ProcessList = () => {
     loadData();
   }, []);
 
+  if (loading) {
+    return <Spinner size="large" />;
+  }
+
   return (
     <div className="processList-outer">
       <SectionTitle value="Últimos processos movimentados" />
-      {loading ? (
-        <p>Carregando...</p>
+      {!processListData ? (
+        <p> Nenhum processo para exibir ...</p>
       ) : (
         <div className="processList-tableWrapper">
           <Table data={processListData} columns={tableColumns} showHeader />

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
-import { SectionTitle } from '../../components';
+import { SectionTitle, Spinner } from '../../components';
 import { ProcessingTimeChart } from '../../components/graphs';
 import { PT_PIE_COLORS } from '../../themes/chartThemes';
 
@@ -59,7 +59,7 @@ const ProcessingTime = () => {
   }, []);
 
   if (!processingTime.meta || !chartData) {
-    return <div>Carregando...</div>;
+    return <Spinner size="large" />;
   }
 
   const isBetter = processingTime.orgaoData.average >= processingTime.pacoteData.average;

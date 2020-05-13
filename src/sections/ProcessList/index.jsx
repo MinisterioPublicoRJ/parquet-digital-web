@@ -34,14 +34,14 @@ const ProcessList = () => {
   }, []);
 
   if (loading) {
-    return <Spinner size="large" />;
+    return <Spinner size="medium" />;
   }
 
   return (
     <div className="processList-outer">
       <SectionTitle value="Últimos processos movimentados" />
-      {!processListData ? (
-        <p> Nenhum processo para exibir ...</p>
+      {!processListData.lenght ? (
+        <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (
         <div className="processList-tableWrapper">
           <Table data={processListData} columns={tableColumns} showHeader />

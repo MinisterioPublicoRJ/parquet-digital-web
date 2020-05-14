@@ -19,6 +19,10 @@
   margin: 0;
 }
 
+.pt-texts h2 {
+  margin: 0;
+}
+
 .pt-mainBox {
   grid-area: mainBoxTime;
   color: var(--dark);
@@ -42,7 +46,7 @@
   flex: 1;
   height: 100%;
   justify-content: center;
-  margin-right: 10%;
+  margin-right: 5%;
 }
 
 .pt-legends-text {

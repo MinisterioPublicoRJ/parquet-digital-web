@@ -68,6 +68,7 @@ const ProcessingTime = () => {
   }
 
   const isBetter = processingTime.orgaoData.average >= processingTime.pacoteData.average;
+  const pinWidth = '65%';
 
   return (
     <article className="page-tramitacao">
@@ -96,57 +97,57 @@ const ProcessingTime = () => {
       <div className="pt-mainBox">
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <PinAzul />
+            <PinAzul width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight turquoise">
               {`${processingTime.orgaoData.min.toFixed(0)} dias`}
             </span>
-            trânsito mais rápido da sua promotoria
+            mais rápido da sua promotoria
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <PinVermelho />
+            <PinVermelho width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
               {`${processingTime.orgaoData.max.toFixed(0)} dias`}
             </span>
-            trânsito mais lento da sua promotoria
+            mais lento da sua promotoria
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <Markfaster />
+            <Markfaster width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight green">
               {`${processingTime.pacoteData.min.toFixed(0)} dias`}
             </span>
-            trânsito mais rápido do pacote
+            mais rápido do pacote
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <MarkMind />
+            <MarkMind width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight purple">
               {`${processingTime.pacoteData.average.toFixed(0)} dias`}
             </span>
-            trânsito médio do seu pacote
+            médio do seu pacote
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <MarkSlower />
+            <MarkSlower width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
               {`${processingTime.pacoteData.max.toFixed(0)} dias`}
             </span>
-            trânsito mais lento do seu pacote
+            mais lento do seu pacote
           </div>
         </div>
       </div>

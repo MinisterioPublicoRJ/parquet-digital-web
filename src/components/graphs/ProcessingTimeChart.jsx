@@ -98,6 +98,11 @@ function TempoTramitacaoChart({
     fontWeight: '600',
   };
 
+  const daysTextStyle = {
+    fontSize: 10,
+    fontWeight: '600',
+  };
+
   const labelComplimentStyle = {
     fontSize: 10,
     fill: '#3FA9F5',
@@ -134,12 +139,14 @@ function TempoTramitacaoChart({
         {/* The circle is just a broder for the center text */}
         <circle cx="100" cy="140" r="40" fill="none" stroke="#B3B3B3" />
         {/* Number in the center text */}
-        <VictoryLabel textAnchor="middle" x={100} y={133} text={labelText} style={labelTextStyle} />
+        <VictoryLabel textAnchor="middle" x={100} y={130} text={labelText} style={labelTextStyle} />
+        {/* Days in the center text */}
+        <VictoryLabel textAnchor="middle" x={100} y={145} text="dias" style={daysTextStyle} />
         {/* Congratulation text */}
         <VictoryLabel
           textAnchor="middle"
           x={100}
-          y={148}
+          y={155}
           text={labelCompliment}
           style={labelComplimentStyle}
         />

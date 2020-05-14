@@ -67,7 +67,7 @@ const ProcessingTime = () => {
     return <Spinner size="large" />;
   }
 
-  const isBetter = processingTime.orgaoData.average >= processingTime.pacoteData.average;
+  const isBetter = processingTime.orgaoData.average <= processingTime.pacoteData.average;
   const pinWidth = '65%';
 
   return (
@@ -75,9 +75,12 @@ const ProcessingTime = () => {
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
         <p>
-          Avaliei que o tempo médio de tramitação de processos na sua promotoria
+          Avaliei que o tempo médio de tramitação de processos na sua promotoria,
+          {` ${chartData.organAvg}  dias,`}
           <strong>
-            {isBetter ? ' está mais rápido que a média da casa ' : 'está abaixo da média da casa'}
+            {isBetter
+              ? ` está mais rápido que a média da casa `
+              : ` está mais lento que a média da casa `}
           </strong>
           entre aquelas de mesma atribuição.
           {'\n'}

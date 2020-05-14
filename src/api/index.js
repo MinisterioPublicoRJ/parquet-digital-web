@@ -17,6 +17,7 @@ import {
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
   PROCESSES_LIST,
+  //SUCCESS_INDICATORS,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -159,6 +160,12 @@ const Api = (() => {
     return alertsTransform(data);
   }
 
+  /*async function getsuccessIndicators({ orgao, token }) {
+    const { data } = await axios.get(SUCCESS_INDICATORS({ orgao }), buildRequestConfig(token));
+
+    return successIndicatorsTransform(data);
+  }*/
+
   async function getProcessList({ orgao, cpf, token }, list) {
     const { data } = await axios.get(
       PROCESSES_LIST({ orgao, cpf, list }),
@@ -185,6 +192,7 @@ const Api = (() => {
     getAlertsList,
     getProcessingTimeData,
     getProcessList,
+    //getsuccessIndicators,
   };
 })();
 

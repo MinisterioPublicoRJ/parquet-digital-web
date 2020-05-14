@@ -15,7 +15,7 @@ const SuccessIndicators = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getsucessIndicators(getUser());
+        const response = await Api.getsuccessIndicators(getUser());
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);

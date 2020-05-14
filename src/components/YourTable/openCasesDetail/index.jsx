@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Spinner } from '../../layoutPieces';
-import { DeskCasesChart } from '../../graphs';
 import Api from '../../../api';
-import { Table } from '../../index';
+import { DeskCasesChart } from '../../graphs';
+import { Spinner, Table } from '../../layoutPieces';
 
 import './styles.css';
 
@@ -17,7 +16,6 @@ const propTypes = {
     over30: PropTypes.number,
   }).isRequired,
 };
-const defaultProps = {};
 
 class OpenCasesDetail extends React.Component {
   constructor(props) {
@@ -28,9 +26,9 @@ class OpenCasesDetail extends React.Component {
       between20And30: ['#F8BD6C', '30+ dias'],
     };
     this.tableColumns = {
-      MPRJ: 'numero_mprj',
-      'Nº Externo': 'numero_externo',
-      'Último Andamento': 'dt_abertura',
+      MPRJ: 'numeroMprj',
+      'Nº Externo': 'numeroExterno',
+      'Último Andamento': 'dtAbertura',
       Classe: 'classe',
     };
     this.state = {
@@ -147,11 +145,10 @@ class OpenCasesDetail extends React.Component {
     const tabLoading =
       !emptyTab && !this.state[`${activeTab}Details`] && !this.state[`${activeTab}Error`];
 
-      console.log('sua mesa', this.state[`${activeTab}Details`]);
     return (
       <>
-        <div className="time-charts-view">{this.renderCharts(chartData)}</div>
-        <div className="open-cases-table-view">
+        <div className="openCases-chartsWrapper">{this.renderCharts(chartData)}</div>
+        <div className="openCases-tableWrapper">
           {tabLoading && <Spinner size="medium" />}
           {!emptyTab && this.state[`${activeTab}Details`] && (
             <Table
@@ -168,5 +165,4 @@ class OpenCasesDetail extends React.Component {
 }
 
 OpenCasesDetail.propTypes = propTypes;
-OpenCasesDetail.defaultProps = defaultProps;
 export default OpenCasesDetail;

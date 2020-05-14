@@ -52,7 +52,7 @@ class PerformanceRadar extends React.Component {
     if (!chartData) return <div>Carregando</div>;
 
     return (
-      <article className="page page-radar-dashboard">
+      <article className="page-radar-dashboard">
         <div className="radar-header">
           <SectionTitle value="Radar de Performance" />
         </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
-import { capitalizeTitle } from '../../../utils';
+import { capitalizeTitle } from '../../../utils/formatters';
 
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -66,8 +66,9 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
 
 /**
  * Renders a generic table based on the provided data
- * @param       {[type]} data   [description]
- * @param       {[type]} header [description]
+ * @param       {array} data       array of row data {column: value}
+ * @param       {json} columns    dict of display names {displayName: comlunNameInData}
+ * @param       {boolean} showHeader
  * @constructor
  */
 function Table({ data, columns, showHeader }) {

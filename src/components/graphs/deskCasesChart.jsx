@@ -24,15 +24,15 @@ const propTypes = {
 };
 
 function DeskCasesChart({ active, buttonPressed, category, color, data, name }) {
-  const activeclass = active ? 'cases-button-active' : 'cases-button-inactive';
+  const activeclass = active ? 'deskCasesChart-button--active' : 'deskCasesChart-button--inactive';
   return (
     <button
       style={{ borderColor: color }}
-      className={`cases-chart-outer ${activeclass}`}
+      className={`deskCasesChart-outer ${activeclass}`}
       type="button"
       onClick={() => buttonPressed(category)}
     >
-      <div className="cases-chart-graph">
+      <div className="deskCasesChart-graph">
         <VictoryPie
           data={Object.values(data)}
           labels={() => null}
@@ -45,11 +45,11 @@ function DeskCasesChart({ active, buttonPressed, category, color, data, name }) 
           }}
         />
       </div>
-      <div className="cases-chart-subs">
-        <div className="process-count" style={{ color }}>
+      <div className="deskCasesChart-subs">
+        <div className="deskCasesChart-count" style={{ color }}>
           {leftPad(data[category].y, 2, 0)}
         </div>
-        <div className="process-days" style={{ color }}>
+        <div className="deskCasesChart-days" style={{ color }}>
           {name}
         </div>
       </div>

@@ -1,0 +1,13 @@
+
+.processList-outer {
+  grid-area: processes;
+  display: flex;
+  flex-direction: column;
+  flex: 2 1;
+  overflow-y: scroll;
+}
+
+.processList-tableWrapper {
+  overflow-y: scroll;
+}
+

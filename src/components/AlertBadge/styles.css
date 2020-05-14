@@ -1,38 +1,38 @@
-@import '../../themes/index.css';
-
-.alertBadgeContainer {
+.alertBadge-outerContainer {
   background-color: white;
   border-radius: 7px;
   box-shadow: 0px 3px 8px #00000029;
   display: flex;
   font-family: var(--defaultFont);
   margin: 1vh;
-  height: 75px;
+  font-size: 12px;
+  line-height: 18px;
   color: var(--dark);
-  font-size: 14px;
   font-weight: 500;
 }
 
-.badgeLeft {
+.alertBadge-leftContainer {
   align-items: center;
   background-color: gray;
   border-radius: 7px 0 0 7px;
   display: flex;
   justify-content: center;
-  height: 100%;
   width: 61px;
 }
 
-.badgeRight {
+.alertBadge-rightContainer {
   align-items: center;
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  text-align: left;
+  margin-left: 10px;
+  height: 85px;
+
 }
 
-.badgeRight a {
+.alertBadge-rightContainer a {
   color: orange;
   text-align: left;
 }

@@ -1,23 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
-import Today from '../../sections/Today';
-import YourDesk from '../../sections/YourDesk';
-import Radar from '../../sections/PerformanceRadar';
-import Alerts from '../../sections/Alerts';
-import ListProcesses from '../../sections/ListProcesses';
-import ProcessingTime from '../../sections/ProcessingTime';
+import {
+  Alerts,
+  ProcessList,
+  PerformanceRadar,
+  ProcessingTime,
+  Today,
+  YourDesk,
+} from '../../sections';
 
-export default function({ user }) {
-  if (!user) return (<div> loading </div>);
+const propTypes = { userName: PropTypes.string.isRequired };
+
+function Tutela({ userName }) {
+  if (!userName) return <div> loading </div>;
+
   return (
     <div className="tutela-grid">
-      <Today user={user} />
-      <YourDesk user={user} />
-      <Radar user={user} />
-      <Alerts user={user} />
-      <ListProcesses user={user} />
-      <ProcessingTime user={user} />
+      <Alerts user={userName} />
+      <ProcessList user={userName} />
+      <PerformanceRadar user={userName} />
+      <ProcessingTime user={userName} />
+      <Today user={userName} />
+      <YourDesk user={userName} />
     </div>
   );
 }
+
+Tutela.propTypes = propTypes;
+export default Tutela;

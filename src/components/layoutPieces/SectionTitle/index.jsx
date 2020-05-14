@@ -8,7 +8,7 @@ const propTypes = {
 };
 
 const SectionTitle = ({ value }) => (
-  <h2 className="sectionTitleText">{value.toLocaleUpperCase()}</h2>
+  <h2 className="sectionTitle-text">{value.toLocaleUpperCase()}</h2>
 );
 
 SectionTitle.propTypes = propTypes;

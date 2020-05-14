@@ -2,25 +2,33 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import Api from '../../api';
-import { SectionTitle } from '../../components';
+import { SectionTitle, Spinner } from '../../components';
 import { getUser } from '../../user';
 import SuccessIndicatorsChart from '../../components/graphs/SuccessIndicatorsChart';
 
 const SuccessIndicators = () => {
   // eslint-disable-next-line no-shadow
-  /* const [successIndicators, setSuccessIndicators] = useState([]);
+  const [successIndicators, setSuccessIndicators] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await Api.getListProcesses(getUser());
-      setSuccessIndicators(response);
+      setLoading(true);
+      try {
+        const response = await Api.getsucessIndicators(getUser());
+        setSuccessIndicators(response);
+      } catch (e) {
+        setLoading(true);
+      } finally {
+        setLoading(false);
+      }
     };
     loadData();
   }, []);
 
-  if (!successIndicators) {
-    return <div>loading</div>;
-  } */
+  if (loading) {
+    return <Spinner size="medium" />;
+  }
   return (
     <div className="page-success-indicators">
       <SectionTitle value="Indicadores de sucesso" />

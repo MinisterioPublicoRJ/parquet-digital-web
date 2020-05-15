@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
-import { SectionTitle } from '../../components';
+import { SectionTitle, Spinner } from '../../components';
 import { ProcessingTimeChart } from '../../components/graphs';
 import { PT_PIE_COLORS } from '../../themes/chartThemes';
 
@@ -18,7 +18,7 @@ const ProcessingTime = () => {
   const [chartData, setChartData] = useState(null);
 
   const cleanChartData = raw => {
-    const organAvg = raw.orgaoData.average.toFixed(2);
+    const organAvg = raw.orgaoData.average.toFixed(0);
     const { min, max, average } = raw.pacoteData;
     const domain = { min, max };
 
@@ -46,7 +46,12 @@ const ProcessingTime = () => {
       { x: 1, y: (average - min) / max, type: 'average' },
       { x: 0, y: (max - average) / max, type: 'max' },
     ];
-    setChartData({ pieData, points, domain, organAvg });
+
+    const pointerPosition = [
+      { x: 1, y: organAvg / max, type: 'pointer' },
+      { x: 0, y: (max - organAvg) / max },
+    ];
+    setChartData({ pieData, points, domain, organAvg, pointerPosition });
   };
 
   useEffect(() => {
@@ -59,19 +64,23 @@ const ProcessingTime = () => {
   }, []);
 
   if (!processingTime.meta || !chartData) {
-    return <div>loading</div>;
+    return <Spinner size="large" />;
   }
 
-  const isBetter = processingTime.orgaoData.average >= processingTime.pacoteData.average;
+  const isBetter = processingTime.orgaoData.average <= processingTime.pacoteData.average;
+  const pinWidth = '65%';
 
   return (
     <article className="page-tramitacao">
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
         <p>
-          Avaliei que o período de tramitação de processos na sua promotoria
+          Avaliei que o tempo médio de tramitação de processos na sua promotoria,
+          {` ${chartData.organAvg}  dias,`}
           <strong>
-            {isBetter ? ' está mais rápido que a média da casa ' : 'está abaixo da média da casa'}
+            {isBetter
+              ? ` está mais rápido que a média da casa `
+              : ` está mais lento que a média da casa `}
           </strong>
           entre aquelas de mesma atribuição.
           {'\n'}
@@ -83,63 +92,65 @@ const ProcessingTime = () => {
           data={chartData.pieData}
           scatter={chartData.points}
           domain={chartData.domain}
-          labelText={isBetter ? `${chartData.organAvg}\nMuito bom` : chartData.organAvg}
+          labelText={chartData.organAvg}
+          pointerPosition={chartData.pointerPosition}
+          labelCompliment={isBetter ? 'Muito bom' : ''}
         />
       </div>
       <div className="pt-mainBox">
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <PinAzul />
+            <PinAzul width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight turquoise">
-              {processingTime.orgaoData.min.toFixed(0)}
+              {`${processingTime.orgaoData.min.toFixed(0)} dias`}
             </span>
-            trânsito mais rápido da sua promotoria
+            mais rápido da sua promotoria
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <PinVermelho />
+            <PinVermelho width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {processingTime.orgaoData.max.toFixed(0)}
+              {`${processingTime.orgaoData.max.toFixed(0)} dias`}
             </span>
-            trânsito mais lento da sua promotoria
+            mais lento da sua promotoria
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <Markfaster />
+            <Markfaster width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight green">
-              {processingTime.pacoteData.min.toFixed(0)}
+              {`${processingTime.pacoteData.min.toFixed(0)} dias`}
             </span>
-            trânsito mais rápido do pacote
+            mais rápido do pacote
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <MarkMind />
+            <MarkMind width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight purple">
-              {processingTime.pacoteData.average.toFixed(0)}
+              {`${processingTime.pacoteData.average.toFixed(0)} dias`}
             </span>
-            trânsito médio do seu pacote
+            médio do seu pacote
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <MarkSlower />
+            <MarkSlower width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {processingTime.pacoteData.max.toFixed(0)}
+              {`${processingTime.pacoteData.max.toFixed(0)} dias`}
             </span>
-            trânsito mais lento do seu pacote
+            mais lento do seu pacote
           </div>
         </div>
       </div>

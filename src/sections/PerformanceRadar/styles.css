@@ -14,3 +14,39 @@
 .radar-graph {
   margin: auto 0;
 }
+.radarWrapper {
+  margin: 0;
+  width: 100%;
+}
+.radarSubtitles {
+  margin-top: 2.5vh;
+}
+
+.radarSubtitles-item {
+  position: relative;
+  padding-top: 1vh;
+  font-family: var(--defaultFont);
+  font-size: 8px;
+  line-height: 12px;
+  color: var(--dark);
+  font-weight: bold;
+  float: left;
+  margin-right: 3vh;
+}
+
+.radarSubtitles-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5vh;
+  height: 2px;
+  background: red;
+}
+
+.radarSubtitles-item-yourData:before {
+  background-color: #009bff;
+}
+.radarSubtitles-item-MPData:before {
+  background-color: #c43a31;
+}

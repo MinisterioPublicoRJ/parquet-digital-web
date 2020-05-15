@@ -7,7 +7,7 @@ export const BASE_URL = `${process.env.REACT_APP_BASE_URL}/dominio`;
 export const LOGIN_URL = `${BASE_URL}/token/login/`;
 
 export const TODAY_OUT = t(`${BASE_URL}/saidas/\${orgao}`);
-export const TODAY_OUTLIERS = t(`${BASE_URL}/outliers/\${orgao}/\${date}`);
+export const TODAY_OUTLIERS = t(`${BASE_URL}/outliers/\${orgao}`);
 export const TODAY_ENTRIES = t(`${BASE_URL}/entradas/\${orgao}/\${cpf}`);
 
 export const OPEN_CASES_URL = t(`${BASE_URL}/suamesa/vistas/\${orgao}/\${cpf}`);

@@ -12,18 +12,10 @@ const defaultProps = {
   subtitle: null,
 };
 
-const renderSubtitle = subtitle =>
-  subtitle ? (
-    <>
-      <br />
-      <span className="sectionTitle-subtitle">{subtitle}</span>
-    </>
-  ) : null;
-
 const SectionTitle = ({ value, subtitle }) => (
   <h2 className="sectionTitle-text">
     {value.toLocaleUpperCase()}
-    {renderSubtitle(subtitle)}
+    {subtitle && <span className="sectionTitle-subtitle">{subtitle}</span>}
   </h2>
 );
 

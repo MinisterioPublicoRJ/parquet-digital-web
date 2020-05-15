@@ -49,13 +49,13 @@ class PerformanceRadar extends React.Component {
         <div className="radar-header">
           <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" />
         </div>
-        <figure className="radarWrapper">
+        <figure className="radar-wrapper">
           <div className="radar-graph">
             <PerformanceChart data={chartData} />
           </div>
-          <figcaption className="radarSubtitles">
-            <div className="radarSubtitles-item radarSubtitles-item-yourData">Sua Promotoria</div>
-            <div className="radarSubtitles-item radarSubtitles-item-MPData">Perfil do MP</div>
+          <figcaption className="radar-subtitles">
+            <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
+            <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
           </figcaption>
         </figure>
       </article>

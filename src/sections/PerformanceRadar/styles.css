@@ -17,15 +17,15 @@
 .radar-graph {
   margin: auto 0;
 }
-.radarWrapper {
+.radar-wrapper {
   margin: 0;
   width: 100%;
 }
-.radarSubtitles {
+.radar-subtitles {
   margin-top: 2.5vh;
 }
 
-.radarSubtitles-item {
+.radar-subtitles-item {
   position: relative;
   padding-top: 1vh;
   font-family: var(--defaultFont);
@@ -37,7 +37,7 @@
   margin-right: 3vh;
 }
 
-.radarSubtitles-item:before {
+.radar-subtitles-item:before {
   content: '';
   position: absolute;
   top: 0;
@@ -47,9 +47,9 @@
   background: red;
 }
 
-.radarSubtitles-item-yourData:before {
+.radar-subtitles-item-yourData:before {
   background-color: #009bff;
 }
-.radarSubtitles-item-MPData:before {
+.radar-subtitles-item-MPData:before {
   background-color: #c43a31;
 }

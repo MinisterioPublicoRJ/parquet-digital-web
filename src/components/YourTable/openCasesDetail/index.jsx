@@ -26,9 +26,9 @@ class OpenCasesDetail extends React.Component {
       between20And30: ['#F8BD6C', '30+ dias'],
     };
     this.tableColumns = {
-      MPRJ: 'numero_mprj',
-      'Nº Externo': 'numero_externo',
-      'Último Andamento': 'dt_abertura',
+      MPRJ: 'numeroMprj',
+      'Nº Externo': 'numeroExterno',
+      'Último Andamento': 'dtAbertura',
       Classe: 'classe',
     };
     this.state = {

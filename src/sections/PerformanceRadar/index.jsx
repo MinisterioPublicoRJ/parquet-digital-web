@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
-import { PerformanceChart, SectionTitle } from '../../components';
+import { Spinner, PerformanceChart, SectionTitle } from '../../components';
 
 const propTypes = {};
 
@@ -42,7 +41,7 @@ class PerformanceRadar extends React.Component {
   render() {
     const { chartData } = this.state;
 
-    if (!chartData) return <div>Carregando</div>;
+    if (!chartData) return <Spinner />;
 
     return (
       <article className="page-radar-dashboard">

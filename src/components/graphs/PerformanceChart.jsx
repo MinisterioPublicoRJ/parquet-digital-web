@@ -30,10 +30,11 @@ const buildLabelStyles = (labels, isGood, invert) =>
     return CHART_THEME.axisLabelNeutral;
   });
 
-const buildLabel = (str, val, invert) =>
-  invert
-    ? [val, ...str.toLocaleUpperCase().split('_')]
-    : [...str.toLocaleUpperCase().split('_'), val];
+const buildLabel = (str, val, invert) => {
+  const text = str.toLocaleUpperCase().split('_');
+
+  return invert ? [val, ...text] : [...text, val];
+};
 
 const labelPositionsTable = {
   N: {
@@ -162,6 +163,16 @@ function PerformanceChart({ data }) {
             <stop offset="0" stopColor="#ff36f0" stopOpacity=".8" />
             <stop offset="1" stopColor="#009bff" stopOpacity=".8" />
           </linearGradient>
+          <linearGradient
+            id="medianGradient"
+            x1="1"
+            x2="0.029"
+            y2="0.976"
+            gradientUnits="objectBoundingBox"
+          >
+            <stop offset="0" stopColor="#f00" stopOpacity=".3" />
+            <stop offset="1" stopColor="#c43a31" stopOpacity=".3" />
+          </linearGradient>
         </defs>
       </svg>
       <VictoryChart
@@ -170,7 +181,7 @@ function PerformanceChart({ data }) {
         responsive
         startAngle={90}
         endAngle={450}
-        padding={{ top: 40, left: -40, right: -40, bottom: 10 }}
+        padding={{ top: 40, left: 0, right: 0, bottom: 10 }}
       >
         {xAxis.map(({ category, label, isGood, dx, dy, textAnchor, invert }) => (
           <VictoryPolarAxis
@@ -191,11 +202,19 @@ function PerformanceChart({ data }) {
             }
           />
         ))}
+
         <VictoryGroup style={CHART_THEME.gridGroup}>
           {grid.map((data1, i) => (
             <VictoryArea key={i} data={data1} />
           ))}
         </VictoryGroup>
+
+        <VictoryArea
+          data={[{ y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }]}
+          style={{
+            data: { fill: '#ac5fba' },
+          }}
+        />
 
         <VictoryArea
           data={areaData}
@@ -204,24 +223,15 @@ function PerformanceChart({ data }) {
           }}
           labelComponent={<AreaLabel />}
         />
-
         <VictoryArea
           data={medianData}
           style={{
             data: {
-              fill: 'transparent',
+              fill: 'url(#medianGradient)',
               stroke: '#c43a31',
               strokeWidth: 2,
               strokeLinecap: 'round',
             },
-          }}
-          labelComponent={<AreaLabel />}
-        />
-
-        <VictoryArea
-          data={[{ y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }]}
-          style={{
-            data: { fill: 'rgb(92, 111, 217, .6)' },
           }}
         />
       </VictoryChart>
@@ -251,6 +261,7 @@ const AreaLabel = props => {
         style={{
           ...style,
           fill: '#009bff',
+          fontSize: 20,
           fontWeight: 'bold',
         }}
       />

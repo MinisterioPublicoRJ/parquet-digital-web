@@ -4,12 +4,9 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
-import { formatPercent } from '../../utils';
 import { PerformanceChart, SectionTitle } from '../../components';
 
-const propTypes = {
-  dashboard: PropTypes.bool.isRequired,
-};
+const propTypes = {};
 
 class PerformanceRadar extends React.Component {
   constructor(props) {
@@ -29,36 +26,38 @@ class PerformanceRadar extends React.Component {
   cleanGraphData(data) {
     const chartData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
-      .map(([category, { variations, percentages, numbers }]) => ({
-        axis: {
-          category,
-          value: variations == null || variations === -1 ? '—' : formatPercent(variations),
-          isAboveAverage: variations == null || variations === -1 ? null : variations >= 0,
-        },
-        chart: {
-          x: category,
-          y: percentages * 100,
-          label: numbers,
-        },
+      .map(([category, { maxValues, averages, variations, percentages, numbers }]) => ({
+        category,
+        value: `(máx atribuição ${maxValues})`, // variations == null || variations === -1 ? '—' : formatPercent(variations),
+        isAboveAverage: null, // variations == null || variations === -1 ? null : variations >= 0,
+        median: 100 * (averages / maxValues),
+        x: category,
+        y: percentages * 100,
+        numbers,
       }));
 
     this.setState({ chartData });
   }
 
   render() {
-    const { dashboard } = this.props;
-    const { percentagePhrase, movements, chartData } = this.state;
+    const { chartData } = this.state;
 
     if (!chartData) return <div>Carregando</div>;
 
     return (
       <article className="page-radar-dashboard">
         <div className="radar-header">
-          <SectionTitle value="Radar de Performance" />
+          <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" />
         </div>
-        <div className="radar-graph">
-          <PerformanceChart data={chartData} />
-        </div>
+        <figure className="radar-wrapper">
+          <div className="radar-graph">
+            <PerformanceChart data={chartData} />
+          </div>
+          <figcaption className="radar-subtitles">
+            <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
+            <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
+          </figcaption>
+        </figure>
       </article>
     );
   }

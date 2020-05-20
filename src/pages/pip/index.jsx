@@ -17,7 +17,7 @@ function Pip({ userName }) {
   if (!userName) return <div> loading </div>;
 
   return (
-    <div className="tutela-grid">
+    <div className="pip-grid">
       <Alerts user={userName} />
       <ProcessList user={userName} />
       <PerformanceRadar user={userName} />

@@ -46,8 +46,8 @@ class App extends React.Component {
       switch (tipo_orgao) {
         case 0:
         case 1:
-					page = <Tutela userName={nome} />;
-					break;
+          page = <Tutela userName={nome} />;
+          break;
         case 2:
           page = <Pip userName={nome} />;
           break;

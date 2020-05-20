@@ -8,21 +8,21 @@ const axisLabelsTable = {
     label: 'Arquivamentos',
     position: 'N',
   },
-  actions: {
-    label: 'Ações_Civil_Públicas',
-    position: 'E',
+  agreements: {
+    label: 'Acordos_de não_Persecução',
+    position: 'W',
   },
-  rejections: {
-    label: 'Indeferimentos_de Plano',
-    position: 'SE',
-  },
-  instaurations: {
-    label: 'Instauração de_Investigações',
+  openCases: {
+    label: 'Abertura_de Vista',
     position: 'SW',
   },
-  tac: {
-    label: 'Termos_de Ajuste_de Conduta',
-    position: 'W',
+  complaints: {
+    label: 'Denúncias',
+    position: 'E',
+  },
+  precautionary: {
+    label: 'Medidas_Cautelares',
+    position: 'SE',
   },
 };
 

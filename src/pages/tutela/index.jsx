@@ -20,7 +20,7 @@ function Tutela({ userName }) {
     <div className="tutela-grid">
       <Alerts user={userName} />
       <ProcessList user={userName} />
-      <PerformanceRadar user={userName} />
+      <PerformanceRadar.Tutela user={userName} />
       <ProcessingTime user={userName} />
       <Today user={userName} />
       <YourDesk user={userName} />

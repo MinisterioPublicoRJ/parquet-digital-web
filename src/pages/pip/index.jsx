@@ -20,7 +20,7 @@ function Pip({ userName }) {
     <div className="pip-grid">
       <Alerts user={userName} />
       <ProcessList user={userName} />
-      <PerformanceRadar user={userName} />
+      <PerformanceRadar.Pip user={userName} />
       <ProcessingTime user={userName} />
       <Today user={userName} />
       <YourDesk user={userName} />

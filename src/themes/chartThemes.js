@@ -17,20 +17,26 @@ const CHART_THEME = {
   },
   axisLabel: {
     fill: darkBlue,
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: 'bold',
+    letterSpacing: 2,
+    lineHeight: 200,
+    // stroke: '#ff0',
+    // strokeWidth: 2,
   },
-  axisLabelBad: {
-    fill: red,
-    fontSize: 12,
-  },
-  axisLabelGood: {
-    fill: green,
-    fontSize: 12,
-  },
+  // axisLabelBad: {
+  //   fill: red,
+  //   fontSize: 12,
+  // },
+  // axisLabelGood: {
+  //   fill: green,
+  //   fontSize: 12,
+  // },
   axisLabelNeutral: {
-    fill: gray,
-    fontSize: 12,
+    fill: '#777',
+    fontWeight: 'bold',
+    fontSize: 10,
+    letterSpacing: 0,
   },
 };
 export default CHART_THEME;

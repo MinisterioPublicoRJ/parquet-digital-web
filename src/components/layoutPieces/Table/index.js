@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
-import { capitalizeTitle } from '../../../utils';
+import { capitalizeTitle } from '../../../utils/formatters';
 
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,

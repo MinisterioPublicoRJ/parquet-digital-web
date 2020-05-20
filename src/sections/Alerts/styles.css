@@ -1,35 +1,32 @@
-/*  */
 .alerts-wrapper {
   grid-area: alerts;
   display: flex;
   flex-direction: column;
 }
-/*  */
+
 .alerts-header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
-/*  */
+
 .alerts-total {
-  margin-top: 14px;
-  width: 44px;
-  height: 23px;
+  margin: var(--elementPadding) 0;
+  width: 35px;
+  height: 18px;
   background-color: var(--danger);
-  border-radius: 20px;
+  border-radius: 50px;
 }
-/*  */
+
 .alerts-total span {
   color: var(--white);
+  margin-left: 10px;
   font-size: 15px;
-  margin-left: 15px;
-  margin-top: 5px;
-  font-weight: bold;
 }
-/*  */
+
 .alerts-body {
   overflow-y: scroll;
 }
-/*  */
+
 .alerts-decision--positive {
   color: var(--primary);
   border-bottom: 2px solid;

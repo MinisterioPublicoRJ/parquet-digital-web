@@ -47,7 +47,7 @@ class App extends React.Component {
         case 1:
           page = <Tutela userName={nome} />;
           break;
-        case 0:
+        case 2:
           page = <Pip userName={nome} />;
           break;
         default:

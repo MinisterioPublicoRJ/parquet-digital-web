@@ -18,12 +18,12 @@ function Pip({ userName }) {
 
   return (
     <div className="pip-grid">
-      <Alerts user={userName} />
-      <ProcessList user={userName} />
+      {/* <Alerts user={userName} /> */}
+      {/* <ProcessList user={userName} /> */}
       <PerformanceRadar.Pip user={userName} />
-      <ProcessingTime user={userName} />
-      <Today user={userName} />
-      <YourDesk user={userName} />
+      {/* <ProcessingTime user={userName} /> */}
+      {/* <Today user={userName} /> */}
+      {/* <YourDesk user={userName} /> */}
     </div>
   );
 }

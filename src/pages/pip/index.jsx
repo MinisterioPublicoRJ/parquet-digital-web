@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles.css';
 import './styles.css';
+
 import {
   Alerts,
   ProcessList,
@@ -14,10 +16,8 @@ import {
 const propTypes = { userName: PropTypes.string.isRequired };
 
 function Pip({ userName }) {
-  if (!userName) return <div> loading </div>;
-
   return (
-    <div className="pip-grid">
+    <div className="base-grid pip-grid">
       {/* <Alerts user={userName} /> */}
       {/* <ProcessList user={userName} /> */}
       <PerformanceRadar.Pip user={userName} />

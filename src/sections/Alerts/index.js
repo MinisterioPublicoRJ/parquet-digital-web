@@ -11,9 +11,9 @@ import Home from '../../assets/svg/home';
 import Ouvidoria from '../../assets/svg/ouvidoria';
 import Va from '../../assets/svg/va';
 import Tjrj from '../../assets/svg/tjrj';
-// import Law from '../../assets/svg/law';
+import Law from '../../assets/svg/law';
 import Mprj from '../../assets/svg/mprj';
-// import Csi from '../../assets/svg/csi';
+import Csi from '../../assets/svg/csi';
 
 class Alerts extends React.Component {
   constructor(props) {
@@ -36,6 +36,7 @@ class Alerts extends React.Component {
     let errorAlerts = false;
     try {
       alerts = await Api.getAlertsList(getUser());
+      console.log(alerts);
     } catch (e) {
       errorAlerts = true;
     } finally {
@@ -62,8 +63,8 @@ class Alerts extends React.Component {
         icon = <Tjrj />;
         message = (
           <span>
-            O <strong> processo criminal {alert.docNum}</strong> está no TJRJ há {' '}
-             <strong>mais de 60 dias</strong> sem retorno.
+            O <strong> processo criminal{alert.docNum}</strong> está no TJRJ há{' '}
+            <strong>mais de 60 dias</strong> sem retorno.
           </span>
         );
         background = '#F86C72';
@@ -73,22 +74,21 @@ class Alerts extends React.Component {
         icon = <Tjrj />;
         message = (
           <span>
-            O <strong>processo não criminal {alert.docNum}</strong> está no TJRJ há{' '}
-            <strong>mais de 120 dias</strong> sem retorno.
-          </span>
+            Há <strong>{alert.docNum.length}</strong> processos não criminais no TJRJ há de{' '}
+            <strong>{alert.daysPassed}</strong>{' '}dias sem retorno.</span>
         );
         background = '#F86C72';
         break;
 
       case 'DT2I':
         icon = <Home />;
-        // message = (
-        //   <span>
-        //     Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong>
-        //     está possivelmente
-        //     <strong> desatualizado</strong>
-        //   </span>
-        // );
+        message = (
+         <span>
+           Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong>
+           está possivelmente
+           <strong> desatualizado</strong>
+          </span>
+         );
         message = (
           <span>
             O <strong>orgão responsável</strong>
@@ -114,12 +114,12 @@ class Alerts extends React.Component {
 
       case 'PA1A':
         icon = <ClockIcon />;
-        // message = (
-        //   <span>
-        //     Há <strong>05 processos administrativos</strong> abertos{' '}
-        //     <strong>há mais de 1 ano</strong>
-        //   </span>
-        // );
+        message = (
+          <span>
+            Há <strong>{alert.alertCode.length}</strong> abertos{' '}
+            <strong>há mais de 1 ano</strong>
+          </span>
+         );
         message = (
           <span>
             O{' '}
@@ -156,7 +156,7 @@ class Alerts extends React.Component {
         message = (
           <span>
             O inquérito civil ativo <strong> {alert.docNum} </strong>
-            <strong> está sem prorrogação </strong> há <strong>mais de 1 ano</strong>.
+            <strong> está sem prorrogação </strong> há<strong>mais de 1 ano</strong>.
           </span>
         );
         background = '#f86c72';
@@ -166,8 +166,8 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            A <strong> noticia de fato{alert.docNum}</strong> foi autuada há mais de
-            <strong>120 dias</strong> e ainda está
+            Há uma <strong>{alert.alertCode.length}</strong> notícia de fato autuada há mais de
+            <strong>{alert.daysPassed}</strong> e ainda está
             <strong>sem tratamento</strong>
           </span>
         );
@@ -187,13 +187,13 @@ class Alerts extends React.Component {
 
       case 'OUVI':
         icon = <Ouvidoria />;
-        // message = (
-        //   <span>
-        //     Há <strong>01 expediente</strong>
-        //     de ouvidoria enviado porém
-        //     <strong> não recebido</strong>
-        //   </span>
-        // );
+        message = (
+          <span>
+            Há <strong>01 expediente</strong>
+            de ouvidoria enviado porém
+            <strong> não recebido</strong>
+          </span>
+        );
         message = (
           <span>
             O{' '}
@@ -220,79 +220,87 @@ class Alerts extends React.Component {
         background = '#28A7E0';
         break;
 
-        case 'DORD':
-          icon = <Mprj />;
-          message = (
-            <span>
-              O processo <strong> {alert.docNum}</strong> está possivelmente <strong> desatualizado</strong>.
-            </span>
-          );
-          background = '#5C6FD9';
-          break;
+      case 'DORD':
+        icon = <Mprj />;
+        message = (
+          <span>
+            Há um processo 
+{' '}
+<strong> {alert.docNum}</strong> cujo orgão está possivelmente
+{' '}
+            <strong> desatualizado</strong>.
+          </span>
+        );
+        background = '#5C6FD9';
+        break;
 
       // ALERTAS DA PIP
       case 'GATE':
         icon = <CorujaGate />;
         message = (
           <span>
-            O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento{' '}
+            O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento
             <strong>{alert.docNum}</strong>
           </span>
         );
         background = '#374354';
         break;
 
-      // AINDA NÃO IMPLEMENTADOS NO BACK
-      //       case 'CSI':
-      //         icon = <Csi />;
-      //         message = (
-      //           <span>
-      //             A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento{' '}
-      //             <strong>{alert.docNum}</strong>
-      //           </span>
-      //         );
-      //         background = '#192440';
-      //         break;
-      //
-      //       case 'DECISAO':
-      //         icon = <Law />;
-      //         message = (
-      //           <span>
-      //             Você obteve uma <strong className="positiveDecision"> decisão favorável </strong>
-      // {' '}
-      // no
-      //             processo
-      // <strong>{alert.docNum}</strong>
-      //           </span>
-      //         );
-      //         background = '#71D0A4';
-      //         break;
-      //
-      //       case 'DECISAO':
-      //         icon = <Law />;
-      //         message = (
-      //           <span>
-      //             Você obteve uma <strong className="negativeDecision"> decisão desfavorável </strong>
-      // {' '}
-      // no
-      //             processo
-      // <strong>{alert.docNum}</strong>
-      //           </span>
-      //         );
-      //         background = '#F86C72';
-      //         break;
+      case 'CSI':
+        icon = <Csi />;
+        message = (
+          <span>
+            A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento{' '}
+            <strong>{alert.docNum}</strong>
+          </span>
+        );
+        background = '#192440';
+        break;
 
-      // case 'VADF':
-      //   icon = <Home />;
-      //   message = (
-      //     <span>
-      //       <strong> Movimentação N:{alert.docNum} </strong> em processo desta promotoria na segunda
-      //       instância
-      //     </span>
-      //   );
-      //   background = '#5C6FD9';
-      //   break;
-      //
+      case 'DECISAO':
+        icon = <Law />;
+        message = (
+          <span>
+            Você obteve uma {' '}<strong className="positiveDecision"> decisão favorável </strong>{' '}no
+            processo
+            <strong>{alert.docNum}</strong>
+          </span>
+        );
+        background = '#71D0A4';
+        break;
+
+      case 'DECISAO':
+        icon = <Law />;
+        message = (
+          <span>
+            Você obteve uma 
+{' '}
+<strong className="negativeDecision"> decisão desfavorável </strong>
+            {' '}
+no
+            processo
+            <strong>{alert.docNum}</strong>
+          </span>
+        );
+        background = '#F86C72';
+        break;
+
+      case 'VADF':
+        icon = <Home />;
+        message = (
+          <span>
+            <strong>
+              {' '}
+              Movimentação N:
+              {alert.docNum}{' '}
+            </strong>
+{' '}
+            em processo desta promotoria na segunda instância
+          </span>
+        );
+        background = '#5C6FD9';
+        break;
+
       case 'DORD':
         icon = <Mprj />;
         message = (

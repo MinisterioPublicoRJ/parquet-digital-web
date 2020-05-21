@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles.css';
 import './styles.css';
+
 import {
   Alerts,
   ProcessList,
@@ -14,13 +16,11 @@ import {
 const propTypes = { userName: PropTypes.string.isRequired };
 
 function Tutela({ userName }) {
-  if (!userName) return <div> loading </div>;
-
   return (
-    <div className="tutela-grid">
+    <div className="base-grid tutela-grid">
       <Alerts user={userName} />
       <ProcessList user={userName} />
-      <PerformanceRadar user={userName} />
+      <PerformanceRadar.Tutela user={userName} />
       <ProcessingTime user={userName} />
       <Today user={userName} />
       <YourDesk user={userName} />

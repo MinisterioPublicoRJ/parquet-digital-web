@@ -71,30 +71,7 @@ const labelPositionsTable = {
   },
 };
 
-const axisLabelsTable = {
-  archives: {
-    label: 'Arquivamentos',
-    position: 'N',
-  },
-  actions: {
-    label: 'Ações_Civil_Públicas',
-    position: 'E',
-  },
-  rejections: {
-    label: 'Indeferimentos_de Plano',
-    position: 'SE',
-  },
-  instaurations: {
-    label: 'Instauração de_Investigações',
-    position: 'SW',
-  },
-  tac: {
-    label: 'Termos_de Ajuste_de Conduta',
-    position: 'W',
-  },
-};
-
-const generateAreasData = data =>
+const generateAreasData = (data, axisLabelsTable) =>
   data
     .map(({ category, value, isAboveAverage, median, numbers, y }) => {
       const { label, position } = axisLabelsTable[category];
@@ -142,10 +119,11 @@ const propTypes = {
     PropTypes.shape({ x: PropTypes.string, y: PropTypes.number, label: PropTypes.number }),
   ).isRequired,
   axis: PropTypes.shape({ category: PropTypes.string }).isRequired,
+  axisLabelsTable: PropTypes.shape.isRequired,
 };
 
-function PerformanceChart({ data }) {
-  const [xAxis, medianData, areaData] = generateAreasData(data);
+function PerformanceChart({ data, axisLabelsTable }) {
+  const [xAxis, medianData, areaData] = generateAreasData(data, axisLabelsTable);
   const grid = generateGrid(xAxis);
 
   // TODO: animate VictoryChart

@@ -17,6 +17,7 @@ import {
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
   PROCESSES_LIST,
+  PIP_RADAR_URL,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -36,6 +37,7 @@ import {
   alertsTransform,
   processingTimeTransform,
   processListTransform,
+  pipRadarTransform,
 } from './transforms';
 
 import { setUser } from '../user';
@@ -147,6 +149,7 @@ const Api = (() => {
 
     return radarTransform(data);
   }
+
   async function getProcessingTimeData({ orgao, token }) {
     const { data } = await axios.get(PROCESSING_TIME_DATA({ orgao }), buildRequestConfig(token));
 
@@ -168,6 +171,12 @@ const Api = (() => {
     return processListTransform(data);
   }
 
+  async function getPipRadarData({ orgao, token }) {
+    const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
+
+    return pipRadarTransform(data);
+  }
+
   return {
     login,
     getTodayOutData,
@@ -185,6 +194,8 @@ const Api = (() => {
     getAlertsList,
     getProcessingTimeData,
     getProcessList,
+
+    getPipRadarData,
   };
 })();
 

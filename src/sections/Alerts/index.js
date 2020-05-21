@@ -63,9 +63,8 @@ class Alerts extends React.Component {
         icon = <Tjrj />;
         message = (
           <span>
-            O <strong> processo criminal{alert.docNum}</strong> está no TJRJ há{' '}
-            <strong>mais de 60 dias</strong> sem retorno.
-          </span>
+            O processos criminal <strong>{alert.docNum}</strong> está no TJRJ há mais de<strong>120 dias </strong> sem retorno.
+         </span>
         );
         background = '#F86C72';
         break;
@@ -74,8 +73,8 @@ class Alerts extends React.Component {
         icon = <Tjrj />;
         message = (
           <span>
-            Há <strong>{alert.docNum.length}</strong> processos não criminais no TJRJ há de{' '}
-            <strong>{alert.daysPassed}</strong>{' '}dias sem retorno.</span>
+            O processo <strong>{alert.docNum}</strong> não criminal está no TJRJ há mais de <strong>120 dias</strong> sem retorno.
+          </span>
         );
         background = '#F86C72';
         break;
@@ -83,19 +82,13 @@ class Alerts extends React.Component {
       case 'DT2I':
         icon = <Home />;
         message = (
-         <span>
-           Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong>
-           está possivelmente
-           <strong> desatualizado</strong>
+          <span>
+            <strong>{alert.docNum.length} movimentações</strong>em processo desta promotoria na<strong>segunda instância</strong>
           </span>
-         );
+        );
         message = (
           <span>
-            O <strong>orgão responsável</strong>
-            pelo processo
-            <strong>{alert.docNum}</strong>
-            está possivelmente
-            <strong> desatualizado</strong>.
+            O <strong>orgão responsável</strong>pelo processo<strong>{alert.docNum}</strong>está possivelmente<strong> desatualizado</strong>.
           </span>
         );
         background = '#5C6FD9';
@@ -116,20 +109,12 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            Há <strong>{alert.alertCode.length}</strong> abertos{' '}
-            <strong>há mais de 1 ano</strong>
+            O <strong>{alert.docNum}</strong> está aberto <strong>há mais de 1 ano</strong>
           </span>
-         );
+        );
         message = (
           <span>
-            O{' '}
-            <strong>
-              {' '}
-              processo administrativo
-              {alert.docNum}
-            </strong>
-            está aberto
-            <strong>há mais de 1 ano</strong>.
+            O <strong>processo administrativo{alert.docNum}</strong>está aberto<strong>há mais de 1 ano</strong>.
           </span>
         );
         background = '#5C6FD9';
@@ -139,13 +124,11 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            O{' '}
-            <strong>
-              {' '}
+            O
+            <strong>{alert.docNum}
               procedimento preparatório
-              {alert.docNum}{' '}
             </strong>
-            está com prazo próximo de vencer.
+             está com prazo de tratamento esgotado
           </span>
         );
         background = '#f86c72';
@@ -155,8 +138,7 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            O inquérito civil ativo <strong> {alert.docNum} </strong>
-            <strong> está sem prorrogação </strong> há<strong>mais de 1 ano</strong>.
+            O inquérito civil ativo <strong>{alert.docNum}</strong><strong> está sem prorrogação </strong> há<strong>mais de 1 ano</strong>.
           </span>
         );
         background = '#f86c72';
@@ -166,9 +148,7 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            Há uma <strong>{alert.alertCode.length}</strong> notícia de fato autuada há mais de
-            <strong>{alert.daysPassed}</strong> e ainda está
-            <strong>sem tratamento</strong>
+            O <strong>{alert.docNum}</strong>está há mais de<strong>120 dias</strong> e ainda está<strong>sem tratamento</strong>
           </span>
         );
         background = '#f86c72';
@@ -178,8 +158,7 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            O ofício <strong>{alert.docNum}</strong> está com o
-            <strong> prazo de apreciação esgotado </strong>.
+            O <strong>{alert.docNum}</strong>está com o<strong> prazo de apreciação esgotado </strong>.
           </span>
         );
         background = '#f86c72';
@@ -189,20 +168,12 @@ class Alerts extends React.Component {
         icon = <Ouvidoria />;
         message = (
           <span>
-            Há <strong>01 expediente</strong>
-            de ouvidoria enviado porém
-            <strong> não recebido</strong>
+            Há <strong>01 expediente</strong>de ouvidoria enviado porém<strong> não recebido</strong>
           </span>
         );
         message = (
           <span>
-            O{' '}
-            <strong>
-              expediente de ouvidoria
-              {alert.docNum}
-            </strong>
-            foi enviado porém
-            <strong> não recebido</strong>
+            O<strong>expediente de ouvidoria {alert.docNum}</strong>foi enviado porém<strong> não recebido</strong>
           </span>
         );
         background = '#5C6FD9';
@@ -212,9 +183,7 @@ class Alerts extends React.Component {
         icon = <Va />;
         message = (
           <span>
-            Você tem uma
-            <strong> vista aberta</strong>{' '}no{' '}
-            <strong>documento{alert.docNum}, sinalizado como fechado</strong>
+            Você tem uma<strong> vista aberta</strong>no<strong>documento {alert.docNum},sinalizado como fechado</strong>
           </span>
         );
         background = '#28A7E0';
@@ -224,11 +193,7 @@ class Alerts extends React.Component {
         icon = <Mprj />;
         message = (
           <span>
-            Há um processo 
-{' '}
-<strong> {alert.docNum}</strong> cujo orgão está possivelmente
-{' '}
-            <strong> desatualizado</strong>.
+            Há um processo <strong> {alert.docNum}</strong> cujo orgão está possivelmente<strong> desatualizado</strong>.
           </span>
         );
         background = '#5C6FD9';
@@ -239,8 +204,7 @@ class Alerts extends React.Component {
         icon = <CorujaGate />;
         message = (
           <span>
-            O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento
-            <strong>{alert.docNum}</strong>
+            O <strong>Gate </strong>finalizou a <strong>IT</strong>solicitada no procedimento<strong>{alert.docNum}</strong>
           </span>
         );
         background = '#374354';
@@ -250,8 +214,7 @@ class Alerts extends React.Component {
         icon = <Csi />;
         message = (
           <span>
-            A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento{' '}
-            <strong>{alert.docNum}</strong>
+            A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento <strong>{alert.docNum}</strong>
           </span>
         );
         background = '#192440';
@@ -261,9 +224,7 @@ class Alerts extends React.Component {
         icon = <Law />;
         message = (
           <span>
-            Você obteve uma {' '}<strong className="positiveDecision"> decisão favorável </strong>{' '}no
-            processo
-            <strong>{alert.docNum}</strong>
+            Você obteve uma <strong className="positiveDecision"> decisão favorável </strong> no processo <strong>{alert.docNum}</strong>
           </span>
         );
         background = '#71D0A4';
@@ -272,14 +233,8 @@ class Alerts extends React.Component {
       case 'DECISAO':
         icon = <Law />;
         message = (
-          <span>
-            Você obteve uma 
-{' '}
-<strong className="negativeDecision"> decisão desfavorável </strong>
-            {' '}
-no
-            processo
-            <strong>{alert.docNum}</strong>
+         <span>
+            Você obteve uma <strong className="negativeDecision"> decisão desfavorável </strong> no processo <strong>{alert.docNum}</strong>
           </span>
         );
         background = '#F86C72';
@@ -289,13 +244,7 @@ no
         icon = <Home />;
         message = (
           <span>
-            <strong>
-              {' '}
-              Movimentação N:
-              {alert.docNum}{' '}
-            </strong>
-{' '}
-            em processo desta promotoria na segunda instância
+            <strong>Movimentação N:{alert.docNum}</strong> em processo desta promotoria na segunda instância
           </span>
         );
         background = '#5C6FD9';
@@ -305,29 +254,21 @@ no
         icon = <Mprj />;
         message = (
           <span>
-            O 
-{' '}
-<strong>processo {alert.docNum}</strong> está possivelmente
-{' '}
-            <strong> desatualizado</strong>
+            O <strong>processo {alert.docNum}</strong> está possivelmente<strong> desatualizado</strong>
           </span>
         );
         background = '#5C6FD9';
         break;
 
-      //       case 'DT2I':
-      //         icon = <Home />;
-      //         message = (
-      //           <span>
-      //             Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong>
-      // {' '}
-      // está
-      //             possivelmente
-      // <strong> desatualizado</strong>
-      //           </span>
-      //         );
-      //         background = '#5C6FD9';
-      //         break;
+      case 'DT2I':
+          icon = <Home />;
+          message = (
+            <span>
+                 Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong>está possivelmente<strong> desatualizado</strong>
+            </span>
+             );
+            background = '#5C6FD9';
+        break;
 
       default:
         break;

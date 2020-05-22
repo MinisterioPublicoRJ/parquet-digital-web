@@ -201,7 +201,7 @@ class Today extends Component {
    */
   cleanUsername() {
     const { user } = this.props;
-    const cleanUsername = user.split(/(\s).+\s/).join('');
+    const cleanUsername = user.split(' ')[0];
     return capitalizeTitle(cleanUsername);
   }
 

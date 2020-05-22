@@ -35,8 +35,13 @@ class Today extends Component {
    */
   getUserData() {
     this.loadPercentages();
-    this.loadCollection();
     this.loadEntriesInfo();
+    this.loadCollection();
+
+    // loads/reloads all page info Pip
+    this.loadPercentagesPip();
+    this.loadEntriesInfoPip();
+    this.loadCollectionPip();
   }
 
   /**
@@ -78,10 +83,60 @@ class Today extends Component {
   }
 
   /**
+   * laods percentage data for PIP
+   * @return {void}
+   */
+  async loadPercentagesPip() {
+    const loadingTodayOut = false;
+    let errorTodayOut = false;
+    let percentilePip;
+    try {
+      const res = await Api.getTodayOutDataPip(getUser());
+      percentilePip = formatPercentage(res);
+      console.log(res);
+    } catch (e) {
+      errorTodayOut = true;
+    } finally {
+      this.setState(({ loadingTodayEntries, loadingTodayOutliers }) => {
+        const doneLoading = this.doneLoading(false, loadingTodayEntries, loadingTodayOutliers);
+        return { percentilePip, loadingTodayOut, errorTodayOut, doneLoading };
+      });
+    }
+  }
+
+  /**
    * loads/reloads info an calls formatters for second sentence data
    * @return {void}
    */
+  // loadCollectio Tutela
   async loadCollection() {
+    let collectionPhrase;
+    let groupName;
+    let errorTodayOutliers = false;
+    try {
+      const today = new Date();
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(getUser(), today);
+
+      collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
+      groupName = NOMES_PROMOTORIAS[cod];
+    } catch (e) {
+      errorTodayOutliers = true;
+    } finally {
+      this.setState(({ loadingTodayEntries, loadingTodayOut }) => {
+        const doneLoading = this.doneLoading(loadingTodayOut, loadingTodayEntries, false);
+        return {
+          collectionPhrase,
+          loadingTodayOutliers: false,
+          errorTodayOutliers,
+          doneLoading,
+          groupName,
+        };
+      });
+    }
+  }
+
+  // load CollectionPip
+  async loadCollectionPip() {
     let collectionPhrase;
     let groupName;
     let errorTodayOutliers = false;
@@ -128,6 +183,25 @@ class Today extends Component {
     }
   }
 
+  // loadEntriesInfoPip
+
+  async loadEntriesInfoPip() {
+    let entriesParagraph;
+    let errorTodayEntries = false;
+    try {
+      const { hout, lout, numEntries } = await Api.getTodayEntriesDataPip(getUser());
+
+      entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
+    } catch (e) {
+      errorTodayEntries = true;
+    } finally {
+      this.setState(({ loadingTodayOut, loadingTodayOutliers }) => {
+        const doneLoading = this.doneLoading(loadingTodayOut, false, loadingTodayOutliers);
+        return { entriesParagraph, loadingTodayEntries: false, errorTodayEntries, doneLoading };
+      });
+    }
+  }
+
   /**
    * compares the number of entries to the business rules to decide which phrase to show. A day can be typical, atypical or empty
    * @param  {Number} hout   how many entries are on the upper boundary of a typical day
@@ -136,6 +210,28 @@ class Today extends Component {
    * @return {Node}        React element to be inserted on View
    */
   analyzeEntries(hout, lout, amount) {
+    if (!amount) {
+      return (
+        <p className="paragraphWrapper">Percebi que ainda não temos vistas abertas para hoje!</p>
+      );
+    }
+    let dayTipe = 'típico';
+    if (amount < lout || amount > hout) {
+      dayTipe = 'atípico';
+    }
+    return (
+      <p className="paragraphWrapper">
+        Hoje temos um dia
+        <span style={{ fontWeight: 'bold' }}>{` ${dayTipe} `}</span>
+        com a entrada de
+        <span style={{ fontWeight: 'bold' }}>{` ${amount} `}</span>
+        novos feitos.
+      </p>
+    );
+  }
+
+  // AnalizeEntries Pip
+  analyzeEntriesPip(hout, lout, amount) {
     if (!amount) {
       return (
         <p className="paragraphWrapper">Percebi que ainda não temos vistas abertas para hoje!</p>
@@ -206,9 +302,38 @@ class Today extends Component {
   }
 
   render() {
-    const { percentile, collectionPhrase, groupName, entriesParagraph, doneLoading } = this.state;
+    const {
+      percentile,
+      percentilePip,
+      collectionPhrase,
+      collectionPhrasePip,
+      groupName,
+      entriesParagraph,
+      doneLoading,
+    } = this.state;
 
     const greeting = this.assembleGreeting();
+
+    // Frases Pip
+
+    const percentParagraphPip = !percentilePip ? null : (
+      <p className="paragraphWrapper">
+        Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
+        <span style={{ fontWeight: 'bold' }}>{` ${percentilePip} `}</span>
+        da casa entre aquelas de mesma atribuição.
+        {percentilePip > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+      </p>
+    );
+    const collectionParagraphPip = !collectionPhrasePip ? null : (
+      <p className="paragraphWrapper">
+        Você sabia que seu acervo é
+        <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
+        dos seus colegas das
+        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+      </p>
+    );
+
+    // Frases Tutela
 
     const percentParagraph = !percentile ? null : (
       <p className="paragraphWrapper">
@@ -218,7 +343,6 @@ class Today extends Component {
         {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
       </p>
     );
-
     const collectionParagraph = !collectionPhrase ? null : (
       <p className="paragraphWrapper">
         Você sabia que seu acervo é
@@ -244,11 +368,15 @@ class Today extends Component {
             {doneLoading && percentParagraph}
             {doneLoading && collectionParagraph}
             {doneLoading && entriesParagraph}
+
+            {doneLoading && percentParagraphPip}
+            {doneLoading && collectionParagraphPip}
           </div>
         </div>
         <div className="today-robotPic">
           <Promotron height="100%" />
         </div>
+        <button>Veja mapa da atuação</button>
       </article>
     );
   }

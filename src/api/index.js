@@ -19,7 +19,6 @@ import {
   PROCESSES_LIST,
   PIP_RADAR_URL,
   PIP_TODAY_OUT,
-
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';

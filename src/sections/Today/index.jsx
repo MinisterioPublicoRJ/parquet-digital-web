@@ -66,6 +66,7 @@ class Today extends Component {
     try {
       const res = await Api.getTodayOutData(getUser());
       percentile = formatPercentage(res);
+      console.log(res);
     } catch (e) {
       errorTodayOut = true;
     } finally {

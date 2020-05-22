@@ -7,6 +7,7 @@ export const BASE_URL = `${process.env.REACT_APP_BASE_URL}/dominio`;
 export const LOGIN_URL = `${BASE_URL}/token/login/`;
 
 export const TODAY_OUT = t(`${BASE_URL}/saidas/\${orgao}`);
+
 export const TODAY_OUTLIERS = t(`${BASE_URL}/outliers/\${orgao}`);
 export const TODAY_ENTRIES = t(`${BASE_URL}/entradas/\${orgao}/\${cpf}`);
 
@@ -31,6 +32,7 @@ export const PROCESSING_TIME_DATA = t(`${BASE_URL}/tempo-tramitacao/\${orgao}`);
 
 export const PROCESSES_LIST = t(`${BASE_URL}/lista/processos/\${orgao}`);
 
+export const PIP_TODAY_OUT = t(`${BASE_URL}pip/saidas/\${orgao}`);
 export const PIP__URL = t(`${BASE_URL}/pip/aproveitamentos/\${orgao}`);
 export const PIP_MONTH_OPPENINGS_URL = t(`${BASE_URL}/pip/aberturas-mensal/\${orgao}/\${cpf}`);
 export const PIP_INVESTIGATIONS_URL = t(`${BASE_URL}/pip/aisp/investigacoes/\${orgao}`);

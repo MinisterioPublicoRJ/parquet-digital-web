@@ -18,6 +18,8 @@ import {
   ALERTS_LIST,
   PROCESSES_LIST,
   PIP_RADAR_URL,
+  PIP_TODAY_OUT,
+
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -61,6 +63,11 @@ const Api = (() => {
    */
   async function getTodayOutData({ orgao, token }) {
     const { data } = await axios.get(TODAY_OUT({ orgao }), buildRequestConfig(token));
+
+    return todayOutTransform(data);
+  }
+  async function getPipTodayOutData({ orgao, token }) {
+    const { data } = await axios.get(PIP_TODAY_OUT({ orgao }), buildRequestConfig(token));
 
     return todayOutTransform(data);
   }
@@ -195,6 +202,7 @@ const Api = (() => {
     getProcessingTimeData,
     getProcessList,
 
+    getPipTodayOutData,
     getPipRadarData,
   };
 })();

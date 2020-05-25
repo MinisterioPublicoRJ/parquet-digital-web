@@ -18,7 +18,7 @@ import {
   ALERTS_LIST,
   PROCESSES_LIST,
   PIP_RADAR_URL,
-  PIP_TODAY_OUT,
+ // PIP_TODAY_OUT,
   PIP_TODAY_OUTLIERS,
   PIP_TODAY_ENTRIES,
 } from './endpoints';
@@ -70,13 +70,14 @@ const Api = (() => {
 
     return todayOutTransform(data);
   }
-  /* fetches percentage info for the Today page Pip from the backend */
+  /* fetches percentage info for the Today page Pip from the backend 
 
   async function getTodayOutDataPip({ orgao, token }) {
     const { data } = await axios.get(PIP_TODAY_OUT({ orgao }), buildRequestConfig(token));
 
     return todayOutTransformPip(data);
   }
+  
 
   /**
    * fetches acervo info for the Today page from the backend
@@ -208,7 +209,7 @@ const Api = (() => {
     getProcessingTimeData,
     getProcessList,
 
-    getTodayOutDataPip,
+    //getTodayOutDataPip,
     getPipRadarData,
   };
 })();

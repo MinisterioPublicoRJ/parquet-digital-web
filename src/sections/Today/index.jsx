@@ -385,7 +385,7 @@ class Today extends Component {
         <div className="today-robotPic">
           <Promotron height="100%" />
         </div>
-        <button>Veja mapa da atuação</button>
+        <button className="today-btn">Veja mapa da atuação</button>
       </article>
     );
   }

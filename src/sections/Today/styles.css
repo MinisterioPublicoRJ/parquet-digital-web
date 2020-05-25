@@ -50,6 +50,13 @@
   left: 0;
   z-index: 0;
 }
+.today-btn{
+  width: 234px;
+  height: 40px;
+  background-color: #BDDFF0;
+  border-radius: 6px #BDDFF0;
+  font-size: 16px;
+}
 
 @media (max-width: 480px) {
   .today-robotPic {

@@ -19,6 +19,8 @@ import {
   PROCESSES_LIST,
   PIP_RADAR_URL,
   PIP_TODAY_OUT,
+  PIP_TODAY_OUTLIERS,
+  PIP_TODAY_ENTRIES,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -39,6 +41,9 @@ import {
   processingTimeTransform,
   processListTransform,
   pipRadarTransform,
+  todayOutTransformPip,
+  todayOutliersTransformPip,
+  todayEntriesTransformPip,
 } from './transforms';
 
 import { setUser } from '../user';
@@ -65,10 +70,12 @@ const Api = (() => {
 
     return todayOutTransform(data);
   }
-  async function getPipTodayOutData({ orgao, token }) {
+  /* fetches percentage info for the Today page Pip from the backend */
+
+  async function getTodayOutDataPip({ orgao, token }) {
     const { data } = await axios.get(PIP_TODAY_OUT({ orgao }), buildRequestConfig(token));
 
-    return todayOutTransform(data);
+    return todayOutTransformPip(data);
   }
 
   /**
@@ -201,7 +208,7 @@ const Api = (() => {
     getProcessingTimeData,
     getProcessList,
 
-    getPipTodayOutData,
+    getTodayOutDataPip,
     getPipRadarData,
   };
 })();

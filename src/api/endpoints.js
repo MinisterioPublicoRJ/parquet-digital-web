@@ -32,8 +32,6 @@ export const PROCESSING_TIME_DATA = t(`${BASE_URL}/tempo-tramitacao/\${orgao}`);
 
 export const PROCESSES_LIST = t(`${BASE_URL}/lista/processos/\${orgao}`);
 
-// Endpoint do sua mesa
-
 export const PIP_TODAY_OUT = t(`${BASE_URL}pip/saidas/\${orgao}`);
 export const PIP_TODAY_OUTLIERS = t(`${BASE_URL}pip/outliers/\${orgao}`);
 export const PIP_TODAY_ENTRIES = t(`${BASE_URL}pip/entradas/\${orgao}/\${cpf}`);

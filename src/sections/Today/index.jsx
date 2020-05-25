@@ -22,6 +22,9 @@ class Today extends Component {
       loadingTodayOut: true,
       loadingTodayEntries: true,
       loadingTodayOutliers: true,
+      loadingTodayOutPip: true,
+      loadingTodayEntriesPip: true,
+      loadingTodayOutliersPip: true,
     };
   }
 
@@ -71,7 +74,6 @@ class Today extends Component {
     try {
       const res = await Api.getTodayOutData(getUser());
       percentile = formatPercentage(res);
-      console.log(res);
     } catch (e) {
       errorTodayOut = true;
     } finally {
@@ -87,19 +89,22 @@ class Today extends Component {
    * @return {void}
    */
   async loadPercentagesPip() {
-    const loadingTodayOut = false;
-    let errorTodayOut = false;
+    const loadingTodayOutPip = false;
+    let errorTodayOutPip = false;
     let percentilePip;
     try {
       const res = await Api.getTodayOutDataPip(getUser());
       percentilePip = formatPercentage(res);
-      console.log(res);
     } catch (e) {
-      errorTodayOut = true;
+      errorTodayOutPip = true;
     } finally {
-      this.setState(({ loadingTodayEntries, loadingTodayOutliers }) => {
-        const doneLoading = this.doneLoading(false, loadingTodayEntries, loadingTodayOutliers);
-        return { percentilePip, loadingTodayOut, errorTodayOut, doneLoading };
+      this.setState(({ loadingTodayEntriesPip, loadingTodayOutliersPip }) => {
+        const doneLoading = this.doneLoading(
+          false,
+          loadingTodayEntriesPip,
+          loadingTodayOutliersPip,
+        );
+        return { percentilePip, loadingTodayOutPip, errorTodayOutPip, doneLoading };
       });
     }
   }
@@ -108,14 +113,15 @@ class Today extends Component {
    * loads/reloads info an calls formatters for second sentence data
    * @return {void}
    */
-  // loadCollectio Tutela
+
+  // loadCollection Tutela
   async loadCollection() {
     let collectionPhrase;
     let groupName;
     let errorTodayOutliers = false;
     try {
       const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(getUser(), today);
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersDataPip(getUser(), today);
 
       collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
       groupName = NOMES_PROMOTORIAS[cod];
@@ -170,7 +176,8 @@ class Today extends Component {
     let entriesParagraph;
     let errorTodayEntries = false;
     try {
-      const { hout, lout, numEntries } = await Api.getTodayEntriesData(getUser());
+      const { hout, lout, numEntries } = await Api.getTodayEntriesDataPip(getUser());
+      console.log(hout, lout, numEntries);
 
       entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
     } catch (e) {
@@ -186,18 +193,18 @@ class Today extends Component {
   // loadEntriesInfoPip
 
   async loadEntriesInfoPip() {
-    let entriesParagraph;
+    let entriesParagraphPip;
     let errorTodayEntries = false;
     try {
       const { hout, lout, numEntries } = await Api.getTodayEntriesDataPip(getUser());
 
-      entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
+      entriesParagraphPip = this.analyzeEntries(hout, lout, numEntries);
     } catch (e) {
       errorTodayEntries = true;
     } finally {
       this.setState(({ loadingTodayOut, loadingTodayOutliers }) => {
         const doneLoading = this.doneLoading(loadingTodayOut, false, loadingTodayOutliers);
-        return { entriesParagraph, loadingTodayEntries: false, errorTodayEntries, doneLoading };
+        return { entriesParagraphPip, loadingTodayEntries: false, errorTodayEntries, doneLoading };
       });
     }
   }
@@ -309,29 +316,11 @@ class Today extends Component {
       collectionPhrasePip,
       groupName,
       entriesParagraph,
+      entriesParagraphPip,
       doneLoading,
     } = this.state;
 
     const greeting = this.assembleGreeting();
-
-    // Frases Pip
-
-    const percentParagraphPip = !percentilePip ? null : (
-      <p className="paragraphWrapper">
-        Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
-        <span style={{ fontWeight: 'bold' }}>{` ${percentilePip} `}</span>
-        da casa entre aquelas de mesma atribuição.
-        {percentilePip > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
-      </p>
-    );
-    const collectionParagraphPip = !collectionPhrasePip ? null : (
-      <p className="paragraphWrapper">
-        Você sabia que seu acervo é
-        <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
-        dos seus colegas das
-        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
-      </p>
-    );
 
     // Frases Tutela
 
@@ -344,6 +333,25 @@ class Today extends Component {
       </p>
     );
     const collectionParagraph = !collectionPhrase ? null : (
+      <p className="paragraphWrapper">
+        Você sabia que seu acervo é
+        <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
+        dos seus colegas das
+        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+      </p>
+    );
+
+    // Frases Pip
+
+    const percentParagraphPip = !percentilePip ? null : (
+      <p className="paragraphWrapper">
+        Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
+        <span style={{ fontWeight: 'bold' }}>{` ${percentilePip} `}</span>
+        da casa entre aquelas de mesma atribuição.
+        {percentilePip > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+      </p>
+    );
+    const collectionParagraphPip = !collectionPhrasePip ? null : (
       <p className="paragraphWrapper">
         Você sabia que seu acervo é
         <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
@@ -371,6 +379,7 @@ class Today extends Component {
 
             {doneLoading && percentParagraphPip}
             {doneLoading && collectionParagraphPip}
+            {doneLoading && entriesParagraphPip}
           </div>
         </div>
         <div className="today-robotPic">

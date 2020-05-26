@@ -60,23 +60,18 @@ class TodayPip extends Component {
    * @return {void}
    */
   async loadPercentagesPip() {
-    const loadingTodayOutPip = false;
+    const loadingTodayOut = false;
     let errorTodayOutPip = false;
     let percentilePip;
     try {
       const res = await Api.getTodayOutDataPip(getUser());
       percentilePip = formatPercentage(res);
-      console.log(res);
     } catch (e) {
       errorTodayOutPip = true;
     } finally {
-      this.setState(({ loadingTodayEntriesPip, loadingTodayOutliersPip }) => {
-        const doneLoading = this.doneLoading(
-          false,
-          loadingTodayEntriesPip,
-          loadingTodayOutliersPip,
-        );
-        return { percentilePip, loadingTodayOutPip, errorTodayOutPip, doneLoading };
+      this.setState(({ loadingTodayEntries, loadingTodayOutliers }) => {
+        const doneLoading = this.doneLoading(false, loadingTodayEntries, loadingTodayOutliers);
+        return { percentilePip, loadingTodayOut, errorTodayOutPip, doneLoading };
       });
     }
   }
@@ -87,14 +82,14 @@ class TodayPip extends Component {
    */
   async loadCollectionPip() {
     let collectionPhrasePip;
-    let groupNamePip;
+    let groupName;
     let errorTodayOutliers = false;
     try {
       const today = new Date();
       const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersDataPip(getUser(), today);
 
       collectionPhrasePip = this.analyzeCollection(primQ, terQ, acervoQtd);
-      groupNamePip = NOMES_PROMOTORIAS[cod];
+      groupName = NOMES_PROMOTORIAS[cod];
     } catch (e) {
       errorTodayOutliers = true;
     } finally {
@@ -105,7 +100,7 @@ class TodayPip extends Component {
           loadingTodayOutliers: false,
           errorTodayOutliers,
           doneLoading,
-          groupNamePip,
+          groupName,
         };
       });
     }
@@ -116,18 +111,18 @@ class TodayPip extends Component {
    * @return {void}
    */
   async loadEntriesInfoPip() {
-    let entriesParagraphPip;
+    let entriesParagraph;
     let errorTodayEntries = false;
     try {
       const { hout, lout, numEntries } = await Api.getTodayEntriesDataPip(getUser());
 
-      entriesParagraphPip = this.analyzeEntries(hout, lout, numEntries);
+      entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
     } catch (e) {
       errorTodayEntries = true;
     } finally {
       this.setState(({ loadingTodayOut, loadingTodayOutliers }) => {
         const doneLoading = this.doneLoading(loadingTodayOut, false, loadingTodayOutliers);
-        return { entriesParagraphPip, loadingTodayEntries: false, errorTodayEntries, doneLoading };
+        return { entriesParagraph, loadingTodayEntries: false, errorTodayEntries, doneLoading };
       });
     }
   }

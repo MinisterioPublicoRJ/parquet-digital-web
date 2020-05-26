@@ -89,7 +89,7 @@ const Api = (() => {
   }
 
   async function getTodayEntriesDataPip({ orgao, cpf, token }) {
-    const { data } = await axios.get(TODAY_ENTRIES({ orgao, cpf }), buildRequestConfig(token));
+    const { data } = await axios.get(PIP_TODAY_ENTRIES({ orgao, cpf }), buildRequestConfig(token));
 
     return todayEntriesTransformPip(data);
   }

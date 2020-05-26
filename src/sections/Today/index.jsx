@@ -383,9 +383,11 @@ class Today extends Component {
           </div>
         </div>
         <div className="today-robotPic">
-          <Promotron height="100%" />
+          <img height="100%" src={require('../../assets/svg/home.gif')} alt="robô-promoton" />
         </div>
-        <button className="today-btn">Veja mapa da atuação</button>
+        <button type="button" className="today-btn">
+          Ver mapa da atuação
+        </button>
       </article>
     );
   }

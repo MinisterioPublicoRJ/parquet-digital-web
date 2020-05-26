@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
-import Api from '../../api';
-import { getUser } from '../../user';
-import Promotron from '../../assets/svg/promotronPaineis';
-import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
-import { SectionTitle, MainTitle, Spinner } from '../../components';
+import '../styles.css';
+import Api from '../../../api';
+import { getUser } from '../../../user';
+import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
+import { SectionTitle, MainTitle, Spinner } from '../../../components';
 
-import { formatPercentage, capitalizeTitle } from '../../utils';
+import { formatPercentage, capitalizeTitle } from '../../../utils';
 
 const propTypes = {
   user: PropTypes.string.isRequired,
   loadedCallback: PropTypes.func.isRequired,
 };
 
-class Today extends Component {
+class TodayTutela extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loadingTodayOut: true,
       loadingTodayEntries: true,
       loadingTodayOutliers: true,
-      loadingTodayOutPip: true,
-      loadingTodayEntriesPip: true,
-      loadingTodayOutliersPip: true,
     };
   }
 
@@ -40,11 +36,6 @@ class Today extends Component {
     this.loadPercentages();
     this.loadEntriesInfo();
     this.loadCollection();
-
-    // loads/reloads all page info Pip
-    this.loadPercentagesPip();
-    this.loadEntriesInfoPip();
-    this.loadCollectionPip();
   }
 
   /**
@@ -85,64 +76,12 @@ class Today extends Component {
   }
 
   /**
-   * laods percentage data for PIP
-   * @return {void}
-   */
-  async loadPercentagesPip() {
-    const loadingTodayOutPip = false;
-    let errorTodayOutPip = false;
-    let percentilePip;
-    try {
-      const res = await Api.getTodayOutDataPip(getUser());
-      percentilePip = formatPercentage(res);
-    } catch (e) {
-      errorTodayOutPip = true;
-    } finally {
-      this.setState(({ loadingTodayEntriesPip, loadingTodayOutliersPip }) => {
-        const doneLoading = this.doneLoading(
-          false,
-          loadingTodayEntriesPip,
-          loadingTodayOutliersPip,
-        );
-        return { percentilePip, loadingTodayOutPip, errorTodayOutPip, doneLoading };
-      });
-    }
-  }
-
-  /**
    * loads/reloads info an calls formatters for second sentence data
    * @return {void}
    */
 
   // loadCollection Tutela
   async loadCollection() {
-    let collectionPhrase;
-    let groupName;
-    let errorTodayOutliers = false;
-    try {
-      const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersDataPip(getUser(), today);
-
-      collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
-      groupName = NOMES_PROMOTORIAS[cod];
-    } catch (e) {
-      errorTodayOutliers = true;
-    } finally {
-      this.setState(({ loadingTodayEntries, loadingTodayOut }) => {
-        const doneLoading = this.doneLoading(loadingTodayOut, loadingTodayEntries, false);
-        return {
-          collectionPhrase,
-          loadingTodayOutliers: false,
-          errorTodayOutliers,
-          doneLoading,
-          groupName,
-        };
-      });
-    }
-  }
-
-  // load CollectionPip
-  async loadCollectionPip() {
     let collectionPhrase;
     let groupName;
     let errorTodayOutliers = false;
@@ -176,9 +115,7 @@ class Today extends Component {
     let entriesParagraph;
     let errorTodayEntries = false;
     try {
-      const { hout, lout, numEntries } = await Api.getTodayEntriesDataPip(getUser());
-      console.log(hout, lout, numEntries);
-
+      const { hout, lout, numEntries } = await Api.getTodayEntriesData(getUser());
       entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
     } catch (e) {
       errorTodayEntries = true;
@@ -190,25 +127,6 @@ class Today extends Component {
     }
   }
 
-  // loadEntriesInfoPip
-
-  async loadEntriesInfoPip() {
-    let entriesParagraphPip;
-    let errorTodayEntries = false;
-    try {
-      const { hout, lout, numEntries } = await Api.getTodayEntriesDataPip(getUser());
-
-      entriesParagraphPip = this.analyzeEntries(hout, lout, numEntries);
-    } catch (e) {
-      errorTodayEntries = true;
-    } finally {
-      this.setState(({ loadingTodayOut, loadingTodayOutliers }) => {
-        const doneLoading = this.doneLoading(loadingTodayOut, false, loadingTodayOutliers);
-        return { entriesParagraphPip, loadingTodayEntries: false, errorTodayEntries, doneLoading };
-      });
-    }
-  }
-
   /**
    * compares the number of entries to the business rules to decide which phrase to show. A day can be typical, atypical or empty
    * @param  {Number} hout   how many entries are on the upper boundary of a typical day
@@ -216,29 +134,8 @@ class Today extends Component {
    * @param  {Number} amount amount of entries on given day
    * @return {Node}        React element to be inserted on View
    */
-  analyzeEntries(hout, lout, amount) {
-    if (!amount) {
-      return (
-        <p className="paragraphWrapper">Percebi que ainda não temos vistas abertas para hoje!</p>
-      );
-    }
-    let dayTipe = 'típico';
-    if (amount < lout || amount > hout) {
-      dayTipe = 'atípico';
-    }
-    return (
-      <p className="paragraphWrapper">
-        Hoje temos um dia
-        <span style={{ fontWeight: 'bold' }}>{` ${dayTipe} `}</span>
-        com a entrada de
-        <span style={{ fontWeight: 'bold' }}>{` ${amount} `}</span>
-        novos feitos.
-      </p>
-    );
-  }
 
-  // AnalizeEntries Pip
-  analyzeEntriesPip(hout, lout, amount) {
+  analyzeEntries(hout, lout, amount) {
     if (!amount) {
       return (
         <p className="paragraphWrapper">Percebi que ainda não temos vistas abertas para hoje!</p>
@@ -309,20 +206,9 @@ class Today extends Component {
   }
 
   render() {
-    const {
-      percentile,
-      percentilePip,
-      collectionPhrase,
-      collectionPhrasePip,
-      groupName,
-      entriesParagraph,
-      entriesParagraphPip,
-      doneLoading,
-    } = this.state;
+    const { percentile, collectionPhrase, groupName, entriesParagraph, doneLoading } = this.state;
 
     const greeting = this.assembleGreeting();
-
-    // Frases Tutela
 
     const percentParagraph = !percentile ? null : (
       <p className="paragraphWrapper">
@@ -333,25 +219,6 @@ class Today extends Component {
       </p>
     );
     const collectionParagraph = !collectionPhrase ? null : (
-      <p className="paragraphWrapper">
-        Você sabia que seu acervo é
-        <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
-        dos seus colegas das
-        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
-      </p>
-    );
-
-    // Frases Pip
-
-    const percentParagraphPip = !percentilePip ? null : (
-      <p className="paragraphWrapper">
-        Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
-        <span style={{ fontWeight: 'bold' }}>{` ${percentilePip} `}</span>
-        da casa entre aquelas de mesma atribuição.
-        {percentilePip > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
-      </p>
-    );
-    const collectionParagraphPip = !collectionPhrasePip ? null : (
       <p className="paragraphWrapper">
         Você sabia que seu acervo é
         <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
@@ -376,14 +243,10 @@ class Today extends Component {
             {doneLoading && percentParagraph}
             {doneLoading && collectionParagraph}
             {doneLoading && entriesParagraph}
-
-            {doneLoading && percentParagraphPip}
-            {doneLoading && collectionParagraphPip}
-            {doneLoading && entriesParagraphPip}
           </div>
         </div>
         <div className="today-robotPic">
-          <img height="100%" src={require('../../assets/svg/home.gif')} alt="robô-promoton" />
+          <img height="100%" src={require('../../../assets/svg/home.gif')} alt="robô-promoton" />
         </div>
         <button type="button" className="today-btn">
           Ver mapa da atuação
@@ -393,5 +256,5 @@ class Today extends Component {
   }
 }
 
-Today.propTypes = propTypes;
-export default Today;
+TodayTutela.propTypes = propTypes;
+export default TodayTutela;

@@ -58,6 +58,7 @@
   border: 6px var(--pt-blue);
   font-size: 16px ;
   text-transform: uppercase;
+  display: none;
 }
 
 @media (max-width: 480px) {

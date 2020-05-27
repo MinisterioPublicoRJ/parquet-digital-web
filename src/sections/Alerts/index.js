@@ -25,6 +25,7 @@ class Alerts extends React.Component {
 
   componentDidMount() {
     this.getAlertsList();
+    this.getAlertsListTotal();
   }
 
   /**
@@ -36,11 +37,23 @@ class Alerts extends React.Component {
     let errorAlerts = false;
     try {
       alerts = await Api.getAlertsList(getUser());
-      console.log(alerts);
     } catch (e) {
       errorAlerts = true;
     } finally {
       this.setState({ alerts, errorAlerts, loading: false });
+    }
+  }
+
+  async getAlertsListTotal() {
+    let alertsTotal;
+    let errorAlerts = false;
+    try {
+      alertsTotal = await Api.getAlertsListTotal(getUser());
+      console.log(alertsTotal);
+    } catch (e) {
+      errorAlerts = true;
+    } finally {
+      this.setState({ alertsTotal, errorAlerts, loading: false });
     }
   }
 

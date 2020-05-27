@@ -1,4 +1,5 @@
 export { default as alertsTransform } from './alertsTransform';
+export { default as totalAlertsTransform } from './totalAlertsTransform';
 export { default as courtCasesDetailsTransform } from './courtCasesDetailsTransform';
 export { default as openCasesDetailsTransform } from './openCasesDetailsTransform';
 export { default as openInvestigationsDetailsTransform } from './openInvestigationsDetailsTransform';

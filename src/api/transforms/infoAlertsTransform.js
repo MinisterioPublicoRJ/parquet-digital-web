@@ -1,4 +1,4 @@
-export default function totalAlertsTransform(data) {
+export default function infoAlertsTransform(data) {
   return data.map(alert => ({
     sigla: alert.sigla,
     description: alert.descricao,

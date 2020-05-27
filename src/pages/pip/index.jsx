@@ -4,8 +4,14 @@ import PropTypes from 'prop-types';
 import '../styles.css';
 import './styles.css';
 
-import { Alerts, ProcessList, PerformanceRadar, ProcessingTime, YourDesk } from '../../sections';
-import TodayPip from '../../sections/Today/Pip';
+import {
+  Alerts,
+  ProcessList,
+  Today,
+  PerformanceRadar,
+  ProcessingTime,
+  YourDesk,
+} from '../../sections';
 
 const propTypes = { userName: PropTypes.string.isRequired };
 
@@ -16,7 +22,7 @@ function Pip({ userName }) {
       <ProcessList user={userName} />
       <PerformanceRadar.Pip user={userName} />
       {/* <ProcessingTime user={userName} /> */}
-      <TodayPip user={userName} />
+      <Today user={userName} />
       <YourDesk user={userName} />
     </div>
   );

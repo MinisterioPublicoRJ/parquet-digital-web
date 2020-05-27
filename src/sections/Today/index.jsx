@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import '../styles.css';
-import Api from '../../../api';
-import { getUser } from '../../../user';
-import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
-import { SectionTitle, MainTitle, Spinner } from '../../../components';
+import './styles.css';
+import Api from '../../api';
+import { getUser } from '../../user';
+import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
+import { SectionTitle, MainTitle, Spinner } from '../../components';
 
-import { formatPercentage, capitalizeTitle } from '../../../utils';
+import { formatPercentage, capitalizeTitle } from '../../utils';
 
 const propTypes = {
   user: PropTypes.string.isRequired,
   loadedCallback: PropTypes.func.isRequired,
 };
 
-class TodayPip extends Component {
+class Today extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,10 +33,9 @@ class TodayPip extends Component {
    * @return {void}
    */
   getUserData() {
-    // loads/reloads all page info Pip
-    this.loadPercentagesPip();
-    this.loadEntriesInfoPip();
-    this.loadCollectionPip();
+    this.loadPercentages();
+    this.loadEntriesInfo();
+    this.loadCollection();
   }
 
   /**
@@ -56,22 +55,22 @@ class TodayPip extends Component {
   }
 
   /**
-   * laods percentage data for PIP
+   * laods percentage data for the first sentence
    * @return {void}
    */
-  async loadPercentagesPip() {
+  async loadPercentages() {
     const loadingTodayOut = false;
-    let errorTodayOutPip = false;
-    let percentilePip;
+    let errorTodayOut = false;
+    let percentile;
     try {
-      const res = await Api.getTodayOutDataPip(getUser());
-      percentilePip = formatPercentage(res);
+      const res = await Api.getTodayOutData(getUser());
+      percentile = formatPercentage(res);
     } catch (e) {
-      errorTodayOutPip = true;
+      errorTodayOut = true;
     } finally {
       this.setState(({ loadingTodayEntries, loadingTodayOutliers }) => {
         const doneLoading = this.doneLoading(false, loadingTodayEntries, loadingTodayOutliers);
-        return { percentilePip, loadingTodayOut, errorTodayOutPip, doneLoading };
+        return { percentile, loadingTodayOut, errorTodayOut, doneLoading };
       });
     }
   }
@@ -80,15 +79,17 @@ class TodayPip extends Component {
    * loads/reloads info an calls formatters for second sentence data
    * @return {void}
    */
-  async loadCollectionPip() {
-    let collectionPhrasePip;
+
+  // loadCollection Tutela
+  async loadCollection() {
+    let collectionPhrase;
     let groupName;
     let errorTodayOutliers = false;
     try {
       const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersDataPip(getUser(), today);
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(getUser(), today);
 
-      collectionPhrasePip = this.analyzeCollection(primQ, terQ, acervoQtd);
+      collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
       groupName = NOMES_PROMOTORIAS[cod];
     } catch (e) {
       errorTodayOutliers = true;
@@ -96,7 +97,7 @@ class TodayPip extends Component {
       this.setState(({ loadingTodayEntries, loadingTodayOut }) => {
         const doneLoading = this.doneLoading(loadingTodayOut, loadingTodayEntries, false);
         return {
-          collectionPhrasePip,
+          collectionPhrase,
           loadingTodayOutliers: false,
           errorTodayOutliers,
           doneLoading,
@@ -110,12 +111,11 @@ class TodayPip extends Component {
    * loads/reloads info an calls formatters for third sentence data
    * @return {void}
    */
-  async loadEntriesInfoPip() {
+  async loadEntriesInfo() {
     let entriesParagraph;
     let errorTodayEntries = false;
     try {
-      const { hout, lout, numEntries } = await Api.getTodayEntriesDataPip(getUser());
-
+      const { hout, lout, numEntries } = await Api.getTodayEntriesData(getUser());
       entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
     } catch (e) {
       errorTodayEntries = true;
@@ -135,7 +135,6 @@ class TodayPip extends Component {
    * @return {Node}        React element to be inserted on View
    */
 
-  // AnalizeEntries Tutela
   analyzeEntries(hout, lout, amount) {
     if (!amount) {
       return (
@@ -247,7 +246,7 @@ class TodayPip extends Component {
           </div>
         </div>
         <div className="today-robotPic">
-          <img height="100%" src={require('../../../assets/svg/home.gif')} alt="robô-promoton" />
+          <img height="100%" src={require('../../assets/svg/home.gif')} alt="robô-promoton" />
         </div>
         <button type="button" className="today-btn">
           Ver mapa da atuação
@@ -257,5 +256,5 @@ class TodayPip extends Component {
   }
 }
 
-TodayPip.propTypes = propTypes;
-export default TodayPip;
+Today.propTypes = propTypes;
+export default Today;

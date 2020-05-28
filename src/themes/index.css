@@ -27,7 +27,7 @@
 
   --defaultTitleProcessing: Rockwell;
   --subtitleProcessing: MyriadPro-Regular;
-
+  --titleParagraphToday: 12px;
   --titleWeight: bold;
   --titleSize: calc(var(--defaultTextSize) * 2);
 

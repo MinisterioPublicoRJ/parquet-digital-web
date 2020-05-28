@@ -138,7 +138,7 @@ class Today extends Component {
   analyzeEntries(hout, lout, amount) {
     if (!amount) {
       return (
-        <p className="paragraphWrapper">Percebi que ainda não temos vistas abertas para hoje!</p>
+        <p className="today-textArea-paragraphWrapper">Percebi que ainda não temos vistas abertas para hoje!</p>
       );
     }
     let dayTipe = 'típico';
@@ -146,7 +146,7 @@ class Today extends Component {
       dayTipe = 'atípico';
     }
     return (
-      <p className="paragraphWrapper">
+      <p className="today-textArea-paragraphWrapper">
         Hoje temos um dia
         <span style={{ fontWeight: 'bold' }}>{` ${dayTipe} `}</span>
         com a entrada de
@@ -211,7 +211,7 @@ class Today extends Component {
     const greeting = this.assembleGreeting();
 
     const percentParagraph = !percentile ? null : (
-      <p className="paragraphWrapper">
+      <p className="today-textArea-paragraphWrapper">
         Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
         <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
         da casa entre aquelas de mesma atribuição.
@@ -219,7 +219,7 @@ class Today extends Component {
       </p>
     );
     const collectionParagraph = !collectionPhrase ? null : (
-      <p className="paragraphWrapper">
+      <p className="today-textArea-paragraphWrapper">
         Você sabia que seu acervo é
         <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
         dos seus colegas das

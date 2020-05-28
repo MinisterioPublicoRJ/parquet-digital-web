@@ -17,7 +17,7 @@
   flex: 1;
   flex-direction: column;
   max-height: 75%;
-  width: 75%;
+  width: 65%;
   z-index: 1;
 }
 
@@ -25,6 +25,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.today-textArea-paragraphWrapper {
+  color: var(--dark);
+  font-family: var(--defaultFont);
+  font-size: var(--titleParagraphToday);
+  margin: 0;
   text-indent: 1.5vh;
 }
 
@@ -64,5 +71,10 @@
 @media (max-width: 480px) {
   .today-robotPic {
     height: 50%;
+
   }
+  .today-textArea-paragraphWrapper {
+    font-size: var(--titleParagraphToday);
+  }
+  
 }

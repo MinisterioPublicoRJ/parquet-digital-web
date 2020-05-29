@@ -194,7 +194,6 @@ const Api = (() => {
     getAlertsList,
     getProcessingTimeData,
     getProcessList,
-
     getPipRadarData,
   };
 })();

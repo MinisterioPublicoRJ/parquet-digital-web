@@ -7,9 +7,9 @@ import './styles.css';
 import {
   Alerts,
   ProcessList,
+  Today,
   PerformanceRadar,
   ProcessingTime,
-  Today,
   YourDesk,
 } from '../../sections';
 
@@ -18,12 +18,12 @@ const propTypes = { userName: PropTypes.string.isRequired };
 function Pip({ userName }) {
   return (
     <div className="base-grid pip-grid">
-      {/* <Alerts user={userName} /> */}
-      {/* <ProcessList user={userName} /> */}
+      <Alerts user={userName} />
+      <ProcessList user={userName} />
       <PerformanceRadar.Pip user={userName} />
       {/* <ProcessingTime user={userName} /> */}
-      {/* <Today user={userName} /> */}
-      {/* <YourDesk user={userName} /> */}
+      <Today user={userName} />
+      <YourDesk user={userName} />
     </div>
   );
 }

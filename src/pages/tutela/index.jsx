@@ -8,8 +8,8 @@ import {
   Alerts,
   ProcessList,
   PerformanceRadar,
-  ProcessingTime,
   Today,
+  ProcessingTime,
   YourDesk,
 } from '../../sections';
 

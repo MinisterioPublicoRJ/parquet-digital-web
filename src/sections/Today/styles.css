@@ -71,7 +71,10 @@
 @media (max-width: 480px) {
   .today-robotPic {
     height: 50%;
-
+    right: -50px;
+  }
+  .today-content {
+    width: 50%;
   }
   .today-textArea-paragraphWrapper {
     font-size: var(--titleParagraphToday);

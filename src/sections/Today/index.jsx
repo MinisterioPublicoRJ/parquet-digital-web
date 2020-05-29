@@ -138,7 +138,9 @@ class Today extends Component {
   analyzeEntries(hout, lout, amount) {
     if (!amount) {
       return (
-        <p className="today-textArea-paragraphWrapper">Percebi que ainda não temos vistas abertas para hoje!</p>
+        <p className="today-textArea-paragraphWrapper">
+          Percebi que ainda não temos vistas abertas para hoje!
+        </p>
       );
     }
     let dayTipe = 'típico';
@@ -226,23 +228,21 @@ class Today extends Component {
         <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
       </p>
     );
-
+    
+    if (!doneLoading) {
+      return <Spinner size="medium" />;
+    }
     return (
       <article className="today-outer">
         <div className="today-header">
           <MainTitle value={greeting} />
         </div>
-        {!doneLoading && (
-          <div className="today-spinner">
-            <Spinner size="medium" />
-          </div>
-        )}
         <div className="today-content">
           <SectionTitle value="resumo do dia" />
           <div className="today-textArea">
-            {doneLoading && percentParagraph}
-            {doneLoading && collectionParagraph}
-            {doneLoading && entriesParagraph}
+            {percentParagraph}
+            {collectionParagraph}
+            {entriesParagraph}
           </div>
         </div>
         <div className="today-robotPic">

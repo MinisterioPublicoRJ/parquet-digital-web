@@ -15,6 +15,7 @@ import Law from '../../assets/svg/law';
 import Mprj from '../../assets/svg/mprj';
 import Csi from '../../assets/svg/csi';
 
+
 class Alerts extends React.Component {
   constructor(props) {
     super(props);
@@ -263,10 +264,6 @@ class Alerts extends React.Component {
           </div>
         </div>
         <div className="alerts-body">
-          {/*{alertsInfo.map((alertInfo, i) => {
-            const { text } = this.cleanAlert(alertInfo);
-            return <AlertBadge key={alertInfo.sigla + i} text={text} loading={errorAlerts} />;
-          })}*/}
           {alerts.map((alert, i) => {
             const { icon, message, action, actionLink, background } = this.cleanAlert(alert);
             return (

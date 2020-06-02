@@ -58,36 +58,10 @@ class Alerts extends React.Component {
     }
   }
 
- /* cleanAlertInfo(alertsInfo) {
+  cleanAlertInfo(alertsInfo) {
     let text = null;
 
-    switch (alertsInfo.sigla) {
-      case 'NF30':
-        text = (
-          <span>
-            Há <strong>{alertsInfo.count}</strong>
-            autuada há mais de 120 dias e ainda está se tratamento
-          </span>
-        );
-        break;
-      case 'PA1A':
-        text = (
-          <span>
-            Há <strong>{alertsInfo.count}</strong>com prazo próximo de vencer
-          </span>
-        );
-        break;
-      case 'DNTJ':
-        text = (
-          <span>
-            Há
-            <strong>{alertsInfo.count}</strong>há mais de 120 dias sem retorno
-          </span>
-        );
-        break;
-      default:
-        break;
-    }
+   
   }
 
   /**
@@ -109,8 +83,7 @@ class Alerts extends React.Component {
         icon = <Tjrj />;
         message = (
           <span>
-            O processos criminal <strong>{alert.docNum}</strong>
-            está no TJRJ há mais de<strong>120 dias </strong> sem retorno.
+            O  processo <strong>{alert.docNum}</strong> criminal está há mais de <strong>{alert.daysPassed}</strong> dias sem retorno.
           </span>
         );
         background = '#F86C72';
@@ -118,6 +91,11 @@ class Alerts extends React.Component {
 
       case 'DNTJ':
         icon = <Tjrj />;
+        message = (
+          <span>
+            O processo <strong>{alert.docNum}</strong> não criminal está há mais de <strong>{alert.daysPassed}</strong> sem retorno.
+          </span>
+        );
         background = '#F86C72';
         break;
 
@@ -125,21 +103,7 @@ class Alerts extends React.Component {
         icon = <Home />;
         message = (
           <span>
-            <strong>
-              {alert.docNum.length}
-              movimentações
-            </strong>
-            em processo desta promotoria na
-            <strong>segunda instância</strong>
-          </span>
-        );
-        message = (
-          <span>
-            O <strong>orgão responsável</strong>
-            pelo processo
-            <strong>{alert.docNum}</strong>
-            está possivelmente
-            <strong> desatualizado</strong>.
+            <strong>{alert.docNum.length} movimentações </strong> em processo desta promotoria na <strong>segunda instância</strong>
           </span>
         );
         background = '#5C6FD9';
@@ -149,8 +113,7 @@ class Alerts extends React.Component {
         icon = <Ouvidoria />;
         message = (
           <span>
-            O processo <strong> {alert.docNum}</strong> possui <strong>vitimas recorrentes</strong>
-            de violência domestica.
+            <strong> {alert.docNum.length}</strong> processos com <strong>vitimas recorrentes</strong> de violência domestica.
           </span>
         );
         background = '#F86C72';
@@ -158,6 +121,11 @@ class Alerts extends React.Component {
 
       case 'PA1A':
         icon = <ClockIcon />;
+        message = (
+          <span>
+            Há <strong> {alert.docNum.length}</strong> processos administrativos abertos há mais de um ano.
+          </span>
+        );
         background = '#5C6FD9';
         break;
 
@@ -165,12 +133,7 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            O
-            <strong>
-              {alert.docNum}
-              procedimento preparatório
-            </strong>
-            está com prazo de tratamento esgotado
+            Há <strong>{alert.docNum.length} procedimento preparatório</strong> com <strong>prazo de tratamento esgotado</strong>.
           </span>
         );
         background = '#f86c72';
@@ -180,8 +143,7 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            O inquérito civil ativo <strong>{alert.docNum}</strong>
-            <strong> está sem prorrogação </strong> há<strong>mais de 1 ano</strong>.
+            O inquérito civil ativo <strong>{alert.docNum}</strong> <strong> está sem prorrogação </strong> há <strong>mais de 1 ano</strong>.
           </span>
         );
         background = '#f86c72';
@@ -189,6 +151,11 @@ class Alerts extends React.Component {
 
       case 'NF30':
         icon = <ClockIcon />;
+        message = (
+          <span>
+            Há <strong>{alert.docNum.length}</strong> <strong>notícia de fato</strong> autuada há mais de <strong>{alert.daysPassed}</strong> dias e ainda <strong>sem tratamento</strong>.
+          </span>
+        );
         background = '#f86c72';
         break;
 
@@ -196,8 +163,8 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            O <strong>{alert.docNum}</strong>
-            está com o<strong> prazo de apreciação esgotado </strong>.</span>
+            Há <strong>{alert.docNum.length}</strong> <strong>oficio</strong> com prazo de apreciação esgotado.
+          </span>
         );
         background = '#f86c72';
         break;
@@ -206,20 +173,7 @@ class Alerts extends React.Component {
         icon = <Ouvidoria />;
         message = (
           <span>
-            Há <strong>01 expediente</strong>
-            de ouvidoria enviado porém
-            <strong> não recebido</strong>
-          </span>
-        );
-        message = (
-          <span>
-            O
-            <strong>
-              expediente de ouvidoria
-              {alert.docNum}
-            </strong>
-            foi enviado porém
-            <strong> não recebido</strong>
+            <strong>{alert.docNum.length}</strong> <strong>expediente</strong> de ouvidoria enviado porém <strong>não recebido</strong>.
           </span>
         );
         background = '#5C6FD9';
@@ -229,14 +183,7 @@ class Alerts extends React.Component {
         icon = <Va />;
         message = (
           <span>
-            Você tem uma
-            <strong> vista aberta</strong>
-            no
-            <strong>
-              documento
-              {alert.docNum}
-              ,sinalizado como fechado
-            </strong>
+            Você tem <strong>{alert.docNum.length}</strong> vistas abertas<strong> em documentos sinalizados como fechado</strong>
           </span>
         );
         background = '#28A7E0';
@@ -246,7 +193,7 @@ class Alerts extends React.Component {
         icon = <Mprj />;
         message = (
           <span>
-            Há um processo <strong> {alert.docNum}</strong>cujo orgão está possivelmente<strong> desatualizado</strong>.
+            Há um processo <strong> {alert.docNum}</strong> cujo orgão responsável está possivelmente<strong> desatualizado</strong>.
           </span>
         );
         background = '#5C6FD9';
@@ -257,9 +204,7 @@ class Alerts extends React.Component {
         icon = <CorujaGate />;
         message = (
           <span>
-            O <strong>Gate </strong>finalizou a <strong>IT</strong>
-            solicitada no procedimento
-            <strong>{alert.docNum}</strong>
+            O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento <strong>{alert.docNum}</strong>
           </span>
         );
         background = '#374354';
@@ -269,8 +214,7 @@ class Alerts extends React.Component {
         icon = <Csi />;
         message = (
           <span>
-            A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento{' '}
-            <strong>{alert.docNum}</strong>
+            A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento <strong>{alert.docNum}</strong>
           </span>
         );
         background = '#192440';
@@ -299,40 +243,6 @@ class Alerts extends React.Component {
       //  );
       //  background = '#F86C72';
       //  break;
-
-      case 'VADF':
-        icon = <Home />;
-        message = (
-          <span>
-            <strong>Movimentação N:{alert.docNum}</strong> em processo desta promotoria na segunda
-            instância
-          </span>
-        );
-        background = '#5C6FD9';
-        break;
-
-      case 'DORD':
-        icon = <Mprj />;
-        message = (
-          <span>
-            O <strong>processo{alert.docNum}</strong>está possivelmente<strong> desatualizado</strong>
-          </span>
-        );
-        background = '#5C6FD9';
-        break;
-
-      case 'DT2I':
-        icon = <Home />;
-        message = (
-          <span>
-            Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong>
-            está está possivelmente
-            <strong> desatualizado</strong>
-          </span>
-        );
-        background = '#5C6FD9';
-        break;
-
       default:
         break;
     }

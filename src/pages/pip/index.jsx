@@ -21,7 +21,7 @@ function Pip({ userName }) {
       <Alerts user={userName} />
       <ProcessList user={userName} />
       <PerformanceRadar.Pip user={userName} />
-      {/* <ProcessingTime user={userName} /> */}
+      <ProcessingTime user={userName} /> 
       <Today user={userName} />
       <YourDesk user={userName} />
     </div>

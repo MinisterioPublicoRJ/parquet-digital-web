@@ -16,9 +16,11 @@ import MarkSlower from '../../assets/svg/markSlower';
 const ProcessingTime = () => {
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
 
   const cleanChartData = raw => {
-    const organAvg = raw.orgaoData.average.toFixed(0);
+    const organAvg = Number(raw.orgaoData.average).toFixed(0);
     const { min, max, average } = raw.pacoteData;
     const domain = { min, max };
 
@@ -38,7 +40,7 @@ const ProcessingTime = () => {
         label: halfMaxAvg.toFixed(0),
       },
       // 'bad' section, from the last section all the way to max
-      { x: 0, y: (max - halfMaxAvg) / max, color: PT_PIE_COLORS[2], label: max.toFixed(0) },
+      { x: 0, y: (max - halfMaxAvg) / max, color: PT_PIE_COLORS[2], label: Number(max).toFixed(0) },
     ];
 
     const points = [
@@ -56,9 +58,16 @@ const ProcessingTime = () => {
 
   useEffect(() => {
     const loadData = async () => {
+      setLoading(true);
+      try {
       const response = await Api.getProcessingTimeData(getUser());
       setProcessingTime(response);
       cleanChartData(response);
+    } catch (e) {
+      setLoading(true);
+    } finally {
+      setLoading(false);
+    }
     };
     loadData();
   }, []);

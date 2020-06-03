@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import Api from '../../api';
-import { getUser } from '../../user';
 import { SectionTitle, Spinner } from '../../components';
 import { ProcessingTimeChart } from '../../components/graphs';
 import { PT_PIE_COLORS } from '../../themes/chartThemes';
@@ -12,10 +11,21 @@ import PinVermelho from '../../assets/svg/pinVermelho';
 import MarkMind from '../../assets/svg/markMind';
 import Markfaster from '../../assets/svg/markFaster';
 import MarkSlower from '../../assets/svg/markSlower';
+import processTypeDict from './processingTimeConstants';
 
-const ProcessingTime = () => {
+const getCategoryByType = user => {
+  switch (user.tipo_orgao) {
+    case 1:
+      return 'tutelaInqueritosCivis';
+    default:
+     return '';
+  }
+};
+
+const ProcessingTime = ({ user }) => {
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
+  const mainCategory = getCategoryByType(user)
 
   const cleanChartData = raw => {
     const organAvg = raw.orgaoData.average.toFixed(0);
@@ -56,18 +66,20 @@ const ProcessingTime = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await Api.getProcessingTimeData(getUser());
+      const response = await Api.getProcessingTimeData(user);
       setProcessingTime(response);
-      cleanChartData(response);
+      cleanChartData(response[mainCategory]);
     };
     loadData();
   }, []);
 
-  if (!processingTime.meta || !chartData) {
+  if (!chartData) {
     return <Spinner size="large" />;
   }
 
-  const isBetter = processingTime.orgaoData.average <= processingTime.pacoteData.average;
+  const typeDisplayableName = processTypeDict[mainCategory];
+  const categoryProcessingTime = processingTime[mainCategory];
+  const isBetter = categoryProcessingTime.orgaoData.average <= categoryProcessingTime.pacoteData.average;
   const pinWidth = '65%';
 
   return (
@@ -75,7 +87,7 @@ const ProcessingTime = () => {
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
         <p>
-          Avaliei que o tempo médio de tramitação de processos na sua promotoria,
+          Avaliei que o tempo médio de tramitação de {typeDisplayableName} na sua promotoria,
           {` ${chartData.organAvg}  dias,`}
           <strong>
             {isBetter
@@ -104,7 +116,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight turquoise">
-              {`${processingTime.orgaoData.min.toFixed(0)} dias`}
+              {`${categoryProcessingTime.orgaoData.min.toFixed(0)} dias`}
             </span>
             mais rápido da sua promotoria
           </div>
@@ -115,7 +127,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {`${processingTime.orgaoData.max.toFixed(0)} dias`}
+              {`${categoryProcessingTime.orgaoData.max.toFixed(0)} dias`}
             </span>
             mais lento da sua promotoria
           </div>
@@ -126,7 +138,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight green">
-              {`${processingTime.pacoteData.min.toFixed(0)} dias`}
+              {`${categoryProcessingTime.pacoteData.min.toFixed(0)} dias`}
             </span>
             mais rápido do pacote
           </div>
@@ -137,7 +149,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight purple">
-              {`${processingTime.pacoteData.average.toFixed(0)} dias`}
+              {`${categoryProcessingTime.pacoteData.average.toFixed(0)} dias`}
             </span>
             médio do seu pacote
           </div>
@@ -148,7 +160,7 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {`${processingTime.pacoteData.max.toFixed(0)} dias`}
+              {`${categoryProcessingTime.pacoteData.max.toFixed(0)} dias`}
             </span>
             mais lento do seu pacote
           </div>

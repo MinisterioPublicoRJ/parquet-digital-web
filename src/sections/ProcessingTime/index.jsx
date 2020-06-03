@@ -60,9 +60,9 @@ const ProcessingTime = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-      const response = await Api.getProcessingTimeData(getUser());
-      setProcessingTime(response);
-      cleanChartData(response);
+        const response = await Api.getProcessingTimeData(getUser());
+        setProcessingTime(response);
+        cleanChartData(response);
     } catch (e) {
       setLoading(true);
     } finally {
@@ -72,7 +72,7 @@ const ProcessingTime = () => {
     loadData();
   }, []);
 
-  if (!processingTime.meta || !chartData) {
+  if (!processingTime.meta || !chartData || loading ) {
     return <Spinner size="large" />;
   }
 

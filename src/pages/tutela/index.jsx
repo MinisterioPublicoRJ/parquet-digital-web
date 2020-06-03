@@ -15,13 +15,13 @@ import {
 
 const propTypes = { userName: PropTypes.string.isRequired };
 
-function Tutela({ userName }) {
+function Tutela({ userName, user }) {
   return (
     <div className="base-grid tutela-grid">
       <Alerts user={userName} />
       <ProcessList user={userName} />
       <PerformanceRadar.Tutela user={userName} />
-      <ProcessingTime user={userName} />
+      <ProcessingTime user={user} />
       <Today user={userName} />
       <YourDesk user={userName} />
     </div>

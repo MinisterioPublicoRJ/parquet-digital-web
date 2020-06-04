@@ -1,11 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
-import Api from '../../api';
 import { getUser } from '../../user';
 import { Spinner, PerformanceChart, SectionTitle } from '../../components';
 
-const propTypes = {};
+const propTypes = {
+  getRadarData: PropTypes.func.isRequired,
+  cleanMap: PropTypes.func.isRequired,
+  axisLabelsTable: PropTypes.shape.isRequired,
+};
 
 class PerformanceRadar extends React.Component {
   constructor(props) {
@@ -18,27 +22,22 @@ class PerformanceRadar extends React.Component {
   }
 
   async getPerformanceData() {
-    const res = await Api.getRadarData(getUser());
+    const { getRadarData } = this.props;
+    const res = await getRadarData(getUser());
     this.cleanGraphData(res);
   }
 
   cleanGraphData(data) {
+    const { cleanMap } = this.props;
     const chartData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
-      .map(([category, { maxValues, averages, variations, percentages, numbers }]) => ({
-        category,
-        value: `(máx atribuição ${maxValues})`, // variations == null || variations === -1 ? '—' : formatPercent(variations),
-        isAboveAverage: null, // variations == null || variations === -1 ? null : variations >= 0,
-        median: 100 * (averages / maxValues),
-        x: category,
-        y: percentages * 100,
-        numbers,
-      }));
+      .map(cleanMap);
 
     this.setState({ chartData });
   }
 
   render() {
+    const { axisLabelsTable } = this.props;
     const { chartData } = this.state;
 
     if (!chartData) return <Spinner />;
@@ -50,7 +49,7 @@ class PerformanceRadar extends React.Component {
         </div>
         <figure className="radar-wrapper">
           <div className="radar-graph">
-            <PerformanceChart data={chartData} />
+            <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />
           </div>
           <figcaption className="radar-subtitles">
             <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>

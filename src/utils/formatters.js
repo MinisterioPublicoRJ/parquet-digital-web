@@ -57,3 +57,9 @@ export function capitalizeTitle(sentence) {
 }
 
 export const formatPercent = n => `${n < 0 ? '-' : ''}${(Math.abs(n) * 100).toFixed(2)}%`;
+
+export const snakeToCamel = str => {
+  const words = str.split('_');
+  const capitalize = words.slice(1).map(word => capitalizeWord(word));
+  return `${words[0]}${capitalize.join('')}`;
+};

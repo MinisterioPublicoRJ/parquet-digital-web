@@ -1,8 +1,5 @@
 @import '../styles.css';
 
-.sectionTitle-text {
-  margin-bottom: 0;
-}
 .page-radar-dashboard {
   grid-area: radar;
   display: flex;

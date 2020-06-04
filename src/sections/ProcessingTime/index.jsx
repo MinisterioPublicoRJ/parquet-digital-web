@@ -18,7 +18,7 @@ const getCategoryByType = user => {
     case 1:
       return 'tutelaInqueritosCivis';
     default:
-     return '';
+      return '';
   }
 };
 
@@ -27,7 +27,6 @@ const ProcessingTime = ({ user }) => {
   const [chartData, setChartData] = useState(null);
   const mainCategory = getCategoryByType(user);
   const [loading, setLoading] = useState(true);
-
 
   const cleanChartData = raw => {
     const organAvg = Number(raw.orgaoData.average).toFixed(0);
@@ -69,14 +68,14 @@ const ProcessingTime = ({ user }) => {
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
-    try {
-      const response = await Api.getProcessingTimeData(user);
-      setProcessingTime(response);
-      cleanChartData(response[mainCategory]);
-    } catch (e) {
-      setLoading(true);
-    } finally {
-      setLoading(false);
+      try {
+        const response = await Api.getProcessingTimeData(user);
+        setProcessingTime(response);
+        cleanChartData(response[mainCategory]);
+      } catch (e) {
+        setChartData(false);
+      } finally {
+        setLoading(false);
       }
     };
     loadData();
@@ -85,13 +84,22 @@ const ProcessingTime = ({ user }) => {
   if (loading) {
     return <Spinner size="large" />;
   }
+
   if (!chartData) {
-    return <p className="paragraphWrapper">Não tem dados para exibir</p>;
+    return (
+      <article className="page-tramitacao">
+        <div className="pt-texts">
+          <SectionTitle value="tempo de tramitação" />
+          <p>Nenhum dado para exibir</p>
+        </div>
+      </article>
+    );
   }
 
   const typeDisplayableName = processTypeDict[mainCategory];
   const categoryProcessingTime = processingTime[mainCategory];
-  const isBetter = categoryProcessingTime.orgaoData.average <= categoryProcessingTime.pacoteData.average;
+  const isBetter =
+    categoryProcessingTime.orgaoData.average <= categoryProcessingTime.pacoteData.average;
   const pinWidth = '65%';
 
   return (
@@ -99,7 +107,9 @@ const ProcessingTime = ({ user }) => {
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
         <p>
-          Avaliei que o tempo médio de tramitação de {typeDisplayableName} na sua promotoria,
+          Avaliei que o tempo médio de tramitação de
+          {` ${typeDisplayableName} `}
+          na sua promotoria,
           {` ${chartData.organAvg}  dias,`}
           <strong>
             {isBetter

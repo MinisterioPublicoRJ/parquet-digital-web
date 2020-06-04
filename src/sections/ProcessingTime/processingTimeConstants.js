@@ -1,5 +1,5 @@
 const processTypeDict = {
-  tutelaInqueritosCivis: ` inquéritos civis `,
+  tutelaInqueritosCivis: `inquéritos civis`,
 };
 
 export default processTypeDict;

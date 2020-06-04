@@ -18,17 +18,18 @@ const getCategoryByType = user => {
     case 1:
       return 'tutelaInqueritosCivis';
     default:
-     return '';
+      return '';
   }
 };
 
 const ProcessingTime = ({ user }) => {
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
-  const mainCategory = getCategoryByType(user)
+  const mainCategory = getCategoryByType(user);
+  const [loading, setLoading] = useState(true);
 
   const cleanChartData = raw => {
-    const organAvg = raw.orgaoData.average.toFixed(0);
+    const organAvg = Number(raw.orgaoData.average).toFixed(0);
     const { min, max, average } = raw.pacoteData;
     const domain = { min, max };
 
@@ -48,7 +49,7 @@ const ProcessingTime = ({ user }) => {
         label: halfMaxAvg.toFixed(0),
       },
       // 'bad' section, from the last section all the way to max
-      { x: 0, y: (max - halfMaxAvg) / max, color: PT_PIE_COLORS[2], label: max.toFixed(0) },
+      { x: 0, y: (max - halfMaxAvg) / max, color: PT_PIE_COLORS[2], label: Number(max).toFixed(0) },
     ];
 
     const points = [
@@ -66,20 +67,39 @@ const ProcessingTime = ({ user }) => {
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await Api.getProcessingTimeData(user);
-      setProcessingTime(response);
-      cleanChartData(response[mainCategory]);
+      setLoading(true);
+      try {
+        const response = await Api.getProcessingTimeData(user);
+        setProcessingTime(response);
+        cleanChartData(response[mainCategory]);
+      } catch (e) {
+        setChartData(false);
+      } finally {
+        setLoading(false);
+      }
     };
     loadData();
   }, []);
 
-  if (!chartData) {
+  if (loading) {
     return <Spinner size="large" />;
+  }
+
+  if (!chartData) {
+    return (
+      <article className="page-tramitacao">
+        <div className="pt-texts">
+          <SectionTitle value="tempo de tramitação" />
+          <p>Nenhum dado para exibir</p>
+        </div>
+      </article>
+    );
   }
 
   const typeDisplayableName = processTypeDict[mainCategory];
   const categoryProcessingTime = processingTime[mainCategory];
-  const isBetter = categoryProcessingTime.orgaoData.average <= categoryProcessingTime.pacoteData.average;
+  const isBetter =
+    categoryProcessingTime.orgaoData.average <= categoryProcessingTime.pacoteData.average;
   const pinWidth = '65%';
 
   return (
@@ -87,7 +107,9 @@ const ProcessingTime = ({ user }) => {
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
         <p>
-          Avaliei que o tempo médio de tramitação de {typeDisplayableName} na sua promotoria,
+          Avaliei que o tempo médio de tramitação de
+          {` ${typeDisplayableName} `}
+          na sua promotoria,
           {` ${chartData.organAvg}  dias,`}
           <strong>
             {isBetter

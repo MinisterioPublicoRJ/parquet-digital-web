@@ -72,6 +72,7 @@ const ProcessingTime = ({ user }) => {
     try {
       const response = await Api.getProcessingTimeData(user);
       setProcessingTime(response);
+      console.log(response);
       cleanChartData(response[mainCategory]);
     } catch (e) {
       setLoading(true);

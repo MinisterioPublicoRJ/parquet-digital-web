@@ -25,7 +25,9 @@ const getCategoryByType = user => {
 const ProcessingTime = ({ user }) => {
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
-  const mainCategory = getCategoryByType(user)
+  const mainCategory = getCategoryByType(user);
+  const [loading, setLoading] = useState(true);
+
 
   const cleanChartData = raw => {
     const organAvg = Number(raw.orgaoData.average).toFixed(0);
@@ -66,15 +68,25 @@ const ProcessingTime = ({ user }) => {
 
   useEffect(() => {
     const loadData = async () => {
+      setLoading(true);
+    try {
       const response = await Api.getProcessingTimeData(user);
       setProcessingTime(response);
       cleanChartData(response[mainCategory]);
+    } catch (e) {
+      setLoading(true);
+    } finally {
+      setLoading(false);
+      }
     };
     loadData();
   }, []);
 
-  if (!chartData) {
+  if (loading) {
     return <Spinner size="large" />;
+  }
+  if (!chartData) {
+    return <p className="paragraphWrapper">Não tem dados para exibir...</p>;
   }
 
   const typeDisplayableName = processTypeDict[mainCategory];

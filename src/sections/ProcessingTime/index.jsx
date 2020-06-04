@@ -87,7 +87,7 @@ const ProcessingTime = ({ user }) => {
     return <Spinner size="large" />;
   }
   if (!chartData) {
-    return <p className="paragraphWrapper">Não tem dados para exibir...</p>;
+    return <p className="paragraphWrapper">Não tem dados para exibir</p>;
   }
 
   const typeDisplayableName = processTypeDict[mainCategory];

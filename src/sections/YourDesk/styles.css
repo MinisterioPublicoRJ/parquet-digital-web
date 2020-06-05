@@ -5,24 +5,22 @@
   grid-area: desk;
 }
 
-.desk-header {
-  height: 35%;
-  /* display: flex;
-  flex: 1;
-  flex-direction: column; */
-}
-
 .desk-controlers {
+  /* background-color: red; */
   align-items: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex: 1;
+  overflow: hidden;
 }
 
 .desk-tabs {
+  background-color: orange;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  height: 65%;
+  /* height: calc(100% - var(--buttonSize)); */
+  /* height: auto; */
 }
 
 /* PHONES */

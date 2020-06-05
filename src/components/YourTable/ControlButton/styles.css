@@ -1,5 +1,6 @@
 :root{
   --buttonBase: 156;
+  --activeButtonBase: 224;
   --buttonSize: calc(var(--buttonBase) * var(--widthScale));
 }
 

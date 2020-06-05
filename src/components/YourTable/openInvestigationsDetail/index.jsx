@@ -62,7 +62,7 @@ function OpenInvestigationsDetail({ data, isLoading }) {
               return (
                 <li key={i} className="openInv-li">
                   <span className="openInv-icon">
-                    <Badge width="100%" number={i + 1} />
+                    <Badge width="45%" number={i + 1} />
                   </span>
                   <strong className="openInv-featured">
                     {leftPad(formatPercentage(item.collectionVariation30Days), 3, 0)}

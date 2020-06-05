@@ -32,7 +32,7 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <span className="controlButton-bigNumber">{error ? 0 : number}</span>
+            <span className="controlButton-bigNumber--active">{error ? 0 : number}</span>
           )}
           {text}
         </button>

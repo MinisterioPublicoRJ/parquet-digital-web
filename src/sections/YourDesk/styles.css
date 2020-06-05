@@ -6,9 +6,10 @@
 }
 
 .desk-header {
-  display: flex;
+  height: 35%;
+  /* display: flex;
   flex: 1;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
 .desk-controlers {

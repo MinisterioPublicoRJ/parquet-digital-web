@@ -51,7 +51,7 @@ function courtCasesDetail({ data, isLoading }) {
               return (
                 <li key={i} className="courtCases-li">
                   <span className="courtCases-icon">
-                    <Badge width="100%" number={i + 1} />
+                    <Badge width="45%" number={i + 1} />
                   </span>
                   <strong className="courtCases-featured">
                     {leftPad(proposedActions30Days, 2, 0)}
@@ -62,7 +62,6 @@ function courtCasesDetail({ data, isLoading }) {
             })}
           </ul>
         </div>
-        <div className="courtCases-lowerRight" />
       </div>
     </div>
   );

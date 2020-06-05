@@ -29,10 +29,10 @@ function getCollectionPhrase(variation) {
   let ans = ' se manteve o mesmo ';
 
   if (variation > 0) {
-    ans = ` aumentou ${formatPercent(variation)} `;
+    ans = ` aumentou ${formatPercent(Math.abs(variation))} `;
   }
   if (variation < 0) {
-    ans = ` reduziu ${formatPercent(variation)} `;
+    ans = ` reduziu ${formatPercent(Math.abs(variation))} `;
   }
   return ans;
 }

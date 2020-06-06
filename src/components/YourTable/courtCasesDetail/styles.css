@@ -1,31 +1,9 @@
 .courtCases-outer {
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-}
-
-.courtCases-upper {
-  display: flex;
-  height: 15%;
-  padding-top: 2%;
-}
-
-.courtCases-lower {
-  display: flex;
-  height: 85%;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-.courtCases-lowerRight {
-  display: inline-flex;
-}
-
-.courtCases-lowerLeft {
-  display: inline-flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .courtCases-ranking {
@@ -34,7 +12,7 @@
   flex-direction: column;
   flex: 1;
   font-family: var(--defaultFont);
-  font-size: var(--defaultTextSize);
+  font-size: calc(var(--defaultTextSize) * 0.8);
   justify-content: space-around;
   padding: 0;
   margin: 0;

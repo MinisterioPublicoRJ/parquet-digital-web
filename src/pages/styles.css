@@ -23,6 +23,6 @@
   .base-grid {
     height: 400vh;
     grid-template-columns: 100%;
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(8, minmax(0, 1fr));
   }
 }

@@ -5,23 +5,20 @@
   grid-area: desk;
 }
 
-.desk-header {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-}
-
 .desk-controlers {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex: 1;
 }
 
 .desk-tabs {
+  /* background-color: orange; */
   display: flex;
+  flex: 1;
   flex-direction: column;
-  height: 65%;
+  overflow: hidden;
+  padding: 20px 0;
 }
 
 /* PHONES */

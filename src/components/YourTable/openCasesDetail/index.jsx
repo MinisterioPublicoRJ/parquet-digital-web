@@ -22,8 +22,8 @@ class OpenCasesDetail extends React.Component {
     super(props);
     this.mainData = {
       under20: ['#28A7E0', 'até 20 dias'],
-      over30: ['#F86C72', '20 a 30 dias'],
-      between20And30: ['#F8BD6C', '30+ dias'],
+      over30: ['#F86C72', '30+ dias'],
+      between20And30: ['#F8BD6C', '20 a 30 dias'],
     };
     this.tableColumns = {
       MPRJ: 'numeroMprj',

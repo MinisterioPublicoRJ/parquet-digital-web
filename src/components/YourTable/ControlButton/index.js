@@ -11,6 +11,7 @@ const propTypes = {
   isButton: PropTypes.bool,
   loading: PropTypes.bool.isRequired,
   buttonPressed: PropTypes.func,
+  error: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
@@ -19,7 +20,7 @@ const defaultProps = {
   buttonPressed: null,
 };
 
-function ControlButton({ isActive, number, text, isButton, loading, buttonPressed }) {
+function ControlButton({ isActive, number, text, isButton, loading, buttonPressed, error }) {
   if (isButton) {
     if (isActive) {
       return (
@@ -31,7 +32,7 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <span className="controlButton-bigNumber">{number}</span>
+            <span className="controlButton-bigNumber--active">{error ? 0 : number}</span>
           )}
           {text}
         </button>
@@ -46,7 +47,7 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
         {loading ? (
           <Spinner size="small" />
         ) : (
-          <span className="controlButton-bigNumber">{number}</span>
+          <span className="controlButton-bigNumber">{error ? 0 : number}</span>
         )}
         {text}
       </button>
@@ -57,7 +58,7 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
       {loading ? (
         <Spinner size="small" />
       ) : (
-        <span className="controlButton-bigNumber">{number}</span>
+        <span className="controlButton-bigNumber">{error ? 0 : number}</span>
       )}
       {text}
     </div>

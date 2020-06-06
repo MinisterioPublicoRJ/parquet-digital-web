@@ -8,16 +8,14 @@
 }
 
 .deskCasesChart-graph {
-  display: flex;
-  flex: 1;
+  width: 50%;
 }
 
 .deskCasesChart-subs {
-  align-items: flex-end;
   display: flex;
-  flex: 1;
   flex-direction: column;
-  justify-content: center;
+  width: 50%;
+  justify-content: space-between;
 }
 
 .deskCasesChart-button--active {
@@ -33,32 +31,27 @@
 
   border-top-width: 10px;
   border-top-style: solid;
+  border-top-color: var(--triangleColor);
 
   position: absolute;
-  bottom: 0px;
+  bottom: -10px;
   left: 50%;
   transform: translate(-5px, 0);
 }
 
 .deskCasesChart-count {
   font-size: var(--spotlightSize);
-  letter-spacing: 0;
-  color: var(--gray);
   font-family: var(--spotlightFont);
   font-weight: var(--spotlightWeight);
-  text-align: center;
+  line-height: var(--spotlightFont);
   margin-top: -0.7vw;
   text-shadow: 0 3px 6px var(--shadowColor);
 }
 
 .deskCasesChart-days {
   font-size: 0.8vw;
-  letter-spacing: 0;
   text-transform: uppercase;
-  color: var(--gray);
   font-family: var(--spotlightFont);
-  text-align: center;
-  margin-top: -0.9vw;
 }
 
 /* PHONES */

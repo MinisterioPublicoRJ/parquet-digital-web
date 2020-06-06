@@ -24,10 +24,13 @@ const propTypes = {
 };
 
 function DeskCasesChart({ active, buttonPressed, category, color, data, name }) {
+  if (active) {
+    document.documentElement.style.setProperty('--triangleColor', color);
+  }
   const activeclass = active ? 'deskCasesChart-button--active' : 'deskCasesChart-button--inactive';
   return (
     <button
-      style={{ borderColor: color }}
+      style={{ borderTopColor: color }}
       className={`deskCasesChart-outer ${activeclass}`}
       type="button"
       onClick={() => buttonPressed(category)}
@@ -37,7 +40,7 @@ function DeskCasesChart({ active, buttonPressed, category, color, data, name }) 
           data={Object.values(data)}
           labels={() => null}
           innerRadius={120}
-          origin={{ x: 200, y: 200 }}
+          origin={{ x: 160, y: 165 }}
           style={{
             data: {
               fill: ({ datum }) => datum.color,

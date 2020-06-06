@@ -29,10 +29,10 @@ function getCollectionPhrase(variation) {
   let ans = ' se manteve o mesmo ';
 
   if (variation > 0) {
-    ans = ` aumentou ${formatPercent(variation)} `;
+    ans = ` aumentou ${formatPercent(Math.abs(variation))} `;
   }
   if (variation < 0) {
-    ans = ` reduziu ${formatPercent(variation)} `;
+    ans = ` reduziu ${formatPercent(Math.abs(variation))} `;
   }
   return ans;
 }
@@ -62,7 +62,7 @@ function OpenInvestigationsDetail({ data, isLoading }) {
               return (
                 <li key={i} className="openInv-li">
                   <span className="openInv-icon">
-                    <Badge width="100%" number={i + 1} />
+                    <Badge width="45%" number={i + 1} />
                   </span>
                   <strong className="openInv-featured">
                     {leftPad(formatPercentage(item.collectionVariation30Days), 3, 0)}

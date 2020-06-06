@@ -1,27 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles.css';
 import './styles.css';
+
 import {
   Alerts,
   ProcessList,
   PerformanceRadar,
-  ProcessingTime,
   Today,
+  ProcessingTime,
   YourDesk,
 } from '../../sections';
 
 const propTypes = { userName: PropTypes.string.isRequired };
 
-function Tutela({ userName }) {
-  if (!userName) return <div> loading </div>;
-
+function Tutela({ userName, user }) {
   return (
-    <div className="tutela-grid">
+    <div className="base-grid tutela-grid">
       <Alerts user={userName} />
       <ProcessList user={userName} />
-      <PerformanceRadar user={userName} />
-      <ProcessingTime user={userName} />
+      <PerformanceRadar.Tutela user={userName} />
+      <ProcessingTime user={user} />
       <Today user={userName} />
       <YourDesk user={userName} />
     </div>

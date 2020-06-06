@@ -34,7 +34,7 @@
   flex-direction: column;
   flex: 1;
   font-family: var(--defaultFont);
-  font-size: var(--defaultTextSize);
+  font-size: calc(var(--defaultTextSize) * 0.8);
   justify-content: space-around;
   padding: 0;
   margin: 0;

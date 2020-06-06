@@ -1,4 +1,8 @@
 :root {
+  --heightScale: 100vh/1080;
+  --widthScale: 100vw/1920;
+  --triangleColor: var(--primary);
+
   /* COLORS */
   --primary: #28a7e0;
   --secondary: #b5b5b5;
@@ -11,12 +15,13 @@
   --gray: #b5b5b5;
   --grayLight: #e8e8e8;
   --grayLinks: #cecece;
-  --grayTexts: #B3B3B3;
+  --grayTexts: #b3b3b3;
 
-  --pt-turquoise: #56E8E1;
-  --pt-pink: #FF0086;
-  --pt-green: #42DCA7;
-  --pt-purple: #6D86EC;
+  --pt-turquoise: #56e8e1;
+  --pt-pink: #ff0086;
+  --pt-green: #42dca7;
+  --pt-purple: #6d86ec;
+  --pt-blue: #bddff0;
 
   --shadowColor: rgba(0, 0, 0, 0.3);
 
@@ -26,13 +31,13 @@
 
   --defaultTitleProcessing: Rockwell;
   --subtitleProcessing: MyriadPro-Regular;
-
+  --titleParagraphToday: 1.8vh;
   --titleWeight: bold;
   --titleSize: calc(var(--defaultTextSize) * 2);
 
   --spotlightFont: Nunito Sans;
   --spotlightWeight: 700;
-  --spotlightSize: 4vw;
+  --spotlightSize: 3vw;
 
   --spotlightSubtitleSize: 0;
 
@@ -57,6 +62,7 @@
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
   :root {
+    --widthScale: 200vw/1920;
     --spotlightSize: 6vw;
     --bodyPadding: 3vh;
   }

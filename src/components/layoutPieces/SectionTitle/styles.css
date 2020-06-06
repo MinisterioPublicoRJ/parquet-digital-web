@@ -5,3 +5,14 @@
   font-weight: var(--subtitleWeight);
   margin: var(--elementPadding) 0;
 }
+
+.sectionTitle-subtitle {
+  display: block;
+  margin-top: 1vh;
+  font-size: 60%;
+  text-transform: uppercase;
+  font-family: var(--defaultFont);
+  font-weight: bold;
+  position: relative;
+  top: -1vh;
+}

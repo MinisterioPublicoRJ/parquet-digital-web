@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
-import Promotron from '../../assets/svg/promotronPaineis';
 import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
 import { SectionTitle, MainTitle, Spinner } from '../../components';
 
@@ -35,8 +34,8 @@ class Today extends Component {
    */
   getUserData() {
     this.loadPercentages();
-    this.loadCollection();
     this.loadEntriesInfo();
+    this.loadCollection();
   }
 
   /**
@@ -80,6 +79,8 @@ class Today extends Component {
    * loads/reloads info an calls formatters for second sentence data
    * @return {void}
    */
+
+  // loadCollection Tutela
   async loadCollection() {
     let collectionPhrase;
     let groupName;
@@ -115,7 +116,6 @@ class Today extends Component {
     let errorTodayEntries = false;
     try {
       const { hout, lout, numEntries } = await Api.getTodayEntriesData(getUser());
-
       entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
     } catch (e) {
       errorTodayEntries = true;
@@ -134,10 +134,13 @@ class Today extends Component {
    * @param  {Number} amount amount of entries on given day
    * @return {Node}        React element to be inserted on View
    */
+
   analyzeEntries(hout, lout, amount) {
     if (!amount) {
       return (
-        <p className="paragraphWrapper">Percebi que ainda não temos vistas abertas para hoje!</p>
+        <p className="today-textArea-paragraphWrapper">
+          Percebi que ainda não temos vistas abertas para hoje!
+        </p>
       );
     }
     let dayTipe = 'típico';
@@ -145,7 +148,7 @@ class Today extends Component {
       dayTipe = 'atípico';
     }
     return (
-      <p className="paragraphWrapper">
+      <p className="today-textArea-paragraphWrapper">
         Hoje temos um dia
         <span style={{ fontWeight: 'bold' }}>{` ${dayTipe} `}</span>
         com a entrada de
@@ -200,7 +203,7 @@ class Today extends Component {
    */
   cleanUsername() {
     const { user } = this.props;
-    const cleanUsername = user.split(/(\s).+\s/).join('');
+    const cleanUsername = user.split(' ')[0];
     return capitalizeTitle(cleanUsername);
   }
 
@@ -210,44 +213,44 @@ class Today extends Component {
     const greeting = this.assembleGreeting();
 
     const percentParagraph = !percentile ? null : (
-      <p className="paragraphWrapper">
+      <p className="today-textArea-paragraphWrapper">
         Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
         <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
         da casa entre aquelas de mesma atribuição.
         {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
       </p>
     );
-
     const collectionParagraph = !collectionPhrase ? null : (
-      <p className="paragraphWrapper">
+      <p className="today-textArea-paragraphWrapper">
         Você sabia que seu acervo é
         <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
         dos seus colegas das
         <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
       </p>
     );
-
+    
+    if (!doneLoading) {
+      return <Spinner size="medium" />;
+    }
     return (
       <article className="today-outer">
         <div className="today-header">
           <MainTitle value={greeting} />
         </div>
-        {!doneLoading && (
-          <div className="today-spinner">
-            <Spinner size="medium" />
-          </div>
-        )}
         <div className="today-content">
           <SectionTitle value="resumo do dia" />
           <div className="today-textArea">
-            {doneLoading && percentParagraph}
-            {doneLoading && collectionParagraph}
-            {doneLoading && entriesParagraph}
+            {percentParagraph}
+            {collectionParagraph}
+            {entriesParagraph}
           </div>
         </div>
         <div className="today-robotPic">
-          <Promotron height="100%" />
+          <img height="100%" src={require('../../assets/svg/home.gif')} alt="robô-promoton" />
         </div>
+        <button type="button" className="today-btn">
+          Ver mapa da atuação
+        </button>
       </article>
     );
   }

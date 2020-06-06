@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function pinVermelho() {
+export default function pinVermelho({ width, height }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="27.168"
-      height="20.836"
+      width={width || '27.168'}
+      height={height || '20.836'}
       viewBox="0 0
      27.168 20.836"
     >

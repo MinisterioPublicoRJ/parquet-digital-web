@@ -179,18 +179,22 @@ class YourDesk extends React.Component {
     const {
       activeTab,
       openCases,
+      errorOpenCases,
       openCasesDetails,
       openCasesDetailsError,
       loadingOpenCases,
       openInvestigations,
+      errorOpenInvestigations,
       openInvestigationsDetails,
       openInvestigationsDetailsError,
       loadingOpenInvestigations,
       courtCases,
+      errorCourtCases,
       courtCasesDetails,
       courtCasesDetailsError,
       loadingCourtCases,
       closedCases,
+      errorClosedCases,
       loadingClosedCases,
     } = this.state;
 
@@ -206,6 +210,7 @@ class YourDesk extends React.Component {
               text={`vistas\nabertas`}
               number={openCases}
               loading={loadingOpenCases}
+              error={errorOpenCases}
             />
             <ControlButton
               isButton
@@ -214,6 +219,7 @@ class YourDesk extends React.Component {
               text={`investigações\nem curso`}
               number={openInvestigations}
               loading={loadingOpenInvestigations}
+              error={errorOpenInvestigations}
             />
             <ControlButton
               isButton
@@ -222,11 +228,13 @@ class YourDesk extends React.Component {
               text={`processos\nem juízo`}
               number={courtCases}
               loading={loadingCourtCases}
+              error={errorCourtCases}
             />
             <ControlButton
               text={`finalizados\núltimos 30 dias`}
               number={closedCases}
               loading={loadingClosedCases}
+              error={errorClosedCases}
             />
           </div>
         </div>

@@ -128,7 +128,7 @@ function TempoTramitacaoChart({
     radius: 75,
     startAngle: -110,
     style: {
-      data: { fill: 'black' },
+      data: { fill: '#474757' },
     },
   };
 

@@ -1,37 +1,29 @@
-export default function processingTimeTransform(data) {
-  const meta = { id: data.id_orgao };
-  const pacoteData = {
-    max: data.maximo_pacote,
-    maxT1: data.maximo_pacote_t1,
-    maxT2: data.maximo_pacote_t2,
-    average: data.media_pacote,
-    averageT1: data.media_pacote_t1,
-    averageT2: data.media_pacote_t2,
-    median: data.mediana_pacote,
-    medianT1: data.mediana_pacote_t1,
-    medianT2: data.mediana_pacote_t1,
-    min: data.minimo_pacote,
-    minT1: data.minimo_pacote_t1,
-    minT2: data.minimo_pacote_t2,
-  };
+import { snakeToCamel } from '../../utils/formatters';
 
+function processingTimeTypeFormatter(typeObj) {
   const orgaoData = {
-    max: data.maximo_orgao,
-    maxT1: data.maximo_orgao_t1,
-    maxT2: data.maximo_orgao_t2,
-    average: data.media_orgao,
-    averageT1: data.media_orgao_t1,
-    averageT2: data.media_orgao_t2,
-    median: data.mediana_orgao,
-    medianT1: data.mediana_orgao_t1,
-    medianT2: data.mediana_orgao_t2,
-    min: data.minimo_orgao,
-    minT1: data.minimo_orgao_t1,
-    minT2: data.minimo_orgao_t2,
+    min: typeObj.minimo_orgao,
+    average: typeObj.media_orgao,
+    median: typeObj.mediana_orgao,
+    max: typeObj.maximo_orgao,
+  };
+  const pacoteData = {
+    min: typeObj.minimo_pacote,
+    average: typeObj.media_pacote,
+    median: typeObj.mediana_pacote,
+    max: typeObj.maximo_pacote,
   };
   return {
-    meta,
-    pacoteData,
     orgaoData,
+    pacoteData,
   };
+}
+
+export default function processingTimeTransform(dataArray) {
+  const res = {};
+  dataArray.forEach(obj => {
+    res[snakeToCamel(obj.tp_tempo)] = processingTimeTypeFormatter(obj);
+  });
+
+  return res;
 }

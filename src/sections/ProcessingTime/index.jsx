@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import Api from '../../api';
-import { getUser } from '../../user';
 import { SectionTitle, Spinner } from '../../components';
 import { ProcessingTimeChart } from '../../components/graphs';
 import { PT_PIE_COLORS } from '../../themes/chartThemes';
@@ -12,13 +11,25 @@ import PinVermelho from '../../assets/svg/pinVermelho';
 import MarkMind from '../../assets/svg/markMind';
 import Markfaster from '../../assets/svg/markFaster';
 import MarkSlower from '../../assets/svg/markSlower';
+import processTypeDict from './processingTimeConstants';
 
-const ProcessingTime = () => {
+const getCategoryByType = user => {
+  switch (user.tipo_orgao) {
+    case 1:
+      return 'tutelaInqueritosCivis';
+    default:
+      return '';
+  }
+};
+
+const ProcessingTime = ({ user }) => {
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
+  const mainCategory = getCategoryByType(user);
+  const [loading, setLoading] = useState(true);
 
   const cleanChartData = raw => {
-    const organAvg = raw.orgaoData.average.toFixed(2);
+    const organAvg = Number(raw.orgaoData.average).toFixed(0);
     const { min, max, average } = raw.pacoteData;
     const domain = { min, max };
 
@@ -38,7 +49,7 @@ const ProcessingTime = () => {
         label: halfMaxAvg.toFixed(0),
       },
       // 'bad' section, from the last section all the way to max
-      { x: 0, y: (max - halfMaxAvg) / max, color: PT_PIE_COLORS[2], label: max.toFixed(0) },
+      { x: 0, y: (max - halfMaxAvg) / max, color: PT_PIE_COLORS[2], label: Number(max).toFixed(0) },
     ];
 
     const points = [
@@ -46,32 +57,64 @@ const ProcessingTime = () => {
       { x: 1, y: (average - min) / max, type: 'average' },
       { x: 0, y: (max - average) / max, type: 'max' },
     ];
-    setChartData({ pieData, points, domain, organAvg });
+
+    const pointerPosition = [
+      { x: 1, y: organAvg / max, type: 'pointer' },
+      { x: 0, y: (max - organAvg) / max },
+    ];
+    setChartData({ pieData, points, domain, organAvg, pointerPosition });
   };
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await Api.getProcessingTimeData(getUser());
-      setProcessingTime(response);
-      cleanChartData(response);
+      setLoading(true);
+      try {
+        const response = await Api.getProcessingTimeData(user);
+        setProcessingTime(response);
+        cleanChartData(response[mainCategory]);
+      } catch (e) {
+        setChartData(false);
+      } finally {
+        setLoading(false);
+      }
     };
     loadData();
   }, []);
 
-  if (!processingTime.meta || !chartData) {
+  if (loading) {
     return <Spinner size="large" />;
   }
 
-  const isBetter = processingTime.orgaoData.average >= processingTime.pacoteData.average;
+  if (!chartData) {
+    return (
+      <article className="page-tramitacao">
+        <div className="pt-texts">
+          <SectionTitle value="tempo de tramitação" />
+          <p>Nenhum dado para exibir</p>
+        </div>
+      </article>
+    );
+  }
+
+  const typeDisplayableName = processTypeDict[mainCategory];
+  const categoryProcessingTime = processingTime[mainCategory];
+  const isBetter =
+    categoryProcessingTime.orgaoData.average <= categoryProcessingTime.pacoteData.average;
+  const pinWidth = '65%';
 
   return (
     <article className="page-tramitacao">
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
         <p>
-          Avaliei que o período de tramitação de processos na sua promotoria
+          Avaliei que o tempo médio de tramitação de
+          {` ${typeDisplayableName} `}
+          na sua promotoria,
+          {` ${chartData.organAvg}  dias,`}
           <strong>
-            {isBetter ? ' está mais rápido que a média da casa ' : 'está abaixo da média da casa'}
+            {isBetter
+              ? ` está mais rápido que a média da casa `
+              : ` está mais lento que a média da casa `}
           </strong>
           entre aquelas de mesma atribuição.
           {'\n'}
@@ -83,63 +126,65 @@ const ProcessingTime = () => {
           data={chartData.pieData}
           scatter={chartData.points}
           domain={chartData.domain}
-          labelText={isBetter ? `${chartData.organAvg}\nMuito bom` : chartData.organAvg}
+          labelText={chartData.organAvg}
+          pointerPosition={chartData.pointerPosition}
+          labelCompliment={isBetter ? 'Muito bom' : ''}
         />
       </div>
       <div className="pt-mainBox">
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <PinAzul />
+            <PinAzul width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight turquoise">
-              {processingTime.orgaoData.min.toFixed(0)}
+              {`${categoryProcessingTime.orgaoData.min.toFixed(0)} dias`}
             </span>
-            trânsito mais rápido da sua promotoria
+            mais rápido da sua promotoria
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <PinVermelho />
+            <PinVermelho width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {processingTime.orgaoData.max.toFixed(0)}
+              {`${categoryProcessingTime.orgaoData.max.toFixed(0)} dias`}
             </span>
-            trânsito mais lento da sua promotoria
+            mais lento da sua promotoria
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <Markfaster />
+            <Markfaster width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight green">
-              {processingTime.pacoteData.min.toFixed(0)}
+              {`${categoryProcessingTime.pacoteData.min.toFixed(0)} dias`}
             </span>
-            trânsito mais rápido do pacote
+            mais rápido do pacote
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <MarkMind />
+            <MarkMind width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight purple">
-              {processingTime.pacoteData.average.toFixed(0)}
+              {`${categoryProcessingTime.pacoteData.average.toFixed(0)} dias`}
             </span>
-            trânsito médio do seu pacote
+            médio do seu pacote
           </div>
         </div>
         <div className="pt-legends">
           <div className="pt-legends-icon">
-            <MarkSlower />
+            <MarkSlower width={pinWidth} />
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {processingTime.pacoteData.max.toFixed(0)}
+              {`${categoryProcessingTime.pacoteData.max.toFixed(0)} dias`}
             </span>
-            trânsito mais lento do seu pacote
+            mais lento do seu pacote
           </div>
         </div>
       </div>

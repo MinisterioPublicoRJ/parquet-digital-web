@@ -33,14 +33,12 @@ function courtCasesDetail({ data, isLoading }) {
       <div className="courtCases-upper">
         <p className="paragraphWrapper">
           Você propôs
-          <strong>
-            {` ${proposedActions60Days} ações `}
-          </strong>
+          <strong>{` ${proposedActions60Days} ações `}</strong>
           nos últimos 60 dias, com
           <strong>
             {proposedActionsVariation12Months >= 0
-              ? ` um aumento de ${formatPercent(proposedActionsVariation12Months)} `
-              : ` uma redução de ${formatPercent(proposedActionsVariation12Months)} `}
+              ? ` um aumento de ${formatPercent(Math.abs(proposedActionsVariation12Months))} `
+              : ` uma redução de ${formatPercent(Math.abs(proposedActionsVariation12Months))} `}
           </strong>
           nos últimos 12 meses.
         </p>
@@ -53,7 +51,7 @@ function courtCasesDetail({ data, isLoading }) {
               return (
                 <li key={i} className="courtCases-li">
                   <span className="courtCases-icon">
-                    <Badge width="100%" number={i + 1} />
+                    <Badge width="45%" number={i + 1} />
                   </span>
                   <strong className="courtCases-featured">
                     {leftPad(proposedActions30Days, 2, 0)}
@@ -64,7 +62,6 @@ function courtCasesDetail({ data, isLoading }) {
             })}
           </ul>
         </div>
-        <div className="courtCases-lowerRight" />
       </div>
     </div>
   );

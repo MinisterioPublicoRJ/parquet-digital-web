@@ -10,40 +10,77 @@ import {
 } from '../../components';
 import Api from '../../api';
 import { getUser } from '../../user';
+import { capitalizeWord } from '../../utils';
+
+import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
 
 class YourDesk extends React.Component {
   constructor(props) {
     super(props);
+    const user = getUser();
+    this.user = user;
+    this.type = user.tipo_orgao;
     this.state = {
-      loadingOpenCases: true,
-      loadingOpenInvestigations: true,
-      loadingCourtCases: true,
-      loadingClosedCases: true,
       activeTab: 'openCases',
     };
   }
 
   componentDidMount() {
-    this.getOpenCases();
+    switch (this.type) {
+      case 1:
+        this.getTutela();
+        break;
+      case 2:
+        document.documentElement.style.setProperty('--buttonBase', 131);
+        this.getPip();
+        break;
+      default:
+        break;
+    }
+    // same endpoint for everyone
     this.getOpenCasesDetails();
-    this.getOpenInvestigations();
-    this.getCourtCases();
-    this.getClosedCases();
   }
 
-  /**
-   * load the number of open cases for the first button
-   * @return {void} just saves it to the state
-   */
-  async getOpenCases() {
-    let openCases;
-    let errorOpenCases = false;
+  getTutela() {
+    const buttonList = TUTELA_BUTTONS;
+    const newState = { buttonList };
+
+    buttonList.forEach(buttonName => {
+      this.getDocument(buttonName);
+      newState[`loading${capitalizeWord(buttonName)}`] = true;
+    });
+    console.log('newState', newState);
+    this.setState(newState);
+  }
+
+  getPip() {
+    const buttonList = PIP_BUTTONS;
+    const newState = { buttonList };
+
+    buttonList.forEach(buttonName => {
+      this.getDocument(buttonName);
+      newState[`loading${capitalizeWord(buttonName)}`] = true;
+    });
+
+    this.setState(newState);
+  }
+
+  async getDocument(docName) {
+    const dbName = BUTTON_DICT[docName];
+    let doc;
+    let docError = false;
     try {
-      openCases = await Api.getOpenCases(getUser());
+      const params = { ...this.user, docType: dbName };
+      doc = await Api.getIntegratedDeskDocs(params);
     } catch (e) {
-      errorOpenCases = true;
+      docError = true;
     } finally {
-      this.setState({ openCases, errorOpenCases, loadingOpenCases: false });
+      const updatedState = {};
+      updatedState[docName] = doc;
+      updatedState[`loading${capitalizeWord(docName)}`] = false;
+      updatedState[`error${capitalizeWord(docName)}`] = docError;
+
+      this.setState(updatedState);
     }
   }
 
@@ -60,26 +97,6 @@ class YourDesk extends React.Component {
       openCasesDetailsError = true;
     } finally {
       this.setState({ openCasesDetails, openCasesDetailsError, openCasesDetailsLoading: false });
-    }
-  }
-
-  /**
-   * load the number of open investigations for the second button
-   * @return {void} just saves it to the state
-   */
-  async getOpenInvestigations() {
-    let openInvestigations;
-    let errorOpenInvestigations = false;
-    try {
-      openInvestigations = await Api.getOpenInvestigations(getUser());
-    } catch (e) {
-      errorOpenInvestigations = true;
-    } finally {
-      this.setState({
-        openInvestigations,
-        errorOpenInvestigations,
-        loadingOpenInvestigations: false,
-      });
     }
   }
 
@@ -103,22 +120,6 @@ class YourDesk extends React.Component {
     }
   }
 
-  /**
-   * load the number of cases in court for the third button
-   * @return {void} just saves it to the state
-   */
-  async getCourtCases() {
-    let courtCases;
-    let errorCourtCases;
-    try {
-      courtCases = await Api.getCourtCases(getUser());
-    } catch (e) {
-      errorCourtCases = true;
-    } finally {
-      this.setState({ courtCases, errorCourtCases, loadingCourtCases: false });
-    }
-  }
-
   /** Loads the data used in the OpenCases tab
    * @return {void} saves details to the state
    */
@@ -131,22 +132,6 @@ class YourDesk extends React.Component {
       errorCourtCasesDetails = true;
     } finally {
       this.setState({ courtCasesDetails, errorCourtCasesDetails, loadingCourtCasesDetails: false });
-    }
-  }
-
-  /**
-   * load the number of recently closed cases for the last box
-   * @return {void} just saves it to the state
-   */
-  async getClosedCases() {
-    let closedCases;
-    let errorClosedCases;
-    try {
-      closedCases = await Api.getClosedCases(getUser());
-    } catch (e) {
-      errorClosedCases = true;
-    } finally {
-      this.setState({ closedCases, loadingClosedCases: false, errorClosedCases });
     }
   }
 
@@ -178,64 +163,35 @@ class YourDesk extends React.Component {
   render() {
     const {
       activeTab,
-      openCases,
-      errorOpenCases,
+      buttonList,
       openCasesDetails,
       openCasesDetailsError,
-      loadingOpenCases,
-      openInvestigations,
-      errorOpenInvestigations,
       openInvestigationsDetails,
       openInvestigationsDetailsError,
-      loadingOpenInvestigations,
-      courtCases,
-      errorCourtCases,
       courtCasesDetails,
       courtCasesDetailsError,
-      loadingCourtCases,
-      closedCases,
-      errorClosedCases,
-      loadingClosedCases,
     } = this.state;
+
+    if (!buttonList) {
+      return <div>loading...</div>;
+    }
 
     return (
       <article className="desk-outer">
         <div className="desk-header">
           <SectionTitle value="Sua Mesa" />
           <div className="desk-controlers">
-            <ControlButton
-              isButton
-              buttonPressed={() => this.handleChangeActiveTab('openCases')}
-              isActive={activeTab === 'openCases'}
-              text={`vistas\nabertas`}
-              number={openCases}
-              loading={loadingOpenCases}
-              error={errorOpenCases}
-            />
-            <ControlButton
-              isButton
-              buttonPressed={() => this.handleChangeActiveTab('openInvestigations')}
-              isActive={activeTab === 'openInvestigations'}
-              text={`investigações\nem curso`}
-              number={openInvestigations}
-              loading={loadingOpenInvestigations}
-              error={errorOpenInvestigations}
-            />
-            <ControlButton
-              isButton
-              buttonPressed={() => this.handleChangeActiveTab('courtCases')}
-              isActive={activeTab === 'courtCases'}
-              text={`processos\nem juízo`}
-              number={courtCases}
-              loading={loadingCourtCases}
-              error={errorCourtCases}
-            />
-            <ControlButton
-              text={`finalizados\núltimos 30 dias`}
-              number={closedCases}
-              loading={loadingClosedCases}
-              error={errorClosedCases}
-            />
+            {buttonList.map(buttonTitle => (
+              <ControlButton
+                isButton={!buttonTitle.includes('closedCases')}
+                error={this.state[`error${capitalizeWord(buttonTitle)}`]}
+                buttonPressed={() => this.handleChangeActiveTab(buttonTitle)}
+                isActive={activeTab === buttonTitle}
+                text={BUTTON_TEXTS[buttonTitle]}
+                number={this.state[buttonTitle]}
+                loading={this.state[`loading${capitalizeWord(buttonTitle)}`]}
+              />
+            ))}
           </div>
         </div>
         <div className="desk-tabs">

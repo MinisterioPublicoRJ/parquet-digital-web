@@ -1,10 +1,11 @@
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect  } from 'react-router-dom';
 
 import Api from '../api';
 import { getUser } from '../user';
 
 import { Spinner } from '../components';
+import Login from '../components/login';
 import Pip from '../pages/pip';
 import Tutela from '../pages/tutela';
 import BlankPage from '../pages/blankPage';
@@ -22,12 +23,12 @@ class App extends React.Component {
   componentDidMount() {
     this.login();
   }
-
+  
   async login() {
     let loginError = false;
     let user;
     try {
-      const token = window.localStorage.getItem('access_token');
+      const token = window.localStorage.getItem('access_token')
       await Api.login(token);
       user = getUser();
     } catch (e) {
@@ -72,6 +73,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/">
             {this.pageSelector()}
+            {/*<Login exact path="/login" component={Login} />*/}
           </Route>
         </Switch>
       </HashRouter>

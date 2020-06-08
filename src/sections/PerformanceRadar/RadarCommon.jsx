@@ -29,6 +29,7 @@ class PerformanceRadar extends React.Component {
 
   cleanGraphData(data) {
     const { cleanMap } = this.props;
+
     const chartData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
       .map(cleanMap);

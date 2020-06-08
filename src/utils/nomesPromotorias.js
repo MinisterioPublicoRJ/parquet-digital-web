@@ -14,7 +14,7 @@ const NOMES_PROMOTORIAS = {
   30: 'Tutela Coletiva - Educação',
   31: 'Tutela Coletiva - Infância e Juventude',
   32: 'Tutela Coletiva - Saúde',
-  33: 'Tutela Coletiva - Sem Ranking Específico',
+  33: 'Tutela Coletiva - Geral',
 };
 
 export default NOMES_PROMOTORIAS;

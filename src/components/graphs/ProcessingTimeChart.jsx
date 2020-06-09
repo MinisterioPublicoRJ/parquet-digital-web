@@ -158,7 +158,7 @@ function TempoTramitacaoChart({
         <VictoryPie {...pointerPieSettings} data={pointerPosition} />
 
         {/* GRAPHS AND AXIS */}
-        {/* This hides the exis from showing */}
+        {/* This hides the axis from showing */}
         <VictoryAxis style={{ axis: { stroke: 'none' } }} />
         {/*  this is the actual pie chart that renders the bars and the labels around it */}
         <VictoryPie {...chartPieSettings} data={data} />

@@ -5,10 +5,11 @@ import Api from '../api';
 import { getUser } from '../user';
 
 import { Spinner } from '../components';
-import Login from '../components/login';
+//import Login from '../components/login';
 import Pip from '../pages/pip';
 import Tutela from '../pages/tutela';
 import BlankPage from '../pages/blankPage';
+import { isAuthenticated } from '../../src/auth';
 
 import './styles.css';
 
@@ -49,7 +50,7 @@ class App extends React.Component {
           page = <Tutela userName={nome} user={user} />;
           break;
         case 2:
-          page = <Login userName={nome} />;
+          page = <Pip userName={nome} />;
           break;
         default:
           // if we don't have a dashboard yet, just show blank screen

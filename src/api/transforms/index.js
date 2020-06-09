@@ -10,6 +10,7 @@ export { default as todayEntriesTransform } from './todayEntriesTransform';
 export { default as todayOutliersTransform } from './todayOutliersTransform';
 export { default as processListTransform } from './processListTransform';
 export { default as openCasesListTransform } from './openCaseListTransform';
+export { default as successIndicatorsTransform } from './succesIndicatorsTransform';
 
 export const closedCasesTransform = ({ suamesa_finalizados }) => suamesa_finalizados;
 export const courtCasesTransform = ({ suamesa_processos }) => suamesa_processos;

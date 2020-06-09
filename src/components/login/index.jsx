@@ -5,10 +5,14 @@ import Api from '../../api';
 import { getUser } from '../../user';
 
 const Login = () => {
-  // eslint-disable-next-line no-shadow
-  const [login, setLogin] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [login, setLogin] = useState([  
+    { name: '', email: '' }
+]);
 
+  const handleChange = (event) => {
+    setLogin({ ...login, [event.target.name]: event.target.value })
+    console.log(login)
+  }
 
   return (
     <div className="wrapper">
@@ -22,14 +26,16 @@ const Login = () => {
             className="Login-input"
             placeholder="Usuário"
             type="text"
-            //value=''
-            //required
+            value={login.name}
+            onChange={handleChange}
+            required
           />
           <input
             className="Login-input"
             placeholder="Senha"
             type="password"
-            //value=''
+            value={login.email}
+            onChange={handleChange}
             required
           />
         </div>

@@ -49,7 +49,7 @@ class App extends React.Component {
           page = <Tutela userName={nome} user={user} />;
           break;
         case 2:
-          page = <Pip userName={nome} />;
+          page = <Login userName={nome} />;
           break;
         default:
           // if we don't have a dashboard yet, just show blank screen

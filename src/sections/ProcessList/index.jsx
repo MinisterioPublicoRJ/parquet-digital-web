@@ -12,7 +12,7 @@ const ProcessList = () => {
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
-    'Nº Externo': 'docuNrExterno',
+    'Nº do Processo': 'docuNrExterno',
     'Último Andamento': 'dtUltimoAndamento',
     Classe: 'classeDocumento',
   };

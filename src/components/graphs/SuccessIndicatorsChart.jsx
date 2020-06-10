@@ -1,5 +1,7 @@
 import React from 'react';
 import { VictoryBar, VictoryStack, VictoryChart } from 'victory';
+import Api from '../../api';
+
 
 function SuccessIndicatorsChart() {
   const data = [
@@ -16,18 +18,11 @@ function SuccessIndicatorsChart() {
       height: 100,
     },
   };
-  const chartStyleSecond = {
-    style: {
-      data: { fill: '#F8F9FB' },
-    },
-  };
-  const victoryChartSettings = {
-    padding: { top: 40, bottom: 320 },
-  };
+ 
 
   return (
     <div className="box-chart-success">
-      <p style={{ fontSize: 20 }}>Sua Taxa de <strong> Resolutividade </strong></p>
+      <p style={{ fontSize: 15 }}>Sua Taxa de <strong> Resolutividade </strong></p>
       <p  style={{ fontSize: 10 }}>[Denuncias + arquivamentos + acordo/vistas abertas]</p>
         <VictoryStack {...chartStyle} maxDomain={{ x: 1 }} horizontal>
           <VictoryBar {...chartStyle} maxDomain={{ x: 1 }} data={data} x="user" y="oranges" />

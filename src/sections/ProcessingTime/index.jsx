@@ -116,7 +116,7 @@ const ProcessingTime = ({ user }) => {
               ? ` está mais rápido que a média da casa `
               : ` está mais lento que a média da casa `}
           </strong>
-          entre aquelas de mesma atribuição.
+          para o seu grupo (promotorias de mesma atribuição).
           {'\n'}
           {isBetter && <strong>Muito Bom!</strong>}
         </p>
@@ -162,7 +162,7 @@ const ProcessingTime = ({ user }) => {
             <span className="pt-legends-highlight green">
               {`${categoryProcessingTime.pacoteData.min.toFixed(0)} dias`}
             </span>
-            mais rápido do pacote
+            mais rápido do grupo
           </div>
         </div>
         <div className="pt-legends">
@@ -173,7 +173,7 @@ const ProcessingTime = ({ user }) => {
             <span className="pt-legends-highlight purple">
               {`${categoryProcessingTime.pacoteData.average.toFixed(0)} dias`}
             </span>
-            médio do seu pacote
+            médio do seu grupo
           </div>
         </div>
         <div className="pt-legends">
@@ -184,7 +184,7 @@ const ProcessingTime = ({ user }) => {
             <span className="pt-legends-highlight pink">
               {`${categoryProcessingTime.pacoteData.max.toFixed(0)} dias`}
             </span>
-            mais lento do seu pacote
+            mais lento do seu grupo
           </div>
         </div>
       </div>

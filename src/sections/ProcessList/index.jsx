@@ -13,8 +13,9 @@ const ProcessList = () => {
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
     'Nº do Processo': 'docuNrExterno',
-    'Último Andamento': 'dtUltimoAndamento',
     Classe: 'classeDocumento',
+    'Data Andamento': 'dtUltimoAndamento',
+    'Rótulo Andamento': 'ultimoAndamento',
   };
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const ProcessList = () => {
       try {
         const response = await Api.getProcessList(getUser());
         setProcessListData(response);
+        console.log('response', response);
       } catch (e) {
         setLoading(true);
       } finally {

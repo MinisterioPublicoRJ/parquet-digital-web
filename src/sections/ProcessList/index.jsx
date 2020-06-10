@@ -24,7 +24,6 @@ const ProcessList = () => {
       try {
         const response = await Api.getProcessList(getUser());
         setProcessListData(response);
-        console.log('response', response);
       } catch (e) {
         setLoading(true);
       } finally {
@@ -40,7 +39,7 @@ const ProcessList = () => {
 
   return (
     <div className="processList-outer">
-      <SectionTitle value="Últimos processos movimentados" />
+      <SectionTitle value="Processos Judiciais" />
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (

@@ -30,15 +30,19 @@ const SuccessIndicators = () => {
   if (loading) {
     return <Spinner size="medium" />;
   }
+
+  let obj = successIndicators
   return (
     <div className="page-success-indicators">
       <SectionTitle value="Indicadores de sucesso" />
       <p>
-        Percebi que dentre suas denúncias oferecidas <strong>35%</strong> são relacionadas com <strong>Tráfico</strong>. Seguido
-        <strong>por Roubo com (20%)</strong> e <strong>Estelionato com (10%)</strong>.
+        Percebi que dentre suas denúncias oferecidas
+        <strong> ({obj.ranking[0].perc.toFixed(0)}%)</strong> são relacionadas com <strong> {obj.ranking[0].assunto}</strong>.
+        Seguido de perto por <strong> {obj.ranking[1].assunto}</strong> <strong> ({obj.ranking[1].perc.toFixed(0)}%)</strong>
+        e <strong> {obj.ranking[2].assunto}</strong> <strong> ({obj.ranking[2].perc.toFixed(0)}%)</strong>
       </p>
-      <p>Todas as outras denúncias totalizam <strong>35%.</strong></p>
-      <SuccessIndicatorsChart />
+      <p>Todas as outras denúncias totalizam <strong>({obj.others.perc.toFixed(0)}%)</strong></p>
+      <SuccessIndicatorsChart data={obj.taxa_resolutivdade} />
     </div>
   );
 };

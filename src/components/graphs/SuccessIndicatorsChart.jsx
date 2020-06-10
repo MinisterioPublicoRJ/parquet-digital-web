@@ -28,13 +28,10 @@ function SuccessIndicatorsChart() {
   return (
     <div className="box-chart-success">
       <p style={{ fontSize: 20 }}>Sua Taxa de <strong> Resolutividade </strong></p>
-      <p>[Denuncias + arquivamentos + acordo/vistas abertas]</p>
-      <VictoryChart {...victoryChartSettings}>
+      <p  style={{ fontSize: 10 }}>[Denuncias + arquivamentos + acordo/vistas abertas]</p>
         <VictoryStack {...chartStyle} maxDomain={{ x: 1 }} horizontal>
           <VictoryBar {...chartStyle} maxDomain={{ x: 1 }} data={data} x="user" y="oranges" />
-          <VictoryBar {...chartStyleSecond} maxDomain={{ x: 1 }} data={data} x="user" y="oranges" />
         </VictoryStack>
-      </VictoryChart>
     </div>
   );
 }

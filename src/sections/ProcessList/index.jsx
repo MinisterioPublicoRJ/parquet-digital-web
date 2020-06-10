@@ -12,7 +12,6 @@ const ProcessList = () => {
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
-    MPRJ: 'docuNrMp',
     'Nº Externo': 'docuNrExterno',
     'Último Andamento': 'dtUltimoAndamento',
     Classe: 'classeDocumento',

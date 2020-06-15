@@ -11,7 +11,6 @@ import { formatPercentage, capitalizeTitle } from '../../utils';
 
 const propTypes = {
   user: PropTypes.string.isRequired,
-  loadedCallback: PropTypes.func.isRequired,
 };
 
 class Today extends Component {
@@ -194,7 +193,7 @@ class Today extends Component {
       timeGreeting = 'boa noite';
     }
 
-    return `Olá ${user}, ${timeGreeting}!`;
+    return `Olá Dr/Dra ${user}, ${timeGreeting}!`;
   }
 
   /**
@@ -228,7 +227,7 @@ class Today extends Component {
         <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
       </p>
     );
-    
+
     if (!doneLoading) {
       return <Spinner size="medium" />;
     }

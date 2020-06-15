@@ -37,6 +37,7 @@ class Alerts extends React.Component {
     let errorAlerts = false;
     try {
       alerts = await Api.getAlertsList(getUser());
+      console.log(alerts);
     } catch (e) {
       errorAlerts = true;
     } finally {
@@ -241,31 +242,17 @@ class Alerts extends React.Component {
       //   background = '#5C6FD9';
       //   break;
       //
-      case 'DORD':
-        icon = <Mprj />;
-        message = (
-          <span>
-            O <strong>processo {` ${alert.docNum} `}</strong> está possivelmente<strong> desatualizado</strong>
-          </span>
-        );
-        background = '#5C6FD9';
-        break;
-
-      //       case 'DT2I':
-      //         icon = <Home />;
-      //         message = (
-      //           <span>
-      //             Há <strong>01 processo</strong> cujo <strong>orgão responsável</strong>
-      // {' '}
-      // está
-      //             possivelmente
-      // <strong> desatualizado</strong>
-      //           </span>
-      //         );
-      //         background = '#5C6FD9';
-      //         break;
-
-      default:
+        case 'DT2I':
+             icon = <Home />;
+            message = (
+             <span>
+                Há <strong>01 processo {` ${alert.docNum} `}</strong> cujo <strong>orgão responsável</strong> está possivelmente<strong> desatualizado</strong>
+              </span>
+              );
+              background = '#5C6FD9';
+             break;
+             
+        default:
         break;
     }
 

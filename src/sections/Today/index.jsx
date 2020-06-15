@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
+import PromotronGif from '../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
 import { SectionTitle, MainTitle, Spinner } from '../../components';
 
@@ -213,7 +214,7 @@ class Today extends Component {
 
     const percentParagraph = !percentile ? null : (
       <p className="today-textArea-paragraphWrapper">
-        Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
+        Nos últimos 30 dias a sua promotoria foi mais resolutiva que
         <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
         da casa entre aquelas de mesma atribuição.
         {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
@@ -224,7 +225,8 @@ class Today extends Component {
         Você sabia que seu acervo é
         <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
         dos seus colegas das
-        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>
+        ?
       </p>
     );
 
@@ -245,7 +247,7 @@ class Today extends Component {
           </div>
         </div>
         <div className="today-robotPic">
-          <img height="100%" src={require('../../assets/svg/home.gif')} alt="robô-promoton" />
+          <img height="100%" src={PromotronGif} alt="robô-promoton" />
         </div>
         <button type="button" className="today-btn">
           Ver mapa da atuação

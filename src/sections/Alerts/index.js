@@ -26,7 +26,6 @@ class Alerts extends React.Component {
 
   componentDidMount() {
     this.getAlertsList();
-    this.getAlertsListTotal();
   }
 
   /**
@@ -37,25 +36,12 @@ class Alerts extends React.Component {
     let alerts;
     let errorAlerts = false;
     try {
-      alerts = await Api.getAlertsList(getUser());
+      alerts = await Api.getAlertsListTotal(getUser());
       console.log(alerts);
     } catch (e) {
       errorAlerts = true;
     } finally {
       this.setState({ alerts, errorAlerts, loading: false });
-    }
-  }
-
-  async getAlertsListTotal() {
-    let alertsTotal;
-    let errorAlerts = false;
-    try {
-      alertsTotal = await Api.getAlertsListTotal(getUser());
-      console.log(alertsTotal);
-    } catch (e) {
-      errorAlerts = true;
-    } finally {
-      this.setState({ alertsTotal, errorAlerts, loading: false });
     }
   }
 
@@ -216,7 +202,7 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            Há <strong>{` ${alertsTotal.count} `} oficio</strong> com <strong> prazo de apreciação esgotado </strong>.
+            Há <strong>{` ${alertsTotal.count} `} oficios</strong> com <strong> prazo de apreciação esgotado </strong>.
           </span>
         );
         background = '#f86c72';
@@ -271,7 +257,7 @@ class Alerts extends React.Component {
   }
 
   render() {
-    const { alerts, alertsTotal, loading, errorAlerts } = this.state;
+    const { alerts, loading, errorAlerts } = this.state;
 
     if (loading) return <aside>Carregando...</aside>;
     return (
@@ -282,7 +268,7 @@ class Alerts extends React.Component {
           </div>
         </div>
         <div className="alerts-body">
-          {alertsTotal.map((alert, i) => {
+          {alerts.map((alert, i) => {
             const { icon, message, action, actionLink, background } = this.cleanAlert(alert);
             return (
               <AlertBadge

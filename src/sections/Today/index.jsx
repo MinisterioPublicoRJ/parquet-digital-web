@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 import Api from '../../api';
-import { getUser } from '../../user';
 import PromotronGif from '../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
 import { SectionTitle, MainTitle, Spinner } from '../../components';
@@ -59,11 +58,12 @@ class Today extends Component {
    * @return {void}
    */
   async loadPercentages() {
+    const { user } = this.props;
     const loadingTodayOut = false;
     let errorTodayOut = false;
     let percentile;
     try {
-      const res = await Api.getTodayOutData(getUser());
+      const res = await Api.getTodayOutData(user);
       percentile = formatPercentage(res);
     } catch (e) {
       errorTodayOut = true;
@@ -82,12 +82,13 @@ class Today extends Component {
 
   // loadCollection Tutela
   async loadCollection() {
+    const { user } = this.props;
     let collectionPhrase;
     let groupName;
     let errorTodayOutliers = false;
     try {
       const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(getUser(), today);
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(user, today);
 
       collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
       groupName = NOMES_PROMOTORIAS[cod];
@@ -112,10 +113,11 @@ class Today extends Component {
    * @return {void}
    */
   async loadEntriesInfo() {
+    const { user } = this.props;
     let entriesParagraph;
     let errorTodayEntries = false;
     try {
-      const { hout, lout, numEntries } = await Api.getTodayEntriesData(getUser());
+      const { hout, lout, numEntries } = await Api.getTodayEntriesData(user);
       entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
     } catch (e) {
       errorTodayEntries = true;
@@ -184,6 +186,8 @@ class Today extends Component {
   assembleGreeting() {
     const user = this.cleanUsername();
     const hours = new Date().getHours();
+    const gender = this.props.user.sexo;
+    console.log('gender', gender);
     let timeGreeting;
 
     if (hours >= 6 && hours < 12) {
@@ -194,7 +198,7 @@ class Today extends Component {
       timeGreeting = 'boa noite';
     }
 
-    return `Olá ${user}, ${timeGreeting}!`;
+    return `Olá ${gender === 'M' ? 'Dra. ' : 'Dr.'} ${user}, ${timeGreeting}!`;
   }
 
   /**
@@ -202,8 +206,8 @@ class Today extends Component {
    * @return {string} First and last names, just the first letter of each capitalized
    */
   cleanUsername() {
-    const { user } = this.props;
-    const cleanUsername = user.split(' ')[0];
+    const { userName } = this.props;
+    const cleanUsername = userName.split(' ')[0];
     return capitalizeTitle(cleanUsername);
   }
 

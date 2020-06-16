@@ -27,6 +27,9 @@ class Alerts extends React.Component {
   componentDidMount() {
     this.getAlertsList();
   }
+  componentDidMount() {
+    this.getAlertsListTotal();
+  }
 
   /**
    * Fetches array of alerts from API and saves to state
@@ -36,12 +39,25 @@ class Alerts extends React.Component {
     let alerts;
     let errorAlerts = false;
     try {
-      alerts = await Api.getAlertsListTotal(getUser());
+      alerts = await Api.getAlertsList(getUser());
       console.log(alerts);
     } catch (e) {
       errorAlerts = true;
     } finally {
       this.setState({ alerts, errorAlerts, loading: false });
+    }
+  }
+
+  async getAlertsListTotal() {
+    let alertsTotal;
+    let errorAlerts = false;
+    try {
+      alertsTotal = await Api.getAlertsListTotal(getUser());
+      console.log(alertsTotal);
+    } catch (e) {
+      errorAlerts = true;
+    } finally {
+      this.setState({ alertsTotal, errorAlerts, loading: false });
     }
   }
 
@@ -51,72 +67,7 @@ class Alerts extends React.Component {
    * @return {json}       { icon: node, message: node, action: null, actionLink: null, background: string }
    */
 
-    cleanAlert(alert){
-      let icon = null;
-      let message = null;
-      const action = null;
-      const actionLink = null;
-      let background = null;
-
-      switch(alert.alertCode){
-
-        case 'GATE':
-        icon = <CorujaGate />;
-        message = (
-          <span>
-            O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento <strong>{` ${alert.docNum} `}</strong>
-          </span>
-        );
-        background = '#374354';
-        break;
-
-      // AINDA NÃO IMPLEMENTADOS NO BACK
-      //       case 'CSI':
-      //         icon = <Csi />;
-      //         message = (
-      //           <span>
-      //             A <strong> CSI </strong> finalizou a <strong>IT</strong> solicitada no procedimento{' '}
-      //             <strong>{` ${alert.docNum} `}</strong>
-      //           </span>
-      //         );
-      //         background = '#192440';
-      //         break;
-      //
-      //       case 'DECISAO':
-      //         icon = <Law />;
-      //         message = (
-      //           <span>
-      //             Você obteve uma <strong className="positiveDecision"> decisão favorável </strong>
-      // {' '}
-      // no
-      //             processo
-      // <strong>{` ${alert.docNum} `}</strong>
-      //           </span>
-      //         );
-      //         background = '#71D0A4';
-      //         break;
-      //
-      //       case 'DECISAO':
-      //         icon = <Law />;
-      //         message = (
-      //           <span>
-      //             Você obteve uma <strong className="negativeDecision"> decisão desfavorável </strong>
-      // {' '}
-      // no
-      //             processo
-      // <strong>{` ${alert.docNum} `}</strong>
-      //           </span>
-      //         );
-      //         background = '#F86C72';
-      //         break;
-
-      default:
-      break;
-    }
-
-    return { icon, message, action, actionLink, background };
-  }
-
+  
  
   cleanAlert(alertsTotal) {
     // this will be completed for all alert types later
@@ -257,7 +208,7 @@ class Alerts extends React.Component {
   }
 
   render() {
-    const { alerts, loading, errorAlerts } = this.state;
+    const { alerts, alertsTotal, loading, errorAlerts } = this.state;
 
     if (loading) return <aside>Carregando...</aside>;
     return (
@@ -268,7 +219,7 @@ class Alerts extends React.Component {
           </div>
         </div>
         <div className="alerts-body">
-          {alerts.map((alert, i) => {
+          {alertsTotal.map((alert, i) => {
             const { icon, message, action, actionLink, background } = this.cleanAlert(alert);
             return (
               <AlertBadge

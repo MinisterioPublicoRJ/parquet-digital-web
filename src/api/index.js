@@ -163,6 +163,12 @@ const Api = (() => {
 
     return alertsTransform(data);
   }
+  
+  async function getAlertsListTotal({ orgao, token }) {
+    const { data } = await axios.get(TOTAL_ALERTS_LIST({ orgao }), buildRequestConfig(token));
+
+    return totalAlertsTransform(data);
+  }
 
   async function getProcessList({ orgao, cpf, token }, list) {
     const { data } = await axios.get(
@@ -172,12 +178,7 @@ const Api = (() => {
 
     return processListTransform(data);
   }
-  async function getAlertsListTotal({ orgao, token }) {
-    const { data } = await axios.get(TOTAL_ALERTS_LIST({ orgao }), buildRequestConfig(token));
-
-    return totalAlertsTransform(data);
-  }
-
+ 
   async function getPipRadarData({ orgao, token }) {
     const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
 

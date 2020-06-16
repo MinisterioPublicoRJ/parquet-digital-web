@@ -31,8 +31,7 @@
   color: var(--dark);
   font-family: var(--defaultFont);
   font-size: var(--titleParagraphToday);
-  margin: 0;
-  text-indent: 1.5vh;
+  text-align: justify;
 }
 
 .today-robotPic {
@@ -79,5 +78,5 @@
   .today-textArea-paragraphWrapper {
     font-size: var(--titleParagraphToday);
   }
-  
+
 }

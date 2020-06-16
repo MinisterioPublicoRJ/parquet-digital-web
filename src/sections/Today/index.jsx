@@ -194,7 +194,7 @@ class Today extends Component {
       timeGreeting = 'boa noite';
     }
 
-    return `Olá Dr/Dra ${user}, ${timeGreeting}!`;
+    return `Olá ${user}, ${timeGreeting}!`;
   }
 
   /**
@@ -214,7 +214,7 @@ class Today extends Component {
 
     const percentParagraph = !percentile ? null : (
       <p className="today-textArea-paragraphWrapper">
-        Nos últimos 30 dias a sua promotoria foi mais resolutiva que
+        No último mês a sua promotoria foi mais resolutiva que
         <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
         da casa entre aquelas de mesma atribuição.
         {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}

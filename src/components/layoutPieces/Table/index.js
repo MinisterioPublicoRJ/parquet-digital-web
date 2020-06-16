@@ -47,7 +47,6 @@ function generateHeader(headerPropArray) {
  */
 function generateRow(dataUnit, columns, isPhone, rowN) {
   const sections = Object.keys(columns);
-
   return (
     <tr key={`table-row-${rowN}`}>
       {sections.map((key, i) => (
@@ -57,7 +56,9 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
               {key}
             </th>
           )}
-          <td key={dataUnit[columns[key]]}>{capitalizeTitle(dataUnit[columns[key]])}</td>
+          <td className="capitalizeTitle" key={dataUnit[columns[key]]}>
+            {dataUnit[columns[key]]}
+          </td>
         </>
       ))}
     </tr>

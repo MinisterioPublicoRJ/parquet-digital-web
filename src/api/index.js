@@ -18,6 +18,8 @@ import {
   ALERTS_LIST,
   PROCESSES_LIST,
   PIP_RADAR_URL,
+  PIP_MAIN_INVESTIGATIONS_URL,
+  PIP_MAIN_INVESTIGATIONS_URL_ACTION,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -177,6 +179,32 @@ const Api = (() => {
     return pipRadarTransform(data);
   }
 
+  async function getMainInvestigated({ orgao, cpf, token }) {
+    const { data } = await axios.get(
+      PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
+      buildRequestConfig(token),
+    );
+    return data;
+  }
+
+  async function actionMainInvestigated({ orgao, cpf, token, action, representante_dk }) {
+    /*
+     * Teste promise
+     */
+    return new Promise((resolve, reject) => {
+      resolve({ status: 'Success!' });
+    });
+    /*
+     * @TODO FIX Access to XMLHttpRequest at 'https://d-apimpmapas.mprj.mp.br/dominio/pip/principais-investigados/...' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+     *
+    const { data } = await axios.get(
+      PIP_MAIN_INVESTIGATIONS_URL_ACTION({ orgao, cpf, action, representante_dk }),
+      buildRequestConfig(token),
+    );
+    return data;
+    */
+  }
+
   return {
     login,
     getTodayOutData,
@@ -195,6 +223,8 @@ const Api = (() => {
     getProcessingTimeData,
     getProcessList,
     getPipRadarData,
+    getMainInvestigated,
+    actionMainInvestigated,
   };
 })();
 

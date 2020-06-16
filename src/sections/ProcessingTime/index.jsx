@@ -40,7 +40,7 @@ const ProcessingTime = ({ user }) => {
     // using the midpoints, make three sections to draw "good", "average" and "bad" time ranges
     const pieData = [
       // 'good' section from min until halfway to average
-      { x: 2, y: halfMinAvg / max, color: PT_PIE_COLORS[0], label: halfMinAvg.toFixed(0) },
+      { x: 2, y: halfMinAvg / max, color: PT_PIE_COLORS[0], label: Number(min).toFixed(0) },
       // 'average' section, from the end of the last section until halfway to max
       {
         x: 1,

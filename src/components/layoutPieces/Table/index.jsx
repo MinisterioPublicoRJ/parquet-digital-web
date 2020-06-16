@@ -57,7 +57,9 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
               {key}
             </th>
           )}
-          <td key={dataUnit[columns[key]]}>{capitalizeTitle(dataUnit[columns[key]])}</td>
+          <td key={dataUnit[columns[key]]} title={dataUnit[columns[key]]}>
+            {capitalizeTitle(dataUnit[columns[key]])}
+          </td>
         </>
       ))}
     </tr>

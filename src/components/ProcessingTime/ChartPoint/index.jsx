@@ -28,10 +28,6 @@ const ChartPoints = ({ x, y, datum, ...props }) => {
     case 'max':
       point = <MarkSlower x={x} y={y} />;
       break;
-    // case 'pointer':
-    //   console.log('PROPS', props);
-    //   point = <ProcessingTimeArrow x={x} y={y} angle={props.slice.endAngle} />;
-    //   break;
     default:
       point = null;
       break;

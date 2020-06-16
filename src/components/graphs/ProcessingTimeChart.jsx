@@ -48,7 +48,7 @@ function TempoTramitacaoChart({
   const decorationPieSettings = {
     colorScale: graphicColor,
     endAngle: 120,
-    innerRadius: 50,
+    innerRadius: 40,
     labels: () => null,
     opacity: 1,
     padding: 5,
@@ -109,21 +109,21 @@ function TempoTramitacaoChart({
   };
 
   const pointerPieSettings = {
-    endAngle: 83,
+    endAngle: 84,
     height: 200,
-    innerRadius: 49,
+    innerRadius: 40,
     labelComponent: <ChartPoints />,
     labelRadius: 50,
     padAngle: 3,
     radius: 88,
     sortKey: 'x',
-    startAngle: -113,
+    startAngle: -114,
     style: { data: { fill: '#F4F5FA' } },
   };
 
   const blackLayerPieSettings = {
     endAngle: 80,
-    innerRadius: 50,
+    innerRadius: 41,
     labels: () => null,
     radius: 75,
     startAngle: -110,
@@ -136,8 +136,6 @@ function TempoTramitacaoChart({
     <svg width="100%" height="100%" viewBox="0 0 200 200">
       <VictoryChart polar {...victoryChartSettings}>
         {/* DECORATIONS */}
-        {/* The circle is just a broder for the center text */}
-        <circle cx="100" cy="140" r="40" fill="none" stroke="#B3B3B3" />
         {/* Number in the center text */}
         <VictoryLabel textAnchor="middle" x={100} y={130} text={labelText} style={labelTextStyle} />
         {/* Days in the center text */}
@@ -156,6 +154,8 @@ function TempoTramitacaoChart({
         <VictoryPie {...blackLayerPieSettings} data={[{ x: 1, y: 1 }]} />
         {/*  This chart covers the previous chart with gray to create a pointer effect */}
         <VictoryPie {...pointerPieSettings} data={pointerPosition} />
+        {/* The circle is just a broder for the center text */}
+        <circle cx="100" cy="140" r="40" fill="none" stroke="#B3B3B3" />
 
         {/* GRAPHS AND AXIS */}
         {/* This hides the axis from showing */}

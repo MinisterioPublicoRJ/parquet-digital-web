@@ -16,6 +16,7 @@ import {
   RADAR_DATA,
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
+  TOTAL_ALERTS_LIST,
   PROCESSES_LIST,
   PIP_RADAR_URL,
 } from './endpoints';
@@ -35,6 +36,7 @@ import {
   openCasesListTransform,
   radarTransform,
   alertsTransform,
+  totalAlertsTransform,
   processingTimeTransform,
   processListTransform,
   pipRadarTransform,
@@ -170,6 +172,11 @@ const Api = (() => {
 
     return processListTransform(data);
   }
+  async function getAlertsListTotal({ orgao, token }) {
+    const { data } = await axios.get(TOTAL_ALERTS_LIST({ orgao }), buildRequestConfig(token));
+
+    return totalAlertsTransform(data);
+  }
 
   async function getPipRadarData({ orgao, token }) {
     const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
@@ -192,6 +199,7 @@ const Api = (() => {
     getOpenCasesList,
     getRadarData,
     getAlertsList,
+    getAlertsListTotal,
     getProcessingTimeData,
     getProcessList,
     getPipRadarData,

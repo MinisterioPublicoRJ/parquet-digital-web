@@ -198,7 +198,7 @@ class Today extends Component {
       timeGreeting = 'boa noite';
     }
 
-    return `Olá ${gender === 'M' ? 'Dra. ' : 'Dr.'} ${user}, ${timeGreeting}!`;
+    return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${user}, ${timeGreeting}!`;
   }
 
   /**

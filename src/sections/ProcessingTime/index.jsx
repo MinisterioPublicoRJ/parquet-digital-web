@@ -106,7 +106,7 @@ const ProcessingTime = ({ user }) => {
     <article className="page-tramitacao">
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
-        <p>
+        <p align="justify">
           Avaliei que o tempo médio de tramitação de
           {` ${typeDisplayableName} `}
           na sua promotoria,

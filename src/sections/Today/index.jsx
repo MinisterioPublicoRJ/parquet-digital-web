@@ -92,7 +92,6 @@ class Today extends Component {
 
       collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
       groupName = NOMES_PROMOTORIAS[cod];
-      console.log(primQ, terQ, acervoQtd, cod)
     } catch (e) {
       errorTodayOutliers = true;
     } finally {

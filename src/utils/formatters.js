@@ -56,7 +56,7 @@ export function capitalizeTitle(sentence) {
   return lowercaseWords.map(word => capitalizeWord(word)).join(' ');
 }
 
-export const formatPercent = n => `${n < 0 ? '-' : ''}${(Math.abs(n) * 100).toFixed(2)}%`;
+export const formatPercent = n => `${n < 0 ? '-' : ''}${(Math.abs(n) * 100).toFixed(0)}%`;
 
 export const snakeToCamel = str => {
   const words = str.split('_');

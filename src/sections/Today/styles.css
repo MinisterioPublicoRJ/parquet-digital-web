@@ -80,16 +80,10 @@
     width: 60%;
   }
 }
-@media (min-width: 1030px) and (max-width: 1500px) {
-  .today-robotPic img {
-    width: 60% !important;
-  }
-}
 
 @media (max-width: 480px) {
-  .today-robotPic img {
-    height: 80%;
-    width: 91% !important;
+  .today-robotPic {
+    height: 50%;
   }
   .today-content {
     width: 50%;

@@ -10,7 +10,7 @@ class MainInvestigated extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
+      loading: true,
       tableData: [],
     };
 
@@ -28,20 +28,21 @@ class MainInvestigated extends React.Component {
 
   /**
    * Function that fetches the main investigated data
+   * @return {void}
    */
   async getMainInvestigated() {
-    const { orgao, cpf, token } = getUser();
-    this.setState({ loading: true });
-
+    let response;
     let error = false;
     try {
-      const response = await Api.getMainInvestigated(getUser());
-      this.setState({
-        loading: false,
-        tableData: this.parseMainInvestigated(response),
-      });
+      response = await Api.getMainInvestigated(getUser());
     } catch (e) {
       error = true;
+    } finally {
+      this.setState({
+        loading: false,
+        error,
+        tableData: this.parseMainInvestigated(response),
+      });
     }
   }
 
@@ -135,18 +136,27 @@ class MainInvestigated extends React.Component {
   }
 
   render() {
-    const { loading, tableData } = this.state;
+    const { loading, tableData, error } = this.state;
     if (loading) {
       return <Spinner size="medium" />;
     }
 
+    if (error) {
+      return (
+        <article className="mainInvestigated-outer">
+          <SectionTitle value="Principais Investigados" />
+          Nenhum investigado para exibir
+        </article>
+      );
+    }
+
     return (
-      <div className="mainInvestigated-outer">
+      <article className="mainInvestigated-outer">
         <SectionTitle value="Principais Investigados" />
         <div className="mainInvestigated-tableWrapper">
           <Table data={tableData} columns={this.tableColumns} showHeader />
         </div>
-      </div>
+      </article>
     );
   }
 }

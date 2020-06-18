@@ -7,6 +7,7 @@ import './styles.css';
 import {
   Alerts,
   ProcessList,
+  MainInvestigated,
   Today,
   PerformanceRadar,
   ProcessingTime,
@@ -15,14 +16,15 @@ import {
 
 const propTypes = { userName: PropTypes.string.isRequired };
 
-function Pip({ userName }) {
+function Pip({ userName, user }) {
   return (
     <div className="base-grid pip-grid">
       <Alerts user={userName} />
       <ProcessList user={userName} />
       <PerformanceRadar.Pip user={userName} />
-      <ProcessingTime user={userName} /> 
-      <Today user={userName} />
+      <MainInvestigated user={userName} />
+      <ProcessingTime user={userName} />
+      <Today user={user} userName={userName} />
       <YourDesk user={userName} />
     </div>
   );

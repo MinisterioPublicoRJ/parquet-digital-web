@@ -30,7 +30,7 @@ class MainInvestigated extends React.Component {
   filterTableData = tableData => {
     let filteredTableData = [];
 
-    //is_removed
+    //is_removed - Server já está filtrando
     filteredTableData = tableData.filter(item => item.removed === false);
     //Ordering by nr_investigacoes Desc
     filteredTableData.sort((x, y) => y.numero_inquerito - x.numero_inquerito);
@@ -73,11 +73,10 @@ class MainInvestigated extends React.Component {
       ),
     }));
 
-    // Ordering by is_pinned (true)
+    // Ordering by is_pinned (true) - Dentro da função filterTableData() vai reorganizar após as actions pin/unpin
     parseResult.sort(function(x, y) {
       return x.pinned === y.pinned ? 0 : x.pinned ? -1 : 1;
     });
-
     parseResult = this.filterTableData(parseResult);
 
     return parseResult;
@@ -93,13 +92,6 @@ class MainInvestigated extends React.Component {
     let error = false;
     try {
       const response = await Api.getMainInvestigated(getUser());
-
-      // const apiMainInvestigated = new MainInvestigatedService();
-      // const response = await apiMainInvestigated.getMainInvestigated({
-      //   orgao,
-      //   cpf,
-      //   token,
-      // });
       this.setState({
         loading: false,
         tableData: this.parseMainInvestigated(response),

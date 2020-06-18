@@ -7,3 +7,7 @@
     font-size: 14px;
     font-weight: var(--subtitleWeight);
 }
+.box-chart-success {
+    height: 50px;
+    background-color: brown;
+}

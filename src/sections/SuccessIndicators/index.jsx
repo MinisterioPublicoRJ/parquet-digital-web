@@ -5,6 +5,7 @@ import Api from '../../api';
 import { SectionTitle, Spinner } from '../../components';
 import { getUser } from '../../user';
 import SuccessIndicatorsChart from '../../components/graphs/SuccessIndicatorsChart';
+import '../SuccessIndicators/styles.css';
 
 const SuccessIndicators = () => {
   // eslint-disable-next-line no-shadow
@@ -35,12 +36,19 @@ const SuccessIndicators = () => {
   return (
     <div className="page-success-indicators">
       <SectionTitle value="Indicadores de sucesso" />
-      <p>
-        Percebi que dentre suas denúncias oferecidas
-        <strong> ({obj.ranking[0].perc.toFixed(0)}%)</strong> são relacionadas com <strong> {obj.ranking[0].assunto}</strong>.
-        Seguido de perto por <strong> {obj.ranking[1].assunto}</strong> <strong> ({obj.ranking[1].perc.toFixed(0)}%)</strong> e <strong> {obj.ranking[2].assunto}</strong> <strong> ({obj.ranking[2].perc.toFixed(0)}%)</strong>
-      </p>
-      <p>Todas as outras denúncias totalizam <strong>({obj.others.perc.toFixed(0)}%)</strong></p>
+
+      <h3>Resolutividade</h3>
+      <p>[denúncias + arquivamentos + acordos/vistas abertas]</p>
+      <SuccessIndicatorsChart data={obj.taxa_resolutivdade} />
+
+      <h3>Índice de Elucidação - Denúncias.</h3>
+      <p>[Número de procedimentos com denúncia/número de procedimentos do Grupo
+        Para o período do Grupo]</p>
+      <SuccessIndicatorsChart data={obj.taxa_resolutivdade} />
+
+      <h3>Índice de Finalização</h3>
+      <p>[ Andamentos que finalizam o processo.
+        número de andamentos finalizados (qualquer data até hoje, para os processos dentro do grupo)]</p>
       <SuccessIndicatorsChart data={obj.taxa_resolutivdade} />
     </div>
   );

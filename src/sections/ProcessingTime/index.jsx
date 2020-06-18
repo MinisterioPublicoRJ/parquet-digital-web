@@ -40,7 +40,7 @@ const ProcessingTime = ({ user }) => {
     // using the midpoints, make three sections to draw "good", "average" and "bad" time ranges
     const pieData = [
       // 'good' section from min until halfway to average
-      { x: 2, y: halfMinAvg / max, color: PT_PIE_COLORS[0], label: halfMinAvg.toFixed(0) },
+      { x: 2, y: halfMinAvg / max, color: PT_PIE_COLORS[0], label: Number(min).toFixed(0) },
       // 'average' section, from the end of the last section until halfway to max
       {
         x: 1,
@@ -106,7 +106,7 @@ const ProcessingTime = ({ user }) => {
     <article className="page-tramitacao">
       <div className="pt-texts">
         <SectionTitle value="tempo de tramitação" />
-        <p>
+        <p align="justify">
           Avaliei que o tempo médio de tramitação de
           {` ${typeDisplayableName} `}
           na sua promotoria,
@@ -116,7 +116,7 @@ const ProcessingTime = ({ user }) => {
               ? ` está mais rápido que a média da casa `
               : ` está mais lento que a média da casa `}
           </strong>
-          entre aquelas de mesma atribuição.
+          para o seu grupo (promotorias de mesma atribuição).
           {'\n'}
           {isBetter && <strong>Muito Bom!</strong>}
         </p>
@@ -162,7 +162,7 @@ const ProcessingTime = ({ user }) => {
             <span className="pt-legends-highlight green">
               {`${categoryProcessingTime.pacoteData.min.toFixed(0)} dias`}
             </span>
-            mais rápido do pacote
+            mais rápido do grupo
           </div>
         </div>
         <div className="pt-legends">
@@ -173,7 +173,7 @@ const ProcessingTime = ({ user }) => {
             <span className="pt-legends-highlight purple">
               {`${categoryProcessingTime.pacoteData.average.toFixed(0)} dias`}
             </span>
-            médio do seu pacote
+            médio do seu grupo
           </div>
         </div>
         <div className="pt-legends">
@@ -184,7 +184,7 @@ const ProcessingTime = ({ user }) => {
             <span className="pt-legends-highlight pink">
               {`${categoryProcessingTime.pacoteData.max.toFixed(0)} dias`}
             </span>
-            mais lento do seu pacote
+            mais lento do seu grupo
           </div>
         </div>
       </div>

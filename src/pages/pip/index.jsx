@@ -7,6 +7,7 @@ import './styles.css';
 import {
   Alerts,
   ProcessList,
+  MainInvestigated,
   Today,
   PerformanceRadar,
   ProcessingTime,
@@ -21,6 +22,7 @@ function Pip({ userName, user }) {
       <Alerts user={userName} />
       <ProcessList user={userName} />
       <PerformanceRadar.Pip user={userName} />
+      <MainInvestigated user={userName} />
       <ProcessingTime user={userName} />
       <Today user={user} userName={userName} />
       <YourDesk user={userName} />

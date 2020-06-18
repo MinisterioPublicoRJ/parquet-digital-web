@@ -39,3 +39,6 @@ export const PIP_RADAR_URL = t(`${BASE_URL}/pip/radar-performance/\${orgao}`);
 export const PIP_MAIN_INVESTIGATIONS_URL = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
 );
+export const PIP_MAIN_INVESTIGATIONS_URL_ACTION = t(
+  `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
+);

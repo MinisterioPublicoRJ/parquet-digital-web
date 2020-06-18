@@ -18,6 +18,8 @@ import {
   ALERTS_LIST,
   PROCESSES_LIST,
   PIP_RADAR_URL,
+  PIP_MAIN_INVESTIGATIONS_URL,
+  PIP_MAIN_INVESTIGATIONS_URL_ACTION,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -177,6 +179,27 @@ const Api = (() => {
     return pipRadarTransform(data);
   }
 
+  async function getMainInvestigated({ orgao, cpf, token }) {
+    const { data } = await axios.get(
+      PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
+      buildRequestConfig(token),
+    );
+    return data;
+  }
+
+  async function actionMainInvestigated({ orgao, cpf, token, action, representante_dk }) {
+    const formData = new FormData();
+    formData.set('jwt', token);
+    formData.set('action', action);
+    formData.set('representante_dk', representante_dk);
+    const { data } = await axios.post(
+      PIP_MAIN_INVESTIGATIONS_URL_ACTION({ orgao, cpf, token }),
+      formData,
+      buildRequestConfig(token),
+    );
+    return data;
+  }
+
   return {
     login,
     getTodayOutData,
@@ -195,6 +218,8 @@ const Api = (() => {
     getProcessingTimeData,
     getProcessList,
     getPipRadarData,
+    getMainInvestigated,
+    actionMainInvestigated,
   };
 })();
 

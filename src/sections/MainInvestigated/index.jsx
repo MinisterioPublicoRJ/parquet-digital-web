@@ -38,10 +38,11 @@ class MainInvestigated extends React.Component {
     } catch (e) {
       error = true;
     } finally {
+      const tableData = response ? this.parseMainInvestigated(response) : null;
       this.setState({
         loading: false,
         error,
-        tableData: this.parseMainInvestigated(response),
+        tableData,
       });
     }
   }
@@ -68,6 +69,7 @@ class MainInvestigated extends React.Component {
       numero_inquerito: item.nr_investigacoes,
       pin: (
         <button
+          type="button"
           onClick={() =>
             this.actionMainInvestigated({
               action: item.is_pinned ? 'unpin' : 'pin',
@@ -80,6 +82,7 @@ class MainInvestigated extends React.Component {
       ),
       bin: (
         <button
+          type="button"
           onClick={() =>
             this.actionMainInvestigated({
               action: 'remove',
@@ -114,6 +117,7 @@ class MainInvestigated extends React.Component {
           if (['pin', 'unpin'].includes(action)) {
             cloneData[itemKey].pin = (
               <button
+                type="button"
                 onClick={() =>
                   this.actionMainInvestigated({
                     action: cloneData[itemKey][field] ? 'unpin' : 'pin',

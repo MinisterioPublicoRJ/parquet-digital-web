@@ -49,7 +49,7 @@ class YourDesk extends React.Component {
       this.getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
     });
-    console.log('newState', newState);
+
     this.setState(newState);
   }
 
@@ -79,6 +79,26 @@ class YourDesk extends React.Component {
       updatedState[docName] = doc;
       updatedState[`loading${capitalizeWord(docName)}`] = false;
       updatedState[`error${capitalizeWord(docName)}`] = docError;
+
+      this.setState(updatedState);
+    }
+  }
+
+  async getTabDetails(tabName) {
+    const dbName = BUTTON_DICT[tabName];
+    let tabDetail;
+    let tabDetailError = false;
+    try {
+      const params = { ...this.user, docType: dbName };
+      tabDetail = await Api.getIntegratedDeskDetails(params);
+      console.log('tabDetail', tabDetail);
+    } catch (e) {
+      tabDetailError = true;
+    } finally {
+      const updatedState = {};
+      updatedState[`${tabName}Details`] = tabDetail;
+      updatedState[`loading${capitalizeWord(tabName)}Details`] = false;
+      updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
 
       this.setState(updatedState);
     }
@@ -147,13 +167,8 @@ class YourDesk extends React.Component {
         case 'openCases':
           this.getOpenCasesDetails();
           break;
-        case 'openInvestigations':
-          this.getOpenInvestigationsDetails();
-          break;
-        case 'courtCases':
-          this.getCourtCasesDetails();
-          break;
         default:
+          this.getTabDetails(tabName);
           break;
       }
     }

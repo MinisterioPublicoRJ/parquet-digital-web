@@ -10,6 +10,7 @@ export { default as todayEntriesTransform } from './todayEntriesTransform';
 export { default as todayOutliersTransform } from './todayOutliersTransform';
 export { default as processListTransform } from './processListTransform';
 export { default as openCasesListTransform } from './openCaseListTransform';
+export { default as deskTabTransform } from './deskTabTransforms';
 
 export const deskIntegratedTransform = ({ nr_documentos }) => nr_documentos;
 export const todayOutTransform = ({ percent_rank }) => percent_rank;

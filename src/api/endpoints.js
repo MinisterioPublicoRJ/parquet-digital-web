@@ -15,6 +15,10 @@ export const DESK_INTEGRATED = t(
   `${BASE_URL}/suamesa/documentos/\${orgao}?tipo=\${docType}&cpf=\${cpf}`,
 );
 
+export const DESK_DETAIL_INTEGRATED = t(
+  `${BASE_URL}/suamesa/documentos-detalhe/\${orgao}?tipo=\${docType}&cpf=\${cpf}`,
+);
+
 export const OPEN_CASES_DETAILS_URL = t(`${BASE_URL}/suamesa/detalhe/vistas/\${orgao}/\${cpf}`);
 export const COURT_CASES_DETAILS_URL = t(`${BASE_URL}/suamesa/detalhe/processos/\${orgao}`);
 export const OPEN_INVESTIGATIONS_DETAILS_URL = t(

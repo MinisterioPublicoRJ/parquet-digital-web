@@ -15,6 +15,7 @@ import {
   PROCESSES_LIST,
   PIP_RADAR_URL,
   DESK_INTEGRATED,
+  DESK_DETAIL_INTEGRATED,
   PIP_MAIN_INVESTIGATIONS_URL,
   PIP_MAIN_INVESTIGATIONS_URL_ACTION,
 } from './endpoints';
@@ -34,6 +35,7 @@ import {
   processListTransform,
   pipRadarTransform,
   deskIntegratedTransform,
+  deskTabTransform,
 } from './transforms';
 
 import { setUser } from '../user';
@@ -158,6 +160,15 @@ const Api = (() => {
     return deskIntegratedTransform(data);
   }
 
+  async function getIntegratedDeskDetails({ orgao, token, cpf, docType }) {
+    const { data } = await axios.get(
+      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType }),
+      buildRequestConfig(token),
+    );
+
+    return deskTabTransform(data);
+  }
+
   async function getMainInvestigated({ orgao, cpf, token }) {
     const { data } = await axios.get(
       PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
@@ -194,6 +205,7 @@ const Api = (() => {
     getProcessList,
     getPipRadarData,
     getIntegratedDeskDocs,
+    getIntegratedDeskDetails,
     getMainInvestigated,
     actionMainInvestigated,
   };

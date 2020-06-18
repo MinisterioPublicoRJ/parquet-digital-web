@@ -5,14 +5,12 @@ import Api from '../../api';
 import TackIcon from '../../assets/svg/tack';
 import BinIcon from '../../assets/svg/bin';
 import { getUser } from '../../user';
-
 class MainInvestigated extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
       tableData: [],
-      mainInvestigatedData: [],
     };
 
     this.tableColumns = {
@@ -22,15 +20,6 @@ class MainInvestigated extends React.Component {
       '  ': 'bin',
     };
 
-    this.data = [
-      {
-        investigado: 'Teste 1',
-        numero_inquerito: '0000001',
-        pin: <TackIcon activated={false} />,
-        bin: <BinIcon />,
-      },
-    ];
-
     this.actionMainInvestigated = this.actionMainInvestigated.bind();
   }
 
@@ -38,21 +27,24 @@ class MainInvestigated extends React.Component {
     this.getMainInvestigated();
   }
 
-  parseMainInvestigated = dataFromApi => {
+  filterTableData = tableData => {
+    let filteredTableData = [];
+
     //is_removed
-    dataFromApi = dataFromApi.filter(item => item.is_removed === false);
+    filteredTableData = tableData.filter(item => item.removed === false);
     //Ordering by nr_investigacoes Desc
-    dataFromApi.sort((a, b) => b.nr_investigacoes - a.nr_investigacoes);
-    // Ordering by is_pinned
-    dataFromApi.sort(function(x, y) {
-      // true first
-      return x.is_pinned === y.is_pinned ? 0 : x.is_pinned ? -1 : 1;
-      // false first
-      // return (x.is_pinned === .is_pinned)? 0 : x.is_pinned ? 1 : -1;
-    });
+    filteredTableData.sort((x, y) => y.numero_inquerito - x.numero_inquerito);
+
+    return filteredTableData;
+  };
+
+  parseMainInvestigated = dataFromApi => {
     //format data to render
-    const parseResult = dataFromApi.map(item => ({
+    let parseResult = dataFromApi.map((item, index) => ({
       id: item.representante_dk,
+      key: index.toString(),
+      pinned: item.is_pinned,
+      removed: item.is_removed,
       investigado: item.nm_investigado,
       numero_inquerito: item.nr_investigacoes,
       pin: (
@@ -81,6 +73,13 @@ class MainInvestigated extends React.Component {
       ),
     }));
 
+    // Ordering by is_pinned (true)
+    parseResult.sort(function(x, y) {
+      return x.pinned === y.pinned ? 0 : x.pinned ? -1 : 1;
+    });
+
+    parseResult = this.filterTableData(parseResult);
+
     return parseResult;
   };
 
@@ -88,14 +87,21 @@ class MainInvestigated extends React.Component {
    * Function that fetches the main investigated data
    */
   async getMainInvestigated() {
+    const { orgao, cpf, token } = getUser();
     this.setState({ loading: true });
 
     let error = false;
     try {
       const response = await Api.getMainInvestigated(getUser());
+
+      // const apiMainInvestigated = new MainInvestigatedService();
+      // const response = await apiMainInvestigated.getMainInvestigated({
+      //   orgao,
+      //   cpf,
+      //   token,
+      // });
       this.setState({
         loading: false,
-        mainInvestigatedData: response,
         tableData: this.parseMainInvestigated(response),
       });
     } catch (e) {
@@ -106,52 +112,42 @@ class MainInvestigated extends React.Component {
   /**
    * Function that update the main investigated data
    */
-  actionMainInvestigated = ({ action, representante_dk }) => {
+  actionMainInvestigated = async ({ action, representante_dk }) => {
     const { orgao, cpf, token } = getUser();
-
-    Api.actionMainInvestigated({ orgao, cpf, token, action, representante_dk })
-      .then(response => {
+    const actions = { pin: 'pinned', unpin: 'pinned', remove: 'removed' };
+    const field = actions[action];
+    try {
+      Api.actionMainInvestigated({ orgao, cpf, token, action, representante_dk }).then(response => {
         if (response.status === 'Success!') {
-          const cloneData = [...this.state.mainInvestigatedData];
-          const itemKey = cloneData.findIndex(item => item.representante_dk == representante_dk);
-          switch (action) {
-            case 'remove':
-              console.log('action', action, representante_dk);
-
-              cloneData[itemKey].is_removed = true;
-              //cloneData = cloneData.filter(item => representante_dk != item.representante_dk);
-              console.log(cloneData);
-              this.setState({
-                mainInvestigatedData: cloneData,
-                tableData: this.parseMainInvestigated(cloneData),
-              });
-              return;
-            case 'pin':
-              cloneData[itemKey].is_pinned = true;
-              this.setState({
-                mainInvestigatedData: cloneData,
-                tableData: this.parseMainInvestigated(cloneData),
-              });
-              return;
-            case 'unpin':
-              cloneData[itemKey].is_pinned = false;
-              this.setState({
-                mainInvestigatedData: cloneData,
-                tableData: this.parseMainInvestigated(cloneData),
-              });
-              return;
+          const cloneData = [...this.state.tableData];
+          const itemKey = cloneData.findIndex(item => item.id == representante_dk);
+          cloneData[itemKey][field] = !cloneData[itemKey][field];
+          if (['pin', 'unpin'].includes(action)) {
+            cloneData[itemKey].pin = (
+              <button
+                onClick={() =>
+                  this.actionMainInvestigated({
+                    action: cloneData[itemKey][field] ? 'unpin' : 'pin',
+                    representante_dk: representante_dk,
+                  })
+                }
+              >
+                <TackIcon activated={cloneData[itemKey][field]} />
+              </button>
+            );
           }
-          console.log('after', this.state);
+          this.setState({
+            tableData: this.filterTableData(cloneData),
+          });
         }
-      })
-      .catch(error => {
-        error = true;
       });
+    } catch (error) {
+      error = true;
+    }
   };
 
   render() {
     const { loading, tableData } = this.state;
-    // verifica se esta carregando os dados da api
     if (loading) {
       return <Spinner size="medium" />;
     }

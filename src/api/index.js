@@ -188,21 +188,16 @@ const Api = (() => {
   }
 
   async function actionMainInvestigated({ orgao, cpf, token, action, representante_dk }) {
-    /*
-     * Teste promise
-     */
-    return new Promise((resolve, reject) => {
-      resolve({ status: 'Success!' });
-    });
-    /*
-     * @TODO FIX Access to XMLHttpRequest at 'https://d-apimpmapas.mprj.mp.br/dominio/pip/principais-investigados/...' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-     *
-    const { data } = await axios.get(
-      PIP_MAIN_INVESTIGATIONS_URL_ACTION({ orgao, cpf, action, representante_dk }),
+    const formData = new FormData();
+    formData.set('jwt', token);
+    formData.set('action', action);
+    formData.set('representante_dk', representante_dk);
+    const { data } = await axios.post(
+      PIP_MAIN_INVESTIGATIONS_URL_ACTION({ orgao, cpf, token }),
+      formData,
       buildRequestConfig(token),
     );
     return data;
-    */
   }
 
   return {

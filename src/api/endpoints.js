@@ -40,5 +40,5 @@ export const PIP_MAIN_INVESTIGATIONS_URL = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
 );
 export const PIP_MAIN_INVESTIGATIONS_URL_ACTION = t(
-  `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}/\${action}/\${representante_dk}`,
+  `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
 );

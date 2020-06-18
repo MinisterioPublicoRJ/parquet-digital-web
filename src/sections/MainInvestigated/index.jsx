@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './styles.css';
 import { Table, Spinner, SectionTitle } from '../../components';
 import Api from '../../api';
 import TackIcon from '../../assets/svg/tack';
 import BinIcon from '../../assets/svg/bin';
 import { getUser } from '../../user';
+
 class MainInvestigated extends React.Component {
   constructor(props) {
     super(props);
@@ -19,27 +20,44 @@ class MainInvestigated extends React.Component {
       ' ': 'pin',
       '  ': 'bin',
     };
-
-    this.actionMainInvestigated = this.actionMainInvestigated.bind();
   }
 
   componentDidMount() {
     this.getMainInvestigated();
   }
 
-  filterTableData = tableData => {
+  /**
+   * Function that fetches the main investigated data
+   */
+  async getMainInvestigated() {
+    const { orgao, cpf, token } = getUser();
+    this.setState({ loading: true });
+
+    let error = false;
+    try {
+      const response = await Api.getMainInvestigated(getUser());
+      this.setState({
+        loading: false,
+        tableData: this.parseMainInvestigated(response),
+      });
+    } catch (e) {
+      error = true;
+    }
+  }
+
+  filterTableData(tableData) {
     let filteredTableData = [];
 
-    //is_removed - Server já está filtrando
+    // is_removed - Server já está filtrando
     filteredTableData = tableData.filter(item => item.removed === false);
-    //Ordering by nr_investigacoes Desc
+    // Ordering by nr_investigacoes Desc
     filteredTableData.sort((x, y) => y.numero_inquerito - x.numero_inquerito);
 
     return filteredTableData;
-  };
+  }
 
-  parseMainInvestigated = dataFromApi => {
-    //format data to render
+  parseMainInvestigated(dataFromApi) {
+    // format data to render
     let parseResult = dataFromApi.map((item, index) => ({
       id: item.representante_dk,
       key: index.toString(),
@@ -80,31 +98,9 @@ class MainInvestigated extends React.Component {
     parseResult = this.filterTableData(parseResult);
 
     return parseResult;
-  };
-
-  /**
-   * Function that fetches the main investigated data
-   */
-  async getMainInvestigated() {
-    const { orgao, cpf, token } = getUser();
-    this.setState({ loading: true });
-
-    let error = false;
-    try {
-      const response = await Api.getMainInvestigated(getUser());
-      this.setState({
-        loading: false,
-        tableData: this.parseMainInvestigated(response),
-      });
-    } catch (e) {
-      error = true;
-    }
   }
 
-  /**
-   * Function that update the main investigated data
-   */
-  actionMainInvestigated = async ({ action, representante_dk }) => {
+  async actionMainInvestigated({ action, representante_dk }) {
     const { orgao, cpf, token } = getUser();
     const actions = { pin: 'pinned', unpin: 'pinned', remove: 'removed' };
     const field = actions[action];
@@ -120,7 +116,7 @@ class MainInvestigated extends React.Component {
                 onClick={() =>
                   this.actionMainInvestigated({
                     action: cloneData[itemKey][field] ? 'unpin' : 'pin',
-                    representante_dk: representante_dk,
+                    representante_dk,
                   })
                 }
               >
@@ -136,7 +132,7 @@ class MainInvestigated extends React.Component {
     } catch (error) {
       error = true;
     }
-  };
+  }
 
   render() {
     const { loading, tableData } = this.state;
@@ -145,14 +141,12 @@ class MainInvestigated extends React.Component {
     }
 
     return (
-      <>
-        <div className="mainInvestigated-outer">
-          <SectionTitle value="Principais Investigados" />
-          <div className="mainInvestigated-tableWrapper">
-            <Table data={tableData} columns={this.tableColumns} showHeader />
-          </div>
+      <div className="mainInvestigated-outer">
+        <SectionTitle value="Principais Investigados" />
+        <div className="mainInvestigated-tableWrapper">
+          <Table data={tableData} columns={this.tableColumns} showHeader />
         </div>
-      </>
+      </div>
     );
   }
 }

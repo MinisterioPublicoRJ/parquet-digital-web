@@ -28,7 +28,7 @@ class OpenCasesDetail extends React.Component {
     this.tableColumns = {
       MPRJ: 'numeroMprj',
       'Nº Externo': 'numeroExterno',
-      'Último Andamento': 'dtAbertura',
+      'Último Andamento no MP': 'dtAbertura',
       Classe: 'classe',
     };
     this.state = {

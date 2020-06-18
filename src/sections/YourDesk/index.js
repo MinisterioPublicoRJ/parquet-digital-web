@@ -1,13 +1,7 @@
 import React from 'react';
 
 import './styles.css';
-import {
-  SectionTitle,
-  ControlButton,
-  OpenCasesDetail,
-  OpenInvestigationsDetail,
-  CourtCasesDetail,
-} from '../../components';
+import { SectionTitle, ControlButton, OpenCasesDetail, GenericTab } from '../../components';
 import Api from '../../api';
 import { getUser } from '../../user';
 import { capitalizeWord } from '../../utils';
@@ -176,16 +170,7 @@ class YourDesk extends React.Component {
   }
 
   render() {
-    const {
-      activeTab,
-      buttonList,
-      openCasesDetails,
-      openCasesDetailsError,
-      openInvestigationsDetails,
-      openInvestigationsDetailsError,
-      courtCasesDetails,
-      courtCasesDetailsError,
-    } = this.state;
+    const { activeTab, buttonList, openCasesDetails, openCasesDetailsError } = this.state;
 
     if (!buttonList) {
       return <div>loading...</div>;
@@ -210,23 +195,18 @@ class YourDesk extends React.Component {
           </div>
         </div>
         <div className="desk-tabs">
-          {activeTab === 'openCases' && (
+          {activeTab === 'openCases' ? (
             <OpenCasesDetail
               getUser={getUser}
               chartData={openCasesDetails || []}
               isLoading={!openCasesDetails && !openCasesDetailsError}
             />
-          )}
-          {activeTab === 'openInvestigations' && (
-            <OpenInvestigationsDetail
-              data={openInvestigationsDetails}
-              isLoading={!openInvestigationsDetails && !openInvestigationsDetailsError}
-            />
-          )}
-          {activeTab === 'courtCases' && (
-            <CourtCasesDetail
-              data={courtCasesDetails}
-              isLoading={!courtCasesDetails && !courtCasesDetailsError}
+          ) : (
+            <GenericTab
+              {...this.state[`${activeTab}Details`]}
+              tabType={activeTab}
+              loading={this.state[`loading${capitalizeWord(activeTab)}Details`]}
+              error={this.state[`error${capitalizeWord(activeTab)}Details`]}
             />
           )}
         </div>

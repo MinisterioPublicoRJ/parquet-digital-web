@@ -16,9 +16,8 @@ class MainInvestigated extends React.Component {
 
     this.tableColumns = {
       INVESTIGADO: 'investigado',
-      'No. DE INQUÉRITOS': 'numero_inquerito',
+      'No. DE INQUÉRITOS': 'numero_investigacoes',
       ' ': 'pin',
-      '  ': 'bin',
     };
   }
 
@@ -53,7 +52,7 @@ class MainInvestigated extends React.Component {
     // is_removed - Server já está filtrando
     filteredTableData = tableData.filter(item => item.removed === false);
     // Ordering by nr_investigacoes Desc
-    filteredTableData.sort((x, y) => y.numero_inquerito - x.numero_inquerito);
+    filteredTableData.sort((x, y) => y.pinned - x.pinned);
 
     return filteredTableData;
   }
@@ -66,32 +65,32 @@ class MainInvestigated extends React.Component {
       pinned: item.is_pinned,
       removed: item.is_removed,
       investigado: item.nm_investigado,
-      numero_inquerito: item.nr_investigacoes,
+      numero_investigacoes: item.nr_investigacoes,
       pin: (
-        <button
-          type="button"
-          onClick={() =>
-            this.actionMainInvestigated({
-              action: item.is_pinned ? 'unpin' : 'pin',
-              representante_dk: item.representante_dk,
-            })
-          }
-        >
-          <TackIcon activated={item.is_pinned} />
-        </button>
-      ),
-      bin: (
-        <button
-          type="button"
-          onClick={() =>
-            this.actionMainInvestigated({
-              action: 'remove',
-              representante_dk: item.representante_dk,
-            })
-          }
-        >
-          <BinIcon />
-        </button>
+        <>
+          <button
+            type="button"
+            onClick={() =>
+              this.actionMainInvestigated({
+                action: item.is_pinned ? 'unpin' : 'pin',
+                representante_dk: item.representante_dk,
+              })
+            }
+          >
+            <TackIcon activated={item.is_pinned} />
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              this.actionMainInvestigated({
+                action: 'remove',
+                representante_dk: item.representante_dk,
+              })
+            }
+          >
+            <BinIcon />
+          </button>
+        </>
       ),
     }));
 
@@ -116,17 +115,30 @@ class MainInvestigated extends React.Component {
           cloneData[itemKey][field] = !cloneData[itemKey][field];
           if (['pin', 'unpin'].includes(action)) {
             cloneData[itemKey].pin = (
-              <button
-                type="button"
-                onClick={() =>
-                  this.actionMainInvestigated({
-                    action: cloneData[itemKey][field] ? 'unpin' : 'pin',
-                    representante_dk,
-                  })
-                }
-              >
-                <TackIcon activated={cloneData[itemKey][field]} />
-              </button>
+              <>
+                <button
+                  type="button"
+                  onClick={() =>
+                    this.actionMainInvestigated({
+                      action: cloneData[itemKey][field] ? 'unpin' : 'pin',
+                      representante_dk,
+                    })
+                  }
+                >
+                  <TackIcon activated={cloneData[itemKey][field]} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    this.actionMainInvestigated({
+                      action: 'remove',
+                      representante_dk: representante_dk,
+                    })
+                  }
+                >
+                  <BinIcon />
+                </button>
+              </>
             );
           }
           this.setState({

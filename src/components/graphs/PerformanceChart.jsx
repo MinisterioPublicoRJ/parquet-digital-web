@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { VictoryChart, VictoryPolarAxis, VictoryArea, VictoryGroup, VictoryLabel } from 'victory';
+import {
+  VictoryPortal,
+  VictoryChart,
+  VictoryPolarAxis,
+  VictoryArea,
+  VictoryGroup,
+  VictoryLabel,
+} from 'victory';
 
 import CHART_THEME from '../../themes/chartThemes';
 
@@ -45,7 +52,7 @@ const labelPositionsTable = {
     internalLabel: {
       normal: {
         dx: 0,
-        dy: -5,
+        dy: -10,
       },
       inverted: {
         dx: 0,
@@ -60,8 +67,8 @@ const labelPositionsTable = {
     textAnchor: 'end',
     internalLabel: {
       normal: {
-        dx: -5,
-        dy: -5,
+        dx: -15,
+        dy: -15,
       },
       inverted: {
         dx: 10,
@@ -78,7 +85,7 @@ const labelPositionsTable = {
     internalLabel: {
       normal: {
         dx: -5,
-        dy: 5,
+        dy: 10,
       },
       inverted: {
         dx: 20,
@@ -95,7 +102,7 @@ const labelPositionsTable = {
     internalLabel: {
       normal: {
         dx: 5,
-        dy: 5,
+        dy: 10,
       },
       inverted: {
         dx: -20,
@@ -110,8 +117,8 @@ const labelPositionsTable = {
     textAnchor: 'start',
     internalLabel: {
       normal: {
-        dx: 5,
-        dy: -5,
+        dx: 15,
+        dy: 15,
       },
       inverted: {
         dx: -20,
@@ -273,26 +280,37 @@ const AreaLabel = props => {
 
   const { position } = axisLabelsTable[x];
   const { internalLabel } = labelPositionsTable[position];
-  const { dx, dy } = internalLabel[y > 30 ? 'inverted' : 'normal'];
+  const { dx, dy } = internalLabel[y > 80 ? 'inverted' : 'normal'];
 
   return (
-    <g>
-      <VictoryLabel
-        {...props}
-        className="chart-inner-label"
-        labelPlacement="vertical"
-        verticalAnchor="middle"
-        textAnchor="middle"
-        dx={dx}
-        dy={dy}
-        style={{
-          ...style,
-          fill: '#009bff',
-          fontSize: 20,
-          fontWeight: 'bold',
-        }}
-      />
-    </g>
+    <VictoryPortal>
+      <g>
+        <rect
+          fill="rgba(0,155,255, .7)"
+          stroke="#ffffff"
+          strokeWith={1}
+          x={props.x + dx - 20}
+          y={props.y + dy - 12}
+          width={40}
+          height={25}
+        />
+        <VictoryLabel
+          {...props}
+          className="chart-inner-label"
+          labelPlacement="vertical"
+          verticalAnchor="middle"
+          textAnchor="middle"
+          dx={dx}
+          dy={dy}
+          style={{
+            ...style,
+            fill: '#fff',
+            fontSize: 20,
+            fontWeight: 'bold',
+          }}
+        />
+      </g>
+    </VictoryPortal>
   );
 };
 

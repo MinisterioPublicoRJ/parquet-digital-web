@@ -1,7 +1,6 @@
 const processTypeDict = {
   tutelaInqueritosCivis: `inquéritos civis`,
-  pipInvestigacoes: `inquéritos penais`
-
+  pipInvestigacoes: `inquéritos penais`,
 };
 
 export default processTypeDict;

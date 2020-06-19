@@ -42,14 +42,12 @@ const SuccessIndicators = () => {
       <SuccessIndicatorsChart data={obj.taxa_resolutivdade} />
 
       <h3>Índice de Elucidação - Denúncias.</h3>
-      <p>[Número de procedimentos com denúncia/número de procedimentos do Grupo
-        Para o período do Grupo]</p>
-      <SuccessIndicatorsChart data={obj.taxa_resolutivdade} />
+      <p>[Número de procedimentos com denúncia]</p>
+      <SuccessIndicatorsChart data={obj.p_elucidacoes} />
 
       <h3>Índice de Finalização</h3>
-      <p>[ Andamentos que finalizam o processo.
-        número de andamentos finalizados (qualquer data até hoje, para os processos dentro do grupo)]</p>
-      <SuccessIndicatorsChart data={obj.taxa_resolutivdade} />
+      <p>[ Andamentos que finalizam o processo]</p>
+      <SuccessIndicatorsChart data={obj.p_finalizacoes} />
     </div>
   );
 };

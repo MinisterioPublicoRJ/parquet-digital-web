@@ -7,7 +7,7 @@ import SuccesIndicators from '../../sections/SuccessIndicators';
 
 import {
   Alerts,
-  ProcessList,
+  MainInvestigated,
   Today,
   PerformanceRadar,
   ProcessingTime,
@@ -16,14 +16,15 @@ import {
 
 const propTypes = { userName: PropTypes.string.isRequired };
 
-function Pip({ userName }) {
+function Pip({ userName, user }) {
   return (
     <div className="base-grid pip-grid">
+      <YourDesk user={userName} />
       <Alerts user={userName} />
       <PerformanceRadar.Pip user={userName} />
-      <Today user={userName} />
-      <YourDesk user={userName} />
+      {/*<MainInvestigated user={userName} />*/}
       <SuccesIndicators user={userName} />
+      <Today user={user} userName={userName} />
       <ProcessingTime user={userName} />
     </div>
   );

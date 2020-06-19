@@ -1,31 +1,29 @@
 .pip-grid {
   grid-template-areas:
-  "today today radar alerts"
-  "today today radar alerts"
-  "today today radar alerts"
-  "today today radar alerts"
-  "desk desk radar alerts"
-  "desk desk radar alerts"
-  "desk desk .. indicators "
-  "desk desk .. indicators"
-  "desk desk .. indicators "
-  "desk desk .. indicators "
-  "desk desk processingTime processingTime"
-  "desk desk processingTime processingTime"
-  "desk desk processingTime processingTime"
-  "desk desk processingTime processingTime";
-
+    'today today radar alerts'
+    'today today radar alerts'
+    'today today radar alerts'
+    'today today radar alerts'
+    'desk desk radar alerts'
+    'desk desk radar alerts'
+    "desk desk .. indicators"
+    "desk desk .. indicators "
+    "desk desk .. indicators "
+    'desk desk processingTime processingTime'
+    'desk desk processingTime processingTime'
+    'desk desk processingTime processingTime';
 }
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
   .pip-grid {
     grid-template-areas:
-    "today today"
-    "desk desk"
-    "radar alerts"
-    "indicators indicators"
-    "processingTime processingTime";
+      'today today'
+      'desk desk'
+      'radar alerts'
+      'processes processes'
+      'processingTime processingTime'
+      'mainInvestigated mainInvestigated';
   }
 }
 
@@ -33,13 +31,15 @@
 @media (max-width: 480px) {
   .pip-grid {
     grid-template-areas:
-    "today"
-    "desk"
-    "desk"
-    "radar"
-    "alerts"
-    "indicators"
-    "processingTime"
-    "processingTime";
+      'today'
+      'desk'
+      'desk'
+      'radar'
+      'alerts'
+      'processes'
+      'processingTime'
+      'processingTime'
+      'mainInvestigated'
+      'indicators';
   }
 }

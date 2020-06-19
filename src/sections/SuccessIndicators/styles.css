@@ -4,10 +4,13 @@
     grid-area: indicators;
     font-family: var(--defaultFont);
     color: var(--darkBlue);
-    font-size: 14px;
+    font-size: 9px;
     font-weight: var(--subtitleWeight);
 }
+.page-success-indicators p{
+    font-size: 1.2vh
+}
 .box-chart-success {
-    height: 50px;
+    height: 40px;
     background-color: brown;
 }

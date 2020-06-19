@@ -22,7 +22,7 @@ function Tutela({ userName, user }) {
       <ProcessList user={userName} />
       <PerformanceRadar.Tutela user={userName} />
       <ProcessingTime user={user} />
-      <Today user={userName} />
+      <Today userName={userName} user={user} />
       <YourDesk user={userName} />
     </div>
   );

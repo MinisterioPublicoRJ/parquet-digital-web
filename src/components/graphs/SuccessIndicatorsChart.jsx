@@ -3,7 +3,18 @@ import { VictoryBar, VictoryStack } from 'victory';
 
 
 function SuccessIndicatorsChart() {
+  const data = [
+    {
+      user: '',
+    },
+  ];
 
+  const chartStyle = {
+    style: {
+      data: { fill: 'rgb(248, 108, 114)' },
+      height: 100,
+    },
+  };
  
 
   return (

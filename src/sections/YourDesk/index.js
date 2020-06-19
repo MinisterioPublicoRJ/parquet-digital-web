@@ -205,7 +205,6 @@ class YourDesk extends React.Component {
             <GenericTab
               {...this.state[`${activeTab}Details`]}
               tabType={activeTab}
-              loading={this.state[`loading${capitalizeWord(activeTab)}Details`]}
               error={this.state[`error${capitalizeWord(activeTab)}Details`]}
             />
           )}

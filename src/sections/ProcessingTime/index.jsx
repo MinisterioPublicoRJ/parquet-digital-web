@@ -17,6 +17,8 @@ const getCategoryByType = user => {
   switch (user.tipo_orgao) {
     case 1:
       return 'tutelaInqueritosCivis';
+    case 2:
+      return 'pipInvestigacoes';
     default:
       return '';
   }

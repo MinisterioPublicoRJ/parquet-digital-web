@@ -15,6 +15,7 @@ const NOMES_PROMOTORIAS = {
   31: 'Tutela Coletiva - Infância e Juventude',
   32: 'Tutela Coletiva - Saúde',
   33: 'Tutela Coletiva - Geral',
+  200: 'Promotorias de Investigação Penal',
 };
 
 export default NOMES_PROMOTORIAS;

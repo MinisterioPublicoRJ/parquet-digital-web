@@ -52,7 +52,7 @@ const labelPositionsTable = {
     internalLabel: {
       normal: {
         dx: 0,
-        dy: -10,
+        dy: -15,
       },
       inverted: {
         dx: 0,
@@ -88,7 +88,7 @@ const labelPositionsTable = {
         dy: 10,
       },
       inverted: {
-        dx: 20,
+        dx: -20,
         dy: -20,
       },
     },
@@ -105,7 +105,7 @@ const labelPositionsTable = {
         dy: 10,
       },
       inverted: {
-        dx: -20,
+        dx: 20,
         dy: -20,
       },
     },
@@ -280,7 +280,7 @@ const AreaLabel = props => {
 
   const { position } = axisLabelsTable[x];
   const { internalLabel } = labelPositionsTable[position];
-  const { dx, dy } = internalLabel[y > 80 ? 'inverted' : 'normal'];
+  const { dx, dy } = internalLabel[y > 60 ? 'inverted' : 'normal'];
 
   return (
     <VictoryPortal>
@@ -291,7 +291,7 @@ const AreaLabel = props => {
           strokeWith={1}
           x={props.x + dx - 20}
           y={props.y + dy - 12}
-          width={40}
+          width={42}
           height={25}
         />
         <VictoryLabel

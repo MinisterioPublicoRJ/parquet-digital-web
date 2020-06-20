@@ -18,12 +18,11 @@
 @media (min-width: 481px) and (max-width: 1025px) {
   .pip-grid {
     grid-template-areas:
-      'today today'
-      'desk desk'
-      'radar alerts'
-      'processes processes'
-      'processingTime processingTime'
-      'mainInvestigated mainInvestigated';
+    'today today'
+    'desk desk'
+    'radar alerts'
+    'mainInvestigated indicators'
+    'processingTime processingTime';
   }
 }
 

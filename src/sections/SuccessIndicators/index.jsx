@@ -5,10 +5,8 @@ import Api from '../../api';
 import { SectionTitle, Spinner } from '../../components';
 import { getUser } from '../../user';
 import SuccessIndicatorsChart from '../../components/graphs/SuccessIndicatorsChart';
-import '../SuccessIndicators/styles.css';
 
 const SuccessIndicators = () => {
-  // eslint-disable-next-line no-shadow
   const [successIndicators, setSuccessIndicators] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +15,7 @@ const SuccessIndicators = () => {
       setLoading(true);
       try {
         const response = await Api.getsuccessIndicators(getUser());
-        console.log(response)
+        console.log(response);
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);
@@ -32,7 +30,7 @@ const SuccessIndicators = () => {
     return <Spinner size="medium" />;
   }
 
-  let obj = successIndicators
+  const obj = successIndicators;
   return (
     <div className="page-success-indicators">
       <SectionTitle value="Indicadores de sucesso" />

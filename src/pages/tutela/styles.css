@@ -30,13 +30,13 @@
 @media (max-width: 480px) {
   .tutela-grid {
     grid-template-areas:
-      'today'
-      'desk'
-      'desk'
-      'radar'
-      'alerts'
-      'processes'
-      'processingTime'
-      'processingTime';
+    "today"
+    "desk"
+    "desk"
+    "radar"
+    "alerts"
+    "processes"
+    "processingTime"
+    "processingTime";
   }
 }

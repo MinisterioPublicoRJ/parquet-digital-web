@@ -1,0 +1,19 @@
+@import '../styles.css';
+
+.successIndicators-outer {
+  grid-area: indicators;
+  font-family: var(--defaultFont);
+  color: var(--darkBlue);
+  font-size: 9px;
+  font-weight: var(--subtitleWeight);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.successIndicators-outer p {
+  font-size: 1.2vh;
+}
+
+.successIndicators-outer h3 {
+  margin: 0 0 5px 0;
+}

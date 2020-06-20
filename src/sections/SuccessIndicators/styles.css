@@ -6,6 +6,7 @@
     color: var(--darkBlue);
     font-size: 9px;
     font-weight: var(--subtitleWeight);
+    overflow-y: scroll;
 }
 .page-success-indicators p{
     font-size: 1.2vh

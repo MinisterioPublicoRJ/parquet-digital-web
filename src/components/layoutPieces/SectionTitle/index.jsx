@@ -6,14 +6,16 @@ import './styles.css';
 const propTypes = {
   value: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
+  glueToTop: PropTypes.string,
 };
 
 const defaultProps = {
   subtitle: null,
+  glueToTop: false,
 };
 
-const SectionTitle = ({ value, subtitle }) => (
-  <h2 className="sectionTitle-text">
+const SectionTitle = ({ value, subtitle, glueToTop }) => (
+  <h2 className={`sectionTitle-text ${glueToTop ? 'sectionTitle--glued' : ''}`}>
     {value.toLocaleUpperCase()}
     {subtitle && <span className="sectionTitle-subtitle">{subtitle}</span>}
   </h2>

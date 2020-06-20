@@ -17,6 +17,7 @@ import {
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
   PROCESSES_LIST,
+  SUCCESS_INDICATORS,
   PIP_RADAR_URL,
   PIP_MAIN_INVESTIGATIONS_URL,
   PIP_MAIN_INVESTIGATIONS_URL_ACTION,
@@ -38,6 +39,7 @@ import {
   radarTransform,
   alertsTransform,
   processingTimeTransform,
+  successIndicatorsTransform,
   processListTransform,
   pipRadarTransform,
 } from './transforms';
@@ -164,6 +166,12 @@ const Api = (() => {
     return alertsTransform(data);
   }
 
+  async function getsuccessIndicators({ orgao, token }) {
+    const { data } = await axios.get(SUCCESS_INDICATORS({ orgao }), buildRequestConfig(token));
+
+    return successIndicatorsTransform(data);
+  }
+
   async function getProcessList({ orgao, cpf, token }, list) {
     const { data } = await axios.get(
       PROCESSES_LIST({ orgao, cpf, list }),
@@ -217,6 +225,7 @@ const Api = (() => {
     getAlertsList,
     getProcessingTimeData,
     getProcessList,
+    getsuccessIndicators,
     getPipRadarData,
     getMainInvestigated,
     actionMainInvestigated,

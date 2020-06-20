@@ -5,3 +5,4 @@ export { default as ProcessList } from './ProcessList';
 export { default as MainInvestigated } from './MainInvestigated';
 export { default as Today } from './Today';
 export { default as YourDesk } from './YourDesk';
+export { default as SuccessIndicators } from './SuccessIndicators';

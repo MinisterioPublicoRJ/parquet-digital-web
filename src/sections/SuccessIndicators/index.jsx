@@ -32,23 +32,24 @@ const SuccessIndicators = () => {
   return (
     <div className="successIndicators-outer">
       <SectionTitle value="Indicadores de sucesso" glueToTop />
+      <div className="successIndicators-main">
+        <div className="successIndicators-item">
+          <h3>Resolutividade</h3>
+          <span>Denúncias + arquivamentos + acordos/vistas abertas</span>
+          <SuccessIndicatorsChart data={successIndicators.taxaResolutivdade} color="#F86C72" />
+        </div>
 
-      <div className="successIndicators-item">
-        <h3>Resolutividade</h3>
-        <span>[denúncias + arquivamentos + acordos/vistas abertas]</span>
-        <SuccessIndicatorsChart data={successIndicators.taxaResolutivdade} color="#F86C72" />
-      </div>
+        <div className="successIndicators-item">
+          <h3>Índice de Elucidação - Denúncias.</h3>
+          <span>Número de procedimentos com denúncia</span>
+          <SuccessIndicatorsChart data={successIndicators.pElucidacoes} color="#F8BD6C" />
+        </div>
 
-      <div className="successIndicators-item">
-        <h3>Índice de Elucidação - Denúncias.</h3>
-        <span>[Número de procedimentos com denúncia]</span>
-        <SuccessIndicatorsChart data={successIndicators.pElucidacoes} color="#F8BD6C" />
-      </div>
-
-      <div className="successIndicators-item">
-        <h3>Índice de Finalização</h3>
-        <span>[ Andamentos que finalizam o processo]</span>
-        <SuccessIndicatorsChart data={successIndicators.pFinalizacoes} color="#71D0A4" />
+        <div className="successIndicators-item">
+          <h3>Índice de Finalização</h3>
+          <span>Andamentos que finalizam o processo</span>
+          <SuccessIndicatorsChart data={successIndicators.pFinalizacoes} color="#71D0A4" />
+        </div>
       </div>
     </div>
   );

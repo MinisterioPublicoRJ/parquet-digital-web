@@ -7,21 +7,18 @@
 
 .GenericTab-upper {
   display: flex;
-  flex: 1;
+  padding: 15px 0;
 }
 
 .GenericTab-lower {
   display: flex;
-  flex: 2.5;
-  background-color: purple;
+  flex: 1;
 }
 
 .GenericTab-lower-left {
-  background-color: pink;
   flex: 1;
 }
 
 .GenericTab-lower-right {
-  background-color: blue;
   flex: 1;
 }

@@ -85,7 +85,6 @@ class YourDesk extends React.Component {
     try {
       const params = { ...this.user, docType: dbName };
       tabDetail = await Api.getIntegratedDeskDetails(params);
-      console.log('tabDetail', tabDetail);
     } catch (e) {
       tabDetailError = true;
     } finally {
@@ -179,7 +178,7 @@ class YourDesk extends React.Component {
     return (
       <article className="desk-outer">
         <div className="desk-header">
-          <SectionTitle value="Sua Mesa" />
+          <SectionTitle value="Sua Mesa" glueToTop />
           <div className="desk-controlers">
             {buttonList.map(buttonTitle => (
               <ControlButton

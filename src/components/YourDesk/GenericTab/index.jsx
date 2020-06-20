@@ -4,16 +4,35 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import Spinner from '../../layoutPieces/Spinner';
 import MetricsFormatter from './MetricsFormatter';
+import Ranking from '../Ranking';
 
 const propTypes = {
   error: PropTypes.bool.isRequired,
   tab: PropTypes.string.isRequired,
   tabTitle: PropTypes.string.isRequired,
+  ranks: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          text: PropTypes.string,
+          value: PropTypes.number,
+        }),
+      ),
+    }),
+  ),
+  map: PropTypes.shape({}),
+  metrics: PropTypes.shape({}),
 };
 
-function GenericTab({ tab, error, metrics, rank, map, tabTitle }) {
-  // metrics, rank and map will be undefined until the API response comes back
-  console.log('tab', tab, tabTitle);
+// metrics, rank and map will be undefined until the API response comes back
+const defaultProps = {
+  metrics: undefined,
+  ranks: undefined,
+  map: undefined,
+};
+
+function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
   const loading = !error && !metrics;
   if (loading) {
     return <Spinner size="large" />;
@@ -23,6 +42,8 @@ function GenericTab({ tab, error, metrics, rank, map, tabTitle }) {
   }
 
   const hasMetrics = Object.keys(metrics).length;
+  const hasRank = ranks.length;
+  const hasRight = Object.keys(map).length || ranks.length > 1;
 
   return (
     <div className="GenericTab-main">
@@ -31,18 +52,28 @@ function GenericTab({ tab, error, metrics, rank, map, tabTitle }) {
           <MetricsFormatter metrics={metrics} tab={tab} />
         ) : (
           <p className="paragraphWrapper">
-            {`Não existem dados de ${tabTitle} para o último mês.`}
+            {`Não existem métricas de ${tabTitle} para o último mês.`}
           </p>
         )}
       </div>
 
       <div className="GenericTab-lower">
-        <div className="GenericTab-lower-left">rank goes here!</div>
-        <div className="GenericTab-lower-right">rank or map here!</div>
+        {hasRank && (
+          <div className="GenericTab-lower-left">
+            <Ranking data={ranks[0].data} title={ranks[0].name} />
+          </div>
+        )}
+        {hasRight && (
+          <div className="GenericTab-lower-right">
+            {/* Maps will be added in the future */}
+            <Ranking data={ranks[1].data} title={ranks[1].name} />
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 GenericTab.propTypes = propTypes;
+GenericTab.defaultProps = defaultProps;
 export default GenericTab;

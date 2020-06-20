@@ -17,7 +17,7 @@ function rankingsTransform(rankArray) {
   return rankArray.map(rankObj => {
     const cleanData = rankObj.data.map(item => ({
       text: item.nm_orgao,
-      value: item.valor ? item.valor : formatPercentage(item.valor_percentual),
+      value: item.valor_percentual ? formatPercentage(item.valor_percentual) : item.valor,
     }));
     return {
       name: rankObj.ranking_fieldname,

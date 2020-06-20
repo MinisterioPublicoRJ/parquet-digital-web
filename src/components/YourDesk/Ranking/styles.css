@@ -1,0 +1,26 @@
+.ranking-list {
+  color: var(--dark);
+  font-family: var(--defaultFont);
+  font-size: calc(var(--defaultTextSize) * 0.6);
+  padding: 0;
+}
+
+.ranking-outer h3 {
+  margin-top: 0;
+}
+
+.ranking-li {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1vh;
+}
+
+.ranking-featured {
+  font-size: calc(var(--defaultTextSize) * 1.5);
+  line-height: calc(var(--defaultTextSize) * 1.5);
+  margin-left: 0.5vw;
+}
+
+.ranking-label {
+  margin-left: 1vw;
+}

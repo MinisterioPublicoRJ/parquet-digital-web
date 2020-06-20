@@ -4,6 +4,7 @@ const NOMES_PROMOTORIAS = {
   3: 'Promotorias de Tutela Coletiva (Meio Ambiente e Consumidor)',
   4: 'Promotorias Criminais, de Juizados e/ou Investigações',
 
+  20: 'Tutela Coletiva Ampla',
   23: 'Tutela Coletiva - Cidadania e Consumidor',
   24: 'Tutela Coletiva - Meio Ambiente e Consumidor',
   25: 'Tutela Coletiva - Cidadania Ampla',

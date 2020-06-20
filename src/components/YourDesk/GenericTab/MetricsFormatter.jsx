@@ -30,6 +30,41 @@ function courtCasesMetrics({ nrAcoesUltimos60Dias, variacao12Meses }) {
   );
 }
 
+function inquiriesMetrics({
+  nrDocumentosDistintosAtual,
+  nrAberturasVistaAtual,
+  nrAproveitamentosAtual,
+  variacaoAproveitamentos,
+}) {
+  const formattedVariation = formatPercentage(Math.abs(variacaoAproveitamentos));
+  return (
+    <p className="paragraphWrapper">
+      Constatei que
+      <strong>{` ${nrDocumentosDistintosAtual} inquéritos passaram por você `}</strong>
+      nos últimos 30 dias, com
+      <strong>{` ${nrAberturasVistaAtual} aberturas de vista`}</strong>. Você aproveitou
+      <strong>{` ${nrAproveitamentosAtual} casos para denúncias, cautelares e arquivamentos. Aumento de ${formattedVariation} `}</strong>
+      nos últimos 30 dias.
+    </p>
+  );
+}
+
+function aispsMetrics({ variacaoAcervo }) {
+  const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
+  return (
+    <p className="paragraphWrapper">
+      Houve
+      {variacaoAcervo > 0 ? ' um ' : ' uma '}
+      <strong>
+        {` ${
+          variacaoAcervo > 0 ? 'aumento' : 'redução'
+        } de ${formattedVariation} no número de procedimentos da sua AISP `}
+      </strong>
+      nos últimos 30 dias.
+    </p>
+  );
+}
+
 export default function MetricsFormatter({ metrics, tab }) {
   console.log('tab', tab, metrics);
   switch (tab) {
@@ -37,6 +72,10 @@ export default function MetricsFormatter({ metrics, tab }) {
       return openInvestigationsMetrics(metrics);
     case 'courtCases':
       return courtCasesMetrics(metrics);
+    case 'inquiries':
+      return inquiriesMetrics(metrics);
+    case 'aisps':
+      return aispsMetrics(metrics);
     default:
       return null;
   }

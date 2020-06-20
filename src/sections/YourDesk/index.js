@@ -204,7 +204,8 @@ class YourDesk extends React.Component {
           ) : (
             <GenericTab
               {...this.state[`${activeTab}Details`]}
-              tabType={activeTab}
+              tab={activeTab}
+              tabTitle={BUTTON_TEXTS[activeTab]}
               error={this.state[`error${capitalizeWord(activeTab)}Details`]}
             />
           )}

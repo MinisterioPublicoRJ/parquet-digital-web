@@ -8,9 +8,9 @@ export const BUTTON_TEXTS = {
   closedCasesT: `últimos 30 dias`,
   openInvestigations: `investigações\nem curso`,
   courtCases: `processos\nem juízo`,
-  pics: 'pic',
-  inquiries: 'Inquéritos',
-  aisps: 'aisp',
+  pics: 'PIC',
+  inquiries: 'inquéritos',
+  aisps: 'AISP',
 };
 
 export const BUTTON_DICT = {

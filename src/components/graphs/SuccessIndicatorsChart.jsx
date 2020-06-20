@@ -1,27 +1,37 @@
 import React from 'react';
 import { VictoryBar, VictoryStack } from 'victory';
 
-
 function SuccessIndicatorsChart() {
-  const data = [
-    {
-      user: '',
-    },
-  ];
+  const data = [{ x: 1, y: 0.08196721311475409 }];
 
-  const chartStyle = {
-    style: {
-      data: { fill: 'rgb(248, 108, 114)' },
-      height: 100,
-    },
+  const barConfig = {
+    alignment: 'center',
+    barWidth: 10,
+    data,
+    style: { data: { fill: 'red' } },
   };
- 
+
+  const grayBarConfig = {
+    alignment: 'center',
+    barWidth: 10,
+    data: [{ x: 1, y: 1 }],
+    style: { data: { fill: '#F4F5FA' } },
+  };
+
+  const chartConfig = {
+    domain: { x: [1, 1], y: [0, 1] },
+    domainPadding: 0,
+    height: 10,
+    horizontal: true,
+    padding: 0,
+  };
 
   return (
-    <div className="box-chart-success">
-        <VictoryStack {...chartStyle} maxDomain={{ x: 1 }} horizontal>
-          <VictoryBar {...chartStyle} maxDomain={{ x: 1 }} data={data} x="user"  />
-        </VictoryStack>
+    <div>
+      <VictoryStack {...chartConfig}>
+        <VictoryBar {...barConfig} />
+        <VictoryBar {...grayBarConfig} />
+      </VictoryStack>
     </div>
   );
 }

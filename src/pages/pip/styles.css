@@ -18,27 +18,28 @@
 @media (min-width: 481px) and (max-width: 1025px) {
   .pip-grid {
     grid-template-areas:
-    'today today'
-    'desk desk'
-    'radar alerts'
-    'mainInvestigated indicators'
-    'processingTime processingTime';
+      'today today'
+      'desk desk'
+      'radar alerts'
+      'mainInvestigated indicators'
+      'processingTime processingTime';
   }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
   .pip-grid {
+    height: 450vh;
+    grid-template-rows: repeat(9, minmax(0, 1fr));
     grid-template-areas:
       'today'
       'desk'
       'desk'
       'radar'
       'alerts'
-      'processes'
-      'processingTime'
-      'processingTime'
       'mainInvestigated'
-      'indicators';
+      'indicators'
+      'processingTime'
+      'processingTime';
   }
 }

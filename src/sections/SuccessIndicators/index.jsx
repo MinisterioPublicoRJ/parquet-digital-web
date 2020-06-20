@@ -15,7 +15,6 @@ const SuccessIndicators = () => {
       setLoading(true);
       try {
         const response = await Api.getsuccessIndicators(getUser());
-        console.log('res', response);
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);
@@ -30,22 +29,27 @@ const SuccessIndicators = () => {
     return <Spinner size="medium" />;
   }
 
-  const obj = successIndicators;
   return (
-    <div className="page-success-indicators">
-      <SectionTitle value="Indicadores de sucesso" />
+    <div className="successIndicators-outer">
+      <SectionTitle value="Indicadores de sucesso" glueToTop />
 
-      <h3>Resolutividade</h3>
-      <p>[denúncias + arquivamentos + acordos/vistas abertas]</p>
-      <SuccessIndicatorsChart data={obj.taxa_resolutivdade} />
+      <div className="successIndicators-item">
+        <h3>Resolutividade</h3>
+        <span>[denúncias + arquivamentos + acordos/vistas abertas]</span>
+        <SuccessIndicatorsChart data={successIndicators.taxaResolutivdade} color="#F86C72" />
+      </div>
 
-      <h3>Índice de Elucidação - Denúncias.</h3>
-      <p>[Número de procedimentos com denúncia]</p>
-      <SuccessIndicatorsChart data={obj.p_elucidacoes} />
+      <div className="successIndicators-item">
+        <h3>Índice de Elucidação - Denúncias.</h3>
+        <span>[Número de procedimentos com denúncia]</span>
+        <SuccessIndicatorsChart data={successIndicators.pElucidacoes} color="#F8BD6C" />
+      </div>
 
-      <h3>Índice de Finalização</h3>
-      <p>[ Andamentos que finalizam o processo]</p>
-      <SuccessIndicatorsChart data={obj.p_finalizacoes} />
+      <div className="successIndicators-item">
+        <h3>Índice de Finalização</h3>
+        <span>[ Andamentos que finalizam o processo]</span>
+        <SuccessIndicatorsChart data={successIndicators.pFinalizacoes} color="#71D0A4" />
+      </div>
     </div>
   );
 };

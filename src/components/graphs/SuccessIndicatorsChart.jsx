@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { VictoryBar, VictoryStack } from 'victory';
 
-function SuccessIndicatorsChart() {
-  const data = [{ x: 1, y: 0.08196721311475409 }];
+const propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })).isRequired,
+  color: PropTypes.string.isRequired,
+};
 
+function SuccessIndicatorsChart({ data, color }) {
   const barConfig = {
     alignment: 'center',
     barWidth: 10,
     data,
-    style: { data: { fill: 'red' } },
+    style: { data: { fill: color } },
   };
 
   const grayBarConfig = {
@@ -35,4 +39,5 @@ function SuccessIndicatorsChart() {
     </div>
   );
 }
+SuccessIndicatorsChart.propTypes = propTypes;
 export default SuccessIndicatorsChart;

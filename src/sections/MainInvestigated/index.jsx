@@ -168,7 +168,7 @@ class MainInvestigated extends React.Component {
 
     return (
       <article className="mainInvestigated-outer">
-        <SectionTitle value="Principais Investigados" />
+        <SectionTitle value="Principais Investigados" glueToTop />
         <div className="mainInvestigated-tableWrapper">
           <Table data={tableData} columns={this.tableColumns} showHeader />
         </div>

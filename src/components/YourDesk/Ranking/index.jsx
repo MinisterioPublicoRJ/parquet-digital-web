@@ -26,7 +26,7 @@ function Ranking({ data, title }) {
               <span className="ranking-icon">
                 <Badge width={30} number={i + 1} />
               </span>
-              <strong className="ranking-featured">{item.value}</strong>
+              <strong className="ranking-featured">{item.value || '0'}</strong>
               <span className="ranking-label">{item.text}</span>
             </li>
           );

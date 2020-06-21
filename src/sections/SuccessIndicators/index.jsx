@@ -42,7 +42,7 @@ const SuccessIndicators = () => {
           <h3>Resolutividade</h3>
           <span>Denúncias + arquivamentos + acordos/vistas abertas("i")</span>
           <div className="first-box-tooltip">
-            <strong>30%</strong>
+            <strong>100%</strong>
           </div>
           <SuccessIndicatorsChart className="chart" data={successIndicators.taxaResolutivdade} color="#F86C72" />
         </div>
@@ -60,7 +60,7 @@ const SuccessIndicators = () => {
           <h3>Índice de Finalização</h3>
           <span>Andamentos que finalizam o processo("i")</span>
           <div className="third-box-tooltip">
-            <strong>30%</strong>
+            <strong>40%</strong>
           </div>
           <SuccessIndicatorsChart className="chart" data={successIndicators.pFinalizacoes} color="#71D0A4" />
         </div>

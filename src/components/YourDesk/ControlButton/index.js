@@ -6,18 +6,20 @@ import { Spinner } from '../../layoutPieces';
 
 const propTypes = {
   isActive: PropTypes.bool,
-  number: PropTypes.number.isRequired,
+  number: PropTypes.number,
   text: PropTypes.string.isRequired,
   isButton: PropTypes.bool,
   loading: PropTypes.bool.isRequired,
   buttonPressed: PropTypes.func,
-  error: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
 };
 
 const defaultProps = {
   isActive: false,
   isButton: false,
   buttonPressed: null,
+  error: false,
+  number: 0,
 };
 
 function ControlButton({ isActive, number, text, isButton, loading, buttonPressed, error }) {

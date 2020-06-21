@@ -13,12 +13,11 @@
 }
 
 .desk-tabs {
-  /* background-color: orange; */
   display: flex;
   flex: 1;
   flex-direction: column;
   overflow: hidden;
-  padding: 20px 0;
+  padding: 20px 0 0 0;
 }
 
 /* PHONES */

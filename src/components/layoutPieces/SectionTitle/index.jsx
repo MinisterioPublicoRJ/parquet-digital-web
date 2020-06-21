@@ -6,7 +6,7 @@ import './styles.css';
 const propTypes = {
   value: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  glueToTop: PropTypes.string,
+  glueToTop: PropTypes.bool,
 };
 
 const defaultProps = {

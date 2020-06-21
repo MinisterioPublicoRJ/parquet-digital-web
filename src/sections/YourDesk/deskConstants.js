@@ -10,7 +10,7 @@ export const BUTTON_TEXTS = {
   courtCases: `processos\nem juízo`,
   pics: 'PIC',
   inquiries: 'inquéritos',
-  aisps: 'AISP',
+  aisps: 'AISPs',
 };
 
 export const BUTTON_DICT = {

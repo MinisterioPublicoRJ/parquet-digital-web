@@ -13,7 +13,7 @@ const axisLabelsTable = {
     position: 'W',
   },
   openCases: {
-    label: 'Abertura_de Vista',
+    label: 'Devoluções_à DP',
     position: 'SW',
   },
   complaints: {

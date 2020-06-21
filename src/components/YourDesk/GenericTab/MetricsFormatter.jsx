@@ -59,7 +59,7 @@ function aispsMetrics({ variacaoAcervo }) {
       <strong>
         {` ${
           variacaoAcervo > 0 ? 'aumento' : 'redução'
-        } de ${formattedVariation} no número de procedimentos da sua AISP `}
+        } de ${formattedVariation} no número de procedimentos das suas AISPs `}
       </strong>
       nos últimos 30 dias.
     </p>

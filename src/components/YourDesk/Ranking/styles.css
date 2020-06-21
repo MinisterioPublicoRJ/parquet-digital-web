@@ -11,16 +11,30 @@
 
 .ranking-li {
   display: flex;
-  flex-wrap: wrap;
-  padding: 1vh;
+  padding: 10px 0;
 }
 
 .ranking-featured {
   font-size: calc(var(--defaultTextSize) * 1.5);
   line-height: calc(var(--defaultTextSize) * 1.5);
-  margin-left: 0.5vw;
+  margin-left: 10px;
 }
 
 .ranking-label {
   margin-left: 1vw;
+}
+
+
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+  .ranking-li {
+    flex-wrap: wrap;
+  }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .ranking-li {
+    flex-wrap: wrap;
+  }
 }

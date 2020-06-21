@@ -187,7 +187,7 @@ class Today extends Component {
     const user = this.cleanUsername();
     const hours = new Date().getHours();
     const gender = this.props.user.sexo;
-    console.log('gender', gender);
+    
     let timeGreeting;
 
     if (hours >= 6 && hours < 12) {

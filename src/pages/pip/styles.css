@@ -6,9 +6,9 @@
     'today today radar alerts'
     'desk desk radar alerts'
     'desk desk radar alerts'
-    'desk desk mainInvestigated processes'
-    'desk desk mainInvestigated processes'
-    'desk desk mainInvestigated processes'
+    'desk desk mainInvestigated indicators'
+    'desk desk mainInvestigated indicators '
+    'desk desk mainInvestigated indicators '
     'desk desk processingTime processingTime'
     'desk desk processingTime processingTime'
     'desk desk processingTime processingTime';
@@ -21,24 +21,25 @@
       'today today'
       'desk desk'
       'radar alerts'
-      'processes processes'
-      'processingTime processingTime'
-      'mainInvestigated mainInvestigated';
+      'mainInvestigated indicators'
+      'processingTime processingTime';
   }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
   .pip-grid {
+    height: 450vh;
+    grid-template-rows: repeat(9, minmax(0, 1fr));
     grid-template-areas:
       'today'
       'desk'
       'desk'
       'radar'
       'alerts'
-      'processes'
+      'mainInvestigated'
+      'indicators'
       'processingTime'
-      'processingTime'
-      'mainInvestigated';
+      'processingTime';
   }
 }

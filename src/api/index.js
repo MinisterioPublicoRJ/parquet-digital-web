@@ -5,11 +5,7 @@ import {
   TODAY_OUT,
   TODAY_OUTLIERS,
   TODAY_ENTRIES,
-  OPEN_CASES_URL,
   OPEN_CASES_DETAILS_URL,
-  OPEN_INVESTIGATIONS_URL,
-  COURT_CASES_URL,
-  CLOSED_CASES_URL,
   COURT_CASES_DETAILS_URL,
   OPEN_INVESTIGATIONS_DETAILS_URL,
   OPEN_CASES_LIST,
@@ -19,19 +15,17 @@ import {
   PROCESSES_LIST,
   SUCCESS_INDICATORS,
   PIP_RADAR_URL,
+  DESK_INTEGRATED,
+  DESK_DETAIL_INTEGRATED,
   PIP_MAIN_INVESTIGATIONS_URL,
   PIP_MAIN_INVESTIGATIONS_URL_ACTION,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
 import {
-  openInvestigationsTransform,
   openInvestigationsDetailsTransform,
-  openCasesTransform,
   openCasesDetailsTransform,
-  courtCasesTransform,
   courtCasesDetailsTransform,
-  closedCasesTransform,
   todayOutTransform,
   todayOutliersTransform,
   todayEntriesTransform,
@@ -42,6 +36,8 @@ import {
   successIndicatorsTransform,
   processListTransform,
   pipRadarTransform,
+  deskIntegratedTransform,
+  deskTabTransform,
 } from './transforms';
 
 import { setUser } from '../user';
@@ -91,12 +87,6 @@ const Api = (() => {
     return todayEntriesTransform(data);
   }
 
-  async function getOpenCases({ orgao, cpf, token }) {
-    const { data } = await axios.get(OPEN_CASES_URL({ orgao, cpf }), buildRequestConfig(token));
-
-    return openCasesTransform(data);
-  }
-
   async function getOpenCasesDetails({ orgao, cpf, token }) {
     const { data } = await axios.get(
       OPEN_CASES_DETAILS_URL({ orgao, cpf }),
@@ -104,12 +94,6 @@ const Api = (() => {
     );
 
     return openCasesDetailsTransform(data);
-  }
-
-  async function getOpenInvestigations({ orgao, token }) {
-    const { data } = await axios.get(OPEN_INVESTIGATIONS_URL({ orgao }), buildRequestConfig(token));
-
-    return openInvestigationsTransform(data);
   }
 
   async function getOpenInvestigationsDetails({ orgao, token }) {
@@ -121,22 +105,10 @@ const Api = (() => {
     return openInvestigationsDetailsTransform(data);
   }
 
-  async function getCourtCases({ orgao, token }) {
-    const { data } = await axios.get(COURT_CASES_URL({ orgao }), buildRequestConfig(token));
-
-    return courtCasesTransform(data);
-  }
-
   async function getCourtCasesDetails({ orgao, token }) {
     const { data } = await axios.get(COURT_CASES_DETAILS_URL({ orgao }), buildRequestConfig(token));
 
     return courtCasesDetailsTransform(data);
-  }
-
-  async function getClosedCases({ orgao, token }) {
-    const { data } = await axios.get(CLOSED_CASES_URL({ orgao }), buildRequestConfig(token));
-
-    return closedCasesTransform(data);
   }
 
   async function getOpenCasesList({ orgao, cpf, token }, list) {
@@ -187,6 +159,24 @@ const Api = (() => {
     return pipRadarTransform(data);
   }
 
+  async function getIntegratedDeskDocs({ orgao, token, cpf, docType }) {
+    const { data } = await axios.get(
+      DESK_INTEGRATED({ orgao, cpf, docType }),
+      buildRequestConfig(token),
+    );
+
+    return deskIntegratedTransform(data);
+  }
+
+  async function getIntegratedDeskDetails({ orgao, token, cpf, docType }) {
+    const { data } = await axios.get(
+      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType }),
+      buildRequestConfig(token),
+    );
+
+    return deskTabTransform(data);
+  }
+
   async function getMainInvestigated({ orgao, cpf, token }) {
     const { data } = await axios.get(
       PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
@@ -213,11 +203,7 @@ const Api = (() => {
     getTodayOutData,
     getTodayOutliersData,
     getTodayEntriesData,
-    getOpenCases,
     getOpenCasesDetails,
-    getOpenInvestigations,
-    getCourtCases,
-    getClosedCases,
     getOpenInvestigationsDetails,
     getCourtCasesDetails,
     getOpenCasesList,
@@ -227,6 +213,8 @@ const Api = (() => {
     getProcessList,
     getsuccessIndicators,
     getPipRadarData,
+    getIntegratedDeskDocs,
+    getIntegratedDeskDetails,
     getMainInvestigated,
     actionMainInvestigated,
   };

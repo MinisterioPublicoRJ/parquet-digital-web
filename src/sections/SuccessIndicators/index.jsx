@@ -15,8 +15,6 @@ const SuccessIndicators = () => {
       setLoading(true);
       try {
         const response = await Api.getsuccessIndicators(getUser());
-        console.log(response);
-
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);
@@ -31,7 +29,6 @@ const SuccessIndicators = () => {
     return <Spinner size="medium" />;
   }
 
-  console.log(successIndicators);
   // this values will never be lower than zero
   const resolutividadePercent = formatPercent(successIndicators.pResolutividade[0].y);
   const elucidacoesPercent = formatPercent(successIndicators.pElucidacoes[0].y);
@@ -60,7 +57,9 @@ const SuccessIndicators = () => {
           <div className="second-box-tooltip">
             <strong>{elucidacoesPercent}</strong>
           </div>
-          <SuccessIndicatorsChart data={successIndicators.pElucidacoes} color="#F8BD6C" />
+          <SuccessIndicatorsChart 
+          data={successIndicators.pElucidacoes}
+          color="#F8BD6C" />
         </div>
 
         <div className="successIndicators-item">

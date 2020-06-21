@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { formatPercent } from '../../utils'
 import './styles.css';
 import Api from '../../api';
 import { SectionTitle, Spinner } from '../../components';
@@ -13,8 +13,13 @@ const SuccessIndicators = () => {
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
+      let percentile;
       try {
         const response = await Api.getsuccessIndicators(getUser());
+        console.log(response)
+        percentile = formatPercent(response);
+        console.log(percentile)
+
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);
@@ -30,28 +35,37 @@ const SuccessIndicators = () => {
   }
 
   return (
-    <div className="successIndicators-outer">
+    <article className="successIndicators-outer">
       <SectionTitle value="Indicadores de sucesso" glueToTop />
       <div className="successIndicators-main">
         <div className="successIndicators-item">
           <h3>Resolutividade</h3>
-          <span>Denúncias + arquivamentos + acordos/vistas abertas</span>
-          <SuccessIndicatorsChart data={successIndicators.taxaResolutivdade} color="#F86C72" />
+          <span>Denúncias + arquivamentos + acordos/vistas abertas("i")</span>
+          <div className="first-box-tooltip">
+            <strong>30%</strong>
+          </div>
+          <SuccessIndicatorsChart className="chart" data={successIndicators.taxaResolutivdade} color="#F86C72" />
         </div>
 
         <div className="successIndicators-item">
           <h3>Índice de Elucidação - Denúncias.</h3>
-          <span>Número de procedimentos com denúncia</span>
+          <span>Número de procedimentos com denúncia("i")</span>
+          <div className="second-box-tooltip">
+            <strong>30%</strong>
+          </div>
           <SuccessIndicatorsChart data={successIndicators.pElucidacoes} color="#F8BD6C" />
         </div>
 
         <div className="successIndicators-item">
           <h3>Índice de Finalização</h3>
-          <span>Andamentos que finalizam o processo</span>
-          <SuccessIndicatorsChart data={successIndicators.pFinalizacoes} color="#71D0A4" />
+          <span>Andamentos que finalizam o processo("i")</span>
+          <div className="third-box-tooltip">
+            <strong>30%</strong>
+          </div>
+          <SuccessIndicatorsChart className="chart" data={successIndicators.pFinalizacoes} color="#71D0A4" />
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

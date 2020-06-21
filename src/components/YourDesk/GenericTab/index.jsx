@@ -44,7 +44,8 @@ function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
   const hasMetrics = Object.keys(metrics).length;
   const hasRank = ranks.length;
   const hasRight = Object.keys(map).length || ranks.length > 1;
-
+  console.log('metrics', metrics);
+  console.log('tab', tab);
   return (
     <div className="GenericTab-main">
       <div className="GenericTab-upper">

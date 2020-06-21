@@ -18,7 +18,7 @@ function courtCasesMetrics({ nrAcoesUltimos60Dias, variacao12Meses }) {
   return (
     <p className="paragraphWrapper">
       Você propôs
-      <strong>{` ${nrAcoesUltimos60Dias} ações `}</strong>
+      <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
       nos últimos 60 dias, com
       <strong>
         {variacao12Meses >= 0
@@ -40,10 +40,11 @@ function inquiriesMetrics({
   return (
     <p className="paragraphWrapper">
       Constatei que
-      <strong>{` ${nrDocumentosDistintosAtual} inquéritos passaram por você `}</strong>
+      <strong>{` ${nrDocumentosDistintosAtual} ${nrDocumentosDistintosAtual === 1 ? 'inquérito passou' : 'inquéritos passaram'} por você `}</strong>
       nos últimos 30 dias, com
-      <strong>{` ${nrAberturasVistaAtual} aberturas de vista`}</strong>. Você aproveitou
-      <strong>{` ${nrAproveitamentosAtual} casos para denúncias, cautelares e arquivamentos. Aumento de ${formattedVariation} `}</strong>
+      <strong>{` ${nrAberturasVistaAtual} ${nrAberturasVistaAtual === 1 ? 'abertura' : 'aberturas'} de vista`}</strong>
+      . Você aproveitou
+      <strong>{` ${nrAproveitamentosAtual} ${nrAproveitamentosAtual === 1 ? 'caso' : 'casos'} para denúncias, cautelares e arquivamentos. Aumento de ${formattedVariation} `}</strong>
       nos últimos 30 dias.
     </p>
   );
@@ -65,8 +66,41 @@ function aispsMetrics({ variacaoAcervo }) {
   );
 }
 
+function picsMetrics({
+  nrDocumentosDistintosAtual,
+  nrInstauradosAtual,
+  nrAberturasVistaAtual,
+  nrAproveitamentosAtual,
+  variacaoAberturasVista,
+}) {
+  const formattedVariation = formatPercentage(Math.abs(variacaoAberturasVista));
+  return (
+    <p className="paragraphWrapper">
+      Constatei que
+      <strong>
+        {` ${nrDocumentosDistintosAtual} ${
+          nrDocumentosDistintosAtual === 1 ? 'PIC passou' : 'PICs passaram'
+        } por você `}
+      </strong>
+      nos últimos 30 dias, sendo que
+      <strong>{` ${nrInstauradosAtual} `}</strong>
+      deles
+      {nrInstauradosAtual === 1 ? ' foi ' : ' foram '}
+      instaurados nesse período.
+      {nrAberturasVistaAtual === 1
+        ? ' Foi 1 abertura '
+        : ` Foram ${nrAberturasVistaAtual} aberturas `}
+      de vista, e você aproveitou
+      <strong>{` ${nrAproveitamentosAtual} `}</strong>
+      {nrAproveitamentosAtual === 1 ? ' caso para ' : ` casos para `}
+      <strong>denúncias, cautelares e arquivamentos.</strong>
+      <strong>{`${variacaoAberturasVista > 0 ? ' Aumento' : ' Dimininuição'} de ${formattedVariation} `}</strong>
+      nos últimos 30 dias.
+    </p>
+  );
+}
+
 export default function MetricsFormatter({ metrics, tab }) {
-  console.log('tab', tab, metrics);
   switch (tab) {
     case 'openInvestigations':
       return openInvestigationsMetrics(metrics);
@@ -76,6 +110,8 @@ export default function MetricsFormatter({ metrics, tab }) {
       return inquiriesMetrics(metrics);
     case 'aisps':
       return aispsMetrics(metrics);
+    case 'pics':
+      return picsMetrics(metrics);
     default:
       return null;
   }

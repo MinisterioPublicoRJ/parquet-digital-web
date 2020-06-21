@@ -52,7 +52,7 @@ const SuccessIndicators = () => {
         </div>
 
         <div className="successIndicators-item">
-          <h3>Índice de Elucidação - Denúncias.</h3>
+          <h3>Índice de Elucidação de Casos</h3>
           <span>Número de procedimentos com denúncia/Número de procedimentos do Grupo de vistas abertas, no período de 18 a 6 meses atrás</span>
           <div className="second-box-tooltip">
             <strong>{elucidacoesPercent}</strong>

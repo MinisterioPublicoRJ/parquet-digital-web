@@ -13,12 +13,9 @@ const SuccessIndicators = () => {
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
-      let percentile;
       try {
         const response = await Api.getsuccessIndicators(getUser());
         console.log(response)
-        percentile = formatPercent(response);
-        console.log(percentile)
 
         setSuccessIndicators(response);
       } catch (e) {
@@ -33,6 +30,9 @@ const SuccessIndicators = () => {
   if (loading) {
     return <Spinner size="medium" />;
   }
+  
+  const percent = formatPercent(successIndicators);
+  console.log(percent)
 
   return (
     <article className="successIndicators-outer">

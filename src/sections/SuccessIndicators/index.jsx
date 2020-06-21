@@ -40,7 +40,7 @@ const SuccessIndicators = () => {
       <div className="successIndicators-main">
         <div className="successIndicators-item">
           <h3>Resolutividade</h3>
-          <span>Denúncias + arquivamentos + acordos/vistas abertas("i")</span>
+          <span>Denúncias + arquivamentos + acordos/vistas abertas, nos últimos 30 dias</span>
           <div className="first-box-tooltip">
             <strong>{resolutividadePercent}</strong>
           </div>
@@ -53,7 +53,7 @@ const SuccessIndicators = () => {
 
         <div className="successIndicators-item">
           <h3>Índice de Elucidação - Denúncias.</h3>
-          <span>Número de procedimentos com denúncia("i")</span>
+          <span>Número de procedimentos com denúncia/Número de procedimentos do Grupo, no período de 18 a 6 meses atrás</span>
           <div className="second-box-tooltip">
             <strong>{elucidacoesPercent}</strong>
           </div>
@@ -64,7 +64,7 @@ const SuccessIndicators = () => {
 
         <div className="successIndicators-item">
           <h3>Índice de Finalização</h3>
-          <span>Andamentos que finalizam o processo("i")</span>
+          <span>Denúncias, arquivamentos, acordos/Número de procedimentos do Grupo, no período de 18 a 6 meses atrás</span>
           <div className="third-box-tooltip">
             <strong>{finalizacoesPercent}</strong>
           </div>

@@ -282,6 +282,10 @@ const AreaLabel = props => {
   const { internalLabel } = labelPositionsTable[position];
   const { dx, dy } = internalLabel[y > 60 ? 'inverted' : 'normal'];
 
+  const labelSize = datum.label.toString().length;
+
+  console.log(x, labelSize);
+
   return (
     <VictoryPortal>
       <g>
@@ -289,9 +293,9 @@ const AreaLabel = props => {
           fill="rgba(0,155,255, .7)"
           stroke="#ffffff"
           strokeWith={1}
-          x={props.x + dx - 20}
+          x={props.x + dx + (-10 + 5 * labelSize) - 10 * labelSize}
           y={props.y + dy - 12}
-          width={42}
+          width={10 * labelSize + 20}
           height={25}
         />
         <VictoryLabel

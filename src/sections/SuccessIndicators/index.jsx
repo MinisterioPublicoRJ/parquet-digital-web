@@ -45,10 +45,11 @@ const SuccessIndicators = () => {
           <div className="first-box-tooltip">
             <strong>{resolutividadePercent}</strong>
           </div>
+
           <SuccessIndicatorsChart
             className="chart"
             data={successIndicators.pResolutividade}
-            color="#F86C72"
+            color={ resolutividadePercent === '0%' ? "#f8f9fb" : "#F86C72" }
           />
         </div>
         <div className="successIndicators-item">
@@ -59,9 +60,9 @@ const SuccessIndicators = () => {
           </div>
           <SuccessIndicatorsChart 
           data={successIndicators.pElucidacoes}
-          color="#F8BD6C" />
+          color={ elucidacoesPercent === '0%' ? "#f8f9fb" : "#F8BD6C" }
+          />
         </div>
-
         <div className="successIndicators-item">
           <h3>Índice de Finalização</h3>
           <span>Denúncias, arquivamentos, acordos/Número de procedimentos do Grupo de vistas abertas, no período de 18 a 6 meses atrás</span>
@@ -71,7 +72,7 @@ const SuccessIndicators = () => {
           <SuccessIndicatorsChart
             className="chart"
             data={successIndicators.pFinalizacoes}
-            color="#71D0A4"
+            color={ finalizacoesPercent === '0%' ? "#f8f9fb" : "#71D0A4" }
           />
         </div>
       </div>

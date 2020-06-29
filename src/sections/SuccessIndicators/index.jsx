@@ -16,12 +16,13 @@ const SuccessIndicators = () => {
       try {
         const response = await Api.getsuccessIndicators(getUser());
         setSuccessIndicators(response);
+        console.log(response);
       } catch (e) {
         setLoading(true);
       } finally {
         setLoading(false);
       }
-    };
+    };  
     loadData();
   }, []);
 
@@ -30,9 +31,9 @@ const SuccessIndicators = () => {
   }
 
   // this values will never be lower than zero
-  const resolutividadePercent = formatPercent(successIndicators.pResolutividade[0].y);
-  const elucidacoesPercent = formatPercent(successIndicators.pElucidacoes[0].y);
-  const finalizacoesPercent = formatPercent(successIndicators.pFinalizacoes[0].y);
+  const resolutividadePercent = successIndicators.pResolutividade ? formatPercent(successIndicators.pResolutividade[0].y): '0%';
+  const elucidacoesPercent = successIndicators.pElucidacoes ? formatPercent(successIndicators.pElucidacoes[0].y): '0%';
+  const finalizacoesPercent = successIndicators.pFinalizacoes ? formatPercent(successIndicators.pFinalizacoes[0].y): '0%';
 
   return (
     <article className="successIndicators-outer">
@@ -50,7 +51,6 @@ const SuccessIndicators = () => {
             color="#F86C72"
           />
         </div>
-
         <div className="successIndicators-item">
           <h3>Índice de Elucidação de Casos</h3>
           <span>Número de procedimentos com denúncia/Número de procedimentos do Grupo de vistas abertas, no período de 18 a 6 meses atrás</span>

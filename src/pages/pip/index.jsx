@@ -5,12 +5,13 @@ import '../styles.css';
 import './styles.css';
 
 import {
-  Alerts,
-  ProcessList,
   Today,
-  PerformanceRadar,
-  ProcessingTime,
   YourDesk,
+  Alerts,
+  PerformanceRadar,
+  MainInvestigated,
+  SuccessIndicators,
+  ProcessingTime,
 } from '../../sections';
 
 const propTypes = { userName: PropTypes.string.isRequired };
@@ -18,12 +19,13 @@ const propTypes = { userName: PropTypes.string.isRequired };
 function Pip({ userName, user }) {
   return (
     <div className="base-grid pip-grid">
-      <Alerts user={userName} />
-      <ProcessList user={userName} />
-      <PerformanceRadar.Pip user={userName} />
-      <ProcessingTime user={userName} />
       <Today user={user} userName={userName} />
       <YourDesk user={userName} />
+      <Alerts user={userName} />
+      <PerformanceRadar.Pip user={userName} />
+      <MainInvestigated user={userName} />
+      <SuccessIndicators user={userName} />
+      <ProcessingTime user={user} />
     </div>
   );
 }

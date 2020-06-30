@@ -17,6 +17,8 @@ const getCategoryByType = user => {
   switch (user.tipo_orgao) {
     case 1:
       return 'tutelaInqueritosCivis';
+    case 2:
+      return 'pipInvestigacoes';
     default:
       return '';
   }
@@ -105,8 +107,8 @@ const ProcessingTime = ({ user }) => {
   return (
     <article className="page-tramitacao">
       <div className="pt-texts">
-        <SectionTitle value="tempo de tramitação" />
-        <p>
+        <SectionTitle value="tempo de tramitação" glueToTop />
+        <p align="justify">
           Avaliei que o tempo médio de tramitação de
           {` ${typeDisplayableName} `}
           na sua promotoria,

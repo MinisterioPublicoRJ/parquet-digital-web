@@ -39,7 +39,8 @@
 .today-robotPic {
   align-items: flex-end;
   display: flex;
-  height: 100%;
+  height: 80%;
+  width: 50%;
   justify-content: flex-end;
   position: absolute;
   right: 0;

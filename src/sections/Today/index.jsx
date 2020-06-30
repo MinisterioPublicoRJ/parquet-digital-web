@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 import Api from '../../api';
-import { getUser } from '../../user';
+import PromotronGif from '../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
 import { SectionTitle, MainTitle, Spinner } from '../../components';
 
@@ -11,7 +11,6 @@ import { formatPercentage, capitalizeTitle } from '../../utils';
 
 const propTypes = {
   user: PropTypes.string.isRequired,
-  loadedCallback: PropTypes.func.isRequired,
 };
 
 class Today extends Component {
@@ -59,11 +58,12 @@ class Today extends Component {
    * @return {void}
    */
   async loadPercentages() {
+    const { user } = this.props;
     const loadingTodayOut = false;
     let errorTodayOut = false;
     let percentile;
     try {
-      const res = await Api.getTodayOutData(getUser());
+      const res = await Api.getTodayOutData(user);
       percentile = formatPercentage(res);
     } catch (e) {
       errorTodayOut = true;
@@ -82,12 +82,13 @@ class Today extends Component {
 
   // loadCollection Tutela
   async loadCollection() {
+    const { user } = this.props;
     let collectionPhrase;
     let groupName;
     let errorTodayOutliers = false;
     try {
       const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(getUser(), today);
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(user, today);
 
       collectionPhrase = this.analyzeCollection(primQ, terQ, acervoQtd);
       groupName = NOMES_PROMOTORIAS[cod];
@@ -112,10 +113,11 @@ class Today extends Component {
    * @return {void}
    */
   async loadEntriesInfo() {
+    const { user } = this.props;
     let entriesParagraph;
     let errorTodayEntries = false;
     try {
-      const { hout, lout, numEntries } = await Api.getTodayEntriesData(getUser());
+      const { hout, lout, numEntries } = await Api.getTodayEntriesData(user);
       entriesParagraph = this.analyzeEntries(hout, lout, numEntries);
     } catch (e) {
       errorTodayEntries = true;
@@ -184,6 +186,8 @@ class Today extends Component {
   assembleGreeting() {
     const user = this.cleanUsername();
     const hours = new Date().getHours();
+    const gender = this.props.user.sexo;
+    
     let timeGreeting;
 
     if (hours >= 6 && hours < 12) {
@@ -194,7 +198,7 @@ class Today extends Component {
       timeGreeting = 'boa noite';
     }
 
-    return `Olá ${user}, ${timeGreeting}!`;
+    return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${user}, ${timeGreeting}!`;
   }
 
   /**
@@ -202,8 +206,8 @@ class Today extends Component {
    * @return {string} First and last names, just the first letter of each capitalized
    */
   cleanUsername() {
-    const { user } = this.props;
-    const cleanUsername = user.split(' ')[0];
+    const { userName } = this.props;
+    const cleanUsername = userName.split(' ')[0];
     return capitalizeTitle(cleanUsername);
   }
 
@@ -214,7 +218,7 @@ class Today extends Component {
 
     const percentParagraph = !percentile ? null : (
       <p className="today-textArea-paragraphWrapper">
-        Nos últimos 30 dias a sua Promotoria foi mais resolutiva que
+        No último mês a sua promotoria foi mais resolutiva que
         <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
         da casa entre aquelas de mesma atribuição.
         {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
@@ -225,10 +229,11 @@ class Today extends Component {
         Você sabia que seu acervo é
         <span style={{ fontWeight: 'bold' }}>{` ${collectionPhrase} `}</span>
         dos seus colegas das
-        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>
+        ?
       </p>
     );
-    
+
     if (!doneLoading) {
       return <Spinner size="medium" />;
     }
@@ -245,12 +250,12 @@ class Today extends Component {
             {entriesParagraph}
           </div>
         </div>
-        <div className="today-robotPic">
-          <img height="100%" src={require('../../assets/svg/home.gif')} alt="robô-promoton" />
-        </div>
         <button type="button" className="today-btn">
           Ver mapa da atuação
         </button>
+        <div className="today-robotPic">
+          <img height="100%" src={PromotronGif} alt="robô-promoton" />
+        </div>
       </article>
     );
   }

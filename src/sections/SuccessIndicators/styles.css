@@ -1,0 +1,116 @@
+@import '../styles.css';
+
+.successIndicators-outer {
+  grid-area: indicators;
+  font-family: var(--defaultFont);
+  color: var(--darkBlue);
+  font-size: calc(var(--defaultTextSize) * 0.75);
+  font-weight: var(--subtitleWeight);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.successIndicators-outer h3 {
+  margin: 5px 0 5px 0;
+}
+/* Css Tooltip Phrase  */
+.successIndicators-item{
+  position: relative;
+  display: inline-block;
+}
+
+.successIndicators-item span{
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--grayTooltip);
+  color:  var(--white);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 30%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.successIndicators-item span::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--grayTooltip) transparent transparent transparent;
+}
+.successIndicators-item:hover span {
+  visibility: visible;
+  opacity: 1;
+}
+/* Css Tooltip percent  */
+
+.successIndicators-item strong{
+  visibility: hidden;
+  width: 60px;
+  color:  var(--white);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  right: 5%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.successIndicators-item .first-box-tooltip strong::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #F86C72 transparent transparent transparent;
+}
+.successIndicators-item .second-box-tooltip strong::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #F8BD6C transparent transparent transparent;
+}
+.successIndicators-item .third-box-tooltip strong::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #71D0A4 transparent transparent transparent;
+}
+.successIndicators-item:hover strong {
+  visibility: visible;
+  opacity: 1;
+}
+.first-box-tooltip strong{
+  background-color: #F86C72;
+  border-color: #F86C72 transparent transparent transparent;
+
+}
+.second-box-tooltip strong{
+  background-color: #F8BD6C;
+  border-color: #F8BD6C transparent transparent transparent;
+}
+.third-box-tooltip strong{
+  background-color: #71D0A4;
+  border-color: #71D0A4 transparent transparent transparent;
+
+}
+

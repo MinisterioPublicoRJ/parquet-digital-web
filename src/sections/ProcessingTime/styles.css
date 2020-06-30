@@ -19,10 +19,6 @@
   margin: 0;
 }
 
-.pt-texts h2 {
-  margin: 0;
-}
-
 .pt-mainBox {
   grid-area: mainBoxTime;
   color: var(--dark);

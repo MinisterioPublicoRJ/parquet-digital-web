@@ -1,29 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import { Switch, Route, HashRouter, Redirect } from 'react-router-dom';
+
+import { useAuth } from './authContext';
 import Auth from '../auth';
 import Login from '../login';
 import Dashboard from '../dashboard';
 
-const propTypes = {
-  user: PropTypes.shape({}),
-};
-const defaultProps = {
-  user: undefined,
-};
 
-function Router({ user }) {
+function Router() {
+  const { user } = useAuth();
   return (
     <HashRouter>
       <Switch>
-        <Route exact path="/" component={Auth} />
+        <Route exact path="/" component={Auth}>
+          {user ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
+        </Route>
         <Route path="/login" component={Login} />
-        <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/" />}</Route>
+        <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>
       </Switch>
     </HashRouter>
   );
 }
-Router.propTypes = propTypes;
-Router.defaultProps = defaultProps;
+
 export default Router;

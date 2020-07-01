@@ -1,14 +1,10 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import Router from './router';
+import AuthContext from './authContext';
 import Api from '../api';
-
-const AuthContext = createContext();
-
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+import { Spinner } from '../components';
 
 function AuthContextCreator() {
   const [user, setUser] = useState(null);
@@ -36,9 +32,25 @@ function AuthContextCreator() {
 }
 
 function App() {
-  const authValue = AuthContextCreator();
+  const authStore = AuthContextCreator();
+  const { user, userError } = authStore;
+  const loading = !(user || userError);
+
+  function onMount() {
+    try {
+      const token = window.localStorage.getItem('access_token');
+      authStore.tokenLogin(token);
+    } catch (e) {}
+  }
+
+  useEffect(onMount, []);
+
+  if (loading) {
+    return <Spinner size="large" />;
+  }
+
   return (
-    <AuthContext.Provider value={authValue}>
+    <AuthContext.Provider value={authStore}>
       <Router />
     </AuthContext.Provider>
   );

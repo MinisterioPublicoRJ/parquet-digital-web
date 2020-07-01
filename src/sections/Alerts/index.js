@@ -68,7 +68,6 @@ class Alerts extends React.Component {
    */
 
   
- 
   cleanAlert(alertsTotal) {
     // this will be completed for all alert types later
     let icon = null;
@@ -216,6 +215,7 @@ class Alerts extends React.Component {
         <div className="alerts-header">
           <SectionTitle value="central de alertas" />
           <div className="alerts-total">
+          <span>{alertsTotal.length}</span>
           </div>
         </div>
         <div className="alerts-body">

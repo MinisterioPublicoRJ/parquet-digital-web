@@ -40,7 +40,7 @@ import {
   deskTabTransform,
 } from './transforms';
 
-import { setUser } from '../user';
+// import { setUser } from '../user';
 
 const buildRequestConfig = jwt => ({ params: { jwt } });
 
@@ -51,7 +51,7 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN_URL, formData);
 
-    setUser(data);
+    return data;
   }
 
   /**

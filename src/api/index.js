@@ -134,13 +134,13 @@ const Api = (() => {
     return processingTimeTransform(data);
   }
 
-  async function getAlertsList({ orgao, token }) {
+  async function getAlerts({ orgao, token }) {
     const { data } = await axios.get(ALERTS_LIST({ orgao }), buildRequestConfig(token));
 
     return alertsTransform(data);
   }
-  
-  async function getAlertsListTotal({ orgao, token }) {
+
+  async function getAlertsCount({ orgao, token }) {
     const { data } = await axios.get(TOTAL_ALERTS_LIST({ orgao }), buildRequestConfig(token));
 
     return totalAlertsTransform(data);
@@ -160,7 +160,7 @@ const Api = (() => {
 
     return processListTransform(data);
   }
- 
+
   async function getPipRadarData({ orgao, token }) {
     const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
 
@@ -216,8 +216,8 @@ const Api = (() => {
     getCourtCasesDetails,
     getOpenCasesList,
     getRadarData,
-    getAlertsList,
-    getAlertsListTotal,
+    getAlerts,
+    getAlertsCount,
     getProcessingTimeData,
     getProcessList,
     getsuccessIndicators,

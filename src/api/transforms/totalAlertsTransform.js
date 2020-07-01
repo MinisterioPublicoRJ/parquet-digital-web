@@ -1,8 +1,7 @@
-export default function totalAlertsTransform(data) {
-    return data.map(alert => ({
-      sigla: alert.sigla,
-      description: alert.descricao,
-      orgao: alert.orgao,
-      count: alert.count,
-    }));
-  }
+export default function totalAlertsTransform(rawData) {
+  const cleanData = {};
+  rawData.forEach(alertType => {
+    cleanData[alertType.sigla] = { count: alertType.count };
+  });
+  return cleanData;
+}

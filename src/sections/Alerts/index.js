@@ -3,7 +3,7 @@ import React from 'react';
 import './styles.css';
 import Api from '../../api';
 import { getUser } from '../../user';
-import { SectionTitle, AlertBadge } from '../../components';
+import { SectionTitle, AlertBadge, Spinner } from '../../components';
 
 import ClockIcon from '../../assets/svg/clock';
 import CorujaGate from '../../assets/svg/corujaGate';
@@ -15,19 +15,14 @@ import Law from '../../assets/svg/law';
 import Mprj from '../../assets/svg/mprj';
 import Csi from '../../assets/svg/csi';
 
-
 class Alerts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loading: true,
-    };
+    this.state = {};
   }
 
   componentDidMount() {
     this.getAlertsList();
-  }
-  componentDidMount() {
     this.getAlertsListTotal();
   }
 
@@ -40,34 +35,33 @@ class Alerts extends React.Component {
     let errorAlerts = false;
     try {
       alerts = await Api.getAlertsList(getUser());
-      console.log(alerts);
+      console.log('alerts', alerts);
     } catch (e) {
       errorAlerts = true;
     } finally {
-      this.setState({ alerts, errorAlerts, loading: false });
+      this.setState({ alerts, errorAlerts });
     }
   }
 
   async getAlertsListTotal() {
     let alertsTotal;
-    let errorAlerts = false;
+    let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsListTotal(getUser());
-      console.log(alertsTotal);
+      console.log('alertsTotal', alertsTotal);
     } catch (e) {
-      errorAlerts = true;
+      errorAlertsTotal = true;
     } finally {
-      this.setState({ alertsTotal, errorAlerts, loading: false });
+      this.setState({ alertsTotal, errorAlertsTotal });
     }
   }
 
-   /**
+  /**
    * Finds the details for each alert type
    * @param  {json} alert {alertCode}
    * @return {json}       { icon: node, message: node, action: null, actionLink: null, background: string }
    */
 
-  
   cleanAlert(alertsTotal) {
     // this will be completed for all alert types later
     let icon = null;
@@ -82,7 +76,8 @@ class Alerts extends React.Component {
         icon = <Tjrj />;
         message = (
           <span>
-            Há <strong>  {` ${` ${alertsTotal.count} `} `}</strong> processos criminais no TJRJ há <strong>mais de 60 dias</strong> sem retorno.
+            Há <strong> {` ${` ${alertsTotal.count} `} `}</strong> processos criminais no TJRJ há{' '}
+            <strong>mais de 60 dias</strong> sem retorno.
           </span>
         );
         background = '#F86C72';
@@ -92,7 +87,8 @@ class Alerts extends React.Component {
         icon = <Tjrj />;
         message = (
           <span>
-            Há <strong> {` ${alertsTotal.count} `}</strong> processos não criminais no TJRJ há <strong>há mais de 120 dias</strong> sem retorno.
+            Há <strong> {` ${alertsTotal.count} `}</strong> processos não criminais no TJRJ há{' '}
+            <strong>há mais de 120 dias</strong> sem retorno.
           </span>
         );
         background = '#F86C72';
@@ -102,7 +98,8 @@ class Alerts extends React.Component {
         icon = <Ouvidoria />;
         message = (
           <span>
-            Há <strong> {` ${alertsTotal.count} `} processos</strong> com <strong> vitimas recorrentes</strong> de <strong> violência domestica </strong>.
+            Há <strong> {` ${alertsTotal.count} `} processos</strong> com{' '}
+            <strong> vitimas recorrentes</strong> de<strong> violência domestica </strong>.
           </span>
         );
         background = '#F86C72';
@@ -112,7 +109,13 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            Há <strong> {` ${alertsTotal.count} `} </strong> <strong> processos administrativos abertos há mais de 1 ano</strong>.
+            Há <strong>
+{' '}
+{` ${alertsTotal.count} `}
+{' '}
+ </strong>
+{' '}
+            <strong> processos administrativos abertos há mais de 1 ano</strong>.
           </span>
         );
         background = '#5C6FD9';
@@ -122,7 +125,14 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            Há <strong> {` ${alertsTotal.count} `}</strong> <strong> procedimentos preparatório </strong> com <strong> prazo de tratamento esgotado.</strong>
+            Há <strong>
+{' '}
+{` ${alertsTotal.count} `}
+</strong>
+{' '}
+            <strong> procedimentos preparatório </strong> com
+{' '}
+            <strong> prazo de tratamento esgotado.</strong>
           </span>
         );
         background = '#f86c72';
@@ -132,8 +142,11 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            Há <strong> {` ${alertsTotal.count} `} </strong> <strong> inquéritos civil </strong> ativo <strong> sem prorrogação </strong> há <strong> mais de 1 ano</strong>.
-          </span>
+            Há <strong> {` ${alertsTotal.count} `} </strong> <strong> inquéritos civil </strong>
+{' '}
+            ativo <strong> sem prorrogação </strong> há <strong> mais de 1 ano</strong>
+.
+</span>
         );
         background = '#f86c72';
         break;
@@ -142,7 +155,9 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            Há <strong> {` ${alertsTotal.count} `}</strong> notícias de fato autuada há mais de <strong>120 dias</strong> e ainda está <strong>sem tratamento</strong>
+            Há <strong> {` ${alertsTotal.count} `}</strong> notícias de fato autuada há mais de{' '}
+            <strong>120 dias</strong> e ainda está
+            <strong>sem tratamento</strong>
           </span>
         );
         background = '#f86c72';
@@ -152,7 +167,8 @@ class Alerts extends React.Component {
         icon = <ClockIcon />;
         message = (
           <span>
-            Há <strong>{` ${alertsTotal.count} `} oficios</strong> com <strong> prazo de apreciação esgotado </strong>.
+            Há <strong>{` ${alertsTotal.count} `} oficios</strong> com{' '}
+            <strong> prazo de apreciação esgotado </strong>.
           </span>
         );
         background = '#f86c72';
@@ -162,7 +178,9 @@ class Alerts extends React.Component {
         icon = <Ouvidoria />;
         message = (
           <span>
-            <strong> {` ${alertsTotal.count} `}</strong> <strong> Expediente </strong> de <strong> Ouvidoria </strong> enviado porém <strong> não recebido</strong>
+            <strong> {` ${alertsTotal.count} `}</strong> <strong> Expediente </strong> de{' '}
+            <strong> Ouvidoria </strong> enviado porém
+            <strong> não recebido</strong>
           </span>
         );
         background = '#5C6FD9';
@@ -172,7 +190,8 @@ class Alerts extends React.Component {
         icon = <Va />;
         message = (
           <span>
-            Você tem <strong> {` ${alertsTotal.count} `} vistas abertas </strong> em <strong> documentos sinalizados como fechado</strong>
+            Você tem <strong> {` ${alertsTotal.count} `} vistas abertas </strong> em{' '}
+            <strong> documentos sinalizados como fechado</strong>
           </span>
         );
         background = '#28A7E0';
@@ -183,23 +202,26 @@ class Alerts extends React.Component {
         icon = <CorujaGate />;
         message = (
           <span>
-            O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento <strong>{` ${alert.docNum} `}</strong>
+            O <strong>Gate </strong>finalizou a <strong>IT</strong> solicitada no procedimento{' '}
+            <strong>{` ${alert.docNum} `}</strong>
           </span>
         );
         background = '#374354';
         break;
 
-        case 'DT2I':
-             icon = <Home />;
-            message = (
-             <span>
-                <strong> {` ${alertsTotal.count} `} movimentações </strong> em processo desta promotoria na <strong> segunda instância </strong>
-              </span>
-              );
-              background = '#5C6FD9';
-             break;
-             
-        default:
+      case 'DT2I':
+        icon = <Home />;
+        message = (
+          <span>
+            <strong> {` ${alertsTotal.count} `} movimentações </strong> em processo desta promotoria
+            na
+            <strong> segunda instância </strong>
+          </span>
+        );
+        background = '#5C6FD9';
+        break;
+
+      default:
         break;
     }
 
@@ -207,15 +229,23 @@ class Alerts extends React.Component {
   }
 
   render() {
-    const { alerts, alertsTotal, loading, errorAlerts } = this.state;
+    const { alerts, alertsTotal, errorAlerts, errorAlertsTotal } = this.state;
+    const loading = !(alerts || errorAlerts) || !(alertsTotal || errorAlertsTotal);
 
-    if (loading) return <aside>Carregando...</aside>;
+    if (loading) {
+      return (
+        <article className="alerts-wrapper">
+          <Spinner size="large" />
+        </article>
+      );
+    }
+
     return (
       <article className="alerts-wrapper">
         <div className="alerts-header">
           <SectionTitle value="central de alertas" />
           <div className="alerts-total">
-          <span>{alertsTotal.length}</span>
+            <span>{alerts.length}</span>
           </div>
         </div>
         <div className="alerts-body">

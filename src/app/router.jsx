@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, HashRouter, Redirect } from 'react-router-dom';
 
 import { useAuth } from './authContext';
-import Auth from '../auth';
+import Auth from '../app/authContext';
 import Login from '../login';
 import Dashboard from '../dashboard';
 

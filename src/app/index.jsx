@@ -4,7 +4,7 @@ import './styles.css';
 import Router from './router';
 import AuthContext from './authContext';
 import Api from '../api';
-import { Spinner } from '../components';
+import { Spinner } from '../components/layoutPieces';
 
 function AuthContextCreator() {
   const [user, setUser] = useState(null);

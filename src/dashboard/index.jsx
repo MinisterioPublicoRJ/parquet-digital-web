@@ -1,45 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
-import Api from '../api';
 import { getUser } from '../user';
-
-import { Spinner } from '../components';
+import AuthContext from '../app/authContext';
+import { Spinner } from '../components/layoutPieces';
 import Pip from '../dashboard/pages/pip';
 import Tutela from '../dashboard/pages/tutela';
 import BlankPage from '../dashboard/pages/blankPage';
 
 import './styles.css';
 
-class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: undefined,
-    };
-  }
+function Dashboard () {
+  const [contextUser, setcontextUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
 
-  componentDidMount() {
-    this.login();
-  }
-
-  async login() {
-    let loginError = false;
-    let user;
-    try {
-      const token = window.localStorage.getItem('access_token');
-      await Api.login(token);
-      user = getUser();
-    } catch (e) {
-      loginError = true;
-    } finally {
-      this.setState({ user, loginError });
-    }
-  }
-
-  pageSelector() {
-    const { user, loginError } = this.state;
-    const { tipo_orgao, nome } = user;
+  function pageSelector  ()  {
+    //const { user, userError } = authStore;
+    //const loading = !(user || userError);
     let page = <BlankPage />;
 
     if (!loginError) {
@@ -59,11 +37,7 @@ class Dashboard extends React.Component {
     return page;
   }
 
-  render() {
-    const { user, loginError } = this.state;
-    const isLoading = !user && !loginError;
-
-    if (isLoading) {
+    if (loading) {
       return <Spinner size="large" />;
     }
 
@@ -71,12 +45,11 @@ class Dashboard extends React.Component {
       <HashRouter>
         <Switch>
           <Route exact path="/">
-            {this.pageSelector()}
+            {/*{this.pageSelector()}*/}
           </Route>
         </Switch>
       </HashRouter>
     );
-  }
 }
 
 export default Dashboard;

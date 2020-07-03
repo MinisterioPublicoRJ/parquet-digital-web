@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { formatPercentage } from '../../../utils';
+import { formatPercentage } from '../../../../../utils';
 
 function openInvestigationsMetrics({ variacaoAcervo }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));

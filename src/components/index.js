@@ -1,5 +1,5 @@
-// export { default as AlertBadge } from './AlertBadge';
-// export * from './graphs';
+export { default as AlertBadge } from '../dashboard/sections/Alerts/AlertBadge';
+export * from './graphs';
 export * from './layoutPieces';
-// export * from './ProcessingTime';
-// export * from './YourDesk';
+export * from '../dashboard/sections/ProcessingTime';
+export * from '../dashboard/sections/YourDesk';

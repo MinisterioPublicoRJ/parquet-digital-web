@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
-import Api from '../../api';
-import { Table, Spinner, SectionTitle } from '../../components';
-import { getUser } from '../../user';
+import Api from '../../../api';
+import { Table, Spinner, SectionTitle } from '../../../components/layoutPieces';
+import { getUser } from '../../../user';
 
 const ProcessList = () => {
   // eslint-disable-next-line no-shadow

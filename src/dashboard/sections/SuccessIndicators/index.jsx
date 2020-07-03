@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { formatPercent } from '../../utils';
+import { formatPercent } from '../../../utils';
 import './styles.css';
-import Api from '../../api';
-import { SectionTitle, Spinner } from '../../components';
-import { getUser } from '../../user';
-import SuccessIndicatorsChart from '../../components/graphs/SuccessIndicatorsChart';
+import Api from '../../../api';
+import { SectionTitle, Spinner } from '../../../components';
+import { getUser } from '../../../user';
+import SuccessIndicatorsChart from '../../../components/graphs/SuccessIndicatorsChart';
 
 const SuccessIndicators = () => {
   const [successIndicators, setSuccessIndicators] = useState([]);

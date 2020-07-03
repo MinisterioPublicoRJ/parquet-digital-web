@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import Api from '../../api';
-import PromotronGif from '../../assets/gifs/promotron.gif';
-import NOMES_PROMOTORIAS from '../../utils/nomesPromotorias';
-import { SectionTitle, MainTitle, Spinner } from '../../components';
+import Api from '../../../api';
+import PromotronGif from '../../../assets/gifs/promotron.gif';
+import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
+import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPieces';
 
-import { formatPercentage, capitalizeTitle } from '../../utils';
+import { formatPercentage, capitalizeTitle } from '../../../utils';
 
 const propTypes = {
   user: PropTypes.string.isRequired,

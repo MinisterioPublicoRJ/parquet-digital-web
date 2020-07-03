@@ -1,7 +1,7 @@
 import React from 'react';
 
 import RadarCommon from '../RadarCommon';
-import Api from '../../../api';
+import Api from '../../../../api';
 
 const axisLabelsTable = {
   archives: {

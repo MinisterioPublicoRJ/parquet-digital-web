@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import './styles.css';
-import Api from '../../api';
-import { SectionTitle, Spinner } from '../../components';
-import { ProcessingTimeChart } from '../../components/graphs';
-import { PT_PIE_COLORS } from '../../themes/chartThemes';
+import '../styles.css';
+import Api from '../../../api';
+import { SectionTitle, Spinner } from '../../../components';
+import ProcessingTimeChart  from '../../../components/graphs/ProcessingTimeChart';
+import { PT_PIE_COLORS } from '../../../themes/chartThemes';
 
-import PinAzul from '../../assets/svg/pinAzul';
-import PinVermelho from '../../assets/svg/pinVermelho';
-import MarkMind from '../../assets/svg/markMind';
-import Markfaster from '../../assets/svg/markFaster';
-import MarkSlower from '../../assets/svg/markSlower';
+import PinAzul from '../../../assets/svg/pinAzul';
+import PinVermelho from '../../../assets/svg/pinVermelho';
+import MarkMind from '../../../assets/svg/markMind';
+import Markfaster from '../../../assets/svg/markFaster';
+import MarkSlower from '../../../assets/svg/markSlower';
 import processTypeDict from './processingTimeConstants';
 
 const getCategoryByType = user => {

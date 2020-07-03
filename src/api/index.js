@@ -38,6 +38,7 @@ import {
   pipRadarTransform,
   deskIntegratedTransform,
   deskTabTransform,
+  userTransform,
 } from './transforms';
 
 // import { setUser } from '../user';
@@ -51,7 +52,7 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN_URL, formData);
 
-    return data;
+    return userTransform(data);
   }
 
   /**

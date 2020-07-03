@@ -18,11 +18,11 @@ const propTypes = { userName: PropTypes.string.isRequired };
 function Tutela({ userName, user }) {
   return (
     <div className="base-grid tutela-grid">
-      <Alerts user={userName} />
+      {/*<Alerts user={userName} />*/}
       <ProcessList user={userName} />
       <PerformanceRadar.Tutela user={userName} />
-      <ProcessingTime user={user} />
-      <Today userName={userName} user={user} />
+      {/*<ProcessingTime user={user} />*/}
+      {/*<Today userName={userName} user={user} />*/}
       <YourDesk user={userName} />
     </div>
   );

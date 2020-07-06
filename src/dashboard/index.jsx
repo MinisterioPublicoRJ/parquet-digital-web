@@ -1,13 +1,9 @@
-import React, { useState }  from 'react';
+import React from 'react';
 
 import { useAuth } from '../app/authContext';
-//import { Spinner } from '../components/layoutPieces';
 import { Pip, Tutela, BlankPage } from './pages';
 
-
 function Dashboard() {
-  //const [loading, setLoading] = useState(true);
-
   const { user } = useAuth();
   const { tipoOrgao } = user;
 
@@ -19,11 +15,6 @@ function Dashboard() {
     default:
       return <BlankPage />;
   }
-
-
-  // if (loading) {
-  //return <Spinner size="large" />;
-  //}
 }
 
 export default Dashboard;

@@ -60,8 +60,7 @@ export function cleanAlert(alert) {
           com
           <strong> vitimas recorrentes </strong>
           de
-          <strong> violência domestica </strong>
-          .
+          <strong> violência domestica.</strong>
         </span>
       );
       background = '#F86C72';
@@ -155,9 +154,9 @@ export function cleanAlert(alert) {
       message = (
         <span>
           Você tem
-          <strong>{` ${alert.count} ${single ? 'vista aberta' : 'vistas abertas'}`}</strong>
+          <strong>{` ${alert.count} ${single ? 'vista aberta' : 'vistas abertas'} `}</strong>
           em
-          <strong>{` ${single ? 'documento' : 'documentos'} sinalizados como fechado`}</strong>
+          <strong>{` ${single ? 'documento' : 'documentos'} sinalizados como ${single ? 'fechado' : 'fechados'}.`}</strong>
         </span>
       );
       background = '#28A7E0';

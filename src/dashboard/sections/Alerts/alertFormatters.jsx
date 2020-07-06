@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ClockIcon, CorujaGate, Home, Ouvidoria, Va, Tjrj, Law, Mprj, Csi } from '../../../assets';
+import { ClockIcon, CorujaGate, Home, Ouvidoria, Va, Tjrj } from '../../../assets';
 import { NOT_GROUPABLE_ALERTS } from './alertsConstants';
 
 export function cleanAlertList(list, countList) {
@@ -12,11 +12,12 @@ export function cleanAlertList(list, countList) {
     if (isGroupable) {
       cleanList.push(cleanAlert({ alertCode: type, count: countList[type].count }));
     } else {
-      cleanList.concat(list.filter(alert => alert.alertCode === type));
+      cleanList.concat(
+        list.filter(alert => alert.alertCode === type).map(alert => cleanAlert(alert)),
+      );
     }
   });
 
-  console.log('cleanList', cleanList);
   return cleanList;
 }
 
@@ -26,12 +27,16 @@ export function cleanAlertList(list, countList) {
  * @return {json}       { icon: node, message: node, action: null, actionLink: null, background: string }
  */
 export function cleanAlert(alert) {
+  const key = alert.count
+    ? `${alert.alertCode}-${alert.count}`
+    : `${alert.alertCode}-${alert.docNum}`;
   let icon = null;
   let message = null;
+  let background = null;
+  // not implemented yet
   const action = null;
   const actionLink = null;
-  let background = null;
-  console.log('code', alert.alertCode);
+
   switch (alert.alertCode) {
     // ALERTAS DA TUTELA
     case 'DCTJ':
@@ -179,5 +184,5 @@ export function cleanAlert(alert) {
       break;
   }
 
-  return { icon, message, action, actionLink, background };
+  return { icon, message, action, actionLink, background, key };
 }

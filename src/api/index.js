@@ -12,6 +12,7 @@ import {
   RADAR_DATA,
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
+  TOTAL_ALERTS_LIST,
   PROCESSES_LIST,
   SUCCESS_INDICATORS,
   PIP_RADAR_URL,
@@ -32,6 +33,7 @@ import {
   openCasesListTransform,
   radarTransform,
   alertsTransform,
+  totalAlertsTransform,
   processingTimeTransform,
   successIndicatorsTransform,
   processListTransform,
@@ -133,10 +135,16 @@ const Api = (() => {
     return processingTimeTransform(data);
   }
 
-  async function getAlertsList({ orgao, token }) {
+  async function getAlerts({ orgao, token }) {
     const { data } = await axios.get(ALERTS_LIST({ orgao }), buildRequestConfig(token));
 
     return alertsTransform(data);
+  }
+
+  async function getAlertsCount({ orgao, token }) {
+    const { data } = await axios.get(TOTAL_ALERTS_LIST({ orgao }), buildRequestConfig(token));
+
+    return totalAlertsTransform(data);
   }
 
   async function getsuccessIndicators({ orgao, token }) {
@@ -209,7 +217,8 @@ const Api = (() => {
     getCourtCasesDetails,
     getOpenCasesList,
     getRadarData,
-    getAlertsList,
+    getAlerts,
+    getAlertsCount,
     getProcessingTimeData,
     getProcessList,
     getsuccessIndicators,

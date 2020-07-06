@@ -1,7 +1,7 @@
 .ranking-list {
   color: var(--dark);
   font-family: var(--defaultFont);
-  font-size: calc(var(--defaultTextSize) * 0.6);
+  font-size: calc(var(--defaultFontSize) * 0.6);
   padding: 0;
 }
 
@@ -15,8 +15,8 @@
 }
 
 .ranking-featured {
-  font-size: calc(var(--defaultTextSize) * 1.5);
-  line-height: calc(var(--defaultTextSize) * 1.5);
+  font-size: calc(var(--defaultFontSize) * 1.5);
+  line-height: calc(var(--defaultFontSize) * 1.5);
   margin-left: 10px;
 }
 

@@ -48,7 +48,7 @@ class PerformanceRadar extends React.Component {
     return (
       <article className="page-radar-dashboard">
         <div className="radar-header">
-          <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" />
+          <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
         </div>
         <figure className="radar-wrapper">
           <div className="radar-graph">

@@ -1,10 +1,10 @@
-.mainTitle-text {
-  align-items: center;
+h1 {
   color: var(--darkBlue);
-  display: inline-flex;
-  font-family: var(--defaultFont);
-  font-size: var(--titleSize);
-  font-weight: var(--titleWeight);
-  margin: 0;
-  padding: var(--elementPadding);
+  font-family: var(--titleFont);
+  font-size: var(--titleFontSize);
+  font-weight: bold;
+}
+
+.mainTitle--glued {
+  margin-top: 0;
 }

@@ -281,7 +281,7 @@ class Alerts extends React.Component {
     return (
       <article className="alerts-wrapper">
         <div className="alerts-header">
-          <SectionTitle value="central de alertas" />
+          <SectionTitle value="central de alertas" glueToTop />
           <div className="alerts-total">
             <span>{alerts.length}</span>
           </div>

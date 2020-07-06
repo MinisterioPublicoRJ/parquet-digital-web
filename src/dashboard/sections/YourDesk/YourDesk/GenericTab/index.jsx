@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import Spinner from '../../layoutPieces/Spinner';
+import Spinner from '../../../../../components/layoutPieces/Spinner';
 import MetricsFormatter from './MetricsFormatter';
 import Ranking from '../Ranking';
 

@@ -1,19 +1,21 @@
 import React from 'react';
 
 import './styles.css';
-import Api from '../../api';
-import { getUser } from '../../user';
-import { SectionTitle, AlertBadge } from '../../components';
+import Api from '../../../api';
+import { getUser } from '../../../user';
+import AlertBadge  from './AlertBadge';
+import SectionTitle from '../../../components/layoutPieces/SectionTitle';
 
-import ClockIcon from '../../assets/svg/clock';
-import CorujaGate from '../../assets/svg/corujaGate';
-import Home from '../../assets/svg/home';
-import Ouvidoria from '../../assets/svg/ouvidoria';
-import Va from '../../assets/svg/va';
-import Tjrj from '../../assets/svg/tjrj';
-import Law from '../../assets/svg/law';
-import Mprj from '../../assets/svg/mprj';
-import Csi from '../../assets/svg/csi';
+
+import ClockIcon from '../../../assets/svg/clock';
+import CorujaGate from '../../../assets/svg/corujaGate';
+import Home from '../../../assets/svg/home';
+import Ouvidoria from '../../../assets/svg/ouvidoria';
+import Va from '../../../assets/svg/va';
+import Tjrj from '../../../assets/svg/tjrj';
+import Law from '../../../assets/svg/law';
+import Mprj from '../../../assets/svg/mprj';
+import Csi from '../../../assets/svg/csi';
 
 
 class Alerts extends React.Component {

@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles.css';
-import { Table, Spinner, SectionTitle } from '../../components';
-import Api from '../../api';
-import TackIcon from '../../assets/svg/tack';
-import BinIcon from '../../assets/svg/bin';
-import { getUser } from '../../user';
+import { Table, Spinner, SectionTitle } from '../../../components/layoutPieces';
+import Api from '../../../api';
+import TackIcon from '../../../assets/svg/tack';
+import BinIcon from '../../../assets/svg/bin';
+import { getUser } from '../../../user';
 
 class MainInvestigated extends React.Component {
   constructor(props) {

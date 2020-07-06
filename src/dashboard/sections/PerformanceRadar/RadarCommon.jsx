@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import { getUser } from '../../user';
-import { Spinner, PerformanceChart, SectionTitle } from '../../components';
+import { getUser } from '../../../user';
+import { Spinner, SectionTitle } from '../../../components/layoutPieces';
+import  PerformanceChart from '../../../components/graphs/PerformanceChart';
+
 
 const propTypes = {
   getRadarData: PropTypes.func.isRequired,

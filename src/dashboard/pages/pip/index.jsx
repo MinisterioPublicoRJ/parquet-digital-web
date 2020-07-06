@@ -19,13 +19,13 @@ const propTypes = { userName: PropTypes.string.isRequired };
 function Pip({ userName, user }) {
   return (
     <div className="base-grid pip-grid">
-      <Today user={user} userName={userName} />
+      {/*<Today user={user} userName={userName} />*/}
       <YourDesk user={userName} />
-      <Alerts user={userName} />
+      {/*<Alerts user={userName} />*/}
       <PerformanceRadar.Pip user={userName} />
       <MainInvestigated user={userName} />
       <SuccessIndicators user={userName} />
-      <ProcessingTime user={user} />
+      {/*<ProcessingTime user={user} />*/}
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import React from 'react';
 
 import './styles.css';
-import { SectionTitle, ControlButton, OpenCasesDetail, GenericTab } from '../../components';
-import Api from '../../api';
-import { getUser } from '../../user';
-import { capitalizeWord } from '../../utils';
+import  SectionTitle  from '../../../components/layoutPieces/SectionTitle';
+import { ControlButton, OpenCasesDetail, GenericTab } from './YourDesk';
+
+import Api from '../../../api';
+import { getUser } from '../../../user';
+import { capitalizeWord } from '../../../utils';
 
 import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
 

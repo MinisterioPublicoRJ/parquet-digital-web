@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Api from '../../../api';
-import { DeskCasesChart } from '../../graphs';
-import { Spinner, Table } from '../../layoutPieces';
+import Api from '../../../../../api';
+import { DeskCasesChart } from '../../../../../components/graphs';
+import { Spinner, Table } from '../../../../../components/layoutPieces';
 
 import './styles.css';
 

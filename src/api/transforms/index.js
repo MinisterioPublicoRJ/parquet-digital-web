@@ -12,6 +12,7 @@ export { default as processListTransform } from './processListTransform';
 export { default as openCasesListTransform } from './openCaseListTransform';
 export { default as successIndicatorsTransform } from './succesIndicatorsTransform';
 export { default as deskTabTransform } from './deskTabTransforms';
+export { default as userTransform } from './userTransform';
 
 export const deskIntegratedTransform = ({ nr_documentos }) => nr_documentos;
 export const todayOutTransform = ({ percent_rank }) => percent_rank;

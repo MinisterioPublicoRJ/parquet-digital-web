@@ -4,11 +4,10 @@ import './styles.css';
 import Api from '../../../api';
 import { getUser } from '../../../user';
 import AlertBadge from './AlertBadge';
-import { SectionTitle, Spinner } from '../../components';
-import { ClockIcon, CorujaGate, Home, Ouvidoria, Va, Tjrj, Law, Mprj, Csi } from '../../../assets';
+import { SectionTitle, Spinner } from '../../../components';
 import { cleanAlertList } from './alertFormatters';
 
-class Alerts extends React.Component {
+class AlertsOld extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loading: true };
@@ -94,6 +93,17 @@ class Alerts extends React.Component {
       </article>
     );
   }
+}
+
+function Alerts() {
+  return (
+    <article className="alerts-wrapper">
+      <div className="alerts-header">
+        <SectionTitle value="central de alertas" />
+        <div className="alerts-total">{/* <span>{alertsTotal.length}</span> */}</div>
+      </div>
+    </article>
+  )
 }
 
 export default Alerts;

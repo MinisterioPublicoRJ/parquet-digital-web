@@ -1,16 +1,6 @@
 import React from 'react';
 
-// TODO: CRIAR INDEX COM TODOS OS SVG PRA IMPORTAR MELHOR
-import ClockIcon from '../../assets/svg/clock';
-import CorujaGate from '../../assets/svg/corujaGate';
-import Home from '../../assets/svg/home';
-import Ouvidoria from '../../assets/svg/ouvidoria';
-import Va from '../../assets/svg/va';
-import Tjrj from '../../assets/svg/tjrj';
-// import Law from '../../assets/svg/law';
-// import Mprj from '../../assets/svg/mprj';
-// import Csi from '../../assets/svg/csi';
-
+import { ClockIcon, CorujaGate, Home, Ouvidoria, Va, Tjrj, Law, Mprj, Csi } from '../../../assets';
 import { NOT_GROUPABLE_ALERTS } from './alertsConstants';
 
 export function cleanAlertList(list, countList) {
@@ -22,7 +12,7 @@ export function cleanAlertList(list, countList) {
     if (isGroupable) {
       cleanList.push(cleanAlert({ alertCode: type, count: countList[type].count }));
     } else {
-      cleanList.concat(list.filter(alert => alert.alertCode === type))
+      cleanList.concat(list.filter(alert => alert.alertCode === type));
     }
   });
 

@@ -1,1 +1,9 @@
-// here we place all the imports/exports! :)
+export { default as ClockIcon } from './clock';
+export { default as CorujaGate } from './corujaGate';
+export { default as Csi } from './csi';
+export { default as Home } from './home';
+export { default as Law } from './law';
+export { default as Mprj } from './mprj';
+export { default as Ouvidoria } from './ouvidoria';
+export { default as Tjrj } from './tjrj';
+export { default as Va } from './va';

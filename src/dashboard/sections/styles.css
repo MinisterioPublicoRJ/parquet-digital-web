@@ -1,14 +1,14 @@
 .paragraphWrapper {
   color: var(--dark);
   font-family: var(--defaultFont);
-  font-size: var(--defaultTextSize);
+  font-size: var(--defaultFontSize);
   margin: 0;
 }
 
 .subtitle {
   color: var(--dark);
   font-family: var(--defaultFont);
-  font-size: var(--defaultTextSize);
+  font-size: var(--defaultFontSize);
   text-transform: uppercase;
   font-weight: 400;
 }

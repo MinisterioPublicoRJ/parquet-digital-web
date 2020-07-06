@@ -187,7 +187,7 @@ class Today extends Component {
     const user = this.cleanUsername();
     const hours = new Date().getHours();
     const gender = this.props.user.sexo;
-    
+
     let timeGreeting;
 
     if (hours >= 6 && hours < 12) {
@@ -243,7 +243,7 @@ class Today extends Component {
           <MainTitle value={greeting} />
         </div>
         <div className="today-content">
-          <SectionTitle value="resumo do dia" />
+          <SectionTitle value="resumo do dia" glueToTop />
           <div className="today-textArea">
             {percentParagraph}
             {collectionParagraph}

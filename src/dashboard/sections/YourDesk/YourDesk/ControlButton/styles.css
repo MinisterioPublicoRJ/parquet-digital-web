@@ -10,7 +10,7 @@
   display: flex;
   font-family: var(--spotlightFont);
   font-weight: var(--spotlightWeight);
-  font-size: calc(var(--defaultTextSize) / 1.5);
+  font-size: calc(var(--defaultFontSize) / 1.5);
   height: var(--buttonSize);
   letter-spacing: 0px;
   text-transform: uppercase;
@@ -33,7 +33,7 @@
   border-bottom: 5px solid var(--primary);
   color: var(--primary);
   flex-direction: column;
-  font-size: calc(var(--defaultTextSize) / 1.5 * 1.2);
+  font-size: calc(var(--defaultFontSize) / 1.5 * 1.2);
   height: var(--activeButtonSize);
   justify-content: center;
   letter-spacing: 1px;

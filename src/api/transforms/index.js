@@ -10,6 +10,7 @@ export { default as todayEntriesTransform } from './todayEntriesTransform';
 export { default as todayOutliersTransform } from './todayOutliersTransform';
 export { default as processListTransform } from './processListTransform';
 export { default as openCasesListTransform } from './openCaseListTransform';
+export { default as totalAlertsTransform } from './totalAlertsTransform';
 export { default as successIndicatorsTransform } from './succesIndicatorsTransform';
 export { default as deskTabTransform } from './deskTabTransforms';
 export { default as userTransform } from './userTransform';

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+import '../themes/index.css';
 import Router from './router';
 import AuthContext from './authContext';
 import Api from '../api';

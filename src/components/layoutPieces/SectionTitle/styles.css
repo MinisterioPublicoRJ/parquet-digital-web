@@ -1,22 +1,21 @@
-.sectionTitle-text {
+h2 {
   color: var(--darkBlue);
-  font-family: var(--subtitleFont);
-  font-size: var(--subtitleSize);
-  font-weight: var(--subtitleWeight);
-  margin: var(--elementPadding) 0;
-}
-
-.sectionTitle-subtitle {
-  display: block;
-  margin-top: 1vh;
-  font-size: 60%;
-  text-transform: uppercase;
-  font-family: var(--defaultFont);
-  font-weight: bold;
-  position: relative;
-  top: -1vh;
+  font-size: var(--sectionTitleFontSize);
+  font-family: var(--titleFont);
 }
 
 .sectionTitle--glued {
   margin-top: 0;
+}
+
+.sectionTitle--withSubs {
+  margin-bottom: 0;
+}
+
+h2 + .sectionTitle-subtitle {
+  color: var(--darkBlue);
+  font-size: calc(var(--sectionTitleFontSize) * 0.5);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }

@@ -15,13 +15,16 @@ const defaultProps = {
 };
 
 const SectionTitle = ({ value, subtitle, glueToTop }) => (
-  <h2 className={`sectionTitle-text ${glueToTop ? 'sectionTitle--glued' : ''}`}>
-    {value.toLocaleUpperCase()}
+  <>
+    <h2
+      className={`sectionTitle-text ${glueToTop && 'sectionTitle--glued'} ${subtitle &&
+        'sectionTitle--withSubs'}`}
+    >
+      {value.toLocaleUpperCase()}
+    </h2>
     {subtitle && <span className="sectionTitle-subtitle">{subtitle}</span>}
-  </h2>
+  </>
 );
-
 SectionTitle.propTypes = propTypes;
 SectionTitle.defaultProps = defaultProps;
-
 export default SectionTitle;

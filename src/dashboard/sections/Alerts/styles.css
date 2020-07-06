@@ -11,7 +11,7 @@
 
 .alerts-total {
   margin: var(--elementPadding) 0;
-  width: 35px;
+  width: 44px;
   height: 18px;
   background-color: var(--danger);
   border-radius: 50px;

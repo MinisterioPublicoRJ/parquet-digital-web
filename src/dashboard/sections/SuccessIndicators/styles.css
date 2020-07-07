@@ -15,16 +15,16 @@
   margin: 5px 0 5px 0;
 }
 /* Css Tooltip Phrase  */
-.successIndicators-item{
+.successIndicators-item {
   position: relative;
   display: inline-block;
 }
 
-.successIndicators-item span{
+.successIndicators-item span {
   visibility: hidden;
-  width: 120px;
+  width: 250px;
   background-color: var(--grayTooltip);
-  color:  var(--white);
+  color: var(--white);
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -37,8 +37,8 @@
   transition: opacity 0.3s;
 }
 
-.successIndicators-item span::after{
-  content: "";
+.successIndicators-item span::after {
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
@@ -51,66 +51,61 @@
   visibility: visible;
   opacity: 1;
 }
+
 /* Css Tooltip percent  */
 
-.successIndicators-item strong{
-  visibility: hidden;
+.successIndicators-item strong {
   width: 60px;
-  color:  var(--white);
+  color: var(--white);
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 125%;
-  right: 5%;
+  bottom: 45%;
+  right: 0%;
   margin-left: -60px;
-  opacity: 0;
   transition: opacity 0.3s;
 }
-.successIndicators-item .first-box-tooltip strong::after{
-  content: "";
-  position: absolute;
-  top: 100%;
-  right: 50%;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #F86C72 transparent transparent transparent;
-}
-.successIndicators-item .second-box-tooltip strong::after{
-  content: "";
-  position: absolute;
-  top: 100%;
-  right: 50%;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #F8BD6C transparent transparent transparent;
-}
-.successIndicators-item .third-box-tooltip strong::after{
-  content: "";
-  position: absolute;
-  top: 100%;
-  right: 50%;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #71D0A4 transparent transparent transparent;
-}
-.successIndicators-item:hover strong {
+.successIndicators-item .successIndicators-tooltip--first strong::after {
   visibility: visible;
   opacity: 1;
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f86c72 transparent transparent transparent;
 }
-.first-box-tooltip strong{
-  background-color: #F86C72;
-  border-color: #F86C72 transparent transparent transparent;
+.successIndicators-item .successIndicators-tooltip--second strong::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f8bd6c transparent transparent transparent;
+}
+.successIndicators-item .successIndicators-tooltip--third strong::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #71d0a4 transparent transparent transparent;
+}
 
+.successIndicators-tooltip--first strong {
+  background-color: #f86c72;
+  border-color: #f86c72 transparent transparent transparent;
 }
-.second-box-tooltip strong{
-  background-color: #F8BD6C;
-  border-color: #F8BD6C transparent transparent transparent;
+.successIndicators-tooltip--second strong {
+  background-color: #f8bd6c;
+  border-color: #f8bd6c transparent transparent transparent;
 }
-.third-box-tooltip strong{
-  background-color: #71D0A4;
-  border-color: #71D0A4 transparent transparent transparent;
-
+.successIndicators-tooltip--third strong {
+  background-color: #71d0a4;
+  border-color: #71d0a4 transparent transparent transparent;
 }
-

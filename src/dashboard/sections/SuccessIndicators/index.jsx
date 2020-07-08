@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { formatPercent } from '../../../utils';
+
 import './styles.css';
+import SuccessIndicatorsChart from './SuccessIndicatorsChart';
 import Api from '../../../api';
+import { formatPercent } from '../../../utils';
+import { useAuth } from '../../../app/authContext';
 import { SectionTitle, Spinner } from '../../../components';
-import { getUser } from '../../../user';
-import SuccessIndicatorsChart from '../../../components/graphs/SuccessIndicatorsChart';
 
 const SuccessIndicators = () => {
+  const { user } = useAuth();
   const [successIndicators, setSuccessIndicators] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +16,7 @@ const SuccessIndicators = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getsuccessIndicators(getUser());
+        const response = await Api.getsuccessIndicators(user);
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);
@@ -47,7 +49,7 @@ const SuccessIndicators = () => {
         <div className="successIndicators-item">
           <h3>Resolutividade</h3>
           <span>Denúncias + arquivamentos + acordos/vistas abertas, nos últimos 30 dias</span>
-          <div className="first-box-tooltip">
+          <div className="successIndicators-tooltip--first">
             <strong>{resolutividadePercent}</strong>
           </div>
 
@@ -63,7 +65,7 @@ const SuccessIndicators = () => {
             Número de procedimentos com denúncia/Número de procedimentos do Grupo de vistas abertas,
             no período de 18 a 6 meses atrás
           </span>
-          <div className="second-box-tooltip">
+          <div className="successIndicators-tooltip--second">
             <strong>{elucidacoesPercent}</strong>
           </div>
           <SuccessIndicatorsChart
@@ -77,7 +79,7 @@ const SuccessIndicators = () => {
             Denúncias, arquivamentos, acordos/Número de procedimentos do Grupo de vistas abertas, no
             período de 18 a 6 meses atrás
           </span>
-          <div className="third-box-tooltip">
+          <div className="successIndicators-tooltip--third">
             <strong>{finalizacoesPercent}</strong>
           </div>
           <SuccessIndicatorsChart

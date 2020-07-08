@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
+import { VictoryLabel } from 'victory';
 
 import './styles.css';
 
@@ -24,7 +24,7 @@ export default function LabelWrapper(props) {
       customProps = {
         text: `${text}\ndias`,
         y: y + 25,
-        x: x - 13,
+        x: x - 20,
         verticalAnchor: 'start',
         textAnchor: 'end',
       };

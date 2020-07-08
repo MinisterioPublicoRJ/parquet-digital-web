@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-import '../styles.css';
+import './styles.css';
 import Api from '../../../api';
+import { useAuth } from '../../../app/authContext';
 import { SectionTitle, Spinner } from '../../../components';
-import ProcessingTimeChart  from '../../../components/graphs/ProcessingTimeChart';
+import ProcessingTimeChart from './ProcessingTimeChart';
 import { PT_PIE_COLORS } from '../../../themes/chartThemes';
 
-import PinAzul from '../../../assets/svg/pinAzul';
-import PinVermelho from '../../../assets/svg/pinVermelho';
-import MarkMind from '../../../assets/svg/markMind';
-import Markfaster from '../../../assets/svg/markFaster';
-import MarkSlower from '../../../assets/svg/markSlower';
+import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../../assets';
+
 import processTypeDict from './processingTimeConstants';
 
 const getCategoryByType = user => {
-  switch (user.tipo_orgao) {
+  switch (user.tipoOrgao) {
     case 1:
       return 'tutelaInqueritosCivis';
     case 2:
@@ -24,7 +22,8 @@ const getCategoryByType = user => {
   }
 };
 
-const ProcessingTime = ({ user }) => {
+const ProcessingTime = () => {
+  const { user } = useAuth();
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
   const mainCategory = getCategoryByType(user);

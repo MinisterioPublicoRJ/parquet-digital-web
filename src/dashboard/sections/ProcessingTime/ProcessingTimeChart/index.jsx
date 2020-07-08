@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
-import { ChartPoints, LabelWrapper } from '../../dashboard/sections/ProcessingTime/ProcessingTime/';
+import ChartPoints from '../ChartPoint';
+import LabelWrapper from '../LabelWrapper';
 
 const graphicColor = ['#F8F9FB']; // Colors
 
@@ -159,7 +160,7 @@ function TempoTramitacaoChart({
 
         {/* GRAPHS AND AXIS */}
         {/* This hides the axis from showing */}
-        <VictoryAxis style={{ axis: { stroke: 'none' } }} />
+        <VictoryAxis style={{ axis: { stroke: 'none' } }} tickFormat={() => ''} />
         {/*  this is the actual pie chart that renders the bars and the labels around it */}
         <VictoryPie {...chartPieSettings} data={data} />
         {/* This pie has the circles */}

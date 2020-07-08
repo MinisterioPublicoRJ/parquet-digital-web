@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import Api from '../../../api';
 import { Table, Spinner, SectionTitle } from '../../../components/layoutPieces';
-import { getUser } from '../../../user';
+import { useAuth } from '../../../app/authContext';
 
 const ProcessList = () => {
+  const { user } = useAuth();
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ const ProcessList = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getProcessList(getUser());
+        const response = await Api.getProcessList(user);
         setProcessListData(response);
       } catch (e) {
         setLoading(true);

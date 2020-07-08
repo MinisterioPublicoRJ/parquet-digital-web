@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import { useAuth } from '../../../app/authContext';
+import Api from '../../../api';
 import './styles.css';
-import { getUser } from '../../../user';
 import { Spinner, SectionTitle } from '../../../components/layoutPieces';
 import  PerformanceChart from '../../../components/graphs/PerformanceChart';
 
@@ -13,24 +13,30 @@ const propTypes = {
   axisLabelsTable: PropTypes.shape.isRequired,
 };
 
-class PerformanceRadar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function PerformanceRadar (){
+  const { user } = useAuth();
+  const [infoRadar, setinfoRadar] = useState(undefined);
+  const [loading, setLoading] = useState(true);
 
-  componentDidMount() {
-    this.getPerformanceData();
-  }
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      try {
+        const response = await Api.getRadarData(user);
+        console.log(response)
+        setinfoRadar(response);
+      } catch (e) {
+        setLoading(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
 
-  async getPerformanceData() {
-    const { getRadarData } = this.props;
-    const res = await getRadarData(getUser());
-    this.cleanGraphData(res);
-  }
 
-  cleanGraphData(data) {
-    const { cleanMap } = this.props;
+  {/*function cleanGraphData(data) {
+    const cleanMap = this.props;
 
     const chartData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
@@ -39,11 +45,10 @@ class PerformanceRadar extends React.Component {
     this.setState({ chartData });
   }
 
-  render() {
     const { axisLabelsTable } = this.props;
-    const { chartData } = this.state;
+    const { chartData } = this.state;*/}
 
-    if (!chartData) return <Spinner />;
+    if (!infoRadar) return <Spinner />;
 
     return (
       <article className="page-radar-dashboard">
@@ -52,7 +57,7 @@ class PerformanceRadar extends React.Component {
         </div>
         <figure className="radar-wrapper">
           <div className="radar-graph">
-            <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />
+            {/*<PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />*/}
           </div>
           <figcaption className="radar-subtitles">
             <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
@@ -61,7 +66,6 @@ class PerformanceRadar extends React.Component {
         </figure>
       </article>
     );
-  }
 }
 
 PerformanceRadar.propTypes = propTypes;

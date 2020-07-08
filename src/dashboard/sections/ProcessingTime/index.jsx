@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import '../styles.css';
+import './styles.css';
 import Api from '../../../api';
+import { useAuth } from '../../../app/authContext';
 import { SectionTitle, Spinner } from '../../../components';
 import ProcessingTimeChart from '../../../components/graphs/ProcessingTimeChart';
 import { PT_PIE_COLORS } from '../../../themes/chartThemes';
@@ -11,7 +12,7 @@ import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../..
 import processTypeDict from './processingTimeConstants';
 
 const getCategoryByType = user => {
-  switch (user.tipo_orgao) {
+  switch (user.tipoOrgao) {
     case 1:
       return 'tutelaInqueritosCivis';
     case 2:
@@ -21,7 +22,8 @@ const getCategoryByType = user => {
   }
 };
 
-const ProcessingTime = ({ user }) => {
+const ProcessingTime = () => {
+  const { user } = useAuth();
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
   const mainCategory = getCategoryByType(user);
@@ -64,21 +66,21 @@ const ProcessingTime = ({ user }) => {
     setChartData({ pieData, points, domain, organAvg, pointerPosition });
   };
 
-  // useEffect(() => {
-  //   const loadData = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const response = await Api.getProcessingTimeData(user);
-  //       setProcessingTime(response);
-  //       cleanChartData(response[mainCategory]);
-  //     } catch (e) {
-  //       setChartData(false);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   loadData();
-  // }, []);
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      try {
+        const response = await Api.getProcessingTimeData(user);
+        setProcessingTime(response);
+        cleanChartData(response[mainCategory]);
+      } catch (e) {
+        setChartData(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
 
   if (loading) {
     return <Spinner size="large" />;

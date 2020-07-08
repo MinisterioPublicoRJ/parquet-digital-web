@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { formatPercent } from '../../../utils';
+
 import './styles.css';
+import SuccessIndicatorsChart from './SuccessIndicatorsChart';
 import Api from '../../../api';
+import { formatPercent } from '../../../utils';
+import { useAuth } from '../../../app/authContext';
 import { SectionTitle, Spinner } from '../../../components';
-import { getUser } from '../../../user';
-import SuccessIndicatorsChart from '../../../components/graphs/SuccessIndicatorsChart';
 
 const SuccessIndicators = () => {
+  const { user } = useAuth();
   const [successIndicators, setSuccessIndicators] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +16,7 @@ const SuccessIndicators = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getsuccessIndicators(getUser());
+        const response = await Api.getsuccessIndicators(user);
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);

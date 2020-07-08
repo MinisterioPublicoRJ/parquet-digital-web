@@ -35,7 +35,7 @@ class Alerts extends React.Component {
   // }
 
   async loadAlerts() {
-    let alertList;
+    let alertList = [];
     let listError = false;
     try {
       alertList = await Api.getAlertsList(getUser());

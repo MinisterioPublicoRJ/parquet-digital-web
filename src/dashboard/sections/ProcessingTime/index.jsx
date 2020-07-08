@@ -3,14 +3,11 @@ import React, { useState, useEffect } from 'react';
 import '../styles.css';
 import Api from '../../../api';
 import { SectionTitle, Spinner } from '../../../components';
-import ProcessingTimeChart  from '../../../components/graphs/ProcessingTimeChart';
+import ProcessingTimeChart from '../../../components/graphs/ProcessingTimeChart';
 import { PT_PIE_COLORS } from '../../../themes/chartThemes';
 
-import PinAzul from '../../../assets/svg/pinAzul';
-import PinVermelho from '../../../assets/svg/pinVermelho';
-import MarkMind from '../../../assets/svg/markMind';
-import Markfaster from '../../../assets/svg/markFaster';
-import MarkSlower from '../../../assets/svg/markSlower';
+import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../../assets';
+
 import processTypeDict from './processingTimeConstants';
 
 const getCategoryByType = user => {
@@ -67,21 +64,21 @@ const ProcessingTime = ({ user }) => {
     setChartData({ pieData, points, domain, organAvg, pointerPosition });
   };
 
-  useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      try {
-        const response = await Api.getProcessingTimeData(user);
-        setProcessingTime(response);
-        cleanChartData(response[mainCategory]);
-      } catch (e) {
-        setChartData(false);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadData();
-  }, []);
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await Api.getProcessingTimeData(user);
+  //       setProcessingTime(response);
+  //       cleanChartData(response[mainCategory]);
+  //     } catch (e) {
+  //       setChartData(false);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   loadData();
+  // }, []);
 
   if (loading) {
     return <Spinner size="large" />;

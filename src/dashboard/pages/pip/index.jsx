@@ -25,7 +25,7 @@ function Pip({ userName, user }) {
       <PerformanceRadar.Pip user={userName} />
       <MainInvestigated user={userName} />
       <SuccessIndicators user={userName} />
-      {/* <ProcessingTime user={user} /> */}
+      <ProcessingTime />
     </div>
   );
 }

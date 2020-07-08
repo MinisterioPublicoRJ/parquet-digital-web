@@ -25,6 +25,7 @@ function PerformanceRadar (){
         const response = await Api.getRadarData(user);
         console.log(response)
         setinfoRadar(response);
+        cleanGraphData(response);
       } catch (e) {
         setLoading(true);
       } finally {
@@ -35,20 +36,20 @@ function PerformanceRadar (){
   }, []);
 
 
-  {/*function cleanGraphData(data) {
-    const cleanMap = this.props;
+  function cleanGraphData(data) {
+    const cleanMap = cleanGraphData;
 
     const chartData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
       .map(cleanMap);
 
-    this.setState({ chartData });
+    return chartData;
   }
 
-    const { axisLabelsTable } = this.props;
-    const { chartData } = this.state;*/}
+   // const { axisLabelsTable } = this.props;
+    //const { chartData } = this.state;
 
-    if (!infoRadar) return <Spinner />;
+    //if (!chartData) return <Spinner />;
 
     return (
       <article className="page-radar-dashboard">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
+import { VictoryLabel } from 'victory';
 
 import './styles.css';
 

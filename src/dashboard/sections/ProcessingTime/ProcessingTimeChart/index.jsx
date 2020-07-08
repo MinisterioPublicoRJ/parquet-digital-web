@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
-import { ChartPoints, LabelWrapper } from '../../dashboard/sections/ProcessingTime/ProcessingTime/';
+import ChartPoints from '../ChartPoint';
+import LabelWrapper from '../LabelWrapper';
 
 const graphicColor = ['#F8F9FB']; // Colors
 
@@ -137,33 +138,33 @@ function TempoTramitacaoChart({
       <VictoryChart polar {...victoryChartSettings}>
         {/* DECORATIONS */}
         {/* Number in the center text */}
-        <VictoryLabel textAnchor="middle" x={100} y={130} text={labelText} style={labelTextStyle} />
+        {/* <VictoryLabel textAnchor="middle" x={100} y={130} text={labelText} style={labelTextStyle} /> */}
         {/* Days in the center text */}
-        <VictoryLabel textAnchor="middle" x={100} y={145} text="dias" style={daysTextStyle} />
+        {/* <VictoryLabel textAnchor="middle" x={100} y={145} text="dias" style={daysTextStyle} /> */}
         {/* Congratulation text */}
-        <VictoryLabel
+        {/* <VictoryLabel
           textAnchor="middle"
           x={100}
           y={155}
           text={labelCompliment}
           style={labelComplimentStyle}
-        />
+        /> */}
         {/* Bottom gray layer */}
-        <VictoryPie {...decorationPieSettings} />
+        {/* <VictoryPie {...decorationPieSettings} /> */}
         {/* Black layer to make a fake pointer */}
-        <VictoryPie {...blackLayerPieSettings} data={[{ x: 1, y: 1 }]} />
+        {/* <VictoryPie {...blackLayerPieSettings} data={[{ x: 1, y: 1 }]} /> */}
         {/*  This chart covers the previous chart with gray to create a pointer effect */}
-        <VictoryPie {...pointerPieSettings} data={pointerPosition} />
+        {/* <VictoryPie {...pointerPieSettings} data={pointerPosition} /> */}
         {/* The circle is just a broder for the center text */}
-        <circle cx="100" cy="140" r="40" fill="none" stroke="#B3B3B3" />
+        {/* <circle cx="100" cy="140" r="40" fill="none" stroke="#B3B3B3" /> */}
 
         {/* GRAPHS AND AXIS */}
         {/* This hides the axis from showing */}
-        <VictoryAxis style={{ axis: { stroke: 'none' } }} />
+        {/* <VictoryAxis style={{ axis: { stroke: 'none' } }} /> */}
         {/*  this is the actual pie chart that renders the bars and the labels around it */}
-        <VictoryPie {...chartPieSettings} data={data} />
+        {/* <VictoryPie {...chartPieSettings} data={data} /> */}
         {/* This pie has the circles */}
-        <VictoryPie {...labelsPieSettings} data={scatter} />
+        {/* <VictoryPie {...labelsPieSettings} data={scatter} /> */}
       </VictoryChart>
     </svg>
   );

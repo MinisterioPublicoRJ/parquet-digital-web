@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MarkMind from '../../../../../assets/svg/markMind';
-import Markfaster from '../../../../../assets/svg/markFaster';
-import MarkSlower from '../../../../../assets/svg/markSlower';
+import { MarkMind, Markfaster, MarkSlower } from '../../../../assets';
 // import ProcessingTimeArrow from '../../../assets/svg/processingTimeArrow';
 
 // This props are supplied by Victory itself
@@ -14,7 +12,7 @@ const proptypes = {
   datum: PropTypes.shape({ type: PropTypes.string }).isRequired,
 };
 
-const ChartPoints = ({ x, y, datum, ...props }) => {
+const ChartPoints = ({ x, y, datum }) => {
   const { type } = datum;
   let point;
 

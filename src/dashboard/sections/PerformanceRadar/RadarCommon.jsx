@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../../app/authContext';
-import Api from '../../../api';
 import './styles.css';
 import { Spinner, SectionTitle } from '../../../components/layoutPieces';
 import  PerformanceChart from '../../../components/graphs/PerformanceChart';
@@ -23,9 +22,11 @@ function PerformanceRadar ({ getRadarData, axisLabelsTable, cleanMap }) {
   }, [])
 
   const getPerformanceData = async () => {
-    
+    let res = []
+    setLoading(true);
     try {
-    const res = await getRadarData(user);
+    res = await getRadarData(user);
+    console.log(res)
     setChartData(res);
     cleanGraphData(res);
     } catch (e) {

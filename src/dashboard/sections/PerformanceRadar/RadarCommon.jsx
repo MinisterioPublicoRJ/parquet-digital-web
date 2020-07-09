@@ -13,41 +13,35 @@ const propTypes = {
   axisLabelsTable: PropTypes.shape.isRequired,
 };
 
-function PerformanceRadar (){
+function PerformanceRadar ({ getRadarData, axisLabelsTable, cleanMap }) {
   const { user } = useAuth();
-  const [chartdata, setchartdata] = useState([]);
+  const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getPerformanceData = async () => {
-      let response = []
-      setLoading(true);
-      try {
-        response = await Api.getRadarData(user);
-        console.log(response)
-        setchartdata(cleanGraphData(response));
-      } catch (e) {
-        setLoading(true);
-      } finally {
-        setLoading(false);
-      }
-    };
     getPerformanceData();
-  }, []);
+  }, [])
 
+  const getPerformanceData = async () => {
+    
+    try {
+    const res = await getRadarData(user);
+    setChartData(res);
+    cleanGraphData(res);
+    } catch (e) {
+    setLoading(true);
+    } finally {
+    setLoading(false);
+    }
+  }
 
-  function cleanGraphData(data) {
-    let cleanMap;
-    console.log(data)
-    const chartdata = Object.entries(data)
+  const cleanGraphData = (data) => {
+    const chartData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
       .map(cleanMap);
 
-    return [chartdata];
+    setChartData(chartData);
   }
-
-    let axisLabelsTable;
-
     if (loading) {
       return (
         <article className="page-radar-dashboard">
@@ -63,7 +57,7 @@ function PerformanceRadar (){
         </div>
         <figure className="radar-wrapper">
           <div className="radar-graph">
-            <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartdata} />
+            <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />
           </div>
           <figcaption className="radar-subtitles">
             <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>

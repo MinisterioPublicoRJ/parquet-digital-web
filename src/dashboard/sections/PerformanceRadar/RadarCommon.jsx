@@ -15,7 +15,7 @@ const propTypes = {
 
 function PerformanceRadar (){
   const { user } = useAuth();
-  const [infoRadar, setinfoRadar] = useState([]);
+  const [chartdata, setchartdata] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function PerformanceRadar (){
       try {
         const response = await Api.getRadarData(user);
         console.log(response)
-        setinfoRadar(cleanGraphData(response));
+        setchartdata(cleanGraphData(response));
       } catch (e) {
         setLoading(true);
       } finally {
@@ -36,13 +36,13 @@ function PerformanceRadar (){
 
 
   function cleanGraphData(data) {
-    const cleanMap = cleanGraphData;
-
-    const infoRadar = Object.entries(data)
+    const { cleanMap } = chartdata;
+    console.log(data)
+    const chartdata = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
       .map(cleanMap);
 
-    infoRadar();
+    chartdata();
   }
 
     const { axisLabelsTable } = cleanGraphData;
@@ -62,7 +62,7 @@ function PerformanceRadar (){
         </div>
         <figure className="radar-wrapper">
           <div className="radar-graph">
-            <PerformanceChart axisLabelsTable={axisLabelsTable} data={infoRadar} />
+            <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartdata} />
           </div>
           <figcaption className="radar-subtitles">
             <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>

@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import { useAuth } from '../../../app/authContext';
 import './styles.css';
-import { getUser } from '../../../user';
 import { Spinner, SectionTitle } from '../../../components/layoutPieces';
-import  PerformanceChart from '../../../components/graphs/PerformanceChart';
-
+import PerformanceChart from '../../../components/graphs/PerformanceChart';
 
 const propTypes = {
   getRadarData: PropTypes.func.isRequired,
@@ -13,55 +11,63 @@ const propTypes = {
   axisLabelsTable: PropTypes.shape.isRequired,
 };
 
-class PerformanceRadar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function PerformanceRadar({ getRadarData, axisLabelsTable, cleanMap }) {
+  const { user } = useAuth();
+  const [chartData, setChartData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [dataError, setError] = useState(false);
 
-  componentDidMount() {
-    this.getPerformanceData();
-  }
+  useEffect(() => {
+    getPerformanceData();
+  }, []);
 
-  async getPerformanceData() {
-    const { getRadarData } = this.props;
-    const res = await getRadarData(getUser());
-    this.cleanGraphData(res);
-  }
+  const getPerformanceData = async () => {
+    let res = [];
+    try {
+      res = await getRadarData(user);
+      cleanGraphData(res);
+    } catch (e) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  cleanGraphData(data) {
-    const { cleanMap } = this.props;
-
-    const chartData = Object.entries(data)
+  const cleanGraphData = data => {
+    const cleanData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
       .map(cleanMap);
 
-    this.setState({ chartData });
-  }
+    setChartData(cleanData);
+  };
 
-  render() {
-    const { axisLabelsTable } = this.props;
-    const { chartData } = this.state;
-
-    if (!chartData) return <Spinner />;
-
+  if (loading || dataError) {
     return (
       <article className="page-radar-dashboard">
         <div className="radar-header">
           <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
         </div>
-        <figure className="radar-wrapper">
-          <div className="radar-graph">
-            <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />
-          </div>
-          <figcaption className="radar-subtitles">
-            <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
-            <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
-          </figcaption>
-        </figure>
+        {loading ? <Spinner size="large" /> : 'Sem dados para exibir'}
       </article>
     );
   }
+
+  return (
+    <article className="page-radar-dashboard">
+      <div className="radar-header">
+        <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
+      </div>
+      <figure className="radar-wrapper">
+        <div className="radar-graph">
+          <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />
+        </div>
+        <figcaption className="radar-subtitles">
+          <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
+          <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
+        </figcaption>
+      </figure>
+    </article>
+  );
 }
 
 PerformanceRadar.propTypes = propTypes;

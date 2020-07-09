@@ -26,7 +26,6 @@ function PerformanceRadar ({ getRadarData, axisLabelsTable, cleanMap }) {
     setLoading(true);
     try {
     res = await getRadarData(user);
-    console.log(res)
     setChartData(res);
     cleanGraphData(res);
     } catch (e) {

@@ -47,8 +47,14 @@ function PerformanceRadar (){
 
     const { axisLabelsTable } = cleanGraphData;
 
-    if (loading) return <Spinner />;
-
+    if (loading) {
+      return (
+        <article className="page-radar-dashboard">
+          <Spinner size="large" />
+        </article>
+      );
+    }
+  
     return (
       <article className="page-radar-dashboard">
         <div className="radar-header">

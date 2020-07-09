@@ -20,9 +20,10 @@ function PerformanceRadar (){
 
   useEffect(() => {
     const getPerformanceData = async () => {
+      let response = []
       setLoading(true);
       try {
-        const response = await Api.getRadarData(user);
+        response = await Api.getRadarData(user);
         console.log(response)
         setchartdata(cleanGraphData(response));
       } catch (e) {
@@ -36,16 +37,16 @@ function PerformanceRadar (){
 
 
   function cleanGraphData(data) {
-    const { cleanMap } = chartdata;
+    let cleanMap;
     console.log(data)
     const chartdata = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
       .map(cleanMap);
 
-    chartdata();
+    return [chartdata];
   }
 
-    const { axisLabelsTable } = cleanGraphData;
+    let axisLabelsTable;
 
     if (loading) {
       return (

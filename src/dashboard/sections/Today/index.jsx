@@ -30,38 +30,32 @@ function Today () {
   
   const loadPercentages = async () => {
     let percentile;
-    let todayOut 
+    let res = []
     try {
-      todayOut = await Api.getTodayOutData(user);
-      console.log(todayOut)
-      percentile = formatPercentage(todayOut);
+      res = await Api.getTodayOutData(user);
+      console.log(res)
+      percentile = formatPercentage(res);
     } catch (e) {
       setError(true);
     } finally {
       setLoading(false);
-      return [todayOut, percentile];
     }
-  }
+  };
+
   const loadCollection = async () => {
-    let percentile;
     let collectionPhrase;
     let groupName;
-    let todayOut
-    let todayError = false;
     try {
       const today = new Date();
       const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(user, today);
+      //collectionPhrase = analyzeCollection(primQ, terQ, acervoQtd);
+      groupName = NOMES_PROMOTORIAS[cod];
       console.log(primQ, terQ, acervoQtd, cod)
-      percentile = formatPercentage(todayOut);
     } catch (e) {
-      todayError = true;
       setError(true);
-
     } finally {
       setLoading(false);
-
       return [collectionPhrase, groupName];
-
     }
   }
    
@@ -70,10 +64,8 @@ function Today () {
     let todayError = false;
     try {
       const { hout, lout, numEntries } = await Api.getTodayEntriesData(user);
-      //entriesParagraph = analyzeEntries(hout, lout, numEntries);
       console.log(hout, lout, numEntries)
     } catch (e) {
-      todayError = true;
       setError(true);
     } finally {
       setLoading(false);

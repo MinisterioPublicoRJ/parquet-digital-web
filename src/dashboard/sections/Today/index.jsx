@@ -41,7 +41,33 @@ function Today () {
         return { percentile, loadingTodayOut, dataError };
       };
     }
-  
+    
+     /**
+   * Returns the greeting to be shown on the page
+   * @return {string} [description]
+   */
+  function assembleGreeting() {
+    const user = cleanUsername();
+    const hours = new Date().getHours();
+    const gender = user.sexo;
+    
+    let timeGreeting;
+
+    if (hours >= 6 && hours < 12) {
+      timeGreeting = 'bom dia';
+    } else if (hours >= 12 && hours < 18) {
+      timeGreeting = 'boa tarde';
+    } else {
+      timeGreeting = 'boa noite';
+    }
+
+    return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${user}, ${timeGreeting}!`;
+  }
+  function cleanUsername() {
+    const { userName } = user;
+    const cleanUsername = userName.split(' ')[0];
+    return capitalizeTitle(cleanUsername);
+  }
   
     if (loading || dataError) {
       return (
@@ -62,11 +88,12 @@ function Today () {
         {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
       </p>
     );
+    const greeting = assembleGreeting();
 
     return (
       <article className="today-outer">
         <div className="today-header">
-          {/*<MainTitle value={greeting} />*/}
+          <MainTitle value={greeting} />
         </div>
         <div className="today-content">
           <SectionTitle value="resumo do dia" glueToTop />

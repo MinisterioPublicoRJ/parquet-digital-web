@@ -16,59 +16,72 @@ const propTypes = {
 
 function Today () {
   const { user } = useAuth();
-  const [loadingTodayOut, setLoadingTodayOut] = useState([]);
-  const [loadingTodayEntries, setLoadingTodayEntries] = useState([]);
-  const [loadingTodayOutliers, setLoadingTodayOutliers] = useState([]);
+  const [today, setToday] = useState([]);
   const [dataError, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     loadPercentages();
+    loadCollection();
+    loadEntriesInfo();
+
   }, []);
 
   
   const loadPercentages = async () => {
     let percentile;
+    let todayOut 
     try {
-      const res = await Api.getTodayOutData(user);
-      console.log(res)
-      percentile = formatPercentage(res);
+      todayOut = await Api.getTodayOutData(user);
+      console.log(todayOut)
+      percentile = formatPercentage(todayOut);
     } catch (e) {
       setError(true);
     } finally {
       setLoading(false);
-        return { percentile, loadingTodayOut, dataError };
-      };
+      return [todayOut, percentile];
     }
-    
-     /**
-   * Returns the greeting to be shown on the page
-   * @return {string} [description]
-   */
-  function assembleGreeting() {
-    const user = cleanUsername();
-    const hours = new Date().getHours();
-    const gender = user.sexo;
-    
-    let timeGreeting;
-
-    if (hours >= 6 && hours < 12) {
-      timeGreeting = 'bom dia';
-    } else if (hours >= 12 && hours < 18) {
-      timeGreeting = 'boa tarde';
-    } else {
-      timeGreeting = 'boa noite';
-    }
-
-    return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${user}, ${timeGreeting}!`;
   }
-  function cleanUsername() {
-    const { userName } = user;
-    const cleanUsername = userName.split(' ')[0];
-    return capitalizeTitle(cleanUsername);
+  const loadCollection = async () => {
+    let percentile;
+    let collectionPhrase;
+    let groupName;
+    let todayOut
+    let todayError = false;
+    try {
+      const today = new Date();
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(user, today);
+      console.log(primQ, terQ, acervoQtd, cod)
+      percentile = formatPercentage(todayOut);
+    } catch (e) {
+      todayError = true;
+      setError(true);
+
+    } finally {
+      setLoading(false);
+
+      return [collectionPhrase, groupName];
+
+    }
+  }
+   
+  const loadEntriesInfo = async () => {
+    let entriesParagraph;
+    let todayError = false;
+    try {
+      const { hout, lout, numEntries } = await Api.getTodayEntriesData(user);
+      //entriesParagraph = analyzeEntries(hout, lout, numEntries);
+      console.log(hout, lout, numEntries)
+    } catch (e) {
+      todayError = true;
+      setError(true);
+    } finally {
+      setLoading(false);
+      return [entriesParagraph];
+    }
   }
   
+ 
     if (loading || dataError) {
       return (
         <article className="today-outer">
@@ -79,27 +92,23 @@ function Today () {
         </article>
       );
     }
-    const percentile = loadingTodayOut
-    const percentParagraph = !percentile ? null : (
-      <p className="today-textArea-paragraphWrapper">
-        No último mês a sua promotoria foi mais resolutiva que
-        <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
-        da casa entre aquelas de mesma atribuição.
-        {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
-      </p>
-    );
-    const greeting = assembleGreeting();
-
+    const percentile = today
+  
     return (
       <article className="today-outer">
         <div className="today-header">
-          <MainTitle value={greeting} />
+          {/*<MainTitle value={greeting} />*/}
         </div>
-        <div className="today-content">
-          <SectionTitle value="resumo do dia" glueToTop />
-          <div className="today-textArea">
-            {percentParagraph}
-            {/*collectionParagraph}
+          <div className="today-content">
+            <SectionTitle value="resumo do dia" glueToTop />
+            <div className="today-textArea">
+            <p className="today-textArea-paragraphWrapper">
+            No último mês a sua promotoria foi mais resolutiva que
+            <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
+            da casa entre aquelas de mesma atribuição.
+            {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+            </p>
+           {/*collectionParagraph}
             {entriesParagraph*/}
           </div>
         </div>

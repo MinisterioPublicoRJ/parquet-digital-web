@@ -20,6 +20,8 @@ function Today () {
   const [loadingTodayEntries, setLoadingTodayEntries] = useState([]);
   const [loadingTodayOutliers, setLoadingTodayOutliers] = useState([]);
   const [dataError, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     getUserData();
@@ -56,7 +58,6 @@ function Today () {
    * @return {void}
    */
   const loadPercentages = async () => {
-    const { user } = useAuth();
     const loadingTodayOut = false;
     let errorTodayOut = false;
     let percentile;
@@ -80,7 +81,6 @@ function Today () {
 
   // loadCollection Tutela
   const loadCollection = async () => {
-    const { user } = useAuth();
     let collectionPhrase;
     let groupName;
     let errorTodayOutliers = false;
@@ -111,7 +111,6 @@ function Today () {
    * @return {void}
    */
   const loadEntriesInfo = async () => {
-    const { user } = useAuth();
     let entriesParagraph;
     let errorTodayEntries = false;
     try {
@@ -231,9 +230,17 @@ function Today () {
       </p>
     );
 
-    if (!doneLoading) {
-      return <Spinner size="medium" />;
+    if (loading || dataError) {
+      return (
+        <article className="today-outer">
+          <div className="today-header">
+            <SectionTitle value="Resumo do dia" glueToTop />
+          </div>
+          {loading ? <Spinner size="large" /> : 'Sem dados para exibir'}
+        </article>
+      );
     }
+  
     return (
       <article className="today-outer">
         <div className="today-header">

@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useAuth } from '../../../app/authContext';
 
 import './styles.css';
 import Api from '../../../api';
@@ -13,28 +14,25 @@ const propTypes = {
   user: PropTypes.string.isRequired,
 };
 
-class Today extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loadingTodayOut: true,
-      loadingTodayEntries: true,
-      loadingTodayOutliers: true,
-    };
-  }
+function Today () {
+  const { user } = useAuth();
+  const [loadingTodayOut, setLoadingTodayOut] = useState([]);
+  const [loadingTodayEntries, setLoadingTodayEntries] = useState([]);
+  const [loadingTodayOutliers, setLoadingTodayOutliers] = useState([]);
+  const [dataError, setError] = useState(false);
 
-  componentDidMount() {
-    this.getUserData();
-  }
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   /**
    * loads/reloads all page info
    * @return {void}
    */
-  getUserData() {
-    this.loadPercentages();
-    this.loadEntriesInfo();
-    this.loadCollection();
+  function getUserData() {
+    loadPercentages();
+    loadEntriesInfo();
+    loadCollection();
   }
 
   /**
@@ -44,7 +42,7 @@ class Today extends Component {
    * @param  {boolean} loadingTodayOutliers
    * @return {boolean}
    */
-  doneLoading(loadingTodayOut, loadingTodayEntries, loadingTodayOutliers) {
+  function doneLoading(loadingTodayOut, loadingTodayEntries, loadingTodayOutliers) {
     if (!loadingTodayOut && !loadingTodayEntries && !loadingTodayOutliers) {
       // const { loadedCallback } = this.props;
       // loadedCallback();
@@ -57,8 +55,8 @@ class Today extends Component {
    * laods percentage data for the first sentence
    * @return {void}
    */
-  async loadPercentages() {
-    const { user } = this.props;
+  const loadPercentages = async () => {
+    const { user } = useAuth();
     const loadingTodayOut = false;
     let errorTodayOut = false;
     let percentile;
@@ -81,8 +79,8 @@ class Today extends Component {
    */
 
   // loadCollection Tutela
-  async loadCollection() {
-    const { user } = this.props;
+  const loadCollection = async () => {
+    const { user } = useAuth();
     let collectionPhrase;
     let groupName;
     let errorTodayOutliers = false;
@@ -112,8 +110,8 @@ class Today extends Component {
    * loads/reloads info an calls formatters for third sentence data
    * @return {void}
    */
-  async loadEntriesInfo() {
-    const { user } = this.props;
+  const loadEntriesInfo = async () => {
+    const { user } = useAuth();
     let entriesParagraph;
     let errorTodayEntries = false;
     try {
@@ -137,7 +135,7 @@ class Today extends Component {
    * @return {Node}        React element to be inserted on View
    */
 
-  analyzeEntries(hout, lout, amount) {
+  function analyzeEntries(hout, lout, amount) {
     if (!amount) {
       return (
         <p className="today-textArea-paragraphWrapper">
@@ -167,7 +165,7 @@ class Today extends Component {
    * @param  {number} amount current collection
    * @return {string}        sentence to be used in second paragraph
    */
-  analyzeCollection(lower, higher, amount) {
+  function analyzeCollection(lower, higher, amount) {
     if (amount < lower) {
       return 'razoavelmente menor que os';
     }
@@ -183,7 +181,7 @@ class Today extends Component {
    * Returns the greeting to be shown on the page
    * @return {string} [description]
    */
-  assembleGreeting() {
+  function assembleGreeting() {
     const user = this.cleanUsername();
     const hours = new Date().getHours();
     const gender = this.props.user.sexo;
@@ -205,16 +203,15 @@ class Today extends Component {
    * Gets the original string returned from the API, trims and prettifies it.
    * @return {string} First and last names, just the first letter of each capitalized
    */
-  cleanUsername() {
+  function cleanUsername() {
     const { userName } = this.props;
     const cleanUsername = userName.split(' ')[0];
     return capitalizeTitle(cleanUsername);
   }
 
-  render() {
-    const { percentile, collectionPhrase, groupName, entriesParagraph, doneLoading } = this.state;
+    const { percentile, collectionPhrase, groupName, entriesParagraph } = this.state;
 
-    const greeting = this.assembleGreeting();
+    const greeting = assembleGreeting();
 
     const percentParagraph = !percentile ? null : (
       <p className="today-textArea-paragraphWrapper">
@@ -259,7 +256,6 @@ class Today extends Component {
       </article>
     );
   }
-}
 
 Today.propTypes = propTypes;
 export default Today;

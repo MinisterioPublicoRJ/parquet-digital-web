@@ -12,10 +12,10 @@ const ProcessList = () => {
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
-    MPRJ: 'docuNrMp',
-    'Nº Externo': 'docuNrExterno',
-    'Último Andamento': 'dtUltimoAndamento',
+    'Nº do Processo': 'docuNrExterno',
     Classe: 'classeDocumento',
+    'Data Andamento': 'dtUltimoAndamento',
+    'Rótulo Andamento': 'ultimoAndamento',
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const ProcessList = () => {
 
   return (
     <div className="processList-outer">
-      <SectionTitle value="Últimos processos movimentados" />
+      <SectionTitle value="Processos Judiciais" />
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (

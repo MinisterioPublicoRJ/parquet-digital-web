@@ -25,20 +25,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  flex: 1;
 }
 
 .today-textArea-paragraphWrapper {
   color: var(--dark);
   font-family: var(--defaultFont);
   font-size: var(--titleParagraphToday);
+  text-align: justify;
   margin: 0;
-  text-indent: 1.5vh;
 }
 
 .today-robotPic {
   align-items: flex-end;
   display: flex;
-  height: 75%;
+  height: 80%;
+  width: 50%;
   justify-content: flex-end;
   position: absolute;
   right: 0;
@@ -68,10 +70,20 @@
   display: none;
 }
 
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+  .today-robotPic {
+    height: 70%;
+  }
+
+  .today-content {
+    width: 60%;
+  }
+}
+
 @media (max-width: 480px) {
   .today-robotPic {
     height: 50%;
-    right: -50px;
   }
   .today-content {
     width: 50%;
@@ -79,5 +91,5 @@
   .today-textArea-paragraphWrapper {
     font-size: var(--titleParagraphToday);
   }
-  
+
 }

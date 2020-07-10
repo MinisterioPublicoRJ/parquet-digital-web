@@ -13,7 +13,7 @@ const axisLabelsTable = {
     position: 'W',
   },
   openCases: {
-    label: 'Abertura_de Vista',
+    label: 'Devoluções_à DP',
     position: 'SW',
   },
   complaints: {
@@ -30,7 +30,7 @@ const cleanMap = ([category, { maxValues, averages, variations, percentages, num
   category,
   value: `(máx atribuição ${maxValues})`, // variations == null || variations === -1 ? '—' : formatPercent(variations),
   isAboveAverage: null, // variations == null || variations === -1 ? null : variations >= 0,
-  median: 100 * (averages / maxValues),
+  median: 100 * (averages / (maxValues || 1)),
   x: category,
   y: percentages * 100,
   numbers,

@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { VictoryChart, VictoryPolarAxis, VictoryArea, VictoryGroup, VictoryLabel } from 'victory';
+import {
+  VictoryPortal,
+  VictoryChart,
+  VictoryPolarAxis,
+  VictoryArea,
+  VictoryGroup,
+  VictoryLabel,
+} from 'victory';
 
 import CHART_THEME from '../../themes/chartThemes';
 
@@ -42,12 +49,32 @@ const labelPositionsTable = {
     dx: 0,
     dy: 20,
     textAnchor: 'middle',
+    internalLabel: {
+      normal: {
+        dx: 0,
+        dy: -15,
+      },
+      inverted: {
+        dx: 0,
+        dy: 25,
+      },
+    },
   },
   W: {
     order: 2,
     dx: 15,
     dy: -15,
     textAnchor: 'end',
+    internalLabel: {
+      normal: {
+        dx: -15,
+        dy: -15,
+      },
+      inverted: {
+        dx: 10,
+        dy: 10,
+      },
+    },
   },
   SW: {
     order: 3,
@@ -55,6 +82,16 @@ const labelPositionsTable = {
     dy: -15,
     textAnchor: 'end',
     invert: true,
+    internalLabel: {
+      normal: {
+        dx: -5,
+        dy: 10,
+      },
+      inverted: {
+        dx: -20,
+        dy: -20,
+      },
+    },
   },
   SE: {
     order: 4,
@@ -62,12 +99,32 @@ const labelPositionsTable = {
     dy: -15,
     textAnchor: 'start',
     invert: true,
+    internalLabel: {
+      normal: {
+        dx: 5,
+        dy: 10,
+      },
+      inverted: {
+        dx: 20,
+        dy: -20,
+      },
+    },
   },
   E: {
     order: 5,
     dx: -15,
     dy: -15,
     textAnchor: 'start',
+    internalLabel: {
+      normal: {
+        dx: 15,
+        dy: 15,
+      },
+      inverted: {
+        dx: -20,
+        dy: 10,
+      },
+    },
   },
 };
 
@@ -199,7 +256,7 @@ function PerformanceChart({ data, axisLabelsTable }) {
           style={{
             data: { fill: 'url(#myGradient)' },
           }}
-          labelComponent={<AreaLabel />}
+          labelComponent={<AreaLabel axisLabelsTable={axisLabelsTable} />}
         />
         <VictoryArea
           data={medianData}
@@ -218,32 +275,44 @@ function PerformanceChart({ data, axisLabelsTable }) {
 }
 
 const AreaLabel = props => {
-  const { datum, style } = props;
+  const { datum, style, axisLabelsTable } = props;
+  const { x, y } = datum;
 
-  delete datum._x;
-  delete datum._x0;
-  delete datum._x1;
-  delete datum._y;
-  delete datum._y0;
-  delete datum._y1;
-  datum.x = 0;
-  datum.y = 0;
+  const { position } = axisLabelsTable[x];
+  const { internalLabel } = labelPositionsTable[position];
+  const { dx, dy } = internalLabel[y > 60 ? 'inverted' : 'normal'];
+
+  const labelSize = datum.label.toString().length;
 
   return (
-    <g>
-      <VictoryLabel
-        {...props}
-        datum={datum}
-        className="chart-inner-label"
-        labelPlacement="vertical"
-        style={{
-          ...style,
-          fill: '#009bff',
-          fontSize: 20,
-          fontWeight: 'bold',
-        }}
-      />
-    </g>
+    <VictoryPortal>
+      <g>
+        <rect
+          fill="rgba(0,155,255, .7)"
+          stroke="#ffffff"
+          strokeWith={1}
+          x={props.x + dx + (-10 + 5 * labelSize) - 10 * labelSize}
+          y={props.y + dy - 12}
+          width={10 * labelSize + 20}
+          height={25}
+        />
+        <VictoryLabel
+          {...props}
+          className="chart-inner-label"
+          labelPlacement="vertical"
+          verticalAnchor="middle"
+          textAnchor="middle"
+          dx={dx}
+          dy={dy}
+          style={{
+            ...style,
+            fill: '#fff',
+            fontSize: 20,
+            fontWeight: 'bold',
+          }}
+        />
+      </g>
+    </VictoryPortal>
   );
 };
 

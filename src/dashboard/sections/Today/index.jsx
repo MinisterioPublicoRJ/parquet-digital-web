@@ -16,7 +16,7 @@ const propTypes = {
 
 function Today () {
   const { user } = useAuth();
-  const [today, setToday] = useState([]);
+  const [todayPercent, setTodayPercent] = useState([]);
   const [dataError, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +27,12 @@ function Today () {
 
   }, []);
 
-  
+   /**
+   * checks if all the info was fetched from aPI, warns parent when done
+   * @param  {boolean} dataError
+   * @return {boolean}
+   */
+
   const loadPercentages = async () => {
     let percentile;
     let res = []
@@ -37,6 +42,8 @@ function Today () {
       percentile = formatPercentage(res);
     } catch (e) {
       setError(true);
+      setTodayPercent();
+
     } finally {
       setLoading(false);
     }
@@ -61,7 +68,6 @@ function Today () {
    
   const loadEntriesInfo = async () => {
     let entriesParagraph;
-    let todayError = false;
     try {
       const { hout, lout, numEntries } = await Api.getTodayEntriesData(user);
       console.log(hout, lout, numEntries)
@@ -73,6 +79,28 @@ function Today () {
     }
   }
   
+  function analyzeEntries(hout, lout, amount) {
+    if (!amount) {
+      return (
+        <p className="today-textArea-paragraphWrapper">
+          Percebi que ainda não temos vistas abertas para hoje!
+        </p>
+      );
+    }
+    let dayTipe = 'típico';
+    if (amount < lout || amount > hout) {
+      dayTipe = 'atípico';
+    }
+    return (
+      <p className="today-textArea-paragraphWrapper">
+        Hoje temos um dia
+        <span style={{ fontWeight: 'bold' }}>{` ${dayTipe} `}</span>
+        com a entrada de
+        <span style={{ fontWeight: 'bold' }}>{` ${amount} `}</span>
+        novos feitos.
+      </p>
+    );
+  }
  
     if (loading || dataError) {
       return (
@@ -84,7 +112,7 @@ function Today () {
         </article>
       );
     }
-    const percentile = today
+    const percentile = todayPercent
   
     return (
       <article className="today-outer">
@@ -96,7 +124,7 @@ function Today () {
             <div className="today-textArea">
             <p className="today-textArea-paragraphWrapper">
             No último mês a sua promotoria foi mais resolutiva que
-            <span style={{ fontWeight: 'bold' }}>{` ${percentile} `}</span>
+            <span style={{ fontWeight: 'bold' }}>{` ${todayPercent.percentile} `}</span>
             da casa entre aquelas de mesma atribuição.
             {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
             </p>

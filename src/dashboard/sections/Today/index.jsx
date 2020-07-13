@@ -17,6 +17,7 @@ const propTypes = {
 function Today () {
   const { user } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
+  const [phrase, setPhrase] = useState([]);
   const [dataError, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -40,10 +41,9 @@ function Today () {
       res = await Api.getTodayOutData(user);
       console.log(res)
       percentile = formatPercentage(res);
+      setTodayPercent(percentile);
     } catch (e) {
       setError(true);
-      setTodayPercent();
-
     } finally {
       setLoading(false);
     }
@@ -58,11 +58,12 @@ function Today () {
       //collectionPhrase = analyzeCollection(primQ, terQ, acervoQtd);
       groupName = NOMES_PROMOTORIAS[cod];
       console.log(primQ, terQ, acervoQtd, cod)
+      console.log(groupName)
+      setPhrase(primQ, terQ, acervoQtd, cod);
     } catch (e) {
       setError(true);
     } finally {
       setLoading(false);
-      return [collectionPhrase, groupName];
     }
   }
    
@@ -112,8 +113,7 @@ function Today () {
         </article>
       );
     }
-    const percentile = todayPercent
-  
+   
     return (
       <article className="today-outer">
         <div className="today-header">
@@ -124,9 +124,9 @@ function Today () {
             <div className="today-textArea">
             <p className="today-textArea-paragraphWrapper">
             No último mês a sua promotoria foi mais resolutiva que
-            <span style={{ fontWeight: 'bold' }}>{` ${todayPercent.percentile} `}</span>
+            <span style={{ fontWeight: 'bold' }}>{` ${todayPercent} `}</span>
             da casa entre aquelas de mesma atribuição.
-            {percentile > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+            {todayPercent > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
             </p>
            {/*collectionParagraph}
             {entriesParagraph*/}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useAuth } from '../../../app/authContext';
 
 import './styles.css';
@@ -9,10 +8,6 @@ import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
 import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPieces';
 
 import { formatPercentage, capitalizeTitle } from '../../../utils';
-
-const propTypes = {
-  user: PropTypes.string.isRequired,
-};
 
 function Today() {
   const { user } = useAuth();
@@ -51,27 +46,28 @@ function Today() {
       setLoading(false);
     }
   };
+
   /**
    * loads/reloads info an calls formatters for second sentence data
    * @return {void}
    */
-
   const loadCollection = async () => {
     let collectionPhrase;
-    let groupName;
+    let organName;
     try {
       const today = new Date();
       const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(user, today);
       collectionPhrase = analyzeCollection(primQ, terQ, acervoQtd);
-      groupName = NOMES_PROMOTORIAS[cod];
+      organName = NOMES_PROMOTORIAS[cod];
       setPhrase(collectionPhrase);
-      setgroupName(groupName);
+      setgroupName(organName);
     } catch (e) {
       setError(true);
     } finally {
       setLoading(false);
     }
   };
+
   /**
    * loads/reloads info an calls formatters for third sentence data
    * @return {void}
@@ -96,7 +92,6 @@ function Today() {
    * @param  {Number} amount amount of entries on given day
    * @return {Node}        React element to be inserted on View
    */
-
   function analyzeEntries(hout, lout, amount) {
     if (!amount) {
       return (
@@ -119,6 +114,7 @@ function Today() {
       </p>
     );
   }
+
   /**
    * returns the right comment based on collection size
    * @param  {number} lower  1st quartile limit
@@ -137,14 +133,15 @@ function Today() {
 
     return 'de volume regular comparado aos';
   }
+
   /**
    * Returns the greeting to be shown on the page
    * @return {string} [description]
    */
   function assembleGreeting() {
-    // const infoUser = cleanUsername();
+    const infoUser = cleanUsername();
     const hours = new Date().getHours();
-    // const gender = infoUser.sexo;
+    const gender = infoUser.sexo;
 
     let timeGreeting;
 
@@ -156,17 +153,15 @@ function Today() {
       timeGreeting = 'boa noite';
     }
 
-    // return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${infoUser}, ${timeGreeting}!`;
+    return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${infoUser}, ${timeGreeting}!`;
   }
   /**
    * Gets the original string returned from the API, trims and prettifies it.
    * @return {string} First and last names, just the first letter of each capitalized
    */
-  {
-    /* function cleanUsername(){
-    const cleanUsername = user.split(' ')[0];
-    return capitalizeTitle(cleanUsername);
-  } */
+  function cleanUsername(){
+    const { nome } = user;
+    return capitalizeTitle(nome.split(' ')[0]);
   }
 
   if (loading || dataError) {
@@ -191,9 +186,11 @@ function Today() {
   );
   const collectionParagraph = !phrase ? null : (
     <p className="today-textArea-paragraphWrapper">
-      Você sabia que seu acervo é<span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
+      Você sabia que seu acervo é
+      <span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
       dos seus colegas das
-      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>
+      ?
     </p>
   );
 
@@ -220,5 +217,4 @@ function Today() {
   );
 }
 
-Today.propTypes = propTypes;
 export default Today;

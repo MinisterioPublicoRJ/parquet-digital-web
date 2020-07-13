@@ -1,0 +1,24 @@
+.modal {
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45vw;
+  height: 60vh;
+  z-index: 100;
+}
+
+.modal + .backdrop {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+}
+
+.modal + .backdrop:focus {
+  background: #fff;
+}

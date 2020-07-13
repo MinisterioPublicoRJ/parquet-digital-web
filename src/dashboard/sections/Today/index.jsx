@@ -14,7 +14,7 @@ const propTypes = {
   user: PropTypes.string.isRequired,
 };
 
-function Today () {
+function Today() {
   const { user } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
@@ -29,7 +29,7 @@ function Today () {
     loadEntriesInfo();
   }, []);
 
-   /**
+  /**
    * checks if all the info was fetched from aPI, warns parent when done
    * @param  {boolean} dataError
    */
@@ -40,7 +40,7 @@ function Today () {
    */
   const loadPercentages = async () => {
     let percentile;
-    let res = []
+    let res = [];
     try {
       res = await Api.getTodayOutData(user);
       percentile = formatPercentage(res);
@@ -51,7 +51,7 @@ function Today () {
       setLoading(false);
     }
   };
-   /**
+  /**
    * loads/reloads info an calls formatters for second sentence data
    * @return {void}
    */
@@ -71,8 +71,8 @@ function Today () {
     } finally {
       setLoading(false);
     }
-  }
-   /**
+  };
+  /**
    * loads/reloads info an calls formatters for third sentence data
    * @return {void}
    */
@@ -87,9 +87,9 @@ function Today () {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
-/**
+  /**
    * compares the number of entries to the business rules to decide which phrase to show. A day can be typical, atypical or empty
    * @param  {Number} hout   how many entries are on the upper boundary of a typical day
    * @param  {Number} lout   how many entries are on the lower boundary of a typical day
@@ -119,7 +119,7 @@ function Today () {
       </p>
     );
   }
-   /**
+  /**
    * returns the right comment based on collection size
    * @param  {number} lower  1st quartile limit
    * @param  {number} higher 3rd quartile limit
@@ -137,15 +137,15 @@ function Today () {
 
     return 'de volume regular comparado aos';
   }
-   /**
+  /**
    * Returns the greeting to be shown on the page
    * @return {string} [description]
    */
   function assembleGreeting() {
-    //const infoUser = cleanUsername();
+    // const infoUser = cleanUsername();
     const hours = new Date().getHours();
-    //const gender = infoUser.sexo;
-    
+    // const gender = infoUser.sexo;
+
     let timeGreeting;
 
     if (hours >= 6 && hours < 12) {
@@ -156,70 +156,69 @@ function Today () {
       timeGreeting = 'boa noite';
     }
 
-    //return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${infoUser}, ${timeGreeting}!`;
+    // return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${infoUser}, ${timeGreeting}!`;
   }
-   /**
+  /**
    * Gets the original string returned from the API, trims and prettifies it.
    * @return {string} First and last names, just the first letter of each capitalized
    */
-  {/*function cleanUsername(){
+  {
+    /* function cleanUsername(){
     const cleanUsername = user.split(' ')[0];
     return capitalizeTitle(cleanUsername);
-  }*/}
+  } */
+  }
 
-    if (loading || dataError) {
-      return (
-        <article className="today-outer">
-          <div className="today-header">
-            <SectionTitle value="Resumo do dia" glueToTop />
-          </div>
-          {loading ? <Spinner size="large" /> : 'Sem dados para exibir'}
-        </article>
-      );
-    }
-    const greeting = assembleGreeting();
-
-    const percentParagraph = !todayPercent ? null : (
-      <p className="today-textArea-paragraphWrapper">
-        No último mês a sua promotoria foi mais resolutiva que
-        <span style={{ fontWeight: 'bold' }}>{` ${todayPercent} `}</span>
-        da casa entre aquelas de mesma atribuição.
-        {todayPercent > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
-      </p>
-    );
-    const collectionParagraph = !phrase ? null : (
-      <p className="today-textArea-paragraphWrapper">
-        Você sabia que seu acervo é
-        <span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
-        dos seus colegas das
-        <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>
-        ?
-      </p>
-    );
-
+  if (loading || dataError) {
     return (
       <article className="today-outer">
         <div className="today-header">
-          <MainTitle value={greeting} />
+          <SectionTitle value="Resumo do dia" glueToTop />
         </div>
-          <div className="today-content">
-            <SectionTitle value="resumo do dia" glueToTop />
-            <div className="today-textArea">
-              {percentParagraph}
-              {collectionParagraph}
-              {entriesGroup}
-            </div>
-        </div>
-        <button type="button" className="today-btn">
-          Ver mapa da atuação
-        </button>
-        <div className="today-robotPic">
-          <img height="100%" src={PromotronGif} alt="robô-promoton" />
-        </div>
+        {loading ? <Spinner size="large" /> : 'Sem dados para exibir'}
       </article>
+    );
+  }
+  const greeting = assembleGreeting();
+
+  const percentParagraph = !todayPercent ? null : (
+    <p className="today-textArea-paragraphWrapper">
+      No último mês a sua promotoria foi mais resolutiva que
+      <span style={{ fontWeight: 'bold' }}>{` ${todayPercent} `}</span>
+      da casa entre aquelas de mesma atribuição.
+      {todayPercent > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+    </p>
+  );
+  const collectionParagraph = !phrase ? null : (
+    <p className="today-textArea-paragraphWrapper">
+      Você sabia que seu acervo é<span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
+      dos seus colegas das
+      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+    </p>
+  );
+
+  return (
+    <article className="today-outer">
+      <div className="today-header">
+        <MainTitle value={greeting} />
+      </div>
+      <div className="today-content">
+        <SectionTitle value="resumo do dia" glueToTop />
+        <div className="today-textArea">
+          {percentParagraph}
+          {collectionParagraph}
+          {entriesGroup}
+        </div>
+      </div>
+      <button type="button" className="today-btn">
+        Ver mapa da atuação
+      </button>
+      <div className="today-robotPic">
+        <img height="100%" src={PromotronGif} alt="robô-promoton" />
+      </div>
+    </article>
   );
 }
-
 
 Today.propTypes = propTypes;
 export default Today;

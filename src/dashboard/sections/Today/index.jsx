@@ -43,7 +43,6 @@ function Today () {
     let res = []
     try {
       res = await Api.getTodayOutData(user);
-      console.log(res)
       percentile = formatPercentage(res);
       setTodayPercent(percentile);
     } catch (e) {
@@ -142,10 +141,10 @@ function Today () {
    * Returns the greeting to be shown on the page
    * @return {string} [description]
    */
-  {/*function assembleGreeting() {
-    const user = cleanUsername();
+  function assembleGreeting() {
+    //const infoUser = cleanUsername();
     const hours = new Date().getHours();
-    const gender = user.sexo;
+    //const gender = infoUser.sexo;
     
     let timeGreeting;
 
@@ -157,15 +156,14 @@ function Today () {
       timeGreeting = 'boa noite';
     }
 
-    return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${user}, ${timeGreeting}!`;
-  }*/}
+    //return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${infoUser}, ${timeGreeting}!`;
+  }
    /**
    * Gets the original string returned from the API, trims and prettifies it.
    * @return {string} First and last names, just the first letter of each capitalized
    */
-  {/*function cleanUsername() {
-    const { userName } = user;
-    const cleanUsername = userName.split('')[0];
+  {/*function cleanUsername(){
+    const cleanUsername = user.split(' ')[0];
     return capitalizeTitle(cleanUsername);
   }*/}
 
@@ -179,7 +177,7 @@ function Today () {
         </article>
       );
     }
-    //const greeting = assembleGreeting();
+    const greeting = assembleGreeting();
 
     const percentParagraph = !todayPercent ? null : (
       <p className="today-textArea-paragraphWrapper">
@@ -202,7 +200,7 @@ function Today () {
     return (
       <article className="today-outer">
         <div className="today-header">
-          {/*<MainTitle value={greeting} />*/}
+          <MainTitle value={greeting} />
         </div>
           <div className="today-content">
             <SectionTitle value="resumo do dia" glueToTop />

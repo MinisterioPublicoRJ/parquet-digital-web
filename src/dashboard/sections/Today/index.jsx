@@ -186,8 +186,10 @@ function Today() {
   );
   const collectionParagraph = !phrase ? null : (
     <p className="today-textArea-paragraphWrapper">
-      Você sabia que seu acervo é<span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
-      dos seus colegas das<span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+      Você sabia que seu acervo é
+      <span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
+      dos seus colegas das
+      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
     </p>
   );
 

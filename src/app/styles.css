@@ -1,6 +1,7 @@
 body {
   color: var(--dark);
   font-family: var(--defaultFont);
+  font-size: var(--defaultFontSize);
   margin: 0;
   padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
 }

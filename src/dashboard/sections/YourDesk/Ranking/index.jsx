@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 import TITLEDICT from './titleConstants';
-import Badge from '../../../../../assets/svg/badge';
+import { Badge } from '../../../../assets';
 
 const propTypes = {
   title: PropTypes.string.isRequired,

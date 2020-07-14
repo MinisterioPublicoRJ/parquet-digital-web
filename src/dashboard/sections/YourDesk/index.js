@@ -3,12 +3,12 @@ import React from 'react';
 import './styles.css';
 import { useAuth } from '../../../app/authContext';
 import { SectionTitle } from '../../../components';
-import { ControlButton, GenericTab } from './YourDesk';
+import GenericTab from './GenericTab';
+import ControlButton from './ControlButton';
 
 import OpenCasesDetail from './openCasesDetail';
 
 import Api from '../../../api';
-import { getUser } from '../../../user';
 import { capitalizeWord } from '../../../utils';
 
 import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';

@@ -1,3 +1,4 @@
+export { default as Badge } from './badge';
 export { default as ClockIcon } from './clock';
 export { default as CorujaGate } from './corujaGate';
 export { default as Csi } from './csi';

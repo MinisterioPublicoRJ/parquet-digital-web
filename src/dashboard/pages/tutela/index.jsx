@@ -18,7 +18,7 @@ const propTypes = { userName: PropTypes.string.isRequired };
 function Tutela({ userName, user }) {
   return (
     <div className="base-grid tutela-grid">
-      {/*<Today userName={userName} user={user} />*/}
+      <Today userName={userName} user={user} />
       <YourDesk user={userName} />
       <PerformanceRadar.Tutela user={userName} />
       <Alerts />

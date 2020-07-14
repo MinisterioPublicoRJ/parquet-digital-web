@@ -3,7 +3,9 @@ import React from 'react';
 import './styles.css';
 import { useAuth } from '../../../app/authContext';
 import { SectionTitle } from '../../../components';
-import { ControlButton, OpenCasesDetail, GenericTab } from './YourDesk';
+import { ControlButton, GenericTab } from './YourDesk';
+
+import OpenCasesDetail from './openCasesDetail';
 
 import Api from '../../../api';
 import { getUser } from '../../../user';

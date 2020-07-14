@@ -15,14 +15,8 @@ function Today() {
   const [phrase, setPhrase] = useState([]);
   const [groupName, setgroupName] = useState([]);
   const [entriesGroup, setEntriesGroup] = useState([]);
-  const [dataError, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    loadPercentages();
-    loadCollection();
-    loadEntriesInfo();
-  }, []);
+  const [dataError, setdataError] = useState(false);
+  const loading = !todayPercent && !phrase && !groupName && !entriesGroup && !dataError ;
 
   /**
    * checks if all the info was fetched from aPI, warns parent when done
@@ -36,15 +30,14 @@ function Today() {
   const loadPercentages = async () => {
     let percentile;
     let res = [];
+    let errorPercent = false;
     try {
       res = await Api.getTodayOutData(user);
       percentile = formatPercentage(res);
-      setTodayPercent(percentile);
     } catch (e) {
-      setError(true);
-    } finally {
-      setLoading(false);
+      errorPercent = true;
     }
+    return [percentile, errorPercent];
   };
 
   /**
@@ -54,18 +47,16 @@ function Today() {
   const loadCollection = async () => {
     let collectionPhrase;
     let organName;
+    let errorPhrase = false;
     try {
       const today = new Date();
       const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(user, today);
       collectionPhrase = analyzeCollection(primQ, terQ, acervoQtd);
       organName = NOMES_PROMOTORIAS[cod];
-      setPhrase(collectionPhrase);
-      setgroupName(organName);
     } catch (e) {
-      setError(true);
-    } finally {
-      setLoading(false);
+      errorPhrase = true;
     }
+    return [collectionPhrase, organName, errorPhrase];
   };
 
   /**
@@ -74,16 +65,32 @@ function Today() {
    */
   const loadEntriesInfo = async () => {
     let entriesParagraph;
+    let errorParagraph = false;
     try {
       const { hout, lout, numEntries } = await Api.getTodayEntriesData(user);
       entriesParagraph = analyzeEntries(hout, lout, numEntries);
-      setEntriesGroup(entriesParagraph);
     } catch (e) {
-      setError(true);
-    } finally {
-      setLoading(false);
+      errorParagraph = true;
     }
+    return [entriesParagraph, errorParagraph];
   };
+
+  async function loadComponent() {
+    const [percentile, errorPercentList] = await loadPercentages();
+    const [collectionPhrase, organName, errorPhraseList] = await loadCollection();
+    const [entriesParagraph, errorParagraphList] = await loadEntriesInfo();
+
+    const apiError = errorPercentList || errorPhraseList || errorParagraphList;
+
+    setTodayPercent(percentile);
+    setPhrase(collectionPhrase);
+    setgroupName(organName);
+    setEntriesGroup(entriesParagraph);
+    setdataError(apiError);
+  }
+
+  // runs on "mount" only
+  useEffect(loadComponent, []);
 
   /**
    * compares the number of entries to the business rules to decide which phrase to show. A day can be typical, atypical or empty
@@ -159,7 +166,7 @@ function Today() {
    * Gets the original string returned from the API, trims and prettifies it.
    * @return {string} First and last names, just the first letter of each capitalized
    */
-  function cleanUsername(){
+  function cleanUsername() {
     const { nome } = user;
     return capitalizeTitle(nome.split(' ')[0]);
   }

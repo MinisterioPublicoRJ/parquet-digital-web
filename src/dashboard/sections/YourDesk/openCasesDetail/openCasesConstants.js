@@ -10,3 +10,9 @@ export const TABLE_COLUMNS = {
   'Último Andamento no MP': 'dtAbertura',
   Classe: 'classe',
 };
+
+export const TAB_MATCHER = {
+  under20: 'ate_vinte',
+  between20And30: 'vinte_trinta',
+  over30: 'trinta_mais',
+};

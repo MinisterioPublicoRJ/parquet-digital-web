@@ -142,6 +142,7 @@ class YourDesk extends React.Component {
 
   render() {
     const { activeTab, buttonList, openCasesDetails, openCasesDetailsError } = this.state;
+    const { user } = this.props;
 
     if (!buttonList) {
       return <div>loading...</div>;
@@ -168,7 +169,7 @@ class YourDesk extends React.Component {
         <div className="desk-tabs">
           {activeTab === 'openCases' ? (
             <OpenCasesDetail
-              getUser={getUser}
+              user={user}
               chartData={openCasesDetails || []}
               isLoading={!openCasesDetails && !openCasesDetailsError}
             />

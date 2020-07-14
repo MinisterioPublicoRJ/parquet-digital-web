@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../api';
 import { DeskCasesChart } from '../../../../components/graphs';
 import { Spinner, Table } from '../../../../components/layoutPieces';
@@ -9,7 +10,7 @@ import './styles.css';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  getUser: PropTypes.func.isRequired,
+  user: PropTypes.shape({}).isRequired,
   chartData: PropTypes.shape({
     under20: PropTypes.number,
     between20And30: PropTypes.number,
@@ -20,17 +21,6 @@ const propTypes = {
 class OpenCasesDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.mainData = {
-      under20: ['#28A7E0', 'até 20 dias'],
-      over30: ['#F86C72', '30+ dias'],
-      between20And30: ['#F8BD6C', '20 a 30 dias'],
-    };
-    this.tableColumns = {
-      MPRJ: 'numeroMprj',
-      'Nº Externo': 'numeroExterno',
-      'Último Andamento no MP': 'dtAbertura',
-      Classe: 'classe',
-    };
     this.state = {
       activeTab: 'under20',
     };
@@ -47,17 +37,12 @@ class OpenCasesDetail extends React.Component {
    * @return {void}     just saves to state
    */
   async getOpenCasesList(tab) {
-    const { getUser } = this.props;
-    const tabMatcher = {
-      under20: 'ate_vinte',
-      between20And30: 'vinte_trinta',
-      over30: 'trinta_mais',
-    };
+    const { user } = this.props;
     let error = false;
     let res;
 
     try {
-      res = await Api.getOpenCasesList(getUser(), tabMatcher[tab]);
+      res = await Api.getOpenCasesList(user, TAB_MATCHER[tab]);
     } catch (e) {
       error = true;
     } finally {
@@ -86,7 +71,7 @@ class OpenCasesDetail extends React.Component {
         categoryChart[item] = {
           x: item,
           y: data[item],
-          color: item === cat ? this.mainData[cat][0] : '#E8E8E8',
+          color: item === cat ? MAIN_DATA[cat][0] : '#E8E8E8',
         };
       });
       cleanData[cat] = categoryChart;
@@ -126,9 +111,9 @@ class OpenCasesDetail extends React.Component {
         active={activeTab === cat}
         buttonPressed={tab => this.handleChangeActiveTab(tab)}
         category={cat}
-        color={this.mainData[cat][0]}
+        color={MAIN_DATA[cat][0]}
         data={cleanData[cat]}
-        name={this.mainData[cat][1]}
+        name={MAIN_DATA[cat][1]}
       />
     ));
   }
@@ -151,11 +136,7 @@ class OpenCasesDetail extends React.Component {
         <div className="openCases-tableWrapper">
           {tabLoading && <Spinner size="medium" />}
           {!emptyTab && this.state[`${activeTab}Details`] && (
-            <Table
-              data={this.state[`${activeTab}Details`]}
-              columns={this.tableColumns}
-              showHeader
-            />
+            <Table data={this.state[`${activeTab}Details`]} columns={TABLE_COLUMNS} showHeader />
           )}
           {emptyTab && <p className="paragraphWrapper"> Nenhum processo para exibir </p>}
         </div>

@@ -15,13 +15,8 @@ function Today() {
   const [phrase, setPhrase] = useState([]);
   const [groupName, setgroupName] = useState([]);
   const [entriesGroup, setEntriesGroup] = useState([]);
-  const [dataError, setdataError] = useState(false);
-  const loading = !todayPercent && !phrase && !groupName && !entriesGroup && !dataError ;
-
-  /**
-   * checks if all the info was fetched from aPI, warns parent when done
-   * @param  {boolean} dataError
-   */
+  const [fullError, setfullError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   /**
    * laods percentage data for the first sentence
@@ -80,13 +75,14 @@ function Today() {
     const [collectionPhrase, organName, errorPhraseList] = await loadCollection();
     const [entriesParagraph, errorParagraphList] = await loadEntriesInfo();
 
-    const apiError = errorPercentList || errorPhraseList || errorParagraphList;
+    const apiError = errorPercentList && errorPhraseList && errorParagraphList;
 
     setTodayPercent(percentile);
     setPhrase(collectionPhrase);
     setgroupName(organName);
     setEntriesGroup(entriesParagraph);
-    setdataError(apiError);
+    setfullError(apiError);
+    setLoading(false);
   }
 
   // runs on "mount" only
@@ -171,7 +167,7 @@ function Today() {
     return capitalizeTitle(nome.split(' ')[0]);
   }
 
-  if (loading || dataError) {
+  if (loading || fullError) {
     return (
       <article className="today-outer">
         <div className="today-header">
@@ -196,7 +192,8 @@ function Today() {
       Você sabia que seu acervo é
       <span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
       dos seus colegas das
-      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
+      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>
+      ?
     </p>
   );
 

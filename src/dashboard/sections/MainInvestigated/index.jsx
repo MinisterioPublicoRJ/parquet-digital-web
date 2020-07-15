@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Table, Spinner, SectionTitle } from '../../../components/layoutPieces';
+import { CustomTable, Spinner, SectionTitle } from '../../../components';
 import Api from '../../../api';
 import TackIcon from '../../../assets/svg/tack';
 import BinIcon from '../../../assets/svg/bin';
@@ -170,7 +170,7 @@ class MainInvestigated extends React.Component {
       <article className="mainInvestigated-outer">
         <SectionTitle value="Principais Investigados" glueToTop />
         <div className="mainInvestigated-tableWrapper">
-          <Table data={tableData} columns={this.tableColumns} showHeader />
+          <CustomTable data={tableData} columns={this.tableColumns} showHeader />
         </div>
       </article>
     );

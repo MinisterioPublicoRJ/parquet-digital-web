@@ -2,12 +2,12 @@
 
 .successIndicators-outer {
   grid-area: indicators;
-  font-family: var(--defaultFont);
   color: var(--darkBlue);
-  font-size: calc(var(--defaultFontSize) * 0.75);
-  font-weight: var(--subtitleWeight);
   display: flex;
   flex-direction: column;
+  font-family: var(--defaultFont);
+  font-size: calc(var(--defaultFontSize) * 0.75);
+  font-weight: var(--subtitleWeight);
   justify-content: space-between;
 }
 
@@ -50,6 +50,13 @@
 .successIndicators-item:hover span {
   visibility: visible;
   opacity: 1;
+}
+
+.successIndicators-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Css Tooltip percent  */

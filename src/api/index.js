@@ -41,6 +41,7 @@ import {
   deskIntegratedTransform,
   deskTabTransform,
   userTransform,
+  snakeToCamelTransform,
 } from './transforms';
 
 // import { setUser } from '../user';
@@ -191,7 +192,8 @@ const Api = (() => {
       PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
       buildRequestConfig(token),
     );
-    return data;
+    const cleanData = data.map(item => snakeToCamelTransform(item));
+    return cleanData;
   }
 
   async function actionMainInvestigated({ orgao, cpf, token, action, representante_dk }) {

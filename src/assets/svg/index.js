@@ -1,4 +1,5 @@
 export { default as Badge } from './badge';
+export { default as Bin } from './bin';
 export { default as ClockIcon } from './clock';
 export { default as CorujaGate } from './corujaGate';
 export { default as Csi } from './csi';
@@ -11,5 +12,6 @@ export { default as Mprj } from './mprj';
 export { default as Ouvidoria } from './ouvidoria';
 export { default as PinAzul } from './pinAzul';
 export { default as PinVermelho } from './pinVermelho';
+export { default as Tack } from './tack';
 export { default as Tjrj } from './tjrj';
 export { default as Va } from './va';

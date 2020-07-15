@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+//import { useAuth } from '../../../app/authContext';
+
 import Api from '../api';
-import { getUser } from '../user';
 import { LoginPromotron } from '../assets';
 
 const Login = () => {

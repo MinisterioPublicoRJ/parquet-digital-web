@@ -5,6 +5,7 @@ import t from 'lodash.template';
 export const BASE_URL = `${process.env.REACT_APP_BASE_URL}/dominio`;
 
 export const LOGIN_URL = `${BASE_URL}/token/login/`;
+export const LOGIN = `${BASE_URL}/token/login-promoton/`;
 
 export const TODAY_OUT = t(`${BASE_URL}/saidas/\${orgao}`);
 

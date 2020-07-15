@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   LOGIN_URL,
+  //LOGIN,
   TODAY_OUT,
   TODAY_OUTLIERS,
   TODAY_ENTRIES,
@@ -41,6 +42,7 @@ import {
   deskIntegratedTransform,
   deskTabTransform,
   userTransform,
+  //LoginTransform,
 } from './transforms';
 
 // import { setUser } from '../user';
@@ -62,6 +64,19 @@ const Api = (() => {
    * @param  {string} orgao promotoria's orgao
    * @return {number}    [description]
    */
+
+//const getRequestConfig = username => ({ params: { username, password } });
+
+/*const Login = (() => {
+  async function loginUser(token) {
+    const formData = new FormData();
+    formData.set('username', 'password', token);
+
+    const { data } = await axios.post(LOGIN, formData);
+
+    return LoginTransform(data);
+  }*/
+
   async function getTodayOutData({ orgao, token }) {
     const { data } = await axios.get(TODAY_OUT({ orgao }), buildRequestConfig(token));
 

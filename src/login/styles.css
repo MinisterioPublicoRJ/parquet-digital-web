@@ -1,92 +1,124 @@
+.wrapper {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.wrapper-login {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0px 0px 0px 2px #e6e6e6;
+  -moz-box-shadow: inset 0px 0px 0px 2px #e6e6e6;
+  box-shadow: inset 0px 0px 0px 2px #e6e6e6;
+  width: 100%;
+  max-width: 1000px;
+  min-width: 400px;
+  display: flex;
+}
+
+.Login-intro-container {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 75vh;
+  justify-content: space-between;
+  max-width: 500px;
+  min-width: 200px;
+  width: 50%;
+  background-image: url('../assets/imgs/box_login.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-right: 20px;
+  border-radius: 15px 0 0 15px;
+}
+
 .Login-container {
-    align-items: center;
-    align-self: center;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-    max-width: 500px;
-    min-width: 200px;
-    width: 80%;
-  }
-  
-  .Login-form {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 50vh;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .Login-banner {
-    align-items: center;
-    box-sizing: border-box;
-    display: flex;
-    height: calc(50vh - 10px);
-    justify-content: center;
-    margin: auto;
-    margin: 0 0 10px 0;
-    width: 100%;
-  }
-  
-  .Login-inputs {
-    box-sizing: border-box;
-    width: inherit;
-  }
-  
-  button {
-    background-color: #6cb8db;
-    border: none;
-    border-radius: 7px;
-    box-sizing: border-box;
-    color: #fff;
-    font-family: var(--defaultFont);
-    height: 8vh;
-    width: 100%;
-  }
-  
-  label {
-    align-items: center;
-    color: #8a8a8a;
-    display: flex;
-    font-family: var(--defaultFont);
-    font-size: 12px;
-    padding-left: 0;
-  }
-  
-  #save {
-    margin-left: 0;
-  }
-  
-  .Login-container-button {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  .Login-input {
-    border: 1px solid #a1a1a1;
-    border-radius: 7px;
-    box-sizing: border-box;
-    color: #8a8a8a;
-    display: block;
-    font-family: var(--defaultFont);
-    height: calc(9vh - 10px);
-    margin-bottom: 10px;
-    padding: 0 18px 0 18px;
-    width: inherit;
-  }
-  
-  .wrapper {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 75vh;
+  justify-content: space-between;
+  max-width: 500px;
+  min-width: 200px;
+  width: calc(50% - 20px);
+}
+
+.Login-banner {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin: 0 0 10px 0;
+  height: calc(25vh - 10px);
+  width: calc(25vh - 10px);
+}
+
+.Login-banner img {
+  border-radius: 50%;
+}
+.Login-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 50vh;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.Login-inputs {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.Login-input {
+  border: 1px solid #a1a1a1;
+  border-radius: 7px;
+  box-sizing: border-box;
+  color: #8a8a8a;
+  display: block;
+  font-family: var(--defaultFont);
+  height: calc(9vh - 10px);
+  margin-bottom: 10px;
+  padding: 0 18px 0 18px;
+  width: inherit;
+}
+
+.Login-container-button {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+button {
+  background-color: #6cb8db;
+  border: none;
+  border-radius: 7px;
+  box-sizing: border-box;
+  color: #fff;
+  font-family: var(--defaultFont);
+  height: 8vh;
+  width: 100%;
+}
+
+label {
+  align-items: center;
+  color: #8a8a8a;
+  display: flex;
+  font-family: var(--defaultFont);
+  font-size: 12px;
+  padding-left: 0;
+}
+
+#save {
+  margin-left: 0;
+}

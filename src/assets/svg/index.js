@@ -13,3 +13,4 @@ export { default as PinAzul } from './pinAzul';
 export { default as PinVermelho } from './pinVermelho';
 export { default as Tjrj } from './tjrj';
 export { default as Va } from './va';
+export { default as LoginPromotron } from './loginPromotron';

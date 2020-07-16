@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
-import Api from '../api';
-import { getUser } from '../user';
+import boxLogin from '../assets/imgs/box_login.png';
+// import Api from '../api';
 import { LoginPromotron } from '../assets';
 
 const Login = () => {
@@ -10,7 +10,6 @@ const Login = () => {
 
   const handleChange = event => {
     setLogin({ ...login, [event.target.name]: event.target.value });
-    console.log(login);
   };
 
   return (
@@ -20,7 +19,7 @@ const Login = () => {
           <img
             height="100%"
             width="100%"
-            src={require('../assets/imgs/box_login.png')}
+            src={boxLogin}
             alt="PARQUET DIGITAL - MPRJ Em Mapas. Painel multitarefas criado para auxiliar a gestão, o entendimento do dia-a-dia com base
             em evidências e uma análise apurada da sua Promotoria."
           />

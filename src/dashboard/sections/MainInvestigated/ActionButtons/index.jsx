@@ -1,9 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 import { Bin, Tack } from '../../../../assets';
 
-export default function ActionButtons({ onPin, onDelete, isPinned }) {
+const propTypes = {
+  onPin: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  isPinned: PropTypes.bool.isRequired,
+};
+
+function ActionButtons({ onPin, onDelete, isPinned }) {
   return (
     <>
       <button type="button" onClick={onPin}>
@@ -15,3 +22,6 @@ export default function ActionButtons({ onPin, onDelete, isPinned }) {
     </>
   );
 }
+
+ActionButtons.propTypes = propTypes;
+export default ActionButtons;

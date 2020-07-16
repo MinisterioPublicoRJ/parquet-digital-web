@@ -13,7 +13,26 @@ function MainInvestigated() {
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
 
-  const pinInvestigated = representanteDk => {
+  /**
+   * uses representanteDk number to remove an investigated from the list, updates the state
+   * @param  {number} representanteDk investigated "id"
+   * @return {void}                 updates the state
+   */
+  function deleteInvestigated(representanteDk) {
+    Api.actionMainInvestigated({ ...user, action: 'removed', representanteDk });
+
+    // give user positivie feedback regardless of request success
+    setTableData(oldTableData =>
+      oldTableData.filter(item => item.representanteDk !== representanteDk),
+    );
+  }
+
+  /**
+   * changes ínned status of an investigated, reorders list and updates the state
+   * @param  {number} representanteDk investigated "id"
+   * @return {void}                 updates the state
+   */
+  function pinInvestigated(representanteDk) {
     Api.actionMainInvestigated({ ...user, action: 'pinned', representanteDk });
 
     // give user positivie feedback regardless of request success
@@ -25,7 +44,7 @@ function MainInvestigated() {
 
       const oldPinStatus = updatedArray[representanteIndex].isPinned;
       updatedArray[representanteIndex].isPinned = !oldPinStatus;
-      // this is necessary to update the ActionButtons props
+      // this is necessary to force ActionButtons to update via change in props
       updatedArray[representanteIndex].actions = (
         <ActionButtons
           onPin={() => pinInvestigated(representanteDk)}
@@ -36,16 +55,13 @@ function MainInvestigated() {
 
       return updatedArray.sort((x, y) => y.isPinned - x.isPinned);
     });
-  };
-
-  function deleteInvestigated(representanteDk) {
-    Api.actionMainInvestigated({ ...user, action: 'removed', representanteDk }).then(res => console.log(res));
-
-    setTableData(oldTableData =>
-      oldTableData.filter(item => item.representanteDk !== representanteDk),
-    );
   }
 
+  /**
+   * tformats the array from the API to be used by the table component
+   * @param  {aray} raw response from the MainInvestigated endpoint
+   * @return {array}     formatted according to table component props
+   */
   function cleanData(raw) {
     return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => ({
       key: `${nmInvestigado}-${nrInvestigacoes}`,
@@ -62,12 +78,6 @@ function MainInvestigated() {
         />
       ),
     }));
-  }
-
-  function filterAndSortTableData(rawData) {
-    // is_removed - Server já está filtrando
-    // Ordering by nr_investigacoes Desc
-    return rawData.filter(item => item.isRemoved === false).sort((x, y) => y.isPinned - x.isPinned);
   }
 
   /**

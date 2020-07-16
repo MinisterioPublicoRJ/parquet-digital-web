@@ -9,10 +9,3 @@
 .mainInvestigated-tableWrapper {
   overflow-y: scroll;
 }
-
-.mainInvestigated-outer button {
-  color: transparent !important;
-  border: 0;
-  background: transparent;
-  outline: none;
-}

@@ -196,11 +196,11 @@ const Api = (() => {
     return cleanData;
   }
 
-  async function actionMainInvestigated({ orgao, cpf, token, action, representante_dk }) {
+  async function actionMainInvestigated({ orgao, cpf, token, action, representanteDk }) {
     const formData = new FormData();
     formData.set('jwt', token);
     formData.set('action', action);
-    formData.set('representante_dk', representante_dk);
+    formData.set('representante_dk', representanteDk);
     const { data } = await axios.post(
       PIP_MAIN_INVESTIGATIONS_URL_ACTION({ orgao, cpf, token }),
       formData,

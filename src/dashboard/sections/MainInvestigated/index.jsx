@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
-import { Bin, Tack } from '../../../assets';
 import { Table, Spinner, SectionTitle } from '../../../components';
-// import { getUser } from '../../../user';
-import ActionButtons from './ActionButtons';
 
 function MainInvestigated() {
   const { user } = useAuth();
@@ -15,20 +13,57 @@ function MainInvestigated() {
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
 
+  const pinInvestigated = representanteDk => {
+    Api.actionMainInvestigated({ ...user, action: 'pinned', representanteDk });
+
+    // give user positivie feedback regardless of request success
+    setTableData(oldTableData => {
+      const updatedArray = [...oldTableData];
+      const representanteIndex = updatedArray.findIndex(item => {
+        return item.representanteDk === representanteDk;
+      });
+
+      const oldPinStatus = updatedArray[representanteIndex].isPinned;
+      updatedArray[representanteIndex].isPinned = !oldPinStatus;
+      // this is necessary to update the ActionButtons props
+      updatedArray[representanteIndex].actions = (
+        <ActionButtons
+          onPin={() => pinInvestigated(representanteDk)}
+          onDelete={() => deleteInvestigated(representanteDk)}
+          isPinned={!oldPinStatus}
+        />
+      );
+
+      return updatedArray.sort((x, y) => y.isPinned - x.isPinned);
+    });
+  };
+
+  function deleteInvestigated(representanteDk) {
+    // console.log('str', str);
+  }
+
   function cleanData(raw) {
-    console.log('raw', raw);
-    return raw.map(({ nmInvestigado, nrInvestigacoes }) => ({
+    return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => ({
       key: `${nmInvestigado}-${nrInvestigacoes}`,
       nmInvestigado,
       nrInvestigacoes,
-      actions: <ActionButtons />,
+      isPinned,
+      isRemoved,
+      representanteDk,
+      actions: (
+        <ActionButtons
+          onPin={() => pinInvestigated(representanteDk)}
+          onDelete={() => deleteInvestigated(representanteDk)}
+          isPinned={isPinned}
+        />
+      ),
     }));
   }
 
   function filterAndSortTableData(rawData) {
     // is_removed - Server já está filtrando
     // Ordering by nr_investigacoes Desc
-    return rawData.filter(item => item.removed === false).sort((x, y) => y.pinned - x.pinned);
+    return rawData.filter(item => item.isRemoved === false).sort((x, y) => y.isPinned - x.isPinned);
   }
 
   /**

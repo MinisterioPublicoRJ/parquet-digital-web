@@ -1,92 +1,112 @@
-.Login-container {
-    align-items: center;
-    align-self: center;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-    max-width: 500px;
-    min-width: 200px;
-    width: 80%;
-  }
-  
-  .Login-form {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 50vh;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .Login-banner {
-    align-items: center;
-    box-sizing: border-box;
-    display: flex;
-    height: calc(50vh - 10px);
-    justify-content: center;
-    margin: auto;
-    margin: 0 0 10px 0;
-    width: 100%;
-  }
-  
-  .Login-inputs {
-    box-sizing: border-box;
-    width: inherit;
-  }
-  
-  button {
-    background-color: #6cb8db;
-    border: none;
-    border-radius: 7px;
-    box-sizing: border-box;
-    color: #fff;
-    font-family: var(--defaultFont);
-    height: 8vh;
-    width: 100%;
-  }
-  
-  label {
-    align-items: center;
-    color: #8a8a8a;
-    display: flex;
-    font-family: var(--defaultFont);
-    font-size: 12px;
-    padding-left: 0;
-  }
-  
-  #save {
-    margin-left: 0;
-  }
-  
-  .Login-container-button {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  .Login-input {
-    border: 1px solid #a1a1a1;
-    border-radius: 7px;
-    box-sizing: border-box;
-    color: #8a8a8a;
-    display: block;
-    font-family: var(--defaultFont);
-    height: calc(9vh - 10px);
-    margin-bottom: 10px;
-    padding: 0 18px 0 18px;
-    width: inherit;
-  }
-  
-  .wrapper {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
+html {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.wrapper-login {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  border: 1px solid #cfcfcf;
+  padding: 0.5px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-width: 730px;
+  min-height: 450px;
+}
+
+.Login-banner {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  width: 50%;
+}
+
+.Login-banner img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  border-radius: 15px 0 0 15px;
+  border-bottom: 3px solid #ddd;
+}
+
+.Login-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 80%;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.Login-input {
+  border: 1px solid #c4c4c4;
+  border-radius: 7px;
+  box-sizing: border-box;
+  color: #8a8a8a;
+  display: flex;
+  font-family: var(--defaultFont);
+  height: 40px;
+  padding: 0 18px 0 18px;
+  width: 70%;
+  text-align: center;
+}
+/*Chrome*/
+.Login-input:focus {
+  outline: none;
+}
+
+button {
+  background-color: #e6e6e6;
+  border: none;
+  border-radius: 7px;
+  box-sizing: border-box;
+  color: #505050;
+  /*font-family: var(--defaultFont);*/
+  font-family: Segoe UI Semibold;
+  height: 40px;
+  width: 70%;
+}
+
+button:hover {
+  background-color: #bddff0;
+}
+
+label {
+  align-items: center;
+  color: #8a8a8a;
+  display: flex;
+  font-family: var(--defaultFont);
+  font-size: 12px;
+  padding-left: 0;
+}
+
+/* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  color: #cecece;
+  opacity: 1; /* Firefox */
+}
+/* Internet Explorer 10-11 */
+:-ms-input-placeholder {
+  color: #cecece;
+}
+/* Microsoft Edge */
+::-ms-input-placeholder {
+  color: #cecece;
+}

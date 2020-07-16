@@ -39,7 +39,11 @@ function MainInvestigated() {
   };
 
   function deleteInvestigated(representanteDk) {
-    // console.log('str', str);
+    Api.actionMainInvestigated({ ...user, action: 'removed', representanteDk }).then(res => console.log(res));
+
+    setTableData(oldTableData =>
+      oldTableData.filter(item => item.representanteDk !== representanteDk),
+    );
   }
 
   function cleanData(raw) {

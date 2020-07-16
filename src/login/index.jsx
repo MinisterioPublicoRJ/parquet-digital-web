@@ -1,50 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
-import Api from '../api';
-import { getUser } from '../user';
+import boxLogin from '../assets/imgs/box_login.png';
+// import Api from '../api';
+import { LoginPromotron } from '../assets';
 
 const Login = () => {
   const [login, setLogin] = useState([{ name: '', email: '' }]);
 
   const handleChange = event => {
     setLogin({ ...login, [event.target.name]: event.target.value });
-    console.log(login);
   };
 
   return (
     <div className="wrapper">
-      <div className="Login-container">
+      <div className="wrapper-login">
         <div className="Login-banner">
-          {/*<img
+          <img
             height="100%"
             width="100%"
-            src={require('../assets/svg/home.gif')}
-            alt="robô-promoton"
-          />*/}
+            src={boxLogin}
+            alt="PARQUET DIGITAL - MPRJ Em Mapas. Painel multitarefas criado para auxiliar a gestão, o entendimento do dia-a-dia com base
+            em evidências e uma análise apurada da sua Promotoria."
+          />
         </div>
         <form className="Login-form">
-          <div className="Login-inputs">
-            <input
-              className="Login-input"
-              placeholder="Usuário"
-              type="text"
-              value={login.name}
-              onChange={handleChange}
-              required
-            />
-            <input
-              className="Login-input"
-              placeholder="Senha"
-              type="password"
-              value={login.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="Login-container-button">
-            <button type="submit">Entrar</button>
-          </div>
+          <LoginPromotron height={150} />
+          <input
+            className="Login-input"
+            placeholder="Matrícula MPRJ"
+            type="text"
+            value={login.name}
+            onChange={handleChange}
+            required
+          />
+          <input
+            className="Login-input"
+            placeholder="Senha"
+            type="password"
+            value={login.email}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">ENTRAR</button>
         </form>
       </div>
     </div>

@@ -110,3 +110,25 @@ label {
 ::-ms-input-placeholder {
   color: #cecece;
 }
+
+@media (max-width: 480px) {
+  .wrapper-login {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    min-width: 460px;
+  }
+  .Login-form{
+    margin-top: 20px;
+  } 
+  .Login-input{
+    margin-top: 20px;
+    width: 100%;
+  }  
+  button{
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+
+}

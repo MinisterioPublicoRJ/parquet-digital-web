@@ -15,6 +15,7 @@ const Login = () => {
 
   const handleChange = event => {
     setLogin({ ...login, [event.target.matricula]: event.target.value });
+    console.log(login)
   };
 
   function handleSubmit(event) {
@@ -37,13 +38,13 @@ const Login = () => {
             em evidências e uma análise apurada da sua Promotoria."
           />
         </div>
-        <form className="Login-form">
+        <form className="Login-form" onSubmit={handleSubmit}>
           <LoginPromotron height={150} />
           <input
             className="Login-input"
             placeholder="Matrícula MPRJ"
             type="text"
-            value={login.name}
+            value={login.matricula}
             onChange={handleChange}
             required
           />
@@ -51,7 +52,7 @@ const Login = () => {
             className="Login-input"
             placeholder="Senha"
             type="password"
-            value={login.email}
+            value={login.senha}
             onChange={handleChange}
             required
           />

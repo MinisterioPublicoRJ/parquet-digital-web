@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 
 import './styles.css';
 import { useAuth } from '../app/authContext';
-import Api from '../api';
 import boxLogin from '../assets/imgs/box_login.png';
-// import Api from '../api';
+import Api from '../api';
 import { LoginPromotron } from '../assets';
 
 const Login = () => {
@@ -15,16 +14,23 @@ const Login = () => {
 
   const handleChange = event => {
     setLogin({ ...login, [event.target.matricula]: event.target.value });
-    console.log(login)
   };
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      const userLogin = await Api.loginUser(user);
+      console.log(userLogin);
+      setLogin(userLogin);
+    } catch (e) {
+      console.log(e);
+      setloginError(true);
+    }
   }
 
-  {/*if (loading) {
+  if (!loading) {
     return <h1>Carregando!!!</h1>;
-  }*/}
+  }
 
   return (
     <div className="wrapper">

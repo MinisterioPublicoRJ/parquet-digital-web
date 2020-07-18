@@ -14,6 +14,7 @@ function AuthContextCreator() {
   const tokenLogin = async token => {
     try {
       const loggedUser = await Api.login(token);
+      console.log(loggedUser);
       setUser(loggedUser);
     } catch (e) {
       setUserError(true);

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import {
   LOGIN_URL,
-  //LOGIN,
+  LOGIN,
   TODAY_OUT,
   TODAY_OUTLIERS,
   TODAY_ENTRIES,
@@ -41,14 +41,16 @@ import {
   pipRadarTransform,
   deskIntegratedTransform,
   deskTabTransform,
-  userTransform,
-  //LoginTransform,
+  loginTransform,
+  loginUserTransform,
   snakeToCamelTransform,
 } from './transforms';
 
 // import { setUser } from '../user';
 
 const buildRequestConfig = jwt => ({ params: { jwt } });
+
+//const buildRequestConfig = matricula => ({ params: { matricula } });
 
 const Api = (() => {
   async function login(token) {
@@ -57,7 +59,16 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN_URL, formData);
 
-    return userTransform(data);
+    return loginTransform(data);
+  }
+
+  async function loginUser(token) {
+    const formData = new FormData();
+    formData.set('username', token);
+
+    const { data } = await axios.post(LOGIN, formData);
+
+    return loginUserTransform(data);
   }
 
   /**
@@ -65,18 +76,6 @@ const Api = (() => {
    * @param  {string} orgao promotoria's orgao
    * @return {number}    [description]
    */
-
-//const getRequestConfig = username => ({ params: { username, password } });
-
-/*const Login = (() => {
-  async function loginUser(token) {
-    const formData = new FormData();
-    formData.set('username', 'password', token);
-
-    const { data } = await axios.post(LOGIN, formData);
-
-    return LoginTransform(data);
-  }*/
 
   async function getTodayOutData({ orgao, token }) {
     const { data } = await axios.get(TODAY_OUT({ orgao }), buildRequestConfig(token));
@@ -226,6 +225,7 @@ const Api = (() => {
 
   return {
     login,
+    loginUser,
     getTodayOutData,
     getTodayOutliersData,
     getTodayEntriesData,

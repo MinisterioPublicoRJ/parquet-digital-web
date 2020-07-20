@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import { useAuth } from '../app/authContext';
 import boxLogin from '../assets/imgs/box_login.png';
 import Api from '../api';
 import { LoginPromotron } from '../assets';
+//import { Spinner } from '../components/layoutPieces';
 
 const Login = () => {
   const { user } = useAuth();
@@ -22,6 +23,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const userLogin = await Api.loginUser(user);
+      localStorage.setItem('token', JSON.stringify(user));
+      Api.defaults.headers.Authorization = `Bearer ${user}`;
       console.log(userLogin);
       setLogin(userLogin);
       setmsgErro('sucesso');
@@ -33,11 +36,9 @@ const Login = () => {
     return [login, loginError];
   }
 
-  {
-    /* if (loading) {
-    return <h1>Carregando!!!</h1>;
-  } */
-  }
+  {/*if (!loading) {
+    return <Spinner size="large" />;
+  }*/}
 
   return (
     <div className="wrapper">

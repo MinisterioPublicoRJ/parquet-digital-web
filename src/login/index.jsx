@@ -1,44 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
 import { useAuth } from '../app/authContext';
 import boxLogin from '../assets/imgs/box_login.png';
-import Api from '../api';
+// import Api from '../api';
 import { LoginPromotron } from '../assets';
-//import { Spinner } from '../components/layoutPieces';
+// import { Spinner } from '../components/layoutPieces';
 
 const Login = () => {
-  const { user } = useAuth();
-  const [login, setLogin] = useState([{ username: '', password: '' }]);
-  const [loginError, setloginError] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [msgErro, setmsgErro] = useState();
+  const { scaLogin, userError, user } = useAuth();
+  const [username, setUsername] = useState('');
+  const [secret, setSecret] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = event => {
-    setLogin({ ...login, [event.target.username]: event.target.value });
-    console.log(login);
-  };
+  // const handleChange = event => {
+  // setLogin({ ...login, [event.target.username]: event.target.value });
+  // console.log(login);
+  // };
 
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      const userLogin = await Api.loginUser(user);
-      localStorage.getItem('token', JSON.stringify(user));
-      Api.defaults.headers.Authorization = `Bearer ${user}`;
-      console.log(userLogin);
-      setLogin(userLogin);
-      setmsgErro('sucesso');
-    } catch (e) {
-      console.log(e);
-      setloginError(true);
-      setmsgErro('erro');
-    }
-    return [login, loginError];
+    scaLogin(username, secret);
+    // const [msgErro, setmsgErro] = useState();lt();
+    // try {
+    //   console.log(user, login);
+    //   const userLogin = await Api.loginUser(user);
+    //   localStorage.getItem('token', JSON.stringify(user));
+    //   Api.defaults.headers.Authorization = `Bearer ${user}`;
+    //   console.log(userLogin);
+    //   setLogin(userLogin);
+    //   setmsgErro('sucesso');
+    // } catch (e) {
+    //   console.log(e);
+    //   setloginError(true);
+    //   setmsgErro('erro');
+    // }
+    // return [login, loginError];
   }
 
-  {/*if (!loading) {
+  {
+    /* if (!loading) {
     return <Spinner size="large" />;
-  }*/}
+  } */
+  }
 
   return (
     <div className="wrapper">
@@ -58,23 +62,21 @@ const Login = () => {
             className="Login-input"
             placeholder="Usuário"
             type="text"
-            value={login.username}
-            onChange={handleChange}
+            onChange={({ target }) => setUsername(target.value)}
             required
           />
           <input
             className="Login-input"
             placeholder="Senha"
             type="password"
-            value={login.password}
-            onChange={handleChange}
+            onChange={({ target }) => setSecret(target.value)}
             required
           />
           <button type="submit">ENTRAR</button>
         </form>
         <div className="saudacoes">
-          {msgErro === 'sucesso' && <strong>Você está conectado!</strong>}
-          {msgErro === 'erro' && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
+          {/* msgErro === 'sucesso' && <strong>Você está conectado!</strong> */}
+          {/* msgErro === 'erro' && <strong>Verifique se a senha ou usuário estão corretos!</strong> */}
         </div>
       </div>
     </div>

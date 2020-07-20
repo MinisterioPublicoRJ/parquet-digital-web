@@ -14,15 +14,21 @@ function AuthContextCreator() {
   const tokenLogin = async token => {
     try {
       const loggedUser = await Api.login(token);
-      console.log(loggedUser);
       setUser(loggedUser);
     } catch (e) {
       setUserError(true);
     }
   };
 
-  const scaLogin = () => {
-    // not yet implemented
+  const scaLogin = async (username, password) => {
+    try {
+      const loggedUser = await Api.scaLogin(username, password);
+      console.log('worked', loggedUser);
+      setUser(loggedUser);
+    } catch (e) {
+      console.log('failed :(');
+      setUserError(true);
+    }
   };
 
   return {

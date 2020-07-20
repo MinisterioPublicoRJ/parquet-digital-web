@@ -50,21 +50,22 @@ import {
 
 const buildRequestConfig = jwt => ({ params: { jwt } });
 
-//const buildRequestConfig = matricula => ({ params: { username } });
+// const buildRequestConfig = matricula => ({ params: { username } });
 
 const Api = (() => {
   async function login(token) {
     const formData = new FormData();
-    formData.set('username', token);
+    formData.set('jwt', token);
 
     const { data } = await axios.post(LOGIN_URL, formData);
 
     return loginTransform(data);
   }
 
-  async function loginUser(token) {
+  async function scaLogin(username, password) {
     const formData = new FormData();
-    formData.set('username', token);
+    formData.set('username', username);
+    formData.set('password', password);
 
     const { data } = await axios.post(LOGIN, formData);
 
@@ -225,7 +226,7 @@ const Api = (() => {
 
   return {
     login,
-    loginUser,
+    scaLogin,
     getTodayOutData,
     getTodayOutliersData,
     getTodayEntriesData,

@@ -21,7 +21,7 @@ function Dashboard() {
   }
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div>
       <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
         <div>Teste</div>
       </Modal>

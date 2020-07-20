@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const userLogin = await Api.loginUser(user);
-      localStorage.setItem('token', JSON.stringify(user));
+      localStorage.getItem('token', JSON.stringify(user));
       Api.defaults.headers.Authorization = `Bearer ${user}`;
       console.log(userLogin);
       setLogin(userLogin);

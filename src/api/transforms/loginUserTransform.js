@@ -1,10 +1,5 @@
-import { snakeToCamel } from '../../utils';
+//import { snakeToCamel } from '../../utils';
 
-export default function loginUserTransform(userObj) {
-  const res = {};
-  const keys = Object.keys(userObj);
-  keys.forEach(key => {
-    res[snakeToCamel(key)] = userObj[key];
-  });
-  return res;
+export default function loginUserTransform(data) {
+  return data;
 }

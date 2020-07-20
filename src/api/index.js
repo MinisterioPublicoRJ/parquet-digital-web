@@ -50,12 +50,12 @@ import {
 
 const buildRequestConfig = jwt => ({ params: { jwt } });
 
-//const buildRequestConfig = matricula => ({ params: { matricula } });
+//const buildRequestConfig = matricula => ({ params: { username } });
 
 const Api = (() => {
   async function login(token) {
     const formData = new FormData();
-    formData.set('jwt', token);
+    formData.set('username', token);
 
     const { data } = await axios.post(LOGIN_URL, formData);
 

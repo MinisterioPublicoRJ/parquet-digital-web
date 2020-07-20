@@ -8,12 +8,14 @@ import { LoginPromotron } from '../assets';
 
 const Login = () => {
   const { user } = useAuth();
-  const [login, setLogin] = useState([{ matricula: '', senha: '' }]);
+  const [login, setLogin] = useState([{ username: '', password: '' }]);
   const [loginError, setloginError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [msgErro, setmsgErro] = useState();
 
   const handleChange = event => {
-    setLogin({ ...login, [event.target.matricula]: event.target.value });
+    setLogin({ ...login, [event.target.username]: event.target.value });
+    console.log(login);
   };
 
   async function handleSubmit(e) {
@@ -22,14 +24,19 @@ const Login = () => {
       const userLogin = await Api.loginUser(user);
       console.log(userLogin);
       setLogin(userLogin);
+      setmsgErro('sucesso');
     } catch (e) {
       console.log(e);
       setloginError(true);
+      setmsgErro('erro');
     }
+    return [login, loginError];
   }
 
-  if (!loading) {
+  {
+    /* if (loading) {
     return <h1>Carregando!!!</h1>;
+  } */
   }
 
   return (
@@ -48,9 +55,9 @@ const Login = () => {
           <LoginPromotron height={150} />
           <input
             className="Login-input"
-            placeholder="Matrícula MPRJ"
+            placeholder="Usuário"
             type="text"
-            value={login.matricula}
+            value={login.username}
             onChange={handleChange}
             required
           />
@@ -58,12 +65,16 @@ const Login = () => {
             className="Login-input"
             placeholder="Senha"
             type="password"
-            value={login.senha}
+            value={login.password}
             onChange={handleChange}
             required
           />
           <button type="submit">ENTRAR</button>
         </form>
+        <div className="saudacoes">
+          {msgErro === 'sucesso' && <strong>Você está conectado!</strong>}
+          {msgErro === 'erro' && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
+        </div>
       </div>
     </div>
   );

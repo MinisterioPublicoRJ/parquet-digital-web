@@ -1,82 +1,60 @@
-import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-
-import Api from '../api';
-import { getUser } from '../user';
-
-import { Spinner } from '../components';
-import Pip from '../pages/pip';
-import Tutela from '../pages/tutela';
-import BlankPage from '../pages/blankPage';
+import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+import '../themes/index.css';
+import Router from './router';
+import AuthContext from './authContext';
+import Api from '../api';
+import { Spinner } from '../components/layoutPieces';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: undefined,
-    };
-  }
+function AuthContextCreator() {
+  const [user, setUser] = useState(null);
+  const [userError, setUserError] = useState(false);
 
-  componentDidMount() {
-    this.login();
-  }
+  const tokenLogin = async token => {
+    try {
+      const loggedUser = await Api.login(token);
+      setUser(loggedUser);
+    } catch (e) {
+      setUserError(true);
+    }
+  };
 
-  async login() {
-    let loginError = false;
-    let user;
+  const scaLogin = () => {
+    // not yet implemented
+  };
+
+  return {
+    user,
+    userError,
+    tokenLogin,
+    scaLogin,
+  };
+}
+
+function App() {
+  const authStore = AuthContextCreator();
+  const { user, userError } = authStore;
+  const loading = !(user || userError);
+
+  function onMount() {
     try {
       const token = window.localStorage.getItem('access_token');
-      await Api.login(token);
-      user = getUser();
-    } catch (e) {
-      loginError = true;
-    } finally {
-      this.setState({ user, loginError });
-    }
+      authStore.tokenLogin(token);
+    } catch (e) {}
   }
 
-  pageSelector() {
-    const { user, loginError } = this.state;
-    const { tipo_orgao, nome } = user;
-    let page = <BlankPage />;
+  useEffect(onMount, []);
 
-    if (!loginError) {
-      switch (tipo_orgao) {
-        case 1:
-          page = <Tutela userName={nome} user={user} />;
-          break;
-        case 2:
-          page = <Pip userName={nome} user={user} />;
-          break;
-        default:
-          // if we don't have a dashboard yet, just show blank screen
-          break;
-      }
-    }
-
-    return page;
+  if (loading) {
+    return <Spinner size="large" />;
   }
 
-  render() {
-    const { user, loginError } = this.state;
-    const isLoading = !user && !loginError;
-
-    if (isLoading) {
-      return <Spinner size="large" />;
-    }
-
-    return (
-      <HashRouter>
-        <Switch>
-          <Route exact path="/">
-            {this.pageSelector()}
-          </Route>
-        </Switch>
-      </HashRouter>
-    );
-  }
+  return (
+    <AuthContext.Provider value={authStore}>
+      <Router />
+    </AuthContext.Provider>
+  );
 }
 
 export default App;

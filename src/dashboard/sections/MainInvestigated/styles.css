@@ -1,0 +1,11 @@
+@import '../styles.css';
+
+.mainInvestigated-outer {
+  grid-area: mainInvestigated;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainInvestigated-tableWrapper {
+  overflow-y: scroll;
+}

@@ -1,4 +1,6 @@
 body {
+  color: var(--dark);
+  font-family: var(--defaultFont);
   margin: 0;
-  padding: var(--bodyPadding);
+  padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
 }

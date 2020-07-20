@@ -40,9 +40,11 @@ import {
   pipRadarTransform,
   deskIntegratedTransform,
   deskTabTransform,
+  userTransform,
+  snakeToCamelTransform,
 } from './transforms';
 
-import { setUser } from '../user';
+// import { setUser } from '../user';
 
 const buildRequestConfig = jwt => ({ params: { jwt } });
 
@@ -53,7 +55,7 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN_URL, formData);
 
-    setUser(data);
+    return userTransform(data);
   }
 
   /**
@@ -190,14 +192,15 @@ const Api = (() => {
       PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
       buildRequestConfig(token),
     );
-    return data;
+    const cleanData = data.map(item => snakeToCamelTransform(item));
+    return cleanData;
   }
 
-  async function actionMainInvestigated({ orgao, cpf, token, action, representante_dk }) {
+  async function actionMainInvestigated({ orgao, cpf, token, action, representanteDk }) {
     const formData = new FormData();
     formData.set('jwt', token);
     formData.set('action', action);
-    formData.set('representante_dk', representante_dk);
+    formData.set('representante_dk', representanteDk);
     const { data } = await axios.post(
       PIP_MAIN_INVESTIGATIONS_URL_ACTION({ orgao, cpf, token }),
       formData,

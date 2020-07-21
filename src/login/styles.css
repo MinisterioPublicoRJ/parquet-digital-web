@@ -1,15 +1,9 @@
-html {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .wrapper {
   display: flex;
   flex: 1;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 40px;
 }
 
 .wrapper-login {
@@ -72,19 +66,19 @@ html {
   outline: none;
 }
 
-button {
+.btn-login {
   background-color: #e6e6e6;
   border: none;
   border-radius: 7px;
   box-sizing: border-box;
   color: #505050;
-  /*font-family: var(--defaultFont);*/
   font-family: Segoe UI Semibold;
   height: 40px;
   width: 70%;
+  cursor: pointer;
 }
 
-button:hover {
+.btn-login:hover {
   background-color: #bddff0;
 }
 
@@ -130,10 +124,8 @@ label {
     margin-top: 20px;
     width: 100%;
   }  
-  button{
+  .btn-login{
     margin-top: 20px;
     width: 100%;
   }
-  
-
 }

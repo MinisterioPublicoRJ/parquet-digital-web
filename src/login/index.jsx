@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import './styles.css';
 import { useAuth } from '../app/authContext';
 import boxLogin from '../assets/imgs/box_login.png';
 import { LoginPromotron } from '../assets';
 
-const Login = () => {
-  const { scaLogin, userError, user } = useAuth();
+const Login = ( { user } ) => {
+  const history = useHistory();
+  const { scaLogin, userError } = useAuth();
   const [username, setUsername] = useState('');
   const [secret, setSecret] = useState('');
 
@@ -43,7 +45,7 @@ const Login = () => {
             onChange={({ target }) => setSecret(target.value)}
             required
           />
-          <button type="submit">ENTRAR</button>
+          <button className='btn-login' onClick={() => history.push('/dashboard')} type="submit">ENTRAR</button>
           <div className="greetings">
             {userError === 'worked' && <strong>Você está conectado!</strong>}
             {userError === 'failed' && (

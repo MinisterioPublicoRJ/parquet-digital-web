@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../api';
-import { DeskCasesChart, Spinner, CustomTable } from '../../../../components';
+import { Spinner, CustomTable } from '../../../../components';
+import DeskCasesChart from '../deskCases';
 
 import './styles.css';
 

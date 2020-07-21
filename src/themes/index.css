@@ -20,6 +20,8 @@
   --grayLinks: #cecece;
   --grayTexts: #b3b3b3;
   --grayTooltip: #555;
+  --darkWelcome: #4A4A4A;
+
 
   --pt-turquoise: #56e8e1;
   --pt-pink: #ff0086;
@@ -35,6 +37,7 @@
 
   --titleFontSize: calc(var(--defaultFontSize) * 2);
   --titleFont: 'Roboto Slab', serif;
+  --defaultWelcome: 'Avenir Black';
   --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.1);
 
   --smallFont: clamp(10px, 1.2vh, 14px);

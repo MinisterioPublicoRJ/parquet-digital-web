@@ -1,0 +1,74 @@
+.wrapper-welcome{
+    text-align: center;
+    color: var(--darkWelcome);
+    font-family: var(--defaultWelcome);
+}
+.wrapper-welcome h2{
+    font-size: 32px;
+    opacity: 1;
+}
+.wrapper-welcome p{
+    font-size: 21px;
+    opacity: 1;
+}
+.welcome-texts{
+    width: 797px;
+}
+.btn-welcome{
+    display: flex;
+    justify-content: space-between;
+}
+.btn-next-previous {
+    display: flex;
+    justify-content: flex-end;
+}
+.btn-next-previous button {
+    width: 118px;
+    cursor: pointer;
+    height: 40px;
+    margin: 10px;
+}
+.btn-next{
+    border-radius: 0px 20px 20px 0px;
+    background: #D6D6D6 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.btn-start{
+    background: #5FF09D 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+}
+.btn-jumper{
+    background: #EFEFEF 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+}
+.btn-previous{
+    background: #D6D6D6 0% 0% no-repeat padding-box;
+    border-radius: 20px 0px 0px 20px;
+    opacity: 1;
+    width: 118px;
+    cursor: pointer;
+    height: 40px;
+    margin: 10px; 
+}
+@media (max-width: 480px) {
+    .wrapper-welcome{
+       display: flex;
+       flex-direction: column;
+    }
+    .wrapper-welcome img{
+        width: 100%
+    }
+     .welcome-texts{
+        width: 100%;
+    }
+    .wrapper-welcome h2{
+        font-size: 22px;
+    }
+    .wrapper-welcome p{
+        font-size: 15px;
+    }
+   
+  
+}

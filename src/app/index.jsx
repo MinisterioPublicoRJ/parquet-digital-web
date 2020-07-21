@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import '../themes/index.css';
-import { useHistory } from 'react-router-dom';
 import Router from './router';
 import AuthContext from './authContext';
-import history from './history';
 import Api from '../api';
 import { Spinner } from '../components/layoutPieces';
 
@@ -27,7 +25,6 @@ function AuthContextCreator() {
       const loggedUser = await Api.scaLogin(username, password);
       console.log('worked', loggedUser);
       setUser(loggedUser);
-      history.push(`/dashboard`);
       setUserError('worked');
     } catch (e) {
       console.log('failed :(');

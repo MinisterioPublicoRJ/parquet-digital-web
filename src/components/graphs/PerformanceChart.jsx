@@ -284,8 +284,6 @@ const AreaLabel = props => {
 
   const labelSize = datum.label.toString().length;
 
-  console.log(x, labelSize);
-
   return (
     <VictoryPortal>
       <g>

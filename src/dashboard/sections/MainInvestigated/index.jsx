@@ -1,167 +1,114 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import './styles.css';
-import { CustomTable, Spinner, SectionTitle } from '../../../components';
+import ActionButtons from './ActionButtons';
+import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../api';
-import TackIcon from '../../../assets/svg/tack';
-import BinIcon from '../../../assets/svg/bin';
-import { getUser } from '../../../user';
+import { useAuth } from '../../../app/authContext';
+import { CustomTable, Spinner, SectionTitle } from '../../../components';
 
-class MainInvestigated extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      tableData: [],
-    };
 
-    this.tableColumns = {
-      INVESTIGADO: 'investigado',
-      'No. DE INQUÉRITOS': 'numero_investigacoes',
-      ' ': 'pin',
-    };
+function MainInvestigated() {
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [tableData, setTableData] = useState([]);
+  const [apiError, setApiError] = useState(false);
+
+  /**
+   * uses representanteDk number to remove an investigated from the list, updates the state
+   * @param  {number} representanteDk investigated "id"
+   * @return {void}                 updates the state
+   */
+  function deleteInvestigated(representanteDk) {
+    Api.actionMainInvestigated({ ...user, action: 'removed', representanteDk });
+
+    // give user positivie feedback regardless of request success
+    setTableData(oldTableData =>
+      oldTableData.filter(item => item.representanteDk !== representanteDk),
+    );
   }
 
-  componentDidMount() {
-    this.getMainInvestigated();
+  /**
+   * changes ínned status of an investigated, reorders list and updates the state
+   * @param  {number} representanteDk investigated "id"
+   * @return {void}                 updates the state
+   */
+  function pinInvestigated(representanteDk) {
+    Api.actionMainInvestigated({ ...user, action: 'pinned', representanteDk });
+
+    // give user positivie feedback regardless of request success
+    setTableData(oldTableData => {
+      const updatedArray = [...oldTableData];
+      const representanteIndex = updatedArray.findIndex(item => {
+        return item.representanteDk === representanteDk;
+      });
+
+      const oldPinStatus = updatedArray[representanteIndex].isPinned;
+      updatedArray[representanteIndex].isPinned = !oldPinStatus;
+      // this is necessary to force ActionButtons to update via change in props
+      updatedArray[representanteIndex].actions = (
+        <ActionButtons
+          onPin={() => pinInvestigated(representanteDk)}
+          onDelete={() => deleteInvestigated(representanteDk)}
+          isPinned={!oldPinStatus}
+        />
+      );
+
+      return updatedArray.sort((x, y) => y.isPinned - x.isPinned);
+    });
+  }
+
+  /**
+   * tformats the array from the API to be used by the table component
+   * @param  {aray} raw response from the MainInvestigated endpoint
+   * @return {array}     formatted according to table component props
+   */
+  function cleanData(raw) {
+    return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => ({
+      key: `${nmInvestigado}-${nrInvestigacoes}`,
+      nmInvestigado,
+      nrInvestigacoes,
+      isPinned,
+      isRemoved,
+      representanteDk,
+      actions: (
+        <ActionButtons
+          onPin={() => pinInvestigated(representanteDk)}
+          onDelete={() => deleteInvestigated(representanteDk)}
+          isPinned={isPinned}
+        />
+      ),
+    }));
   }
 
   /**
    * Function that fetches the main investigated data
    * @return {void}
    */
-  async getMainInvestigated() {
+  async function getMainInvestigated() {
     let response;
-    let error = false;
     try {
-      response = await Api.getMainInvestigated(getUser());
+      response = await Api.getMainInvestigated(user);
+      setTableData(cleanData(response));
     } catch (e) {
-      error = true;
+      setApiError(true);
     } finally {
-      const tableData = response ? this.parseMainInvestigated(response) : null;
-      this.setState({
-        loading: false,
-        error,
-        tableData,
-      });
+      setLoading(false);
     }
   }
 
-  filterTableData(tableData) {
-    let filteredTableData = [];
-
-    // is_removed - Server já está filtrando
-    filteredTableData = tableData.filter(item => item.removed === false);
-    // Ordering by nr_investigacoes Desc
-    filteredTableData.sort((x, y) => y.pinned - x.pinned);
-
-    return filteredTableData;
+  function onMount() {
+    getMainInvestigated();
   }
 
-  parseMainInvestigated(dataFromApi) {
-    // format data to render
-    let parseResult = dataFromApi.map((item, index) => ({
-      id: item.representante_dk,
-      key: index.toString(),
-      pinned: item.is_pinned,
-      removed: item.is_removed,
-      investigado: item.nm_investigado,
-      numero_investigacoes: item.nr_investigacoes,
-      pin: (
-        <>
-          <button
-            type="button"
-            onClick={() =>
-              this.actionMainInvestigated({
-                action: item.is_pinned ? 'unpin' : 'pin',
-                representante_dk: item.representante_dk,
-              })
-            }
-          >
-            <TackIcon activated={item.is_pinned} />
-          </button>
-          <button
-            type="button"
-            onClick={() =>
-              this.actionMainInvestigated({
-                action: 'remove',
-                representante_dk: item.representante_dk,
-              })
-            }
-          >
-            <BinIcon />
-          </button>
-        </>
-      ),
-    }));
+  useEffect(onMount, []);
 
-    // Ordering by is_pinned (true) - Dentro da função filterTableData() vai reorganizar após as actions pin/unpin
-    parseResult.sort(function(x, y) {
-      return x.pinned === y.pinned ? 0 : x.pinned ? -1 : 1;
-    });
-    parseResult = this.filterTableData(parseResult);
-
-    return parseResult;
-  }
-
-  async actionMainInvestigated({ action, representante_dk }) {
-    const { orgao, cpf, token } = getUser();
-    const actions = { pin: 'pinned', unpin: 'pinned', remove: 'removed' };
-    const field = actions[action];
-    try {
-      Api.actionMainInvestigated({ orgao, cpf, token, action, representante_dk }).then(response => {
-        if (response.status === 'Success!') {
-          const cloneData = [...this.state.tableData];
-          const itemKey = cloneData.findIndex(item => item.id == representante_dk);
-          cloneData[itemKey][field] = !cloneData[itemKey][field];
-          if (['pin', 'unpin'].includes(action)) {
-            cloneData[itemKey].pin = (
-              <>
-                <button
-                  type="button"
-                  onClick={() =>
-                    this.actionMainInvestigated({
-                      action: cloneData[itemKey][field] ? 'unpin' : 'pin',
-                      representante_dk,
-                    })
-                  }
-                >
-                  <TackIcon activated={cloneData[itemKey][field]} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    this.actionMainInvestigated({
-                      action: 'remove',
-                      representante_dk: representante_dk,
-                    })
-                  }
-                >
-                  <BinIcon />
-                </button>
-              </>
-            );
-          }
-          this.setState({
-            tableData: this.filterTableData(cloneData),
-          });
-        }
-      });
-    } catch (error) {
-      error = true;
-    }
-  }
-
-  render() {
-    const { loading, tableData, error } = this.state;
-    if (loading) {
-      return <Spinner size="medium" />;
-    }
-
-    if (error) {
+  function render() {
+    if (loading || apiError) {
       return (
         <article className="mainInvestigated-outer">
-          <SectionTitle value="Principais Investigados" />
-          Nenhum investigado para exibir
+          <SectionTitle value="Principais Investigados" glueToTop />
+          {loading ? <Spinner size="medium" /> : <p>Nenhum investigado para exibir</p>}
         </article>
       );
     }
@@ -170,11 +117,13 @@ class MainInvestigated extends React.Component {
       <article className="mainInvestigated-outer">
         <SectionTitle value="Principais Investigados" glueToTop />
         <div className="mainInvestigated-tableWrapper">
-          <CustomTable data={tableData} columns={this.tableColumns} showHeader />
+          <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
         </div>
       </article>
     );
   }
+
+  return render();
 }
 
 export default MainInvestigated;

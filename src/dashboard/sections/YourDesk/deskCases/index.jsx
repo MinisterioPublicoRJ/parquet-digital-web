@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { VictoryPie } from 'victory';
-import { leftPad } from '../../utils';
+import { leftPad } from '../../../../utils';
 
-import './deskCasesStyles.css';
+import './styles.css';
 
 const propTypes = {
   active: PropTypes.bool.isRequired,

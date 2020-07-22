@@ -139,7 +139,8 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight turquoise">
-              {`${categoryProcessingTime.orgaoData.min.toFixed(0)} dias`}
+              <span>{`${categoryProcessingTime.orgaoData.min.toFixed(0)}`}</span>
+              <span>{` dias`}</span>
             </span>
             mais rápido da sua promotoria
           </div>
@@ -150,7 +151,8 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {`${categoryProcessingTime.orgaoData.max.toFixed(0)} dias`}
+              <span>{`${categoryProcessingTime.orgaoData.max.toFixed(0)}`}</span>
+              <span>{` dias`}</span>
             </span>
             mais lento da sua promotoria
           </div>
@@ -161,7 +163,8 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight green">
-              {`${categoryProcessingTime.pacoteData.min.toFixed(0)} dias`}
+              <span>{`${categoryProcessingTime.pacoteData.min.toFixed(0)}`}</span>
+              <span>{` dias`}</span>
             </span>
             mais rápido do grupo
           </div>
@@ -172,7 +175,8 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight purple">
-              {`${categoryProcessingTime.pacoteData.average.toFixed(0)} dias`}
+              <span>{`${categoryProcessingTime.pacoteData.average.toFixed(0)}`}</span>
+              <span>{` dias`}</span>
             </span>
             médio do seu grupo
           </div>
@@ -183,7 +187,8 @@ const ProcessingTime = () => {
           </div>
           <div className="pt-legends-text">
             <span className="pt-legends-highlight pink">
-              {`${categoryProcessingTime.pacoteData.max.toFixed(0)} dias`}
+              <span>{`${categoryProcessingTime.pacoteData.max.toFixed(0)}`}</span>
+              <span>{` dias`}</span>
             </span>
             mais lento do seu grupo
           </div>

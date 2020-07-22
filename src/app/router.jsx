@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route, HashRouter, Redirect } from 'react-router-dom';
-
 import { useAuth } from './authContext';
 import Login from '../login';
 import Dashboard from '../dashboard';
@@ -13,7 +12,7 @@ function Router() {
         <Route exact path="/">
           {user ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/login" component={Login} />
+        <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
         <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>
       </Switch>
     </HashRouter>

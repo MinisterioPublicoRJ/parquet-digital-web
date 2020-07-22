@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 export { default as alertsTransform } from './alertsTransform';
 export { default as courtCasesDetailsTransform } from './courtCasesDetailsTransform';
 export { default as openCasesDetailsTransform } from './openCasesDetailsTransform';
@@ -13,8 +12,9 @@ export { default as openCasesListTransform } from './openCaseListTransform';
 export { default as totalAlertsTransform } from './totalAlertsTransform';
 export { default as successIndicatorsTransform } from './succesIndicatorsTransform';
 export { default as deskTabTransform } from './deskTabTransforms';
-export { default as userTransform } from './userTransform';
-export { default as snakeToCamelTransform } from './snakeToCamelTransform';
+export { default as loginTransform } from './loginTransform';
 
+export { default as snakeToCamelTransform } from './snakeToCamelTransform';
+/* eslint-disable camelcase */
 export const deskIntegratedTransform = ({ nr_documentos }) => nr_documentos;
 export const todayOutTransform = ({ percent_rank }) => percent_rank;

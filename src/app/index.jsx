@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import './styles.css';
 import '../themes/index.css';
 import Router from './router';
@@ -20,8 +19,13 @@ function AuthContextCreator() {
     }
   };
 
-  const scaLogin = () => {
-    // not yet implemented
+  const scaLogin = async (username, password) => {
+    try {
+      const loggedUser = await Api.scaLogin(username, password);
+      setUser(loggedUser);
+    } catch (e) {
+      setUserError(true);
+    }
   };
 
   return {

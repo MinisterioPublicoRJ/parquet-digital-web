@@ -4,6 +4,7 @@
   grid-area: radar;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .radar {
@@ -26,10 +27,10 @@
   position: relative;
   padding-top: 1vh;
   font-family: var(--defaultFont);
-  font-size: 8px;
+  /* font-size: 8px; */
+  font-size: var(--smallFont);
   line-height: 12px;
   color: var(--dark);
-  font-weight: bold;
   float: left;
   margin-right: 3vh;
 }

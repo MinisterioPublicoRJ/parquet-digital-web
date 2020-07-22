@@ -2,6 +2,7 @@ h2 {
   color: var(--darkBlue);
   font-size: var(--sectionTitleFontSize);
   font-family: var(--titleFont);
+  font-weight: normal;
 }
 
 .sectionTitle--glued {
@@ -15,7 +16,6 @@ h2 {
 h2 + .sectionTitle-subtitle {
   color: var(--darkBlue);
   font-size: calc(var(--sectionTitleFontSize) * 0.5);
-  font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
 }

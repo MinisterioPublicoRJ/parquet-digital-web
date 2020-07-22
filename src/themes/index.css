@@ -34,8 +34,8 @@
   --defaultFontSize: clamp(14px, 1.6vh, 22px);
 
   --titleFontSize: calc(var(--defaultFontSize) * 2);
-  --titleFont: 'Roboto Slab', serif;
-  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.1);
+  --titleFont: 'Roboto';
+  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);
 
   --smallFont: clamp(10px, 1.2vh, 14px);
 

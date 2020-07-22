@@ -5,9 +5,6 @@
   color: var(--darkBlue);
   display: flex;
   flex-direction: column;
-  font-family: var(--defaultFont);
-  font-size: calc(var(--defaultFontSize) * 0.75);
-  font-weight: var(--subtitleWeight);
   justify-content: space-between;
 }
 

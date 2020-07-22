@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   LOGIN_URL,
+  LOGIN,
   TODAY_OUT,
   TODAY_OUTLIERS,
   TODAY_ENTRIES,
@@ -40,7 +41,7 @@ import {
   pipRadarTransform,
   deskIntegratedTransform,
   deskTabTransform,
-  userTransform,
+  loginTransform,
   snakeToCamelTransform,
 } from './transforms';
 
@@ -55,7 +56,17 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN_URL, formData);
 
-    return userTransform(data);
+    return loginTransform(data);
+  }
+
+  async function scaLogin(username, password) {
+    const formData = new FormData();
+    formData.set('username', username);
+    formData.set('password', password);
+
+    const { data } = await axios.post(LOGIN, formData);
+
+    return loginTransform(data);
   }
 
   /**
@@ -63,6 +74,7 @@ const Api = (() => {
    * @param  {string} orgao promotoria's orgao
    * @return {number}    [description]
    */
+
   async function getTodayOutData({ orgao, token }) {
     const { data } = await axios.get(TODAY_OUT({ orgao }), buildRequestConfig(token));
 
@@ -211,6 +223,7 @@ const Api = (() => {
 
   return {
     login,
+    scaLogin,
     getTodayOutData,
     getTodayOutliersData,
     getTodayEntriesData,

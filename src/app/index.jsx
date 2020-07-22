@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { useHistory } from 'react-router-dom';
 import './styles.css';
 import '../themes/index.css';
 import Router from './router';
@@ -8,6 +8,7 @@ import Api from '../api';
 import { Spinner } from '../components/layoutPieces';
 
 function AuthContextCreator() {
+  const history = useHistory();
   const [user, setUser] = useState(null);
   const [userError, setUserError] = useState(false);
 
@@ -25,7 +26,6 @@ function AuthContextCreator() {
       const loggedUser = await Api.scaLogin(username, password);
       console.log('worked', loggedUser);
       setUser(loggedUser);
-      setUserError('worked');
     } catch (e) {
       console.log('failed :(');
       setUserError(true);

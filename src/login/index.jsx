@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import './styles.css';
 import { useAuth } from '../app/authContext';
 import boxLogin from '../assets/imgs/box_login.png';
 import { LoginPromotron } from '../assets';
 
 const Login = () => {
-  const history = useHistory();
   const { scaLogin, userError } = useAuth();
   const [username, setUsername] = useState('');
   const [secret, setSecret] = useState('');
@@ -14,10 +12,6 @@ const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     scaLogin(username, secret);
-  }
-
-  function handleClick() {
-    history.push('/dashobard');
   }
 
   return (
@@ -48,9 +42,8 @@ const Login = () => {
             onChange={({ target }) => setSecret(target.value)}
             required
           />
-          <button className='btn-login' onClick={handleClick} type="button">ENTRAR</button>
+          <button className='btn-login' type="submmit">ENTRAR</button>
           <div className="greetings">
-            {userError === 'worked' && <strong>Você está conectado!</strong>}
             {userError === 'failed' && (
               <strong>Verifique se a senha ou usuário estão corretos!</strong>
             )}

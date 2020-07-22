@@ -12,9 +12,8 @@
 
 .pt-texts {
   grid-area: texts;
-  color: var(--dark);
-  font-size: calc(var(--defaultFontSize) * 0.75);
-  font-family: var(--defaultFont);
+  display: flex;
+  flex-direction: column;
   margin: 0;
 }
 

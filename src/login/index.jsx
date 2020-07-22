@@ -42,7 +42,9 @@ const Login = () => {
             onChange={({ target }) => setSecret(target.value)}
             required
           />
-          <button className='btn-login' type="submmit">ENTRAR</button>
+          <button className="btn-login" type="submit">
+            ENTRAR
+          </button>
           <div className="greetings">
             {userError === 'failed' && (
               <strong>Verifique se a senha ou usuário estão corretos!</strong>

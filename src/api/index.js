@@ -67,7 +67,7 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN, formData);
 
-    return loginUserTransform(data);
+    return loginTransform(data);
   }
 
   /**

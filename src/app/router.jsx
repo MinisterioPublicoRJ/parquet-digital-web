@@ -12,7 +12,7 @@ function Router() {
         <Route exact path="/">
           {user ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/login" component={Login} />
+        <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
         <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>
       </Switch>
     </HashRouter>

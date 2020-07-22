@@ -5,7 +5,6 @@ import { Pip, Tutela, BlankPage } from './pages';
 
 function Dashboard() {
   const { user } = useAuth();
-  console.log('Dashboard', user);
   const { tipoOrgao } = user;
 
   switch (tipoOrgao) {

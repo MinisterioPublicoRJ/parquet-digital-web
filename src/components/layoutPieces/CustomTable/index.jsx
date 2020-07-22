@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
-import { capitalizeTitle } from '../../../utils/formatters';
-
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   /* DICT { KEY: PRETTIFIED NAME, VALUE: MATCHING KEY IN DATA OBJECTS } */

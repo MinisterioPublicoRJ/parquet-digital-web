@@ -42,7 +42,6 @@ import {
   deskIntegratedTransform,
   deskTabTransform,
   loginTransform,
-  loginUserTransform,
   snakeToCamelTransform,
 } from './transforms';
 

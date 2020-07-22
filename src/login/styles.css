@@ -1,3 +1,10 @@
+html {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .wrapper {
   display: flex;
   flex: 1;
@@ -119,11 +126,11 @@ label {
   }
   .Login-form{
     margin-top: 20px;
-  } 
+  }
   .Login-input{
     margin-top: 20px;
     width: 100%;
-  }  
+  }
   .btn-login{
     margin-top: 20px;
     width: 100%;

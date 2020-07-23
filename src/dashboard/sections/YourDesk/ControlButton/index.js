@@ -23,12 +23,13 @@ const defaultProps = {
 };
 
 function ControlButton({ isActive, number, text, isButton, loading, buttonPressed, error }) {
+  let fill;
   if (isButton) {
     if (isActive) {
-      return (
+      fill = (
         <button
           type="button"
-          className="controlButton-outer controlButton--active"
+          className="controlButton-inner controlButton--active"
           onClick={() => buttonPressed()}
         >
           {loading ? (
@@ -39,32 +40,36 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           {text}
         </button>
       );
+    } else {
+      fill = (
+        <button
+          type="button"
+          className="controlButton-inner controlButton--inactive"
+          onClick={() => buttonPressed()}
+        >
+          {loading ? (
+            <Spinner size="small" />
+          ) : (
+            <span className="controlButton-bigNumber">{error ? 0 : number}</span>
+          )}
+          {text}
+        </button>
+      );
     }
-    return (
-      <button
-        type="button"
-        className="controlButton-outer controlButton--inactive"
-        onClick={() => buttonPressed()}
-      >
+  } else {
+    fill = (
+      <div className="controlButton-inner controlButton--inactive controlButton-notButton">
         {loading ? (
           <Spinner size="small" />
         ) : (
           <span className="controlButton-bigNumber">{error ? 0 : number}</span>
         )}
         {text}
-      </button>
+      </div>
     );
   }
-  return (
-    <div className="controlButton-outer controlButton--inactive controlButton-notButton">
-      {loading ? (
-        <Spinner size="small" />
-      ) : (
-        <span className="controlButton-bigNumber">{error ? 0 : number}</span>
-      )}
-      {text}
-    </div>
-  );
+
+  return <div className="controlButton-outer">{fill}</div>;
 }
 ControlButton.propTypes = propTypes;
 ControlButton.defaultProps = defaultProps;

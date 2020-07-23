@@ -29,7 +29,7 @@
 }
 
 .alerts-body {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .alerts-decision--positive {
@@ -44,7 +44,7 @@
 /* PHONES */
 @media (max-width: 480px) {
   .alerts-wrapper {
-    overflow-y: scroll;
-    width: 100%;
+    /* overflow-y: scroll;
+    width: 100%; */
   }
 }

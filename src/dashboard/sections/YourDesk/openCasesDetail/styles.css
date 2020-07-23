@@ -8,5 +8,5 @@
 .openCases-tableWrapper {
   display: flex;
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
 }

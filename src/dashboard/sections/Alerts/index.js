@@ -62,9 +62,7 @@ function Alerts() {
     <article className="alerts-wrapper">
       <div className="alerts-header">
         <SectionTitle value="central de alertas" glueToTop />
-        <div className="alerts-total">
-          <span>{alertsError ? 0 : alerts.length}</span>
-        </div>
+        <span className="alerts-total">{alertsError ? 0 : alerts.length}</span>
       </div>
       <div className="alerts-body">
         {alertsError && 'Não existem alertas para exibir.'}

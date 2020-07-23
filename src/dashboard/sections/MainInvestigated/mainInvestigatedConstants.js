@@ -1,5 +1,5 @@
 export const TABLE_COLUMNS = {
   INVESTIGADO: 'nmInvestigado',
-  'No. DE INQUÉRITOS': 'nrInvestigacoes',
+  'Nº DE INQUÉRITOS': 'nrInvestigacoes',
   ' ': 'actions',
 };

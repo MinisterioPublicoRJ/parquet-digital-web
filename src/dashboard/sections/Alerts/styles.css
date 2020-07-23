@@ -10,11 +10,16 @@
 }
 
 .alerts-total {
-  margin: var(--elementPadding) 0;
-  width: 44px;
-  height: 18px;
+  align-items: center;
   background-color: var(--danger);
-  border-radius: 50px;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  font-weight: bold;
+  height: var(--sectionTitleFontSize);
+  justify-content: center;
+  min-width: calc(2 * var(--defaultFontSize));
+  padding: 1px 5px;
 }
 
 .alerts-total span {

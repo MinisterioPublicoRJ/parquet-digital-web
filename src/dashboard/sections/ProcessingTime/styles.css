@@ -1,5 +1,3 @@
-@import '../styles.css';
-
 .page-tramitacao {
     grid-area: processingTime;
     display: grid;
@@ -54,7 +52,7 @@
 }
 
 .pt-legends-highlight span:first-child {
-  font-size: calc(var(--defaultFontSize) * 1.3);
+  font-size: var(--featuredNumberFontSize);
 }
 
 .turquoise {

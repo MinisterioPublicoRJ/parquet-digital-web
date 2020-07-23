@@ -1,5 +1,3 @@
-@import '../styles.css';
-
 .mainInvestigated-outer {
   grid-area: mainInvestigated;
   display: flex;

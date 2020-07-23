@@ -1,5 +1,3 @@
-@import '../styles.css';
-
 .successIndicators-outer {
   grid-area: indicators;
   color: var(--darkBlue);

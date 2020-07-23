@@ -5,3 +5,8 @@ body {
   margin: 0;
   padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
 }
+
+h3 {
+  text-transform: uppercase;
+  font-weight: 400;
+}

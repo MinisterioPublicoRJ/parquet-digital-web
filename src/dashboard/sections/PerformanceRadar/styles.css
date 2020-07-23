@@ -1,5 +1,3 @@
-@import '../styles.css';
-
 .page-radar-dashboard {
   grid-area: radar;
   display: flex;

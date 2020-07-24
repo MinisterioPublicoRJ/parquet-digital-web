@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../api';
-import { DeskCasesChart } from '../../../../components/graphs';
-import { Spinner, Table } from '../../../../components/layoutPieces';
+import { Spinner, CustomTable } from '../../../../components';
+import DeskCasesChart from '../deskCases';
 
 import './styles.css';
 
@@ -136,7 +136,11 @@ class OpenCasesDetail extends React.Component {
         <div className="openCases-tableWrapper">
           {tabLoading && <Spinner size="medium" />}
           {!emptyTab && this.state[`${activeTab}Details`] && (
-            <Table data={this.state[`${activeTab}Details`]} columns={TABLE_COLUMNS} showHeader />
+            <CustomTable
+              data={this.state[`${activeTab}Details`]}
+              columns={TABLE_COLUMNS}
+              showHeader
+            />
           )}
           {emptyTab && <p className="paragraphWrapper"> Nenhum processo para exibir </p>}
         </div>

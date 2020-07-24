@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-
 import './styles.css';
+import { useAuth } from '../app/authContext';
 import boxLogin from '../assets/imgs/box_login.png';
-// import Api from '../api';
 import { LoginPromotron } from '../assets';
 
 const Login = () => {
-  const [login, setLogin] = useState([{ name: '', email: '' }]);
+  const { scaLogin, userError } = useAuth();
+  const [username, setUsername] = useState('');
+  const [secret, setSecret] = useState('');
 
-  const handleChange = event => {
-    setLogin({ ...login, [event.target.name]: event.target.value });
-  };
+  async function handleSubmit(e) {
+    e.preventDefault();
+    scaLogin(username, secret);
+  }
 
   return (
     <div className="wrapper">
@@ -24,25 +26,30 @@ const Login = () => {
             em evidências e uma análise apurada da sua Promotoria."
           />
         </div>
-        <form className="Login-form">
+        <form className="Login-form" onSubmit={handleSubmit}>
           <LoginPromotron height={150} />
           <input
             className="Login-input"
-            placeholder="Matrícula MPRJ"
+            placeholder="Usuário"
             type="text"
-            value={login.name}
-            onChange={handleChange}
+            onChange={({ target }) => setUsername(target.value)}
             required
           />
           <input
             className="Login-input"
             placeholder="Senha"
             type="password"
-            value={login.email}
-            onChange={handleChange}
+            onChange={({ target }) => setSecret(target.value)}
             required
           />
-          <button type="submit">ENTRAR</button>
+          <button className="btn-login" type="submit">
+            ENTRAR
+          </button>
+          <div className="greetings">
+            {userError === 'failed' && (
+              <strong>Verifique se a senha ou usuário estão corretos!</strong>
+            )}
+          </div>
         </form>
       </div>
     </div>

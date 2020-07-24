@@ -5,7 +5,7 @@ import { formatPercentage } from '../../../../utils';
 function openInvestigationsMetrics({ variacaoAcervo }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
   return (
-    <p className="paragraphWrapper">
+    <p>
       Seu acervo
       <strong>{` ${variacaoAcervo > 0 ? 'aumentou' : 'diminuiu'}  ${formattedVariation} `}</strong>
       nos últimos 30 dias.
@@ -16,7 +16,7 @@ function openInvestigationsMetrics({ variacaoAcervo }) {
 function courtCasesMetrics({ nrAcoesUltimos60Dias, variacao12Meses }) {
   const formattedVariation = formatPercentage(Math.abs(variacao12Meses));
   return (
-    <p className="paragraphWrapper">
+    <p>
       Você propôs
       <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
       nos últimos 60 dias, com
@@ -38,7 +38,7 @@ function inquiriesMetrics({
 }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAproveitamentos));
   return (
-    <p className="paragraphWrapper">
+    <p>
       Constatei que
       <strong>{` ${nrDocumentosDistintosAtual} ${nrDocumentosDistintosAtual === 1 ? 'inquérito passou' : 'inquéritos passaram'} por você `}</strong>
       nos últimos 30 dias, com
@@ -53,7 +53,7 @@ function inquiriesMetrics({
 function aispsMetrics({ variacaoAcervo }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
   return (
-    <p className="paragraphWrapper">
+    <p>
       Houve
       {variacaoAcervo > 0 ? ' um ' : ' uma '}
       <strong>
@@ -75,7 +75,7 @@ function picsMetrics({
 }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAberturasVista));
   return (
-    <p className="paragraphWrapper">
+    <p>
       Constatei que
       <strong>
         {` ${nrDocumentosDistintosAtual} ${

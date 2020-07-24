@@ -1,5 +1,3 @@
-@import '../styles.css';
-
 .mainInvestigated-outer {
   grid-area: mainInvestigated;
   display: flex;
@@ -7,5 +5,5 @@
 }
 
 .mainInvestigated-tableWrapper {
-  overflow-y: scroll;
+  overflow-y: auto;
 }

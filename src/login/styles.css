@@ -10,6 +10,7 @@ html {
   flex: 1;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 80px;
 }
 
 .wrapper-login {
@@ -72,19 +73,19 @@ html {
   outline: none;
 }
 
-button {
+.btn-login {
   background-color: #e6e6e6;
   border: none;
   border-radius: 7px;
   box-sizing: border-box;
   color: #505050;
-  /*font-family: var(--defaultFont);*/
   font-family: Segoe UI Semibold;
   height: 40px;
   width: 70%;
+  cursor: pointer;
 }
 
-button:hover {
+.btn-login:hover {
   background-color: #bddff0;
 }
 
@@ -109,4 +110,29 @@ label {
 /* Microsoft Edge */
 ::-ms-input-placeholder {
   color: #cecece;
+}
+.greetings{
+  color: #8a8a8a;
+  font-family: var(--defaultFont);
+  font-size: 12px;
+
+}
+@media (max-width: 480px) {
+  .wrapper-login {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    min-width: 460px;
+  }
+  .Login-form{
+    margin-top: 20px;
+  }
+  .Login-input{
+    margin-top: 20px;
+    width: 100%;
+  }
+  .btn-login{
+    margin-top: 20px;
+    width: 100%;
+  }
 }

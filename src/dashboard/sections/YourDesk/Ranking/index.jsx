@@ -18,13 +18,13 @@ const propTypes = {
 function Ranking({ data, title }) {
   return (
     <div className="ranking-outer">
-      <h3 className="subtitle">{TITLEDICT[title]}</h3>
+      <h3>{TITLEDICT[title]}</h3>
       <ul className="ranking-list">
         {data.map((item, i) => {
           return (
             <li key={item.text} className="ranking-li">
               <span className="ranking-icon">
-                <Badge width={30} number={i + 1} />
+                <Badge width={25} number={i + 1} />
               </span>
               <strong className="ranking-featured">{item.value || '0'}</strong>
               <span className="ranking-label">{item.text}</span>

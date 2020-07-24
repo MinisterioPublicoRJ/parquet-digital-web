@@ -98,7 +98,7 @@ function Today() {
   function analyzeEntries(hout, lout, amount) {
     if (!amount) {
       return (
-        <p className="today-textArea-paragraphWrapper">
+        <p>
           Percebi que ainda não temos vistas abertas para hoje!
         </p>
       );
@@ -108,7 +108,7 @@ function Today() {
       dayTipe = 'atípico';
     }
     return (
-      <p className="today-textArea-paragraphWrapper">
+      <p>
         Hoje temos um dia
         <span style={{ fontWeight: 'bold' }}>{` ${dayTipe} `}</span>
         com a entrada de
@@ -180,7 +180,7 @@ function Today() {
   const greeting = assembleGreeting();
 
   const percentParagraph = !todayPercent ? null : (
-    <p className="today-textArea-paragraphWrapper">
+    <p>
       No último mês a sua promotoria foi mais resolutiva que
       <span style={{ fontWeight: 'bold' }}>{` ${todayPercent} `}</span>
       da casa entre aquelas de mesma atribuição.
@@ -188,7 +188,7 @@ function Today() {
     </p>
   );
   const collectionParagraph = !phrase ? null : (
-    <p className="today-textArea-paragraphWrapper">
+    <p>
       Você sabia que seu acervo é
       <span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
       dos seus colegas das
@@ -199,16 +199,12 @@ function Today() {
 
   return (
     <article className="today-outer">
-      <div className="today-header">
-        <MainTitle value={greeting} />
-      </div>
+      <MainTitle value={greeting} glueToTop />
       <div className="today-content">
         <SectionTitle value="resumo do dia" glueToTop />
-        <div className="today-textArea">
-          {percentParagraph}
-          {collectionParagraph}
-          {entriesGroup}
-        </div>
+        {percentParagraph}
+        {collectionParagraph}
+        {entriesGroup}
       </div>
       <button type="button" className="today-btn">
         Ver mapa da atuação

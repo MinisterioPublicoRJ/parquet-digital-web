@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
-import { capitalizeTitle } from '../../../utils/formatters';
-
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   /* DICT { KEY: PRETTIFIED NAME, VALUE: MATCHING KEY IN DATA OBJECTS } */
@@ -72,7 +70,7 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
  * @param       {boolean} showHeader
  * @constructor
  */
-function Table({ data, columns, showHeader }) {
+function CustomTable({ data, columns, showHeader }) {
   const isPhone = window.innerWidth <= 480;
   return (
     <table>
@@ -82,6 +80,6 @@ function Table({ data, columns, showHeader }) {
   );
 }
 
-Table.propTypes = propTypes;
-Table.defaultProps = defaultProps;
-export default Table;
+CustomTable.propTypes = propTypes;
+CustomTable.defaultProps = defaultProps;
+export default CustomTable;

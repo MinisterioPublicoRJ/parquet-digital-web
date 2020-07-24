@@ -5,7 +5,8 @@ import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
-import { Table, Spinner, SectionTitle } from '../../../components';
+import { CustomTable, Spinner, SectionTitle } from '../../../components';
+
 
 function MainInvestigated() {
   const { user } = useAuth();
@@ -116,7 +117,7 @@ function MainInvestigated() {
       <article className="mainInvestigated-outer">
         <SectionTitle value="Principais Investigados" glueToTop />
         <div className="mainInvestigated-tableWrapper">
-          <Table data={tableData} columns={TABLE_COLUMNS} showHeader />
+          <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
         </div>
       </article>
     );

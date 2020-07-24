@@ -2,10 +2,11 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+  padding: 20px 0;
 }
 
 .openCases-tableWrapper {
   display: flex;
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
 }

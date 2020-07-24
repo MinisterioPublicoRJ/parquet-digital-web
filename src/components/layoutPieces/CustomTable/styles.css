@@ -1,7 +1,6 @@
 table {
   color: #8998ac;
-  font-family: var(--defaultFont);
-  font-size: 1.2vh;
+  font-size: var(--smallFont);
   table-layout: fixed;
   width: 100%;
 }
@@ -17,12 +16,12 @@ tbody tr:nth-child(odd) {
 thead tr {
   background-color: #f8f9fb;
   color: #39475b;
-  font-weight: normal;
   text-align: left;
 }
 
 th {
   padding: 10px;
+  font-weight: 400;
 }
 
 td {

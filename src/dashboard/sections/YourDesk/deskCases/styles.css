@@ -40,18 +40,15 @@
 }
 
 .deskCasesChart-count {
-  font-size: var(--spotlightSize);
-  font-family: var(--spotlightFont);
-  font-weight: var(--spotlightWeight);
-  line-height: var(--spotlightFont);
-  margin-top: -0.7vw;
-  text-shadow: 0 3px 6px var(--shadowColor);
+  font-size: calc(3 * var(--defaultFontSize));
+  font-weight: 900;
+  line-height: calc(3 * var(--defaultFontSize));
+  /* font-family: var(--spotlightFont); */
 }
 
 .deskCasesChart-days {
-  font-size: 0.8vw;
-  text-transform: uppercase;
-  font-family: var(--spotlightFont);
+  /* font-size: 0.8vw; */
+  font-family: var(--defaultFont);
 }
 
 /* PHONES */

@@ -25,7 +25,8 @@ function AuthContextCreator() {
       setUser(loggedUser);
     } catch (e) {
       setUserError(true);
-      setUserError('failed');
+    } finally {
+      setUserError('erro');
     }
   };
 

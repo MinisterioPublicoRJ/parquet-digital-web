@@ -46,7 +46,7 @@ const Login = () => {
             ENTRAR
           </button>
           <div className="greetings">
-            {userError === 'failed' && (
+            {userError === 'erro' && (
               <strong>Verifique se a senha ou usuário estão corretos!</strong>
             )}
           </div>

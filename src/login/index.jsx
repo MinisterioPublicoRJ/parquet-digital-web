@@ -5,7 +5,7 @@ import boxLogin from '../assets/imgs/box_login.png';
 import { LoginPromotron } from '../assets';
 
 const Login = () => {
-  const { scaLogin, userError } = useAuth();
+  const { scaLogin, scaUserError } = useAuth();
   const [username, setUsername] = useState('');
   const [secret, setSecret] = useState('');
 
@@ -46,9 +46,7 @@ const Login = () => {
             ENTRAR
           </button>
           <div className="greetings">
-            {userError === 'erro' && (
-              <strong>Verifique se a senha ou usuário estão corretos!</strong>
-            )}
+            {scaUserError && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
           </div>
         </form>
       </div>

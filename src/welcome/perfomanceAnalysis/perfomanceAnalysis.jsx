@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Analise from '../assets/gifs/analise.gif';
+import Analise from '../../assets/gifs/analise.gif';
 
-import './styles.css';
+import '../styles.css';
 
 const PerformanceAnalysis = () => {
   return (
@@ -18,15 +18,13 @@ const PerformanceAnalysis = () => {
           métricas importantes.
         </p>
       </div>
-      <div className="btn-welcome">
-        <div className="btn-previous">
-          <Link to="./home">
-            <button className="btn-next">Anterior</button>
-          </Link>
-        </div>
-        <div className="btn-next-previous">
-          <Link to="./home">
-            <button className="btn-start">iniciar</button>
+      <div className="all-btns">
+        <Link to="./home">
+          <button className="btn-previous">Anterior</button>
+        </Link>
+        <div className="btns">
+          <Link to="./">
+            <button className="btn-start">pular</button>
           </Link>
         </div>
       </div>

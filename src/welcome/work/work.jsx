@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Chat from '../assets/gifs/chat.gif';
+import Chat from '../../assets/gifs/chat.gif';
 
-import './styles.css';
+import '../styles.css';
 
 const Work = () => {
   return (
@@ -18,17 +18,15 @@ const Work = () => {
           processos.
         </p>
       </div>
-      <div className="btn-welcome">
-        <div className="btn-previous">
-          <Link to="./welcome">
-            <button className="btn-next">Anterior</button>
-          </Link>
-        </div>
-        <div className="btn-next-previous">
+      <div className="all-btns">
+        <Link to="./welcome">
+          <button className="btn-previous">Anterior</button>
+        </Link>
+        <div className="btns">
           <Link to="./home">
             <button className="btn-next">próximo</button>
           </Link>
-          <Link to="./welcome">
+          <Link to="./">
             <button className="btn-jumper">pular</button>
           </Link>
         </div>

@@ -1,57 +1,71 @@
 .wrapper-welcome{
     text-align: center;
-    color: var(--darkWelcome);
-    font-family: var(--defaultWelcome);
 }
 .wrapper-welcome h2{
+    font-family: 'Avenir Black', 'Arial Black', sans-serif;
     font-size: 32px;
     opacity: 1;
+    color: #4A4A4A;
 }
 .wrapper-welcome p{
+    font-family: 'Avenir Black', sans-serif;
     font-size: 21px;
     opacity: 1;
 }
 .welcome-texts{
     width: 797px;
 }
-.btn-welcome{
+.all-btns {
     display: flex;
     justify-content: space-between;
 }
-.btn-next-previous {
-    display: flex;
-    justify-content: flex-end;
+.all-btns button {
+    width: 118px;
+    cursor: pointer;
+    height: 40px;
+    margin: 10px;
 }
-.btn-next-previous button {
+.btns-welcome button {
     width: 118px;
     cursor: pointer;
     height: 40px;
     margin: 10px;
 }
 .btn-next{
-    border-radius: 0px 20px 20px 0px;
     background: #D6D6D6 0% 0% no-repeat padding-box;
+    border-radius: 0px 20px 20px 0px;
     opacity: 1;
-}
-.btn-start{
-    background: #5FF09D 0% 0% no-repeat padding-box;
-    border-radius: 20px;
-    opacity: 1;
-}
-.btn-jumper{
-    background: #EFEFEF 0% 0% no-repeat padding-box;
-    border-radius: 20px;
-    opacity: 1;
+    border-color: #D6D6D6;
 }
 .btn-previous{
     background: #D6D6D6 0% 0% no-repeat padding-box;
     border-radius: 20px 0px 0px 20px;
     opacity: 1;
-    width: 118px;
-    cursor: pointer;
-    height: 40px;
-    margin: 10px; 
+    border-color: #D6D6D6;
+
 }
+.btn-jumper{
+    background: #EFEFEF 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+    border-color: #D6D6D6;
+
+}
+.btn-start{
+    background: #5FF09D 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+    border-color: #D6D6D6;
+}
+.div-main-previous{
+    display: flex;
+    justify-content: flex-end;
+}
+.btns-welcome{
+    display: flex;
+    justify-content: flex-end;
+}
+
 @media (max-width: 480px) {
     .wrapper-welcome{
        display: flex;

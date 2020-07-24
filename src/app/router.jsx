@@ -4,9 +4,9 @@ import { useAuth } from './authContext';
 import Login from '../login';
 import Dashboard from '../dashboard';
 import Welcome from '../welcome';
-import Work from '../welcome/work';
-import Home from '../welcome/home';
-import Performance from '../welcome/perfomanceAnalysis';
+import Work from '../welcome/work/work';
+import Home from '../welcome/home/home';
+import Performance from '../welcome/perfomanceAnalysis/perfomanceAnalysis';
 
 function Router() {
   const { user } = useAuth();

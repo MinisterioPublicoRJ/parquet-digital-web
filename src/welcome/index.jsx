@@ -18,12 +18,12 @@ const Welcome = () => {
           processos.
         </p>
       </div>
-      <div className="btn-next-previous">
+      <div className="btns-welcome">
         <Link to="./work">
           <button className="btn-next">próximo</button>
         </Link>
         <Link to="./">
-        <button className="btn-jumper">pular</button>
+          <button className="btn-jumper">pular</button>
         </Link>
       </div>
     </div>

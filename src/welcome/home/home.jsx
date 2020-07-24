@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Run from '../assets/gifs/run.gif';
+import Run from '../../assets/gifs/run.gif';
 
-import './styles.css';
+import '../styles.css';
 
 const Home = () => {
   return (
@@ -17,17 +17,17 @@ const Home = () => {
           ainda mais célere e capaz de atingir o maior impacto possível.
         </p>
       </div>
-      <div className="btn-welcome">
-        <div className="btn-previous">
+      <div className="all-btns">
+        <div className="div-main-previous">
           <Link to="./work">
-            <button className="btn-next">Anterior</button>
+            <button className="btn-previous">Anterior</button>
           </Link>
         </div>
-        <div className="btn-next-previous">
+        <div className="btns">
           <Link to="./perfomanceAnalysis">
             <button className="btn-next">próximo</button>
           </Link>
-          <Link to="./welcome">
+          <Link to="./">
             <button className="btn-jumper">pular</button>
           </Link>
         </div>

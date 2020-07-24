@@ -19,6 +19,9 @@
   overflow: hidden;
   padding: 20px 0 0 0;
 }
+.desk-header h2 {
+  margin: 0;
+}
 
 /* PHONES */
 @media (max-width: 480px) {

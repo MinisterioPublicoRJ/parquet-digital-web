@@ -58,14 +58,12 @@ function PerformanceRadar({ getRadarData, axisLabelsTable, cleanMap }) {
         <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
       </div>
       <figure className="radar-wrapper">
-        <div className="radar-graph">
-          <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />
-        </div>
-        <figcaption className="radar-subtitles">
-          <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
-          <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
-        </figcaption>
+        <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />
       </figure>
+      <figcaption className="radar-subtitles">
+        <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
+        <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
+      </figcaption>
     </article>
   );
 }

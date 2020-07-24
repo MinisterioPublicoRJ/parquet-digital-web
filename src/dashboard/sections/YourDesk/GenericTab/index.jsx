@@ -51,9 +51,7 @@ function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
         {hasMetrics ? (
           <MetricsFormatter metrics={metrics} tab={tab} />
         ) : (
-          <p className="paragraphWrapper">
-            {`Não existem métricas de ${tabTitle} para o último mês.`}
-          </p>
+          <p>{`Não existem métricas de ${tabTitle} para o último mês.`}</p>
         )}
       </div>
 

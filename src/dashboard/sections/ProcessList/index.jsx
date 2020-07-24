@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import Api from '../../../api';
-import { Table, Spinner, SectionTitle } from '../../../components/layoutPieces';
+import { CustomTable, Spinner, SectionTitle } from '../../../components';
 import { useAuth } from '../../../app/authContext';
 
 const ProcessList = () => {
@@ -45,7 +45,7 @@ const ProcessList = () => {
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (
         <div className="processList-tableWrapper">
-          <Table data={processListData} columns={tableColumns} showHeader />
+          <CustomTable data={processListData} columns={tableColumns} showHeader />
         </div>
       )}
     </div>

@@ -7,8 +7,9 @@ body {
 }
 
 h3 {
-  text-transform: uppercase;
+  font-size: var(--defaultFontSize);
   font-weight: 400;
+  text-transform: uppercase;
 }
 
 /* Let's get this party started */

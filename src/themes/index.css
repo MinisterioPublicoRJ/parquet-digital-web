@@ -32,8 +32,8 @@
   /* FONTS */
   --defaultFont: Roboto;
   --titleFont: Roboto;
-  --defaultFontSize: clamp(14px, 1.6vh, 22px);
-  --smallFont: clamp(10px, 1.2vh, 14px);
+  --defaultFontSize: clamp(12px, 1.5vh, 18px);
+  --smallFont: clamp(8px, 1.2vh, 12px);
 
   --titleFontSize: calc(var(--defaultFontSize) * 2);
   --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);

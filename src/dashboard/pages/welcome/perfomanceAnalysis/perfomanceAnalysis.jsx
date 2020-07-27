@@ -20,7 +20,7 @@ const PerformanceAnalysis = () => {
       </div>
       <div className="all-btns">
         <Link to="./home">
-          <button className="btn-previous">Anterior</button>
+          <button className="btn-previous">anterior</button>
         </Link>
         <div className="btns">
           <Link to="./dashboard">

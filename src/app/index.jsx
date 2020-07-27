@@ -17,6 +17,7 @@ function AuthContextCreator() {
     }
     try {
       const loggedUser = await Api.login(token);
+      console.log(loggedUser);
       setUser(loggedUser);
     } catch (e) {
       setUserError(true);

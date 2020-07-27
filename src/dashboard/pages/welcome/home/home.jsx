@@ -20,7 +20,7 @@ const Home = () => {
       <div className="all-btns">
         <div className="div-main-previous">
           <Link to="./work">
-            <button className="btn-previous">Anterior</button>
+            <button className="btn-previous">anterior</button>
           </Link>
         </div>
         <div className="btns">

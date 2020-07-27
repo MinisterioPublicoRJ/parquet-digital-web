@@ -24,12 +24,16 @@
     cursor: pointer;
     height: 40px;
     margin: 10px;
+    color: var(--darkWelcome);
+    font-size: 21px;
 }
 .btns-welcome button {
     width: 118px;
     cursor: pointer;
     height: 40px;
     margin: 10px;
+    color: var(--darkWelcome);
+    font-size: 21px;
 }
 .btn-next{
     background: #D6D6D6 0% 0% no-repeat padding-box;

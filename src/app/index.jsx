@@ -8,6 +8,7 @@ import { Spinner } from '../components/layoutPieces';
 
 function AuthContextCreator() {
   const [user, setUser] = useState(null);
+  const [currentOffice, setCurrentOffice] = useState(null);
   const [userError, setUserError] = useState(false);
   const [scaUserError, setScaUserError] = useState(false);
 
@@ -30,6 +31,9 @@ function AuthContextCreator() {
     try {
       const loggedUser = await Api.scaLogin(username, password);
       setUser(loggedUser);
+      setCurrentOffice(loggedUser.orgaoSelecionado);
+      const storageUser = { timestamp: new Date(), user: loggedUser };
+      window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
     } catch (e) {
       setScaUserError(true);
     }
@@ -38,6 +42,8 @@ function AuthContextCreator() {
   return {
     user,
     userError,
+    currentOffice,
+    setCurrentOffice,
     scaUserError,
     tokenLogin,
     scaLogin,
@@ -53,7 +59,10 @@ function App() {
     try {
       const token = window.localStorage.getItem('access_token');
       authStore.tokenLogin(token);
-    } catch (e) {}
+    } catch (e) {
+      const scaToken = window.localStorage.getItem('sca_token');
+      console.log('scaToken', scaToken);
+    }
   }
 
   useEffect(onMount, []);

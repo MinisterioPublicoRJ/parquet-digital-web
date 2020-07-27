@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Analise from '../../assets/gifs/analise.gif';
+import Analise from '../../../../assets/gifs/analise.gif';
 
 import '../styles.css';
 
@@ -23,7 +23,7 @@ const PerformanceAnalysis = () => {
           <button className="btn-previous">Anterior</button>
         </Link>
         <div className="btns">
-          <Link to="./">
+          <Link to="./dashboard">
             <button className="btn-start">pular</button>
           </Link>
         </div>

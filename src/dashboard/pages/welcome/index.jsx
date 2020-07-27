@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Trabalho from '../assets/gifs/trabalho.gif';
+import Trabalho from '../../../assets/gifs/trabalho.gif';
 
 import './styles.css';
 
@@ -22,7 +22,7 @@ const Welcome = () => {
         <Link to="./work">
           <button className="btn-next">próximo</button>
         </Link>
-        <Link to="./">
+        <Link to="./dashboard">
           <button className="btn-jumper">pular</button>
         </Link>
       </div>

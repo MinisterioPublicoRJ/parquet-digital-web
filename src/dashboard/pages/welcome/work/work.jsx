@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Chat from '../../assets/gifs/chat.gif';
+import Chat from '../../../../assets/gifs/chat.gif';
 
 import '../styles.css';
 
@@ -26,7 +26,7 @@ const Work = () => {
           <Link to="./home">
             <button className="btn-next">próximo</button>
           </Link>
-          <Link to="./">
+          <Link to="./dashboard">
             <button className="btn-jumper">pular</button>
           </Link>
         </div>

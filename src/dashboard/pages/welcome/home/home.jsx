@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Run from '../../assets/gifs/run.gif';
+import Run from '../../../../assets/gifs/run.gif';
 
 import '../styles.css';
 
@@ -27,7 +27,7 @@ const Home = () => {
           <Link to="./perfomanceAnalysis">
             <button className="btn-next">próximo</button>
           </Link>
-          <Link to="./">
+          <Link to="./dashboard">
             <button className="btn-jumper">pular</button>
           </Link>
         </div>

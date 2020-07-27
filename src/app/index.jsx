@@ -9,8 +9,12 @@ import { Spinner } from '../components/layoutPieces';
 function AuthContextCreator() {
   const [user, setUser] = useState(null);
   const [userError, setUserError] = useState(false);
+  const [scaUserError, setScaUserError] = useState(false);
 
   const tokenLogin = async token => {
+    if (userError) {
+      setUserError(false);
+    }
     try {
       const loggedUser = await Api.login(token);
       setUser(loggedUser);
@@ -20,17 +24,21 @@ function AuthContextCreator() {
   };
 
   const scaLogin = async (username, password) => {
+    if (scaUserError) {
+      setScaUserError(false);
+    }
     try {
       const loggedUser = await Api.scaLogin(username, password);
       setUser(loggedUser);
     } catch (e) {
-      setUserError(true);
+      setScaUserError(true);
     }
   };
 
   return {
     user,
     userError,
+    scaUserError,
     tokenLogin,
     scaLogin,
   };

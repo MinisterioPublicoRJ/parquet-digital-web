@@ -1,5 +1,3 @@
-import { snakeToCamel } from '../../utils';
-
 function orgaoTransformer(orgao) {
   const { cpf, nome, tipo, cdorgao, nm_org } = orgao;
   return {
@@ -9,16 +7,6 @@ function orgaoTransformer(orgao) {
     tipo,
     codigo: cdorgao,
   };
-}
-
-export default function loginTransform(userObj) {
-  console.log('user', userObj);
-  const res = {};
-  const keys = Object.keys(userObj);
-  keys.forEach(key => {
-    res[snakeToCamel(key)] = userObj[key];
-  });
-  return res;
 }
 
 export function scaUserTranform(user) {
@@ -46,4 +34,23 @@ export function scaUserTranform(user) {
   };
 }
 
-export function jwtUserTransform(user) {}
+export function jwtUserTransform(user) {
+  const { cpf, matricula, nome, sexo, first_login, first_login_today, token, orgao } = user;
+  return {
+    nome,
+    sexo,
+    firstLogin: first_login,
+    firstLoginToday: first_login_today,
+    cpf,
+    matricula,
+    token,
+    orgaoSelecionado: {
+      nomeOrgao: undefined,
+      cpf,
+      nomeUser: nome,
+      tipo: user.tipo_orgao,
+      codigo: orgao,
+    },
+    orgaosValidos: [],
+  };
+}

@@ -14,7 +14,6 @@ const Login = () => {
     scaLogin(username, secret);
   }
 
-
   return (
     <div className="wrapper">
       <div className="wrapper-login">

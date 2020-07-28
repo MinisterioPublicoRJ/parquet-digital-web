@@ -25,18 +25,6 @@ function AuthContextCreator() {
     }
   };
 
-  // eslint-disable-next-line consistent-return
-  /*const getFirstScreen = async username => {
-    const key = username.firtsLogin === false;
-    switch (key) {
-      case 1:
-        return <Dashboard />;
-      case 2:
-        return <Welcome />;
-      default:
-    }
-  };*/
-
   const scaLogin = async (username, password) => {
     if (scaUserError) {
       setScaUserError(false);
@@ -56,7 +44,6 @@ function AuthContextCreator() {
     scaUserError,
     tokenLogin,
     scaLogin,
-    //getFirstScreen,
   };
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, HashRouter, Redirect } from 'react-router-dom';
 import { useAuth } from './authContext';
 import Login from '../login';
@@ -14,8 +14,21 @@ function Router() {
   return (
     <HashRouter>
       <Switch>
+        <Redirect path="/" />
+        {/*<Route exact path="/">
+          {function renderWelcome() {
+            switch (user.firstLogin) {
+              case 1:
+                return <Welcome />;
+              case 2:
+                return <Dashboard />;
+              default:
+                return <Login />;
+            }
+          }}
+        </Route>*/}
         <Route exact path="/">
-          {user ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
+          {user.firstLogin === false ? <Redirect to="/welcome" /> : <Redirect to="/login" />}
         </Route>
         <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
         <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>

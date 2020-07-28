@@ -11,24 +11,25 @@ import Performance from '../dashboard/pages/welcome/perfomanceAnalysis/perfomanc
 function Router() {
   const { user } = useAuth();
 
+  function findFirstPath() {
+    let path = '/login';
+
+    if (user) {
+      if (!user.firstLogin) {
+        path = '/welcome';
+      } else {
+        path = '/dashboard';
+      }
+    }
+
+    return <Redirect to={path} />;
+  }
+
   return (
     <HashRouter>
       <Switch>
-        <Redirect path="/" />
-        {/*<Route exact path="/">
-          {function renderWelcome() {
-            switch (user.firstLogin) {
-              case 1:
-                return <Welcome />;
-              case 2:
-                return <Dashboard />;
-              default:
-                return <Login />;
-            }
-          }}
-        </Route>*/}
         <Route exact path="/">
-          {user.firstLogin === false ? <Redirect to="/welcome" /> : <Redirect to="/login" />}
+          {findFirstPath()}
         </Route>
         <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
         <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>

@@ -20,15 +20,21 @@ const Home = () => {
       <div className="all-btns">
         <div className="div-main-previous">
           <Link to="./work">
-            <button className="btn-previous">anterior</button>
+            <button type="button" className="btn-previous">
+              anterior
+            </button>
           </Link>
         </div>
         <div className="btns">
           <Link to="./perfomanceAnalysis">
-            <button className="btn-next">próximo</button>
+            <button type="button" className="btn-next">
+              próximo
+            </button>
           </Link>
           <Link to="./dashboard">
-            <button className="btn-jumper">pular</button>
+            <button type="button" className="btn-jumper">
+              pular
+            </button>
           </Link>
         </div>
       </div>

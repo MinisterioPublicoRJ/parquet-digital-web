@@ -5,6 +5,8 @@ import Router from './router';
 import AuthContext from './authContext';
 import Api from '../api';
 import { Spinner } from '../components/layoutPieces';
+import Dashboard from '../dashboard';
+import Welcome from '../dashboard/pages/welcome';
 
 function AuthContextCreator() {
   const [user, setUser] = useState(null);
@@ -17,12 +19,23 @@ function AuthContextCreator() {
     }
     try {
       const loggedUser = await Api.login(token);
-      console.log(loggedUser);
       setUser(loggedUser);
     } catch (e) {
       setUserError(true);
     }
   };
+
+  // eslint-disable-next-line consistent-return
+  /*const getFirstScreen = async username => {
+    const key = username.firtsLogin === false;
+    switch (key) {
+      case 1:
+        return <Dashboard />;
+      case 2:
+        return <Welcome />;
+      default:
+    }
+  };*/
 
   const scaLogin = async (username, password) => {
     if (scaUserError) {
@@ -30,6 +43,7 @@ function AuthContextCreator() {
     }
     try {
       const loggedUser = await Api.scaLogin(username, password);
+      console.log(loggedUser);
       setUser(loggedUser);
     } catch (e) {
       setScaUserError(true);
@@ -42,6 +56,7 @@ function AuthContextCreator() {
     scaUserError,
     tokenLogin,
     scaLogin,
+    //getFirstScreen,
   };
 }
 

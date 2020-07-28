@@ -20,10 +20,14 @@ const Welcome = () => {
       </div>
       <div className="btns-welcome">
         <Link to="./work">
-          <button className="btn-next">próximo</button>
+          <button type="button" className="btn-next">
+            próximo
+          </button>
         </Link>
         <Link to="./dashboard">
-          <button className="btn-jumper">pular</button>
+          <button type="button" className="btn-jumper">
+            pular
+          </button>
         </Link>
       </div>
     </div>

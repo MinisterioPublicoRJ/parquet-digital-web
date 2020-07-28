@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Chat from '../../../../assets/gifs/chat.gif';
 
@@ -20,14 +20,20 @@ const Work = () => {
       </div>
       <div className="all-btns">
         <Link to="./welcome">
-          <button className="btn-previous">anterior</button>
+          <button type="button" className="btn-previous">
+            anterior
+          </button>
         </Link>
         <div className="btns">
           <Link to="./home">
-            <button className="btn-next">próximo</button>
+            <button type="button" className="btn-next">
+              próximo
+            </button>
           </Link>
           <Link to="./dashboard">
-            <button className="btn-jumper">pular</button>
+            <button type="button" className="btn-jumper">
+              pular
+            </button>
           </Link>
         </div>
       </div>

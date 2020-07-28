@@ -8,7 +8,7 @@ function Dashboard() {
   const { user } = useAuth();
   const { tipoOrgao } = user;
   // const [isModalOpen, setIsModalOpen] = useState(false);
-
+  console.log('user', user);
   function renderPage() {
     switch (tipoOrgao) {
       case 1:

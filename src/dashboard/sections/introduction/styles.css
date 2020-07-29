@@ -1,0 +1,16 @@
+.introduction-today-wrapper{
+    font-size: 12px;
+    color: #3B3B3B;
+    font-family: 'Segoe UI', Regular;
+
+}
+.btn-leave{
+    background: #EFEFEF 0% 0% no-repeat padding-box;
+    border-radius: 3px;
+    opacity: 1;
+}
+.btn-introduction-next{
+    background: #D6D6D6 0% 0% no-repeat padding-box;
+    border-radius: 3px 20px 20px 3px;
+    opacity: 1;
+}

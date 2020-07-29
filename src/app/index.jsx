@@ -19,6 +19,7 @@ function AuthContextCreator() {
     try {
       const loggedUser = await Api.login(token);
       setUser(loggedUser);
+      setCurrentOffice(loggedUser.orgaoSelecionado);
     } catch (e) {
       setUserError(true);
     }
@@ -73,8 +74,8 @@ function AuthContextCreator() {
 
 function App() {
   const authStore = AuthContextCreator();
-  const { user, userError } = authStore;
-  const loading = !(user || userError);
+  const { user, userError, currentOffice } = authStore;
+  const loading = !((user && currentOffice) || userError);
 
   function onMount() {
     const token = window.localStorage.getItem('access_token');
@@ -83,7 +84,6 @@ function App() {
   }
 
   useEffect(onMount, []);
-
   if (loading) {
     return <Spinner size="large" />;
   }

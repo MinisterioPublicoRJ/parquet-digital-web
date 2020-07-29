@@ -66,7 +66,6 @@ const Api = (() => {
     formData.set('password', password);
 
     const { data } = await axios.post(LOGIN, formData);
-
     return scaUserTranform(data);
   }
 

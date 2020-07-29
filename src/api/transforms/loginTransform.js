@@ -17,8 +17,8 @@ export function scaUserTranform(user) {
     sexo,
     firstLogin,
     firstLoginToday,
-    orgaoSelecionado,
-    orgaosValidos,
+    orgao_selecionado,
+    orgaos_validos,
     token,
   } = user;
   return {
@@ -29,8 +29,8 @@ export function scaUserTranform(user) {
     cpf,
     matricula,
     token,
-    orgaoSelecionado: orgaoTransformer(orgaoSelecionado),
-    orgaosValidos: orgaosValidos.map(item => orgaoTransformer(item)),
+    orgaoSelecionado: orgaoTransformer(orgao_selecionado),
+    orgaosValidos: orgaos_validos.map(item => orgaoTransformer(item)),
   };
 }
 

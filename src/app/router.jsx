@@ -5,15 +5,19 @@ import Login from '../login';
 import Dashboard from '../dashboard';
 
 function Router() {
-  const { user } = useAuth();
+  const { user, currentOffice } = useAuth();
   return (
     <HashRouter>
       <Switch>
         <Route exact path="/">
-          {user ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
+          {user && currentOffice ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
-        <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>
+        <Route path="/login">
+          {user && currentOffice ? <Redirect to="/dashboard" /> : <Login />}
+        </Route>
+        <Route path="/dashboard">
+          {user && currentOffice ? <Dashboard /> : <Redirect to="/login" />}
+        </Route>
       </Switch>
     </HashRouter>
   );

@@ -18,7 +18,6 @@ function Router() {
         path = '/welcome';
       }
     }
-
     return <Redirect to={path} />;
   }
 
@@ -29,6 +28,7 @@ function Router() {
           {findFirstPath()}
         </Route>
         <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
+        <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>
         <Route path="/welcome" component={Welcome} />
         <Route path="/work" component={Work} />
         <Route path="/home" component={Home} />

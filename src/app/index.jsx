@@ -29,7 +29,6 @@ function AuthContextCreator() {
     }
     try {
       const loggedUser = await Api.scaLogin(username, password);
-      console.log(loggedUser);
       setUser(loggedUser);
     } catch (e) {
       setScaUserError(true);

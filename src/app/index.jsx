@@ -5,8 +5,6 @@ import Router from './router';
 import AuthContext from './authContext';
 import Api from '../api';
 import { Spinner } from '../components/layoutPieces';
-import Dashboard from '../dashboard';
-import Welcome from '../dashboard/pages/welcome';
 
 function AuthContextCreator() {
   const [user, setUser] = useState(null);

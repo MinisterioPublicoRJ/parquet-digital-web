@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch, Route, HashRouter, Redirect } from 'react-router-dom';
 import { useAuth } from './authContext';
 import Login from '../login';
 import Dashboard from '../dashboard';
-import Welcome from '../dashboard/pages/welcome';
-import Work from '../dashboard/pages/welcome/work/work';
-import Home from '../dashboard/pages/welcome/home/home';
-import Performance from '../dashboard/pages/welcome/perfomanceAnalysis/perfomanceAnalysis';
+import { Welcome, Work, Home, Performance } from '../dashboard/pages/welcomePages';
 
 function Router() {
   const { user } = useAuth();
@@ -16,9 +13,9 @@ function Router() {
 
     if (user) {
       if (!user.firstLogin) {
-        path = '/welcome';
-      } else {
         path = '/dashboard';
+      } else {
+        path = '/welcome';
       }
     }
 
@@ -32,8 +29,6 @@ function Router() {
           {findFirstPath()}
         </Route>
         <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
-        <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>
-        <Route path="/login" component={Login} />
         <Route path="/welcome" component={Welcome} />
         <Route path="/work" component={Work} />
         <Route path="/home" component={Home} />

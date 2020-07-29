@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Trabalho from '../../../assets/gifs/trabalho.gif';
+import Trabalho from '../../../../assets/gifs/trabalho.gif';
 
-import './styles.css';
+import '../styles.css';
 
 const Welcome = () => {
   return (

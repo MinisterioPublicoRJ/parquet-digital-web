@@ -56,6 +56,9 @@ function AuthContextCreator() {
       setUser(userObj);
       setCurrentOffice(userObj.orgaoSelecionado);
     } else {
+      if (storedUser) {
+        window.localStorage.removeItem('sca_token');
+      }
       setUserError(true);
     }
   };

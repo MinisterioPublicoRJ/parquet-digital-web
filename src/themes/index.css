@@ -40,7 +40,7 @@
   --titleFontSize: calc(var(--defaultFontSize) * 2);
   --titleFont: 'Roboto Slab', serif;
   --defaultWelcomeBold: 'Avenir Black',sans-serif;
-  --defaultWelcomeBold: 'Avenir Black', 'Arial Black', sans-serif;
+  --defaultWelcome: 'Avenir Black', sans-serif;
   --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.1);
 
   --smallFont: clamp(10px, 1.2vh, 14px);

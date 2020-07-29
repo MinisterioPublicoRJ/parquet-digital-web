@@ -6,11 +6,13 @@
     font-size: 32px;
     opacity: 1;
     color: var(--darkWelcome);
+    font-weight: 900;
 }
 .wrapper-welcome p{
     font-family: var(--defaultWelcome);;
     font-size: 21px;
     opacity: 1;
+    padding: 19px;
 }
 .welcome-texts{
     width: 797px;
@@ -27,6 +29,7 @@
     margin: 10px;
     color: var(--darkWelcome);
     font-size: 21px;
+    border: none;
 
 }
 .btns-welcome button {
@@ -36,8 +39,7 @@
     margin: 10px;
     color: var(--darkWelcome);
     font-size: 21px;
-    transition: all .25s linear
-
+    border: none;
 }
 .btn-next{
     background: #D6D6D6 0% 0% no-repeat padding-box;

@@ -32,7 +32,7 @@ function Router() {
     <HashRouter>
       <Switch>
         <Route exact path="/">
-          <Redirect path={findFirstPath()} />
+          {findFirstPath()}
         </Route>
         <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
         <PrivateRoute path="/dashboard" component={Dashboard} />

@@ -6,6 +6,7 @@ import { Pip, Tutela, BlankPage } from './pages';
 function Dashboard() {
   const { currentOffice } = useAuth();
   const { tipo } = currentOffice;
+
   function renderPage() {
     switch (tipo) {
       case 1:

@@ -6,11 +6,11 @@ import Dashboard from '../dashboard';
 import { Welcome, Work, Home, Performance } from '../dashboard/pages/welcomePages';
 
 function Router() {
-  const { user, currentOffice } = useAuth();
+  const { user } = useAuth();
 
-  const PrivateRoute = props => {
+  const PrivateRoute = ({ component, path }) => {
     if (user) {
-      console.log('props');
+      return <Route path={path} component={component} />;
     }
     return <Redirect to="/login" />;
   };
@@ -32,21 +32,14 @@ function Router() {
     <HashRouter>
       <Switch>
         <Route exact path="/">
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          {/* user && currentOffice ? <Redirect to="/dashboard" /> : <Redirect to="/login" /> */}
-        </Route>
-        {/* <Route path="/login">
-          {user && currentOffice ? <Redirect to="/dashboard" /> : <Login />}
-        </Route>
-        <Route path="/dashboard">
-          {user && currentOffice ? <Dashboard /> : <Redirect to="/login" />}
+          <Redirect path={findFirstPath()} />
         </Route>
         <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
-        <Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>
-        <Route path="/welcome" component={Welcome} />
-        <Route path="/work" component={Work} />
-        <Route path="/home" component={Home} />
-        <Route path="/perfomanceAnalysis" component={Performance} /> */}
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/welcome" component={Welcome} />
+        <PrivateRoute path="/work" component={Work} />
+        <PrivateRoute path="/home" component={Home} />
+        <PrivateRoute path="/perfomanceAnalysis" component={Performance} />
       </Switch>
     </HashRouter>
   );

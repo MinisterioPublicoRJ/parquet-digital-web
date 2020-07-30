@@ -33,7 +33,6 @@ html {
   align-items: center;
   box-sizing: border-box;
   display: flex;
-  height: 100%;
   width: 23%;
   background-color: #bddff0;
   flex-wrap: wrap;
@@ -67,14 +66,21 @@ html {
   margin: 3vw 0px 2vw 0px;
   max-height: 42vh;
 }
+.glossary-articles-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: inherit;
+  max-height: 78vh;
+  width: 55%;
+  overflow-y: auto;
+}
 
 .glossary-articles {
   align-items: center;
   display: flex;
   flex-direction: column;
   flex-wrap: inherit;
-  height: 80%;
-  width: 55%;
 }
 
 .glossary-articles article {
@@ -83,7 +89,7 @@ html {
   -moz-box-shadow: 0px 4px 5px 0px #cfcfcf;
   box-shadow: 0px 4px 5px 0px #cfcfcf;
   border: 0px 1px 1px 1px solid #cfcfcf;
-  padding: 5px 0px 0px 10px;
+  padding: 5px 10px 0px 10px;
   margin: 25px 0px 0px 30px;
   width: 90%;
 }
@@ -93,6 +99,7 @@ html {
   letter-spacing: 0px;
   color: #3b3b3b;
   margin-bottom: 0px;
+  text-transform: uppercase;
 }
 
 .glossary-articles p {
@@ -110,16 +117,24 @@ html {
 
 aside.glossary-category {
   position: relative;
-  left: 22vw;
+  text-align: right;
   top: -3vh;
+}
+
+.glossary-list-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: inherit;
+  max-height: 78vh;
+  width: 20%;
+  overflow-y: auto;
 }
 
 .glossary-list {
   display: flex;
   flex-direction: column;
   flex-wrap: inherit;
-  height: 80%;
-  width: 20%;
   padding: 0 0px 0px 20px;
 }
 
@@ -139,6 +154,8 @@ aside.glossary-category {
   font: Bold 14px/20px Segoe UI;
   letter-spacing: 0px;
   color: #000000;
+  width: 100%;
+  text-transform: capitalize;
 }
 
 .glossary-list dd {

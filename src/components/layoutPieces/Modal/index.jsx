@@ -9,6 +9,13 @@ const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+/**
+ * Prevent close when click in the div.innerWrapper
+ */
+function handleInnerClick(e) {
+  e.stopPropagation();
+}
+
 function Modal({ isOpen, onToggle, children }) {
   if (isOpen) {
     return (
@@ -19,7 +26,13 @@ function Modal({ isOpen, onToggle, children }) {
         role="button"
         tabIndex="0"
       >
-        <div className="modal-innerWrapper">{children}</div>
+        <div
+          onClick={e => handleInnerClick(e)}
+          onKeyDown={e => handleInnerClick(e)}
+          className="modal-innerWrapper"
+        >
+          {children}
+        </div>
       </div>
     );
   }

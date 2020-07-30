@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 import { useAuth } from '../app/authContext';
-// import { Modal } from '../components';
+import { Modal } from '../components';
 import { Pip, Tutela, BlankPage } from './pages';
+import { Introduction } from './sections';
 
 function Dashboard() {
   const { user } = useAuth();
   const { tipoOrgao } = user;
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   function renderPage() {
     switch (tipoOrgao) {
@@ -22,9 +23,9 @@ function Dashboard() {
 
   return (
     <div>
-      {/* <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
-        <div>Teste</div
-      </Modal> */}
+      <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
+        <Introduction />
+      </Modal>
       {renderPage()}
     </div>
   );

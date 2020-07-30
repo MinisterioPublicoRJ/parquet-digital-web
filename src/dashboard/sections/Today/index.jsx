@@ -17,7 +17,6 @@ function Today() {
   const [entriesGroup, setEntriesGroup] = useState([]);
   const [fullError, setfullError] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(true);
 
   /**
    * laods percentage data for the first sentence
@@ -187,11 +186,11 @@ function Today() {
   const collectionParagraph = !phrase ? null : (
     <p>
       Você sabia que seu acervo é
-<span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
+      <span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
       dos seus colegas das
       <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>
-?
-</p>
+      ?
+    </p>
   );
 
   return (
@@ -209,9 +208,6 @@ function Today() {
       <div className="today-robotPic">
         <img height="100%" src={PromotronGif} alt="robô-promoton" />
       </div>
-      <button >Open Modal
-      <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}></Modal>
-      </button>
     </article>
   );
 }

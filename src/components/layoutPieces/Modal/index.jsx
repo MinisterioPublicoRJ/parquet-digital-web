@@ -20,7 +20,6 @@ function Modal({ isOpen, onToggle, children }) {
         tabIndex="0"
       >
         <div className="modal-innerWrapper">{children}</div>
-        <h1>Sou eu!!!!!!!</h1>
       </div>
     );
   }

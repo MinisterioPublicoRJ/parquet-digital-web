@@ -1,16 +1,33 @@
-.introduction-today-wrapper{
+.introduction-wrapper{
     font-size: 12px;
     color: #3B3B3B;
     font-family: 'Segoe UI', Regular;
-
 }
+.introduction-wrapper h3{
+    font-size: 16px;
+}
+.introduction-wrapper p{
+    font-size: 12px;
+}
+.introduction-resume{
+    width: 421px;
+    height: 259px;
+    background-color: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    top: 416px;
+    left: 43px;
+}
+
 .btn-leave{
     background: #EFEFEF 0% 0% no-repeat padding-box;
     border-radius: 3px;
     opacity: 1;
+    border: none;
 }
 .btn-introduction-next{
     background: #D6D6D6 0% 0% no-repeat padding-box;
     border-radius: 3px 20px 20px 3px;
     opacity: 1;
+    border: none;
+
 }

@@ -24,7 +24,7 @@ function Dashboard() {
   return (
     <div>
       <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
-        <Glossary />
+        <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
       </Modal>
       {renderPage()}
     </div>

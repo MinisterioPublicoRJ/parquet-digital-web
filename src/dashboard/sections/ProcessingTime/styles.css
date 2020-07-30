@@ -15,6 +15,10 @@
   margin: 0;
 }
 
+.pt-texts h3 {
+  margin: 0;
+}
+
 .pt-mainBox {
   grid-area: mainBoxTime;
 }

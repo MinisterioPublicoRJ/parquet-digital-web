@@ -20,6 +20,8 @@
   --grayLinks: #cecece;
   --grayTexts: #b3b3b3;
   --grayTooltip: #555;
+  --darkWelcome: #4A4A4A;
+
 
   --pt-turquoise: #56e8e1;
   --pt-pink: #ff0086;
@@ -36,6 +38,12 @@
   --smallFont: clamp(8px, 1.2vh, 12px);
 
   --titleFontSize: calc(var(--defaultFontSize) * 2);
+  --titleFont: 'Roboto Slab', serif;
+  --defaultWelcomeBold: 'Avenir Black',sans-serif;
+  --defaultWelcome: 'Avenir Black', sans-serif;
+  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.1);
+
+  --smallFont: clamp(10px, 1.2vh, 14px);
   --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);
   --featuredNumberFontSize: calc(var(--defaultFontSize) * 1.3);
   --spotlightSize: calc(var(--defaultFontSize) * 3);

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../app/authContext';
 import { Modal } from '../components';
 import { Pip, Tutela, BlankPage } from './pages';
-import { Introduction } from './sections';
+import { IntroductionResume, IntroductionYourDesk } from './sections';
 
 function Dashboard() {
   const { user } = useAuth();
@@ -24,7 +24,7 @@ function Dashboard() {
   return (
     <div>
       <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
-        <Introduction />
+        <IntroductionResume />
       </Modal>
       {renderPage()}
     </div>

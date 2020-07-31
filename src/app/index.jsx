@@ -63,6 +63,12 @@ function AuthContextCreator() {
     }
   };
 
+  const buildRequestParams = () => ({
+    token: user.token,
+    orgao: currentOffice.codigo,
+    cpf: currentOffice.cpf,
+  });
+
   return {
     user,
     userError,
@@ -72,6 +78,7 @@ function AuthContextCreator() {
     scaUserError,
     tokenLogin,
     scaLogin,
+    buildRequestParams,
   };
 }
 

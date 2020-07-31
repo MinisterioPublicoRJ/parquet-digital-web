@@ -1,0 +1,271 @@
+diff --git a/src/components/layoutPieces/Modal/index.jsx b/src/components/layoutPieces/Modal/index.jsx
+index 8d12d42..aff518c 100644
+--- a/src/components/layoutPieces/Modal/index.jsx
++++ b/src/components/layoutPieces/Modal/index.jsx
+@@ -9,6 +9,14 @@ const propTypes = {
+   children: PropTypes.node.isRequired,
+ };
+ 
++function handleInnerClick(e) {
++  console.log('stop', e);
++
++  if (e.target == null) {
++    e.stopPropagation();
++  }
++}
++
+ function Modal({ isOpen, onToggle, children }) {
+   if (isOpen) {
+     return (
+@@ -19,7 +27,13 @@ function Modal({ isOpen, onToggle, children }) {
+         role="button"
+         tabIndex="0"
+       >
+-        <div className="modal-innerWrapper">{children}</div>
++        <div
++          onClick={e => handleInnerClick(e)}
++          onKeyDown={e => handleInnerClick(e)}
++          className="modal-innerWrapper"
++        >
++          {children}
++        </div>
+       </div>
+     );
+   }
+diff --git a/src/dashboard/sections/Glossary/glossaryMock.js b/src/dashboard/sections/Glossary/glossaryMock.js
+index 853335a..07bff28 100644
+--- a/src/dashboard/sections/Glossary/glossaryMock.js
++++ b/src/dashboard/sections/Glossary/glossaryMock.js
+@@ -1,12 +1,70 @@
+ export const GLOSSARIO = [
+   {
+-    title: 'TÍTULO DO PRIMEIRO ITEM',
+-    section: 'NOME DA SESSÃO EM QUE ELE ESTÁ (EX: SUA MESA)',
+-    definition: 'texto explicativo',
++    title: 'Índice de Resolutividade',
++    section: 'INDICADORES DE SUCESSO',
++    definition:
++      'Indicador de resolutividade da Promotoria em questão. O cálculo do índice é descrito como: (denúncias + arquivamentos + acordos / vistas abertas)',
+   },
+   {
+-    title: 'TÍTULO DO SEGUNDO ITEM',
+-    section: 'NOME DA SESSÃO EM QUE ELE ESTÁ (EX: SUA MESA)',
+-    definition: 'texto explicativo',
++    title: 'Índice de Elucidação',
++    section: 'INDICADORES DE SUCESSO',
++    definition:
++      'Indicador de elucidação de processos da Promotoria em questão. O cálculo do índice é descrito como: (denúncias / procedimentos do grupo)',
++  },
++  ,
++  {
++    title: 'Índice de Finalização',
++    section: 'INDICADORES DE SUCESSO',
++    definition:
++      'Indicador de finalização de processos da Promotoria em questão. O cálculo do índice é descrito como: (finalizados / procedimentos do grupo)',
++  },
++  ,
++  {
++    title: 'VISTAS ABERTAS',
++    section: 'SUA MESA',
++    definition:
++      'Quantidade de vistas abertas em processos que estão ativos na promotoria até a presente data de consulta.',
++  },
++  {
++    title: 'RESUMO DO DIA',
++    section: 'RESUMO DO DIA',
++    definition:
++      'Quadro onde o robô das Promotorias expõe um panorama do dia resumido da atuação da promotoria em questão.',
++  },
++  {
++    title: 'Índice de Resolutividade',
++    section: 'INDICADORES DE SUCESSO',
++    definition:
++      'Indicador de resolutividade da Promotoria em questão. O cálculo do índice é descrito como: (denúncias + arquivamentos + acordos / vistas abertas)',
++  },
++  {
++    title: 'Índice de Resolutividade',
++    section: 'INDICADORES DE SUCESSO',
++    definition:
++      'Indicador de resolutividade da Promotoria em questão. O cálculo do índice é descrito como: (denúncias + arquivamentos + acordos / vistas abertas)',
++  },
++  {
++    title: 'Índice de Resolutividade',
++    section: 'INDICADORES DE SUCESSO',
++    definition:
++      'Indicador de resolutividade da Promotoria em questão. O cálculo do índice é descrito como: (denúncias + arquivamentos + acordos / vistas abertas)',
++  },
++  {
++    title: 'Índice de Resolutividade',
++    section: 'INDICADORES DE SUCESSO',
++    definition:
++      'Indicador de resolutividade da Promotoria em questão. O cálculo do índice é descrito como: (denúncias + arquivamentos + acordos / vistas abertas)',
++  },
++  {
++    title: 'Índice de Resolutividade',
++    section: 'INDICADORES DE SUCESSO',
++    definition:
++      'Indicador de resolutividade da Promotoria em questão. O cálculo do índice é descrito como: (denúncias + arquivamentos + acordos / vistas abertas)',
++  },
++  {
++    title: 'Índice de Resolutividade',
++    section: 'INDICADORES DE SUCESSO',
++    definition:
++      'Indicador de resolutividade da Promotoria em questão. O cálculo do índice é descrito como: (denúncias + arquivamentos + acordos / vistas abertas)',
+   },
+ ];
+diff --git a/src/dashboard/sections/Glossary/index.jsx b/src/dashboard/sections/Glossary/index.jsx
+index b8d01dd..1e5ce8f 100644
+--- a/src/dashboard/sections/Glossary/index.jsx
++++ b/src/dashboard/sections/Glossary/index.jsx
+@@ -5,6 +5,10 @@ import './styles.css';
+ import { GLOSSARIO } from './glossaryMock';
+ import { PromotronGlossario } from '../../../assets';
+ 
++function toFocus(e, i) {
++  console.log('focused', i);
++}
++
+ function Glossary() {
+   return (
+     <div className="glossary-wrapper">
+@@ -16,31 +20,33 @@ function Glossary() {
+         </p>
+         <PromotronGlossario height={400} />
+       </div>
+-      <div className="glossary-articles">
+-        <article>
+-          <h3>Índice de Resoluvidade</h3>
+-          <aside className="glossary-category">INDICADORES DE SUCESSO</aside>
+-          <p>
+-            Indicador de resolutividade da Promotoria em questão. O cálculo do índice é descrito
+-            como: (denúncias + arquivamentos + acordos / vistas abertas)
+-          </p>
+-        </article>
+-        {GLOSSARIO.map((key, i) => (
+-          <>
+-            <article>
+-              <h3>{key.title}</h3>
+-              <aside className="glossary-category">{key.section}</aside>
+-              <p>{key.definition}</p>
+-            </article>
+-          </>
+-        ))}
++      <div className="glossary-articles-wrapper">
++        <div className="glossary-articles">
++          {GLOSSARIO.map((key, i) => (
++            <>
++              <article id="glossario_{i}">
++                <h3>{key.title}</h3>
++                <aside className="glossary-category">{key.section}</aside>
++                <p>{key.definition}</p>
++              </article>
++            </>
++          ))}
++        </div>
+       </div>
+-      <div className="glossary-list">
+-        <h3>LISTA DE TERMOS</h3>
+-        <dl>
+-          <dt className="glossary-link">Resolutividade</dt>
+-          <dd className="glossary-category">INDICADORES DE SUCESSO</dd>
+-        </dl>
++      <div className="glossary-list-wrapper">
++        <div className="glossary-list">
++          <h3>LISTA DE TERMOS</h3>
++          <dl>
++            {GLOSSARIO.map((key, i) => (
++              <>
++                <dt className="glossary-link" onClick={e => toFocus(e, i)}>
++                  {key.title.replace('Índice de ', '').toLowerCase()}
++                </dt>
++                <dd className="glossary-category">{key.section}</dd>
++              </>
++            ))}
++          </dl>
++        </div>
+       </div>
+     </div>
+   );
+diff --git a/src/dashboard/sections/Glossary/styles.css b/src/dashboard/sections/Glossary/styles.css
+index fb25bcb..378fa5e 100644
+--- a/src/dashboard/sections/Glossary/styles.css
++++ b/src/dashboard/sections/Glossary/styles.css
+@@ -67,14 +67,21 @@ html {
+   margin: 3vw 0px 2vw 0px;
+   max-height: 42vh;
+ }
++.glossary-articles-wrapper {
++  align-items: center;
++  display: flex;
++  flex-direction: column;
++  flex-wrap: inherit;
++  max-height: 78vh;
++  width: 55%;
++  overflow-y: auto;
++}
+ 
+ .glossary-articles {
+   align-items: center;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: inherit;
+-  height: 80%;
+-  width: 55%;
+ }
+ 
+ .glossary-articles article {
+@@ -83,7 +90,7 @@ html {
+   -moz-box-shadow: 0px 4px 5px 0px #cfcfcf;
+   box-shadow: 0px 4px 5px 0px #cfcfcf;
+   border: 0px 1px 1px 1px solid #cfcfcf;
+-  padding: 5px 0px 0px 10px;
++  padding: 5px 10px 0px 10px;
+   margin: 25px 0px 0px 30px;
+   width: 90%;
+ }
+@@ -93,6 +100,7 @@ html {
+   letter-spacing: 0px;
+   color: #3b3b3b;
+   margin-bottom: 0px;
++  text-transform: uppercase;
+ }
+ 
+ .glossary-articles p {
+@@ -110,16 +118,24 @@ html {
+ 
+ aside.glossary-category {
+   position: relative;
+-  left: 22vw;
++  text-align: right;
+   top: -3vh;
+ }
+ 
+-.glossary-list {
++.glossary-list-wrapper {
++  align-items: center;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: inherit;
+-  height: 80%;
++  max-height: 78vh;
+   width: 20%;
++  overflow-y: auto;
++}
++
++.glossary-list {
++  display: flex;
++  flex-direction: column;
++  flex-wrap: inherit;
+   padding: 0 0px 0px 20px;
+ }
+ 
+@@ -139,6 +155,8 @@ aside.glossary-category {
+   font: Bold 14px/20px Segoe UI;
+   letter-spacing: 0px;
+   color: #000000;
++  width: 100%;
++  text-transform: capitalize;
+ }
+ 
+ .glossary-list dd {
+

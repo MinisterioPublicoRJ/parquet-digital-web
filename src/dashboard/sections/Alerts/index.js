@@ -40,8 +40,8 @@ function Alerts() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
 
-    const cleanList = cleanAlertList(alertList, alertsCount);
     const apiError = errorAlerts || errorAlertsCount;
+    const cleanList = !apiError ? cleanAlertList(alertList, alertsCount) : [];
 
     setAlerts(cleanList);
     setAlertsError(apiError);

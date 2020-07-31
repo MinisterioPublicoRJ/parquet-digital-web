@@ -14,6 +14,7 @@ import {
   IntroductionProcessList,
 
 } from './sections';
+import { Glossary } from './sections';
 
 function Dashboard() {
   const { user } = useAuth();
@@ -42,6 +43,7 @@ function Dashboard() {
         {/*<IntroductionProcessList />*/}
         {/*<IntroductionSuccessIndicators />*/}
         <IntroductionMainInvestigated />
+        {/*<Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />*/}
       </Modal>
       {renderPage()}
     </div>

@@ -6,7 +6,7 @@ export { default as MainInvestigated } from './MainInvestigated';
 export { default as Today } from './Today';
 export { default as YourDesk } from './YourDesk';
 export { default as SuccessIndicators } from './SuccessIndicators';
-export { default as IntroductionResume } from './introduction/IntroductionResume';
+export { default as IntroductionResume } from './introduction/introductionResume';
 export { default as IntroductionYourDesk } from './introduction/IntroductionYourDesk';
 export { default as IntroductionPerfomanceRadar } from './introduction/IntroductionPerfomanceRadar';
 export { default as IntroductionMainInvestigated } from './introduction/IntroductionMainInvestigated';
@@ -14,9 +14,4 @@ export { default as IntroductionProcessingTime } from './introduction/Introducti
 export { default as IntroductionProcessList } from './introduction/introductionProcessList';
 export { default as IntroductionAlerts } from './introduction/IntroductionAlerts';
 export { default as IntroductionSuccessIndicators } from './introduction/introductionSuccessIndicators';
-
-
-
-
-
-
+export { default as Glossary } from './Glossary';

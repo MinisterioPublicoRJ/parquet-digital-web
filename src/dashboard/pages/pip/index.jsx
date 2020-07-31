@@ -21,7 +21,7 @@ function Pip({ userName, user }) {
     <div className="base-grid pip-grid">
       <Today user={user} userName={userName} />
       <YourDesk user={userName} />
-      <Alerts />
+      {/*<Alerts />*/}
       <PerformanceRadar.Pip user={userName} />
       <MainInvestigated user={userName} />
       <SuccessIndicators user={userName} />

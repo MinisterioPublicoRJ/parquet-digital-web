@@ -3,7 +3,17 @@ import React, { useState } from 'react';
 import { useAuth } from '../app/authContext';
 import { Modal } from '../components';
 import { Pip, Tutela, BlankPage } from './pages';
-import { IntroductionResume, IntroductionYourDesk } from './sections';
+import {
+  IntroductionResume,
+  IntroductionYourDesk,
+  IntroductionPerfomanceRadar,
+  IntroductionMainInvestigated,
+  IntroductionAlerts,
+  IntroductionSuccessIndicators,
+  IntroductionProcessingTime,
+  IntroductionProcessList,
+
+} from './sections';
 
 function Dashboard() {
   const { user } = useAuth();
@@ -24,7 +34,14 @@ function Dashboard() {
   return (
     <div>
       <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
-        <IntroductionResume />
+        {/* <IntroductionResume /> */}
+        {/* <IntroductionYourDesk /> */}
+        {/* <IntroductionPerfomanceRadar /> */}
+        {/*<IntroductionAlerts />*/}
+        {/*<IntroductionProcessingTime />*/}
+        {/*<IntroductionProcessList />*/}
+        {/*<IntroductionSuccessIndicators />*/}
+        <IntroductionMainInvestigated />
       </Modal>
       {renderPage()}
     </div>

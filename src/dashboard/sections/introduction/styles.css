@@ -36,5 +36,36 @@
     width: 69px;
     height: 24px;       
     margin: 5px;
+}
+.btn-introduction-preavious{
+    background: #D6D6D6 0% 0% no-repeat padding-box;
+    border-radius: 20px 3px 3px 20px;
+    opacity: 1;
+    border: none;
+    width: 69px;
+    height: 24px;       
+    margin: 5px;
+}
 
+.introduction-resume{
+    width: 421px;
+    height: 259px;
+    opacity: 1;
+    border-bottom: solid 5px #E3E3E3;
+    margin: 20px;
+}
+
+.introduction-yourDesk{
+    width: 435px;
+    height: 307px;
+    opacity: 1;
+    border-bottom: solid 5px #E3E3E3;
+    margin: 20px;
+}
+.introduction-radar{
+    width: 421px;
+    height: 383px;
+    opacity: 1;
+    border-bottom: solid 5px #E3E3E3;
+    margin: 20px;
 }

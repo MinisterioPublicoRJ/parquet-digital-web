@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles.css';
 
-function IntroductionResume() {
+function IntroductionProcessingTime() {
   return (
     <div className="introduction-wrapper">
       <div className="introduction-resume">
@@ -24,4 +24,4 @@ function IntroductionResume() {
     </div>
   );
 }
-export default IntroductionResume;
+export default IntroductionProcessingTime;

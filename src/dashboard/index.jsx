@@ -40,9 +40,9 @@ function Dashboard() {
         {/* <IntroductionPerfomanceRadar /> */}
         {/*<IntroductionAlerts />*/}
         {/*<IntroductionProcessingTime />*/}
-        {/*<IntroductionProcessList />*/}
+        <IntroductionProcessList />
         {/*<IntroductionSuccessIndicators />*/}
-        <IntroductionMainInvestigated />
+        {/*<IntroductionMainInvestigated />*/}
         {/*<Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />*/}
       </Modal>
       {renderPage()}

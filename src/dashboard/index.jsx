@@ -8,7 +8,7 @@ import { Glossary } from './sections';
 function Dashboard() {
   const { user } = useAuth();
   const { tipoOrgao } = user;
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   function renderPage() {
     switch (tipoOrgao) {

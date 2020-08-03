@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 function PerformanceRadar({ getRadarData, axisLabelsTable, cleanMap }) {
-  const { user } = useAuth();
+  const { buildRequestParams } = useAuth();
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dataError, setError] = useState(false);
@@ -24,7 +24,7 @@ function PerformanceRadar({ getRadarData, axisLabelsTable, cleanMap }) {
   const getPerformanceData = async () => {
     let res = [];
     try {
-      res = await getRadarData(user);
+      res = await getRadarData(buildRequestParams());
       cleanGraphData(res);
     } catch (e) {
       setError(true);

@@ -2,8 +2,7 @@ import t from 'lodash.template';
 
 // TODO: add _URL suffix to all constants
 
-// export const BASE_URL = `${process.env.REACT_APP_BASE_URL}/dominio`;
-export const BASE_URL = 'https://promotrao.herokuapp.com/dominio';
+export const BASE_URL = `${process.env.REACT_APP_BASE_URL}/dominio`;
 
 export const LOGIN_URL = `${BASE_URL}/token/login/`;
 export const LOGIN = `${BASE_URL}/token/login-promotron/`;

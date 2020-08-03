@@ -1,87 +1,111 @@
-.introduction-wrapper{
-    font-size: 12px;
-    color: var(--dark);
-    font-family: 'Segoe UI';
-    background-color: #FFFFFF;
-    letter-spacing: 0px;
-}
-.introduction-wrapper h3{
-    font-size: 16px;
-    font-weight: bold;
-}
-.introduction-wrapper p{
-    font-size: 12px;
-    font-family: 'Segoe UI', Regular;
-}
-.btns-introduction{
-    display: flex;
-    justify-content: flex-end;
-    margin: 17px;
-    color: var(--darkWelcome);
-}
-.btn-leave{
-    background: #EFEFEF 0% 0% no-repeat padding-box;
-    border-radius: 3px;
-    opacity: 1;
-    border: none;
-    width: 69px;
-    height: 24px;
-    margin: 5px;
-}
-.btn-introduction-next{
-    background: #D6D6D6 0% 0% no-repeat padding-box;
-    border-radius: 3px 20px 20px 3px;
-    opacity: 1;
-    border: none;
-    width: 69px;
-    height: 24px;       
-    margin: 5px;
-}
-.btn-introduction-preavious{
-    background: #D6D6D6 0% 0% no-repeat padding-box;
-    border-radius: 20px 3px 3px 20px;
-    opacity: 1;
-    border: none;
-    width: 69px;
-    height: 24px;       
-    margin: 5px;
+.intro-outer {
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* it needs to be this high because of the Performance Radar graph labels :/ */
+  z-index: 100;
+  padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
 }
 
-.introduction-resume{
-    width: 421px;
-    height: 259px;
-    opacity: 1;
-    border-bottom: solid 5px #BDDFF0;
-    margin: 20px;
+.transparent-div {
+  box-sizing: border-box;
+  height: 100%;
+  box-shadow: 0 0 100vh 100vh rgb(0 0 0 / 54%);
+  /* position: relative; */
 }
 
-.introduction-yourDesk{
-    width: 435px;
-    height: 307px;
-    opacity: 1;
-    border-bottom: solid 5px #BDDFF0;
-    margin: 20px;
-}
-.introduction-yourDesk::after{
-    border-left: 50px solid #000;
-    border-radius: 40%;
-    visibility: visible;
-    opacity: 1;
-    content: '';
-    position: absolute;
-    right: 66%;
-    width: 50px;
-    height: 40px;
-    border-width: 5px;
-    border-style: solid;
-    background-color: white;
-    border-color: white transparent transparent transparent;
-}
-.introduction-radar{
-    width: 421px;
-    height: 383px;
-    opacity: 1;
-    border-bottom: solid 5px #E3E3E3;
-    margin: 20px;
+.text-div {
+  /* position: absolute; */
+  background-color: purple;
+  z-index: 101;
+  left: 0;
 }
 
+.introduction-wrapper {
+  font-size: 12px;
+  color: var(--dark);
+  font-family: 'Segoe UI';
+  background-color: #ffffff;
+  letter-spacing: 0px;
+}
+.introduction-wrapper h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+.introduction-wrapper p {
+  font-size: 12px;
+  font-family: 'Segoe UI', Regular;
+}
+.btns-introduction {
+  display: flex;
+  justify-content: flex-end;
+  margin: 17px;
+  color: var(--darkWelcome);
+}
+.btn-leave {
+  background: #efefef 0% 0% no-repeat padding-box;
+  border-radius: 3px;
+  opacity: 1;
+  border: none;
+  width: 69px;
+  height: 24px;
+  margin: 5px;
+}
+.btn-introduction-next {
+  background: #d6d6d6 0% 0% no-repeat padding-box;
+  border-radius: 3px 20px 20px 3px;
+  opacity: 1;
+  border: none;
+  width: 69px;
+  height: 24px;
+  margin: 5px;
+}
+.btn-introduction-preavious {
+  background: #d6d6d6 0% 0% no-repeat padding-box;
+  border-radius: 20px 3px 3px 20px;
+  opacity: 1;
+  border: none;
+  width: 69px;
+  height: 24px;
+  margin: 5px;
+}
+
+.introduction-resume {
+  width: 421px;
+  height: 259px;
+  opacity: 1;
+  border-bottom: solid 5px #bddff0;
+  margin: 20px;
+}
+
+.introduction-yourDesk {
+  width: 435px;
+  height: 307px;
+  opacity: 1;
+  border-bottom: solid 5px #bddff0;
+  margin: 20px;
+}
+.introduction-yourDesk::after {
+  border-left: 50px solid #000;
+  border-radius: 40%;
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  position: absolute;
+  right: 66%;
+  width: 50px;
+  height: 40px;
+  border-width: 5px;
+  border-style: solid;
+  background-color: white;
+  border-color: white transparent transparent transparent;
+}
+.introduction-radar {
+  width: 421px;
+  height: 383px;
+  opacity: 1;
+  border-bottom: solid 5px #e3e3e3;
+  margin: 20px;
+}

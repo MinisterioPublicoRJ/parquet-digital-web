@@ -6,7 +6,6 @@ import Api from '../../../api';
 import { formatPercent } from '../../../utils';
 import { useAuth } from '../../../app/authContext';
 import { SectionTitle, Spinner } from '../../../components';
-import IntroductionSuccesIndicators from '../introduction/IntroductionSuccessIndicators';
 
 const SuccessIndicators = () => {
   const { user } = useAuth();
@@ -90,7 +89,6 @@ const SuccessIndicators = () => {
           />
         </div>
       </div>
-      <IntroductionSuccesIndicators />
     </article>
   );
 };

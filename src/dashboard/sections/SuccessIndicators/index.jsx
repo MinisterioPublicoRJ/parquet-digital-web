@@ -6,10 +6,9 @@ import Api from '../../../api';
 import { formatPercent } from '../../../utils';
 import { useAuth } from '../../../app/authContext';
 import { SectionTitle, Spinner } from '../../../components';
-import IntroductionSuccesIndicators from '../introduction/IntroductionSuccessIndicators';
 
 const SuccessIndicators = () => {
-  const { user } = useAuth();
+  const { buildRequestParams } = useAuth();
   const [successIndicators, setSuccessIndicators] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +16,7 @@ const SuccessIndicators = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getsuccessIndicators(user);
+        const response = await Api.getsuccessIndicators(buildRequestParams());
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);
@@ -90,7 +89,6 @@ const SuccessIndicators = () => {
           />
         </div>
       </div>
-      <IntroductionSuccesIndicators />
     </article>
   );
 };

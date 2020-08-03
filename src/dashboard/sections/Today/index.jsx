@@ -10,7 +10,7 @@ import { SectionTitle, MainTitle, Spinner, Modal } from '../../../components/lay
 import { formatPercentage, capitalizeTitle } from '../../../utils';
 
 function Today() {
-  const { user } = useAuth();
+  const { user, buildRequestParams } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
   const [groupName, setgroupName] = useState([]);
@@ -27,7 +27,7 @@ function Today() {
     let res = [];
     let errorPercent = false;
     try {
-      res = await Api.getTodayOutData(user);
+      res = await Api.getTodayOutData(buildRequestParams());
       percentile = formatPercentage(res);
     } catch (e) {
       errorPercent = true;
@@ -45,7 +45,7 @@ function Today() {
     let errorPhrase = false;
     try {
       const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(user, today);
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(buildRequestParams(), today);
       collectionPhrase = analyzeCollection(primQ, terQ, acervoQtd);
       organName = NOMES_PROMOTORIAS[cod];
     } catch (e) {
@@ -62,7 +62,7 @@ function Today() {
     let entriesParagraph;
     let errorParagraph = false;
     try {
-      const { hout, lout, numEntries } = await Api.getTodayEntriesData(user);
+      const { hout, lout, numEntries } = await Api.getTodayEntriesData(buildRequestParams());
       entriesParagraph = analyzeEntries(hout, lout, numEntries);
     } catch (e) {
       errorParagraph = true;

@@ -8,6 +8,7 @@ import { Spinner } from '../components/layoutPieces';
 
 function AuthContextCreator() {
   const [user, setUser] = useState(null);
+  const [currentOffice, setCurrentOffice] = useState(null);
   const [userError, setUserError] = useState(false);
   const [scaUserError, setScaUserError] = useState(false);
 
@@ -18,6 +19,7 @@ function AuthContextCreator() {
     try {
       const loggedUser = await Api.login(token);
       setUser(loggedUser);
+      setCurrentOffice(loggedUser.orgaoSelecionado);
     } catch (e) {
       setUserError(true);
     }
@@ -30,34 +32,68 @@ function AuthContextCreator() {
     try {
       const loggedUser = await Api.scaLogin(username, password);
       setUser(loggedUser);
+      setCurrentOffice(loggedUser.orgaoSelecionado);
+      const storageUser = { timestamp: new Date(), userObj: loggedUser };
+      window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
     } catch (e) {
       setScaUserError(true);
     }
   };
 
+  const isStoredUserValid = userString => {
+    const userJson = JSON.parse(userString);
+    const limitDate = new Date() - 24 * 60 * 60 * 1000;
+    const storedDate = +new Date(userJson.timestamp);
+
+    return storedDate > limitDate;
+  };
+
+  const autoLogin = (jwt, storedUser) => {
+    if (jwt) {
+      tokenLogin(jwt);
+    } else if (storedUser && isStoredUserValid(storedUser)) {
+      const { userObj } = JSON.parse(storedUser);
+      setUser(userObj);
+      setCurrentOffice(userObj.orgaoSelecionado);
+    } else {
+      if (storedUser) {
+        window.localStorage.removeItem('sca_token');
+      }
+      setUserError(true);
+    }
+  };
+
+  const buildRequestParams = () => ({
+    token: user.token,
+    orgao: currentOffice.codigo,
+    cpf: currentOffice.cpf,
+  });
+
   return {
     user,
     userError,
+    autoLogin,
+    currentOffice,
+    setCurrentOffice,
     scaUserError,
     tokenLogin,
     scaLogin,
+    buildRequestParams,
   };
 }
 
 function App() {
   const authStore = AuthContextCreator();
-  const { user, userError } = authStore;
-  const loading = !(user || userError);
+  const { user, userError, currentOffice } = authStore;
+  const loading = !((user && currentOffice) || userError);
 
   function onMount() {
-    try {
-      const token = window.localStorage.getItem('access_token');
-      authStore.tokenLogin(token);
-    } catch (e) {}
+    const token = window.localStorage.getItem('access_token');
+    const scaToken = window.localStorage.getItem('sca_token');
+    authStore.autoLogin(token, scaToken);
   }
 
   useEffect(onMount, []);
-
   if (loading) {
     return <Spinner size="large" />;
   }

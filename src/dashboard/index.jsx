@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { useAuth } from '../app/authContext';
-import { Modal } from '../components';
 import { Pip, Tutela, BlankPage } from './pages';
 import {
   IntroductionResume,
@@ -16,13 +15,16 @@ import {
   SuccessIndicators,
 } from './sections';
 
+import { Modal } from '../components';
+
 function Dashboard() {
+  const { currentOffice } = useAuth();
   const { user } = useAuth();
-  const { tipoOrgao } = user;
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const { tipo } = currentOffice;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   function renderPage() {
-    switch (tipoOrgao) {
+    switch (tipo) {
       case 1:
         return <Tutela />;
       case 2:

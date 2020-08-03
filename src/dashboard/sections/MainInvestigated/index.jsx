@@ -7,9 +7,8 @@ import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import { CustomTable, Spinner, SectionTitle } from '../../../components';
 
-
 function MainInvestigated() {
-  const { user } = useAuth();
+  const { buildRequestParams } = useAuth();
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
@@ -20,7 +19,7 @@ function MainInvestigated() {
    * @return {void}                 updates the state
    */
   function deleteInvestigated(representanteDk) {
-    Api.actionMainInvestigated({ ...user, action: 'removed', representanteDk });
+    Api.actionMainInvestigated({ ...buildRequestParams(), action: 'removed', representanteDk });
 
     // give user positivie feedback regardless of request success
     setTableData(oldTableData =>
@@ -34,7 +33,7 @@ function MainInvestigated() {
    * @return {void}                 updates the state
    */
   function pinInvestigated(representanteDk) {
-    Api.actionMainInvestigated({ ...user, action: 'pinned', representanteDk });
+    Api.actionMainInvestigated({ ...buildRequestParams(), action: 'pinned', representanteDk });
 
     // give user positivie feedback regardless of request success
     setTableData(oldTableData => {
@@ -88,7 +87,7 @@ function MainInvestigated() {
   async function getMainInvestigated() {
     let response;
     try {
-      response = await Api.getMainInvestigated(user);
+      response = await Api.getMainInvestigated(buildRequestParams());
       setTableData(cleanData(response));
     } catch (e) {
       setApiError(true);

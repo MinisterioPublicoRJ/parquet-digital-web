@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
 import { useAuth } from '../app/authContext';
-import { Modal } from '../components';
 import { Pip, Tutela, BlankPage } from './pages';
 import { Glossary } from './sections';
+import { Modal } from '../components';
 
 function Dashboard() {
-  const { user } = useAuth();
-  const { tipoOrgao } = user;
+  const { currentOffice } = useAuth();
+  const { tipo } = currentOffice;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function renderPage() {
-    switch (tipoOrgao) {
+    switch (tipo) {
       case 1:
         return <Tutela />;
       case 2:

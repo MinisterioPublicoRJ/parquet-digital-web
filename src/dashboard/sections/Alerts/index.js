@@ -9,7 +9,7 @@ import { SectionTitle, Spinner } from '../../../components';
 import { cleanAlertList } from './alertFormatters';
 
 function Alerts() {
-  const { user } = useAuth();
+  const { buildRequestParams } = useAuth();
   const [alerts, setAlerts] = useState(undefined);
   const [alertsError, setAlertsError] = useState(false);
   const loading = !alerts && !alertsError;
@@ -18,7 +18,7 @@ function Alerts() {
     let alertList;
     let listError = false;
     try {
-      alertList = await Api.getAlerts(user);
+      alertList = await Api.getAlerts(buildRequestParams());
     } catch (e) {
       listError = true;
     }
@@ -29,7 +29,7 @@ function Alerts() {
     let alertsTotal;
     let errorAlertsTotal = false;
     try {
-      alertsTotal = await Api.getAlertsCount(user);
+      alertsTotal = await Api.getAlertsCount(buildRequestParams());
     } catch (e) {
       errorAlertsTotal = true;
     }

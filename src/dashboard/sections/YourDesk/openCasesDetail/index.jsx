@@ -10,7 +10,7 @@ import './styles.css';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  user: PropTypes.shape({}).isRequired,
+  buildRequestParams: PropTypes.func.isRequired,
   chartData: PropTypes.shape({
     under20: PropTypes.number,
     between20And30: PropTypes.number,
@@ -37,12 +37,12 @@ class OpenCasesDetail extends React.Component {
    * @return {void}     just saves to state
    */
   async getOpenCasesList(tab) {
-    const { user } = this.props;
+    const { buildRequestParams } = this.props;
     let error = false;
     let res;
 
     try {
-      res = await Api.getOpenCasesList(user, TAB_MATCHER[tab]);
+      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab]);
     } catch (e) {
       error = true;
     } finally {

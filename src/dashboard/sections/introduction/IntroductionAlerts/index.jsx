@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles.css';
 
-function IntroductionAlerts() {
+function IntroductionAlerts({ onToggle }) {
   return (
     <div className="introduction-wrapper">
       <div className="introduction-yourDesk">
@@ -15,7 +15,7 @@ function IntroductionAlerts() {
         </p>
       </div>
       <div className="btns-introduction">
-        <button type="button" className="btn-leave">
+        <button aria-label="Fechar" onClick={onToggle} type="button" className="btn-leave">
           Sair
         </button>
         <button type="button" className="btn-introduction-preavious">

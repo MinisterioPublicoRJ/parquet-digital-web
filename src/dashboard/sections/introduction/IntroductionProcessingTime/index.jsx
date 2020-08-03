@@ -2,11 +2,11 @@ import React from 'react';
 
 import '../styles.css';
 
-function IntroductionProcessingTime() {
+function IntroductionProcessingTime({ onToggle }) {
   return (
     <div className="introduction-wrapper">
       <div className="introduction-resume">
-        <h3>Resumo do dia</h3>
+        <h3>Tempo de tramitação</h3>
         <p>
           Espaço do painel que você encontra todo o movimento dos processos da sua Promotoria.
           Separados em Vistas Abertas, PIC, Inquéritos, AISP e sinalizamos também a quantidade de
@@ -18,7 +18,7 @@ function IntroductionProcessingTime() {
         </p>
       </div>
       <div className="btns-introduction">
-        <button type="button" className="btn-leave">
+        <button type="button" aria-label="Fechar" onClick={onToggle} className="btn-leave">
           Sair
         </button>
         <button type="button" className="btn-introduction-next">

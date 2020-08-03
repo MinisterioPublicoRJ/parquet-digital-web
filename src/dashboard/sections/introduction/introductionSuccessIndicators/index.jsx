@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles.css';
 
-function IntroductionSuccessIndicators() {
+function IntroductionSuccessIndicators({ onToggle }) {
   return (
     <div className="introduction-wrapper">
       <div className="introduction-yourDesk">
@@ -15,7 +15,7 @@ function IntroductionSuccessIndicators() {
         </p>
       </div>
       <div className="btns-introduction">
-        <button type="button" className="btn-leave">
+        <button type="button" aria-label="Fechar" onClick={onToggle} className="btn-leave">
           Sair
         </button>
         <button type="button" className="btn-introduction-preavious">

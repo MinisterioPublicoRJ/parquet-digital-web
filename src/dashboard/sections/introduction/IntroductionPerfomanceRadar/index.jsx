@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles.css';
 
-function IntroductionPerfomanceRadar() {
+function IntroductionPerfomanceRadar({ onToggle }) {
   return (
     <div className="introduction-wrapper">
       <div className="introduction-radar">
@@ -24,7 +24,7 @@ function IntroductionPerfomanceRadar() {
         </p>
       </div>
       <div className="btns-introduction">
-        <button type="button" className="btn-leave">
+        <button type="button" aria-label="Fechar" onClick={onToggle} className="btn-leave">
           Sair
         </button>
         <button type="button" className="btn-introduction-preavious">

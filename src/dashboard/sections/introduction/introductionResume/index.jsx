@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles.css';
 
-function IntroductionResume() {
+function IntroductionResume({ onToggle }) {
   return (
     <div className="introduction-wrapper">
       <div className="introduction-resume">
@@ -18,7 +18,7 @@ function IntroductionResume() {
         </p>
       </div>
       <div className="btns-introduction">
-        <button type="button" className="btn-leave">
+        <button type="button" aria-label="Fechar" onClick={onToggle} className="btn-leave">
           Sair
         </button>
         <button type="button" className="btn-introduction-next">

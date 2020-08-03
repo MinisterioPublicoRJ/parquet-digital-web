@@ -13,6 +13,7 @@ import {
   IntroductionProcessingTime,
   IntroductionProcessList,
   Glossary,
+  SuccessIndicators,
 } from './sections';
 
 function Dashboard() {
@@ -41,6 +42,7 @@ function Dashboard() {
         {/*<IntroductionProcessingTime onToggle={() => setIsModalOpen(oldState => !oldState)} />*/}
         {/*<IntroductionProcessList onToggle={() => setIsModalOpen(oldState => !oldState)}  />*/}
         <IntroductionSuccessIndicators onToggle={() => setIsModalOpen(oldState => !oldState)} />
+        <SuccessIndicators />
         {/*<IntroductionMainInvestigated onToggle={() => setIsModalOpen(oldState => !oldState)} />*/}
         {/*<Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />*/}
       </Modal>

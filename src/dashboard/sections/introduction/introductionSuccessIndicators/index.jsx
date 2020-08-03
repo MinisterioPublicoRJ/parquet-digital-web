@@ -18,7 +18,7 @@ function IntroductionSuccessIndicators({ onToggle }) {
         <button type="button" aria-label="Fechar" onClick={onToggle} className="btn-leave">
           Sair
         </button>
-        <button type="button" className="btn-introduction-preavious">
+        <button to="./" type="button" className="btn-introduction-preavious">
           Anterior
         </button>
         <button type="button" className="btn-introduction-next">

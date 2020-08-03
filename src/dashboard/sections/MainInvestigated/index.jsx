@@ -6,7 +6,7 @@ import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import { CustomTable, Spinner, SectionTitle } from '../../../components';
-
+import IntroductionMainInvestigated from '../introduction/IntroductionMainInvestigated';
 
 function MainInvestigated() {
   const { user } = useAuth();
@@ -119,6 +119,7 @@ function MainInvestigated() {
         <div className="mainInvestigated-tableWrapper">
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
         </div>
+        <IntroductionMainInvestigated />
       </article>
     );
   }

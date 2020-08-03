@@ -4,6 +4,7 @@ import { useAuth } from '../../../app/authContext';
 import './styles.css';
 import { Spinner, SectionTitle } from '../../../components/layoutPieces';
 import PerformanceChart from '../../../components/graphs/PerformanceChart';
+import IntroductionPerformanceRadar from '../introduction/IntroductionPerfomanceRadar';
 
 const propTypes = {
   getRadarData: PropTypes.func.isRequired,
@@ -53,18 +54,20 @@ function PerformanceRadar({ getRadarData, axisLabelsTable, cleanMap }) {
   }
 
   return (
-    <article className="page-radar-dashboard">
-      <div className="radar-header">
-        <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
-      </div>
-      <figure className="radar-wrapper">
-        <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />
-      </figure>
-      <figcaption className="radar-subtitles">
-        <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
-        <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
-      </figcaption>
-    </article>
+    <>
+      <article className="page-radar-dashboard">
+        <div className="radar-header">
+          <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
+        </div>
+        <figure className="radar-wrapper">
+          <PerformanceChart axisLabelsTable={axisLabelsTable} data={chartData} />
+        </figure>
+        <figcaption className="radar-subtitles">
+          <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
+          <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
+        </figcaption>
+      </article>
+    </>
   );
 }
 

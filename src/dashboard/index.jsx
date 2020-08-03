@@ -4,17 +4,16 @@ import { useAuth } from '../app/authContext';
 import { Modal } from '../components';
 import { Pip, Tutela, BlankPage } from './pages';
 import {
-  IntroductionResume,
-  IntroductionYourDesk,
-  IntroductionPerfomanceRadar,
+  //IntroductionResume,
+  //IntroductionYourDesk,
+  //IntroductionPerfomanceRadar,
   IntroductionMainInvestigated,
-  IntroductionAlerts,
-  IntroductionSuccessIndicators,
-  IntroductionProcessingTime,
-  IntroductionProcessList,
-
+  //IntroductionAlerts,
+  //IntroductionSuccessIndicators,
+  //IntroductionProcessingTime,
+  //IntroductionProcessList,
+  Glossary,
 } from './sections';
-import { Glossary } from './sections';
 
 function Dashboard() {
   const { user } = useAuth();
@@ -40,10 +39,10 @@ function Dashboard() {
         {/* <IntroductionPerfomanceRadar /> */}
         {/*<IntroductionAlerts />*/}
         {/*<IntroductionProcessingTime />*/}
-        <IntroductionProcessList />
+        {/*<IntroductionProcessList />*/}
         {/*<IntroductionSuccessIndicators />*/}
         {/*<IntroductionMainInvestigated />*/}
-        {/*<Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />*/}
+        <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
       </Modal>
       {renderPage()}
     </div>

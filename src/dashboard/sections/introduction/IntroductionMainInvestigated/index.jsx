@@ -18,12 +18,17 @@ function IntroductionMainInvestigated() {
         </p>
       </div>
       <div className="btns-introduction">
-        <button className="btn-leave">Sair</button>
-        <button className="btn-introduction-preavious">Anterior</button>
-        <button className="btn-introduction-next">Próximo</button>
+        <button type="button" className="btn-leave">
+          Sair
+        </button>
+        <button type="button" className="btn-introduction-preavious">
+          Anterior
+        </button>
+        <button type="button" className="btn-introduction-next">
+          Próximo
+        </button>
       </div>
     </div>
   );
 }
 export default IntroductionMainInvestigated;
-

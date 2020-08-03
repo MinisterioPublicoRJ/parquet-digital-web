@@ -34,6 +34,7 @@ function Dashboard() {
 
   return (
     <div>
+      {user.firstLogin ? 
       <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
         {/* <IntroductionResume onToggle={() => setIsModalOpen(oldState => !oldState)}  /> */}
         {/* <IntroductionYourDesk onToggle={() => setIsModalOpen(oldState => !oldState)}  /> */}
@@ -46,7 +47,9 @@ function Dashboard() {
         {/*<IntroductionMainInvestigated onToggle={() => setIsModalOpen(oldState => !oldState)} />*/}
         {/*<Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />*/}
       </Modal>
-      {renderPage()}
+      :
+      renderPage()
+      }
     </div>
   );
 }

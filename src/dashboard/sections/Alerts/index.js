@@ -53,7 +53,7 @@ function Alerts() {
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
 
-    const apiError = errorAlerts || errorAlertsCount || errorHiresList;
+    const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
     const cleanList = !apiError ? cleanAlertList(alertList, alertsCount, hiresAlertList) : [];
 
     setAlerts(cleanList);

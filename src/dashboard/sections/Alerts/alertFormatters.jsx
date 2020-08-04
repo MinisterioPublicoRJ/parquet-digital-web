@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { ClockIcon, CorujaGate, Home, Ouvidoria, Va, Tjrj } from '../../../assets';
+import {
+  ClockIcon,
+  CorujaGate,
+  Home,
+  Ouvidoria,
+  Va,
+  Tjrj,
+  IconContratacoes,
+} from '../../../assets';
 import { NOT_GROUPABLE_ALERTS } from './alertsConstants';
 
 /**
@@ -161,7 +169,23 @@ export function cleanAlert(alert) {
       );
       background = '#28A7E0';
       break;
-
+    
+    // ALERTAS DE COMPRAS
+    case 'COMP':
+      icon = <IconContratacoes />;
+      message = (
+        <span>
+          Os valores do contrato
+          <strong>{` ${` ${alert.contrato} `} `}</strong>
+          ,
+          item
+          <strong>{` ${` ${alert.iditem} `} `}</strong>
+          merece sua atenção.
+        </span>
+        );
+        background = '#F8BD6C';
+        break;
+  
     // ALERTAS DA PIP
     case 'GATE':
       icon = <CorujaGate />;
@@ -200,6 +224,7 @@ export function cleanAlert(alert) {
 export function cleanAlertList(list, countList) {
   const orderedTypes = Object.keys(countList);
   const cleanList = [];
+  console.log(countList);
 
   orderedTypes.forEach(type => {
     const isGroupable = NOT_GROUPABLE_ALERTS.indexOf(type) === -1;

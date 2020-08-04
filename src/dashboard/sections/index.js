@@ -14,4 +14,5 @@ export { default as IntroductionProcessingTime } from './introduction/Introducti
 export { default as IntroductionProcessList } from './introduction/introductionProcessList';
 export { default as IntroductionAlerts } from './introduction/IntroductionAlerts';
 export { default as IntroductionSuccessIndicators } from './introduction/introductionSuccessIndicators';
+export { default as Introduction } from './introduction';
 export { default as Glossary } from './Glossary';

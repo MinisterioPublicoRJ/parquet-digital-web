@@ -36,12 +36,25 @@ function Alerts() {
     return [alertsTotal, errorAlertsTotal];
   }
 
+  async function loadHiresAlerts() {
+    let hiresAlertList;
+    let hiresListError = false;
+    try {
+      hiresAlertList = await Api.getHiresAlerts(buildRequestParams());
+      console.log(hiresAlertList);
+    } catch (e) {
+      hiresListError = true;
+    }
+    return [hiresAlertList, hiresListError];
+  }
+
   async function loadComponent() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
+    const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
 
-    const apiError = errorAlerts || errorAlertsCount;
-    const cleanList = !apiError ? cleanAlertList(alertList, alertsCount) : [];
+    const apiError = errorAlerts || errorAlertsCount || errorHiresList;
+    const cleanList = !apiError ? cleanAlertList(alertList, alertsCount, hiresAlertList) : [];
 
     setAlerts(cleanList);
     setAlertsError(apiError);

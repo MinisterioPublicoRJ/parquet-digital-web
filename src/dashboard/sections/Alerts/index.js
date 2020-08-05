@@ -47,6 +47,15 @@ function Alerts() {
     setAlertsError(apiError);
   }
 
+  /**
+   * uses alert key number to remove an alertbadge from the list, updates the state
+   * @param  {number} alert key
+   * @return {void}                 updates the state
+   */
+  function removeAlert(key) {
+    setAlerts(oldAlerts => oldAlerts.filter(item => item.key !== key));
+  }
+
   // runs on "mount" only
   useEffect(loadComponent, []);
 

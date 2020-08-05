@@ -224,7 +224,6 @@ export function cleanAlert(alert) {
 export function cleanAlertList(list, countList) {
   const orderedTypes = Object.keys(countList);
   const cleanList = [];
-  console.log(countList);
 
   orderedTypes.forEach(type => {
     const isGroupable = NOT_GROUPABLE_ALERTS.indexOf(type) === -1;

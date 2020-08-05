@@ -42,18 +42,18 @@ function Introduction({ isOpen, onToggle, type }) {
       <div className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
         <div style={{ gridArea: 'today' }} className="transparent-div" />
         <div className="text-div">
-
-        {pages[currentPage]}
-
-        <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
-          Sair
-        </button>
-        <button className="btn-introduction-next" type="button">
-          Próximo
-        </button>
+          {pages[currentPage]}
+          <button type="button" className="btn-introduction-preavious">
+            Anterior
+          </button>
+          <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
+            Sair
+          </button>
+          <button className="btn-introduction-next" type="button">
+            Próximo
+          </button>
+        </div>
       </div>
-      </div>
-
     );
   }
 

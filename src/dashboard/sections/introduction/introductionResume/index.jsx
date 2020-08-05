@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles.css';
 
-function IntroductionResume({ isIntroOpen }) {
+function IntroductionResume() {
   return (
     <div className="introduction-wrapper">
       <h3>Resumo do dia</h3>

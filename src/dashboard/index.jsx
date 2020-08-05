@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { useAuth } from '../app/authContext';
 import { Pip, Tutela, BlankPage } from './pages';
 import { Introduction, Glossary } from './sections';
@@ -26,19 +25,19 @@ function Dashboard() {
   }
 
   return (
-    <div>
-      {user.firstLogin ? 
-      <Introduction
-        isOpen={isIntroOpen}
-        onToggle={() => setIsIntroOpen(oldState => !oldState)}
-        type={tipoOrgao}
-      />
-      <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
-        <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
-      </Modal>
-      :
-      renderPage()
-      }
+      <div>
+        <Introduction
+          isOpen={isIntroOpen}
+          onToggle={() => setIsIntroOpen(oldState => !oldState)}
+          type={tipoOrgao}
+        />
+        {user.firstLogin ? 
+        <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
+          <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
+        </Modal>
+        :
+        renderPage()
+        }
     </div>
   );
 }

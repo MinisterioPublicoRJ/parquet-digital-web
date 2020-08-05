@@ -27,11 +27,11 @@ function handleInnerClick(e) {
 function Introduction({ isOpen, onToggle, type }) {
   const pages = [
     <IntroductionResume />,
+    <IntroductionProcessList />,
+    <IntroductionProcessingTime />,
     <IntroductionAlerts />,
     <IntroductionYourDesk />,
-    <IntroductionProcessList />,
     <IntroductionPerfomanceRadar />,
-    <IntroductionProcessingTime />,
     <IntroductionSuccessIndicators />,
     <IntroductionMainInvestigated />,
   ];
@@ -41,14 +41,19 @@ function Introduction({ isOpen, onToggle, type }) {
     return (
       <div className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
         <div style={{ gridArea: 'today' }} className="transparent-div" />
-        <div className="introduction-resume">
-          {pages[currentPage]}
-          <button type="button" aria-label="Fechar" onClick={onToggle}>
-            Sair
-          </button>
-          <button type="button">Próximo</button>
-        </div>
+        <div className="text-div">
+
+        {pages[currentPage]}
+
+        <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
+          Sair
+        </button>
+        <button className="btn-introduction-next" type="button">
+          Próximo
+        </button>
       </div>
+      </div>
+
     );
   }
 

@@ -16,14 +16,14 @@ function IntroductionProcessingTime({ onToggle }) {
           Logo abaixo é possível ainda filtrar as vistas pela vida do processo na sua mesa.Por
           último a lista dos processos propriamente dita.
         </p>
-      </div>
-      <div className="btns-introduction">
-        <button type="button" aria-label="Fechar" onClick={onToggle} className="btn-leave">
-          Sair
-        </button>
-        <button type="button" className="btn-introduction-next">
-          Próximo
-        </button>
+        <div className="btns-introduction">
+          <button type="button" aria-label="Fechar" onClick={onToggle} className="btn-leave">
+            Sair
+          </button>
+          <button type="button" className="btn-introduction-next">
+            Próximo
+          </button>
+        </div>
       </div>
     </div>
   );

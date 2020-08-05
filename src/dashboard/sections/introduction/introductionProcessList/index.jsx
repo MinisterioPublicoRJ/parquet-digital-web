@@ -5,7 +5,7 @@ import '../styles.css';
 function IntroductionProcessList({ onToggle }) {
   return (
     <div className="introduction-wrapper">
-      <div className="introduction-yourDesk">
+      <div className="introduction-resume">
         <h3>Lista de Processos</h3>
         <p>
           Espaço do painel que você encontra todo o movimento dos processos da sua Promotoria.

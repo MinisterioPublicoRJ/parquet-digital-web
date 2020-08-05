@@ -5,7 +5,7 @@ import '../styles.css';
 function IntroductionPerfomanceRadar({ onToggle }) {
   return (
     <div className="introduction-wrapper">
-      <div className="introduction-radar">
+      <div className="introduction-resume">
         <h3>Radar De Perfomance</h3>
         <p>
           Neste gráfico estamos analisando o perfil da sua Promotoria e geramos para você uma
@@ -22,17 +22,17 @@ function IntroductionPerfomanceRadar({ onToggle }) {
           Para saber mais sobre os termos e cálculos utilizados para compor estar visualização
           disponibilizamos uma explicação detalhada de cada item no Glossário.
         </p>
-      </div>
-      <div className="btns-introduction">
-        <button type="button" aria-label="Fechar" onClick={onToggle} className="btn-leave">
-          Sair
-        </button>
-        <button type="button" className="btn-introduction-preavious">
-          Anterior
-        </button>
-        <button type="button" className="btn-introduction-next">
-          Próximo
-        </button>
+        <div className="btns-introduction">
+          <button type="button" aria-label="Fechar" onClick={onToggle} className="btn-leave">
+            Sair
+          </button>
+          <button type="button" className="btn-introduction-preavious">
+            Anterior
+          </button>
+          <button type="button" className="btn-introduction-next">
+            Próximo
+          </button>
+        </div>
       </div>
     </div>
   );

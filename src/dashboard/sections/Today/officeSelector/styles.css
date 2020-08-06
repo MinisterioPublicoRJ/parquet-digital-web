@@ -12,8 +12,47 @@
 }
 
 .selector-modal {
-  background-color: white;
+  background-color: #BDDFF0;
+  border-radius: 5px;
   margin-left: var(--bodyHorizontalPadding);
   margin-top: calc(var(--bodyVerticalPadding) * 3);
   width: calc(50vw - 5vw);
+  height: calc(33vh - 2 * var(--bodyVerticalPadding) - 3vh);
+  overflow: hidden;
+}
+
+.selector-header > h2{
+  color: #3B3B3B;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  font-size: var(--titleFontSize);
+}
+
+.selector-header {
+  align-items: center;
+  display: flex;
+  height: 25%;
+  padding: 0 1.5vw;
+}
+
+.selector-listWrapper {
+  background-color: white;
+  height: 75%;
+  overflow-y: auto;
+  padding: 1.5vh 1.5vw;
+}
+
+.selector-listWrapper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.selector-listWrapper li {
+  margin: 10px 0;
+}
+
+.selector-listWrapper li > span {
+  color: var(--primary);
+  font-size: var(--smallFont);
 }

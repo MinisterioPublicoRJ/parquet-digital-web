@@ -8,7 +8,12 @@ function handleInnerClick(e) {
 }
 
 function OfficeSelector({ isOpen, onToggle }) {
-  const { user, currentOffice, setCurrentOffice } = useAuth();
+  const { user, updateOffice } = useAuth();
+
+  function onOfficeClicked(office) {
+    updateOffice(office);
+    onToggle();
+  }
 
   if (isOpen) {
     return (
@@ -27,11 +32,19 @@ function OfficeSelector({ isOpen, onToggle }) {
           <div className="selector-header">
             <h2>Selecione a Promotoria:</h2>
           </div>
-          <ul>
-            {user.orgaosValidos.map(orgao => (
-              <li>{orgao.nomeOrgao}</li>
-            ))}
-          </ul>
+          <div className="selector-listWrapper">
+            <ul>
+              {user.orgaosValidos.map(orgao => (
+                <li
+                  key={`${orgao.nomeOrgao}-${orgao.nomeUser}`}
+                  onClick={() => onOfficeClicked(orgao)}
+                >
+                  {`${orgao.nomeOrgao} \n`}
+                  <span>{orgao.nomeUser}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     );

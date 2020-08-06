@@ -10,7 +10,7 @@ import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPiec
 import { formatPercentage, capitalizeTitle } from '../../../utils';
 
 function Today() {
-  const { user, buildRequestParams } = useAuth();
+  const { user, buildRequestParams, currentOffice } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
   const [groupName, setgroupName] = useState([]);
@@ -45,7 +45,10 @@ function Today() {
     let errorPhrase = false;
     try {
       const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(buildRequestParams(), today);
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(
+        buildRequestParams(),
+        today,
+      );
       collectionPhrase = analyzeCollection(primQ, terQ, acervoQtd);
       organName = NOMES_PROMOTORIAS[cod];
     } catch (e) {
@@ -97,11 +100,7 @@ function Today() {
    */
   function analyzeEntries(hout, lout, amount) {
     if (!amount) {
-      return (
-        <p>
-          Percebi que ainda não temos vistas abertas para hoje!
-        </p>
-      );
+      return <p>Percebi que ainda não temos vistas abertas para hoje!</p>;
     }
     let dayTipe = 'típico';
     if (amount < lout || amount > hout) {
@@ -189,11 +188,9 @@ function Today() {
   );
   const collectionParagraph = !phrase ? null : (
     <p>
-      Você sabia que seu acervo é
-      <span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
+      Você sabia que seu acervo é<span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
       dos seus colegas das
-      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>
-      ?
+      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
     </p>
   );
 
@@ -201,7 +198,11 @@ function Today() {
     <article className="today-outer">
       <MainTitle value={greeting} glueToTop />
       <div className="today-content">
-        <SectionTitle value="resumo do dia" glueToTop />
+        <button type="button">
+          <h2>Resumo do dia </h2>
+          {currentOffice.nomeOrgao && ' na '}
+          {currentOffice.nomeOrgao && <span>{currentOffice.nomeOrgao}</span>}
+        </button>
         {percentParagraph}
         {collectionParagraph}
         {entriesGroup}

@@ -8,7 +8,6 @@ import { Spinner } from '../components/layoutPieces';
 
 function AuthContextCreator() {
   const [user, setUser] = useState(null);
-  const [currentOffice, setCurrentOffice] = useState(null);
   const [userError, setUserError] = useState(false);
   const [scaUserError, setScaUserError] = useState(false);
 
@@ -19,7 +18,6 @@ function AuthContextCreator() {
     try {
       const loggedUser = await Api.login(token);
       setUser(loggedUser);
-      setCurrentOffice(loggedUser.orgaoSelecionado);
     } catch (e) {
       setUserError(true);
     }
@@ -32,7 +30,6 @@ function AuthContextCreator() {
     try {
       const loggedUser = await Api.scaLogin(username, password);
       setUser(loggedUser);
-      setCurrentOffice(loggedUser.orgaoSelecionado);
       const storageUser = { timestamp: new Date(), userObj: loggedUser };
       window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
     } catch (e) {
@@ -54,7 +51,6 @@ function AuthContextCreator() {
     } else if (storedUser && isStoredUserValid(storedUser)) {
       const { userObj } = JSON.parse(storedUser);
       setUser(userObj);
-      setCurrentOffice(userObj.orgaoSelecionado);
     } else {
       if (storedUser) {
         window.localStorage.removeItem('sca_token');
@@ -63,18 +59,22 @@ function AuthContextCreator() {
     }
   };
 
+  const updateOffice = newOffice => {
+    setUser(prevUser => ({ ...prevUser, orgaoSelecionado: newOffice }));
+  };
+
   const buildRequestParams = () => ({
     token: user.token,
-    orgao: currentOffice.codigo,
-    cpf: currentOffice.cpf,
+    orgao: user.orgaoSelecionado.codigo,
+    cpf: user.orgaoSelecionado.cpf,
   });
 
   return {
     user,
     userError,
     autoLogin,
-    currentOffice,
-    setCurrentOffice,
+    currentOffice: user ? user.orgaoSelecionado : null,
+    updateOffice,
     scaUserError,
     tokenLogin,
     scaLogin,

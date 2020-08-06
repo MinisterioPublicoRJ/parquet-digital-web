@@ -24,6 +24,10 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
+function togglePopup(pages) {
+ 
+}
+
 function Introduction({ isOpen, onToggle, type }) {
   const pages = [
     <IntroductionResume />,
@@ -43,15 +47,15 @@ function Introduction({ isOpen, onToggle, type }) {
         <div style={{ gridArea: 'today' }} className="transparent-div" />
         <div className="text-div">
           {pages[currentPage]}
+          <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
+            Sair
+          </button>
           <button
             onClick={() => setCurrentPage(currentPage + -1)}
             type="button"
             className="btn-introduction-preavious"
           >
             Anterior
-          </button>
-          <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
-            Sair
           </button>
           <button
             onClick={() => setCurrentPage(currentPage + 1)}

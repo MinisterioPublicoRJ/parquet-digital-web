@@ -22,10 +22,10 @@ function Pip({ setIsSelectorOpen }) {
       <Today setIsSelectorOpen={setIsSelectorOpen} />
       <YourDesk />
       <Alerts />
-      {/* <PerformanceRadar.Pip /> */}
-      {/* <MainInvestigated /> */}
-      {/* <SuccessIndicators /> */}
-      {/* <ProcessingTime /> */}
+      <PerformanceRadar.Pip />
+      <MainInvestigated />
+      <SuccessIndicators />
+      <ProcessingTime />
     </div>
   );
 }

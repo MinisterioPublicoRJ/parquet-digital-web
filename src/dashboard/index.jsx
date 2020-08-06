@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { useAuth } from '../app/authContext';
 import { Pip, Tutela, BlankPage } from './pages';

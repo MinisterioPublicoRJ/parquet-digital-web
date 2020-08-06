@@ -89,7 +89,9 @@ function Today({ setIsSelectorOpen }) {
   }
 
   // runs on "mount" only
-  useEffect(loadComponent, []);
+  useEffect(() => {
+    loadComponent();
+  }, []);
 
   /**
    * compares the number of entries to the business rules to decide which phrase to show. A day can be typical, atypical or empty

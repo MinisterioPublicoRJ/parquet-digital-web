@@ -172,7 +172,7 @@ export function cleanAlert(alert) {
       );
       background = '#28A7E0';
       break;
-    
+
     // ALERTAS DE COMPRAS
     case 'COMP':
       icon = <IconContratacoes />;
@@ -188,7 +188,7 @@ export function cleanAlert(alert) {
         );
         background = '#F8BD6C';
         break;
-  
+
     // ALERTAS DA PIP
     case 'GATE':
       icon = <CorujaGate />;
@@ -233,9 +233,8 @@ export function cleanAlertList(list, countList) {
     if (isGroupable) {
       cleanList.push(cleanAlert({ alertCode: type, count: countList[type].count }));
     } else {
-      cleanList.concat(
-        list.filter(alert => alert.alertCode === type).map(alert => cleanAlert(alert)),
-      );
+      const allAlertsOfType = list.filter(alert => alert.alertCode === type).map(alert => cleanAlert(alert));
+      cleanList.push(...allAlertsOfType);
     }
   });
 

@@ -15,7 +15,7 @@ function Alerts() {
   const loading = !alerts && !alertsError;
 
   async function loadAlerts() {
-    let alertList;
+    let alertList = [];
     let listError = false;
     try {
       alertList = await Api.getAlerts(buildRequestParams());
@@ -26,7 +26,7 @@ function Alerts() {
   }
 
   async function loadAlertCount() {
-    let alertsTotal;
+    let alertsTotal = [];
     let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsCount(buildRequestParams());
@@ -37,11 +37,10 @@ function Alerts() {
   }
 
   async function loadHiresAlerts() {
-    let hiresAlertList;
+    let hiresAlertList = [];
     let hiresListError = false;
     try {
       hiresAlertList = await Api.getHiresAlerts(buildRequestParams());
-      console.log(hiresAlertList);
     } catch (e) {
       hiresListError = true;
     }
@@ -54,7 +53,8 @@ function Alerts() {
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
-    const cleanList = !apiError ? cleanAlertList(alertList, alertsCount, hiresAlertList) : [];
+    const fullList = alertList.concat(hiresAlertList);
+    const cleanList = !apiError ? cleanAlertList(fullList, alertsCount) : [];
 
     setAlerts(cleanList);
     setAlertsError(apiError);

@@ -17,12 +17,11 @@ import {
 const propTypes = { setIsSelectorOpen: PropTypes.func.isRequired };
 
 function Pip({ setIsSelectorOpen }) {
-  console.log('hello i pips');
   return (
     <div className="base-grid pip-grid">
       <Today setIsSelectorOpen={setIsSelectorOpen} />
-      {/* <YourDesk /> */}
-      {/* <Alerts /> */}
+      <YourDesk />
+      <Alerts />
       {/* <PerformanceRadar.Pip /> */}
       {/* <MainInvestigated /> */}
       {/* <SuccessIndicators /> */}

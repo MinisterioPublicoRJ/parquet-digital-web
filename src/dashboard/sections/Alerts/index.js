@@ -48,7 +48,9 @@ function Alerts() {
   }
 
   // runs on "mount" only
-  useEffect(loadComponent, []);
+  useEffect(() => {
+    loadComponent();
+  }, []);
 
   if (loading) {
     return (

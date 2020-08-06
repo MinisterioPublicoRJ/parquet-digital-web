@@ -19,7 +19,10 @@ import { NOT_GROUPABLE_ALERTS } from './alertsConstants';
 export function cleanAlert(alert) {
   const key = alert.count
     ? `${alert.alertCode}-${alert.count}`
-    : `${alert.alertCode}-${alert.docNum}`;
+    : `${alert.alertCode}-${alert.docNum}` &&
+      `${alert.alertCode}-${alert.contrato}` &&
+      `${alert.alertCode}-${alert.item}`;
+
   let icon = null;
   let message = null;
   let background = null;
@@ -179,7 +182,7 @@ export function cleanAlert(alert) {
           <strong>{` ${` ${alert.contrato} `} `}</strong>
           ,
           item
-          <strong>{` ${` ${alert.iditem} `} `}</strong>
+          <strong>{` ${` ${alert.item} `} `}</strong>
           merece sua atenção.
         </span>
         );

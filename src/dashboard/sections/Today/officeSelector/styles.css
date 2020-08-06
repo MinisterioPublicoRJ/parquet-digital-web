@@ -1,0 +1,19 @@
+.selector-outer {
+  background-color: rgb(0 0 0 / 54%);
+  display: flex;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* it needs to be this high because of the Performance Radar graph labels :/ */
+  z-index: 100;
+  overflow: hidden;
+}
+
+.selector-modal {
+  background-color: white;
+  margin-left: var(--bodyHorizontalPadding);
+  margin-top: calc(var(--bodyVerticalPadding) * 3);
+  width: calc(50vw - 5vw);
+}

@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { useAuth } from '../app/authContext';
 import { Pip, Tutela, BlankPage } from './pages';
 import { Glossary } from './sections';
-import { Modal } from '../components';
+import { Modal, Spinner } from '../components';
 
 function Dashboard() {
   const { currentOffice } = useAuth();
-  const { tipo } = currentOffice;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function renderPage() {
+    const { tipo } = currentOffice;
     switch (tipo) {
       case 1:
         return <Tutela />;
@@ -21,13 +21,17 @@ function Dashboard() {
     }
   }
 
+  if (!currentOffice) {
+    return <Spinner size="large" />;
+  }
+
   return (
-    <div>
+    <>
       <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
         <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
       </Modal>
       {renderPage()}
-    </div>
+    </>
   );
 }
 

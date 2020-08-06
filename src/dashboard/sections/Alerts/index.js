@@ -41,6 +41,7 @@ function Alerts() {
     let hiresListError = false;
     try {
       hiresAlertList = await Api.getHiresAlerts(buildRequestParams());
+      console.log(hiresAlertList);
     } catch (e) {
       hiresListError = true;
     }

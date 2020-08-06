@@ -181,8 +181,8 @@ export function cleanAlert(alert) {
           Os valores do contrato
           <strong>{` ${` ${alert.contrato} `} `}</strong>
           ,
-          item
-          <strong>{` ${` ${alert.item} `} `}</strong>
+          itens
+          <strong>{` ${` ${alert.item.substring(0,30)}... `} `}</strong>
           merece sua atenção.
         </span>
         );

@@ -25,7 +25,7 @@ function Dashboard() {
   }
 
   return (
-      <div>
+      <>
         <Introduction
           isOpen={isIntroOpen}
           onToggle={() => setIsIntroOpen(oldState => !oldState)}
@@ -38,7 +38,7 @@ function Dashboard() {
         :
         renderPage()
         }
-    </div>
+    </>
   );
 }
 

@@ -9,7 +9,7 @@ import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPiec
 
 import { formatPercentage, capitalizeTitle } from '../../../utils';
 
-function Today() {
+function Today({ setIsSelectorOpen }) {
   const { user, buildRequestParams, currentOffice } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
@@ -198,7 +198,7 @@ function Today() {
     <article className="today-outer">
       <MainTitle value={greeting} glueToTop />
       <div className="today-content">
-        <button type="button">
+        <button type="button" onClick={setIsSelectorOpen}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
           {currentOffice.nomeOrgao && <span>{currentOffice.nomeOrgao}</span>}

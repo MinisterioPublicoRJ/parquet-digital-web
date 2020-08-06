@@ -9,7 +9,7 @@ import OfficeSelector from './sections/Today/officeSelector';
 function Dashboard() {
   const { currentOffice } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSelectorOpen, setSelectorOpen] = useState(true);
+  const [isSelectorOpen, setIsSelectorOpen] = useState(false);
 
   if (!currentOffice) {
     return <div>loading</div>;
@@ -19,9 +19,9 @@ function Dashboard() {
     const { tipo } = currentOffice;
     switch (tipo) {
       case 1:
-        return <Tutela setSelectorOpen={setSelectorOpen} />;
+        return <Tutela setIsSelectorOpen={setIsSelectorOpen} />;
       case 2:
-        return <Pip setSelectorOpen={setSelectorOpen} />;
+        return <Pip setIsSelectorOpen={setIsSelectorOpen} />;
       default:
         return <BlankPage />;
     }
@@ -38,7 +38,7 @@ function Dashboard() {
       </Modal>
       <OfficeSelector
         isOpen={isSelectorOpen}
-        onToggle={() => setSelectorOpen(prevState => !prevState)}
+        onToggle={() => setIsSelectorOpen(prevState => !prevState)}
       />
       {renderPage()}
     </>

@@ -25,19 +25,19 @@ function Dashboard() {
   }
 
   return (
-      <>
-        <Introduction
-          isOpen={isIntroOpen}
-          onToggle={() => setIsIntroOpen(oldState => !oldState)}
-          type={tipoOrgao}
-        />
-        {user.firstLogin ? 
+    <>
+      <Introduction
+        isOpen={isIntroOpen}
+        onToggle={() => setIsIntroOpen(oldState => !oldState)}
+        type={tipoOrgao}
+      />
+      {user.firstLogin ? (
         <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
           <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
         </Modal>
-        :
+      ) : (
         renderPage()
-        }
+      )}
     </>
   );
 }

@@ -17,13 +17,6 @@ const propTypes = {
   type: PropTypes.number.isRequired,
 };
 
-/**
- * Prevent close when click in the div.innerWrapper
- */
-function handleInnerClick(e) {
-  e.stopPropagation();
-}
-
 function Introduction({ isOpen, onToggle, type }) {
   const pages = [
     { focus: 'today', component: <IntroductionResume /> },
@@ -40,27 +33,28 @@ function Introduction({ isOpen, onToggle, type }) {
   if (isOpen) {
     return (
       <div className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
-        <div style={{ gridArea: pages[currentPage].focus }} className="transparent-div" />
-        <div className="text-div">
-          {pages[currentPage].component}
-          <div className="btns-introduction">
-            <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
-              Sair
-            </button>
-            <button
-              onClick={() => setCurrentPage(currentPage - 1)}
-              type="button"
-              className="btn-introduction-preavious"
-            >
-              Anterior
-            </button>
-            <button
-              onClick={() => setCurrentPage(currentPage + 1)}
-              className="btn-introduction-next"
-              type="button"
-            >
-              Próximo
-            </button>
+        <div style={{ gridArea: pages[currentPage].focus }} className="transparent-div">
+          <div className={`text-div text-div--${pages[currentPage].focus}`}>
+            {pages[currentPage].component}
+            <div className="btns-introduction">
+              <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
+                Sair
+              </button>
+              <button
+                onClick={() => setCurrentPage(currentPage - 1)}
+                type="button"
+                className="btn-introduction-preavious"
+              >
+                Anterior
+              </button>
+              <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                className="btn-introduction-next"
+                type="button"
+              >
+                Próximo
+              </button>
+            </div>
           </div>
         </div>
       </div>

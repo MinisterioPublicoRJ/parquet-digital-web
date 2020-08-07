@@ -7,34 +7,43 @@
   /* it needs to be this high because of the Performance Radar graph labels :/ */
   z-index: 100;
   padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
+  overflow: hidden;
 }
+
 .text-div {
+  background-color: var(--white);
+  border-radius: 10px;
+  color: var(--dark);
+  left: 0;
+  letter-spacing: 0px;
   opacity: 1;
   padding: 20px;
-  background-color: var(--white);
+  position: absolute;
   z-index: 101;
-  left: 0;
-  border-radius: 10px;
-  width: 140%;
-  margin-top: 600px;
-  color: var(--dark);
-  letter-spacing: 0px;  
-}	
-.text-div::after {
- visibility: visible;
- opacity: 1;
- content: '';
- position: relative;
- top: 69px;
- left: 42%;
- border-width: 35px;
- border-style: solid;
- border-color: var(--white) transparent transparent transparent;
 }
+
+/* mover a seta de acordo com a posição */
+.text-div::after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  position: relative;
+  top: 69px;
+  left: 42%;
+  border-width: 35px;
+  border-style: solid;
+  border-color: var(--white) transparent transparent transparent;
+}
+
+.text-div--today {
+  top: 120%;
+}
+
 .introduction-wrapper h3 {
   font-size: 16px;
   font-weight: bold;
 }
+
 .introduction-wrapper p {
   font-size: 12px;
   font-family: 'Segoe UI', Regular;
@@ -42,20 +51,22 @@
 
 .transparent-div {
   box-sizing: border-box;
-  height: 110%;
-  width: 108%;
-  margin-left: -20px;
+  border-radius: 10px;
   box-shadow: 0 0 100vh 100vh rgb(0 0 0 / 54%);
-  border-radius: 10px;  
+  height: 110%;
+  margin-left: -20px;
+  width: 108%;
+  position: relative;
 }
+
 .btns-introduction {
   display: flex;
   justify-content: flex-end;
   margin: 17px;
   color: var(--darkWelcome);
   border-top: solid 5px #bddff0;
-
 }
+
 .btn-leave {
   background: #efefef 0% 0% no-repeat padding-box;
   border-radius: 3px;
@@ -66,6 +77,7 @@
   margin: 10px;
   margin-right: 100px;
 }
+
 .btn-introduction-next {
   background: #d6d6d6 0% 0% no-repeat padding-box;
   border-radius: 3px 20px 20px 3px;
@@ -75,6 +87,7 @@
   height: 24px;
   margin: 10px;
 }
+
 .btn-introduction-preavious {
   background: #d6d6d6 0% 0% no-repeat padding-box;
   border-radius: 20px 3px 3px 20px;
@@ -84,4 +97,3 @@
   height: 24px;
   margin: 10px;
 }
-

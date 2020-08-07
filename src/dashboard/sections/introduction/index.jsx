@@ -24,34 +24,30 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-function togglePopup(pages) {
- 
-}
-
 function Introduction({ isOpen, onToggle, type }) {
   const pages = [
-    <IntroductionResume />,
-    <IntroductionProcessList />,
-    <IntroductionProcessingTime />,
-    <IntroductionAlerts />,
-    <IntroductionYourDesk />,
-    <IntroductionPerfomanceRadar />,
-    <IntroductionSuccessIndicators />,
-    <IntroductionMainInvestigated />,
+    { focus: 'today', component: <IntroductionResume /> },
+    { focus: 'processes', component: <IntroductionProcessList /> },
+    { focus: 'processingTime', component: <IntroductionProcessingTime /> },
+    { focus: 'alerts', component: <IntroductionAlerts /> },
+    { focus: 'desk', component: <IntroductionYourDesk /> },
+    { focus: 'radar', component: <IntroductionPerfomanceRadar /> },
+    { focus: 'indicators', component: <IntroductionSuccessIndicators /> },
+    { focus: 'mainInvestigated', component: <IntroductionMainInvestigated /> },
   ];
   const [currentPage, setCurrentPage] = useState(0);
 
   if (isOpen) {
     return (
       <div className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
-        <div style={{ gridArea: 'today' }} className="transparent-div" />
+        <div style={{ gridArea: pages[currentPage].focus }} className="transparent-div" />
         <div className="text-div">
-          {pages[currentPage]}
+          {pages[currentPage].component}
           <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
             Sair
           </button>
           <button
-            onClick={() => setCurrentPage(currentPage + -1)}
+            onClick={() => setCurrentPage(currentPage - 1)}
             type="button"
             className="btn-introduction-preavious"
           >

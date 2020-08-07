@@ -1,32 +1,43 @@
 import React, { useState } from 'react';
 
 import { useAuth } from '../app/authContext';
-// import { Modal } from '../components';
 import { Pip, Tutela, BlankPage } from './pages';
+import { Glossary } from './sections';
+import { Modal, Spinner } from '../components';
+import OfficeSelector from './sections/Today/officeSelector';
 
 function Dashboard() {
-  const { user } = useAuth();
-  const { tipoOrgao } = user;
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const { currentOffice } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSelectorOpen, setIsSelectorOpen] = useState(false);
 
   function renderPage() {
-    switch (tipoOrgao) {
+    const { tipo } = currentOffice;
+    switch (tipo) {
       case 1:
-        return <Tutela />;
+        return <Tutela setIsSelectorOpen={setIsSelectorOpen} />;
       case 2:
-        return <Pip />;
+        return <Pip setIsSelectorOpen={setIsSelectorOpen} />;
       default:
         return <BlankPage />;
     }
   }
 
+  if (!currentOffice) {
+    return <Spinner size="large" />;
+  }
+
   return (
-    <div>
-      {/* <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
-        <div>Teste</div
-      </Modal> */}
+    <>
+      <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
+        <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
+      </Modal>
+      <OfficeSelector
+        isOpen={isSelectorOpen}
+        onToggle={() => setIsSelectorOpen(prevState => !prevState)}
+      />
       {renderPage()}
-    </div>
+    </>
   );
 }
 

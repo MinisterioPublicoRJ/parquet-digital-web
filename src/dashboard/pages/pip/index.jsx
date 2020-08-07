@@ -14,17 +14,17 @@ import {
   ProcessingTime,
 } from '../../sections';
 
-const propTypes = { userName: PropTypes.string.isRequired };
+const propTypes = { setIsSelectorOpen: PropTypes.func.isRequired };
 
-function Pip({ userName, user }) {
+function Pip({ setIsSelectorOpen }) {
   return (
     <div className="base-grid pip-grid">
-      <Today user={user} userName={userName} />
-      <YourDesk user={userName} />
+      <Today setIsSelectorOpen={setIsSelectorOpen} />
+      <YourDesk />
       <Alerts />
-      <PerformanceRadar.Pip user={userName} />
-      <MainInvestigated user={userName} />
-      <SuccessIndicators user={userName} />
+      <PerformanceRadar.Pip />
+      <MainInvestigated />
+      <SuccessIndicators />
       <ProcessingTime />
     </div>
   );

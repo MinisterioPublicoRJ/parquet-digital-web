@@ -16,7 +16,7 @@ import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskCo
 class YourDesk extends React.Component {
   constructor(props) {
     super(props);
-    this.type = props.user.tipoOrgao;
+    this.type = props.currentOffice.tipo;
     this.state = {
       activeTab: 'openCases',
     };
@@ -24,7 +24,6 @@ class YourDesk extends React.Component {
 
   componentDidMount() {
     switch (this.type) {
-      // console.log(this.type);
       case 1:
         this.getTutela();
         break;
@@ -65,11 +64,11 @@ class YourDesk extends React.Component {
 
   async getDocument(docName) {
     const dbName = BUTTON_DICT[docName];
-    const { user } = this.props;
+    const { buildRequestParams } = this.props;
     let doc;
     let docError = false;
     try {
-      const params = { ...user, docType: dbName };
+      const params = { ...buildRequestParams(), docType: dbName };
       doc = await Api.getIntegratedDeskDocs(params);
     } catch (e) {
       docError = true;
@@ -85,11 +84,11 @@ class YourDesk extends React.Component {
 
   async getTabDetails(tabName) {
     const dbName = BUTTON_DICT[tabName];
-    const { user } = this.props;
+    const { buildRequestParams } = this.props;
     let tabDetail;
     let tabDetailError = false;
     try {
-      const params = { ...user, docType: dbName };
+      const params = { ...buildRequestParams(), docType: dbName };
       tabDetail = await Api.getIntegratedDeskDetails(params);
     } catch (e) {
       tabDetailError = true;
@@ -108,11 +107,11 @@ class YourDesk extends React.Component {
    * @return {void} saves details to the state
    */
   async getOpenCasesDetails() {
-    const { user } = this.props;
+    const { buildRequestParams } = this.props;
     let openCasesDetails;
     let openCasesDetailsError = false;
     try {
-      openCasesDetails = await Api.getOpenCasesDetails(user);
+      openCasesDetails = await Api.getOpenCasesDetails(buildRequestParams());
     } catch (e) {
       openCasesDetailsError = true;
     } finally {
@@ -142,7 +141,7 @@ class YourDesk extends React.Component {
 
   render() {
     const { activeTab, buttonList, openCasesDetails, openCasesDetailsError } = this.state;
-    const { user } = this.props;
+    const { buildRequestParams } = this.props;
 
     if (!buttonList) {
       return <div>loading...</div>;
@@ -169,7 +168,7 @@ class YourDesk extends React.Component {
         <div className="desk-tabs">
           {activeTab === 'openCases' ? (
             <OpenCasesDetail
-              user={user}
+              buildRequestParams={buildRequestParams}
               chartData={openCasesDetails || []}
               isLoading={!openCasesDetails && !openCasesDetailsError}
             />
@@ -188,6 +187,6 @@ class YourDesk extends React.Component {
 }
 
 export default function() {
-  const { user } = useAuth();
-  return <YourDesk user={user} />;
+  const { currentOffice, buildRequestParams } = useAuth();
+  return <YourDesk currentOffice={currentOffice} buildRequestParams={buildRequestParams} />;
 }

@@ -41,7 +41,8 @@ import {
   pipRadarTransform,
   deskIntegratedTransform,
   deskTabTransform,
-  loginTransform,
+  scaUserTranform,
+  jwtUserTransform,
   snakeToCamelTransform,
 } from './transforms';
 
@@ -56,7 +57,7 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN_URL, formData);
 
-    return loginTransform(data);
+    return jwtUserTransform(data);
   }
 
   async function scaLogin(username, password) {
@@ -65,8 +66,7 @@ const Api = (() => {
     formData.set('password', password);
 
     const { data } = await axios.post(LOGIN, formData);
-
-    return loginTransform(data);
+    return scaUserTranform(data);
   }
 
   /**

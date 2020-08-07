@@ -9,8 +9,8 @@ import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPiec
 
 import { formatPercentage, capitalizeTitle } from '../../../utils';
 
-function Today() {
-  const { user } = useAuth();
+function Today({ setIsSelectorOpen }) {
+  const { user, buildRequestParams, currentOffice } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
   const [groupName, setgroupName] = useState([]);
@@ -27,7 +27,7 @@ function Today() {
     let res = [];
     let errorPercent = false;
     try {
-      res = await Api.getTodayOutData(user);
+      res = await Api.getTodayOutData(buildRequestParams());
       percentile = formatPercentage(res);
     } catch (e) {
       errorPercent = true;
@@ -45,7 +45,10 @@ function Today() {
     let errorPhrase = false;
     try {
       const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(user, today);
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(
+        buildRequestParams(),
+        today,
+      );
       collectionPhrase = analyzeCollection(primQ, terQ, acervoQtd);
       organName = NOMES_PROMOTORIAS[cod];
     } catch (e) {
@@ -62,7 +65,7 @@ function Today() {
     let entriesParagraph;
     let errorParagraph = false;
     try {
-      const { hout, lout, numEntries } = await Api.getTodayEntriesData(user);
+      const { hout, lout, numEntries } = await Api.getTodayEntriesData(buildRequestParams());
       entriesParagraph = analyzeEntries(hout, lout, numEntries);
     } catch (e) {
       errorParagraph = true;
@@ -86,7 +89,9 @@ function Today() {
   }
 
   // runs on "mount" only
-  useEffect(loadComponent, []);
+  useEffect(() => {
+    loadComponent();
+  }, []);
 
   /**
    * compares the number of entries to the business rules to decide which phrase to show. A day can be typical, atypical or empty
@@ -97,11 +102,7 @@ function Today() {
    */
   function analyzeEntries(hout, lout, amount) {
     if (!amount) {
-      return (
-        <p>
-          Percebi que ainda não temos vistas abertas para hoje!
-        </p>
-      );
+      return <p>Percebi que ainda não temos vistas abertas para hoje!</p>;
     }
     let dayTipe = 'típico';
     if (amount < lout || amount > hout) {
@@ -189,11 +190,9 @@ function Today() {
   );
   const collectionParagraph = !phrase ? null : (
     <p>
-      Você sabia que seu acervo é
-      <span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
+      Você sabia que seu acervo é<span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
       dos seus colegas das
-      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>
-      ?
+      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
     </p>
   );
 
@@ -201,7 +200,11 @@ function Today() {
     <article className="today-outer">
       <MainTitle value={greeting} glueToTop />
       <div className="today-content">
-        <SectionTitle value="resumo do dia" glueToTop />
+        <button type="button" onClick={setIsSelectorOpen}>
+          <h2>Resumo do dia </h2>
+          {currentOffice.nomeOrgao && ' na '}
+          {currentOffice.nomeOrgao && <span>{currentOffice.nomeOrgao}</span>}
+        </button>
         {percentParagraph}
         {collectionParagraph}
         {entriesGroup}

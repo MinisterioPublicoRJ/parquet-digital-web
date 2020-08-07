@@ -11,8 +11,8 @@ import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../..
 
 import processTypeDict from './processingTimeConstants';
 
-const getCategoryByType = user => {
-  switch (user.tipoOrgao) {
+const getCategoryByType = ({ tipo }) => {
+  switch (tipo) {
     case 1:
       return 'tutelaInqueritosCivis';
     case 2:
@@ -23,10 +23,10 @@ const getCategoryByType = user => {
 };
 
 const ProcessingTime = () => {
-  const { user } = useAuth();
+  const { currentOffice, buildRequestParams } = useAuth();
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
-  const mainCategory = getCategoryByType(user);
+  const mainCategory = getCategoryByType(currentOffice);
   const [loading, setLoading] = useState(true);
 
   const cleanChartData = raw => {
@@ -70,7 +70,7 @@ const ProcessingTime = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getProcessingTimeData(user);
+        const response = await Api.getProcessingTimeData(buildRequestParams());
         setProcessingTime(response);
         cleanChartData(response[mainCategory]);
       } catch (e) {
@@ -81,17 +81,12 @@ const ProcessingTime = () => {
     };
     loadData();
   }, []);
-
-  if (loading) {
-    return <Spinner size="large" />;
-  }
-
-  if (!chartData) {
+  if (!chartData || loading) {
     return (
       <article className="page-tramitacao">
         <div className="pt-texts">
           <SectionTitle value="tempo de tramitação" />
-          <p>Nenhum dado para exibir</p>
+          {loading ? <Spinner size="large" /> : <p>Nenhum dado para exibir</p>}
         </div>
       </article>
     );

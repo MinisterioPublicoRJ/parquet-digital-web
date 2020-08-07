@@ -8,7 +8,7 @@ import { useAuth } from '../../../app/authContext';
 import { SectionTitle, Spinner } from '../../../components';
 
 const SuccessIndicators = () => {
-  const { user } = useAuth();
+  const { buildRequestParams } = useAuth();
   const [successIndicators, setSuccessIndicators] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,7 @@ const SuccessIndicators = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getsuccessIndicators(user);
+        const response = await Api.getsuccessIndicators(buildRequestParams());
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);

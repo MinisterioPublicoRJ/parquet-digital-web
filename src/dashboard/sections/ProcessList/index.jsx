@@ -6,7 +6,7 @@ import { CustomTable, Spinner, SectionTitle } from '../../../components';
 import { useAuth } from '../../../app/authContext';
 
 const ProcessList = () => {
-  const { user } = useAuth();
+  const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ const ProcessList = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getProcessList(user);
+        const response = await Api.getProcessList(buildRequestParams());
         setProcessListData(response);
       } catch (e) {
         setLoading(true);

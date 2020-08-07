@@ -8,6 +8,9 @@
   z-index: 100;
   padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
 }
+.introduction-goodbye{
+  display: none;
+}
 .text-div {
   opacity: 1;
   padding: 20px;

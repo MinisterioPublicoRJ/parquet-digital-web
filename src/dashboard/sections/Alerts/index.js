@@ -30,6 +30,7 @@ function Alerts() {
     let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsCount(buildRequestParams());
+      console.log(alertsTotal);
     } catch (e) {
       errorAlertsTotal = true;
     }
@@ -41,7 +42,6 @@ function Alerts() {
     let hiresListError = false;
     try {
       hiresAlertList = await Api.getHiresAlerts(buildRequestParams());
-      console.log(hiresAlertList);
     } catch (e) {
       hiresListError = true;
     }

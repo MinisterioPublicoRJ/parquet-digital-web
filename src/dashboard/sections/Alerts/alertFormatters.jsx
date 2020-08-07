@@ -189,6 +189,21 @@ export function cleanAlert(alert) {
         background = '#F8BD6C';
         break;
 
+    // ALERTAS DE PRESCRIÇÃO
+    case 'PRCR':
+      icon = <IconContratacoes />;
+      message = (
+        <span>
+          Há
+          <strong>{` ${` ${alert.count} `} `}</strong>
+          ,
+          alertas de pescrição
+        </span>
+        );
+        background = '#71D0A4';
+        break;
+
+
     // ALERTAS DA PIP
     case 'GATE':
       icon = <CorujaGate />;

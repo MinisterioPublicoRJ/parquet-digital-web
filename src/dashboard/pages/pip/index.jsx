@@ -14,12 +14,15 @@ import {
   ProcessingTime,
 } from '../../sections';
 
-const propTypes = { setIsSelectorOpen: PropTypes.func.isRequired };
+const propTypes = {
+  setIsSelectorOpen: PropTypes.func.isRequired,
+  setIsModalOpen: PropTypes.func.isRequired,
+};
 
-function Pip({ setIsSelectorOpen }) {
+function Pip({ setIsSelectorOpen, setIsModalOpen }) {
   return (
     <div className="base-grid pip-grid">
-      <Today setIsSelectorOpen={setIsSelectorOpen} />
+      <Today setIsSelectorOpen={setIsSelectorOpen} setIsModalOpen={setIsModalOpen} />
       <YourDesk />
       <Alerts />
       <PerformanceRadar.Pip />

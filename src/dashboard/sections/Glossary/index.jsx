@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../../app/authContext';
+import React from 'react';
 
 import './styles.css';
-import { GLOSSARIO } from './glossaryMock';
+import GLOSSARIO from './glossaryData';
 import { PromotronGlossario } from '../../../assets';
 
 function Glossary({ onToggle }) {

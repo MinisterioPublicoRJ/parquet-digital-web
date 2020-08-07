@@ -16,6 +16,10 @@ const defaultProps = {
 };
 
 function AlertBadge({ icon, message, action, actionLink, iconBg }) {
+  if (!iconBg) {
+    return null;
+  }
+  
   return (
     <div className="alertBadge-outerContainer">
       <div className="alertBadge-leftContainer" style={{ backgroundColor: iconBg }}>

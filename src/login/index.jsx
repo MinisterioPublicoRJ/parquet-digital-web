@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { useAuth } from '../app/authContext';
 import boxLogin from '../assets/imgs/box_login.png';
@@ -8,11 +8,19 @@ const Login = () => {
   const { scaLogin, scaUserError } = useAuth();
   const [username, setUsername] = useState('');
   const [secret, setSecret] = useState('');
+  const [isLoading, setLoadingState] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoadingState(true);
     scaLogin(username, secret);
   }
+
+  useEffect(() => {
+    if(scaUserError) {
+      setLoadingState(false);
+    }
+  },[scaUserError])
 
   return (
     <div className="wrapper">
@@ -42,8 +50,8 @@ const Login = () => {
             onChange={({ target }) => setSecret(target.value)}
             required
           />
-          <button className="btn-login" type="submit">
-            ENTRAR
+          <button className="btn-login" disabled={isLoading} type="submit" >
+            {isLoading? "CARREGANDO" : "ENTRAR"}
           </button>
           <div className="greetings">
             {scaUserError && <strong>Verifique se a senha ou usuário estão corretos!</strong>}

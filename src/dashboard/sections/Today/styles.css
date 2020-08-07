@@ -20,6 +20,30 @@
   margin: 0;
 }
 
+.today-content > button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: calc(var(--sectionTitleFontSize) * 0.8);
+  font-family: var(--defaultFont);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: left;
+}
+
+.today-content > button > h2 {
+  display: inline;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+}
+
+.today-content > button > span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .today-robotPic {
   align-items: flex-end;
   display: flex;

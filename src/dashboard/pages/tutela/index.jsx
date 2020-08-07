@@ -13,12 +13,15 @@ import {
   YourDesk,
 } from '../../sections';
 
-const propTypes = { setIsSelectorOpen: PropTypes.func.isRequired };
+const propTypes = {
+  setIsSelectorOpen: PropTypes.func.isRequired,
+  setIsModalOpen: PropTypes.func.isRequired,
+};
 
-function Tutela({ setIsSelectorOpen }) {
+function Tutela({ setIsSelectorOpen, setIsModalOpen }) {
   return (
     <div className="base-grid tutela-grid">
-      <Today setIsSelectorOpen={setIsSelectorOpen} />
+      <Today setIsSelectorOpen={setIsSelectorOpen} setIsModalOpen={setIsModalOpen} />
       <YourDesk />
       <PerformanceRadar.Tutela />
       <Alerts />

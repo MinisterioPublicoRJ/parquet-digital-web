@@ -56,6 +56,13 @@
   z-index: 0;
 }
 
+.today-glossaryBtn {
+  cursor: help;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .today-btn {
   /* width: 234px;
   height: 40px;

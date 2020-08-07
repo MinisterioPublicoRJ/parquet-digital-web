@@ -15,9 +15,9 @@ function Dashboard() {
     const { tipo } = currentOffice;
     switch (tipo) {
       case 1:
-        return <Tutela setIsSelectorOpen={setIsSelectorOpen} />;
+        return <Tutela setIsSelectorOpen={setIsSelectorOpen} setIsModalOpen={setIsModalOpen} />;
       case 2:
-        return <Pip setIsSelectorOpen={setIsSelectorOpen} />;
+        return <Pip setIsSelectorOpen={setIsSelectorOpen} setIsModalOpen={setIsModalOpen} />;
       default:
         return <BlankPage />;
     }

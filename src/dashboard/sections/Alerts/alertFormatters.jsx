@@ -197,7 +197,7 @@ export function cleanAlert(alert) {
           Há
           <strong>{` ${` ${alert.count} `} `}</strong>
           ,
-          alertas de pescrição
+          alertas de pescrição que merecem sua atenção.
         </span>
         );
         background = '#71D0A4';

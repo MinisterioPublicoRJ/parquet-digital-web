@@ -32,6 +32,20 @@ function Introduction({ isOpen, onToggle, type }) {
   ];
   const [currentPage, setCurrentPage] = useState(0);
 
+  function handleNav(movement) {
+    if (movement === 'forward') {
+      if (pages.length >= currentPage + 1) {
+        setCurrentPage(prevValue => prevValue + 1);
+      } else {
+        onToggle();
+      }
+    } else if (movement === 'backward') {
+      if (currentPage - 1 >= 0) {
+        setCurrentPage(prevValue => prevValue - 1);
+      }
+    }
+  }
+
   if (isOpen) {
     return (
       <div className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
@@ -42,15 +56,17 @@ function Introduction({ isOpen, onToggle, type }) {
               <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
                 Sair
               </button>
+              {currentPage ? (
+                <button
+                  onClick={() => handleNav('backward')}
+                  type="button"
+                  className="btn-introduction-preavious"
+                >
+                  Anterior
+                </button>
+              ) : null}
               <button
-                onClick={() => setCurrentPage(currentPage - 1)}
-                type="button"
-                className="btn-introduction-preavious"
-              >
-                Anterior
-              </button>
-              <button
-                onClick={() => setCurrentPage(currentPage + 1)}
+                onClick={() => handleNav('forward')}
                 className="btn-introduction-next"
                 type="button"
               >

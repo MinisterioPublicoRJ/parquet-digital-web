@@ -7,10 +7,15 @@ function IntroductionAlerts() {
     <div className="introduction-wrapper">
       <h3>Alertas</h3>
       <p>
-        Espaço do painel que você encontra todo o movimento dos processos da sua Promotoria.
-        Separados em Vistas Abertas, PIC, Inquéritos, AISP e sinalizamos também a quantidade de
-        finalizados nos últimos 30 dias. Logo abaixo é possível ainda filtrar as vistas pela vida do
-        processo na sua mesa. Por último a lista dos processos propriamente dita.
+        Na área da Central de Alertas eu tento te ajudar a gerenciar seu acervo, indicando quais
+        procedimentos podem exigir uma atenção mais imediata, seja porque tem algum problema de
+        acordo com os avisos no banco de dados, ou porque se referem a algum fato externo que me
+        chamou a atenção.
+      </p>
+      <p>
+        Importante: aqui, alguns alertas são interativos e vão te dar opções diferentes de curso de
+        ação. Em alguns casos, eu até minuto a peça de resolução do problema para adiantar o
+        trabalho da Promotoria, basta você pedir.
       </p>
     </div>
   );

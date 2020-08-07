@@ -27,13 +27,13 @@ function handleInnerClick(e) {
 function Introduction({ isOpen, onToggle, type }) {
   const pages = [
     { focus: 'today', component: <IntroductionResume /> },
-    { focus: 'processes', component: <IntroductionProcessList /> },
-    { focus: 'processingTime', component: <IntroductionProcessingTime /> },
-    { focus: 'alerts', component: <IntroductionAlerts /> },
     { focus: 'desk', component: <IntroductionYourDesk /> },
     { focus: 'radar', component: <IntroductionPerfomanceRadar /> },
-    { focus: 'indicators', component: <IntroductionSuccessIndicators /> },
+    { focus: 'alerts', component: <IntroductionAlerts /> },
     { focus: 'mainInvestigated', component: <IntroductionMainInvestigated /> },
+    { focus: 'processes', component: <IntroductionProcessList /> },
+    { focus: 'indicators', component: <IntroductionSuccessIndicators /> },
+    { focus: 'processingTime', component: <IntroductionProcessingTime /> },
   ];
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -43,23 +43,25 @@ function Introduction({ isOpen, onToggle, type }) {
         <div style={{ gridArea: pages[currentPage].focus }} className="transparent-div" />
         <div className="text-div">
           {pages[currentPage].component}
-          <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
-            Sair
-          </button>
-          <button
-            onClick={() => setCurrentPage(currentPage - 1)}
-            type="button"
-            className="btn-introduction-preavious"
-          >
-            Anterior
-          </button>
-          <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            className="btn-introduction-next"
-            type="button"
-          >
-            Próximo
-          </button>
+          <div className="btns-introduction">
+            <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
+              Sair
+            </button>
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              type="button"
+              className="btn-introduction-preavious"
+            >
+              Anterior
+            </button>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              className="btn-introduction-next"
+              type="button"
+            >
+              Próximo
+            </button>
+          </div>
         </div>
       </div>
     );

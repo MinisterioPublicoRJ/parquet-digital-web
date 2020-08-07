@@ -11,12 +11,12 @@
 .text-div {
   opacity: 1;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: var(--white);
   z-index: 101;
   left: 0;
   border-radius: 10px;
-  width: 100%;
-  margin-top: 400px;
+  width: 140%;
+  margin-top: 600px;
   color: var(--dark);
   letter-spacing: 0px;  
 }	
@@ -26,10 +26,10 @@
  content: '';
  position: relative;
  top: 69px;
- right: 60%;
+ left: 42%;
  border-width: 35px;
  border-style: solid;
- border-color: #ffffff transparent transparent transparent;
+ border-color: var(--white) transparent transparent transparent;
 }
 .introduction-wrapper h3 {
   font-size: 16px;
@@ -53,7 +53,7 @@
   justify-content: flex-end;
   margin: 17px;
   color: var(--darkWelcome);
-  border-bottom: solid 5px #bddff0;
+  border-top: solid 5px #bddff0;
 
 }
 .btn-leave {
@@ -64,6 +64,7 @@
   width: 69px;
   height: 24px;
   margin: 10px;
+  margin-right: 100px;
 }
 .btn-introduction-next {
   background: #d6d6d6 0% 0% no-repeat padding-box;

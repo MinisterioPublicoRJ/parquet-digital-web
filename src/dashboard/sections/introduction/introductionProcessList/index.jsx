@@ -7,10 +7,10 @@ function IntroductionProcessList() {
     <div className="introduction-wrapper">
       <h3>Lista de Processos</h3>
       <p>
-        Espaço do painel que você encontra todo o movimento dos processos da sua Promotoria.
-        Separados em Vistas Abertas, PIC, Inquéritos, AISP e sinalizamos também a quantidade de
-        finalizados nos últimos 30 dias. Logo abaixo é possível ainda filtrar as vistas pela vida do
-        processo na sua mesa. Por último a lista dos processos propriamente dita.
+        Nesta área o objetivo é te ajudar a lembrar o que aconteceu com os processos que estão no
+        Judiciário, sem vista aberta recentemente. Além de te dar o número MPRJ do procedimento e o
+        número externo, do CNJ, eu listo o último andamento dentro do MPRJ e os personagens do caso
+        para te ajudar a lembrar do que se trata e poder pedir vista, se for o caso.
       </p>
     </div>
   );

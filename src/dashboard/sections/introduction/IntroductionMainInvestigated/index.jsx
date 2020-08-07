@@ -7,13 +7,13 @@ function IntroductionMainInvestigated() {
     <div className="introduction-wrapper">
       <h3>Principais investigados</h3>
       <p>
-        Espaço do painel que você encontra todo o movimento dos processos da sua Promotoria.
-        Separados em Vistas Abertas, PIC, Inquéritos, AISP e sinalizamos também a quantidade de
-        finalizados nos últimos 30 dias.
-      </p>
-      <p>
-        Logo abaixo é possível ainda filtrar as vistas pela vida do processo na sua mesa.Por último
-        a lista dos processos propriamente dita.
+        A lista de principais investigados te traz quais, dentre os seus investigados, têm maior
+        histórico de procedimentos no MPRJ. Isso pode lhe ajudar a identificar se algum fato similar
+        já foi investigado e por quem, de modo a facilitar a descoberta de informações relevantes
+        para a resolução do caso. Se você quiser dar maior atenção a um investigado, você pode
+        escolher e pinçar, deixando-o sempre no topo da lista. Para desativar, basta clicar
+        novamente no alfinete. Já se o que você quer é não ver mais um nome, basta apertar na
+        lixeira e deletar, assim ele some da lista.
       </p>
     </div>
   );

@@ -7,13 +7,15 @@ function IntroductionProcessingTime() {
     <div className="introduction-wrapper">
       <h3>Tempo de tramitação</h3>
       <p>
-        Espaço do painel que você encontra todo o movimento dos processos da sua Promotoria.
-        Separados em Vistas Abertas, PIC, Inquéritos, AISP e sinalizamos também a quantidade de
-        finalizados nos últimos 30 dias.
-      </p>
-      <p>
-        Logo abaixo é possível ainda filtrar as vistas pela vida do processo na sua mesa.Por último
-        a lista dos processos propriamente dita.
+        O tempo de tramitação é um velocímetro colorido mostrando a velocidade de finalização dos
+        procedimentos que eu fiz para você, tudo de acordo com o banco de dados institucional que me
+        alimenta a cada segundo. Eu tratei o procedimento mais demorado de todas as promotorias de
+        atribuição similar como a menor velocidade existente, ou seja, o mesmo que 0 km/h. A partir
+        daí, a velocidade máxima é o menor tempo necessário para finalizar um procedimento no MPRJ.
+        Entre um e outro você encontrará a sua velocidade média, a velocidade média das promotorias
+        de atribuição similar e seus procedimentos mais rápido e mais lento. Algumas destas
+        informações estarão inseridas dentro do próprio velocímetro e outras nos ícones que o
+        acompanham.
       </p>
     </div>
   );

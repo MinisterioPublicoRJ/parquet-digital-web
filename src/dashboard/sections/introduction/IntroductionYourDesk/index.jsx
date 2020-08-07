@@ -7,10 +7,16 @@ function IntroductionYourDesk() {
     <div className="introduction-wrapper">
       <h3>Sua mesa</h3>
       <p>
-        Espaço do painel que você encontra todo o movimento dos processos da sua Promotoria.
-        Separados em Vistas Abertas, PIC, Inquéritos, AISP e sinalizamos também a quantidade de
-        finalizados nos últimos 30 dias. Logo abaixo é possível ainda filtrar as vistas pela vida do
-        processo na sua mesa. Por último a lista dos processos propriamente dita.
+        Aqui você encontra o movimento dos processos da sua Promotoria. Os quadrados brancos são
+        botões clicáveis, onde você pode verificar informações diferentes, como detalhamentos de
+        investigações e processos judiciais, além de comparativos com outras promotorias que
+        trabalham acervos similares. O botão verde, não clicável, traz a quantidade de documentos
+        finalizados nos últimos 30 dias.
+      </p>
+      <p>
+        Logo abaixo, é possível ainda filtrar as vistas pelo tempo de abertura da vista do processo
+        na sua mesa e, por último, eu te trago a lista dos procedimentos com vista aberta e
+        informações complementares.
       </p>
     </div>
   );

@@ -37,7 +37,43 @@
 }
 
 .text-div--today {
-  top: 120%;
+  top: 110%;
+}
+
+.text-div--desk {
+  left: 105%;
+}
+
+.text-div--radar {
+  top: 105%;
+}
+
+.text-div--alerts {
+  right: 105%;
+}
+
+.text-div--mainInvestigated {
+  bottom: 120%;
+}
+
+.text-div--processes {
+  bottom: 0;
+  right: 50px;
+}
+
+.text-div--indicators {
+  bottom: 0;
+  right: 105%;
+}
+
+.text-div--processingTime {
+  bottom: 125%;
+  right: 0;
+}
+
+.text-div--end {
+  bottom: 0;
+  right: 0;
 }
 
 .introduction-wrapper h3 {

@@ -181,8 +181,8 @@ export function cleanAlert(alert) {
           Os valores do contrato
           <strong>{` ${` ${alert.contrato} `} `}</strong>
           ,
-          itens
-          <strong>{` ${` ${alert.item.substring(0,30)}... `} `}</strong>
+          itens:
+          <strong>{` ${` ${alert.item.substring(0,40).toLowerCase()}... `} `}</strong>
           merece sua atenção.
         </span>
         );
@@ -194,12 +194,12 @@ export function cleanAlert(alert) {
       icon = <ClockIcon />;
       message = (
         <span>
-          Há <strong>{`${alert.count} ${single ? 'alerta' : 'alertas'}`}</strong>
+          O procedimento <strong>{`${alert.docNum}`}</strong>
           ,
-          com 
-          <strong> crimes </strong>
-          possívelmente 
-          <strong> prescritos </strong>
+          tem um 
+          <strong> crime </strong>
+          possivelmente 
+          <strong> prescrito </strong>
           .
         </span>
         );

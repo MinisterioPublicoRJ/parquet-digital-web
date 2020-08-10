@@ -28,13 +28,13 @@ function Introduction({ isOpen, onToggle, type }) {
     { focus: 'processes', component: <IntroductionProcessList /> },
     { focus: 'indicators', component: <IntroductionSuccessIndicators /> },
     { focus: 'processingTime', component: <IntroductionProcessingTime /> },
-    { focus: '', component: <ScreeGoodByes /> },
+    { focus: 'end', component: <ScreeGoodByes /> },
   ];
   const [currentPage, setCurrentPage] = useState(0);
 
   function handleNav(movement) {
     if (movement === 'forward') {
-      if (pages.length >= currentPage + 1) {
+      if (pages.length > currentPage + 1) {
         setCurrentPage(prevValue => prevValue + 1);
       } else {
         onToggle();

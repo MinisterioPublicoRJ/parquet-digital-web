@@ -191,16 +191,19 @@ export function cleanAlert(alert) {
 
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
-      icon = <IconContratacoes />;
+      icon = <ClockIcon />;
       message = (
         <span>
-          Há
-          <strong>{` ${` ${alert.count} `} `}</strong>
+          Há <strong>{`${alert.count} ${single ? 'alerta' : 'alertas'}`}</strong>
           ,
-          alertas de pescrição que merecem sua atenção.
+          com 
+          <strong> crimes </strong>
+          possívelmente 
+          <strong> prescritos </strong>
+          .
         </span>
         );
-        background = '#71D0A4';
+        background = '#F86C72';
         break;
 
 
@@ -248,7 +251,9 @@ export function cleanAlertList(list, countList) {
     if (isGroupable) {
       cleanList.push(cleanAlert({ alertCode: type, count: countList[type].count }));
     } else {
-      const allAlertsOfType = list.filter(alert => alert.alertCode === type).map(alert => cleanAlert(alert));
+      const allAlertsOfType = list
+        .filter(alert => alert.alertCode === type)
+        .map(alert => cleanAlert(alert));
       cleanList.push(...allAlertsOfType);
     }
   });

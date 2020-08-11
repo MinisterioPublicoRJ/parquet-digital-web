@@ -1,3 +1,8 @@
+:root {
+  /* ICONS */
+  --introductionArrowSize: 16px;
+}
+
 .intro-outer {
   align-items: center;
   justify-content: center;
@@ -31,12 +36,10 @@
   visibility: visible;
   opacity: 1;
   content: '';
-  position: absolute;
-  top: 100%;
-  left: calc(50% - 35px);
-  border-width: 35px;
+  border-width: var(--introductionArrowSize);
   border-style: solid;
   border-color: var(--white) transparent transparent transparent;
+  position: absolute;
 }
 
 .introduction-wrapper {
@@ -45,38 +48,85 @@
 }
 
 .text-div--today {
-  top: 110%;
+  top: calc(100% + 1.6 * var(--introductionArrowSize));
+}
+
+.text-div--today::after {
+  border-color: transparent transparent var(--white) transparent;
+  top: calc(0% - 2 * var(--introductionArrowSize));
+  left: calc(1.6 * var(--introductionArrowSize));
 }
 
 .text-div--desk {
-  left: 105%;
+  left: calc(100% + 1.6 * var(--introductionArrowSize));
+}
+
+.text-div--desk::after {
+  border-color: transparent var(--white) transparent transparent;
+  left: calc(0% - 2 * var(--introductionArrowSize));
+  top: calc(1.6 * var(--introductionArrowSize));
 }
 
 .text-div--radar {
-  top: 105%;
+  top: calc(100% + 1.6 * var(--introductionArrowSize));
+}
+
+.text-div--radar::after {
+  border-color: transparent transparent var(--white) transparent;
+  top: calc(0% - 2 * var(--introductionArrowSize));
+  left: calc(1.6 * var(--introductionArrowSize));
 }
 
 .text-div--alerts {
-  right: 105%;
+  right: calc(100% + 1.6 * var(--introductionArrowSize));
+}
+
+.text-div--alerts::after {
+  border-color: transparent transparent transparent var(--white);
+  right: calc(0% - 2 * var(--introductionArrowSize));
+  top: calc(1.6 * var(--introductionArrowSize));
 }
 
 .text-div--mainInvestigated {
-  bottom: 120%;
+  bottom: calc(100% + 1.6 * var(--introductionArrowSize));
+}
+
+.text-div--mainInvestigated::after {
+  border-color: var(--white) transparent transparent transparent;
+  bottom: calc(0% - 2 * var(--introductionArrowSize));
+  left: calc(1.6 * var(--introductionArrowSize));
 }
 
 .text-div--processes {
-  bottom: 50px;
+  bottom: calc(100% + 1.6 * var(--introductionArrowSize));
   right: 50px;
 }
 
+.text-div--processes::after {
+  border-color: var(--white) transparent transparent transparent;
+  bottom: calc(0% - 2 * var(--introductionArrowSize));
+  left: calc(1.6 * var(--introductionArrowSize));
+}
+
 .text-div--indicators {
-  bottom: 0;
-  right: 105%;
+  right: calc(100% + 1.6 * var(--introductionArrowSize));
+}
+
+.text-div--indicators::after {
+  border-color: transparent transparent transparent var(--white);
+  right: calc(0% - 2 * var(--introductionArrowSize));
+  top: calc(1.6 * var(--introductionArrowSize));
 }
 
 .text-div--processingTime {
-  bottom: 125%;
+  bottom: calc(100% + 1.6 * var(--introductionArrowSize));
   right: 0;
+}
+
+.text-div--processingTime::after {
+  border-color: var(--white) transparent transparent transparent;
+  bottom: calc(0% - 2 * var(--introductionArrowSize));
+  left: calc(1.6 * var(--introductionArrowSize));
 }
 
 .text-div--end {

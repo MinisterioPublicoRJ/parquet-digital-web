@@ -35,3 +35,29 @@
   color: orange;
   text-align: left;
 }
+
+.alertBadge-outerContainer:hover .alertBadge-linksContainer {
+  /* visibility: visible;*/
+  animation: 3s ease-in 1s 1 reverse both running slidein;
+  display: flex;
+}
+
+.alertBadge-linksContainer {
+  /* visibility: hidden;*/
+  cursor: pointer;
+}
+
+.alertBadge-linksContainer {
+  align-items: center;
+  background-color: gray;
+  border-radius: 0px 7px 7px 0px;
+  display: flex;
+  justify-content: center;
+  width: 70px;
+  flex-direction: column;
+}
+
+.alertBadge-linksContainer span {
+  font-size: var(--smallFont);
+  color: var(--white);
+}

@@ -15,7 +15,7 @@ function Alerts() {
   const loading = !alerts && !alertsError;
 
   async function loadAlerts() {
-    let alertList;
+    let alertList = [];
     let listError = false;
     try {
       alertList = await Api.getAlerts(buildRequestParams());
@@ -26,7 +26,7 @@ function Alerts() {
   }
 
   async function loadAlertCount() {
-    let alertsTotal;
+    let alertsTotal = [];
     let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsCount(buildRequestParams());
@@ -36,15 +36,37 @@ function Alerts() {
     return [alertsTotal, errorAlertsTotal];
   }
 
+  async function loadHiresAlerts() {
+    let hiresAlertList = [];
+    let hiresListError = false;
+    try {
+      hiresAlertList = await Api.getHiresAlerts(buildRequestParams());
+    } catch (e) {
+      hiresListError = true;
+    }
+    return [hiresAlertList, hiresListError];
+  }
+
   async function loadComponent() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
+    const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
 
-    const apiError = errorAlerts || errorAlertsCount;
-    const cleanList = !apiError ? cleanAlertList(alertList, alertsCount) : [];
+    const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
+    const fullList = alertList.concat(hiresAlertList);
+    const cleanList = !apiError ? cleanAlertList(fullList, alertsCount) : [];
 
     setAlerts(cleanList);
     setAlertsError(apiError);
+  }
+
+  /**
+   * uses alert key number to remove an alertbadge from the list, updates the state
+   * @param  {number} alert key
+   * @return {void}                 updates the state
+   */
+  function removeAlert(key) {
+    setAlerts(oldAlerts => oldAlerts.filter(item => item.key !== key));
   }
 
   // runs on "mount" only

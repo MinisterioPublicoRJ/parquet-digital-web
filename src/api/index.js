@@ -13,6 +13,7 @@ import {
   RADAR_DATA,
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
+  HIRES_ALERTS,
   TOTAL_ALERTS_LIST,
   PROCESSES_LIST,
   SUCCESS_INDICATORS,
@@ -35,6 +36,7 @@ import {
   radarTransform,
   alertsTransform,
   totalAlertsTransform,
+  hiresAlertsTransform,
   processingTimeTransform,
   successIndicatorsTransform,
   processListTransform,
@@ -159,6 +161,11 @@ const Api = (() => {
 
     return totalAlertsTransform(data);
   }
+  async function getHiresAlerts({ orgao, token }) {
+    const { data } = await axios.get(HIRES_ALERTS({ orgao }), buildRequestConfig(token));
+
+    return hiresAlertsTransform(data);
+  }
 
   async function getsuccessIndicators({ orgao, token }) {
     const { data } = await axios.get(SUCCESS_INDICATORS({ orgao }), buildRequestConfig(token));
@@ -234,6 +241,7 @@ const Api = (() => {
     getRadarData,
     getAlerts,
     getAlertsCount,
+    getHiresAlerts,
     getProcessingTimeData,
     getProcessList,
     getsuccessIndicators,

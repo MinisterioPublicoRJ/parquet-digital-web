@@ -5,9 +5,17 @@ import './styles.css';
 
 const propTypes = {
   value: PropTypes.string.isRequired,
+  glueToTop: PropTypes.bool,
 };
 
-const MainTitle = ({ value }) => <h1 className="mainTitle-text">{value}</h1>;
+const defaultProps = {
+  glueToTop: false,
+};
+
+const MainTitle = ({ value, glueToTop }) => (
+  <h1 className={glueToTop ? 'mainTitle--glued' : ''}>{value}</h1>
+);
 
 MainTitle.propTypes = propTypes;
+MainTitle.defaultProps = defaultProps;
 export default MainTitle;

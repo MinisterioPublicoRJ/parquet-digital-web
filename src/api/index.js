@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   LOGIN_URL,
+  LOGIN,
   TODAY_OUT,
   TODAY_OUTLIERS,
   TODAY_ENTRIES,
@@ -40,9 +41,12 @@ import {
   pipRadarTransform,
   deskIntegratedTransform,
   deskTabTransform,
+  scaUserTranform,
+  jwtUserTransform,
+  snakeToCamelTransform,
 } from './transforms';
 
-import { setUser } from '../user';
+// import { setUser } from '../user';
 
 const buildRequestConfig = jwt => ({ params: { jwt } });
 
@@ -53,7 +57,16 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN_URL, formData);
 
-    setUser(data);
+    return jwtUserTransform(data);
+  }
+
+  async function scaLogin(username, password) {
+    const formData = new FormData();
+    formData.set('username', username);
+    formData.set('password', password);
+
+    const { data } = await axios.post(LOGIN, formData);
+    return scaUserTranform(data);
   }
 
   /**
@@ -61,6 +74,7 @@ const Api = (() => {
    * @param  {string} orgao promotoria's orgao
    * @return {number}    [description]
    */
+
   async function getTodayOutData({ orgao, token }) {
     const { data } = await axios.get(TODAY_OUT({ orgao }), buildRequestConfig(token));
 
@@ -190,14 +204,15 @@ const Api = (() => {
       PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
       buildRequestConfig(token),
     );
-    return data;
+    const cleanData = data.map(item => snakeToCamelTransform(item));
+    return cleanData;
   }
 
-  async function actionMainInvestigated({ orgao, cpf, token, action, representante_dk }) {
+  async function actionMainInvestigated({ orgao, cpf, token, action, representanteDk }) {
     const formData = new FormData();
     formData.set('jwt', token);
     formData.set('action', action);
-    formData.set('representante_dk', representante_dk);
+    formData.set('representante_dk', representanteDk);
     const { data } = await axios.post(
       PIP_MAIN_INVESTIGATIONS_URL_ACTION({ orgao, cpf, token }),
       formData,
@@ -208,6 +223,7 @@ const Api = (() => {
 
   return {
     login,
+    scaLogin,
     getTodayOutData,
     getTodayOutliersData,
     getTodayEntriesData,

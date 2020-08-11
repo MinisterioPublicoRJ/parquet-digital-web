@@ -1,9 +1,12 @@
 :root {
+  /* BODY */
   --heightScale: 100vh/1080;
   --widthScale: 100vw/1920;
-  --triangleColor: var(--primary);
+  --bodyVerticalPadding: 2.5vh;
+  --bodyHorizontalPadding: 5vh;
 
   /* COLORS */
+  --triangleColor: var(--primary);
   --primary: #28a7e0;
   --secondary: #b5b5b5;
   --dark: #3b3b3b;
@@ -17,6 +20,8 @@
   --grayLinks: #cecece;
   --grayTexts: #b3b3b3;
   --grayTooltip: #555;
+  --darkWelcome: #4A4A4A;
+
 
   --pt-turquoise: #56e8e1;
   --pt-pink: #ff0086;
@@ -27,51 +32,62 @@
   --shadowColor: rgba(0, 0, 0, 0.3);
 
   /* FONTS */
-  --defaultFont: Montserrat;
-  --defaultTextSize: 2vh;
+  --defaultFont: Roboto;
+  --titleFont: Roboto;
+  --defaultFontSize: clamp(12px, 1.5vh, 18px);
+  --smallFont: clamp(8px, 1.2vh, 12px);
 
-  --defaultTitleProcessing: Rockwell;
-  --subtitleProcessing: MyriadPro-Regular;
-  --titleParagraphToday: 1.8vh;
-  --titleWeight: bold;
-  --titleSize: calc(var(--defaultTextSize) * 2);
+  --titleFontSize: calc(var(--defaultFontSize) * 2);
+  --titleFont: Roboto;
+  --defaultWelcomeBold: 'Avenir Black',sans-serif;
+  --defaultWelcome: 'Avenir Black', sans-serif;
+  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.1);
 
-  --spotlightFont: Nunito Sans;
-  --spotlightWeight: 700;
-  --spotlightSize: 3vw;
+  --smallFont: clamp(10px, 1.2vh, 14px);
+  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);
+  --featuredNumberFontSize: calc(var(--defaultFontSize) * 1.3);
+  --spotlightSize: calc(var(--defaultFontSize) * 3);
 
-  --spotlightSubtitleSize: 0;
+  /* --defaultTitleProcessing: Rockwell; */
+  /* --subtitleProcessing: MyriadPro-Regular; */
+  /* --titleParagraphToday: 1.8vh; */
 
-  --spotilightActiveSize: calc(var(--spotlightSize) * 1.5);
+  /* --spotlightFont: Nunito Sans; */
+  /* --spotlightWeight: 700; */
 
-  --subtitleFont: Roboto Slab;
-  --subtitleWeight: regular;
-  --subtitleSize: calc(var(--defaultTextSize) * 1.1);
+  /* --spotlightSubtitleSize: 0; */
 
-  --linkSize: calc(var(--defaultTextSize) * 1);
+  /* --spotilightActiveSize: calc(var(--spotlightSize) * 1.5); */
+
+  /* --subtitleFont: Roboto Slab; */
+  /* --subtitleWeight: regular; */
+
+  /* --linkSize: calc(var(--defaultFontSize) * 1); */
 
   /* SIZING */
-  --pagePadding: 2.5vh;
-  --pageMargin: 2.5vh;
+  /* --pagePadding: 2.5vh; */
+  /* --pageMargin: 2.5vh; */
 
-  --dashboardAreaMargin: 2vh;
+  /* --dashboardAreaMargin: 2vh; */
 
-  --elementPadding: 1.5vh;
-  --bodyPadding: 5vh;
+  /* --elementPadding: 1.5vh; */
 }
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
   :root {
+    /* BODY */
     --widthScale: 200vw/1920;
-    --spotlightSize: 6vw;
-    --bodyPadding: 3vh;
+    --bodyHorizontalPadding: 3vh;
+    --bodyVerticalPadding: 1.5vh;
+
+    /* --spotlightSize: 6vw; */
   }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
   :root {
-    --spotlightSize: 7vw;
+    /* --spotlightSize: 7vw; */
   }
 }

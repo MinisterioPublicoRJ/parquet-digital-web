@@ -1,0 +1,39 @@
+
+.desk-outer {
+  display: flex;
+  flex-direction: column;
+  grid-area: desk;
+}
+
+.desk-controlers {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.desk-tabs {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 20px 0 0 0;
+}
+.desk-header h2 {
+  margin: 0;
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .desk-header {
+    display: flex;
+    height: 25vh;
+    flex-direction: column;
+  }
+
+  .desk-tabs {
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+  }
+}

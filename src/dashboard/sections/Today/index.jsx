@@ -4,12 +4,13 @@ import { useAuth } from '../../../app/authContext';
 import './styles.css';
 import Api from '../../../api';
 import PromotronGif from '../../../assets/gifs/promotron.gif';
+import { GlossaryBook } from '../../../assets';
 import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
 import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPieces';
 
 import { formatPercentage, capitalizeTitle } from '../../../utils';
 
-function Today({ setIsSelectorOpen }) {
+function Today({ setIsSelectorOpen, setIsModalOpen }) {
   const { user, buildRequestParams, currentOffice } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
@@ -213,6 +214,9 @@ function Today({ setIsSelectorOpen }) {
         Ver mapa da atuação
       </button>
       <div className="today-robotPic">
+        <div className="today-glossaryBtn" onClick={() => setIsModalOpen(true)}>
+          <GlossaryBook />
+        </div>
         <img height="100%" src={PromotronGif} alt="robô-promoton" />
       </div>
     </article>

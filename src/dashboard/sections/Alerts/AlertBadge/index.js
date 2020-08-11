@@ -18,6 +18,11 @@ const defaultProps = {
 
 function AlertBadge({ key, icon, message, action, actionLink, iconBg }) {
   const [actionHover, setActionHover] = useState(false);
+
+  if (!iconBg) {
+    return null;
+  }
+  
   return (
     <div
       className="alertBadge-outerContainer"

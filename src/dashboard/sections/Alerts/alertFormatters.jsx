@@ -183,7 +183,7 @@ export function cleanAlert(alert) {
           ,
           itens:
           <strong>{` ${` ${alert.item.substring(0,40).toLowerCase()}... `} `}</strong>
-          merece sua atenção.
+          merecem sua atenção.
         </span>
         );
         background = '#F8BD6C';

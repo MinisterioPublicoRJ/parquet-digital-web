@@ -21,6 +21,9 @@
   padding: 20px;
   position: absolute;
   z-index: 101;
+  max-height: 35vh;
+  min-height: 130px;
+  height: 100%;
 }
 
 /* mover a seta de acordo com a posição */
@@ -28,12 +31,17 @@
   visibility: visible;
   opacity: 1;
   content: '';
-  position: relative;
-  top: 69px;
-  left: 42%;
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 35px);
   border-width: 35px;
   border-style: solid;
   border-color: var(--white) transparent transparent transparent;
+}
+
+.introduction-wrapper {
+  height: 80%;
+  overflow: auto;
 }
 
 .text-div--today {
@@ -57,7 +65,7 @@
 }
 
 .text-div--processes {
-  bottom: 0;
+  bottom: 50px;
   right: 50px;
 }
 
@@ -99,9 +107,10 @@
 .btns-introduction {
   display: flex;
   justify-content: flex-end;
-  margin: 17px;
+  margin-top: 4px;
   color: var(--darkWelcome);
   border-top: solid 5px #bddff0;
+  min-height: 48px;
 }
 
 .btn-leave {

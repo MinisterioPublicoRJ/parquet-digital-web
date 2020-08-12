@@ -8,9 +8,10 @@ import OfficeSelector from './sections/Today/officeSelector';
 
 function Dashboard() {
   const { currentOffice } = useAuth();
+  const { firstLogin } = useAuth().user;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
-  const [isIntroOpen, setIsIntroOpen] = useState(true);
+  const [isIntroOpen, setIsIntroOpen] = useState(firstLogin ? true : false);
 
   if (!currentOffice) {
     return <Spinner size="large" />;

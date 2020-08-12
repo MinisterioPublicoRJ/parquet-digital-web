@@ -195,7 +195,6 @@ export function cleanAlert(alert) {
       message = (
         <span>
           O procedimento <strong>{`${alert.docNum}`}</strong>
-          ,
           tem um 
           <strong> crime </strong>
           possivelmente 

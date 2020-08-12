@@ -1,6 +1,7 @@
 import React from 'react';
+
 import './styles.css';
-import { GLOSSARIO } from './glossaryMock';
+import GLOSSARIO from './glossaryData';
 import { PromotronGlossario } from '../../../assets';
 
 function Glossary({ onToggle }) {

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { AlertsLinks } from '../alertsLinks';
 
 import './styles.css';
 
@@ -11,13 +12,23 @@ const propTypes = {
   iconBg: PropTypes.string.isRequired,
 };
 const defaultProps = {
-  action: false,
+  action: true,
   actionLink: undefined,
 };
 
-function AlertBadge({ icon, message, action, actionLink, iconBg }) {
+function AlertBadge({ key, icon, message, action, actionLink, iconBg }) {
+  const [actionHover, setActionHover] = useState(false);
+
+  if (!iconBg) {
+    return null;
+  }
+  
   return (
-    <div className="alertBadge-outerContainer">
+    <div
+      className="alertBadge-outerContainer"
+      onMouseEnter={() => setActionHover(false)}
+      onMouseLeave={() => setActionHover(false)}
+    >
       <div className="alertBadge-leftContainer" style={{ backgroundColor: iconBg }}>
         {icon}
       </div>
@@ -25,6 +36,7 @@ function AlertBadge({ icon, message, action, actionLink, iconBg }) {
         {message}
         {action && <a href={actionLink}>{action}</a>}
       </div>
+      {actionHover && <AlertsLinks actionLink={actionLink} />}
     </div>
   );
 }

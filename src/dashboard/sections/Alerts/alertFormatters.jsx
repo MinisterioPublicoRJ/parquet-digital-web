@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { ClockIcon, CorujaGate, Home, Ouvidoria, Va, Tjrj } from '../../../assets';
+import {
+  ClockIcon,
+  CorujaGate,
+  Home,
+  Ouvidoria,
+  Va,
+  Tjrj,
+  IconContratacoes,
+} from '../../../assets';
 import { NOT_GROUPABLE_ALERTS } from './alertsConstants';
 
 /**
@@ -11,7 +19,10 @@ import { NOT_GROUPABLE_ALERTS } from './alertsConstants';
 export function cleanAlert(alert) {
   const key = alert.count
     ? `${alert.alertCode}-${alert.count}`
-    : `${alert.alertCode}-${alert.docNum}`;
+    : `${alert.alertCode}-${alert.docNum}` &&
+      `${alert.alertCode}-${alert.contrato}` &&
+      `${alert.alertCode}-${alert.item}`;
+
   let icon = null;
   let message = null;
   let background = null;
@@ -162,6 +173,40 @@ export function cleanAlert(alert) {
       background = '#28A7E0';
       break;
 
+    // ALERTAS DE COMPRAS
+    case 'COMP':
+      icon = <IconContratacoes />;
+      message = (
+        <span>
+          Os valores do contrato
+          <strong>{` ${` ${alert.contrato} `} `}</strong>
+          ,
+          itens:
+          <strong>{` ${` ${alert.item.substring(0,40).toLowerCase()}... `} `}</strong>
+          merecem sua atenção.
+        </span>
+        );
+        background = '#F8BD6C';
+        break;
+
+    // ALERTAS DE PRESCRIÇÃO
+    case 'PRCR':
+      icon = <ClockIcon />;
+      message = (
+        <span>
+          O procedimento <strong>{`${alert.docNum}`}</strong>
+          ,
+          tem um 
+          <strong> crime </strong>
+          possivelmente 
+          <strong> prescrito </strong>
+          .
+        </span>
+        );
+        background = '#F86C72';
+        break;
+
+
     // ALERTAS DA PIP
     case 'GATE':
       icon = <CorujaGate />;
@@ -206,9 +251,10 @@ export function cleanAlertList(list, countList) {
     if (isGroupable) {
       cleanList.push(cleanAlert({ alertCode: type, count: countList[type].count }));
     } else {
-      cleanList.concat(
-        list.filter(alert => alert.alertCode === type).map(alert => cleanAlert(alert)),
-      );
+      const allAlertsOfType = list
+        .filter(alert => alert.alertCode === type)
+        .map(alert => cleanAlert(alert));
+      cleanList.push(...allAlertsOfType);
     }
   });
 

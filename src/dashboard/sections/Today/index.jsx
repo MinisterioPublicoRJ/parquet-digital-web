@@ -4,13 +4,14 @@ import { useAuth } from '../../../app/authContext';
 import './styles.css';
 import Api from '../../../api';
 import PromotronGif from '../../../assets/gifs/promotron.gif';
+import { GlossaryBook } from '../../../assets';
 import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
 import { SectionTitle, MainTitle, Spinner, Modal } from '../../../components/layoutPieces';
 
 import { formatPercentage, capitalizeTitle } from '../../../utils';
 
-function Today() {
-  const { user, buildRequestParams } = useAuth();
+function Today({ setIsSelectorOpen, setIsModalOpen }) {
+  const { user, buildRequestParams, currentOffice } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
   const [groupName, setgroupName] = useState([]);
@@ -45,7 +46,10 @@ function Today() {
     let errorPhrase = false;
     try {
       const today = new Date();
-      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(buildRequestParams(), today);
+      const { primQ, terQ, acervoQtd, cod } = await Api.getTodayOutliersData(
+        buildRequestParams(),
+        today,
+      );
       collectionPhrase = analyzeCollection(primQ, terQ, acervoQtd);
       organName = NOMES_PROMOTORIAS[cod];
     } catch (e) {
@@ -86,7 +90,9 @@ function Today() {
   }
 
   // runs on "mount" only
-  useEffect(loadComponent, []);
+  useEffect(() => {
+    loadComponent();
+  }, []);
 
   /**
    * compares the number of entries to the business rules to decide which phrase to show. A day can be typical, atypical or empty
@@ -185,11 +191,9 @@ function Today() {
   );
   const collectionParagraph = !phrase ? null : (
     <p>
-      Você sabia que seu acervo é
-      <span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
+      Você sabia que seu acervo é<span style={{ fontWeight: 'bold' }}>{` ${phrase} `}</span>
       dos seus colegas das
-      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>
-      ?
+      <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
     </p>
   );
 
@@ -197,7 +201,11 @@ function Today() {
     <article className="today-outer">
       <MainTitle value={greeting} glueToTop />
       <div className="today-content">
-        <SectionTitle value="resumo do dia" glueToTop />
+        <button type="button" onClick={setIsSelectorOpen}>
+          <h2>Resumo do dia </h2>
+          {currentOffice.nomeOrgao && ' na '}
+          {currentOffice.nomeOrgao && <span>{currentOffice.nomeOrgao}</span>}
+        </button>
         {percentParagraph}
         {collectionParagraph}
         {entriesGroup}
@@ -206,6 +214,9 @@ function Today() {
         Ver mapa da atuação
       </button>
       <div className="today-robotPic">
+        <div className="today-glossaryBtn" onClick={() => setIsModalOpen(true)}>
+          <GlossaryBook />
+        </div>
         <img height="100%" src={PromotronGif} alt="robô-promoton" />
       </div>
     </article>

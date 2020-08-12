@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 
 import { useAuth } from '../app/authContext';
 import { Pip, Tutela, BlankPage } from './pages';
-import { Glossary, OfficeSelector, Introduction } from './sections';
+import { Glossary, Introduction } from './sections';
 import { Modal, Spinner } from '../components';
+import OfficeSelector from './sections/Today/officeSelector';
+
 function Dashboard() {
   const { currentOffice } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [isIntroOpen, setIsIntroOpen] = useState(true);
 
   if (!currentOffice) {
@@ -30,7 +33,7 @@ function Dashboard() {
       <Introduction
         isOpen={isIntroOpen}
         onToggle={() => setIsIntroOpen(oldState => !oldState)}
-        type={tipoOrgao}
+        type={tipo}
       />
       <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
         <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />

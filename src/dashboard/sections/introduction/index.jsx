@@ -2,15 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import IntroductionResume from './introductionResume';
-import IntroductionPerfomanceRadar from './IntroductionPerfomanceRadar';
-import IntroductionAlerts from './IntroductionAlerts';
-import IntroductionYourDesk from './IntroductionYourDesk';
-import IntroductionProcessList from './introductionProcessList';
-import IntroductionProcessingTime from './IntroductionProcessingTime';
-import IntroductionSuccessIndicators from './introductionSuccessIndicators';
-import IntroductionMainInvestigated from './IntroductionMainInvestigated';
-import ScreenGoodBye from './screenGoodBye';
+
+import { PIP_GRID, TUTELA_GRID } from './introductionConstants';
 
 const propTypes = {
   isOpen: PropTypes.bool.isRequired,
@@ -19,18 +12,9 @@ const propTypes = {
 };
 
 function Introduction({ isOpen, onToggle, type }) {
-  const pages = [
-    { focus: 'today', component: <IntroductionResume /> },
-    { focus: 'desk', component: <IntroductionYourDesk /> },
-    { focus: 'radar', component: <IntroductionPerfomanceRadar /> },
-    { focus: 'alerts', component: <IntroductionAlerts /> },
-    { focus: 'mainInvestigated', component: <IntroductionMainInvestigated /> },
-    { focus: 'processes', component: <IntroductionProcessList /> },
-    { focus: 'indicators', component: <IntroductionSuccessIndicators /> },
-    { focus: 'processingTime', component: <IntroductionProcessingTime /> },
-    { focus: 'end', component: <ScreenGoodBye /> },
-  ];
+  const show = isOpen && (type === 1 || type === 2);
   const [currentPage, setCurrentPage] = useState(0);
+  const pages = type === 1 ? TUTELA_GRID : PIP_GRID;
 
   function handleNav(movement) {
     if (movement === 'forward') {
@@ -46,7 +30,7 @@ function Introduction({ isOpen, onToggle, type }) {
     }
   }
 
-  if (isOpen) {
+  if (show) {
     return (
       <div className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
         <div style={{ gridArea: pages[currentPage].focus }} className="transparent-div">
@@ -60,7 +44,7 @@ function Introduction({ isOpen, onToggle, type }) {
                 <button
                   onClick={() => handleNav('backward')}
                   type="button"
-                  className="btn-introduction-preavious"
+                  className="btn-introduction-previous"
                 >
                   Anterior
                 </button>

@@ -36,24 +36,35 @@
   text-align: left;
 }
 
+.alertBadge-outerContainer:hover:first-child {
+  padding-left: 10px;
+}
+
+.alertBadge-outerContainer:hover:first-child .alertBadge-linksContainer {
+  margin-left: -10px;
+}
+.alertBadge-outerContainer:hover .alertBadge-leftContainer {
+  display: none;
+}
+
+.alertBadge-outerContainer:hover .alertBadge-rightContainer {
+  display: none;
+}
+
 .alertBadge-outerContainer:hover .alertBadge-linksContainer {
-  /* visibility: visible;*/
   animation: 3s ease-in 1s 1 reverse both running slidein;
   display: flex;
 }
 
 .alertBadge-linksContainer {
-  /* visibility: hidden;*/
   cursor: pointer;
-}
-
-.alertBadge-linksContainer {
+  min-height: 56px;
+  width: 100%;
   align-items: center;
   background-color: gray;
-  border-radius: 0px 7px 7px 0px;
+  border-radius: 7px 7px 7px 7px;
   display: flex;
   justify-content: center;
-  width: 70px;
   flex-direction: column;
 }
 

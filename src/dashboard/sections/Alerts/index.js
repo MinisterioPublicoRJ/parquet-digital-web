@@ -81,7 +81,6 @@ function Alerts() {
       </article>
     );
   }
-
   return (
     <article className="alerts-wrapper">
       <div className="alerts-header">

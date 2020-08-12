@@ -27,8 +27,8 @@ export function cleanAlert(alert) {
   let message = null;
   let background = null;
   // not implemented yet
-  const action = null;
-  const actionLink = null;
+  const action = true;
+  const actionLink = alert.alertCode;
   const single = alert.count ? alert.count === 1 : true;
 
   // prettier-ignore
@@ -194,7 +194,9 @@ export function cleanAlert(alert) {
       icon = <ClockIcon />;
       message = (
         <span>
-          O procedimento <strong>{`${alert.docNum}`}</strong>
+          O procedimento 
+          {' '}
+          <strong>{`${alert.docNum}`}</strong>
           ,
           tem um 
           <strong> crime </strong>

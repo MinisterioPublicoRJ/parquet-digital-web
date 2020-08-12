@@ -1,27 +1,17 @@
 import React from 'react';
-import { Bin, Ouvidoria } from '../../../assets';
+import { Bin, Ouvidoria, IconContratacoes } from '../../../assets';
 
-const iconBg = 'rgb(248, 108, 114)';
+let iconBg;
 let icon;
 let url;
+let text;
+const links = [];
 
 function openInNewTab(url) {
   window.open(url, '_blank');
 }
 
-export function AlertsLinks({ actionLink }) {
-  switch (actionLink) {
-    case 'ouvidoria':
-      icon = <Ouvidoria />;
-      url = '#ouvidoria';
-      break;
-    case 'excluir':
-    default:
-      icon = <Bin fillColor="white" />;
-      url = '#excluir';
-      break;
-  }
-
+function createLink(icon, iconBg, url, text) {
   return (
     <div
       target="_blank"
@@ -33,9 +23,43 @@ export function AlertsLinks({ actionLink }) {
       style={{ backgroundColor: iconBg }}
     >
       {icon}
-      <span>DISPENSAR</span>
+      <span>{text}</span>
     </div>
   );
+}
+
+export function AlertsLinks({ actionLink }) {
+  const links = [];
+  if (actionLink == 'OUVI') {
+    icon = <Ouvidoria />;
+    iconBg = 'rgb(92, 111, 217)';
+    url = '#ouvidoria';
+    text = 'OUVIDORIA';
+    links.push(createLink(icon, iconBg, url, text));
+  }
+
+  if (actionLink == 'COMP') {
+    icon = <Ouvidoria />;
+    iconBg = '#5C6FD9';
+    url = '#ouvidoria';
+    text = 'OUVIDORIA';
+    links.push(createLink(icon, iconBg, url, text));
+
+    icon = <IconContratacoes />;
+    iconBg = '#F8BD6C';
+    url = '#ouvidoria';
+    text = 'PAINEL DE COMPRAS';
+    links.push(createLink(icon, iconBg, url, text));
+  }
+
+  // DEFAULT
+  icon = <Bin fillColor="white" width="30px" height="30px" />;
+  iconBg = '#F86C72';
+  url = '#excluir';
+  text = 'DISPENSAR';
+  links.push(createLink(icon, iconBg, url, text));
+
+  return links;
 }
 
 export default AlertsLinks;

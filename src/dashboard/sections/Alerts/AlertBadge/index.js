@@ -22,11 +22,11 @@ function AlertBadge({ key, icon, message, action, actionLink, iconBg }) {
   if (!iconBg) {
     return null;
   }
-  
+
   return (
     <div
       className="alertBadge-outerContainer"
-      onMouseEnter={() => setActionHover(false)}
+      onMouseEnter={() => setActionHover(true)}
       onMouseLeave={() => setActionHover(false)}
     >
       <div className="alertBadge-leftContainer" style={{ backgroundColor: iconBg }}>

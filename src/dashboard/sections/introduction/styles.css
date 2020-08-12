@@ -149,7 +149,7 @@
 .transparent-div {
   box-sizing: border-box;
   border-radius: 10px;
-  box-shadow: 0 0 100vh 100vh rgb(0 0 0 / 54%);
+  box-shadow: 0 0 0 100vw rgb(0 0 0 / 54%);
   height: 110%;
   margin-left: -20px;
   width: 108%;

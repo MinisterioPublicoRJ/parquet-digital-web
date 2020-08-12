@@ -22,7 +22,11 @@ const propTypes = {
 function Pip({ setIsSelectorOpen, setIsModalOpen }) {
   return (
     <div className="base-grid pip-grid">
-      <Today setIsSelectorOpen={setIsSelectorOpen} setIsModalOpen={setIsModalOpen} />
+      <Today
+        setIsSelectorOpen={setIsSelectorOpen}
+        setIsModalOpen={setIsModalOpen}
+        setIsIntroOpen={setIsIntroOpen}
+      />
       <YourDesk />
       <Alerts />
       <PerformanceRadar.Pip />

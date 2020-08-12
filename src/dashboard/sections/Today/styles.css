@@ -63,6 +63,13 @@
   top: 0;
 }
 
+.today-introBtn {
+  cursor: help;
+  position: absolute;
+  right: 0;
+  top: 36px;
+}
+
 .today-btn {
   /* width: 234px;
   height: 40px;

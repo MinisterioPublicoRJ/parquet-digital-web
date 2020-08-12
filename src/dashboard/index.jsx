@@ -21,9 +21,21 @@ function Dashboard() {
   function renderPage() {
     switch (tipo) {
       case 1:
-        return <Tutela setIsSelectorOpen={setIsSelectorOpen} setIsModalOpen={setIsModalOpen} />;
+        return (
+          <Tutela
+            setIsSelectorOpen={setIsSelectorOpen}
+            setIsModalOpen={setIsModalOpen}
+            setIsIntroOpen={setIsIntroOpen}
+          />
+        );
       case 2:
-        return <Pip setIsSelectorOpen={setIsSelectorOpen} setIsModalOpen={setIsModalOpen} />;
+        return (
+          <Pip
+            setIsSelectorOpen={setIsSelectorOpen}
+            setIsModalOpen={setIsModalOpen}
+            setIsIntroOpen={setIsIntroOpen}
+          />
+        );
       default:
         return <BlankPage />;
     }

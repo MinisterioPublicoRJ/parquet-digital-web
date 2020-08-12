@@ -17,7 +17,7 @@
   margin-left: var(--bodyHorizontalPadding);
   margin-top: calc(var(--bodyVerticalPadding) * 3);
   width: calc(50vw - 5vw);
-  height: calc(33vh - 2 * var(--bodyVerticalPadding) - 3vh);
+  height: calc(60vh - 2 * var(--bodyVerticalPadding) - 3vh);
   overflow: hidden;
 }
 
@@ -31,7 +31,7 @@
 .selector-header {
   align-items: center;
   display: flex;
-  height: 25%;
+  height: 20%;
   padding: 0 1.5vw;
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import useEventListener from './useEventListener';
 
 import './styles.css';
 
@@ -20,7 +21,8 @@ function Introduction({ isOpen, onToggle, type }) {
     if (movement === 'forward') {
       if (pages.length > currentPage + 1) {
         setCurrentPage(prevValue => prevValue + 1);
-      } else {
+      } else if (isOpen) {
+        isOpen = false;
         onToggle();
       }
     } else if (movement === 'backward') {
@@ -29,6 +31,14 @@ function Introduction({ isOpen, onToggle, type }) {
       }
     }
   }
+
+  function handleKeyPress(event) {
+    if (event.key === 'ArrowLeft' || event.keyCode === 37) handleNav('backward');
+    if (event.key === 'ArrowRight' || event.keyCode === 39) handleNav('forward');
+    if ((event.key === 'Escape' || event.keyCode === 27) && isOpen) onToggle();
+  }
+
+  useEventListener('keydown', handleKeyPress);
 
   if (show) {
     return (

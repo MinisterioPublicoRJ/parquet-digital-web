@@ -10,7 +10,7 @@ import IntroductionProcessList from './introductionProcessList';
 import IntroductionProcessingTime from './IntroductionProcessingTime';
 import IntroductionSuccessIndicators from './introductionSuccessIndicators';
 import IntroductionMainInvestigated from './IntroductionMainInvestigated';
-import ScreeGoodByes from './screenGoodBye';
+import ScreenGoodBye from './screenGoodBye';
 
 const propTypes = {
   isOpen: PropTypes.bool.isRequired,
@@ -28,7 +28,7 @@ function Introduction({ isOpen, onToggle, type }) {
     { focus: 'processes', component: <IntroductionProcessList /> },
     { focus: 'indicators', component: <IntroductionSuccessIndicators /> },
     { focus: 'processingTime', component: <IntroductionProcessingTime /> },
-    { focus: 'end', component: <ScreeGoodByes /> },
+    { focus: 'end', component: <ScreenGoodBye /> },
   ];
   const [currentPage, setCurrentPage] = useState(0);
 

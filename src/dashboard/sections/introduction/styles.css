@@ -14,9 +14,11 @@
   padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
   overflow: hidden;
 }
+
 .introduction-goodbye {
-  display: none;
+  display: block;
 }
+
 .text-div {
   background-color: var(--white);
   border-radius: 10px;

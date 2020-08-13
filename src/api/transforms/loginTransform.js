@@ -15,8 +15,8 @@ export function scaUserTranform(user) {
     matricula,
     nome,
     sexo,
-    firstLogin,
-    firstLoginToday,
+    first_login,
+    first_login_today,
     orgao_selecionado,
     orgaos_validos,
     token,
@@ -24,8 +24,8 @@ export function scaUserTranform(user) {
   return {
     nome,
     sexo,
-    firstLogin,
-    firstLoginToday,
+    firstLogin: first_login,
+    firstLoginToday: first_login_today,
     cpf,
     matricula,
     token,
@@ -35,7 +35,17 @@ export function scaUserTranform(user) {
 }
 
 export function jwtUserTransform(user) {
-  const { cpf, matricula, nome, sexo, first_login, first_login_today, token, orgao, tipo_orgao } = user;
+  const {
+    cpf,
+    matricula,
+    nome,
+    sexo,
+    first_login,
+    first_login_today,
+    token,
+    orgao,
+    tipo_orgao,
+  } = user;
   return {
     nome,
     sexo,

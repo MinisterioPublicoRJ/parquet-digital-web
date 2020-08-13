@@ -18,6 +18,7 @@
 .today-content p,
 .today-content h2 {
   margin: 0;
+  margin-top: 0;
 }
 
 .today-content > button {
@@ -30,6 +31,7 @@
   text-transform: uppercase;
   font-weight: bold;
   text-align: left;
+  color: var(--darkBlue);
 }
 
 .today-content > button > h2 {

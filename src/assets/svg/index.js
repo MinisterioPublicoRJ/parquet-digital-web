@@ -19,3 +19,4 @@ export { default as IconContratacoes } from './iconContratacoes';
 export { default as LoginPromotron } from './promotronLogin';
 export { default as PromotronGlossario } from './promotronGlossario';
 export { default as GlossaryBook } from './glossaryBook';
+export { default as IconCompras } from './iconCompras';

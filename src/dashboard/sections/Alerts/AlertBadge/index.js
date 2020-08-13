@@ -16,7 +16,7 @@ const defaultProps = {
   actionLink: undefined,
 };
 
-function AlertBadge({ key, icon, message, action, actionLink, iconBg }) {
+const AlertBadge = ({ icon, message, action, actionLink, iconBg, closeAction }) => {
   const [actionHover, setActionHover] = useState(false);
 
   if (!iconBg) {
@@ -32,14 +32,11 @@ function AlertBadge({ key, icon, message, action, actionLink, iconBg }) {
       <div className="alertBadge-leftContainer" style={{ backgroundColor: iconBg }}>
         {icon}
       </div>
-      <div className="alertBadge-rightContainer">
-        {message}
-        {action && <a href={actionLink}>{action}</a>}
-      </div>
-      {actionHover && <AlertsLinks actionLink={actionLink} />}
+      <div className="alertBadge-rightContainer">{message}</div>
+      {actionHover && <AlertsLinks actionLink={actionLink} closeAction={closeAction} />}
     </div>
   );
-}
+};
 
 AlertBadge.propTypes = propTypes;
 AlertBadge.defaultProps = defaultProps;

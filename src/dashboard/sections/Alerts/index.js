@@ -66,7 +66,8 @@ function Alerts() {
    * @return {void}                 updates the state
    */
   function removeAlert(key) {
-    setAlerts(oldAlerts => oldAlerts.filter(item => item.key !== key));
+    const oldAlerts = [...alerts];
+    setAlerts(oldAlerts.filter((item, index) => item.key !== key));
   }
 
   // runs on "mount" only
@@ -90,7 +91,7 @@ function Alerts() {
       <div className="alerts-body">
         {alertsError && 'Não existem alertas para exibir.'}
         {alerts &&
-          alerts.map(alert => {
+          alerts.map((alert, index) => {
             const { icon, message, action, actionLink, background, key } = alert;
             return (
               <AlertBadge
@@ -100,6 +101,7 @@ function Alerts() {
                 message={message}
                 action={action}
                 actionLink={actionLink}
+                closeAction={() => removeAlert(key)}
               />
             );
           })}

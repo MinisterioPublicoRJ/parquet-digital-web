@@ -9,6 +9,7 @@
   line-height: 18px;
   color: var(--dark);
   font-weight: 500;
+  min-height: 75px;
 }
 
 .alertBadge-leftContainer {
@@ -36,13 +37,15 @@
   text-align: left;
 }
 
-.alertBadge-outerContainer:hover:first-child {
-  padding-left: 10px;
+.alertBadge-outerContainer:hover > .alertBadge-linksContainer + .alertBadge-linksContainer {
+  padding-left: 8px;
 }
 
-.alertBadge-outerContainer:hover:first-child .alertBadge-linksContainer {
-  margin-left: -10px;
+.alertBadge-outerContainer:hover > .alertBadge-linksContainer + .alertBadge-linksContainer {
+  margin-left: -8px;
+  padding-right: 8px;
 }
+
 .alertBadge-outerContainer:hover .alertBadge-leftContainer {
   display: none;
 }
@@ -71,4 +74,5 @@
 .alertBadge-linksContainer span {
   font-size: var(--smallFont);
   color: var(--white);
+  font-weight: 600;
 }

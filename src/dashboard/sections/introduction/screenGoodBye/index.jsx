@@ -6,7 +6,7 @@ function ScreenGoodBye() {
   return (
     <div className="introduction-wrapper">
       <div className="introduction-goodbye">
-        <h3>Tela de despedida</h3>
+        <h3>Até mais!</h3>
         <p>
           Espero ter conseguido explicar bem o que eu faço. Meus criadores me disseram para te dizer
           que, em caso de dúvidas, eles ficarão muito felizes em te ajudar. Eu não sei exatamente o

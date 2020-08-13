@@ -1,41 +1,62 @@
 import React from 'react';
-import { Bin, Ouvidoria } from '../../../assets';
+import { Bin, Ouvidoria, IconCompras } from '../../../assets';
 
-const iconBg = 'rgb(248, 108, 114)';
+let iconBg;
 let icon;
 let url;
+let text;
+const links = [];
 
-function openInNewTab(url) {
-  window.open(url, '_blank');
-}
-
-export function AlertsLinks({ actionLink }) {
-  switch (actionLink) {
-    case 'ouvidoria':
-      icon = <Ouvidoria />;
-      url = '#ouvidoria';
-      break;
-    case 'excluir':
-    default:
-      icon = <Bin fillColor="white" />;
-      url = '#excluir';
-      break;
-  }
-
+const createLink = ({ icon, iconBg, url, text, action }) => {
   return (
     <div
       target="_blank"
       onClick={event => {
-        event.preventDefault();
-        window.open(url);
+        if (url) {
+          event.preventDefault();
+          window.open(url);
+          return;
+        }
+        action();
       }}
       className="alertBadge-linksContainer"
       style={{ backgroundColor: iconBg }}
     >
       {icon}
-      <span>DISPENSAR</span>
+      <span>{text}</span>
     </div>
   );
-}
+};
+
+export const AlertsLinks = ({ actionLink, closeAction, compId }) => {
+  const links = [];
+
+  if (actionLink == 'COMP') {
+    let contract = compId.split('-')[0];
+
+    icon = <Ouvidoria />;
+    iconBg = '#5C6FD9';
+    url = '#ouvidoria';
+    text = 'OUVIDORIA';
+    links.push(createLink({ icon, iconBg, url, text }));
+
+    icon = <IconCompras width="30px" height="30px" />;
+    iconBg = '#F8BD6C';
+    url = `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contract}`;
+    text = 'PAINEL DE COMPRAS';
+    links.push(createLink({ icon, iconBg, url, text }));
+  }
+
+  // DEFAULT
+  const data = {
+    icon: <Bin fillColor="white" width="30px" height="30px" />,
+    iconBg: '#F86C72',
+    action: closeAction,
+    text: 'DISPENSAR',
+  };
+  links.push(createLink({ ...data }));
+
+  return links;
+};
 
 export default AlertsLinks;

@@ -13,7 +13,7 @@
   align-items: center;
   background-color: var(--danger);
   border-radius: 20px;
-  color: white;
+  color: var(--white);;
   display: flex;
   font-weight: bold;
   height: var(--sectionTitleFontSize);

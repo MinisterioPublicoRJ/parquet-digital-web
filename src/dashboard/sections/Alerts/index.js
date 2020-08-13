@@ -92,7 +92,7 @@ function Alerts() {
         {alertsError && 'Não existem alertas para exibir.'}
         {alerts &&
           alerts.map((alert, index) => {
-            const { icon, message, action, actionLink, background, key , compId} = alert;
+            const { icon, message, action, actionLink, background, key, compId } = alert;
             return (
               <AlertBadge
                 key={key}

@@ -31,6 +31,7 @@ function OfficeSelector({ isOpen, onToggle }) {
         >
           <div className="selector-header">
             <h2>Selecione a Promotoria:</h2>
+            <button className="btn-orgaoSelect"></button>
           </div>
           <div className="selector-listWrapper">
             <ul>

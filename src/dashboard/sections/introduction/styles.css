@@ -15,10 +15,6 @@
   overflow: hidden;
 }
 
-.introduction-goodbye {
-  display: block;
-}
-
 .text-div {
   background-color: var(--white);
   border-radius: 10px;
@@ -194,4 +190,12 @@
   width: 69px;
   height: 24px;
   margin: 10px;
+}
+
+.text-div--end {
+  position: absolute;
+  top: calc(-150px - 50vh);
+  left: calc(-130px - 50vw);
+  width: 300px;
+  height: 260px;
 }

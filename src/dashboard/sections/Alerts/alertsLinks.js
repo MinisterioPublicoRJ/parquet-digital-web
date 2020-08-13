@@ -28,10 +28,12 @@ const createLink = ({ icon, iconBg, url, text, action }) => {
   );
 };
 
-export const AlertsLinks = ({ actionLink, closeAction }) => {
+export const AlertsLinks = ({ actionLink, closeAction, compId }) => {
   const links = [];
 
   if (actionLink == 'COMP') {
+    let contract = compId.split('-')[0];
+
     icon = <Ouvidoria />;
     iconBg = '#5C6FD9';
     url = '#ouvidoria';
@@ -40,7 +42,7 @@ export const AlertsLinks = ({ actionLink, closeAction }) => {
 
     icon = <IconCompras width="30px" height="30px" />;
     iconBg = '#F8BD6C';
-    url = '#painel-de-compras';
+    url = `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contract}`;
     text = 'PAINEL DE COMPRAS';
     links.push(createLink({ icon, iconBg, url, text }));
   }

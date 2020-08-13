@@ -26,6 +26,7 @@ export function cleanAlert(alert) {
   let icon = null;
   let message = null;
   let background = null;
+  let compId = null;
   // not implemented yet
   const action = true;
   const actionLink = alert.alertCode;
@@ -187,6 +188,7 @@ export function cleanAlert(alert) {
         </span>
         );
         background = '#F8BD6C';
+        compId = alert.contrato_iditem;
         break;
 
     // ALERTAS DE PRESCRIÇÃO
@@ -238,7 +240,7 @@ export function cleanAlert(alert) {
       break;
   }
 
-  return { icon, message, action, actionLink, background, key };
+  return { icon, message, action, actionLink, background, key , compId};
 }
 
 export function cleanAlertList(list, countList) {

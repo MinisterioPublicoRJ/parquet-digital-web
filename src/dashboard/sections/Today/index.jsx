@@ -81,8 +81,6 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
 
     const apiError = errorPercentList && errorPhraseList && errorParagraphList;
 
-    console.log('current office:', currentOffice);
-
     setTodayPercent(percentile);
     setPhrase(collectionPhrase);
     setgroupName(organName);

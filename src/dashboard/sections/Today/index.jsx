@@ -212,7 +212,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
       </div>
       {currentOffice.tipo === 2 ? (
         <a
-          href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/9062e8f6462349978f249fb63c5f68a5?pip=${currentOffice.codigo}`}
+          href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/9062e8f6462349978f249fb63c5f68a5?pip=${currentOffice.codigo}&dp=${currentOffice.dps}`}
           className="today-btn"
           target="_blank"
         >

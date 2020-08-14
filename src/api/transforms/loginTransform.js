@@ -1,11 +1,12 @@
 function orgaoTransformer(orgao) {
-  const { cpf, nome, tipo, cdorgao, nm_org } = orgao;
+  const { cpf, nome, tipo, cdorgao, nm_org, dps } = orgao;
   return {
     nomeOrgao: nm_org,
     cpf,
     nomeUser: nome,
     tipo,
     codigo: cdorgao,
+    dps,
   };
 }
 

@@ -75,7 +75,7 @@
 .today-btn {
   width: 200px;
   height: 32px;
-  margin: 4px;
+  margin: 4px 0px;
   color: var(--dark);
   background-color: var(--pt-blue);
   border: 6px var(--pt-blue);

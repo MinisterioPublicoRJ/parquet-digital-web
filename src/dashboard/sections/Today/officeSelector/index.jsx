@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import { useAuth } from '../../../../app/authContext';
+import { logDOM } from '@testing-library/react';
 
 function handleInnerClick(e) {
   e.stopPropagation();
@@ -18,12 +19,12 @@ function OfficeSelector({ isOpen, onToggle }) {
 
   const handleChange = e => {
     const inputValue = e.target.value.toLowerCase();
-    const filtered = user.orgaosValidos.filter(organ =>
-      organ.nomeOrgao.toLowerCase().includes(inputValue.toLowerCase()),
+    const filtered = user.orgaosValidos.filter(
+      organ =>
+        organ.nomeOrgao.toLowerCase().includes(inputValue) ||
+        organ.nomeUser.toLowerCase().includes(inputValue),
     );
     setFilteredList(filtered);
-    console.log('inputval', inputValue);
-    console.log('filtered', filtered);
   };
 
   if (isOpen) {

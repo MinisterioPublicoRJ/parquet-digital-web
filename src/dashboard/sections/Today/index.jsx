@@ -83,6 +83,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
 
     setTodayPercent(percentile);
     setPhrase(collectionPhrase);
+    setgroupName(organName);
     setEntriesGroup(entriesParagraph);
     setfullError(apiError);
     setLoading(false);
@@ -209,9 +210,15 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
         {collectionParagraph}
         {entriesGroup}
       </div>
-      <button type="button" className="today-btn">
-        Ver mapa da atuação
-      </button>
+      {currentOffice.tipo === 2 ? (
+        <a
+          href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/9062e8f6462349978f249fb63c5f68a5?pip=${currentOffice.codigo}`}
+          className="today-btn"
+          target="_blank"
+        >
+          Ver mapa da atuação
+        </a>
+      ) : null}
       <div className="today-robotPic">
         <div className="today-glossaryBtn" onClick={() => setIsModalOpen(true)}>
           <GlossaryBook />

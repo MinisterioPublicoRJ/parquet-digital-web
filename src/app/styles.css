@@ -37,5 +37,5 @@ div::-webkit-scrollbar-thumb:window-inactive {
 /* For firefox 64 and onwards*/
 div {
   scrollbar-width: thin;
-  scrollbar-color: #8998ac gray;
+  scrollbar-color: #8998ac transparent;
 }

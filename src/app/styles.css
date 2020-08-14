@@ -12,6 +12,10 @@ h3 {
   text-transform: uppercase;
 }
 
+:focus {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
 /* Let's get this party started */
 div::-webkit-scrollbar {
   width: 6px;

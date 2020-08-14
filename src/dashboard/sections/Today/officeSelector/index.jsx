@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import { useAuth } from '../../../../app/authContext';
@@ -13,6 +13,11 @@ function OfficeSelector({ isOpen, onToggle }) {
   function onOfficeClicked(office) {
     updateOffice(office);
     onToggle();
+  }
+
+  const handleChange = (e) => {
+    const inputValue = e.target.value.toLowerCase();
+    console.log(inputValue);
   }
 
   if (isOpen) {
@@ -31,7 +36,10 @@ function OfficeSelector({ isOpen, onToggle }) {
         >
           <div className="selector-header">
             <h2>Selecione a Promotoria:</h2>
-            <button className="btn-orgaoSelect"></button>
+            <input
+             type="text" placeholder="Pesquisar..."  
+             onChange={handleChange}
+             className="input-orgaoSelect"/>
           </div>
           <div className="selector-listWrapper">
             <ul>

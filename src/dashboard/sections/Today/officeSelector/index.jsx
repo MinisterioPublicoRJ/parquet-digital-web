@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
 import { useAuth } from '../../../../app/authContext';
-import { logDOM } from '@testing-library/react';
+import { Search } from '../../../../assets';
 
 function handleInnerClick(e) {
   e.stopPropagation();
@@ -44,11 +44,12 @@ function OfficeSelector({ isOpen, onToggle }) {
           <div className="selector-header">
             <h2>Selecione a Promotoria:</h2>
             <input
-              type="text"
               placeholder="Pesquisar..."
+              type="text"
               onChange={handleChange}
               className="input-orgaoSelect"
             />
+            <Search className="search" />
           </div>
           <div className="selector-listWrapper">
             <ul>

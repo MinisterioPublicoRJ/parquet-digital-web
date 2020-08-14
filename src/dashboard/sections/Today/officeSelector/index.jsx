@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
 import { useAuth } from '../../../../app/authContext';
+import { Search } from '../../../../assets';
 
 function handleInnerClick(e) {
   e.stopPropagation();
@@ -9,11 +10,22 @@ function handleInnerClick(e) {
 
 function OfficeSelector({ isOpen, onToggle }) {
   const { user, updateOffice } = useAuth();
+  const [filteredList, setFilteredList] = useState(user.orgaosValidos);
 
   function onOfficeClicked(office) {
     updateOffice(office);
     onToggle();
   }
+
+  const handleChange = e => {
+    const inputValue = e.target.value.toLowerCase();
+    const filtered = user.orgaosValidos.filter(
+      organ =>
+        organ.nomeOrgao.toLowerCase().includes(inputValue) ||
+        organ.nomeUser.toLowerCase().includes(inputValue),
+    );
+    setFilteredList(filtered);
+  };
 
   if (isOpen) {
     return (
@@ -31,10 +43,17 @@ function OfficeSelector({ isOpen, onToggle }) {
         >
           <div className="selector-header">
             <h2>Selecione a Promotoria:</h2>
+            <input
+              placeholder="Pesquisar..."
+              type="text"
+              onChange={handleChange}
+              className="input-orgaoSelect"
+            />
+            <Search className="search" />
           </div>
           <div className="selector-listWrapper">
             <ul>
-              {user.orgaosValidos.map(orgao => (
+              {filteredList.map(orgao => (
                 <li
                   key={`${orgao.nomeOrgao}-${orgao.nomeUser}`}
                   onClick={() => onOfficeClicked(orgao)}

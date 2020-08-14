@@ -4,13 +4,13 @@ import { useAuth } from '../../../app/authContext';
 import './styles.css';
 import Api from '../../../api';
 import PromotronGif from '../../../assets/gifs/promotron.gif';
-import { GlossaryBook } from '../../../assets';
+import { GlossaryBook, IntroScreenInterrogation } from '../../../assets';
 import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
-import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPieces';
+import { SectionTitle, MainTitle, Spinner, Modal } from '../../../components/layoutPieces';
 
 import { formatPercentage, capitalizeTitle } from '../../../utils';
 
-function Today({ setIsSelectorOpen, setIsModalOpen }) {
+function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   const { user, buildRequestParams, currentOffice } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
@@ -210,12 +210,21 @@ function Today({ setIsSelectorOpen, setIsModalOpen }) {
         {collectionParagraph}
         {entriesGroup}
       </div>
-      <button type="button" className="today-btn">
-        Ver mapa da atuação
-      </button>
+      {currentOffice.tipo === 2 ? (
+        <a
+          href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/9062e8f6462349978f249fb63c5f68a5?pip=${currentOffice.codigo}&dp=${currentOffice.dps}`}
+          className="today-btn"
+          target="_blank"
+        >
+          Ver mapa da atuação
+        </a>
+      ) : null}
       <div className="today-robotPic">
         <div className="today-glossaryBtn" onClick={() => setIsModalOpen(true)}>
           <GlossaryBook />
+        </div>
+        <div className="today-introBtn" onClick={() => setIsIntroOpen(true)}>
+          <IntroScreenInterrogation />
         </div>
         <img height="100%" src={PromotronGif} alt="robô-promoton" />
       </div>

@@ -6,8 +6,9 @@
   justify-content: space-between;
 }
 
-.successIndicators-outer h3 {
+.successIndicators-outer h4 {
   margin: 5px 0 5px 0;
+  font-weight: bold;
 }
 /* Css Tooltip Phrase  */
 .successIndicators-item {

@@ -18,6 +18,7 @@
 .today-content p,
 .today-content h2 {
   margin: 0;
+  margin-top: 0;
 }
 
 .today-content > button {
@@ -30,6 +31,7 @@
   text-transform: uppercase;
   font-weight: bold;
   text-align: left;
+  color: var(--darkBlue);
 }
 
 .today-content > button > h2 {
@@ -63,15 +65,26 @@
   top: 0;
 }
 
+.today-introBtn {
+  cursor: help;
+  position: absolute;
+  right: 0;
+  top: 36px;
+}
+
 .today-btn {
-  /* width: 234px;
-  height: 40px;
+  width: 200px;
+  height: 32px;
+  margin: 4px;
   color: var(--dark);
   background-color: var(--pt-blue);
   border: 6px var(--pt-blue);
-  font-size: 16px ;
-  text-transform: uppercase; */
-  display: none;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  line-height: 32px;
 }
 
 /* TABLETS */

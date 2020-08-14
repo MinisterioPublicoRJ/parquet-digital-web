@@ -2,7 +2,7 @@
   display: grid;
   height: calc(100vh - 2 * var(--bodyVerticalPadding));
   width: calc(100vw - 2 * var(--bodyHorizontalPadding));
-  grid-column-gap: 5vw;
+  grid-column-gap: 2vw;
   grid-row-gap: 3vh;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(12, minmax(0, 1fr));

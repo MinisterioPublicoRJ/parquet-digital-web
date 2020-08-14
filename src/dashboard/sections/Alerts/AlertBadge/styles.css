@@ -9,6 +9,7 @@
   line-height: 18px;
   color: var(--dark);
   font-weight: 500;
+  min-height: 75px;
 }
 
 .alertBadge-leftContainer {
@@ -34,4 +35,44 @@
 .alertBadge-rightContainer a {
   color: orange;
   text-align: left;
+}
+
+.alertBadge-outerContainer:hover > .alertBadge-linksContainer + .alertBadge-linksContainer {
+  padding-left: 8px;
+}
+
+.alertBadge-outerContainer:hover > .alertBadge-linksContainer + .alertBadge-linksContainer {
+  margin-left: -8px;
+  padding-right: 8px;
+}
+
+.alertBadge-outerContainer:hover .alertBadge-leftContainer {
+  display: none;
+}
+
+.alertBadge-outerContainer:hover .alertBadge-rightContainer {
+  display: none;
+}
+
+.alertBadge-outerContainer:hover .alertBadge-linksContainer {
+  animation: 3s ease-in 1s 1 reverse both running slidein;
+  display: flex;
+}
+
+.alertBadge-linksContainer {
+  cursor: pointer;
+  min-height: 56px;
+  width: 100%;
+  align-items: center;
+  background-color: gray;
+  border-radius: 7px 7px 7px 7px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.alertBadge-linksContainer span {
+  font-size: var(--smallFont);
+  color: var(--white);
+  font-weight: 600;
 }

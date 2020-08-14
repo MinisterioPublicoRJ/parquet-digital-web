@@ -10,9 +10,6 @@ function handleInnerClick(e) {
 function OfficeSelector({ isOpen, onToggle }) {
   const { user, updateOffice } = useAuth();
   const [filteredList, setFilteredList] = useState([]);
-  console.log(typeof user);
-  console.log(typeof user.nome);
-  console.log(typeof user.nomeOrgao);
 
   function onOfficeClicked(office) {
     updateOffice(office);
@@ -21,13 +18,10 @@ function OfficeSelector({ isOpen, onToggle }) {
 
   const handleChange = (e) => {
     const inputValue = e.target.value.toLowerCase();
-    const filtered = Object.values(user).filter(users =>
-    users.nome.toString().toLowerCase().includes(inputValue),
+    const filtered = user.orgaosValidos.filter(organ =>
+      organ.nomeOrgao.toLowerCase().includes(inputValue.toLowerCase()),
     );
     setFilteredList(filtered);
-    console.log(inputValue);
-    console.log(filtered);
-
   };
 
   if (isOpen) {
@@ -52,7 +46,13 @@ function OfficeSelector({ isOpen, onToggle }) {
              className="input-orgaoSelect"/>
           </div>
           <div className="selector-listWrapper">
-            <ul>
+          {filteredList.map(dataUsers =>
+          <div key={dataUsers.id} className='info-cards'>
+            Nome: {dataUsers.nomeUser}
+            Nome: {dataUsers.nomeUser}
+          </div>
+        )}
+            {/*<ul>
               {user.orgaosValidos.map(orgao => (
                 <li
                   key={`${orgao.nomeOrgao}-${orgao.nomeUser}`}
@@ -63,6 +63,7 @@ function OfficeSelector({ isOpen, onToggle }) {
                 </li>
               ))}
             </ul>
+              */}
           </div>
         </div>
       </div>

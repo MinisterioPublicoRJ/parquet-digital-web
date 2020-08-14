@@ -18,8 +18,6 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   const [entriesGroup, setEntriesGroup] = useState([]);
   const [fullError, setfullError] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [filteredList, setFilteredList] = useState([]);
-
 
   /**
    * laods percentage data for the first sentence
@@ -85,8 +83,6 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
 
     setTodayPercent(percentile);
     setPhrase(collectionPhrase);
-    setgroupName(organName);
-    setFilteredList(organName);
     setEntriesGroup(entriesParagraph);
     setfullError(apiError);
     setLoading(false);

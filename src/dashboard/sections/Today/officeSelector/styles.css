@@ -17,13 +17,29 @@
   margin-left: var(--bodyHorizontalPadding);
   margin-top: calc(var(--bodyVerticalPadding) * 3);
   width: calc(50vw - 5vw);
-  height: calc(60vh - 2 * var(--bodyVerticalPadding) - 3vh);
+  height: calc(55vh - 2 * var(--bodyVerticalPadding) - 3vh);
   overflow: hidden;
 }
+.input-orgaoSelect::-webkit-input-placeholder{ /* Chrome, Safari, Opera */
+  color: #3b3b3b;
+}
+.input-orgaoSelect::-moz-placeholder { /* Firefox 18- */
+  color: #3b3b3b;
+}
+
 .input-orgaoSelect {
-  width: 36%;
-  margin-left: 15px;
+  width: 26%;
   margin-top: 0px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  background-color: #bddff0;
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+  color: #3b3b3b;
+  font-size: 15px;
+  margin-left: -15px;
 }
 
 .selector-header > h2 {
@@ -31,6 +47,7 @@
   font-weight: 900;
   letter-spacing: 0.5px;
   font-size: 25px;
+  margin-left: -30px;
 }
 
 .selector-header {
@@ -39,6 +56,8 @@
   height: 20%;
   padding: 0 1.5vw;
   width: 100%;
+  justify-content: space-around;
+  
 }
 
 .selector-listWrapper {

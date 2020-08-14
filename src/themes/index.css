@@ -45,7 +45,7 @@
   --smallFont: clamp(10px, 1.2vh, 14px);
   --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);
   --featuredNumberFontSize: calc(var(--defaultFontSize) * 1.2);
-  --spotlightSize: calc(var(--defaultFontSize) * 3);
+  --spotlightSize: calc(var(--defaultFontSize) * 2);
 
   /* --defaultTitleProcessing: Rockwell; */
   /* --subtitleProcessing: MyriadPro-Regular; */

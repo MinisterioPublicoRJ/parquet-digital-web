@@ -83,7 +83,6 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
 
     setTodayPercent(percentile);
     setPhrase(collectionPhrase);
-    setgroupName(organName);
     setEntriesGroup(entriesParagraph);
     setfullError(apiError);
     setLoading(false);

@@ -10,9 +10,6 @@ function handleInnerClick(e) {
 function OfficeSelector({ isOpen, onToggle }) {
   const { user, updateOffice } = useAuth();
   const [filteredList, setFilteredList] = useState(user.orgaosValidos);
-  console.log(user);
-  console.log(user.nome);
-  console.log(user.nomeOrgao);
 
   function onOfficeClicked(office) {
     updateOffice(office);
@@ -25,8 +22,6 @@ function OfficeSelector({ isOpen, onToggle }) {
       organ.nomeOrgao.toLowerCase().includes(inputValue.toLowerCase()),
     );
     setFilteredList(filtered);
-    console.log('inputval', inputValue);
-    console.log('filtered', filtered);
   };
 
   if (isOpen) {

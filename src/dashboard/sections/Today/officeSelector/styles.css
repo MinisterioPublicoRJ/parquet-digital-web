@@ -12,7 +12,7 @@
 }
 
 .selector-modal {
-  background-color: #BDDFF0;
+  background-color: #bddff0;
   border-radius: 5px;
   margin-left: var(--bodyHorizontalPadding);
   margin-top: calc(var(--bodyVerticalPadding) * 3);
@@ -20,14 +20,14 @@
   height: calc(60vh - 2 * var(--bodyVerticalPadding) - 3vh);
   overflow: hidden;
 }
-.input-orgaoSelect{
-  width: 40%;
+.input-orgaoSelect {
+  width: 36%;
   margin-left: 15px;
   margin-top: 0px;
 }
 
-.selector-header > h2{
-  color: #3B3B3B;
+.selector-header > h2 {
+  color: #3b3b3b;
   font-weight: 900;
   letter-spacing: 0.5px;
   font-size: 25px;

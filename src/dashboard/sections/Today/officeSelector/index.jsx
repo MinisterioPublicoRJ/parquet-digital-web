@@ -9,19 +9,21 @@ function handleInnerClick(e) {
 
 function OfficeSelector({ isOpen, onToggle }) {
   const { user, updateOffice } = useAuth();
-  const [filteredList, setFilteredList] = useState([]);
+  const [filteredList, setFilteredList] = useState(user.orgaosValidos);
 
   function onOfficeClicked(office) {
     updateOffice(office);
     onToggle();
   }
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const inputValue = e.target.value.toLowerCase();
     const filtered = user.orgaosValidos.filter(organ =>
       organ.nomeOrgao.toLowerCase().includes(inputValue.toLowerCase()),
     );
     setFilteredList(filtered);
+    console.log('inputval', inputValue);
+    console.log('filtered', filtered);
   };
 
   if (isOpen) {
@@ -41,19 +43,15 @@ function OfficeSelector({ isOpen, onToggle }) {
           <div className="selector-header">
             <h2>Selecione a Promotoria:</h2>
             <input
-             type="text" placeholder="Pesquisar..."  
-             onChange={handleChange}
-             className="input-orgaoSelect"/>
+              type="text"
+              placeholder="Pesquisar..."
+              onChange={handleChange}
+              className="input-orgaoSelect"
+            />
           </div>
           <div className="selector-listWrapper">
-          {filteredList.map(dataUsers =>
-          <div key={dataUsers.id} className='info-cards'>
-            Nome: {dataUsers.nomeUser}
-            Nome: {dataUsers.nomeUser}
-          </div>
-        )}
-            {/*<ul>
-              {user.orgaosValidos.map(orgao => (
+            <ul>
+              {filteredList.map(orgao => (
                 <li
                   key={`${orgao.nomeOrgao}-${orgao.nomeUser}`}
                   onClick={() => onOfficeClicked(orgao)}
@@ -63,7 +61,6 @@ function OfficeSelector({ isOpen, onToggle }) {
                 </li>
               ))}
             </ul>
-              */}
           </div>
         </div>
       </div>

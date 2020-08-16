@@ -42,16 +42,16 @@ export function cleanAlert(alert) {
       message = grouped ? (
         <span>
           Há
-          <strong>{`${alert.count}`}</strong>
+          <strong> {`${alert.count}`} </strong>
           {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
-          <strong>mais de 60 dias</strong>
+          <strong> mais de 60 dias </strong>
           sem retorno.
         </span>
       ) : (
         <span>
           O processo criminal
-          <strong>{`${alert.docNum}`}</strong>
-          está há <strong>mais de 60 dias</strong>
+          <strong> {`${alert.docNum}`} </strong>
+          está há <strong> mais de 60 dias </strong>
           no TJRJ sem retorno
         </span>
       );
@@ -66,14 +66,14 @@ export function cleanAlert(alert) {
           Há
           <strong>{` ${alert.count} `}</strong>
           {`${single ? 'processo não criminal': 'processos não criminais'} no TJRJ há `}
-          <strong>há mais de 120 dias</strong>
+          <strong> há mais de 120 dias </strong>
           sem retorno.
         </span>
       ) : (
         <span>
           O processo criminal
-          <strong>{`${alert.docNum}`}</strong>
-          está há <strong>mais de 120 dias</strong>
+          <strong> {`${alert.docNum}`} </strong>
+          está há <strong> mais de 120 dias </strong>
           no TJRJ sem retorno
         </span>
       );
@@ -117,7 +117,7 @@ export function cleanAlert(alert) {
         <span>
           O processo administrativo
           <strong>{`${alert.docNum}`}</strong>
-          está aberto <strong>há mais de um ano</strong>.
+          está aberto <strong> há mais de um ano</strong>.
         </span>
       );
       background = '#5C6FD9';

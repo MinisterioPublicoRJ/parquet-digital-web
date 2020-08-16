@@ -94,7 +94,7 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           O processo
-          <strong>{`${alert.docNum}`}</strong>
+          <strong> {`${alert.docNum}`} </strong>
           possui
           <strong> vitimas recorrentes </strong>
           de
@@ -116,7 +116,7 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           O processo administrativo
-          <strong>{`${alert.docNum}`}</strong>
+          <strong> {`${alert.docNum}`} </strong>
           está aberto <strong> há mais de um ano</strong>.
         </span>
       );

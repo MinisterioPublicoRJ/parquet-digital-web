@@ -158,7 +158,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
       timeGreeting = 'boa noite';
     }
 
-    return `Olá ${gender === 'M' ? 'Dr. ' : 'Dra.'} ${infoUser}, ${timeGreeting}!`;
+    return `Olá Dr(a). ${infoUser}, ${timeGreeting}!`;
   }
   /**
    * Gets the original string returned from the API, trims and prettifies it.

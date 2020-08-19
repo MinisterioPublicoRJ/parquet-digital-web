@@ -18,10 +18,13 @@
   font-size: var(--featuredNumberFontSize);
   line-height: var(--featuredNumberFontSize);
   margin-left: 10px;
+  margin-top: 10px;
 }
 
 .ranking-label {
   margin-left: 1vw;
+  margin-top: 10px;
+
 }
 
 

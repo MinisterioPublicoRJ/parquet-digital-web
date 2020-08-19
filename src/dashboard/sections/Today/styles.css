@@ -58,9 +58,9 @@
   content: '';
   border-width: var(--selectorArrowSize);
   border-style: solid;
-  border-color: var(--dark) transparent transparent transparent;
+  border-color: var(--darkBlue) transparent transparent transparent;
   position: absolute;
-  margin: 4px 2px;
+  margin: 7px 2px;
 }
 
 .today-robotPic {

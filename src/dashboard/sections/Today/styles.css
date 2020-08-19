@@ -1,3 +1,8 @@
+:root {
+  /* ICONS */
+  --selectorArrowSize: 6px;
+}
+
 .today-outer {
   display: flex;
   flex-direction: column;
@@ -32,6 +37,7 @@
   font-weight: bold;
   text-align: left;
   color: var(--darkBlue);
+  position: relative;
 }
 
 .today-content > button > h2 {
@@ -44,6 +50,17 @@
 .today-content > button > span {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.today-content > button > span::after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--dark) transparent transparent transparent;
+  position: absolute;
+  margin: 4px 2px;
 }
 
 .today-robotPic {

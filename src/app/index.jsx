@@ -10,6 +10,7 @@ function AuthContextCreator() {
   const [user, setUser] = useState(null);
   const [userError, setUserError] = useState(false);
   const [scaUserError, setScaUserError] = useState(false);
+  const [userExpired, setUserExpired] = useState(false);
 
   const tokenLogin = async token => {
     if (userError) {
@@ -26,6 +27,9 @@ function AuthContextCreator() {
   const scaLogin = async (username, password) => {
     if (scaUserError) {
       setScaUserError(false);
+    }
+    if (userExpired) {
+      setUserExpired(false);
     }
     try {
       const loggedUser = await Api.scaLogin(username, password);
@@ -53,6 +57,7 @@ function AuthContextCreator() {
       setUser(userObj);
     } else {
       if (storedUser) {
+        setUserExpired(true);
         window.localStorage.removeItem('sca_token');
       }
       setUserError(true);
@@ -78,6 +83,7 @@ function AuthContextCreator() {
   return {
     user,
     userError,
+    userExpired,
     autoLogin,
     currentOffice: user ? user.orgaoSelecionado : null,
     updateOffice,

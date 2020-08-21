@@ -69,6 +69,12 @@ function AuthContextCreator() {
     cpf: user.orgaoSelecionado.cpf,
   });
 
+  // add backend integration when available
+  const logout = () => {
+    setUser(undefined);
+    window.localStorage.removeItem('sca_token');
+  };
+
   return {
     user,
     userError,
@@ -79,6 +85,7 @@ function AuthContextCreator() {
     tokenLogin,
     scaLogin,
     buildRequestParams,
+    logout,
   };
 }
 

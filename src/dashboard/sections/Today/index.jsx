@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../../app/authContext';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 import Api from '../../../api';
+import { useAuth } from '../../../app/authContext';
 import PromotronGif from '../../../assets/gifs/promotron.gif';
-import { GlossaryBook, IntroScreenInterrogation } from '../../../assets';
 import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
-import { SectionTitle, MainTitle, Spinner, Modal } from '../../../components/layoutPieces';
-
 import { formatPercentage, capitalizeTitle } from '../../../utils';
+import { GlossaryBook, IntroScreenInterrogation } from '../../../assets';
+import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPieces';
+
+const propTypes = {
+  setIsSelectorOpen: PropTypes.func.isRequired,
+  setIsModalOpen: PropTypes.func.isRequired,
+  setIsIntroOpen: PropTypes.func.isRequired,
+};
 
 function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   const { user, buildRequestParams, currentOffice } = useAuth();
@@ -232,4 +238,5 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   );
 }
 
+Today.propTypes = propTypes;
 export default Today;

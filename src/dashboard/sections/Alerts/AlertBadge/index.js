@@ -6,7 +6,7 @@ import './styles.css';
 
 const propTypes = {
   icon: PropTypes.node.isRequired,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.node.isRequired,
   action: PropTypes.bool,
   actionLink: PropTypes.string,
   iconBg: PropTypes.string.isRequired,
@@ -33,7 +33,9 @@ const AlertBadge = ({ icon, message, action, actionLink, iconBg, closeAction, co
         {icon}
       </div>
       <div className="alertBadge-rightContainer">{message}</div>
-      {actionHover && <AlertsLinks actionLink={actionLink} closeAction={closeAction} compId={compId}/>}
+      {actionHover && (
+        <AlertsLinks actionLink={actionLink} closeAction={closeAction} compId={compId} />
+      )}
     </div>
   );
 };

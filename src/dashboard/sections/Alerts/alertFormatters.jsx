@@ -17,14 +17,16 @@ import { NOT_GROUPABLE_ALERTS } from './alertsConstants';
  * @return {json}       { icon: node, message: node, action: null, actionLink: null, background: string }
  */
 export function cleanAlert(alert) {
-  const key = alert.count
+  // const key = alert.count
+  //   ? `${alert.alertCode}-${alert.count}`
+  //   : `${alert.alertCode}-${alert.docNum}` &&
+  //     `${alert.alertCode}-${alert.contrato}` &&
+  //     `${alert.alertCode}-${alert.item}`;
+
+  const grouped = !!alert.count;
+  let key = alert.count
     ? `${alert.alertCode}-${alert.count}`
-    : `${alert.alertCode}-${alert.docNum}` &&
-      `${alert.alertCode}-${alert.contrato}` &&
-      `${alert.alertCode}-${alert.item}`;
-
-  const grouped = alert.count ? true : false;
-
+    : `${alert.alertCode}-${alert.docNum}`;
   let icon = null;
   let message = null;
   let background = null;
@@ -42,7 +44,11 @@ export function cleanAlert(alert) {
       message = grouped ? (
         <span>
           Há
-          <strong> {`${alert.count}`} </strong>
+          <strong>
+            {' '}
+            {`${alert.count}`}
+            {' '}
+          </strong>
           {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
           <strong> mais de 60 dias </strong>
           sem retorno.
@@ -50,12 +56,18 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           O processo criminal
-          <strong> {`${alert.docNum}`} </strong>
-          está há <strong> mais de 60 dias </strong>
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
+          está há
+          {' '}
+          <strong> mais de 60 dias </strong>
           no TJRJ sem retorno
         </span>
       );
-        
+
       background = '#F86C72';
       break;
 
@@ -72,8 +84,14 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           O processo criminal
-          <strong> {`${alert.docNum}`} </strong>
-          está há <strong> mais de 120 dias </strong>
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
+          está há
+          {' '}
+          <strong> mais de 120 dias </strong>
           no TJRJ sem retorno
         </span>
       );
@@ -94,7 +112,11 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           O processo
-          <strong> {`${alert.docNum}`} </strong>
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
           possui
           <strong> vitimas recorrentes </strong>
           de
@@ -116,8 +138,15 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           O processo administrativo
-          <strong> {`${alert.docNum}`} </strong>
-          está aberto <strong> há mais de um ano</strong>.
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
+          está aberto
+          {' '}
+          <strong> há mais de um ano</strong>
+          .
         </span>
       );
       background = '#5C6FD9';
@@ -135,8 +164,12 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           O procedimento preparatório
-          <strong> {`${alert.docNum}`} </strong>
-          está com o 
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
+          está com o
           <strong> prazo de tratamento esgotado</strong>
           .
         </span>
@@ -159,7 +192,11 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           O inquérito civil
-          <strong> {`${alert.docNum}`} </strong>
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
           está sem prorrogação há
           <strong> mais de 1 ano</strong>
           .
@@ -169,6 +206,7 @@ export function cleanAlert(alert) {
       break;
 
     case 'NF30':
+      key = `${alert.alertCode}-${alert.docNum}-${alert.date.getTime()}`;
       icon = <ClockIcon />;
       message = grouped ? (
         <span>
@@ -182,8 +220,12 @@ export function cleanAlert(alert) {
         </span>
       ) : (
         <span>
-          A notícia de fato autuada há mais de 120 dias 
-          <strong> {`${alert.docNum}`} </strong>
+          A notícia de fato autuada há mais de 120 dias
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
           ainda está
           <strong> sem tratamento</strong>
           .
@@ -205,8 +247,12 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           O ofício
-          <strong> {`${alert.docNum}`} </strong>
-          está com o 
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
+          está com o
           <strong> prazo de apreciação esgotado</strong>
           .
         </span>
@@ -226,7 +272,11 @@ export function cleanAlert(alert) {
       ) : (
         <span>
           A ouvidoria
-          <strong> {`${alert.docNum}`} </strong>
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
           foi enviada porém
           <strong> não foi recebida</strong>
           .
@@ -248,9 +298,13 @@ export function cleanAlert(alert) {
         <span>
           Você possui
           <strong> vista aberta </strong>
-          para o documento 
-          <strong> {`${alert.docNum}`} </strong>
-          <strong> sinalizado como fechado</strong> 
+          para o documento
+          <strong>
+            {' '}
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
+          <strong> sinalizado como fechado</strong>
           .
         </span>
       );
@@ -259,6 +313,7 @@ export function cleanAlert(alert) {
 
     // ALERTAS DE COMPRAS
     case 'COMP':
+      key = `${alert.alertCode}-${alert.contrato}-${alert.alertCode}-${alert.item}`;
       icon = <IconContratacoes />;
       message = (
         <span>
@@ -279,10 +334,15 @@ export function cleanAlert(alert) {
       icon = <ClockIcon />;
       message = (
         <span>
-          O procedimento <strong>{`${alert.docNum}`} </strong>
-          tem um 
+          O procedimento
+          {' '}
+          <strong>
+            {`${alert.docNum}`}
+            {' '}
+          </strong>
+          tem um
           <strong> crime </strong>
-          possivelmente 
+          possivelmente
           <strong> prescrito </strong>
           .
         </span>
@@ -332,7 +392,7 @@ export function cleanAlert(alert) {
       break;
   }
 
-  return { icon, message, action, actionLink, background, key , compId};
+  return { icon, message, action, actionLink, background, key, compId };
 }
 
 export function cleanAlertList(list, countList) {

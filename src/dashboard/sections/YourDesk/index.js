@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 import { useAuth } from '../../../app/authContext';
@@ -12,6 +13,11 @@ import Api from '../../../api';
 import { capitalizeWord } from '../../../utils';
 
 import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
+
+const propTypes = {
+  currentOffice: PropTypes.shape({ tipo: PropTypes.number }).isRequired,
+  buildRequestParams: PropTypes.func.isRequired,
+};
 
 class YourDesk extends React.Component {
   constructor(props) {
@@ -185,6 +191,8 @@ class YourDesk extends React.Component {
     );
   }
 }
+
+YourDesk.propTypes = propTypes;
 
 export default function() {
   const { currentOffice, buildRequestParams } = useAuth();

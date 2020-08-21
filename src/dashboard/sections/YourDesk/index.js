@@ -160,6 +160,7 @@ class YourDesk extends React.Component {
           <div className="desk-controlers">
             {buttonList.map(buttonTitle => (
               <ControlButton
+                key={BUTTON_TEXTS[buttonTitle]}
                 isButton={!buttonTitle.includes('closedCases')}
                 error={this.state[`error${capitalizeWord(buttonTitle)}`]}
                 buttonPressed={() => this.handleChangeActiveTab(buttonTitle)}
@@ -175,7 +176,7 @@ class YourDesk extends React.Component {
           {activeTab === 'openCases' ? (
             <OpenCasesDetail
               buildRequestParams={buildRequestParams}
-              chartData={openCasesDetails || []}
+              chartData={openCasesDetails || {}}
               isLoading={!openCasesDetails && !openCasesDetailsError}
             />
           ) : (

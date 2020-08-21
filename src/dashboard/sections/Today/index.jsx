@@ -98,6 +98,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   // runs on "mount" only
   useEffect(() => {
     loadComponent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
@@ -152,7 +153,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   function assembleGreeting() {
     const infoUser = cleanUsername();
     const hours = new Date().getHours();
-    const gender = infoUser.sexo;
+    // const gender = infoUser.sexo;
 
     let timeGreeting;
 
@@ -221,6 +222,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
           href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/9062e8f6462349978f249fb63c5f68a5?pip=${currentOffice.codigo}&dp=${currentOffice.dps}`}
           className="today-btn"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Ver mapa da atuação
         </a>

@@ -5,7 +5,7 @@ let iconBg;
 let icon;
 let url;
 let text;
-const links = [];
+// const links = [];
 
 const createLink = ({ icon, iconBg, url, text, action, key }) => {
   return (
@@ -32,8 +32,8 @@ const createLink = ({ icon, iconBg, url, text, action, key }) => {
 export const AlertsLinks = ({ actionLink, closeAction, compId }) => {
   const links = [];
 
-  if (actionLink == 'COMP') {
-    let contract = compId.split('-')[0];
+  if (actionLink === 'COMP') {
+    const contract = compId.split('-')[0];
 
     icon = <Ouvidoria />;
     iconBg = '#5C6FD9';

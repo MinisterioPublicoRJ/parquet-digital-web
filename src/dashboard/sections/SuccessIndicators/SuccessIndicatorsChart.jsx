@@ -9,21 +9,21 @@ const propTypes = {
 
 function SuccessIndicatorsChart({ data, color }) {
   const barConfig = {
-    alignment: 'center',
+    alignment: 'start',
     barWidth: 10,
     data,
     style: { data: { fill: color } },
   };
 
   const grayBarConfig = {
-    alignment: 'center',
+    alignment: 'start',
     barWidth: 10,
     data: [{ x: 1, y: 1 }],
     style: { data: { fill: '#F4F5FA' } },
   };
 
   const chartConfig = {
-    domain: { x: [1, 1], y: [0, 1] },
+    domain: { x: [1, 1.1], y: [0, 1] },
     domainPadding: 0,
     height: 10,
     horizontal: true,

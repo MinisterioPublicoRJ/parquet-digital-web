@@ -84,11 +84,11 @@ function Alerts() {
       <div className="alerts-header">
         <SectionTitle value="central de alertas" glueToTop />
         <span className="alerts-total">{alerts && alerts.length ? alerts.length : 0}</span>
-        <Dropdown />
       </div>
       <div className="alerts-body">
         {loading && <Spinner size="large" />}
         {alertsError && 'Não existem alertas para exibir.'}
+        {alerts && Object.keys(alerts).map(type => <Dropdown type={type} list={alerts[type]} />)}
         {/* alerts &&
           alerts.map(alert => {
             const { icon, message, action, actionLink, background, key, compId } = alert;

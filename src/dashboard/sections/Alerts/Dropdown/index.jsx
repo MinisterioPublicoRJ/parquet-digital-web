@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 
 import './styles.css';
 import detectOutsideClick from './detectedOutsideClick';
-import AlertBadge from '../../../dashboard/sections/Alerts/AlertBadge';
+import AlertBadge from '../AlertBadge';
 
-function Dropdow() {
+function Dropdown() {
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = detectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
@@ -21,4 +21,4 @@ function Dropdow() {
   );
 }
 
-export default Dropdow;
+export default Dropdown;

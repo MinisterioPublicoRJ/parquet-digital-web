@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
+import AlertBadge from '../AlertBadge';
 // import detectOutsideClick from './detectedOutsideClick';
 // import AlertBadge from '../AlertBadge';
 const propTypes = {
@@ -14,8 +15,24 @@ function Dropdown({ list, type }) {
 
   return (
     <div>
-      <div>{`I'm always visible! My type is ${type}`}</div>
-      {isOpen && list.map((alert, i) => <div>{`I'm child alert number ${i}`}</div>)}
+      <button type="button" onClick={() => setIsOpen(prevState => !prevState)}>
+        {`I'm always visible! My type is ${type}`}
+      </button>
+      {isOpen &&
+        list.map(alert => {
+          const { icon, message, action, actionLink, background, key, compId } = alert;
+          return (
+            <AlertBadge
+              key={key}
+              icon={icon}
+              iconBg={background}
+              message={message}
+              action={action}
+              actionLink={actionLink}
+              compId={compId}
+            />
+          );
+        })}
     </div>
   );
   // const dropdownRef = useRef(null);

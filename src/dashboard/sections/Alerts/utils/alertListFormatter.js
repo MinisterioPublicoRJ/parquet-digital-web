@@ -10,6 +10,5 @@ export default function alertListFormatter(list, countList) {
       .map(alert => individualAlertFormatter(alert));
     typedAlerts[type] = allAlertsOfType;
   });
-  console.log('typedAlerts', typedAlerts);
   return typedAlerts;
 }

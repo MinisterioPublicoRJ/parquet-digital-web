@@ -5,7 +5,7 @@ import { useAuth } from '../../../app/authContext';
 
 import Api from '../../../api';
 import AlertBadge from './AlertBadge';
-import { SectionTitle, Spinner } from '../../../components';
+import { SectionTitle, Spinner, Dropdow } from '../../../components';
 import { cleanAlertList } from './alertFormatters';
 
 function Alerts() {
@@ -88,6 +88,7 @@ function Alerts() {
       <div className="alerts-header">
         <SectionTitle value="central de alertas" glueToTop />
         <span className="alerts-total">{alertsError ? 0 : alerts.length}</span>
+        <Dropdow />
       </div>
       <div className="alerts-body">
         {alertsError && 'Não existem alertas para exibir.'}

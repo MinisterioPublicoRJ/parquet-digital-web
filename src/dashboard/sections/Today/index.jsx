@@ -216,7 +216,8 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
         ></button>
         <button
           type="button"
-          className={`${isLogoutBtnVisible ? 'logout-btn--visible' : 'logout-btn'}`}
+          className={`logout-btn ${isLogoutBtnVisible ? 'logout-btn--visible' : ''}`}
+          disabled={!isLogoutBtnVisible}
           onClick={logout}
         >
           CLIQUE PRA SAIR

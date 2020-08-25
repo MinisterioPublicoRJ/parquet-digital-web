@@ -8,15 +8,14 @@ import {
   Va,
   Tjrj,
   IconContratacoes,
-} from '../../../assets';
-import { NOT_GROUPABLE_ALERTS } from './alertsConstants';
+} from '../../../../assets';
 
 /**
  * Finds the details for each alert type
  * @param  {json} alert {alertCode}
  * @return {json}       { icon: node, message: node, action: null, actionLink: null, background: string }
  */
-export function cleanAlert(alert) {
+export default function individualAlertFormatter(alert) {
   const grouped = !!alert.count;
   let key = alert.count
     ? `${alert.alertCode}-${alert.count}`
@@ -387,23 +386,4 @@ export function cleanAlert(alert) {
   }
 
   return { icon, message, action, actionLink, background, key, compId };
-}
-
-export function cleanAlertList(list, countList) {
-  const orderedTypes = Object.keys(countList);
-  const cleanList = [];
-
-  orderedTypes.forEach(type => {
-    const isGroupable = NOT_GROUPABLE_ALERTS.indexOf(type) === -1;
-    if (isGroupable) {
-      cleanList.push(cleanAlert({ alertCode: type, count: countList[type].count }));
-    } else {
-      const allAlertsOfType = list
-        .filter(alert => alert.alertCode === type)
-        .map(alert => cleanAlert(alert));
-      cleanList.push(...allAlertsOfType);
-    }
-  });
-
-  return cleanList;
 }

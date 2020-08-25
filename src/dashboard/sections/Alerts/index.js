@@ -4,14 +4,16 @@ import './styles.css';
 import { useAuth } from '../../../app/authContext';
 
 import Api from '../../../api';
-import AlertBadge from './AlertBadge';
+// import AlertBadge from './AlertBadge';
 import { SectionTitle, Spinner } from '../../../components';
-import { cleanAlertList } from './alertFormatters';
+// import { cleanAlertList } from './alertFormatters';
 import Dropdown from './Dropdown';
+import alertListFormatter from './utils/alertListFormatter';
 
 function Alerts() {
   const { buildRequestParams } = useAuth();
   const [alerts, setAlerts] = useState(undefined);
+  // const [alertCount, setAlertCount] = useState(undefined);
   const [alertsError, setAlertsError] = useState(false);
   const loading = !alerts && !alertsError;
 
@@ -55,7 +57,7 @@ function Alerts() {
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
     const fullList = alertList.concat(hiresAlertList);
-    const cleanList = !apiError ? cleanAlertList(fullList, alertsCount) : [];
+    const cleanList = !apiError ? alertListFormatter(fullList, alertsCount) : [];
 
     setAlerts(cleanList);
     setAlertsError(apiError);
@@ -77,23 +79,17 @@ function Alerts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading) {
-    return (
-      <article className="alerts-wrapper">
-        <Spinner size="large" />
-      </article>
-    );
-  }
   return (
     <article className="alerts-wrapper">
       <div className="alerts-header">
         <SectionTitle value="central de alertas" glueToTop />
-        <span className="alerts-total">{alertsError ? 0 : alerts.length}</span>
+        <span className="alerts-total">{alerts && alerts.length ? alerts.length : 0}</span>
         <Dropdown />
       </div>
       <div className="alerts-body">
+        {loading && <Spinner size="large" />}
         {alertsError && 'Não existem alertas para exibir.'}
-        {alerts &&
+        {/* alerts &&
           alerts.map(alert => {
             const { icon, message, action, actionLink, background, key, compId } = alert;
             return (
@@ -108,7 +104,7 @@ function Alerts() {
                 compId={compId}
               />
             );
-          })}
+          }) */}
       </div>
     </article>
   );

@@ -1,9 +1,9 @@
 import { snakeToCamel, formatPercentage } from '../../utils';
 
 // not implemented yet
-function mapTransform() {
-  return {};
-}
+// function mapTransform() {
+//   return {};
+// }
 
 function metricsTransform(metrics) {
   const transformedMetrics = {};

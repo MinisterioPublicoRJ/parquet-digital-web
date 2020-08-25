@@ -67,12 +67,13 @@ function Alerts() {
    */
   function removeAlert(key) {
     const oldAlerts = [...alerts];
-    setAlerts(oldAlerts.filter((item, index) => item.key !== key));
+    setAlerts(oldAlerts.filter(item => item.key !== key));
   }
 
   // runs on "mount" only
   useEffect(() => {
     loadComponent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {
@@ -91,7 +92,7 @@ function Alerts() {
       <div className="alerts-body">
         {alertsError && 'Não existem alertas para exibir.'}
         {alerts &&
-          alerts.map((alert, index) => {
+          alerts.map(alert => {
             const { icon, message, action, actionLink, background, key, compId } = alert;
             return (
               <AlertBadge
@@ -101,9 +102,8 @@ function Alerts() {
                 message={message}
                 action={action}
                 actionLink={actionLink}
-                closeAction={() => removeAlert(key)
-                }
-                compId ={compId}
+                closeAction={() => removeAlert(key)}
+                compId={compId}
               />
             );
           })}

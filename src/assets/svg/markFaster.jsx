@@ -7,8 +7,8 @@ export default function MarkFaster({ x, y, width, height }) {
       width={width || '30.358'}
       height={height || '30.357'}
       viewBox="0 0 30.358 30.357"
-      x={x - 15.179}
-      y={y - 15.179}
+      x={x ? x - 15.179 : null}
+      y={y ? y - 15.179 : null}
     >
       <g transform="translate(0)">
         <ellipse

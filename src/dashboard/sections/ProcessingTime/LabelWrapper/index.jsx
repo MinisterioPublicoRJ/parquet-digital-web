@@ -8,7 +8,7 @@ import './styles.css';
 // https://formidable.com/open-source/victory/docs/victory-label/
 export default function LabelWrapper(props) {
   let customProps;
-  const { datum, text, x, y, heigth, slice } = props;
+  const { datum, text, x, y } = props;
 
   switch (datum.x) {
     case 0: // max value

@@ -10,17 +10,21 @@ import LabelWrapper from '../LabelWrapper';
 const graphicColor = ['#F8F9FB']; // Colors
 
 const propTypes = {
-  data: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-    label: PropTypes.string,
-    color: PropTypes.string,
-  }).isRequired,
-  scatter: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-    type: PropTypes.string,
-  }).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.number,
+      y: PropTypes.number,
+      label: PropTypes.string,
+      color: PropTypes.string,
+    }),
+  ).isRequired,
+  scatter: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.number,
+      y: PropTypes.number,
+      type: PropTypes.string,
+    }),
+  ).isRequired,
   labelText: PropTypes.string.isRequired,
   labelCompliment: PropTypes.string.isRequired,
   domain: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }).isRequired,
@@ -135,6 +139,10 @@ function TempoTramitacaoChart({
 
   return (
     <svg width="100%" height="100%" viewBox="0 0 200 200">
+
+      {/* The circle is just a broder for the center text */}
+      <circle cx="100" cy="140" r="40" fill="none" stroke="#B3B3B3" />
+
       <VictoryChart polar {...victoryChartSettings}>
         {/* DECORATIONS */}
         {/* Number in the center text */}
@@ -155,8 +163,6 @@ function TempoTramitacaoChart({
         <VictoryPie {...blackLayerPieSettings} data={[{ x: 1, y: 1 }]} />
         {/*  This chart covers the previous chart with gray to create a pointer effect */}
         <VictoryPie {...pointerPieSettings} data={pointerPosition} />
-        {/* The circle is just a broder for the center text */}
-        <circle cx="100" cy="140" r="40" fill="none" stroke="#B3B3B3" />
 
         {/* GRAPHS AND AXIS */}
         {/* This hides the axis from showing */}

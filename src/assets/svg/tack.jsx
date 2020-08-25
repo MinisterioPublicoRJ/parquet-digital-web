@@ -1,11 +1,5 @@
 import React from 'react';
 
-const fills = {
-  true: '#31a7e0',
-  false: '#b9b9b9',
-};
-const getColor = activated => fills[activated] || '#31a7e0';
-
 const Tack = ({ activated }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

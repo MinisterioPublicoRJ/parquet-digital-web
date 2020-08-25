@@ -80,6 +80,7 @@ const ProcessingTime = () => {
       }
     };
     loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (!chartData || loading) {
     return (

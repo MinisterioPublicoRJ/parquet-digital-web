@@ -17,12 +17,6 @@ import { NOT_GROUPABLE_ALERTS } from './alertsConstants';
  * @return {json}       { icon: node, message: node, action: null, actionLink: null, background: string }
  */
 export function cleanAlert(alert) {
-  // const key = alert.count
-  //   ? `${alert.alertCode}-${alert.count}`
-  //   : `${alert.alertCode}-${alert.docNum}` &&
-  //     `${alert.alertCode}-${alert.contrato}` &&
-  //     `${alert.alertCode}-${alert.item}`;
-
   const grouped = !!alert.count;
   let key = alert.count
     ? `${alert.alertCode}-${alert.count}`

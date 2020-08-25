@@ -206,9 +206,9 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
 
   return (
     <article className="today-outer">
-      <MainTitle value={greeting} glueToTop />
-      <div className="logout-area">
-        <button type="button"></button>
+      <div className="user-area">
+        <MainTitle value={greeting} glueToTop />
+        <button type="button" className="logout-arrow"></button>
         <button type="button" onClick={logout}>
           CLIQUE PRA SAIR
         </button>

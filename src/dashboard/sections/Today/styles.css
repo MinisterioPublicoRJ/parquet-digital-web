@@ -83,8 +83,21 @@
   background-color: transparent;
   position: relative;
   padding: 0;
+  margin: 8px 8px 0px 8px;
+  cursor: pointer;
 }
 
+.logout-arrow--rotated {
+  transform: rotate(-90deg);
+}
+
+.logout-btn {
+  visibility: hidden;
+}
+
+.logout-btn--visible {
+  visibility: visible;
+}
 .today-robotPic {
   align-items: flex-end;
   display: flex;

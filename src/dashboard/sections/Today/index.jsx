@@ -24,6 +24,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   const [entriesGroup, setEntriesGroup] = useState([]);
   const [fullError, setfullError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isLogoutBtnVisible, setIsLogoutBtnVisible] = useState(false);
 
   /**
    * laods percentage data for the first sentence
@@ -208,8 +209,16 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
     <article className="today-outer">
       <div className="user-area">
         <MainTitle value={greeting} glueToTop />
-        <button type="button" className="logout-arrow"></button>
-        <button type="button" onClick={logout}>
+        <button
+          type="button"
+          className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
+          onClick={() => setIsLogoutBtnVisible(prevValue => !prevValue)}
+        ></button>
+        <button
+          type="button"
+          className={`${isLogoutBtnVisible ? 'logout-btn--visible' : 'logout-btn'}`}
+          onClick={logout}
+        >
           CLIQUE PRA SAIR
         </button>
       </div>

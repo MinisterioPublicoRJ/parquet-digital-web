@@ -77,7 +77,9 @@ function AuthContextCreator() {
   // add backend integration when available
   const logout = () => {
     setUser(undefined);
+    setUserError(true);
     window.localStorage.removeItem('sca_token');
+    window.localStorage.removeItem('access_token');
   };
 
   return {

@@ -11,7 +11,7 @@ import { SectionTitle, MainTitle, Spinner, Modal } from '../../../components/lay
 import { formatPercentage, capitalizeTitle } from '../../../utils';
 
 function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
-  const { user, buildRequestParams, currentOffice } = useAuth();
+  const { user, buildRequestParams, currentOffice, logout } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
   const [groupName, setgroupName] = useState([]);
@@ -200,6 +200,12 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   return (
     <article className="today-outer">
       <MainTitle value={greeting} glueToTop />
+      <div className="logout-area">
+        <button type="button"></button>
+        <button type="button" onClick={logout}>
+          CLIQUE PRA SAIR
+        </button>
+      </div>
       <div className="today-content">
         <button type="button" onClick={setIsSelectorOpen}>
           <h2>Resumo do dia </h2>

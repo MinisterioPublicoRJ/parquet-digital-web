@@ -209,11 +209,13 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
     <article className="today-outer">
       <div className="user-area">
         <MainTitle value={greeting} glueToTop />
-        <button
-          type="button"
-          className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
-          onClick={() => setIsLogoutBtnVisible(prevValue => !prevValue)}
-        ></button>
+        {user.orgaosValidos && user.orgaosValidos.length ? (
+          <button
+            type="button"
+            className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
+            onClick={() => setIsLogoutBtnVisible(prevValue => !prevValue)}
+          ></button>
+        ) : null}
         <button
           type="button"
           className={`logout-btn ${isLogoutBtnVisible ? 'logout-btn--visible' : ''}`}

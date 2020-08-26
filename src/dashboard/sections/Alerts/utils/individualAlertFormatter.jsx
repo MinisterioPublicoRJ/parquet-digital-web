@@ -10,10 +10,49 @@ import {
   IconContratacoes,
 } from '../../../../assets';
 
+import { DELETE } from './actionConstants';
+
+function compConstructor({ contrato, item, iditem, dropdown, alertCode }) {
+  let key;
+  let message;
+  let actions;
+
+  if (dropdown) {
+    actions = [];
+    key = `${alertCode}-dropdown`;
+    message = <span>{`Placedolher mensagem dropdown ${alertCode}`}</span>;
+  } else {
+    key = `${contrato}-${iditem}`;
+    actions = [DELETE];
+    message = (
+      <span>
+        Os valores do contrato
+        <strong>{` ${contrato} `}</strong>, itens:
+        <strong>{` ${item.substring(0, 40).toLowerCase()}... `}</strong>
+        merecem sua atenção.
+      </span>
+    );
+  }
+
+  return {
+    actions,
+    backgroundColor: '#F8BD6C',
+    icon: <IconContratacoes />,
+    key,
+    message,
+  };
+}
+
 /**
  * Finds the details for each alert type
  * @param  {json} alert {alertCode}
- * @return {json}       { icon: node, message: node, action: null, actionLink: null, background: string }
+ * @return {json}       {
+ *  actions: array of action objects, see actionConstants for more,
+ *  backgroundColor: string }
+ *  icon: node,
+ *  key: string,
+ *  message: node,
+ * }
  */
 export default function individualAlertFormatter(alert) {
   const grouped = !!alert.count;
@@ -23,7 +62,7 @@ export default function individualAlertFormatter(alert) {
   let icon = null;
   let message = null;
   let background = null;
-  let compId = null;
+  const compId = null;
   // not implemented yet
   const action = true;
   const actionLink = alert.alertCode;
@@ -306,21 +345,7 @@ export default function individualAlertFormatter(alert) {
 
     // ALERTAS DE COMPRAS
     case 'COMP':
-      key = `${alert.alertCode}-${alert.contrato}-${alert.alertCode}-${alert.item}`;
-      icon = <IconContratacoes />;
-      message = (
-        <span>
-          Os valores do contrato
-          <strong>{` ${` ${alert.contrato} `} `}</strong>
-          ,
-          itens:
-          <strong>{` ${` ${alert.item.substring(0,40).toLowerCase()}... `} `}</strong>
-          merecem sua atenção.
-        </span>
-        );
-        background = '#F8BD6C';
-        compId = alert.contrato_iditem;
-        break;
+      return compConstructor(alert);
 
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':

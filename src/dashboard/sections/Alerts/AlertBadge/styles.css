@@ -15,20 +15,22 @@
 }
 
 .alertBadge-hoverContainer {
+  background-color: var(--danger);
   height: 100%;
-  width: 0;
-  left: 100%;
+  width: 100%;
+  left: 0;
+  /* width: 0;
+  left: 100%; */
   top: 0;
   transition: .5s ease;
   position: absolute;
-  background-color: red;
   overflow: hidden;
 }
 
-.alertBadge-outerContainer:hover .alertBadge-hoverContainer {
+/* .alertBadge-outerContainer:hover .alertBadge-hoverContainer {
   width: 100%;
   left: 0;
-}
+} */
 
 .alertBadge-leftContainer {
   align-items: center;
@@ -50,34 +52,12 @@
   padding: 10px;
 }
 
-.alertBadge-rightContainer a {
+/* .alertBadge-rightContainer a {
   color: orange;
   text-align: left;
-}
-/*
-.alertBadge-outerContainer:hover > .alertBadge-linksContainer + .alertBadge-linksContainer {
-  padding-left: 8px;
-}
-
-.alertBadge-outerContainer:hover > .alertBadge-linksContainer + .alertBadge-linksContainer {
-  margin-left: -8px;
-  padding-right: 8px;
-}
-
-.alertBadge-outerContainer:hover .alertBadge-leftContainer {
-  display: none;
-}
-
-.alertBadge-outerContainer:hover .alertBadge-rightContainer {
-  display: none;
-}
-
-.alertBadge-outerContainer:hover .alertBadge-linksContainer {
-  animation: 3s ease-in 1s 1 reverse both running slidein;
-  display: flex;
 } */
 
-.alertBadge-linksContainer {
+/* .alertBadge-linksContainer {
   cursor: pointer;
   min-height: 56px;
   width: 100%;
@@ -93,4 +73,4 @@
   font-size: var(--smallFont);
   color: var(--white);
   font-weight: 600;
-}
+} */

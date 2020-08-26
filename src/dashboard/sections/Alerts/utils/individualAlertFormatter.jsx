@@ -10,7 +10,7 @@ import {
   IconContratacoes,
 } from '../../../../assets';
 
-import { DELETE } from './actionConstants';
+import { DELETE, TESTE } from './actionConstants';
 
 function compConstructor({ contrato, item, iditem, dropdown, alertCode }) {
   let key;
@@ -23,7 +23,7 @@ function compConstructor({ contrato, item, iditem, dropdown, alertCode }) {
     message = <span>{`Placedolher mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${contrato}-${iditem}`;
-    actions = [DELETE];
+    actions = [TESTE, DELETE];
     message = (
       <span>
         Os valores do contrato

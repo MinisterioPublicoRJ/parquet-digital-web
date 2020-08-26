@@ -4,32 +4,27 @@ import PropTypes from 'prop-types';
 import './styles.css';
 
 const propTypes = {
-  icon: PropTypes.node.isRequired,
-  text: PropTypes.node.isRequired,
   actionType: PropTypes.string.isRequired,
-  backgroundColor: PropTypes.string,
-  link: PropTypes.string,
+  background: PropTypes.string.isRequired,
   clickCallback: PropTypes.func.isRequired,
-  // message: PropTypes.node.isRequired,
-  // action: PropTypes.bool,
-  // iconBg: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
+  link: PropTypes.string,
+  text: PropTypes.node.isRequired,
 };
 const defaultProps = {
   link: null,
-  backgroundColor: 'transparent',
-  // action: true,
 };
 
-function ActionButtons({ actionType, icon, backgroundColor, text, link, clickCallback }) {
+function ActionButtons({ actionType, icon, background, text, link, clickCallback }) {
   return (
     <button
       className="actionButton-outer"
       type="button"
-      style={{ backgroundColor }}
+      style={{ background }}
       onClick={() => clickCallback()}
     >
       <div>{icon || null}</div>
-      <div>{text || 'oi turupon?'}</div>
+      <span>{text || 'oi turupon?'}</span>
     </button>
   );
 }

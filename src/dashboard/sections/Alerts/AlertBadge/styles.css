@@ -16,15 +16,17 @@
 
 .alertBadge-hoverContainer {
   background-color: var(--danger);
+  display: flex;
+  justify-content: flex-end;
   height: 100%;
-  width: 100%;
   left: 0;
-  /* width: 0;
-  left: 100%; */
+  /* left: 100%; */
+  overflow: hidden;
+  position: absolute;
   top: 0;
   transition: .5s ease;
-  position: absolute;
-  overflow: hidden;
+  width: 100%;
+  /* width: 0; */
 }
 
 /* .alertBadge-outerContainer:hover .alertBadge-hoverContainer {

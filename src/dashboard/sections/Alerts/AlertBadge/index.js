@@ -17,25 +17,23 @@ const defaultProps = {
 };
 
 const AlertBadge = ({ icon, message, action, actionLink, iconBg, closeAction, compId }) => {
-  const [actionHover, setActionHover] = useState(false);
-
+  // in case we got something from the backend that we don't know how to handle yet
   if (!iconBg) {
     return null;
   }
 
+  // const [actionHover, setActionHover] = useState(false);
+
   return (
-    <div
-      className="alertBadge-outerContainer"
-      onMouseEnter={() => setActionHover(true)}
-      onMouseLeave={() => setActionHover(false)}
-    >
+    <div className="alertBadge-outerContainer">
+      <div className="alertBadge-hoverContainer">hover</div>
       <div className="alertBadge-leftContainer" style={{ backgroundColor: iconBg }}>
         {icon}
       </div>
       <div className="alertBadge-rightContainer">{message}</div>
-      {actionHover && (
+      {/* actionHover && (
         <AlertsLinks actionLink={actionLink} closeAction={closeAction} compId={compId} />
-      )}
+      ) */}
     </div>
   );
 };

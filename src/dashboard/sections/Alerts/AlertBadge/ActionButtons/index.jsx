@@ -21,10 +21,10 @@ function ActionButtons({ actionType, icon, background, text, link, clickCallback
       className="actionButton-outer"
       type="button"
       style={{ background }}
-      onClick={() => clickCallback()}
+      onClick={clickCallback}
     >
-      <div>{icon || null}</div>
-      <span>{text || 'oi turupon?'}</span>
+      <div>{icon}</div>
+      <span>{text}</span>
     </button>
   );
 }

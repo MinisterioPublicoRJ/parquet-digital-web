@@ -11,6 +11,6 @@ export const DELETE = {
 export const TESTE = {
   actionType: 'teste',
   icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
-  text: 'teste!',
+  text: 'teste! painel de compras',
   background: 'orange',
 };

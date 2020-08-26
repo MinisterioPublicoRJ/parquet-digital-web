@@ -6,13 +6,23 @@
   flex-direction: column;
   flex: 1;
   justify-content: center;
+  /* padding: 5px 0; */
+}
+
+.actionButton-outer div {
+  align-items: center;
+  display: flex;
+  flex: 2;
+  justify-content: center;
 }
 
 .actionButton-outer span {
   color: white;
-  text-transform: uppercase;
+  display: flex;
+  flex: 1;
   font-size: var(--smallFont);
   font-weight: bold;
-  padding: calc( 0.5 * var(--smallFont));
+  justify-content: center;
+  text-transform: uppercase;
   text-align: center;
 }

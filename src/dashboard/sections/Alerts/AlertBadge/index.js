@@ -17,13 +17,13 @@ const propTypes = {
   backgroundColor: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   message: PropTypes.node.isRequired,
-  key: PropTypes.string.isRequired,
+  customKey: PropTypes.string.isRequired,
   hideHover: PropTypes.bool,
 };
 
 const defaultProps = { hideHover: false };
 
-const AlertBadge = ({ actions, backgroundColor, icon, message, key, hideHover }) => {
+const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHover }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
@@ -40,7 +40,7 @@ const AlertBadge = ({ actions, backgroundColor, icon, message, key, hideHover })
         <div className="alertBadge-hoverContainer">
           {actions.map(alert => (
             <ActionButtons
-              key={`${key}-${alert.actionType}`}
+              key={`${customKey}-${alert.actionType}`}
               clickCallback={() => handleActionPress(alert)}
               {...alert}
             />

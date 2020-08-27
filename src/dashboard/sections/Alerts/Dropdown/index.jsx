@@ -20,7 +20,7 @@ function Dropdown({ list, type }) {
 
   return (
     <div>
-      <button type="button" onClick={() => setIsOpen(prevState => !prevState)}>
+      <button className="dropdowBtn" type="button" onClick={() => setIsOpen(prevState => !prevState)}>
         <AlertBadge {...headerAlert} />
       </button>
       {isOpen &&

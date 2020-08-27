@@ -25,6 +25,12 @@
     border-color: var(--white) transparent transparent transparent;
     position: absolute;
 }
+.dropdowBtn{
+    border: none;
+    background-color: var(--white);
+
+
+}
   
 
   

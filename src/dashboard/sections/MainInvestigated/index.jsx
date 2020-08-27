@@ -116,7 +116,7 @@ function MainInvestigated() {
       <article className="mainInvestigated-outer">
         <SectionTitle value="Principais Investigados" glueToTop />
         <div className="mainInvestigated-tableWrapper">
-          <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeade />
+          <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
         </div>
       </article>
     );

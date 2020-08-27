@@ -210,7 +210,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O processo
+        O processo{``}
         <strong>{`${docNum}`}</strong>
         possui
         <strong> vitimas recorrentes </strong>
@@ -248,7 +248,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O processo administrativo
+        O processo administrativo{``}
         <strong>
           {`${docNum}`}
         </strong>
@@ -287,10 +287,10 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O procedimento preparatório
+        O procedimento preparatório {``}
         <strong>
           {`${docNum}`}
-        </strong>
+        </strong>  {``}
         está com o
         <strong> prazo de tratamento esgotado</strong>
         .
@@ -491,7 +491,7 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
         <strong> vista aberta </strong>
         para o documento
         <strong>
-          {` ${alert.docNum} `}
+          {` ${docNum} `}
         </strong>
         <strong> sinalizado como fechado</strong>
         .
@@ -514,8 +514,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
-    // const single = count === 1;
-    message = <span> Placedolher text for prcp allert </span>;
+    const single = count === 1;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
@@ -548,8 +547,7 @@ function gateConstructor({ dropdown, alertCode, count, docNum }) {
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
-    // const single = count === 1;
-    message = <span> Placedolher text for gate allert </span>;
+    const single = count === 1;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
@@ -593,10 +591,9 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O procedimento
-        <strong>{` ${docNum}.`}</strong>
-        possui
-        <strong> movimentações em segunda instância</strong>
-        .
+        <strong>{` ${docNum}`}</strong> {``}
+        possui {``}
+        <strong> movimentações em segunda instância</strong>.
       </span>
     );
   }

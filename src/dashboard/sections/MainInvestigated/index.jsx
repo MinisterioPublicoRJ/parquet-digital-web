@@ -88,6 +88,7 @@ function MainInvestigated() {
     let response;
     try {
       response = await Api.getMainInvestigated(buildRequestParams());
+      console.log(response)
       setTableData(cleanData(response));
     } catch (e) {
       setApiError(true);
@@ -116,7 +117,7 @@ function MainInvestigated() {
       <article className="mainInvestigated-outer">
         <SectionTitle value="Principais Investigados" glueToTop />
         <div className="mainInvestigated-tableWrapper">
-          <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
+          <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeade />
         </div>
       </article>
     );

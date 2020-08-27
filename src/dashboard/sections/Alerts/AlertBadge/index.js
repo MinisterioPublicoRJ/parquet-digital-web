@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ActionButtons from './ActionButtons';
+import ActionButtons from './AlertActionButtons';
 
 import './styles.css';
 

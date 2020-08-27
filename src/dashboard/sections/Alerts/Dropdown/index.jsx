@@ -12,7 +12,11 @@ const propTypes = {
 
 function Dropdown({ list, type }) {
   const [isOpen, setIsOpen] = useState(false);
-  const headerAlert = individualAlertFormatter({ alertCode: type, count: list.length });
+  const headerAlert = individualAlertFormatter({
+    alertCode: type,
+    count: list.length,
+    dropdown: true,
+  });
 
   return (
     <div>

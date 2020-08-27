@@ -19,20 +19,20 @@
   display: flex;
   justify-content: flex-end;
   height: 100%;
-  left: 0;
-  /* left: 100%; */
+  /* left: 0; */
+  left: 100%;
   overflow: hidden;
   position: absolute;
   top: 0;
   transition: .5s ease;
-  width: 100%;
-  /* width: 0; */
+  /* width: 100%; */
+  width: 0;
 }
 
-/* .alertBadge-outerContainer:hover .alertBadge-hoverContainer {
+.alertBadge-outerContainer:hover .alertBadge-hoverContainer {
   width: 100%;
   left: 0;
-} */
+}
 
 .alertBadge-leftContainer {
   align-items: center;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 import AlertBadge from '../AlertBadge';
+import individualAlertFormatter from '../utils/individualAlertFormatter';
 
 const propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -11,11 +12,12 @@ const propTypes = {
 
 function Dropdown({ list, type }) {
   const [isOpen, setIsOpen] = useState(false);
+  const headerAlert = individualAlertFormatter({ alertCode: type, count: list.length });
 
   return (
     <div>
       <button type="button" onClick={() => setIsOpen(prevState => !prevState)}>
-        {`I'm always visible! My type is ${type}`}
+        <AlertBadge {...headerAlert} />
       </button>
       {isOpen &&
         list.map(alert => {

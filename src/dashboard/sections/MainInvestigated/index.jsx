@@ -88,7 +88,6 @@ function MainInvestigated() {
     let response;
     try {
       response = await Api.getMainInvestigated(buildRequestParams());
-      console.log(response)
       setTableData(cleanData(response));
     } catch (e) {
       setApiError(true);

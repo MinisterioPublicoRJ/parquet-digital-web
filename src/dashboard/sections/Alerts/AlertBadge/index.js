@@ -18,9 +18,12 @@ const propTypes = {
   icon: PropTypes.node.isRequired,
   message: PropTypes.node.isRequired,
   key: PropTypes.string.isRequired,
+  hideHover: PropTypes.bool,
 };
 
-const AlertBadge = ({ actions, backgroundColor, icon, message, key }) => {
+const defaultProps = { hideHover: false };
+
+const AlertBadge = ({ actions, backgroundColor, icon, message, key, hideHover }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
@@ -29,18 +32,21 @@ const AlertBadge = ({ actions, backgroundColor, icon, message, key }) => {
   function handleActionPress(alert) {
     console.log('i was pressed!', alert);
   }
+  const showHover = !hideHover && actions[0];
 
   return (
     <div className="alertBadge-outerContainer">
-      <div className="alertBadge-hoverContainer">
-        {actions.map(alert => (
-          <ActionButtons
-            key={`${key}-${alert.actionType}`}
-            clickCallback={() => handleActionPress(alert)}
-            {...alert}
-          />
-        ))}
-      </div>
+      {showHover && (
+        <div className="alertBadge-hoverContainer">
+          {actions.map(alert => (
+            <ActionButtons
+              key={`${key}-${alert.actionType}`}
+              clickCallback={() => handleActionPress(alert)}
+              {...alert}
+            />
+          ))}
+        </div>
+      )}
       <div className="alertBadge-leftContainer" style={{ backgroundColor }}>
         {icon}
       </div>
@@ -50,4 +56,5 @@ const AlertBadge = ({ actions, backgroundColor, icon, message, key }) => {
 };
 
 AlertBadge.propTypes = propTypes;
+AlertBadge.defaultProps = defaultProps;
 export default AlertBadge;

@@ -21,7 +21,7 @@ function Dropdown({ list, type }) {
   return (
     <div>
       <button type="button" onClick={() => setIsOpen(prevState => !prevState)}>
-        <AlertBadge {...headerAlert} />
+        <AlertBadge {...headerAlert} hideHover />
       </button>
       {isOpen &&
         list.map(alert => {

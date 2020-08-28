@@ -33,12 +33,17 @@ const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHo
     console.log('i was pressed!', alert);
   }
 
+  function handleDownload(alert) {
+    window.open(alert.link);
+  }
+
   function handleActionPress(alert) {
-    const { type } = alert;
-    switch (type) {
+    const { actionType } = alert;
+    switch (actionType) {
       case 'delete':
         return handleDeletion(alert);
-        break;
+      case 'download':
+        return handleDownload(alert);
       default:
         window.alert('Em breve! :)');
     }

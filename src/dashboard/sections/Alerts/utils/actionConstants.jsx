@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bin, Ouvidoria, IconCompras } from '../../../../assets';
+import { Bin, Ouvidoria, IconCompras, CorujaGate } from '../../../../assets';
 
 // export const teste = { type: string, link: 'string', icon: }
 export const DELETE = {
@@ -14,3 +14,10 @@ export const TESTE = {
   text: 'teste! painel de compras',
   background: 'orange',
 };
+export const IT = link => ({
+  actionType: 'download',
+  icon: <CorujaGate fillColor="white" width="30px" height="30px" />,
+  text: 'Download da IT',
+  background: '#374354',
+  link,
+});

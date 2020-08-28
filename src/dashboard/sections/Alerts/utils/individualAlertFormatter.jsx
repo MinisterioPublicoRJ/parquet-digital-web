@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 
 import {
@@ -10,7 +12,7 @@ import {
   IconContratacoes,
 } from '../../../../assets';
 
-import { DELETE, TESTE } from './actionConstants';
+import { DELETE, TESTE, IT } from './actionConstants';
 
 /**
  * Finds the details for each alert type
@@ -542,7 +544,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function gateConstructor({ dropdown, alertCode, count, docNum }) {
+function gateConstructor({ dropdown, alertCode, count, docNum, docDk }) {
   let key;
   let message;
 
@@ -566,7 +568,7 @@ function gateConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [IT(`http://apps.mprj.mp.br/gate/api/Cidadao/downloadPDF/${docDk}`), DELETE],
     backgroundColor: '#374354',
     icon: <CorujaGate />,
     key,

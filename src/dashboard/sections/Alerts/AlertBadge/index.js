@@ -23,7 +23,16 @@ const propTypes = {
 
 const defaultProps = { hideHover: false };
 
-const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHover, onDeletion }) => {
+const AlertBadge = ({
+  actions,
+  backgroundColor,
+  icon,
+  message,
+  customKey,
+  hideHover,
+  onDeletion,
+  setShowOverlay,
+}) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
@@ -38,6 +47,10 @@ const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHo
     window.open(alert.link);
   }
 
+  function handleOpenOverlay(alert) {
+    setShowOverlay(prevValue => !prevValue);
+  }
+
   function handleActionPress(alert, key) {
     const { actionType } = alert;
     switch (actionType) {
@@ -45,6 +58,8 @@ const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHo
         return handleDeletion(key);
       case 'download':
         return handleDownload(alert);
+      case 'openOverlay':
+        return handleOpenOverlay(alert);
       default:
         window.alert('Em breve! :)');
     }

@@ -86,14 +86,16 @@ function Alerts() {
         <SectionTitle value="central de alertas" glueToTop />
         <span className="alerts-total">{alerts ? alertCount : 0}</span>
       </div>
-      <div className="alerts-body">
+      <div className="alerts-body" style={showOverlay ? { overflowY: 'hidden' } : {}}>
         <button onClick={() => setShowOverlay(prevValue => !prevValue)}>OVERLAY</button>
         {showOverlay && <Overlay type={alerts} setShowOverlay={setShowOverlay} />}
 
         {loading && <Spinner size="large" />}
         {alertsError && 'Não existem alertas para exibir.'}
         {alerts &&
-          Object.keys(alerts).map(type => <Dropdown type={type} list={alerts[type]} key={type} />)}
+          Object.keys(alerts).map(type => (
+            <Dropdown type={type} list={alerts[type]} key={type} setShowOverlay={setShowOverlay} />
+          ))}
       </div>
     </article>
   );

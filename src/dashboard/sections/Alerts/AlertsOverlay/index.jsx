@@ -5,15 +5,18 @@ import './styles.css';
 
 const propTypes = {
   type: PropTypes.string.isRequired,
+  setShowOverlay: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 
-function AlertsOverlay({ type, setShowOverlay }) {
+function AlertsOverlay({ type, setShowOverlay, children }) {
   console.log('alertas:', type);
   return (
     <div className="overlay-outer">
       <div className="alerts-overlay">
         Isso é um overlay
         <button onClick={() => setShowOverlay(false)}> Sair</button>
+        {children}
       </div>
     </div>
   );

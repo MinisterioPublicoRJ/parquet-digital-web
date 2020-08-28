@@ -10,7 +10,7 @@ const propTypes = {
   type: PropTypes.string.isRequired,
 };
 
-function Dropdown({ list, type }) {
+function Dropdown({ list, type, setShowOverlay }) {
   const [isOpen, setIsOpen] = useState(false);
   const [visibleAlertsList, setVisibleAlertsList] = useState(list);
   const headerAlert = individualAlertFormatter({
@@ -46,6 +46,7 @@ function Dropdown({ list, type }) {
               backgroundColor={backgroundColor}
               message={message}
               actions={actions}
+              setShowOverlay={setShowOverlay}
             />
           );
         })}

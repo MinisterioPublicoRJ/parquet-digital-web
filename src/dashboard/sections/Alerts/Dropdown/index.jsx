@@ -19,10 +19,9 @@ function Dropdown({ list, type }) {
   });
 
   return (
-    <div>
+    <div className="box-btn-dropdow">
       <button className="dropdowBtn" type="button" onClick={() => setIsOpen(prevState => !prevState)}>
         <AlertBadge {...headerAlert} />
-        <span className="arow-dropdow"></span>
       </button>
       {isOpen &&
         list.map(alert => {

@@ -29,10 +29,24 @@
     border: none;
     background-color: var(--white);
 }
-.arow-dropdow{
-
+.box-btn-dropdow{
+    margin-top: -8px
 }
-
+.arow-dropdow{
+    opacity: 1;
+    border-width: var(--selectorArrowSize);
+    border-style: solid;
+    border-color: var(--darkBlue) transparent transparent transparent;
+    background-color: transparent;
+    position: relative;
+    padding: 0;
+    margin: 4px 8px 0px 8px;
+    cursor: pointer;
+    transition: transform 1s;
+}
+.arow-dropdow {
+    transform: rotate(-90deg) translate(2px);
+}
   
 
   

@@ -23,25 +23,26 @@ const propTypes = {
 
 const defaultProps = { hideHover: false };
 
-const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHover }) => {
+const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHover, onDeletion }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
   }
 
-  function handleDeletion(alert) {
-    console.log('i was pressed!', alert);
+  function handleDeletion(key) {
+    console.log(`deleting ${key}`);
+    onDeletion(key);
   }
 
   function handleDownload(alert) {
     window.open(alert.link);
   }
 
-  function handleActionPress(alert) {
+  function handleActionPress(alert, key) {
     const { actionType } = alert;
     switch (actionType) {
       case 'delete':
-        return handleDeletion(alert);
+        return handleDeletion(key);
       case 'download':
         return handleDownload(alert);
       default:
@@ -58,7 +59,7 @@ const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHo
           {actions.map(alert => (
             <ActionButtons
               key={`${customKey}-${alert.actionType}`}
-              clickCallback={() => handleActionPress(alert)}
+              clickCallback={() => handleActionPress(alert, customKey)}
               {...alert}
             />
           ))}

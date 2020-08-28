@@ -12,11 +12,22 @@ const propTypes = {
 
 function Dropdown({ list, type }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [visibleAlertsList, setVisibleAlertsList] = useState(list);
   const headerAlert = individualAlertFormatter({
     alertCode: type,
-    count: list.length,
     dropdown: true,
+    count: list.length,
   });
+
+  function handleAlertDeletion(deleteKey) {
+    const newList = list.filter(({ key }) => key !== deleteKey);
+    setVisibleAlertsList(newList);
+    // ADD BACKEND INTEGRATION HERE WHEN IT'S DONE!
+  }
+
+  if (!visibleAlertsList.length) {
+    return null;
+  }
 
   return (
     <div>
@@ -24,10 +35,11 @@ function Dropdown({ list, type }) {
         <AlertBadge {...headerAlert} customKey={headerAlert.key} hideHover />
       </button>
       {isOpen &&
-        list.map(alert => {
+        visibleAlertsList.map(alert => {
           const { actions, backgroundColor, icon, key, message } = alert;
           return (
             <AlertBadge
+              onDeletion={alertKey => handleAlertDeletion(alertKey)}
               key={key}
               customKey={key}
               icon={icon}

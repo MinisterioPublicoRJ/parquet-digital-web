@@ -2,6 +2,7 @@
   position: absolute;
   display: flex;
   align-items: center;
+  justify-content: center;
   z-index: 100;
   background-color: var(--white);
   border-radius: 10px;
@@ -9,4 +10,14 @@
   opacity: 1;
   width: 80%;
   height: 80%;
+}
+
+.overlay-outer {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  justify-content: center;
 }

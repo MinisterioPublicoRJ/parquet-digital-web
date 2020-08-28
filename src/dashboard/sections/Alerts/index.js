@@ -6,6 +6,7 @@ import { useAuth } from '../../../app/authContext';
 import Api from '../../../api';
 import { SectionTitle, Spinner } from '../../../components';
 import Dropdown from './Dropdown';
+import Overlay from './AlertsOverlay';
 import alertListFormatter from './utils/alertListFormatter';
 
 function Alerts() {
@@ -13,6 +14,7 @@ function Alerts() {
   const [alerts, setAlerts] = useState(undefined);
   const [alertCount, setAlertCount] = useState(undefined);
   const [alertsError, setAlertsError] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(true);
   const loading = !alerts && !alertsError;
 
   async function loadAlerts() {
@@ -85,6 +87,9 @@ function Alerts() {
         <span className="alerts-total">{alerts ? alertCount : 0}</span>
       </div>
       <div className="alerts-body">
+        <button onClick={() => setShowOverlay(prevValue => !prevValue)}>OVERLAY</button>
+        {showOverlay && <Overlay type={alerts} setShowOverlay={setShowOverlay} />}
+
         {loading && <Spinner size="large" />}
         {alertsError && 'Não existem alertas para exibir.'}
         {alerts &&

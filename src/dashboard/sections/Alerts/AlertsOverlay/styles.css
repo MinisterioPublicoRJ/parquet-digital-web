@@ -1,0 +1,12 @@
+.alerts-overlay {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  background-color: var(--white);
+  border-radius: 10px;
+  color: var(--dark);
+  opacity: 1;
+  width: 80%;
+  height: 80%;
+}

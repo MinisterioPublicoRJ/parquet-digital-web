@@ -13,7 +13,7 @@
   align-items: center;
   background-color: var(--danger);
   border-radius: 20px;
-  color: var(--white);;
+  color: var(--white);
   display: flex;
   font-weight: bold;
   height: var(--sectionTitleFontSize);
@@ -30,6 +30,7 @@
 
 .alerts-body {
   overflow-y: auto;
+  position: relative;
 }
 
 .alerts-decision--positive {

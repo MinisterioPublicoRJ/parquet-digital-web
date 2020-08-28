@@ -34,7 +34,7 @@ td {
 .capitalizeTitle {
   text-transform: capitalize;
 }
-
+ 
 /* PHONES */
 @media (max-width: 480px) {
   table {

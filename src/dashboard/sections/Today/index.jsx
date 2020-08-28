@@ -17,13 +17,14 @@ const propTypes = {
 };
 
 function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
-  const { user, buildRequestParams, currentOffice } = useAuth();
+  const { user, buildRequestParams, currentOffice, logout } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
   const [groupName, setgroupName] = useState([]);
   const [entriesGroup, setEntriesGroup] = useState([]);
   const [fullError, setfullError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isLogoutBtnVisible, setIsLogoutBtnVisible] = useState(false);
 
   /**
    * laods percentage data for the first sentence
@@ -206,7 +207,24 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
 
   return (
     <article className="today-outer">
-      <MainTitle value={greeting} glueToTop />
+      <div className="user-area">
+        <MainTitle value={greeting} glueToTop />
+        {user.orgaosValidos && user.orgaosValidos.length ? (
+          <button
+            type="button"
+            className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
+            onClick={() => setIsLogoutBtnVisible(prevValue => !prevValue)}
+          ></button>
+        ) : null}
+        <button
+          type="button"
+          className={`logout-btn ${isLogoutBtnVisible ? 'logout-btn--visible' : ''}`}
+          disabled={!isLogoutBtnVisible}
+          onClick={logout}
+        >
+          CLIQUE PRA SAIR
+        </button>
+      </div>
       <div className="today-content">
         <button type="button" onClick={setIsSelectorOpen}>
           <h2>Resumo do dia </h2>

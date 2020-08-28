@@ -29,9 +29,21 @@ const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHo
     return null;
   }
 
-  function handleActionPress(alert) {
+  function handleDeletion(alert) {
     console.log('i was pressed!', alert);
   }
+
+  function handleActionPress(alert) {
+    const { type } = alert;
+    switch (type) {
+      case 'delete':
+        return handleDeletion(alert);
+        break;
+      default:
+        window.alert('Em breve! :)');
+    }
+  }
+
   const showHover = !hideHover && actions[0];
 
   return (

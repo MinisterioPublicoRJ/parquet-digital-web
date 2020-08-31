@@ -10,11 +10,10 @@ const propTypes = {
 };
 
 function AlertsOverlay({ type, setShowOverlay, children }) {
-  console.log('alertas:', type);
   return (
     <div className="overlay-outer">
       <div className="alerts-overlay">
-        Isso é um overlay
+        Isso é um overlay do tipo {type}
         <button onClick={() => setShowOverlay(false)}> Sair</button>
         {children}
       </div>

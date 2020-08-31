@@ -14,7 +14,8 @@ function Alerts() {
   const [alerts, setAlerts] = useState(undefined);
   const [alertCount, setAlertCount] = useState(undefined);
   const [alertsError, setAlertsError] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(true);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [overlayType, setOverlayType] = useState(null);
   const loading = !alerts && !alertsError;
 
   async function loadAlerts() {
@@ -80,22 +81,28 @@ function Alerts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function setOverlay(type) {
+    setOverlayType(type);
+    setShowOverlay(true);
+  }
+
   return (
     <article className="alerts-wrapper">
       <div className="alerts-header">
         <SectionTitle value="central de alertas" glueToTop />
         <span className="alerts-total">{alerts ? alertCount : 0}</span>
       </div>
-      <div className="alerts-body" style={showOverlay ? { overflowY: 'hidden' } : {}}>
-        <button onClick={() => setShowOverlay(prevValue => !prevValue)}>OVERLAY</button>
-        {showOverlay && <Overlay type={alerts} setShowOverlay={setShowOverlay} />}
+      <div className="alerts-body-wrapper">
+        <div className="alerts-body" style={showOverlay ? { overflowY: 'hidden' } : {}}>
+          {showOverlay && <Overlay type={overlayType} setShowOverlay={setShowOverlay} />}
 
-        {loading && <Spinner size="large" />}
-        {alertsError && 'Não existem alertas para exibir.'}
-        {alerts &&
-          Object.keys(alerts).map(type => (
-            <Dropdown type={type} list={alerts[type]} key={type} setShowOverlay={setShowOverlay} />
-          ))}
+          {loading && <Spinner size="large" />}
+          {alertsError && 'Não existem alertas para exibir.'}
+          {alerts &&
+            Object.keys(alerts).map(type => (
+              <Dropdown type={type} list={alerts[type]} key={type} setOverlay={setOverlay} />
+            ))}
+        </div>
       </div>
     </article>
   );

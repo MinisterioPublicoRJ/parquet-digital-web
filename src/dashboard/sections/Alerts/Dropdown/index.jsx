@@ -8,9 +8,10 @@ import individualAlertFormatter from '../utils/individualAlertFormatter';
 const propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   type: PropTypes.string.isRequired,
+  setOverlay: PropTypes.func.isRequired,
 };
 
-function Dropdown({ list, type, setShowOverlay }) {
+function Dropdown({ list, type, setOverlay }) {
   const [isOpen, setIsOpen] = useState(false);
   const [visibleAlertsList, setVisibleAlertsList] = useState(list);
   const headerAlert = individualAlertFormatter({
@@ -46,7 +47,8 @@ function Dropdown({ list, type, setShowOverlay }) {
               backgroundColor={backgroundColor}
               message={message}
               actions={actions}
-              setShowOverlay={setShowOverlay}
+              setOverlay={setOverlay}
+              type={type}
             />
           );
         })}

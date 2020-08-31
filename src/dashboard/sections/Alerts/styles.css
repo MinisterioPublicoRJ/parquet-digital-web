@@ -28,9 +28,14 @@
   font-size: 15px;
 }
 
+.alerts-body-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
 .alerts-body {
   overflow-y: auto;
-  position: relative;
+  height: 100%;
 }
 
 .alerts-decision--positive {

@@ -19,6 +19,7 @@ const propTypes = {
   message: PropTypes.node.isRequired,
   customKey: PropTypes.string.isRequired,
   hideHover: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 const defaultProps = { hideHover: false };
@@ -31,7 +32,8 @@ const AlertBadge = ({
   customKey,
   hideHover,
   onDeletion,
-  setShowOverlay,
+  setOverlay,
+  type,
 }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
@@ -47,11 +49,7 @@ const AlertBadge = ({
     window.open(alert.link);
   }
 
-  function handleOpenOverlay(alert) {
-    setShowOverlay(prevValue => !prevValue);
-  }
-
-  function handleActionPress(alert, key) {
+  function handleActionPress(alert, key, type) {
     const { actionType } = alert;
     switch (actionType) {
       case 'delete':
@@ -59,7 +57,7 @@ const AlertBadge = ({
       case 'download':
         return handleDownload(alert);
       case 'openOverlay':
-        return handleOpenOverlay(alert);
+        return setOverlay(type);
       default:
         window.alert('Em breve! :)');
     }
@@ -74,7 +72,7 @@ const AlertBadge = ({
           {actions.map(alert => (
             <ActionButtons
               key={`${customKey}-${alert.actionType}`}
-              clickCallback={() => handleActionPress(alert, customKey)}
+              clickCallback={() => handleActionPress(alert, customKey, type)}
               {...alert}
             />
           ))}

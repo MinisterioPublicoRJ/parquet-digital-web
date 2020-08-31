@@ -16,7 +16,16 @@ const NOMES_PROMOTORIAS = {
   31: 'Promotorias de Tutela Coletiva de Defesa da Infância e Juventude',
   32: 'Promotorias de Tutela Coletiva de Defesa da Saúde',
   33: 'Tutela Coletiva - Geral',
-  200: 'Promotorias de Investigação Penal',
+  200: 'PIPs Territoriais 1a CI',
+  201: 'PIPs Territoriais 2a CI',
+  202: 'PIPs Territoriais 3a CI',
+  203: 'PIPs Territoriais Interior',
+  204: 'PIPs Violência Doméstica 1a CI',
+  205: 'PIPs Violência Doméstica 2a CI',
+  206: 'PIPs Violência Doméstica 3a CI',
+  207: 'PIPs Especializadas 1a CI',
+  208: 'PIPs Especializadas 2a CI',
+  209: 'PIPs Especializadas 3a CI'
 };
 
 export default NOMES_PROMOTORIAS;

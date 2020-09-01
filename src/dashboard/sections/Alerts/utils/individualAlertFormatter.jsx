@@ -12,7 +12,7 @@ import {
   IconContratacoes,
 } from '../../../../assets';
 
-import { DELETE, TESTE, IT } from './actionConstants';
+import { DELETE, IT } from './actionConstants';
 
 /**
  * Finds the details for each alert type
@@ -91,7 +91,7 @@ function compConstructor({ contrato, item, iditem, dropdown, alertCode }) {
     message = <span>{`Placedolher mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${contrato}-${iditem}`;
-    actions = [TESTE, DELETE];
+    actions = [DELETE];
     message = (
       <span>
         Os valores do contrato

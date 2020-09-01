@@ -4,13 +4,14 @@ import './styles.css';
 import { useAuth } from '../../../app/authContext';
 
 import Api from '../../../api';
-import AlertBadge from './AlertBadge';
 import { SectionTitle, Spinner } from '../../../components';
-import { cleanAlertList } from './alertFormatters';
+import Dropdown from './Dropdown';
+import alertListFormatter from './utils/alertListFormatter';
 
 function Alerts() {
   const { buildRequestParams } = useAuth();
   const [alerts, setAlerts] = useState(undefined);
+  const [alertCount, setAlertCount] = useState(undefined);
   const [alertsError, setAlertsError] = useState(false);
   const loading = !alerts && !alertsError;
 
@@ -30,6 +31,7 @@ function Alerts() {
     let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsCount(buildRequestParams());
+      console.log(alertsTotal)
     } catch (e) {
       errorAlertsTotal = true;
     }
@@ -54,9 +56,10 @@ function Alerts() {
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
     const fullList = alertList.concat(hiresAlertList);
-    const cleanList = !apiError ? cleanAlertList(fullList, alertsCount) : [];
+    const cleanList = !apiError ? alertListFormatter(fullList, alertsCount) : [];
 
     setAlerts(cleanList);
+    setAlertCount(fullList.length);
     setAlertsError(apiError);
   }
 
@@ -65,10 +68,10 @@ function Alerts() {
    * @param  {number} alert key
    * @return {void}                 updates the state
    */
-  function removeAlert(key) {
-    const oldAlerts = [...alerts];
-    setAlerts(oldAlerts.filter(item => item.key !== key));
-  }
+  // function removeAlert(key) {
+  //   const oldAlerts = [...alerts];
+  //   setAlerts(oldAlerts.filter(item => item.key !== key));
+  // }
 
   // runs on "mount" only
   useEffect(() => {
@@ -76,37 +79,17 @@ function Alerts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading) {
-    return (
-      <article className="alerts-wrapper">
-        <Spinner size="large" />
-      </article>
-    );
-  }
   return (
     <article className="alerts-wrapper">
       <div className="alerts-header">
         <SectionTitle value="central de alertas" glueToTop />
-        <span className="alerts-total">{alertsError ? 0 : alerts.length}</span>
+        <span className="alerts-total">{alerts ? alertCount : 0}</span>
       </div>
       <div className="alerts-body">
+        {loading && <Spinner size="large" />}
         {alertsError && 'Não existem alertas para exibir.'}
         {alerts &&
-          alerts.map(alert => {
-            const { icon, message, action, actionLink, background, key, compId } = alert;
-            return (
-              <AlertBadge
-                key={key}
-                icon={icon}
-                iconBg={background}
-                message={message}
-                action={action}
-                actionLink={actionLink}
-                closeAction={() => removeAlert(key)}
-                compId={compId}
-              />
-            );
-          })}
+          Object.keys(alerts).map(type => <Dropdown type={type} list={alerts[type]} key={type} />)}
       </div>
     </article>
   );

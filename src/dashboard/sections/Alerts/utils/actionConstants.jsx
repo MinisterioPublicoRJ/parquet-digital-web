@@ -1,7 +1,14 @@
 import React from 'react';
-import { Bin, Ouvidoria, IconCompras, CorujaGate } from '../../../../assets';
+import {
+  Bin,
+  Ouvidoria,
+  IconCompras,
+  ItActionIcon,
+  CalculatorActionIcon,
+  DetailActionIcon,
+  DocActionIcon,
+} from '../../../../assets';
 
-// export const teste = { type: string, link: 'string', icon: }
 export const DELETE = {
   actionType: 'delete',
   icon: <Bin fillColor="white" width="30px" height="30px" />,
@@ -17,17 +24,17 @@ export const COMPRAS = link => ({
   link,
 });
 
-export const OUVIDORIA = link => ({
+export const OUVIDORIA = ({ compId, contrato }) => ({
   actionType: 'link',
   icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
   text: 'Ouvidoria',
   background: '#5C6FD9',
-  link,
+  url: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
 });
 
 export const IT = link => ({
   actionType: 'download',
-  icon: <CorujaGate fillColor="white" width="30px" height="30px" />,
+  icon: <ItActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Baixar IT',
   background: '#71D0A4',
   link,
@@ -35,7 +42,21 @@ export const IT = link => ({
 
 export const CALCULO = () => ({
   actionType: 'overlay',
-  icon: <CorujaGate fillColor="white" width="30px" height="30px" />,
+  icon: <CalculatorActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Ver Cálculo',
   background: '#F8BD6C',
+});
+
+export const DETAIL = () => ({
+  actionType: 'overlay',
+  icon: <DetailActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Ver Ação',
+  background: '#F8BD6C',
+});
+
+export const GENERATE_DOC = () => ({
+  actionType: 'download',
+  icon: <DocActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Gerar Peça',
+  background: '#71D0A4',
 });

@@ -12,7 +12,7 @@ import {
   IconContratacoes,
 } from '../../../../assets';
 
-import { DELETE, IT } from './actionConstants';
+import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC } from './actionConstants';
 
 /**
  * Finds the details for each alert type
@@ -80,7 +80,9 @@ export default function individualAlertFormatter(alert) {
   }
 }
 
-function compConstructor({ contrato, item, iditem, dropdown, alertCode }) {
+function compConstructor(alert) {
+  const { contrato_iditem, contrato, item, iditem, dropdown, alertCode } = alert;
+  console.log('alert', alert);
   let key;
   let message;
   let actions;
@@ -91,7 +93,7 @@ function compConstructor({ contrato, item, iditem, dropdown, alertCode }) {
     message = <span>{`Placedolher mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${contrato}-${iditem}`;
-    actions = [DELETE];
+    actions = [OUVIDORIA(contrato_iditem, contrato), COMPRAS(), DELETE];
     message = (
       <span>
         Os valores do contrato

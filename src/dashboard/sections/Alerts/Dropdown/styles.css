@@ -32,6 +32,7 @@
 .dropdowBtn {
   border: none;
   background-color: var(--white);
+  padding: 0;
 }
 
 .box-btn-dropdow {

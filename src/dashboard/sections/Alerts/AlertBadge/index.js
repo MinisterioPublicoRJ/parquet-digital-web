@@ -43,7 +43,6 @@ const AlertBadge = ({
   }
 
   function handleDeletion(key) {
-    console.log(`deleting ${key}`);
     onDeletion(key);
   }
 

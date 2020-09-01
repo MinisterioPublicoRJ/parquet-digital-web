@@ -226,7 +226,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
         </button>
       </div>
       <div className="today-content">
-        <button type="button" onClick={setIsSelectorOpen}>
+        <button type="button" onClick={setIsSelectorOpen} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
           {currentOffice.nomeOrgao && <span>{currentOffice.nomeOrgao}</span>}

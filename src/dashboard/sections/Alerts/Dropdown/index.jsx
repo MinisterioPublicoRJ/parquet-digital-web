@@ -30,9 +30,19 @@ function Dropdown({ list, type }) {
   }
 
   return (
-    <div>
-      <button type="button" onClick={() => setIsOpen(prevState => !prevState)}>
-        <AlertBadge {...headerAlert} customKey={headerAlert.key} hideHover />
+    <div className="box-btn-dropdow">
+      <button
+        className="dropdowBtn"
+        type="button"
+        onClick={() => setIsOpen(prevState => !prevState)}
+      >
+        <AlertBadge
+          {...headerAlert}
+          customKey={headerAlert.key}
+          count={visibleAlertsList.length}
+          isOpen={isOpen}
+          hideHover
+        />
       </button>
       {isOpen &&
         visibleAlertsList.map(alert => {

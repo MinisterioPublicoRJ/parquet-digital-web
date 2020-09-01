@@ -19,13 +19,11 @@
   display: flex;
   justify-content: flex-end;
   height: 100%;
-  /* left: 0; */
   left: 100%;
   overflow: hidden;
   position: absolute;
   top: 0;
   transition: .5s ease;
-  /* width: 100%; */
   width: 0;
 }
 
@@ -54,25 +52,42 @@
   padding: 10px;
 }
 
-/* .alertBadge-rightContainer a {
-  color: orange;
-  text-align: left;
-} */
-
-/* .alertBadge-linksContainer {
-  cursor: pointer;
-  min-height: 56px;
-  width: 100%;
+.alertBadge-rightContainer > span {
   align-items: center;
-  background-color: gray;
-  border-radius: 7px 7px 7px 7px;
   display: flex;
-  justify-content: center;
+  flex: 1;
   flex-direction: column;
+  justify-content: center;
+  text-align: left;
 }
 
-.alertBadge-linksContainer span {
-  font-size: var(--smallFont);
-  color: var(--white);
-  font-weight: 600;
-} */
+.alertBadge-countWrapper {
+  align-self: flex-end;
+  align-items: center;
+  border-radius: 20px;
+  color: var(--white);;
+  display: block;
+  font-weight: bold;
+  height: calc(1.5 * var(--smallFont));
+  justify-content: center;
+  padding: 1px 5px;
+}
+
+.alertBadge-arrow {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: calc( 0.7 * var(--smallFont)) solid transparent;
+  border-right: calc( 0.7 * var(--smallFont)) solid transparent;
+
+  border-top-width: calc( 0.7 * var(--smallFont));
+  border-top-style: solid;
+  border-top-color: white;
+  margin-right: 5px;
+  transition: transform 0.5s;
+}
+
+.alertBadge-arrow--open {
+  transform: rotate(-90deg);
+}

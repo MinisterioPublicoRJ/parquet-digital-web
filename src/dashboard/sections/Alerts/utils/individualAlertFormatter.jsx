@@ -89,7 +89,7 @@ function compConstructor(alert) {
   if (dropdown) {
     actions = [];
     key = `${alertCode}-dropdown`;
-    message = <span>{`Placedolher mensagem dropdown ${alertCode}`}</span>;
+    message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${contrato}-${iditem}`;
     actions = [OUVIDORIA(contrato_iditem, contrato), COMPRAS(), DELETE];
@@ -495,7 +495,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
   if (dropdown) {
     key = `${alertCode}-dropdown`;
     const single = count === 1;
-    message = <span>{`Placedolher mensagem dropdown ${alertCode}`}</span>;
+    message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
@@ -526,7 +526,7 @@ function gateConstructor({ dropdown, alertCode, count, docNum, docDk }) {
   if (dropdown) {
     key = `${alertCode}-dropdown`;
     const single = count === 1;
-    message = <span>{`Placedolher mensagem dropdown ${alertCode}`}</span>;
+    message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (

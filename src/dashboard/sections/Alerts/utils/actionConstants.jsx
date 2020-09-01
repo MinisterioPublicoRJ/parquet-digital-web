@@ -24,12 +24,12 @@ export const COMPRAS = link => ({
   link,
 });
 
-export const OUVIDORIA = link => ({
+export const OUVIDORIA = ({ compId, contrato }) => ({
   actionType: 'link',
   icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
   text: 'Ouvidoria',
   background: '#5C6FD9',
-  link,
+  url: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
 });
 
 export const IT = link => ({

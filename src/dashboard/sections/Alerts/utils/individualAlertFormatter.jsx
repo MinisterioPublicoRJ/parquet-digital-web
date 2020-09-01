@@ -26,7 +26,6 @@ import { DELETE, TESTE, IT } from './actionConstants';
  * }
  */
 export default function individualAlertFormatter(alert) {
-
   // prettier-ignore
   switch (alert.alertCode) {
     // ALERTAS DA TUTELA
@@ -88,7 +87,7 @@ function compConstructor({ contrato, item, iditem, dropdown, alertCode }) {
   if (dropdown) {
     actions = [];
     key = `${alertCode}-dropdown`;
-    message = <span>{`Placedolher mensagem dropdown ${alertCode}`}</span>;
+    message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${contrato}-${iditem}`;
     actions = [TESTE, DELETE];
@@ -132,9 +131,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O processo criminal
-        <strong>
-          {`${docNum}`}
-        </strong>
+        <strong>{`${docNum}`}</strong>
         está há
         <strong> mais de 60 dias </strong>
         no TJRJ sem retorno
@@ -162,7 +159,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum }) {
       <span>
         Há
         <strong>{` ${count} `}</strong>
-        {`${single ? 'processo não criminal': 'processos não criminais'} no TJRJ há `}
+        {`${single ? 'processo não criminal' : 'processos não criminais'} no TJRJ há `}
         <strong> há mais de 120 dias </strong>
         sem retorno.
       </span>
@@ -172,9 +169,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O processo criminal
-        <strong>
-          {`${docNum}`}
-        </strong>
+        <strong>{`${docNum}`}</strong>
         está há
         <strong> mais de 120 dias </strong>
         no TJRJ sem retorno
@@ -242,7 +237,10 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
       <span>
         Há
         <strong>{` ${count} `}</strong>
-        <strong>{`${single ? 'processo administrativo aberto' : 'processos administrativos abertos'} há mais de 1 ano`}</strong>.
+        <strong>{`${
+          single ? 'processo administrativo aberto' : 'processos administrativos abertos'
+        } há mais de 1 ano`}</strong>
+        .
       </span>
     );
   } else {
@@ -250,12 +248,9 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O processo administrativo{``}
-        <strong>
-          {`${docNum}`}
-        </strong>
+        <strong>{`${docNum}`}</strong>
         está aberto
-        <strong> há mais de um ano</strong>
-        .
+        <strong> há mais de um ano</strong>.
       </span>
     );
   }
@@ -279,7 +274,9 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         Há
-        <strong>{` ${count} ${single ? 'procedimento preparatório' : 'procedimentos preparatórios'} `}</strong>
+        <strong>{` ${count} ${
+          single ? 'procedimento preparatório' : 'procedimentos preparatórios'
+        } `}</strong>
         com
         <strong> prazo de tratamento esgotado.</strong>
       </span>
@@ -289,12 +286,8 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O procedimento preparatório {``}
-        <strong>
-          {`${docNum}`}
-        </strong>  {``}
-        está com o
-        <strong> prazo de tratamento esgotado</strong>
-        .
+        <strong>{`${docNum}`}</strong> {``}
+        está com o<strong> prazo de tratamento esgotado</strong>.
       </span>
     );
   }
@@ -330,12 +323,9 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O inquérito civil
-        <strong>
-          {` ${docNum} `}
-        </strong>
+        <strong>{` ${docNum} `}</strong>
         está sem prorrogação há
-        <strong> mais de 1 ano</strong>
-        .
+        <strong> mais de 1 ano</strong>.
       </span>
     );
   }
@@ -371,12 +361,9 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date }) {
     message = (
       <span>
         A notícia de fato autuada há mais de 120 dias
-        <strong>
-          {` ${docNum} `}
-        </strong>
+        <strong>{` ${docNum} `}</strong>
         ainda está
-        <strong> sem tratamento</strong>
-        .
+        <strong> sem tratamento</strong>.
       </span>
     );
   }
@@ -410,12 +397,8 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O ofício
-        <strong>
-          {` ${alert.docNum} `}
-        </strong>
-        está com o
-        <strong> prazo de apreciação esgotado</strong>
-        .
+        <strong>{` ${alert.docNum} `}</strong>
+        está com o<strong> prazo de apreciação esgotado</strong>.
       </span>
     );
   }
@@ -450,8 +433,7 @@ function ouviConstructor({ dropdown, alertCode, count, docNum }) {
         A ouvidoria
         <strong>{` ${docNum} `}</strong>
         foi enviada porém
-        <strong> não foi recebida</strong>
-        .
+        <strong> não foi recebida</strong>.
       </span>
     );
   }
@@ -477,7 +459,9 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
         Você tem
         <strong>{` ${count} ${single ? 'vista aberta' : 'vistas abertas'} `}</strong>
         em
-        <strong>{` ${single ? 'documento' : 'documentos'} sinalizados como ${single ? 'fechado' : 'fechados'}.`}</strong>
+        <strong>{` ${single ? 'documento' : 'documentos'} sinalizados como ${
+          single ? 'fechado' : 'fechados'
+        }.`}</strong>
       </span>
     );
   } else {
@@ -487,11 +471,8 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
         Você possui
         <strong> vista aberta </strong>
         para o documento
-        <strong>
-          {` ${docNum} `}
-        </strong>
-        <strong> sinalizado como fechado</strong>
-        .
+        <strong>{` ${docNum} `}</strong>
+        <strong> sinalizado como fechado</strong>.
       </span>
     );
   }
@@ -512,14 +493,13 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
   if (dropdown) {
     key = `${alertCode}-dropdown`;
     const single = count === 1;
+    message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
         O procedimento
-        <strong>
-          {` ${docNum} `}
-        </strong>
+        <strong>{` ${docNum} `}</strong>
         tem um
         <strong> crime </strong>
         possivelmente
@@ -544,14 +524,13 @@ function gateConstructor({ dropdown, alertCode, count, docNum, docDk }) {
   if (dropdown) {
     key = `${alertCode}-dropdown`;
     const single = count === 1;
+    message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O
-        <strong> Gate </strong>
-        finalizou a
-        <strong> IT </strong>
+        O<strong> Gate </strong>
+        finalizou a<strong> IT </strong>
         solicitada no procedimento
         <strong>{` ${docNum}`}</strong>.
       </span>

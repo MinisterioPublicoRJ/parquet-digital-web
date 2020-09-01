@@ -67,12 +67,11 @@
   border-radius: 4px;
   color: var(--white);
   display: flex;
-  align-items: center;
   font-weight: bold;
   font-size: var(--smallFont);
   height: calc(1.2 * var(--smallFont));
   justify-content: center;
-  padding: 1px 5px;
+  padding: 2px 5px;
 }
 
 .alertBadge-arrow {

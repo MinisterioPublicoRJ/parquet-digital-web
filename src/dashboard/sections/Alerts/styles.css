@@ -35,6 +35,7 @@
 
 .alerts-body {
   overflow-y: auto;
+  min-height: 220px;
   height: 100%;
 }
 

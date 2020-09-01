@@ -34,7 +34,7 @@ function Alerts() {
     let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsCount(buildRequestParams());
-      console.log(alertsTotal)
+      console.log(alertsTotal);
     } catch (e) {
       errorAlertsTotal = true;
     }
@@ -94,7 +94,7 @@ function Alerts() {
         <span className="alerts-total">{alerts ? alertCount : 0}</span>
       </div>
       <div className="alerts-body-wrapper">
-        <div className="alerts-body" style={showOverlay ? { overflowY: 'hidden' } : {}}>
+        <div className="alerts-body" style={showOverlay || loading ? { overflowY: 'hidden' } : {}}>
           {showOverlay && <Overlay type={overlayType} setShowOverlay={setShowOverlay} />}
 
           {loading && <Spinner size="large" />}

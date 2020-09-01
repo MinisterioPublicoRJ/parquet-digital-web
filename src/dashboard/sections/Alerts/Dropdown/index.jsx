@@ -31,9 +31,9 @@ function Dropdown({ list, type, setOverlay }) {
   }
 
   return (
-    <div className="box-btn-dropdow">
+    <div className="box-btn-dropdown">
       <button
-        className="dropdowBtn"
+        className="dropdownBtn"
         type="button"
         onClick={() => setIsOpen(prevState => !prevState)}
       >

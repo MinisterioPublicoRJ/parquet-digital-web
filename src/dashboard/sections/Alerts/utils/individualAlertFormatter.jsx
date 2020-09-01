@@ -212,7 +212,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O processo
+        O processo{``}
         <strong>{`${docNum}`}</strong>
         possui
         <strong> vitimas recorrentes </strong>
@@ -242,15 +242,14 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
       <span>
         Há
         <strong>{` ${count} `}</strong>
-        <strong>{`${single ? 'processo administrativo aberto' : 'processos administrativos abertos'} há mais de 1 ano`}</strong>
-        .
+        <strong>{`${single ? 'processo administrativo aberto' : 'processos administrativos abertos'} há mais de 1 ano`}</strong>.
       </span>
     );
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O processo administrativo
+        O processo administrativo{``}
         <strong>
           {`${docNum}`}
         </strong>
@@ -289,10 +288,10 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O procedimento preparatório
+        O procedimento preparatório {``}
         <strong>
           {`${docNum}`}
-        </strong>
+        </strong>  {``}
         está com o
         <strong> prazo de tratamento esgotado</strong>
         .
@@ -323,8 +322,7 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
         {single ? 'ativo ' : 'ativos '}
         <strong> sem prorrogação </strong>
         há
-        <strong> mais de 1 ano</strong>
-        .
+        <strong> mais de 1 ano</strong>.
       </span>
     );
   } else {
@@ -365,8 +363,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date }) {
         {single ? 'notícia de fato autuada há mais de' : 'notícias de fato autuadas há mais de'}
         <strong> 120 dias </strong>
         {single ? 'que ainda está' : 'que ainda estão'}
-        <strong> sem tratamento</strong>
-        .
+        <strong> sem tratamento</strong>.
       </span>
     );
   } else {
@@ -405,8 +402,7 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
         Há
         <strong>{` ${count} ${single ? 'ofício' : 'ofícios'} `}</strong>
         com
-        <strong> prazo de apreciação esgotado</strong>
-        .
+        <strong> prazo de apreciação esgotado</strong>.
       </span>
     );
   } else {
@@ -444,8 +440,7 @@ function ouviConstructor({ dropdown, alertCode, count, docNum }) {
       <span>
         <strong>{`Há ${count} ${single ? 'expediente' : 'expedientes'} de Ouvidoria `}</strong>
         {single ? 'enviado porém' : 'enviados porém'}
-        <strong>{` não ${single ? 'recebido' : 'recebidos'}`}</strong>
-        .
+        <strong>{` não ${single ? 'recebido' : 'recebidos'}`}</strong>.
       </span>
     );
   } else {
@@ -493,7 +488,7 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
         <strong> vista aberta </strong>
         para o documento
         <strong>
-          {` ${alert.docNum} `}
+          {` ${docNum} `}
         </strong>
         <strong> sinalizado como fechado</strong>
         .
@@ -516,8 +511,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
-    // const single = count === 1;
-    message = <span> Placedolher text for prcp allert </span>;
+    const single = count === 1;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
@@ -529,8 +523,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
         tem um
         <strong> crime </strong>
         possivelmente
-        <strong> prescrito </strong>
-        .
+        <strong> prescrito </strong>.
       </span>
     );
   }
@@ -550,8 +543,7 @@ function gateConstructor({ dropdown, alertCode, count, docNum, docDk }) {
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
-    // const single = count === 1;
-    message = <span> Placedolher text for gate allert </span>;
+    const single = count === 1;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
@@ -561,8 +553,7 @@ function gateConstructor({ dropdown, alertCode, count, docNum, docDk }) {
         finalizou a
         <strong> IT </strong>
         solicitada no procedimento
-        <strong>{` ${docNum}`}</strong>
-        .
+        <strong>{` ${docNum}`}</strong>.
       </span>
     );
   }
@@ -595,10 +586,9 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O procedimento
-        <strong>{` ${docNum}.`}</strong>
-        possui
-        <strong> movimentações em segunda instância</strong>
-        .
+        <strong>{` ${docNum}`}</strong> {``}
+        possui {``}
+        <strong> movimentações em segunda instância</strong>.
       </span>
     );
   }

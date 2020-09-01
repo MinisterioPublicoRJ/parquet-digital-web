@@ -20,9 +20,12 @@ const propTypes = {
   customKey: PropTypes.string.isRequired,
   hideHover: PropTypes.bool,
   type: PropTypes.string,
+  onDeletion: PropTypes.func,
+  count: PropTypes.number,
+  isOpen: PropTypes.bool,
 };
 
-const defaultProps = { hideHover: false };
+const defaultProps = { hideHover: false, onDeletion: null, count: null, isOpen: false };
 
 const AlertBadge = ({
   actions,
@@ -34,6 +37,8 @@ const AlertBadge = ({
   onDeletion,
   setOverlay,
   type,
+  count,
+  isOpen,
 }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
@@ -41,7 +46,6 @@ const AlertBadge = ({
   }
 
   function handleDeletion(key) {
-    console.log(`deleting ${key}`);
     onDeletion(key);
   }
 
@@ -81,7 +85,15 @@ const AlertBadge = ({
       <div className="alertBadge-leftContainer" style={{ backgroundColor }}>
         {icon}
       </div>
-      <div className="alertBadge-rightContainer">{message}</div>
+      <div className="alertBadge-rightContainer">
+        <span>{message}</span>
+        {!showHover && (
+          <div className="alertBadge-countWrapper" style={{ backgroundColor }}>
+            <span className={`alertBadge-arrow ${isOpen && 'alertBadge-arrow--open'}`} />
+            {count}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

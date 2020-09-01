@@ -22,5 +22,7 @@ export { default as GlossaryBook } from './glossaryBook';
 export { default as IntroScreenInterrogation } from './introScreenInterrogation';
 export { default as IconCompras } from './iconCompras';
 export { default as Search } from './search';
+export { default as IconVd } from './iconVd';
+
 
 

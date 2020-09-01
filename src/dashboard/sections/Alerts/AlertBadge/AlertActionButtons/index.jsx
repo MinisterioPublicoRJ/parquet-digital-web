@@ -15,7 +15,7 @@ const defaultProps = {
   link: null,
 };
 
-function ActionButtons({ actionType, icon, background, text, link, clickCallback }) {
+function AlertActionButtons({ actionType, icon, background, text, link, clickCallback }) {
   return (
     <button
       className="actionButton-outer"
@@ -29,6 +29,6 @@ function ActionButtons({ actionType, icon, background, text, link, clickCallback
   );
 }
 
-ActionButtons.propTypes = propTypes;
-ActionButtons.defaultProps = defaultProps;
-export default ActionButtons;
+AlertActionButtons.propTypes = propTypes;
+AlertActionButtons.defaultProps = defaultProps;
+export default AlertActionButtons;

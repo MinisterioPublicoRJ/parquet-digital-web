@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ActionButtons from './ActionButtons';
+import ActionButtons from './AlertActionButtons';
 
 import './styles.css';
 
@@ -17,30 +17,54 @@ const propTypes = {
   backgroundColor: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   message: PropTypes.node.isRequired,
-  key: PropTypes.string.isRequired,
+  customKey: PropTypes.string.isRequired,
+  hideHover: PropTypes.bool,
 };
 
-const AlertBadge = ({ actions, backgroundColor, icon, message, key }) => {
+const defaultProps = { hideHover: false };
+
+const AlertBadge = ({ actions, backgroundColor, icon, message, customKey, hideHover, onDeletion }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
   }
 
-  function handleActionPress(alert) {
-    console.log('i was pressed!', alert);
+  function handleDeletion(key) {
+    console.log(`deleting ${key}`);
+    onDeletion(key);
   }
+
+  function handleDownload(alert) {
+    window.open(alert.link);
+  }
+
+  function handleActionPress(alert, key) {
+    const { actionType } = alert;
+    switch (actionType) {
+      case 'delete':
+        return handleDeletion(key);
+      case 'download':
+        return handleDownload(alert);
+      default:
+        window.alert('Em breve! :)');
+    }
+  }
+
+  const showHover = !hideHover && actions[0];
 
   return (
     <div className="alertBadge-outerContainer">
-      <div className="alertBadge-hoverContainer">
-        {actions.map(alert => (
-          <ActionButtons
-            key={`${key}-${alert.actionType}`}
-            clickCallback={() => handleActionPress(alert)}
-            {...alert}
-          />
-        ))}
-      </div>
+      {showHover && (
+        <div className="alertBadge-hoverContainer">
+          {actions.map(alert => (
+            <ActionButtons
+              key={`${customKey}-${alert.actionType}`}
+              clickCallback={() => handleActionPress(alert, customKey)}
+              {...alert}
+            />
+          ))}
+        </div>
+      )}
       <div className="alertBadge-leftContainer" style={{ backgroundColor }}>
         {icon}
       </div>
@@ -50,4 +74,5 @@ const AlertBadge = ({ actions, backgroundColor, icon, message, key }) => {
 };
 
 AlertBadge.propTypes = propTypes;
+AlertBadge.defaultProps = defaultProps;
 export default AlertBadge;

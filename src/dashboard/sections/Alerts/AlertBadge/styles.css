@@ -73,7 +73,7 @@
   padding: 1px 5px;
 }
 
-.alertBadge-arrow::after {
+.alertBadge-arrow {
   content: '';
   display: inline-block;
   width: 0;
@@ -85,8 +85,9 @@
   border-top-style: solid;
   border-top-color: white;
   margin-right: 5px;
+  transition: transform 0.5s;
 }
 
 .alertBadge-arrow--open {
-  transform: rotate(-90deg) translate(2px);
+  transform: rotate(-90deg);
 }

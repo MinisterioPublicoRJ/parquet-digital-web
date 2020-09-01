@@ -40,6 +40,7 @@ function Dropdown({ list, type }) {
           {...headerAlert}
           customKey={headerAlert.key}
           count={visibleAlertsList.length}
+          isOpen={isOpen}
           hideHover
         />
       </button>

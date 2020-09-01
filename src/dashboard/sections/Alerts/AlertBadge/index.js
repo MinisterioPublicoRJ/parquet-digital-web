@@ -21,9 +21,10 @@ const propTypes = {
   hideHover: PropTypes.bool,
   onDeletion: PropTypes.func,
   count: PropTypes.number,
+  isOpen: PropTypes.bool,
 };
 
-const defaultProps = { hideHover: false, onDeletion: null, count: null };
+const defaultProps = { hideHover: false, onDeletion: null, count: null, isOpen: false };
 
 const AlertBadge = ({
   actions,
@@ -34,6 +35,7 @@ const AlertBadge = ({
   hideHover,
   onDeletion,
   count,
+  isOpen,
 }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
@@ -83,7 +85,7 @@ const AlertBadge = ({
         <span>{message}</span>
         {!showHover && (
           <div className="alertBadge-countWrapper" style={{ backgroundColor }}>
-            <span className="alertBadge-arrow" />
+            <span className={`alertBadge-arrow ${isOpen && 'alertBadge-arrow--open'}`} />
             {count}
           </div>
         )}

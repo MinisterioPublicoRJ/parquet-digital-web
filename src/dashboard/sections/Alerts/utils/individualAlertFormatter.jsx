@@ -125,7 +125,6 @@ function dctjConstructor({ dropdown, alertCode, count, docNum }) {
         {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
         <strong> mais de 60 dias </strong>
         sem retorno.
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -166,7 +165,6 @@ function dntjConstructor({ dropdown, alertCode, count, docNum }) {
         {`${single ? 'processo não criminal': 'processos não criminais'} no TJRJ há `}
         <strong> há mais de 120 dias </strong>
         sem retorno.
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -208,7 +206,6 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
         <strong> vitimas recorrentes </strong>
         de
         <strong> violência domestica.</strong>
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -246,7 +243,6 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
         Há
         <strong>{` ${count} `}</strong>
         <strong>{`${single ? 'processo administrativo aberto' : 'processos administrativos abertos'} há mais de 1 ano`}</strong>.
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -286,7 +282,6 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
         <strong>{` ${count} ${single ? 'procedimento preparatório' : 'procedimentos preparatórios'} `}</strong>
         com
         <strong> prazo de tratamento esgotado.</strong>
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -328,7 +323,6 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
         <strong> sem prorrogação </strong>
         há
         <strong> mais de 1 ano</strong>.
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -370,7 +364,6 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date }) {
         <strong> 120 dias </strong>
         {single ? 'que ainda está' : 'que ainda estão'}
         <strong> sem tratamento</strong>.
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -410,7 +403,6 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
         <strong>{` ${count} ${single ? 'ofício' : 'ofícios'} `}</strong>
         com
         <strong> prazo de apreciação esgotado</strong>.
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -449,7 +441,6 @@ function ouviConstructor({ dropdown, alertCode, count, docNum }) {
         <strong>{`Há ${count} ${single ? 'expediente' : 'expedientes'} de Ouvidoria `}</strong>
         {single ? 'enviado porém' : 'enviados porém'}
         <strong>{` não ${single ? 'recebido' : 'recebidos'}`}</strong>.
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -487,7 +478,6 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
         <strong>{` ${count} ${single ? 'vista aberta' : 'vistas abertas'} `}</strong>
         em
         <strong>{` ${single ? 'documento' : 'documentos'} sinalizados como ${single ? 'fechado' : 'fechados'}.`}</strong>
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {
@@ -534,7 +524,6 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
         <strong> crime </strong>
         possivelmente
         <strong> prescrito </strong>.
-        <span className="arow-dropdow"></span>
       </span>
     );
   }
@@ -565,7 +554,6 @@ function gateConstructor({ dropdown, alertCode, count, docNum, docDk }) {
         <strong> IT </strong>
         solicitada no procedimento
         <strong>{` ${docNum}`}</strong>.
-        <span className="arow-dropdow"></span>
       </span>
     );
   }
@@ -591,7 +579,6 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
         <strong>{`Há ${count} ${single ? 'movimentação' : 'movimentações'} `}</strong>
         em processo desta promotoria na
         <strong> segunda instância.</strong>
-        <span className="arow-dropdow"></span>
       </span>
     );
   } else {

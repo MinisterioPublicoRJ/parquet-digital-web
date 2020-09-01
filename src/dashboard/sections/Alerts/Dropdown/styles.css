@@ -1,55 +1,39 @@
 .container-dropdow {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .dropdow-icon {
-    align-items: center;
-    background-color: var(--danger);
-    border-radius: 20px;
-    color: var(--white);
-    display: flex;
-    font-weight: bold;
-    justify-content: center;
+  align-items: center;
+  background-color: var(--danger);
+  border-radius: 20px;
+  color: var(--white);
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
 }
+
 .dropdow-container > button {
-    border: none;
+  border: none;
 }
+
 .dropdow-container > button > span::after {
-    visibility: visible;
-    opacity: 1;
-    content: '';
-    border-width: var(--selectorArrowSize);
-    border-style: solid;
-    border-color: var(--white) transparent transparent transparent;
-    position: absolute;
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--white) transparent transparent transparent;
+  position: absolute;
 }
-.dropdowBtn{
-    border: none;
-    background-color: var(--white);
-}
-.box-btn-dropdow{
-    margin-top: -8px
-}
-.arow-dropdow{
-    opacity: 1;
-    border-width: var(--selectorArrowSize);
-    border-style: solid;
-    border-color: var(--darkBlue) transparent transparent transparent;
-    background-color: transparent;
-    position: relative;
-    padding: 0;
-    margin: 4px 8px 0px 8px;
-    cursor: pointer;
-    transition: transform 1s;
-}
-.arow-dropdow {
-    transform: rotate(-90deg) translate(2px);
-}
-  
 
-  
- 
+.dropdowBtn {
+  border: none;
+  background-color: var(--white);
+}
 
-  
+.box-btn-dropdow {
+  margin-top: -8px;
+}

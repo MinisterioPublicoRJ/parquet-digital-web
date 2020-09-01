@@ -36,7 +36,12 @@ function Dropdown({ list, type }) {
         type="button"
         onClick={() => setIsOpen(prevState => !prevState)}
       >
-        <AlertBadge {...headerAlert} customKey={headerAlert.key} hideHover />
+        <AlertBadge
+          {...headerAlert}
+          customKey={headerAlert.key}
+          count={visibleAlertsList.length}
+          hideHover
+        />
       </button>
       {isOpen &&
         visibleAlertsList.map(alert => {

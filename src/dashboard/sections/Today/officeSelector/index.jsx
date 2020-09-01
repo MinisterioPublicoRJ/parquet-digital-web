@@ -18,11 +18,22 @@ function OfficeSelector({ isOpen, onToggle }) {
   }
 
   const handleChange = e => {
-    const inputValue = e.target.value.toLowerCase();
+    const inputValue = e.target.value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
     const filtered = user.orgaosValidos.filter(
       organ =>
-        organ.nomeOrgao.toLowerCase().includes(inputValue) ||
-        organ.nomeUser.toLowerCase().includes(inputValue),
+        organ.nomeOrgao
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .includes(inputValue) ||
+        organ.nomeUser
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .includes(inputValue),
     );
     setFilteredList(filtered);
   };

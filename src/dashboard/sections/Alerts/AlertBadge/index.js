@@ -64,11 +64,11 @@ const AlertBadge = ({
     }
   }
 
-  const showHover = !hideHover && !isDeleting && actions[0];
+  const showHover = !hideHover && actions[0];
 
   return (
     <div className="alertBadge-outerContainer">
-      {showHover && (
+      {showHover && !isDeleting && (
         <div className="alertBadge-hoverContainer">
           {actions.map(alert => (
             <ActionButtons
@@ -82,7 +82,7 @@ const AlertBadge = ({
       {typeof isDeleting !== 'undefined' && (
         <div className={`delete-confirmation ${isDeleting ? 'isDeleting' : ''}`}>
           <button className="delete" onClick={() => handleDeletion(customKey, true)}>
-            X
+            x
           </button>
           <button className="undo-delete" onClick={() => handleDeletion(customKey, false)}>
             Desfazer

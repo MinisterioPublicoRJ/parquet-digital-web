@@ -33,6 +33,7 @@
   border: none;
   background-color: var(--white);
   padding: 0;
+  width: 100%;
 }
 
 .box-btn-dropdow {

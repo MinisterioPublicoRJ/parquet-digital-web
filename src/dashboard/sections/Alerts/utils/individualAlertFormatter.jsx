@@ -5,8 +5,9 @@ import React from 'react';
 import {
   ClockIcon,
   CorujaGate,
-  // Home,
+  Home,
   Ouvidoria,
+  IconVd,
   Va,
   Tjrj,
   IconContratacoes,
@@ -207,8 +208,8 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O processo{``}
-        <strong>{`${docNum}`}</strong>
+        O processo {``}
+        <strong>{`${docNum}`}</strong> {``}
         possui
         <strong> vitimas recorrentes </strong>
         de
@@ -220,7 +221,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
   return {
     actions: [DELETE],
     backgroundColor: '#F86C72',
-    icon: <Ouvidoria />,
+    icon: <IconVd />,
     key,
     message,
   };
@@ -575,7 +576,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
   return {
     actions: [DELETE],
     backgroundColor: '#374354',
-    icon: <CorujaGate />,
+    icon: <Home />,
     key,
     message,
   };

@@ -6,7 +6,6 @@
   flex-direction: column;
   flex: 1;
   justify-content: center;
-  /* padding: 5px 0; */
 }
 
 .actionButton-outer div {
@@ -14,6 +13,7 @@
   display: flex;
   flex: 2;
   justify-content: center;
+  width: 100%;
 }
 
 .actionButton-outer span {
@@ -25,4 +25,5 @@
   justify-content: center;
   text-transform: uppercase;
   text-align: center;
+  width: 100%;
 }

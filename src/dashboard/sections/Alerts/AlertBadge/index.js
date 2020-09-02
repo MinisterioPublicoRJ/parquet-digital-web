@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './AlertActionButtons';
 
@@ -22,6 +22,7 @@ const propTypes = {
   onDeletion: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
+  isDeleting: PropTypes.bool,
 };
 
 const defaultProps = { hideHover: false, onDeletion: null, count: null, isOpen: false };
@@ -37,13 +38,19 @@ const AlertBadge = ({
   count,
   isOpen,
 }) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
   }
 
   function handleDeletion(key) {
-    onDeletion(key);
+    if (isDeleting) {
+      onDeletion(key);
+      return null;
+    }
+    setIsDeleting(true);
   }
 
   function handleDownload(alert) {
@@ -62,7 +69,7 @@ const AlertBadge = ({
     }
   }
 
-  const showHover = !hideHover && actions[0];
+  const showHover = !hideHover && !isDeleting && actions[0];
 
   return (
     <div className="alertBadge-outerContainer">
@@ -75,6 +82,16 @@ const AlertBadge = ({
               {...alert}
             />
           ))}
+        </div>
+      )}
+      {isDeleting && (
+        <div className="alertBadge-isDeleting">
+          <button className="undo-delete" onClick={() => setIsDeleting(false)}>
+            Desfazer
+          </button>
+          <button className="delete" onClick={() => handleDeletion(customKey)}>
+            x
+          </button>
         </div>
       )}
       <div className="alertBadge-leftContainer" style={{ backgroundColor }}>

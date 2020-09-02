@@ -258,7 +258,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#5C6FD9',
     icon: <ClockIcon />,
     key,
@@ -295,7 +295,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -333,7 +333,7 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -511,7 +511,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#F86C72',
     icon: <ClockIcon />,
     key,

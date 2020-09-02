@@ -48,10 +48,10 @@ const AlertBadge = ({
 
   function handleLinks(alert) {
     const { link } = alert;
-    if(link) {
+    if (link) {
       window.open(link, '_blank', 'noopener');
     } else {
-      window.alert('Em breve! :)')
+      window.alert('Em breve! :)');
     }
   }
 

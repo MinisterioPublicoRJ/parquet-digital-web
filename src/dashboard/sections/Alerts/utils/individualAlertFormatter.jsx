@@ -399,7 +399,7 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O ofício
-        <strong>{` ${alert.docNum} `}</strong>
+        <strong>{` ${docNum} `}</strong>
         está com o<strong> prazo de apreciação esgotado</strong>.
       </span>
     );

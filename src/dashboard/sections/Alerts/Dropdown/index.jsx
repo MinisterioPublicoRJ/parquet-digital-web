@@ -20,7 +20,7 @@ function Dropdown({ list, type }) {
   });
 
   function handleAlertDeletion(deleteKey) {
-    const newList = list.filter(({ key }) => key !== deleteKey);
+    const newList = visibleAlertsList.filter(({ key }) => key !== deleteKey);
     setVisibleAlertsList(newList);
     // ADD BACKEND INTEGRATION HERE WHEN IT'S DONE!
   }

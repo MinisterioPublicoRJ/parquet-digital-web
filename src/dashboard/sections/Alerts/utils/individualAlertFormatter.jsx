@@ -82,7 +82,6 @@ export default function individualAlertFormatter(alert) {
 
 function compConstructor(alert) {
   const { contrato_iditem, contrato, item, iditem, dropdown, alertCode } = alert;
-  console.log('alert', alert);
   let key;
   let message;
   let actions;
@@ -93,7 +92,7 @@ function compConstructor(alert) {
     message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${contrato}-${iditem}`;
-    actions = [OUVIDORIA(contrato_iditem, contrato), COMPRAS(), DELETE];
+    actions = [OUVIDORIA(), COMPRAS(contrato_iditem, contrato), DELETE];
     message = (
       <span>
         Os valores do contrato

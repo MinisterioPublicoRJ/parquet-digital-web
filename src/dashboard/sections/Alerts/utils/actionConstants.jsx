@@ -16,20 +16,20 @@ export const DELETE = {
   background: 'transparent',
 };
 
-export const COMPRAS = link => ({
+export const COMPRAS = ({ compId, contrato }) => ({
   actionType: 'link',
   icon: <IconCompras fillColor="white" width="30px" height="30px" />,
   text: 'Painel de Compras',
   background: '#F8BD6C',
-  link,
+  link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
 });
 
-export const OUVIDORIA = ({ compId, contrato }) => ({
+export const OUVIDORIA = link => ({
   actionType: 'link',
   icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
   text: 'Ouvidoria',
   background: '#5C6FD9',
-  url: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
+  link,
 });
 
 export const IT = link => ({

@@ -79,13 +79,13 @@ const AlertBadge = ({
           ))}
         </div>
       )}
-      {isDeleting && (
-        <div className="alertBadge-isDeleting">
+      {typeof isDeleting !== 'undefined' && (
+        <div className={`delete-confirmation ${isDeleting ? 'isDeleting' : ''}`}>
+          <button className="delete" onClick={() => handleDeletion(customKey, true)}>
+            X
+          </button>
           <button className="undo-delete" onClick={() => handleDeletion(customKey, false)}>
             Desfazer
-          </button>
-          <button className="delete" onClick={() => handleDeletion(customKey, true)}>
-            x
           </button>
         </div>
       )}

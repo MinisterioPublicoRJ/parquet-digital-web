@@ -22,6 +22,7 @@ const propTypes = {
   onDeletion: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
+  isDeleting: PropTypes.bool,
 };
 
 const defaultProps = { hideHover: false, onDeletion: null, count: null, isOpen: false };
@@ -36,14 +37,15 @@ const AlertBadge = ({
   onDeletion,
   count,
   isOpen,
+  isDeleting,
 }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
   }
 
-  function handleDeletion(key) {
-    onDeletion(key);
+  function handleDeletion(key, isDeleting) {
+    onDeletion(key, isDeleting);
   }
 
   function handleDownload(alert) {
@@ -66,7 +68,7 @@ const AlertBadge = ({
 
   return (
     <div className="alertBadge-outerContainer">
-      {showHover && (
+      {showHover && !isDeleting && (
         <div className="alertBadge-hoverContainer">
           {actions.map(alert => (
             <ActionButtons
@@ -75,6 +77,16 @@ const AlertBadge = ({
               {...alert}
             />
           ))}
+        </div>
+      )}
+      {typeof isDeleting !== 'undefined' && (
+        <div className={`delete-confirmation ${isDeleting ? 'isDeleting' : ''}`}>
+          <button className="delete" onClick={() => handleDeletion(customKey, true)}>
+            x
+          </button>
+          <button className="undo-delete" onClick={() => handleDeletion(customKey, false)}>
+            Desfazer
+          </button>
         </div>
       )}
       <div className="alertBadge-leftContainer" style={{ backgroundColor }}>

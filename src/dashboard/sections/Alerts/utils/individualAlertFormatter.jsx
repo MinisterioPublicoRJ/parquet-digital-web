@@ -142,7 +142,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
     icon: <Tjrj />,
     key,
@@ -180,7 +180,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
     icon: <Tjrj />,
     key,
@@ -220,7 +220,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
     icon: <IconVd />,
     key,
@@ -371,7 +371,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -406,7 +406,7 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -441,7 +441,7 @@ function ouviConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#5C6FD9',
     icon: <Ouvidoria />,
     key,
@@ -480,7 +480,7 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#28A7E0',
     icon: <Va />,
     key,
@@ -575,7 +575,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#374354',
     icon: <Home />,
     key,

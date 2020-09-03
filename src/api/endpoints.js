@@ -49,3 +49,7 @@ export const PIP_MAIN_INVESTIGATIONS_URL = t(
 export const PIP_MAIN_INVESTIGATIONS_URL_ACTION = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
 );
+export const DELETE_ALERT = t(`${BASE_URL}/alertas/dispensar/\${orgao}/comp?alerta_id=\${alertId}`);
+export const UNDO_DELETE_ALERT = t(
+  `${BASE_URL}/alertas/retornar/\${orgao}/comp?alerta_id=\${alertId}`,
+);

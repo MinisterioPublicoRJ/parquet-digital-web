@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
+import Api from '../../../../api';
 import AlertBadge from '../AlertBadge';
+import { useAuth } from '../../../../app/authContext';
 import individualAlertFormatter from '../utils/individualAlertFormatter';
 
 const propTypes = {
@@ -19,24 +21,62 @@ function Dropdown({ list, type }) {
     count: list.length,
   });
 
-  function handleAlertDeletion(deleteKey, isDeleting) {
-    let newList;
-    if (isDeleting) {
-      newList = visibleAlertsList.filter(({ key }) => key !== deleteKey);
+  function handleAlertAction(alertKey, undo) {
+    console.log('handleAlertAction', alertKey, undo);
+    if (undo) {
+      restoreAlert(alertKey);
     } else {
-      newList = visibleAlertsList.map(alert => {
-        if (alert.key !== deleteKey) {
-          return alert;
-        } else if (alert.isDeleting) {
-          return { ...alert, isDeleting: false };
-        } else {
-          return { ...alert, isDeleting: true };
-        }
-      });
-    }
+      const alert = visibleAlertsList.filter(({ key }) => key === alertKey)[0];
 
-    setVisibleAlertsList(newList);
+      if (alert.isDeleting) {
+        removeAlert(alertKey, undo);
+      } else {
+        dismissAlert(alertKey);
+      }
+    }
+    // let newList;
+    // if (isDeleting) {
+    //   newList = visibleAlertsList.filter(({ key }) => key !== deleteKey);
+    // } else {
+    //   newList = visibleAlertsList.map(alert => {
+    //     if (alert.key !== deleteKey) {
+    //       return alert;
+    //     }
+    //     if (alert.isDeleting) {
+    //       return { ...alert, isDeleting: false };
+    //     }
+    //     return { ...alert, isDeleting: true };
+    //   });
+    // }
+
+    // setVisibleAlertsList(newList);
     // ADD BACKEND INTEGRATION HERE WHEN IT'S DONE!
+  }
+
+  async function dismissAlert(alertKey) {
+    const newList = visibleAlertsList.map(alert => {
+      if (alert.key === alertKey) {
+        return { ...alert, isDeleting: true };
+      }
+      return alert;
+    })
+    setVisibleAlertsList(newList);
+  }
+
+  async function restoreAlert(alertKey) {
+    const newList = visibleAlertsList.map(alert => {
+      if (alert.key === alertKey) {
+        return { ...alert, isDeleting: false };
+      }
+      return alert;
+    })
+    setVisibleAlertsList(newList);
+  }
+
+  function removeAlert(alertKey) {
+    console.log('removeAlert', alertKey);
+    const newList = visibleAlertsList.filter(({ key }) => key !== alertKey);
+    setVisibleAlertsList(newList);
   }
 
   if (!visibleAlertsList.length) {
@@ -63,7 +103,7 @@ function Dropdown({ list, type }) {
           const { actions, backgroundColor, icon, key, message, isDeleting } = alert;
           return (
             <AlertBadge
-              onDeletion={(alertKey, isDeleting) => handleAlertDeletion(alertKey, isDeleting)}
+              onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
               key={key}
               customKey={key}
               icon={icon}

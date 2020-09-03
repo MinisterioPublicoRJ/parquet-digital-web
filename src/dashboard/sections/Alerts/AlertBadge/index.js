@@ -26,7 +26,13 @@ const propTypes = {
   isDeleting: PropTypes.bool,
 };
 
-const defaultProps = { hideHover: false, onDeletion: null, count: null, isOpen: false };
+const defaultProps = {
+  hideHover: false,
+  onDeletion: null,
+  count: null,
+  isOpen: false,
+  isDeleting: false,
+};
 
 const AlertBadge = ({
   actions,
@@ -47,12 +53,17 @@ const AlertBadge = ({
     return null;
   }
 
-  function handleDeletion(key, isDeleting) {
-    onDeletion(key, isDeleting);
+  function handleDeletion(key, undo) {
+    onDeletion(key, undo);
   }
 
-  function handleDownload(alert) {
-    window.open(alert.link);
+  function handleLinks(alert) {
+    const { link } = alert;
+    if (link) {
+      window.open(link, '_blank', 'noopener');
+    } else {
+      window.alert('Em breve! :)');
+    }
   }
 
   function handleActionPress(alert, key, type) {
@@ -61,11 +72,13 @@ const AlertBadge = ({
       case 'delete':
         return handleDeletion(key);
       case 'download':
-        return handleDownload(alert);
+        return handleLinks(alert);
       case 'overlay':
         return setOverlay(type);
+      case 'link':
+        return handleLinks(alert);
       default:
-        window.alert('Em breve! :)');
+        return window.alert('Em breve! :)');
     }
   }
 
@@ -86,10 +99,14 @@ const AlertBadge = ({
       )}
       {typeof isDeleting !== 'undefined' && (
         <div className={`delete-confirmation ${isDeleting ? 'isDeleting' : ''}`}>
-          <button className="delete" onClick={() => handleDeletion(customKey, true)}>
+          <button type="button" className="delete" onClick={() => handleDeletion(customKey)}>
             x
           </button>
-          <button className="undo-delete" onClick={() => handleDeletion(customKey, false)}>
+          <button
+            type="button"
+            className="undo-delete"
+            onClick={() => handleDeletion(customKey, true)}
+          >
             Desfazer
           </button>
         </div>

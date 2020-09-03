@@ -92,7 +92,7 @@ function compConstructor(alert) {
     message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${contrato}-${iditem}`;
-    actions = [OUVIDORIA(), COMPRAS(contrato_iditem, contrato), DELETE];
+    actions = [OUVIDORIA(), COMPRAS({compId: contrato_iditem, contrato}), DELETE];
     message = (
       <span>
         Os valores do contrato

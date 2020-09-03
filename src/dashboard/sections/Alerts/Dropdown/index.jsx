@@ -13,6 +13,7 @@ const propTypes = {
 };
 
 function Dropdown({ list, type }) {
+  const { buildRequestParams } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [visibleAlertsList, setVisibleAlertsList] = useState(list);
   const headerAlert = individualAlertFormatter({
@@ -22,7 +23,6 @@ function Dropdown({ list, type }) {
   });
 
   function handleAlertAction(alertKey, undo) {
-    console.log('handleAlertAction', alertKey, undo);
     if (undo) {
       restoreAlert(alertKey);
     } else {
@@ -34,47 +34,31 @@ function Dropdown({ list, type }) {
         dismissAlert(alertKey);
       }
     }
-    // let newList;
-    // if (isDeleting) {
-    //   newList = visibleAlertsList.filter(({ key }) => key !== deleteKey);
-    // } else {
-    //   newList = visibleAlertsList.map(alert => {
-    //     if (alert.key !== deleteKey) {
-    //       return alert;
-    //     }
-    //     if (alert.isDeleting) {
-    //       return { ...alert, isDeleting: false };
-    //     }
-    //     return { ...alert, isDeleting: true };
-    //   });
-    // }
-
-    // setVisibleAlertsList(newList);
-    // ADD BACKEND INTEGRATION HERE WHEN IT'S DONE!
   }
 
-  async function dismissAlert(alertKey) {
+  function dismissAlert(alertKey) {
     const newList = visibleAlertsList.map(alert => {
       if (alert.key === alertKey) {
         return { ...alert, isDeleting: true };
       }
       return alert;
-    })
+    });
     setVisibleAlertsList(newList);
+    Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
-  async function restoreAlert(alertKey) {
+  function restoreAlert(alertKey) {
     const newList = visibleAlertsList.map(alert => {
       if (alert.key === alertKey) {
         return { ...alert, isDeleting: false };
       }
       return alert;
-    })
+    });
     setVisibleAlertsList(newList);
+    Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
   function removeAlert(alertKey) {
-    console.log('removeAlert', alertKey);
     const newList = visibleAlertsList.filter(({ key }) => key !== alertKey);
     setVisibleAlertsList(newList);
   }

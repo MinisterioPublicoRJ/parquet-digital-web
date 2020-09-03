@@ -14,16 +14,17 @@ function Dropdown({ list, type }) {
   const [isOpen, setIsOpen] = useState(false);
   const [visibleAlertsList, setVisibleAlertsList] = useState(list);
   const alertChildren = visibleAlertsList.map(alert => {
-    const { actions, backgroundColor, icon, key, message } = alert;
+    const { actions, backgroundColor, icon, key, message, isDeleting } = alert;
     return (
       <AlertBadge
-        onDeletion={alertKey => handleAlertDeletion(alertKey)}
+        onDeletion={(alertKey, isDeleting) => handleAlertDeletion(alertKey, isDeleting)}
         key={key}
         customKey={key}
         icon={icon}
         backgroundColor={backgroundColor}
         message={message}
         actions={actions}
+        isDeleting={isDeleting}
       />
     );
   });

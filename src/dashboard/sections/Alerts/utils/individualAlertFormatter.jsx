@@ -13,7 +13,7 @@ import {
   IconContratacoes,
 } from '../../../../assets';
 
-import { DELETE, TESTE, IT } from './actionConstants';
+import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC } from './actionConstants';
 
 /**
  * Finds the details for each alert type
@@ -80,7 +80,8 @@ export default function individualAlertFormatter(alert) {
   }
 }
 
-function compConstructor({ contrato, item, iditem, dropdown, alertCode }) {
+function compConstructor(alert) {
+  const { contrato_iditem, contrato, item, iditem, dropdown, alertCode } = alert;
   let key;
   let message;
   let actions;
@@ -91,7 +92,7 @@ function compConstructor({ contrato, item, iditem, dropdown, alertCode }) {
     message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
   } else {
     key = `${contrato}-${iditem}`;
-    actions = [TESTE, DELETE];
+    actions = [OUVIDORIA(), COMPRAS({compId: contrato_iditem, contrato}), DELETE];
     message = (
       <span>
         Os valores do contrato
@@ -141,7 +142,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
     icon: <Tjrj />,
     key,
@@ -179,7 +180,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
     icon: <Tjrj />,
     key,
@@ -219,7 +220,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
     icon: <IconVd />,
     key,
@@ -257,7 +258,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#5C6FD9',
     icon: <ClockIcon />,
     key,
@@ -294,7 +295,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -332,7 +333,7 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -370,7 +371,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -398,14 +399,14 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         O ofício
-        <strong>{` ${alert.docNum} `}</strong>
+        <strong>{` ${docNum} `}</strong>
         está com o<strong> prazo de apreciação esgotado</strong>.
       </span>
     );
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -440,7 +441,7 @@ function ouviConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#5C6FD9',
     icon: <Ouvidoria />,
     key,
@@ -479,7 +480,7 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#28A7E0',
     icon: <Va />,
     key,
@@ -510,7 +511,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#F86C72',
     icon: <ClockIcon />,
     key,
@@ -574,7 +575,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DELETE],
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#374354',
     icon: <Home />,
     key,

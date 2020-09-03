@@ -1,23 +1,62 @@
 import React from 'react';
-import { Bin, Ouvidoria, IconCompras, CorujaGate } from '../../../../assets';
+import {
+  Bin,
+  Ouvidoria,
+  IconCompras,
+  ItActionIcon,
+  CalculatorActionIcon,
+  DetailActionIcon,
+  DocActionIcon,
+} from '../../../../assets';
 
-// export const teste = { type: string, link: 'string', icon: }
 export const DELETE = {
   actionType: 'delete',
   icon: <Bin fillColor="white" width="30px" height="30px" />,
   text: 'dispensar',
   background: 'transparent',
 };
-export const TESTE = {
-  actionType: 'teste',
+
+export const COMPRAS = ({ compId, contrato }) => ({
+  actionType: 'link',
+  icon: <IconCompras fillColor="white" width="30px" height="30px" />,
+  text: 'Painel de Compras',
+  background: '#F8BD6C',
+  link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
+});
+
+export const OUVIDORIA = link => ({
+  actionType: 'link',
   icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
-  text: 'teste! painel de compras',
-  background: 'orange',
-};
+  text: 'Ouvidoria',
+  background: '#5C6FD9',
+  link,
+});
+
 export const IT = link => ({
   actionType: 'download',
-  icon: <CorujaGate fillColor="white" width="30px" height="30px" />,
-  text: 'Download da IT',
-  background: '#374354',
+  icon: <ItActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Baixar IT',
+  background: '#71D0A4',
   link,
+});
+
+export const CALCULO = () => ({
+  actionType: 'overlay',
+  icon: <CalculatorActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Ver Cálculo',
+  background: '#F8BD6C',
+});
+
+export const DETAIL = () => ({
+  actionType: 'overlay',
+  icon: <DetailActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Ver Ação',
+  background: '#F8BD6C',
+});
+
+export const GENERATE_DOC = () => ({
+  actionType: 'download',
+  icon: <DocActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Gerar Peça',
+  background: '#71D0A4',
 });

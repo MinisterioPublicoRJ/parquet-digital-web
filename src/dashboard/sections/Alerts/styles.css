@@ -29,7 +29,7 @@
 }
 
 .alerts-body {
-  overflow-y: auto;
+  overflow-y: scroll;
   min-height: 220px;
 }
 

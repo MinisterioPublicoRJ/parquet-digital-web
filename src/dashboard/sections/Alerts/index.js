@@ -34,7 +34,6 @@ function Alerts() {
     let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsCount(buildRequestParams());
-      console.log(alertsTotal);
     } catch (e) {
       errorAlertsTotal = true;
     }

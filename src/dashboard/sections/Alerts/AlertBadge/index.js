@@ -48,8 +48,13 @@ const AlertBadge = ({
     onDeletion(key, isDeleting);
   }
 
-  function handleDownload(alert) {
-    window.open(alert.link);
+  function handleLinks(alert) {
+    const { link } = alert;
+    if (link) {
+      window.open(link, '_blank', 'noopener');
+    } else {
+      window.alert('Em breve! :)');
+    }
   }
 
   function handleActionPress(alert, key) {
@@ -58,9 +63,11 @@ const AlertBadge = ({
       case 'delete':
         return handleDeletion(key);
       case 'download':
-        return handleDownload(alert);
+        return handleLinks(alert);
+      case 'link':
+        return handleLinks(alert);
       default:
-        window.alert('Em breve! :)');
+        return window.alert('Em breve! :)');
     }
   }
 

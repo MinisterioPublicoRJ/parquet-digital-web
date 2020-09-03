@@ -98,7 +98,7 @@ function Dropdown({ list, type }) {
           hideHover
         />
       </button>
-      <div style={!isOpen ? { display: 'none' } : {}}> { alertChildren }</div>
+      <div style={!isOpen ? { display: 'none' } : {}}> {alertChildren}</div>
     </div>
   );
 }

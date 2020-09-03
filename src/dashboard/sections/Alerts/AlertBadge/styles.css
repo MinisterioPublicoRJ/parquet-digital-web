@@ -32,6 +32,50 @@
   left: 0;
 }
 
+.delete-confirmation {
+  background-color: rgb(0 0 0 / 42%);
+  opacity: 0;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  transition: 0.8s ease -0.1s;
+  visibility: hidden;
+}
+
+.delete-confirmation.isDeleting {
+  opacity: 1;
+  visibility: visible;
+}
+
+.delete-confirmation > button {
+  padding: 0;
+  width: min-content;
+  height: min-content;
+  border: 0;
+  position: absolute;
+  right: 8px;
+}
+
+.delete-confirmation .delete {
+  top: 4px;
+  background-color: transparent;
+  color: var(--white);
+}
+
+.delete-confirmation .undo-delete {
+  bottom: 8px;
+  background-color: var(--grayLight);
+  color: var(--darkBlue);
+  border-radius: 3px;
+  padding: 4px 12px;
+  font-size: var(--smallFont);
+}
+
 .alertBadge-leftContainer {
   align-items: center;
   background-color: gray;

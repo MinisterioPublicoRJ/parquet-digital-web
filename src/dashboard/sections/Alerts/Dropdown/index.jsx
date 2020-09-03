@@ -34,8 +34,22 @@ function Dropdown({ list, type }) {
     count: list.length,
   });
 
-  function handleAlertDeletion(deleteKey) {
-    const newList = list.filter(({ key }) => key !== deleteKey);
+  function handleAlertDeletion(deleteKey, isDeleting) {
+    let newList;
+    if (isDeleting) {
+      newList = visibleAlertsList.filter(({ key }) => key !== deleteKey);
+    } else {
+      newList = visibleAlertsList.map(alert => {
+        if (alert.key !== deleteKey) {
+          return alert;
+        } else if (alert.isDeleting) {
+          return { ...alert, isDeleting: false };
+        } else {
+          return { ...alert, isDeleting: true };
+        }
+      });
+    }
+
     setVisibleAlertsList(newList);
     // ADD BACKEND INTEGRATION HERE WHEN IT'S DONE!
   }

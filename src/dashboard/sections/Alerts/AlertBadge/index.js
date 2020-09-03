@@ -62,7 +62,7 @@ const AlertBadge = ({
         return handleDeletion(key);
       case 'download':
         return handleDownload(alert);
-      case 'openOverlay':
+      case 'overlay':
         return setOverlay(type);
       default:
         window.alert('Em breve! :)');

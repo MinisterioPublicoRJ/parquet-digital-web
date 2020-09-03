@@ -41,7 +41,7 @@ function inquiriesMetrics({
     <p>
       Constatei que
       <strong>{` ${nrDocumentosDistintosAtual} ${nrDocumentosDistintosAtual === 1 ? 'inquérito passou' : 'inquéritos passaram'} por você `}</strong>
-      nos últimos 30 dias, com
+      neste mês, com
       <strong>{` ${nrAberturasVistaAtual} ${nrAberturasVistaAtual === 1 ? 'abertura' : 'aberturas'} de vista`}</strong>
       . Você aproveitou
       <strong>{` ${nrAproveitamentosAtual} ${nrAproveitamentosAtual === 1 ? 'caso' : 'casos'} para denúncias, cautelares e arquivamentos. Aumento de ${formattedVariation} `}</strong>
@@ -82,7 +82,7 @@ function picsMetrics({
           nrDocumentosDistintosAtual === 1 ? 'PIC passou' : 'PICs passaram'
         } por você `}
       </strong>
-      nos últimos 30 dias, sendo que
+      neste mês, sendo que
       <strong>{` ${nrInstauradosAtual} `}</strong>
       deles
       {nrInstauradosAtual === 1 ? ' foi ' : ' foram '}
@@ -94,7 +94,7 @@ function picsMetrics({
       <strong>{` ${nrAproveitamentosAtual} `}</strong>
       {nrAproveitamentosAtual === 1 ? ' caso para ' : ` casos para `}
       <strong>denúncias, cautelares e arquivamentos.</strong>
-      <strong>{`${variacaoAberturasVista > 0 ? ' Aumento' : ' Dimininuição'} de ${formattedVariation} `}</strong>
+      <strong>{`${variacaoAberturasVista > 0 ? ' Aumento' : ' Diminuição'} de ${formattedVariation} `}</strong>
       nos últimos 30 dias.
     </p>
   );

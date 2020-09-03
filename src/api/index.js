@@ -22,8 +22,6 @@ import {
   DESK_DETAIL_INTEGRATED,
   PIP_MAIN_INVESTIGATIONS_URL,
   PIP_MAIN_INVESTIGATIONS_URL_ACTION,
-  DELETE_ALERT,
-  UNDO_DELETE_ALERT,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -230,30 +228,6 @@ const Api = (() => {
     return data;
   }
 
-  async function removeAlert({ orgao, token, alertId }) {
-    const formData = new FormData();
-    formData.set('jwt', token);
-
-    const { data } = await axios.post(
-      DELETE_ALERT({ orgao, alertId }),
-      formData,
-      buildRequestConfig(token),
-    );
-    return data;
-  }
-
-  async function undoRemoveAlert({ orgao, token, alertId }) {
-    const formData = new FormData();
-    formData.set('jwt', token);
-
-    const { data } = await axios.post(
-      UNDO_DELETE_ALERT({ orgao, alertId }),
-      formData,
-      buildRequestConfig(token),
-    );
-    return data;
-  }
-
   return {
     login,
     scaLogin,
@@ -276,8 +250,6 @@ const Api = (() => {
     getIntegratedDeskDetails,
     getMainInvestigated,
     actionMainInvestigated,
-    removeAlert,
-    undoRemoveAlert,
   };
 })();
 

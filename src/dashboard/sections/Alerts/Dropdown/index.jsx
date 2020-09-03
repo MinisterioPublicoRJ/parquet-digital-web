@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import Api from '../../../../api';
 import AlertBadge from '../AlertBadge';
-import { useAuth } from '../../../../app/authContext';
 import individualAlertFormatter from '../utils/individualAlertFormatter';
 
 const propTypes = {
@@ -13,7 +11,6 @@ const propTypes = {
 };
 
 function Dropdown({ list, type }) {
-  const { buildRequestParams } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [visibleAlertsList, setVisibleAlertsList] = useState(list);
   const alertChildren = visibleAlertsList.map(alert => {
@@ -38,45 +35,24 @@ function Dropdown({ list, type }) {
     count: list.length,
   });
 
-  function handleAlertAction(alertKey, undo) {
-    if (undo) {
-      restoreAlert(alertKey);
+  function handleAlertDeletion(deleteKey, isDeleting) {
+    let newList;
+    if (isDeleting) {
+      newList = visibleAlertsList.filter(({ key }) => key !== deleteKey);
     } else {
-      const alert = visibleAlertsList.filter(({ key }) => key === alertKey)[0];
-
-      if (alert.isDeleting) {
-        removeAlert(alertKey, undo);
-      } else {
-        dismissAlert(alertKey);
-      }
+      newList = visibleAlertsList.map(alert => {
+        if (alert.key !== deleteKey) {
+          return alert;
+        } else if (alert.isDeleting) {
+          return { ...alert, isDeleting: false };
+        } else {
+          return { ...alert, isDeleting: true };
+        }
+      });
     }
-  }
 
-  function dismissAlert(alertKey) {
-    const newList = visibleAlertsList.map(alert => {
-      if (alert.key === alertKey) {
-        return { ...alert, isDeleting: true };
-      }
-      return alert;
-    });
     setVisibleAlertsList(newList);
-    Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
-  }
-
-  function restoreAlert(alertKey) {
-    const newList = visibleAlertsList.map(alert => {
-      if (alert.key === alertKey) {
-        return { ...alert, isDeleting: false };
-      }
-      return alert;
-    });
-    setVisibleAlertsList(newList);
-    Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
-  }
-
-  function removeAlert(alertKey) {
-    const newList = visibleAlertsList.filter(({ key }) => key !== alertKey);
-    setVisibleAlertsList(newList);
+    // ADD BACKEND INTEGRATION HERE WHEN IT'S DONE!
   }
 
   if (!visibleAlertsList.length) {
@@ -98,22 +74,6 @@ function Dropdown({ list, type }) {
           hideHover
         />
       </button>
-      {isOpen &&
-        visibleAlertsList.map(alert => {
-          const { actions, backgroundColor, icon, key, message, isDeleting } = alert;
-          return (
-            <AlertBadge
-              onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
-              key={key}
-              customKey={key}
-              icon={icon}
-              backgroundColor={backgroundColor}
-              message={message}
-              actions={actions}
-              isDeleting={isDeleting}
-            />
-          );
-        })}
       <div style={!isOpen ? { display: 'none' } : {}}> {alertChildren}</div>
     </div>
   );

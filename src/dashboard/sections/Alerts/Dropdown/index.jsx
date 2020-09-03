@@ -29,6 +29,8 @@ function Dropdown({ list, type, setOverlay }) {
         message={message}
         actions={actions}
         isDeleting={isDeleting}
+        setOverlay={setOverlay}
+        type={type}
       />
     );
   });

@@ -40,7 +40,7 @@
 
 .controlButton--active {
   background-color: transparent;
-  border-bottom: 5px solid var(--white);;
+  border-bottom: 5px solid var(--primary);
   color: var(--primary);
   flex-direction: column;
   height: var(--activeButtonSize);

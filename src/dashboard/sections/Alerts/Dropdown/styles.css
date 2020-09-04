@@ -29,13 +29,13 @@
   position: absolute;
 }
 
-.dropdowBtn {
+.dropdownBtn {
   border: none;
   background-color: var(--white);
   padding: 0;
   width: 100%;
 }
 
-.box-btn-dropdow {
+.box-btn-dropdown {
   margin-top: -8px;
 }

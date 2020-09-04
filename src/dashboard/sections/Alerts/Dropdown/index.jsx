@@ -10,9 +10,10 @@ import individualAlertFormatter from '../utils/individualAlertFormatter';
 const propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   type: PropTypes.string.isRequired,
+  setOverlay: PropTypes.func.isRequired,
 };
 
-function Dropdown({ list, type }) {
+function Dropdown({ list, type, setOverlay }) {
   const { buildRequestParams } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [visibleAlertsList, setVisibleAlertsList] = useState(list);
@@ -28,6 +29,8 @@ function Dropdown({ list, type }) {
         message={message}
         actions={actions}
         isDeleting={isDeleting}
+        setOverlay={setOverlay}
+        type={type}
       />
     );
   });
@@ -84,9 +87,9 @@ function Dropdown({ list, type }) {
   }
 
   return (
-    <div className="box-btn-dropdow">
+    <div className="box-btn-dropdown">
       <button
-        className="dropdowBtn"
+        className="dropdownBtn"
         type="button"
         onClick={() => setIsOpen(prevState => !prevState)}
       >

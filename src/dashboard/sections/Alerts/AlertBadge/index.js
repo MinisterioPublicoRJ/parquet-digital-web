@@ -19,6 +19,7 @@ const propTypes = {
   message: PropTypes.node.isRequired,
   customKey: PropTypes.string.isRequired,
   hideHover: PropTypes.bool,
+  type: PropTypes.string,
   onDeletion: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
@@ -41,6 +42,8 @@ const AlertBadge = ({
   customKey,
   hideHover,
   onDeletion,
+  setOverlay,
+  type,
   count,
   isOpen,
   isDeleting,
@@ -63,13 +66,15 @@ const AlertBadge = ({
     }
   }
 
-  function handleActionPress(alert, key) {
+  function handleActionPress(alert, key, type) {
     const { actionType } = alert;
     switch (actionType) {
       case 'delete':
         return handleDeletion(key);
       case 'download':
         return handleLinks(alert);
+      case 'overlay':
+        return setOverlay(type);
       case 'link':
         return handleLinks(alert);
       default:
@@ -86,7 +91,7 @@ const AlertBadge = ({
           {actions.map(alert => (
             <ActionButtons
               key={`${customKey}-${alert.actionType}`}
-              clickCallback={() => handleActionPress(alert, customKey)}
+              clickCallback={() => handleActionPress(alert, customKey, type)}
               {...alert}
             />
           ))}

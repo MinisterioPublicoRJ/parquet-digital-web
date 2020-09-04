@@ -6,6 +6,7 @@ import { useAuth } from '../../../app/authContext';
 import Api from '../../../api';
 import { SectionTitle, Spinner } from '../../../components';
 import Dropdown from './Dropdown';
+import Overlay from './AlertsOverlay';
 import alertListFormatter from './utils/alertListFormatter';
 
 function Alerts() {
@@ -13,6 +14,8 @@ function Alerts() {
   const [alerts, setAlerts] = useState(undefined);
   const [alertCount, setAlertCount] = useState(undefined);
   const [alertsError, setAlertsError] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [overlayType, setOverlayType] = useState(null);
   const loading = !alerts && !alertsError;
 
   async function loadAlerts() {
@@ -78,17 +81,28 @@ function Alerts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function setOverlay(type) {
+    setOverlayType(type);
+    setShowOverlay(true);
+  }
+
   return (
     <article className="alerts-wrapper">
       <div className="alerts-header">
         <SectionTitle value="central de alertas" glueToTop />
         <span className="alerts-total">{alerts ? alertCount : 0}</span>
       </div>
-      <div className="alerts-body">
-        {loading && <Spinner size="large" />}
-        {alertsError && 'Não existem alertas para exibir.'}
-        {alerts &&
-          Object.keys(alerts).map(type => <Dropdown type={type} list={alerts[type]} key={type} />)}
+      <div className="alerts-body-wrapper">
+        <div className="alerts-body" style={showOverlay || loading ? { overflowY: 'hidden' } : {}}>
+          {showOverlay && <Overlay type={overlayType} setShowOverlay={setShowOverlay} />}
+
+          {loading && <Spinner size="large" />}
+          {alertsError && 'Não existem alertas para exibir.'}
+          {alerts &&
+            Object.keys(alerts).map(type => (
+              <Dropdown type={type} list={alerts[type]} key={type} setOverlay={setOverlay} />
+            ))}
+        </div>
       </div>
     </article>
   );

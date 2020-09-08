@@ -22,5 +22,8 @@ export { default as GlossaryBook } from './glossaryBook';
 export { default as IntroScreenInterrogation } from './introScreenInterrogation';
 export { default as IconCompras } from './iconCompras';
 export { default as Search } from './search';
-
-
+export { default as IconVd } from './iconVd';
+export { default as ItActionIcon } from './itActionIcon';
+export { default as CalculatorActionIcon } from './calculatorActionIcon';
+export { default as DetailActionIcon } from './detailActionIcon';
+export { default as DocActionIcon } from './docActionIcon';

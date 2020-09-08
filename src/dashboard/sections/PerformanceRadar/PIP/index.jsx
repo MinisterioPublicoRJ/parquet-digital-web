@@ -26,7 +26,7 @@ const axisLabelsTable = {
   },
 };
 
-const cleanMap = ([category, { maxValues, averages, variations, percentages, numbers }]) => ({
+const cleanMap = ([category, { maxValues, averages, percentages, numbers }]) => ({
   category,
   value: `(máx atribuição ${maxValues})`, // variations == null || variations === -1 ? '—' : formatPercent(variations),
   isAboveAverage: null, // variations == null || variations === -1 ? null : variations >= 0,

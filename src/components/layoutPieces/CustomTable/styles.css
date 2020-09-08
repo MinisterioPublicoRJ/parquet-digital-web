@@ -16,12 +16,12 @@ tbody tr:nth-child(odd) {
 thead tr {
   background-color: #f8f9fb;
   color: #39475b;
-  text-align: left;
 }
 
 th {
   padding: 10px;
   font-weight: 400;
+  text-align: center;
 }
 
 td {
@@ -33,8 +33,9 @@ td {
 
 .capitalizeTitle {
   text-transform: capitalize;
+  text-align: center;
 }
-
+ 
 /* PHONES */
 @media (max-width: 480px) {
   table {

@@ -4,7 +4,8 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": ["error"],
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-use-before-define": "off",
   },
   "env": {
     "browser": true

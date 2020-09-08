@@ -1,0 +1,41 @@
+.container-dropdow {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdow-icon {
+  align-items: center;
+  background-color: var(--danger);
+  border-radius: 20px;
+  color: var(--white);
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.dropdow-container > button {
+  border: none;
+}
+
+.dropdow-container > button > span::after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--white) transparent transparent transparent;
+  position: absolute;
+}
+
+.dropdownBtn {
+  border: none;
+  background-color: var(--white);
+  padding: 0;
+  width: 100%;
+}
+
+.box-btn-dropdown {
+  margin-top: -8px;
+}

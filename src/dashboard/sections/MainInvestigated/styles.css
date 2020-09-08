@@ -6,4 +6,6 @@
 
 .mainInvestigated-tableWrapper {
   overflow-y: auto;
+  width: 100%;
 }
+

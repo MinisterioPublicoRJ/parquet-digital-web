@@ -1,3 +1,8 @@
+:root {
+  /* ICONS */
+  --selectorArrowSize: 6px;
+}
+
 .today-outer {
   display: flex;
   flex-direction: column;
@@ -32,6 +37,7 @@
   font-weight: bold;
   text-align: left;
   color: var(--darkBlue);
+  position: relative;
 }
 
 .today-content > button > h2 {
@@ -44,6 +50,69 @@
 .today-content > button > span {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.today-content > button > span::after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--darkBlue) transparent transparent transparent;
+  position: absolute;
+  margin: 7px 2px;
+}
+
+.user-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.user-area h1 {
+  margin: 0;
+}
+
+.logout-arrow {
+  opacity: 1;
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--darkBlue) transparent transparent transparent;
+  background-color: transparent;
+  position: relative;
+  padding: 0;
+  margin: 4px 8px 0px 8px;
+  cursor: pointer;
+  transition: transform 1s;
+}
+
+.logout-arrow--rotated {
+  transform: rotate(-90deg) translate(2px);
+}
+
+.logout-btn {
+  opacity: 0;
+  transition: opacity 1s;
+  cursor: default;
+  border-radius: 4px;
+  color: var(--grayTexts);
+  background-color: var(--grayLight);
+  border: 0;
+  font-size: var(--smallFont);
+  padding: 2px 4px;
+  font-weight: bold;
+}
+
+.logout-btn--visible {
+  opacity: 1;
+  transition: opacity 1s;
+  cursor: pointer;
+}
+
+.logout-btn--visible:hover {
+  background-color: var(--danger);
+  color: var(--white);
 }
 
 .today-robotPic {
@@ -75,7 +144,7 @@
 .today-btn {
   width: 200px;
   height: 32px;
-  margin: 4px;
+  margin: 4px 0px;
   color: var(--dark);
   background-color: var(--pt-blue);
   border: 6px var(--pt-blue);

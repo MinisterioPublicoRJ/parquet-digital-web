@@ -48,16 +48,16 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
   return (
     <tr key={`table-row-${rowN}`}>
       {sections.map((key, i) => (
-        <>
+        <React.Fragment key={`${rowN}-Col${i}`}>
           {isPhone && (
             <th scope="row" key={`${key}-${i}`}>
               {key}
             </th>
           )}
-          <td className="capitalizeTitle" key={dataUnit[columns[key]]}>
+          <td title={dataUnit[columns[key]]} className="capitalizeTitle" key={dataUnit[columns[key]]}>
             {dataUnit[columns[key]]}
           </td>
-        </>
+        </React.Fragment>
       ))}
     </tr>
   );

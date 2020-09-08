@@ -5,7 +5,7 @@ import boxLogin from '../assets/imgs/box_login.png';
 import { LoginPromotron } from '../assets';
 
 const Login = () => {
-  const { scaLogin, scaUserError } = useAuth();
+  const { scaLogin, scaUserError, userExpired } = useAuth();
   const [username, setUsername] = useState('');
   const [secret, setSecret] = useState('');
   const [isLoading, setLoadingState] = useState(false);
@@ -17,10 +17,10 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if(scaUserError) {
+    if (scaUserError) {
       setLoadingState(false);
     }
-  },[scaUserError])
+  }, [scaUserError]);
 
   return (
     <div className="wrapper">
@@ -50,11 +50,12 @@ const Login = () => {
             onChange={({ target }) => setSecret(target.value)}
             required
           />
-          <button className="btn-login" disabled={isLoading} type="submit" >
-            {isLoading? "CARREGANDO" : "ENTRAR"}
+          <button className="btn-login" disabled={isLoading} type="submit">
+            {isLoading ? 'CARREGANDO' : 'ENTRAR'}
           </button>
           <div className="greetings">
             {scaUserError && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
+            {userExpired && <strong>Sua sessão expirou</strong>}
           </div>
         </form>
       </div>

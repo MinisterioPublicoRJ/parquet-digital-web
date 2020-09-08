@@ -175,8 +175,7 @@ const propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({ x: PropTypes.string, y: PropTypes.number, label: PropTypes.number }),
   ).isRequired,
-  axis: PropTypes.shape({ category: PropTypes.string }).isRequired,
-  axisLabelsTable: PropTypes.shape.isRequired,
+  axisLabelsTable: PropTypes.shape({}).isRequired,
 };
 
 function PerformanceChart({ data, axisLabelsTable }) {
@@ -290,7 +289,7 @@ const AreaLabel = props => {
         <rect
           fill="rgba(0,155,255, .7)"
           stroke="#ffffff"
-          strokeWith={1}
+          strokeWidth={1}
           x={props.x + dx + (-10 + 5 * labelSize) - 10 * labelSize}
           y={props.y + dy - 12}
           width={10 * labelSize + 20}

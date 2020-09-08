@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../../app/authContext';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 import Api from '../../../api';
+import { useAuth } from '../../../app/authContext';
 import PromotronGif from '../../../assets/gifs/promotron.gif';
-import { GlossaryBook, IntroScreenInterrogation } from '../../../assets';
 import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
-import { SectionTitle, MainTitle, Spinner, Modal } from '../../../components/layoutPieces';
-
 import { formatPercentage, capitalizeTitle } from '../../../utils';
+import { GlossaryBook, IntroScreenInterrogation } from '../../../assets';
+import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPieces';
+
+const propTypes = {
+  setIsSelectorOpen: PropTypes.func.isRequired,
+  setIsModalOpen: PropTypes.func.isRequired,
+  setIsIntroOpen: PropTypes.func.isRequired,
+};
 
 function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
-  const { user, buildRequestParams, currentOffice } = useAuth();
+  const { user, buildRequestParams, currentOffice, logout } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
   const [groupName, setgroupName] = useState([]);
   const [entriesGroup, setEntriesGroup] = useState([]);
   const [fullError, setfullError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isLogoutBtnVisible, setIsLogoutBtnVisible] = useState(false);
 
   /**
    * laods percentage data for the first sentence
@@ -92,6 +99,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   // runs on "mount" only
   useEffect(() => {
     loadComponent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
@@ -146,7 +154,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   function assembleGreeting() {
     const infoUser = cleanUsername();
     const hours = new Date().getHours();
-    const gender = infoUser.sexo;
+    // const gender = infoUser.sexo;
 
     let timeGreeting;
 
@@ -199,9 +207,26 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
 
   return (
     <article className="today-outer">
-      <MainTitle value={greeting} glueToTop />
+      <div className="user-area">
+        <MainTitle value={greeting} glueToTop />
+        {user.orgaosValidos && user.orgaosValidos.length ? (
+          <button
+            type="button"
+            className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
+            onClick={() => setIsLogoutBtnVisible(prevValue => !prevValue)}
+          ></button>
+        ) : null}
+        <button
+          type="button"
+          className={`logout-btn ${isLogoutBtnVisible ? 'logout-btn--visible' : ''}`}
+          disabled={!isLogoutBtnVisible}
+          onClick={logout}
+        >
+          CLIQUE PRA SAIR
+        </button>
+      </div>
       <div className="today-content">
-        <button type="button" onClick={setIsSelectorOpen}>
+        <button type="button" onClick={setIsSelectorOpen} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
           {currentOffice.nomeOrgao && <span>{currentOffice.nomeOrgao}</span>}
@@ -215,6 +240,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
           href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/9062e8f6462349978f249fb63c5f68a5?pip=${currentOffice.codigo}&dp=${currentOffice.dps}`}
           className="today-btn"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Ver mapa da atuação
         </a>
@@ -232,4 +258,5 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
   );
 }
 
+Today.propTypes = propTypes;
 export default Today;

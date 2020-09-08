@@ -4,14 +4,18 @@ import './styles.css';
 import { useAuth } from '../../../app/authContext';
 
 import Api from '../../../api';
-import AlertBadge from './AlertBadge';
 import { SectionTitle, Spinner } from '../../../components';
-import { cleanAlertList } from './alertFormatters';
+import Dropdown from './Dropdown';
+import Overlay from './AlertsOverlay';
+import alertListFormatter from './utils/alertListFormatter';
 
 function Alerts() {
   const { buildRequestParams } = useAuth();
   const [alerts, setAlerts] = useState(undefined);
+  const [alertCount, setAlertCount] = useState(undefined);
   const [alertsError, setAlertsError] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [overlayType, setOverlayType] = useState(null);
   const loading = !alerts && !alertsError;
 
   async function loadAlerts() {
@@ -54,9 +58,10 @@ function Alerts() {
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
     const fullList = alertList.concat(hiresAlertList);
-    const cleanList = !apiError ? cleanAlertList(fullList, alertsCount) : [];
+    const cleanList = !apiError ? alertListFormatter(fullList, alertsCount) : [];
 
     setAlerts(cleanList);
+    setAlertCount(fullList.length);
     setAlertsError(apiError);
   }
 
@@ -65,48 +70,39 @@ function Alerts() {
    * @param  {number} alert key
    * @return {void}                 updates the state
    */
-  function removeAlert(key) {
-    const oldAlerts = [...alerts];
-    setAlerts(oldAlerts.filter((item, index) => item.key !== key));
-  }
+  // function removeAlert(key) {
+  //   const oldAlerts = [...alerts];
+  //   setAlerts(oldAlerts.filter(item => item.key !== key));
+  // }
 
   // runs on "mount" only
   useEffect(() => {
     loadComponent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading) {
-    return (
-      <article className="alerts-wrapper">
-        <Spinner size="large" />
-      </article>
-    );
+  function setOverlay(type) {
+    setOverlayType(type);
+    setShowOverlay(true);
   }
+
   return (
     <article className="alerts-wrapper">
       <div className="alerts-header">
         <SectionTitle value="central de alertas" glueToTop />
-        <span className="alerts-total">{alertsError ? 0 : alerts.length}</span>
+        <span className="alerts-total">{alerts ? alertCount : 0}</span>
       </div>
-      <div className="alerts-body">
-        {alertsError && 'Não existem alertas para exibir.'}
-        {alerts &&
-          alerts.map((alert, index) => {
-            const { icon, message, action, actionLink, background, key, compId } = alert;
-            return (
-              <AlertBadge
-                key={key}
-                icon={icon}
-                iconBg={background}
-                message={message}
-                action={action}
-                actionLink={actionLink}
-                closeAction={() => removeAlert(key)
-                }
-                compId ={compId}
-              />
-            );
-          })}
+      <div className="alerts-body-wrapper">
+        <div className="alerts-body" style={showOverlay || loading ? { overflowY: 'hidden' } : {}}>
+          {showOverlay && <Overlay type={overlayType} setShowOverlay={setShowOverlay} />}
+
+          {loading && <Spinner size="large" />}
+          {alertsError && 'Não existem alertas para exibir.'}
+          {alerts &&
+            Object.keys(alerts).map(type => (
+              <Dropdown type={type} list={alerts[type]} key={type} setOverlay={setOverlay} />
+            ))}
+        </div>
       </div>
     </article>
   );

@@ -81,7 +81,7 @@ export default function individualAlertFormatter(alert) {
 }
 
 function compConstructor(alert) {
-  const { contrato_iditem, contrato, item, iditem, dropdown, alertCode } = alert;
+  const { contrato_iditem, contrato, item, iditem, dropdown, alertCode, count } = alert;
   let key;
   let message;
   let actions;
@@ -89,7 +89,12 @@ function compConstructor(alert) {
   if (dropdown) {
     actions = [];
     key = `${alertCode}-dropdown`;
-    message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
+    const single = count === 1;
+    message = 
+    <span>
+      <strong> {`${count}`} </strong>
+      {`${single ? 'compra' : 'compras'}`} <strong>suspeitas</strong> foram verificadas em contratos públicos 
+    </span>
   } else {
     key = `${contrato}-${iditem}`;
     actions = [OUVIDORIA(), COMPRAS({compId: contrato_iditem, contrato}), DELETE];
@@ -495,7 +500,8 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
   if (dropdown) {
     key = `${alertCode}-dropdown`;
     const single = count === 1;
-    message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
+    message = <span><strong>{` ${count} `}</strong>
+    procedimentos de responsabilidade dessa promotoria  têm algum <strong> crime possivelmente prescrito</strong></span>;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
@@ -526,7 +532,9 @@ function gateConstructor({ dropdown, alertCode, count, docNum, docDk }) {
   if (dropdown) {
     key = `${alertCode}-dropdown`;
     const single = count === 1;
-    message = <span>{`Placeholder mensagem dropdown ${alertCode}`}</span>;
+    message = <span>O Gate finalizou <strong>{`${count} ${single ? 'IT' : 'ITs'} `}</strong>
+     em procedimentos desta promotoria de justiça.
+    </span>;
   } else {
     key = `${alertCode}-${docNum}`;
     message = (

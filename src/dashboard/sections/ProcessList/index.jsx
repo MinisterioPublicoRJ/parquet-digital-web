@@ -11,7 +11,6 @@ const ProcessList = () => {
   const [processListData, setProcessListData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(processListData);
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
     'Nº do Processo': 'docuNrExterno',

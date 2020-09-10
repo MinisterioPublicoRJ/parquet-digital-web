@@ -54,7 +54,11 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
               {key}
             </th>
           )}
-          <td title={dataUnit[columns[key]]} className="capitalizeTitle" key={dataUnit[columns[key]]}>
+          <td
+            title={dataUnit[columns[key]]}
+            className="capitalizeTitle"
+            key={dataUnit[columns[key]]}
+          >
             {dataUnit[columns[key]]}
           </td>
         </React.Fragment>

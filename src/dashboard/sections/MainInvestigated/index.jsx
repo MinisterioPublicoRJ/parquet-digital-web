@@ -7,7 +7,7 @@ import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import { CustomTable, Spinner, SectionTitle } from '../../../components';
 
-function MainInvestigated() {
+function MainInvestigated({ setIsInvestigatedProfileOpen, setIsModalOpen }) {
   const { buildRequestParams } = useAuth();
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
@@ -25,6 +25,18 @@ function MainInvestigated() {
     setTableData(oldTableData =>
       oldTableData.filter(item => item.representanteDk !== representanteDk),
     );
+  }
+
+  /**
+   * uses representanteDk number to open the investigated profile modal, updates the state
+   * @param  {number} representanteDk investigated "id"
+   * @return {void}                 updates the state
+   */
+  function openInvestigatedProfile(representanteDk) {
+    Api.openInvestigatedProfile({ ...buildRequestParams(), representanteDk });
+    setIsInvestigatedProfileOpen(true);
+    setIsModalOpen(true);
+    console.log('OPEN THE INVESTIGATED PROFILE!!!!');
   }
 
   /**
@@ -65,7 +77,11 @@ function MainInvestigated() {
   function cleanData(raw) {
     return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => ({
       key: `${nmInvestigado}-${nrInvestigacoes}`,
-      nmInvestigado,
+      nmInvestigado: (
+        <div onClick={representanteDk => openInvestigatedProfile(representanteDk)}>
+          {nmInvestigado}
+        </div>
+      ),
       nrInvestigacoes,
       isPinned,
       isRemoved,

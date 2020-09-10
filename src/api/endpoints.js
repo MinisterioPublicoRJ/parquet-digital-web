@@ -53,3 +53,4 @@ export const DELETE_ALERT = t(`${BASE_URL}/alertas/dispensar/\${orgao}/comp?aler
 export const UNDO_DELETE_ALERT = t(
   `${BASE_URL}/alertas/retornar/\${orgao}/comp?alerta_id=\${alertId}`,
 );
+export const INVESTIGATED_PROFILE_URL = t(`${BASE_URL}`);

@@ -24,6 +24,7 @@ import {
   PIP_MAIN_INVESTIGATIONS_URL_ACTION,
   DELETE_ALERT,
   UNDO_DELETE_ALERT,
+  INVESTIGATED_PROFILE_URL,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -254,6 +255,23 @@ const Api = (() => {
     return data;
   }
 
+  async function openInvestigatedProfile({ orgao, cpf, token, action, representanteDk }) {
+    const formData = new FormData();
+    formData.set('jwt', token);
+    formData.set('action', action);
+    formData.set('representante_dk', representanteDk);
+    {
+      /*
+      const { data } =     await axios.post(
+      INVESTIGATED_PROFILE_URL({ orgao, cpf, token }),
+      formData,
+      buildRequestConfig(token),
+    );*/
+    }
+    let data = null;
+    return data;
+  }
+
   return {
     login,
     scaLogin,
@@ -278,6 +296,7 @@ const Api = (() => {
     actionMainInvestigated,
     removeAlert,
     undoRemoveAlert,
+    openInvestigatedProfile,
   };
 })();
 

@@ -1,0 +1,41 @@
+.profile-close {
+  text-align: center;
+  position: absolute;
+  font-size: 3em;
+  bottom: -9vh;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+}
+
+.profile-close button {
+  display: contents;
+  font-size: 2em;
+  color: #ffffff;
+}
+
+.investigatedProfile-outer {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 80vw;
+  max-height: 90vh;
+  position: relative;
+}
+
+.investigatedProfile-details {
+  width: 100%;
+  background-color: #bddff0;
+}
+
+.investigatedProfile-details span {
+  width: 33%;
+  display: inline-block;
+}

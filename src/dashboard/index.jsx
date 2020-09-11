@@ -15,7 +15,7 @@ function Dashboard() {
   const [isInvestigatedProfileOpen, setIsInvestigatedProfileOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const currentModalChildren = isInvestigatedProfileOpen ? (
-    <InvestigatedProfile />
+    <InvestigatedProfile onToggle={() => setIsModalOpen(oldState => !oldState)} />
   ) : (
     <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
   );
@@ -24,6 +24,10 @@ function Dashboard() {
     return <Spinner size="large" />;
   }
   const { tipo } = currentOffice;
+
+  function setInvestigatedProfile(isOpen) {
+    setIsInvestigatedProfileOpen(isOpen);
+  }
 
   function renderPage() {
     switch (tipo) {
@@ -41,7 +45,7 @@ function Dashboard() {
             setIsSelectorOpen={setIsSelectorOpen}
             setIsModalOpen={setIsModalOpen}
             setIsIntroOpen={setIsIntroOpen}
-            setIsInvestigatedProfileOpen={setIsInvestigatedProfileOpen}
+            setInvestigatedProfile={setInvestigatedProfile}
           />
         );
       default:

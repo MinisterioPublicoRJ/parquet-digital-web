@@ -18,10 +18,10 @@ const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
   setIsModalOpen: PropTypes.func.isRequired,
   setIsIntroOpen: PropTypes.func.isRequired,
-  setIsInvestigatedProfileOpen: PropTypes.func.isRequired,
+  setInvestigatedProfile: PropTypes.func.isRequired,
 };
 
-function Pip({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen, setIsInvestigatedProfileOpen }) {
+function Pip({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen, setInvestigatedProfile }) {
   return (
     <div className="base-grid pip-grid">
       <Today
@@ -33,7 +33,7 @@ function Pip({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen, setIsInvestiga
       <Alerts />
       <PerformanceRadar.Pip />
       <MainInvestigated
-        setIsInvestigatedProfileOpen={setIsInvestigatedProfileOpen}
+        setInvestigatedProfile={setInvestigatedProfile}
         setIsModalOpen={setIsModalOpen}
       />
       <SuccessIndicators />

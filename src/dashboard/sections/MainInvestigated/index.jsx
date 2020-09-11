@@ -7,7 +7,7 @@ import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import { CustomTable, Spinner, SectionTitle } from '../../../components';
 
-function MainInvestigated({ setIsInvestigatedProfileOpen, setIsModalOpen }) {
+function MainInvestigated({ setInvestigatedProfile, setIsModalOpen }) {
   const { buildRequestParams } = useAuth();
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
@@ -34,7 +34,7 @@ function MainInvestigated({ setIsInvestigatedProfileOpen, setIsModalOpen }) {
    */
   function openInvestigatedProfile(representanteDk) {
     Api.openInvestigatedProfile({ ...buildRequestParams(), representanteDk });
-    setIsInvestigatedProfileOpen(true);
+    setInvestigatedProfile(true);
     setIsModalOpen(true);
     console.log('OPEN THE INVESTIGATED PROFILE!!!!');
   }

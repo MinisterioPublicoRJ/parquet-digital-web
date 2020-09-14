@@ -14,10 +14,14 @@ function Dashboard() {
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin ? true : false);
   const [isInvestigatedProfileOpen, setIsInvestigatedProfileOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [investigatedProfileData, setInvestigatedProfileData] = useState(null);
   const currentModalChildren = isInvestigatedProfileOpen ? (
-    <InvestigatedProfile onToggle={() => setIsModalOpen(oldState => !oldState)} />
+    <InvestigatedProfile
+      data={investigatedProfileData}
+      onToggle={() => setIsModalOpen((oldState) => !oldState)}
+    />
   ) : (
-    <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
+    <Glossary onToggle={() => setIsModalOpen((oldState) => !oldState)} />
   );
 
   if (!currentOffice) {
@@ -25,7 +29,9 @@ function Dashboard() {
   }
   const { tipo } = currentOffice;
 
-  function setInvestigatedProfile(isOpen) {
+  function setInvestigatedProfile(isOpen, data) {
+    console.log('data set inv prof: ', data);
+    setInvestigatedProfileData(data);
     setIsInvestigatedProfileOpen(isOpen);
   }
 
@@ -57,15 +63,15 @@ function Dashboard() {
     <>
       <Introduction
         isOpen={isIntroOpen}
-        onToggle={() => setIsIntroOpen(oldState => !oldState)}
+        onToggle={() => setIsIntroOpen((oldState) => !oldState)}
         type={tipo}
       />
-      <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
+      <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen((oldState) => !oldState)}>
         {currentModalChildren}
       </Modal>
       <OfficeSelector
         isOpen={isSelectorOpen}
-        onToggle={() => setIsSelectorOpen(prevState => !prevState)}
+        onToggle={() => setIsSelectorOpen((prevState) => !prevState)}
       />
       {renderPage()}
     </>

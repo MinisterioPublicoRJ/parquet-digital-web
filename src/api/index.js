@@ -255,7 +255,7 @@ const Api = (() => {
     return data;
   }
 
-  async function openInvestigatedProfile({ token, representanteDk }) {
+  async function getInvestigatedProfile({ token, representanteDk }) {
     const { data } = await axios.get(
       INVESTIGATED_PROFILE_URL({ representanteDk }),
       buildRequestConfig(token),
@@ -288,7 +288,7 @@ const Api = (() => {
     actionMainInvestigated,
     removeAlert,
     undoRemoveAlert,
-    openInvestigatedProfile,
+    getInvestigatedProfile,
   };
 })();
 

@@ -13,6 +13,7 @@ import {
   SuccessIndicators,
   ProcessingTime,
 } from '../../sections';
+import NewRadar from '../../sections/PerformanceRadar/newRadar';
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
@@ -28,7 +29,7 @@ function Pip({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
         setIsIntroOpen={setIsIntroOpen}
       />
       <YourDesk />
-      <Alerts />
+      <NewRadar />
       <PerformanceRadar.Pip />
       <MainInvestigated />
       <SuccessIndicators />

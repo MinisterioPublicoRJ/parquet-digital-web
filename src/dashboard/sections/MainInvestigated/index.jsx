@@ -22,8 +22,8 @@ function MainInvestigated({ setInvestigatedProfile, setIsModalOpen }) {
     Api.actionMainInvestigated({ ...buildRequestParams(), action: 'removed', representanteDk });
 
     // give user positivie feedback regardless of request success
-    setTableData(oldTableData =>
-      oldTableData.filter(item => item.representanteDk !== representanteDk),
+    setTableData((oldTableData) =>
+      oldTableData.filter((item) => item.representanteDk !== representanteDk),
     );
   }
 
@@ -36,7 +36,6 @@ function MainInvestigated({ setInvestigatedProfile, setIsModalOpen }) {
     Api.openInvestigatedProfile({ ...buildRequestParams(), representanteDk });
     setInvestigatedProfile(true);
     setIsModalOpen(true);
-    console.log('OPEN THE INVESTIGATED PROFILE!!!!');
   }
 
   /**
@@ -48,9 +47,9 @@ function MainInvestigated({ setInvestigatedProfile, setIsModalOpen }) {
     Api.actionMainInvestigated({ ...buildRequestParams(), action: 'pinned', representanteDk });
 
     // give user positivie feedback regardless of request success
-    setTableData(oldTableData => {
+    setTableData((oldTableData) => {
       const updatedArray = [...oldTableData];
-      const representanteIndex = updatedArray.findIndex(item => {
+      const representanteIndex = updatedArray.findIndex((item) => {
         return item.representanteDk === representanteDk;
       });
 
@@ -78,7 +77,12 @@ function MainInvestigated({ setInvestigatedProfile, setIsModalOpen }) {
     return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => ({
       key: `${nmInvestigado}-${nrInvestigacoes}`,
       nmInvestigado: (
-        <div onClick={representanteDk => openInvestigatedProfile(representanteDk)}>
+        <div
+          onClick={() => {
+            console.log('cleanData representanteDk', representanteDk);
+            openInvestigatedProfile(representanteDk);
+          }}
+        >
           {nmInvestigado}
         </div>
       ),

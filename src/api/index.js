@@ -53,7 +53,7 @@ import {
 
 // import { setUser } from '../user';
 
-const buildRequestConfig = jwt => ({ params: { jwt } });
+const buildRequestConfig = (jwt) => ({ params: { jwt } });
 
 const Api = (() => {
   async function login(token) {
@@ -214,7 +214,7 @@ const Api = (() => {
       PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
       buildRequestConfig(token),
     );
-    const cleanData = data.map(item => snakeToCamelTransform(item));
+    const cleanData = data.map((item) => snakeToCamelTransform(item));
     return cleanData;
   }
 
@@ -255,20 +255,12 @@ const Api = (() => {
     return data;
   }
 
-  async function openInvestigatedProfile({ orgao, cpf, token, action, representanteDk }) {
-    const formData = new FormData();
-    formData.set('jwt', token);
-    formData.set('action', action);
-    formData.set('representante_dk', representanteDk);
-    {
-      /*
-      const { data } =     await axios.post(
-      INVESTIGATED_PROFILE_URL({ orgao, cpf, token }),
-      formData,
+  async function openInvestigatedProfile({ token, representanteDk }) {
+    const { data } = await axios.get(
+      INVESTIGATED_PROFILE_URL({ representanteDk }),
       buildRequestConfig(token),
-    );*/
-    }
-    let data = null;
+    );
+    console.log('data profile:', data);
     return data;
   }
 

@@ -6,7 +6,7 @@ import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import PromotronGif from '../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
-import { formatPercentage, capitalizeTitle } from '../../../utils';
+import { formatPercentage, abbrevName, capitalizeTitle } from '../../../utils';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../assets';
 import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPieces';
 
@@ -204,6 +204,8 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
       <span style={{ fontWeight: 'bold' }}>{` ${groupName}`}</span>?
     </p>
   );
+
+  //const formattedAbreviated = abbrevName(currentOffice);
 
   return (
     <article className="today-outer">

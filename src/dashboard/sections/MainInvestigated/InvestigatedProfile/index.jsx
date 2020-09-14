@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import { CustomTable, SectionTitle } from '../../../../components';
 import { TABLE_COLUMNS } from './investigatedProfileConstants';
+import ProfileDetails from './ProfileDetails';
 
 function InvestigatedProfile({ onToggle, data }) {
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
+  const [isSimilarProfilesVisible, setIsSimilarProfilesVisible] = useState(false);
 
-  function render() {
+  useEffect(() => {
+    if (data.procedimentos) setTableData(data.procedimentos);
+  }, tableData);
+
+  function renderComponent() {
     if (apiError) {
       return (
         <article className="investigatedProfile-outer">
@@ -18,19 +24,36 @@ function InvestigatedProfile({ onToggle, data }) {
       );
     }
     if (data.perfil) {
+      console.log('procedi', data.procedimentos);
       return (
         <article className="investigatedProfile-outer">
           <div className="investigatedProfile-details">
             <SectionTitle value="Perfil do investigado" glueToTop />
-
-            <p>Nome: {data.perfil.nm_investigado}</p>
-            <p>
-              <span>Data de Nascimento</span>
-              <span>RG</span> <span>CPF</span>
-            </p>
-            <p>Mãe</p>
-            <p>Foram encontrados {} perfis similares ao solicitado</p>
+            <ProfileDetails perfil={data.perfil} key={data.perfil.pess_dk} />
           </div>
+
+          <button
+            type="button"
+            onClick={() => setIsSimilarProfilesVisible((prevValue) => !prevValue)}
+          >
+            Foram encontrados {data.similares.length} perfis similares ao solicitado
+            <div
+              className={`similar-profiles-arrow ${
+                isSimilarProfilesVisible ? 'similar-profiles-arrow--rotated' : ''
+              }`}
+            ></div>
+          </button>
+
+          <div className="similar-profiles-list">
+            {data.similares.map((similarProfile) => {
+              return (
+                <button>
+                  <ProfileDetails perfil={similarProfile} key={similarProfile.pess_dk} />
+                </button>
+              );
+            })}
+          </div>
+
           <div className="investigatedProfile-tableWrapper">
             <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
           </div>
@@ -46,7 +69,7 @@ function InvestigatedProfile({ onToggle, data }) {
 
     return null;
   }
-  return render();
+  return renderComponent();
 }
 
 export default InvestigatedProfile;

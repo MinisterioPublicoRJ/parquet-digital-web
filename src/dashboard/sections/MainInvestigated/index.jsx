@@ -78,8 +78,8 @@ function MainInvestigated({ setInvestigatedProfile, setIsModalOpen }) {
       key: `${nmInvestigado}-${nrInvestigacoes}`,
       nmInvestigado: (
         <div
-          onClick={() => {
-            console.log('cleanData representanteDk', representanteDk);
+          onClick={(e) => {
+            console.log('clicked');
             openInvestigatedProfile(representanteDk);
           }}
         >

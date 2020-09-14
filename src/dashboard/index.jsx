@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useAuth } from '../app/authContext';
 import { Pip, Tutela, BlankPage } from './pages';
@@ -12,17 +12,26 @@ function Dashboard() {
   const { firstLogin } = useAuth().user;
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin ? true : false);
-  const [isInvestigatedProfileOpen, setIsInvestigatedProfileOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [investigatedProfileData, setInvestigatedProfileData] = useState(null);
-  const currentModalChildren = isInvestigatedProfileOpen ? (
-    <InvestigatedProfile
-      data={investigatedProfileData}
-      onToggle={() => setIsModalOpen((oldState) => !oldState)}
-    />
-  ) : (
-    <Glossary onToggle={() => setIsModalOpen((oldState) => !oldState)} />
-  );
+
+  const [currentModalChildren, setCurrentModalChildren] = useState(null);
+
+  useEffect(() => {
+    let children = null;
+    if (investigatedProfileData != null) {
+      children = (
+        <InvestigatedProfile
+          data={investigatedProfileData}
+          onToggle={() => setIsModalOpen((oldState) => !oldState)}
+        />
+      );
+    } else {
+      children = <Glossary onToggle={() => setIsModalOpen((oldState) => !oldState)} />;
+    }
+
+    setCurrentModalChildren(children);
+  }, [investigatedProfileData]);
 
   if (!currentOffice) {
     return <Spinner size="large" />;
@@ -32,7 +41,8 @@ function Dashboard() {
   function setInvestigatedProfile(isOpen, data) {
     console.log('data set inv prof: ', data);
     setInvestigatedProfileData(data);
-    setIsInvestigatedProfileOpen(isOpen);
+    console.log('modalchildren:', currentModalChildren);
+    return data;
   }
 
   function renderPage() {

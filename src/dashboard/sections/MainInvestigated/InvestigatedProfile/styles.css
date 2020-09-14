@@ -39,3 +39,60 @@
   width: 33%;
   display: inline-block;
 }
+
+.similar-profiles-arrow {
+  opacity: 1;
+  display: inline-block;
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--darkBlue) transparent transparent transparent;
+  background-color: transparent;
+  position: relative;
+  padding: 0;
+  width: 0;
+  margin: 4px 8px 0px 8px;
+  cursor: pointer;
+  transition: transform 1s;
+}
+
+.similar-profiles-arrow--rotated {
+  transform: rotate(-180deg);
+}
+
+.similar-profiles-btn {
+  opacity: 0;
+  transition: opacity 1s;
+  cursor: default;
+  border-radius: 4px;
+  color: var(--grayTexts);
+  background-color: var(--grayLight);
+  border: 0;
+  font-size: var(--smallFont);
+  padding: 2px 4px;
+  font-weight: bold;
+}
+
+.similar-profiles-btn--visible {
+  opacity: 1;
+  transition: opacity 1s;
+  cursor: pointer;
+}
+
+.similar-profiles-list {
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+  height: 200px;
+}
+
+.similar-profiles-list button {
+  display: inline-block;
+  width: 200px;
+}
+
+.investigatedProfile-tableWrapper {
+  display: inline-block;
+  overflow-y: auto;
+  width: 100%;
+  height: 300px;
+}

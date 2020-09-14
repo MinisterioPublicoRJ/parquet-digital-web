@@ -63,3 +63,8 @@ export const snakeToCamel = str => {
   const capitalize = words.slice(1).map(word => capitalizeWord(word));
   return `${words[0]}${capitalize.join('')}`;
 };
+
+export const abbrevName = name => {
+  const nam = name.split('_');
+  return `${nam[0][0]}.${nam[1][0]}`.toUpperCase();
+};

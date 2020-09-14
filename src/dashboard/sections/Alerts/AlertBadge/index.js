@@ -97,7 +97,7 @@ const AlertBadge = ({
           ))}
         </div>
       )}
-      {typeof isDeleting !== 'undefined' && (
+      {!hideHover && isDeleting && (
         <div className={`delete-confirmation ${isDeleting ? 'isDeleting' : ''}`}>
           <button type="button" className="delete" onClick={() => handleDeletion(customKey)}>
             x

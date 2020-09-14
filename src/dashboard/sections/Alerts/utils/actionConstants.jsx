@@ -32,12 +32,11 @@ export const OUVIDORIA = link => ({
   link,
 });
 
-export const IT = link => ({
+export const IT = () => ({
   actionType: 'download',
   icon: <ItActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Baixar IT',
   background: '#71D0A4',
-  link,
 });
 
 export const CALCULO = () => ({

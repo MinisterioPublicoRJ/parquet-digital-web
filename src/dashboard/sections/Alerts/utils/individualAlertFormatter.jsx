@@ -90,10 +90,10 @@ function compConstructor(alert) {
     actions = [];
     key = `${alertCode}-dropdown`;
     const single = count === 1;
-    message = 
+    message =
     <span>
       <strong> {`${count}`} </strong>
-      {`${single ? 'compra' : 'compras'}`} <strong>suspeitas</strong> foram verificadas em contratos públicos 
+      {`${single ? 'compra' : 'compras'}`} <strong>suspeitas</strong> foram verificadas em contratos públicos
     </span>
   } else {
     key = `${contrato}-${iditem}`;
@@ -548,7 +548,7 @@ function gateConstructor({ dropdown, alertCode, count, docNum, docDk }) {
   }
 
   return {
-    actions: [IT(`http://apps.mprj.mp.br/gate/api/Cidadao/downloadPDF/${docDk}`), DELETE],
+    actions: [IT(), DELETE],
     backgroundColor: '#374354',
     icon: <CorujaGate />,
     key,

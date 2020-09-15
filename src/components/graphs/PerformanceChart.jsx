@@ -15,7 +15,7 @@ function generateGrid(xAxis) {
   const axisGrid = [];
   for (let i = 0; i < 5; i++) {
     const gridLevel = [];
-    xAxis.forEach(catObj =>
+    xAxis.forEach((catObj) =>
       gridLevel.push({
         x: catObj.category,
         y: (i + 1) * 20,
@@ -179,6 +179,7 @@ const propTypes = {
 };
 
 function PerformanceChart({ data, axisLabelsTable }) {
+  console.log('axisLabelsTable', axisLabelsTable);
   const [xAxis, medianData, areaData] = generateAreasData(data, axisLabelsTable);
   const grid = generateGrid(xAxis);
 
@@ -217,6 +218,7 @@ function PerformanceChart({ data, axisLabelsTable }) {
         endAngle={450}
         padding={{ top: 40, left: 0, right: 0, bottom: 10 }}
       >
+        {/* AXIS */}
         {xAxis.map(({ category, label, isGood, dx, dy, textAnchor, invert }) => (
           <VictoryPolarAxis
             dependentAxis
@@ -236,20 +238,20 @@ function PerformanceChart({ data, axisLabelsTable }) {
             }
           />
         ))}
-
+        {/* GRID */}
         <VictoryGroup style={CHART_THEME.gridGroup}>
           {grid.map((data1, i) => (
             <VictoryArea key={i} data={data1} />
           ))}
         </VictoryGroup>
-
+        {/* filler pro centro do gráfico*/}
         <VictoryArea
           data={[{ y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }]}
           style={{
             data: { fill: '#ac5fba' },
           }}
         />
-
+        {/* GRÁFICO DO USUÁRIO */}
         <VictoryArea
           data={areaData}
           style={{
@@ -257,6 +259,7 @@ function PerformanceChart({ data, axisLabelsTable }) {
           }}
           labelComponent={<AreaLabel axisLabelsTable={axisLabelsTable} />}
         />
+        {/* AQUI É O GRÁFICO DA MÉDIA */}
         <VictoryArea
           data={medianData}
           style={{
@@ -273,7 +276,7 @@ function PerformanceChart({ data, axisLabelsTable }) {
   );
 }
 
-const AreaLabel = props => {
+const AreaLabel = (props) => {
   const { datum, style, axisLabelsTable } = props;
   const { x, y } = datum;
 

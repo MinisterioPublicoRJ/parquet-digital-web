@@ -30,7 +30,7 @@ function PerformanceRadar() {
         // pip
         res = await Api.getPipRadarData(buildRequestParams());
       }
-      console.log('res', res);
+      // console.log('res', res);
       //     cleanGraphData(res);
     } catch (e) {
       setError(true);
@@ -46,7 +46,7 @@ function PerformanceRadar() {
       </div>
       {loading && !dataError && <Spinner size="large" />}
       {dataError && 'Sem dados para exibir'}
-      {chartData && (
+      {!loading && chartData && (
         <figure className="radar-wrapper">
           <RadarGraph xAxis={['a', 'b', 'c', 'd', 'e']} />
         </figure>

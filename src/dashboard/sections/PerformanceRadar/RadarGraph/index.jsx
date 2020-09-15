@@ -27,7 +27,7 @@ function RadarGraph(props) {
       {xAxis.map((test, i) => (
         <VictoryPolarAxis
           dependentAxis
-          label="hello"
+          label={test}
           axisAngle={90 + i * 72}
           style={CHART_THEME.polarAxis}
         />

@@ -38,7 +38,7 @@ function PerformanceRadar({ getRadarData, axisLabelsTable, cleanMap }) {
     const cleanData = Object.entries(data)
       .filter(cat => cat[0] !== 'meta')
       .map(cleanMap);
-
+      console.log('cleanData', cleanData);
     setChartData(cleanData);
   };
 

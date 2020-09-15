@@ -6,13 +6,9 @@ import { TABLE_COLUMNS } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
 
 function InvestigatedProfile({ onToggle, data }) {
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState(data.procedimentos ? data.procedimentos : []);
   const [apiError, setApiError] = useState(false);
   const [isSimilarProfilesVisible, setIsSimilarProfilesVisible] = useState(false);
-
-  useEffect(() => {
-    if (data.procedimentos) setTableData(data.procedimentos);
-  }, tableData);
 
   function renderComponent() {
     if (apiError) {
@@ -24,7 +20,6 @@ function InvestigatedProfile({ onToggle, data }) {
       );
     }
     if (data.perfil) {
-      console.log('procedi', data.procedimentos);
       return (
         <article className="investigatedProfile-outer">
           <div className="investigatedProfile-details">
@@ -34,6 +29,7 @@ function InvestigatedProfile({ onToggle, data }) {
 
           <button
             type="button"
+            className="similar-profiles-btn"
             onClick={() => setIsSimilarProfilesVisible((prevValue) => !prevValue)}
           >
             Foram encontrados {data.similares.length} perfis similares ao solicitado
@@ -44,7 +40,11 @@ function InvestigatedProfile({ onToggle, data }) {
             ></div>
           </button>
 
-          <div className="similar-profiles-list">
+          <div
+            className={`similar-profiles-list ${
+              isSimilarProfilesVisible ? 'similar-profiles-list--visible' : ''
+            }`}
+          >
             {data.similares.map((similarProfile) => {
               return (
                 <button>

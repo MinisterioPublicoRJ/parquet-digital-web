@@ -32,11 +32,16 @@
 .investigatedProfile-details {
   width: 100%;
   background-color: #bddff0;
+  padding: 10px;
+  box-sizing: border-box;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .investigatedProfile-details span {
   width: 33%;
   display: inline-block;
+  vertical-align: top;
 }
 
 .similar-profiles-arrow {
@@ -49,13 +54,13 @@
   position: relative;
   padding: 0;
   width: 0;
-  margin: 4px 8px 0px 8px;
+  margin: 4px 8px -4px 8px;
   cursor: pointer;
   transition: transform 1s;
 }
 
 .similar-profiles-arrow--rotated {
-  transform: rotate(-180deg);
+  transform: rotate(-180deg) translateY(4px);
 }
 
 .similar-profiles-btn {
@@ -72,24 +77,34 @@
   width: 100%;
   display: flex;
   overflow: scroll;
+  align-items: flex-start;
+  justify-content: flex-start;
   opacity: 0;
   flex: 0;
+}
+
+.similar-profiles-list span {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .similar-profiles-list--visible {
   opacity: 1;
   flex-basis: content;
-  transition: opacity height 1s;
+  transition: all 1s;
   cursor: pointer;
 }
 .similar-profiles-list button {
   font-size: var(--smallFont);
   min-width: 33%;
+  height: 98%;
   background-color: #f8f9fb;
   border: 0;
   border-radius: 2px;
   margin: 2px;
   color: #8998ac;
+  text-align: left;
 }
 
 .investigatedProfile-tableWrapper {
@@ -97,4 +112,6 @@
   width: 100%;
   flex: 4;
   max-height: 60%;
+  padding: 8px;
+  box-sizing: border-box;
 }

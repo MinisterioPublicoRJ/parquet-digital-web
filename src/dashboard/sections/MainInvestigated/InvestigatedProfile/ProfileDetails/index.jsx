@@ -5,14 +5,27 @@ function ProfileDetails({ perfil }) {
   return (
     <>
       <p>
-        Nome:
+        <strong>Nome:</strong> <br />
         {perfil.nm_investigado}
       </p>
       <p>
-        <span>Data de Nascimento: {Intl.DateTimeFormat().format(birthdate)}</span>
-        <span>RG: {perfil.rg}</span> <span>CPF: {perfil.cpf}</span>
+        <span>
+          <strong>Data de Nascimento:</strong> <br />
+          {Intl.DateTimeFormat().format(birthdate)}
+        </span>
+        <span>
+          <strong>RG:</strong> <br />
+          {perfil.rg}
+        </span>
+        <span>
+          <strong>CPF:</strong> <br />
+          {perfil.cpf}
+        </span>
       </p>
-      <p>Mãe: {perfil.nm_mae}</p>
+      <p>
+        <strong>Mãe:</strong> <br />
+        {perfil.nm_mae}
+      </p>
     </>
   );
 }

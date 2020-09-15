@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
-import { CustomTable, SectionTitle } from '../../../../components';
+import { CustomTable } from '../../../../components';
 import { TABLE_COLUMNS } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
 
@@ -14,7 +14,9 @@ function InvestigatedProfile({ onToggle, data }) {
     if (apiError) {
       return (
         <article className="investigatedProfile-outer">
-          <SectionTitle value="Perfil do investigado" glueToTop />
+          <h2>
+            <strong>Perfil do Investigado</strong>
+          </h2>
           Erro de api!
         </article>
       );
@@ -23,7 +25,9 @@ function InvestigatedProfile({ onToggle, data }) {
       return (
         <article className="investigatedProfile-outer">
           <div className="investigatedProfile-details">
-            <SectionTitle value="Perfil do investigado" glueToTop />
+            <h2>
+              <strong>Perfil do Investigado</strong>
+            </h2>
             <ProfileDetails perfil={data.perfil} key={data.perfil.pess_dk} />
           </div>
 

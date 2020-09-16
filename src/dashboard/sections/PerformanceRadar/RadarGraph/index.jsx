@@ -6,7 +6,7 @@ import {
   VictoryPolarAxis,
   // VictoryArea,
   // VictoryGroup,
-  // VictoryLabel,
+  VictoryLabel,
 } from 'victory';
 
 import CHART_THEME from '../../../../themes/chartThemes';
@@ -24,10 +24,12 @@ function RadarGraph(props) {
       endAngle={450}
       padding={{ top: 40, left: 0, right: 0, bottom: 10 }}
     >
-      {xAxis.map((test, i) => (
+      {xAxis.map(({ category, label, position, textAnchor }, i) => (
         <VictoryPolarAxis
           dependentAxis
-          label={test}
+          key={category}
+          label={label}
+          labelRadius={10}
           axisAngle={90 + i * 72}
           style={CHART_THEME.polarAxis}
         />

@@ -12,6 +12,7 @@ import {
   ProcessingTime,
   YourDesk,
 } from '../../sections';
+import NewRadar from '../../sections/PerformanceRadar/newRadar';
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
@@ -28,7 +29,7 @@ function Tutela({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
       />
       <YourDesk />
       <PerformanceRadar.Tutela />
-      <Alerts />
+      <NewRadar />
       <ProcessList />
       <ProcessingTime />
     </div>

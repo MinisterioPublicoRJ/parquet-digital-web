@@ -219,32 +219,36 @@ function PerformanceChart({ data, axisLabelsTable }) {
         padding={{ top: 40, left: 0, right: 0, bottom: 10 }}
       >
         {/* AXIS */}
-        {xAxis.map(({ category, label, isGood, dx, dy, textAnchor, invert }) => (
-          <VictoryPolarAxis
-            dependentAxis
-            key={category}
-            label={label}
-            labelRadius={10}
-            labelPlacement="vertical"
-            axisValue={category}
-            style={CHART_THEME.polarAxis}
-            axisLabelComponent={
-              <VictoryLabel
-                textAnchor={textAnchor}
-                dx={dx}
-                dy={dy}
-                style={buildLabelStyles(label, isGood, invert)}
-              />
-            }
-          />
-        ))}
+        {xAxis.map((item) => {
+          console.log('item', item);
+          const { category, label, isGood, dx, dy, textAnchor, invert } = item;
+          return (
+            <VictoryPolarAxis
+              dependentAxis
+              key={category}
+              label={label}
+              labelRadius={10}
+              labelPlacement="vertical"
+              axisValue={category}
+              style={CHART_THEME.polarAxis}
+              axisLabelComponent={
+                <VictoryLabel
+                  textAnchor={textAnchor}
+                  dx={dx}
+                  dy={dy}
+                  style={buildLabelStyles(label, isGood, invert)}
+                />
+              }
+            />
+          );
+        })}
         {/* GRID */}
         <VictoryGroup style={CHART_THEME.gridGroup}>
           {grid.map((data1, i) => (
             <VictoryArea key={i} data={data1} />
           ))}
         </VictoryGroup>
-        {/* filler pro centro do gráfico*/}
+        {/* filler pro centro do gráfico */}
         <VictoryArea
           data={[{ y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }]}
           style={{

@@ -107,6 +107,20 @@ function RadarGraph(props) {
 
       {/* GRÁFICO DO USUÁRIO */}
       {userGraph.length ? <VictoryArea data={userGraph} /> : null}
+
+      {/* AQUI É O GRÁFICO DA MÉDIA */}
+      {userGraph.length ? (
+        <VictoryArea
+          data={comparisionGraph}
+          style={{
+            data: {
+              stroke: '#c43a31',
+              strokeWidth: 2,
+              strokeLinecap: 'round',
+            },
+          }}
+        />
+      ) : null}
     </VictoryChart>
   );
 }

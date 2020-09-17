@@ -118,7 +118,7 @@ function PerformanceRadar() {
       {dataError && 'Sem dados para exibir'}
       {!loading && !dataError && (
         <figure className="radar-wrapper">
-          <RadarGraph xAxis={chartLabels} userGraph={userData} />
+          <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
         </figure>
       )}
       <figcaption className="radar-subtitles">

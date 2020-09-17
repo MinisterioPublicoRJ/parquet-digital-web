@@ -18,13 +18,14 @@ const propTypes = {
   setIsModalOpen: PropTypes.func.isRequired,
 };
 
-function Tutela({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
+function Tutela({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen, setInvestigatedProfile }) {
   return (
     <div className="base-grid tutela-grid">
       <Today
         setIsSelectorOpen={setIsSelectorOpen}
         setIsModalOpen={setIsModalOpen}
         setIsIntroOpen={setIsIntroOpen}
+        setInvestigatedProfile={setInvestigatedProfile}
       />
       <YourDesk />
       <PerformanceRadar.Tutela />

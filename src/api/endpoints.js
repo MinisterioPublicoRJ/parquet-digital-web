@@ -56,3 +56,6 @@ export const UNDO_DELETE_ALERT = t(
 export const INVESTIGATED_PROFILE_URL = t(
   `${BASE_URL}/pip/principais-investigados-lista/\${representanteDk}`,
 );
+export const INVESTIGATED_PERSONAL_PROFILE_URL = t(
+  `${BASE_URL}/pip/principais-investigados-lista/\${representanteDk}?pess_dk=\${pessDk}`,
+);

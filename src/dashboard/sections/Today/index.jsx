@@ -16,7 +16,7 @@ const propTypes = {
   setIsIntroOpen: PropTypes.func.isRequired,
 };
 
-function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
+function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen, setInvestigatedProfile }) {
   const { user, buildRequestParams, currentOffice, logout } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
@@ -213,7 +213,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
           <button
             type="button"
             className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
-            onClick={() => setIsLogoutBtnVisible(prevValue => !prevValue)}
+            onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
           ></button>
         ) : null}
         <button
@@ -247,6 +247,12 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
       ) : null}
       <div className="today-robotPic">
         <div className="today-glossaryBtn" onClick={() => setIsModalOpen(true)}>
+          <GlossaryBook />
+        </div>
+        <div
+          style={{ position: 'absolute', bottom: 0, right: 0, zIndex: 100 }}
+          onClick={() => setInvestigatedProfile(12345)}
+        >
           <GlossaryBook />
         </div>
         <div className="today-introBtn" onClick={() => setIsIntroOpen(true)}>

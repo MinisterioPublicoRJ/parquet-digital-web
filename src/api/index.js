@@ -25,6 +25,7 @@ import {
   DELETE_ALERT,
   UNDO_DELETE_ALERT,
   INVESTIGATED_PROFILE_URL,
+  INVESTIGATED_PERSONAL_PROFILE_URL,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -255,12 +256,15 @@ const Api = (() => {
     return data;
   }
 
-  async function getInvestigatedProfile({ token, representanteDk }) {
-    const { data } = await axios.get(
-      INVESTIGATED_PROFILE_URL({ representanteDk }),
-      buildRequestConfig(token),
-    );
-    console.log('data profile:', data);
+  async function getInvestigatedProfile({ token, representanteDk, pessDk }) {
+    const { data } = pessDk
+      ? await axios.get(
+          INVESTIGATED_PERSONAL_PROFILE_URL({ representanteDk, pessDk }),
+          buildRequestConfig(token),
+        )
+      : await axios.get(INVESTIGATED_PROFILE_URL({ representanteDk }), buildRequestConfig(token));
+    console.log('data profile api:', data);
+    console.log('pessDk api:', pessDk);
     return data;
   }
 

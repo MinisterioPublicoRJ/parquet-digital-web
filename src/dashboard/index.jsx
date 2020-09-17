@@ -13,17 +13,20 @@ function Dashboard() {
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin ? true : false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [investigatedProfileData, setInvestigatedProfileData] = useState(null);
+  const [representanteDk, setRepresentanteDk] = useState(null);
 
   const [currentModalChildren, setCurrentModalChildren] = useState(null);
 
   useEffect(() => {
     let children = null;
-    if (investigatedProfileData != null) {
+    if (representanteDk != null) {
       children = (
         <InvestigatedProfile
-          data={investigatedProfileData}
-          onToggle={() => setIsModalOpen((oldState) => !oldState)}
+          representanteDk={representanteDk}
+          onToggle={() => {
+            setRepresentanteDk(null);
+            setIsModalOpen((oldState) => !oldState);
+          }}
         />
       );
     } else {
@@ -31,18 +34,17 @@ function Dashboard() {
     }
 
     setCurrentModalChildren(children);
-  }, [investigatedProfileData]);
+  }, [representanteDk]);
 
   if (!currentOffice) {
     return <Spinner size="large" />;
   }
   const { tipo } = currentOffice;
 
-  function setInvestigatedProfile(isOpen, data) {
-    console.log('data set inv prof: ', data);
-    setInvestigatedProfileData(data);
-    console.log('modalchildren:', currentModalChildren);
-    return data;
+  function setInvestigatedProfile(representanteDk) {
+    setIsModalOpen(true);
+    setRepresentanteDk(representanteDk);
+    return representanteDk;
   }
 
   function renderPage() {
@@ -53,6 +55,7 @@ function Dashboard() {
             setIsSelectorOpen={setIsSelectorOpen}
             setIsModalOpen={setIsModalOpen}
             setIsIntroOpen={setIsIntroOpen}
+            setInvestigatedProfile={setInvestigatedProfile}
           />
         );
       case 2:

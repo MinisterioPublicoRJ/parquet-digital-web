@@ -32,10 +32,9 @@ function MainInvestigated({ setInvestigatedProfile, setIsModalOpen }) {
    * @param  {number} representanteDk investigated "id"
    * @return {void}                 updates the state
    */
-  async function openInvestigatedProfile(representanteDk) {
-    let data = await Api.getInvestigatedProfile({ ...buildRequestParams(), representanteDk });
+  function openInvestigatedProfile(representanteDk) {
+    let data = Api.getInvestigatedProfile({ ...buildRequestParams(), representanteDk });
     setInvestigatedProfile(true, data);
-    setIsModalOpen(true);
   }
 
   /**

@@ -1,16 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+import { useAuth } from '../../../../app/authContext';
 import { CustomTable } from '../../../../components';
 import { TABLE_COLUMNS } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
+import Api from '../../../../api';
 
-function InvestigatedProfile({ onToggle, data }) {
-  const [tableData, setTableData] = useState(data.procedimentos ? data.procedimentos : []);
+function InvestigatedProfile({ onToggle, representanteDk }) {
+  const [pessDk, setPessDk] = useState(null);
+  const { buildRequestParams } = useAuth();
+  const [profileData, setProfileData] = useState(null);
+  const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [isSimilarProfilesVisible, setIsSimilarProfilesVisible] = useState(false);
 
+  async function getProfileData() {
+    const data = pessDk
+      ? await Api.getInvestigatedProfile({
+          ...buildRequestParams(),
+          representanteDk,
+          pessDk,
+        })
+      : await Api.getInvestigatedProfile({
+          ...buildRequestParams(),
+          representanteDk,
+        });
+    console.log('data: ', data);
+    console.log('pessdk: ', pessDk);
+    setProfileData(data);
+    setTableData(data.procedimentos ? data.procedimentos : []);
+    return data;
+  }
+
+  useEffect(() => {
+    getProfileData();
+  }, [pessDk]);
+
   function renderComponent() {
+    console.log('profiledata: ', profileData);
     if (apiError) {
       return (
         <article className="investigatedProfile-outer">
@@ -21,14 +49,14 @@ function InvestigatedProfile({ onToggle, data }) {
         </article>
       );
     }
-    if (data.perfil) {
+    if (profileData && profileData.perfil) {
       return (
         <article className="investigatedProfile-outer">
           <div className="investigatedProfile-details">
             <h2>
               <strong>Perfil do Investigado</strong>
             </h2>
-            <ProfileDetails perfil={data.perfil} key={data.perfil.pess_dk} />
+            <ProfileDetails perfil={profileData.perfil} key={profileData.perfil.pess_dk} />
           </div>
 
           <button
@@ -36,7 +64,7 @@ function InvestigatedProfile({ onToggle, data }) {
             className="similar-profiles-btn"
             onClick={() => setIsSimilarProfilesVisible((prevValue) => !prevValue)}
           >
-            Foram encontrados {data.similares.length} perfis similares ao solicitado
+            Foram encontrados {profileData.similares.length} perfis similares ao solicitado
             <div
               className={`similar-profiles-arrow ${
                 isSimilarProfilesVisible ? 'similar-profiles-arrow--rotated' : ''
@@ -49,9 +77,14 @@ function InvestigatedProfile({ onToggle, data }) {
               isSimilarProfilesVisible ? 'similar-profiles-list--visible' : ''
             }`}
           >
-            {data.similares.map((similarProfile) => {
+            {profileData.similares.map((similarProfile) => {
               return (
-                <button>
+                <button
+                  onClick={(e) => {
+                    console.log('similarprofile:', similarProfile);
+                    setPessDk(similarProfile.pess_dk);
+                  }}
+                >
                   <ProfileDetails perfil={similarProfile} key={similarProfile.pess_dk} />
                 </button>
               );
@@ -70,7 +103,6 @@ function InvestigatedProfile({ onToggle, data }) {
         </article>
       );
     }
-
     return null;
   }
   return renderComponent();

@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {
   VictoryChart,
   // VictoryPortal,
@@ -11,10 +11,30 @@ import {
 
 import CHART_THEME from '../../../../themes/chartThemes';
 
+const propTypes = {
+  xAxis: PropTypes.arrayOf(
+    PropTypes.shape({
+      category: PropTypes.string,
+      dx: PropTypes.number,
+      dy: PropTypes.number,
+      position: PropTypes.number,
+      textAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
+      label: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
+};
+
 function RadarGraph(props) {
   const { xAxis, userGraph, comparisionGraph } = props;
   const grid = generateGrid(xAxis);
 
+  /**
+   * makes a fake grid to replicate the design's star shape
+   * @param  {Array} axisData the xAxis prop
+   * @return {Array}          Array with five smaller arrays, each with five objects
+   *                          in every child array all the objects have the same y value
+   *                          and the x values are the categories of the graph
+   */
   function generateGrid(axisData) {
     const axisGrid = [];
     for (let i = 0; i < 5; i++) {
@@ -30,6 +50,11 @@ function RadarGraph(props) {
     return axisGrid;
   }
 
+  /**
+   * picks different styles for each part of a label
+   * @param  {Array} fullLabel Array of strings, each string is written in a new line
+   * @return {JSON}           object with styles for that part of the label
+   */
   function styleLabels(fullLabel) {
     return fullLabel.map((labelPieceStr) => {
       if (labelPieceStr.includes('máx')) {
@@ -74,4 +99,5 @@ function RadarGraph(props) {
   );
 }
 
+RadarGraph.propTypes = propTypes;
 export default RadarGraph;

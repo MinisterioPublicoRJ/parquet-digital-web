@@ -17,7 +17,6 @@ const propTypes = {
       category: PropTypes.string,
       dx: PropTypes.number,
       dy: PropTypes.number,
-      position: PropTypes.number,
       textAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
       label: PropTypes.arrayOf(PropTypes.string),
     }),
@@ -73,7 +72,7 @@ function RadarGraph(props) {
       endAngle={450}
       padding={{ top: 40, left: 0, right: 0, bottom: 10 }}
     >
-      {xAxis.map(({ category, label, position, textAnchor, dx, dy }, i) => {
+      {xAxis.map(({ category, label, textAnchor, dx, dy }, i) => {
         return (
           <VictoryPolarAxis
             dependentAxis
@@ -95,6 +94,19 @@ function RadarGraph(props) {
           <VictoryArea key={gridRow[0].y} data={gridRow} />
         ))}
       </VictoryGroup>
+
+      {/* filler pro centro do gráfico */}
+      {userGraph.length ? (
+        <VictoryArea
+          data={[{ y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }]}
+          style={{
+            data: { fill: '#ac5fba' },
+          }}
+        />
+      ) : null}
+
+      {/* GRÁFICO DO USUÁRIO */}
+      {userGraph.length ? <VictoryArea data={userGraph} /> : null}
     </VictoryChart>
   );
 }

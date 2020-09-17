@@ -19,7 +19,8 @@ import {
 function PerformanceRadar() {
   const { user, buildRequestParams } = useAuth();
   const [loading, setLoading] = useState(true);
-  const [chartData, setChartData] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [otherData, setOtherData] = useState([]);
   const [chartLabels, setChartLabels] = useState([]);
   const [dataError, setError] = useState(false);
 
@@ -39,14 +40,39 @@ function PerformanceRadar() {
         // pip
         res = await Api.getPipRadarData(buildRequestParams());
       }
-      // console.log('res', res);
-      //     cleanGraphData(res);
     } catch (e) {
       setError(true);
     } finally {
+      const [uData, oData] = cleanGraphData(res);
+      setUserData(uData);
+      setOtherData(oData);
       generateLabels(res, tipo);
       setLoading(false);
     }
+  }
+
+  function cleanGraphData(rawData) {
+    const categories = Object.keys(rawData);
+
+    if (categories) {
+      return [generateUserData(categories, rawData), generateCompData(categories, rawData)];
+    }
+    return [[], []];
+  }
+
+  function generateUserData(categories, rawData) {
+    return categories.map((cat) => ({
+      x: cat,
+      y: rawData[cat].percentages * 100,
+      total: rawData[cat].numbers,
+    }));
+  }
+
+  function generateCompData(categories, rawData) {
+    return categories.map((cat) => {
+      const { averages, maxValues } = rawData[cat];
+      return { x: cat, y: 100 * (averages / (maxValues || 1)) };
+    });
   }
 
   function generateLabels(graphData, organType) {
@@ -54,7 +80,7 @@ function PerformanceRadar() {
     const labels = categories.map((cat) => {
       let positionProps;
       let label;
-      const maxValues = graphData[cat] ? graphData[cat].maxValues : 0;
+      const maxValues = graphData[cat] ? graphData[cat].maxValues : '-';
       switch (cat) {
         case 'archives':
           label = ['Arquivamentos', `(máx atribuição ${maxValues})`];
@@ -90,9 +116,9 @@ function PerformanceRadar() {
       </div>
       {loading && !dataError && <Spinner size="large" />}
       {dataError && 'Sem dados para exibir'}
-      {!loading && chartData && (
+      {!loading && !dataError && (
         <figure className="radar-wrapper">
-          <RadarGraph xAxis={chartLabels} />
+          <RadarGraph xAxis={chartLabels} userGraph={userData} />
         </figure>
       )}
       <figcaption className="radar-subtitles">

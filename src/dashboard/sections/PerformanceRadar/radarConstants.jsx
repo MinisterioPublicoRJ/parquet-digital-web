@@ -6,7 +6,7 @@ export const NORTH_LABEL_PROPS = {
 };
 
 export const WEST_LABEL_PROPS = {
-  dx: -15,
+  dx: 15,
   dy: -15,
   position: 2,
   textAnchor: 'end',

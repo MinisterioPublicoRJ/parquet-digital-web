@@ -50,7 +50,6 @@ function PerformanceRadar() {
   }
 
   function generateLabels(graphData, organType) {
-    // console.log('graphData', graphData);
     const categories = organType === 1 ? TUTELA_CATEGORIES : [];
     const labels = categories.map((cat) => {
       let positionProps;
@@ -67,11 +66,11 @@ function PerformanceRadar() {
           break;
         case 'instaurations':
           label = [`(máx atribuição ${maxValues})`, 'Instauração de', 'Investigações'];
-          positionProps = SOUTH_EAST_LABEL_PROPS;
+          positionProps = SOUTH_WEST_LABEL_PROPS;
           break;
         case 'rejections':
           label = [`(máx atribuição ${maxValues})`, 'Indeferimentos', 'de plano'];
-          positionProps = SOUTH_WEST_LABEL_PROPS;
+          positionProps = SOUTH_EAST_LABEL_PROPS;
           break;
         case 'actions':
           label = ['Ações', 'civil', 'publicas', `(máx atribuição ${maxValues})`];

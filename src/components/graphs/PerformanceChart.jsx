@@ -28,11 +28,17 @@ function generateGrid(xAxis) {
 
 const buildLabelStyles = (labels, isGood, invert) =>
   labels.map((_, i) => {
-    if ((invert && i !== 0) || (!invert && i !== labels.length - 1)) return CHART_THEME.axisLabel;
+    if ((invert && i !== 0) || (!invert && i !== labels.length - 1)) {
+      return CHART_THEME.axisLabel;
+    }
 
-    if (isGood) return CHART_THEME.axisLabelGood;
+    if (isGood) {
+      return CHART_THEME.axisLabelGood
+    };
 
-    if (isGood != null) return CHART_THEME.axisLabelBad;
+    if (isGood != null) {
+      return CHART_THEME.axisLabelBad
+    };
 
     return CHART_THEME.axisLabelNeutral;
   });
@@ -179,7 +185,6 @@ const propTypes = {
 };
 
 function PerformanceChart({ data, axisLabelsTable }) {
-  console.log('axisLabelsTable', axisLabelsTable);
   const [xAxis, medianData, areaData] = generateAreasData(data, axisLabelsTable);
   const grid = generateGrid(xAxis);
 
@@ -220,7 +225,6 @@ function PerformanceChart({ data, axisLabelsTable }) {
       >
         {/* AXIS */}
         {xAxis.map((item) => {
-          console.log('item', item);
           const { category, label, isGood, dx, dy, textAnchor, invert } = item;
           return (
             <VictoryPolarAxis

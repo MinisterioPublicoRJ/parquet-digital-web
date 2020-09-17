@@ -21,6 +21,19 @@ const propTypes = {
       label: PropTypes.arrayOf(PropTypes.string),
     }),
   ).isRequired,
+  userGraph: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.string,
+      y: PropTypes.number,
+      total: PropTypes.number,
+    }),
+  ).isRequired,
+  comparisionGraph: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.string,
+      y: PropTypes.number,
+    }),
+  ).isRequired,
 };
 
 function RadarGraph(props) {
@@ -93,8 +106,8 @@ function RadarGraph(props) {
         polar
         responsive
         domain={{ y: [-5, 100], x: [0, 5] }}
-        startAngle={90 + 72}
-        endAngle={450 + 72}
+        startAngle={18}
+        endAngle={383}
         padding={{ top: 40, left: 0, right: 0, bottom: 10 }}
       >
         {xAxis.map(({ category, label, textAnchor, dx, dy }, i) => {
@@ -105,7 +118,8 @@ function RadarGraph(props) {
               label={label}
               labelRadius={10}
               labelPlacement="vertical"
-              axisAngle={90 + i * 72}
+              axisAngle={i * 72}
+              axisValue={category}
               style={CHART_THEME.polarAxis}
               axisLabelComponent={
                 <VictoryLabel textAnchor={textAnchor} dx={dx} dy={dy} style={styleLabels(label)} />

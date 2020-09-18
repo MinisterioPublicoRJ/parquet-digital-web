@@ -27,7 +27,7 @@
   width: 50vw;
   height: 70vh;
   position: relative;
-  padding: 16px;
+  padding: 0px 16px;
 }
 
 .investigatedProfile-outer .spinner--large {

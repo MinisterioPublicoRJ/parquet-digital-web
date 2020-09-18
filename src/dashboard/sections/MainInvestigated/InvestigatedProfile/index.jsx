@@ -7,6 +7,7 @@ import { TABLE_COLUMNS } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
 import Api from '../../../../api';
 import { Spinner } from '../../../../components/layoutPieces';
+import { LoginPromotron } from '../../../../assets';
 
 function InvestigatedProfile({ onToggle, representanteDk }) {
   const [pessDk, setPessDk] = useState(null);
@@ -65,11 +66,12 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
     if (profileData && profileData.perfil) {
       return (
         <article className="investigatedProfile-outer">
-          <div className="investigatedProfile-details">
+          <div className="investigatedProfile-header">
             <h2>
               <strong>Perfil do Investigado</strong>
             </h2>
             <ProfileDetails perfil={profileData.perfil} key={profileData.perfil.pess_dk} />
+            <LoginPromotron height={150} />
           </div>
 
           <button

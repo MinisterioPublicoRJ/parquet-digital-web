@@ -3,7 +3,7 @@ import React from 'react';
 function ProfileDetails({ perfil }) {
   let birthdate = new Date(perfil.dt_nasc);
   return (
-    <>
+    <div className="investigatedProfile-details">
       <p>
         <strong>Nome:</strong> <br />
         {perfil.nm_investigado}
@@ -26,7 +26,7 @@ function ProfileDetails({ perfil }) {
         <strong>Mãe:</strong> <br />
         {perfil.nm_mae}
       </p>
-    </>
+    </div>
   );
 }
 export default ProfileDetails;

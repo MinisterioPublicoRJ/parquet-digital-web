@@ -34,20 +34,42 @@
   justify-self: center;
 }
 
-.investigatedProfile-details {
+.investigatedProfile-header {
   width: 100%;
   background-color: #bddff0;
   padding: 10px;
   box-sizing: border-box;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  margin-top: -18px;
+  margin-top: -32px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.investigatedProfile-header h2 {
+  width: 100%;
+  margin: 0;
+}
+
+.investigatedProfile-header .investigatedProfile-details {
+  flex: 4;
+}
+
+.investigatedProfile-details {
+  color: #8998ac;
 }
 
 .investigatedProfile-details span {
   width: 33%;
   display: inline-block;
   vertical-align: top;
+}
+
+.investigatedProfile-details strong {
+  color: var(--darkBlue);
 }
 
 .similar-profiles-arrow {
@@ -109,7 +131,6 @@
   border: 0;
   border-radius: 2px;
   margin: 2px;
-  color: #8998ac;
   text-align: left;
 }
 

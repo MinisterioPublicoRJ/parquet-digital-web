@@ -6,6 +6,7 @@ import { CustomTable } from '../../../../components';
 import { TABLE_COLUMNS } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
 import Api from '../../../../api';
+import { Spinner } from '../../../../components/layoutPieces';
 
 function InvestigatedProfile({ onToggle, representanteDk }) {
   const [pessDk, setPessDk] = useState(null);
@@ -14,18 +15,23 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [isSimilarProfilesVisible, setIsSimilarProfilesVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   async function getProfileData() {
-    const data = pessDk
-      ? await Api.getInvestigatedProfile({
+    const promise = pessDk
+      ? Api.getInvestigatedProfile({
           ...buildRequestParams(),
           representanteDk,
           pessDk,
         })
-      : await Api.getInvestigatedProfile({
+      : Api.getInvestigatedProfile({
           ...buildRequestParams(),
           representanteDk,
         });
+
+    setLoading(true);
+    const data = await promise;
+    setLoading(false);
     console.log('data: ', data);
     console.log('pessdk: ', pessDk);
     setProfileData(data);
@@ -46,6 +52,13 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
             <strong>Perfil do Investigado</strong>
           </h2>
           Erro de api!
+        </article>
+      );
+    }
+    if (loading) {
+      return (
+        <article className="investigatedProfile-outer">
+          <Spinner size="large" />
         </article>
       );
     }

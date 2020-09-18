@@ -22,11 +22,16 @@
   box-shadow: inset 0px 0px 0px 0px #cfcfcf;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   width: 50vw;
   height: 70vh;
   position: relative;
+}
+
+.investigatedProfile-outer .spinner--large {
+  align-self: center;
+  justify-self: center;
 }
 
 .investigatedProfile-details {
@@ -36,6 +41,7 @@
   box-sizing: border-box;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  margin-top: -18px;
 }
 
 .investigatedProfile-details span {

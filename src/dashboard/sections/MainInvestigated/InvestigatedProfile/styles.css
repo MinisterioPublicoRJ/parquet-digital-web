@@ -27,6 +27,7 @@
   width: 50vw;
   height: 70vh;
   position: relative;
+  padding: 16px;
 }
 
 .investigatedProfile-outer .spinner--large {
@@ -35,18 +36,18 @@
 }
 
 .investigatedProfile-header {
-  width: 100%;
+  width: calc(100% + 32px);
   background-color: #bddff0;
-  padding: 10px;
   box-sizing: border-box;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  margin-top: -32px;
+  margin: -80px 0px 0px -16px;
   align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 8px 0px 0px 16px;
 }
 
 .investigatedProfile-header h2 {
@@ -83,7 +84,6 @@
   padding: 0;
   width: 0;
   margin: 4px 8px -4px 8px;
-  cursor: pointer;
   transition: transform 1s;
 }
 
@@ -99,6 +99,8 @@
   padding: 2px 4px;
   font-weight: bold;
   height: min-content;
+  padding-left: 0;
+  cursor: pointer;
 }
 
 .similar-profiles-list {
@@ -121,8 +123,8 @@
   opacity: 1;
   flex-basis: content;
   transition: all 1s;
-  cursor: pointer;
 }
+
 .similar-profiles-list button {
   font-size: var(--smallFont);
   min-width: 33%;
@@ -132,6 +134,7 @@
   border-radius: 2px;
   margin: 2px;
   text-align: left;
+  cursor: pointer;
 }
 
 .investigatedProfile-tableWrapper {
@@ -139,6 +142,5 @@
   width: 100%;
   flex: 4;
   max-height: 60%;
-  padding: 8px;
   box-sizing: border-box;
 }

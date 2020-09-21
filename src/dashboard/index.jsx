@@ -55,7 +55,6 @@ function Dashboard() {
             setIsSelectorOpen={setIsSelectorOpen}
             setIsModalOpen={setIsModalOpen}
             setIsIntroOpen={setIsIntroOpen}
-            setInvestigatedProfile={setInvestigatedProfile}
           />
         );
       case 2:

@@ -25,7 +25,6 @@ function Tutela({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen, setInvestig
         setIsSelectorOpen={setIsSelectorOpen}
         setIsModalOpen={setIsModalOpen}
         setIsIntroOpen={setIsIntroOpen}
-        setInvestigatedProfile={setInvestigatedProfile}
       />
       <YourDesk />
       <PerformanceRadar.Tutela />

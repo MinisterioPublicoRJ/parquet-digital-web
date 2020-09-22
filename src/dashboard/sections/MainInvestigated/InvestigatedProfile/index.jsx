@@ -19,25 +19,30 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
   const [loading, setLoading] = useState(true);
 
   async function getProfileData() {
-    const promise = pessDk
-      ? Api.getInvestigatedProfile({
-          ...buildRequestParams(),
-          representanteDk,
-          pessDk,
-        })
-      : Api.getInvestigatedProfile({
-          ...buildRequestParams(),
-          representanteDk,
-        });
-
+    let promise;
     setLoading(true);
-    const data = await promise;
-    setLoading(false);
-    console.log('data: ', data);
-    console.log('pessdk: ', pessDk);
-    setProfileData(data);
-    setTableData(data.procedimentos ? data.procedimentos : []);
-    return data;
+    try {
+      promise = pessDk
+        ? Api.getInvestigatedProfile({
+            ...buildRequestParams(),
+            representanteDk,
+            pessDk,
+          })
+        : Api.getInvestigatedProfile({
+            ...buildRequestParams(),
+            representanteDk,
+          });
+
+      const data = await promise;
+      setProfileData(data);
+      setTableData(data.procedimentos ? data.procedimentos : []);
+      return data;
+    } catch (error) {
+      setApiError(true);
+      return error;
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -45,7 +50,6 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
   }, [pessDk]);
 
   function renderComponent() {
-    console.log('profiledata: ', profileData);
     if (apiError) {
       return (
         <article className="investigatedProfile-outer">
@@ -96,7 +100,6 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
               return (
                 <button
                   onClick={(e) => {
-                    console.log('similarprofile:', similarProfile);
                     setPessDk(similarProfile.pess_dk);
                   }}
                   className={similarProfile.pess_dk == pessDk ? 'current' : ''}

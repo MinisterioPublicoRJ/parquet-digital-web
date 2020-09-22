@@ -25,7 +25,7 @@ function generateHeader(headerPropArray) {
   return (
     <thead>
       <tr>
-        {sections.map(title => (
+        {sections.map((title) => (
           <th scope="col" key={title}>
             {title}
           </th>
@@ -55,7 +55,11 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
             </th>
           )}
           <td
-            title={dataUnit[columns[key]]}
+            title={
+              dataUnit[columns[key]] && dataUnit[columns[key]].props
+                ? dataUnit[columns[key]].props.children
+                : dataUnit[columns[key]]
+            }
             className="capitalizeTitle"
             key={dataUnit[columns[key]]}
           >

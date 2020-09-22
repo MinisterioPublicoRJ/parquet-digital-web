@@ -72,31 +72,37 @@ function MainInvestigated({ setInvestigatedProfile }) {
    * @return {array}     formatted according to table component props
    */
   function cleanData(raw) {
-    return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => ({
-      key: `${nmInvestigado}-${nrInvestigacoes}`,
-      nmInvestigado: (
-        <div
+    return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => {
+      let investigatedNameBtn;
+      investigatedNameBtn = (
+        <button
           style={{ cursor: 'pointer' }}
           onClick={(e) => {
-            console.log('clicked');
             openInvestigatedProfile(representanteDk);
           }}
+          className="investigated-profile-btn"
         >
           {nmInvestigado}
-        </div>
-      ),
-      nrInvestigacoes,
-      isPinned,
-      isRemoved,
-      representanteDk,
-      actions: (
-        <ActionButtons
-          onPin={() => pinInvestigated(representanteDk)}
-          onDelete={() => deleteInvestigated(representanteDk)}
-          isPinned={isPinned}
-        />
-      ),
-    }));
+        </button>
+      );
+      const rowInfo = {
+        key: `${nmInvestigado}-${nrInvestigacoes}`,
+        nmInvestigado: investigatedNameBtn,
+        nrInvestigacoes,
+        isPinned,
+        isRemoved,
+        representanteDk,
+        actions: (
+          <ActionButtons
+            onPin={() => pinInvestigated(representanteDk)}
+            onDelete={() => deleteInvestigated(representanteDk)}
+            isPinned={isPinned}
+          />
+        ),
+        title: nmInvestigado,
+      };
+      return rowInfo;
+    });
   }
 
   /**

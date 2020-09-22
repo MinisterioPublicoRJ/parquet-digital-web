@@ -96,6 +96,7 @@
   justify-content: flex-start;
   opacity: 0;
   flex: 0;
+  transition: all 1s;
 }
 
 .similar-profiles-list span {
@@ -108,7 +109,6 @@
   opacity: 1;
   flex-basis: auto;
   overflow-y: hidden;
-  transition: all 1s;
 }
 
 .similar-profiles-list::-webkit-scrollbar {
@@ -131,7 +131,6 @@
   overflow-y: auto;
   width: 100%;
   flex: 4;
-  max-height: 60%;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -144,6 +143,13 @@
 
 .investigatedProfile-tableWrapper table {
   justify-self: flex-start;
+}
+
+button.investigated-profile-btn {
+  color: #8998ac;
+  font-size: var(--smallFont);
+  width: 100%;
+  overflow: hidden;
 }
 
 .profile-close {

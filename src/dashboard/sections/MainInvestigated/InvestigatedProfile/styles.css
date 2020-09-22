@@ -106,8 +106,13 @@
 
 .similar-profiles-list--visible {
   opacity: 1;
-  flex-basis: content;
+  flex-basis: auto;
+  overflow-y: hidden;
   transition: all 1s;
+}
+
+.similar-profiles-list::-webkit-scrollbar {
+  height: 4px;
 }
 
 .similar-profiles-list button {

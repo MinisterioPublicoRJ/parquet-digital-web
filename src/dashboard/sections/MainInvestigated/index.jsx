@@ -76,6 +76,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
       key: `${nmInvestigado}-${nrInvestigacoes}`,
       nmInvestigado: (
         <div
+          style={{ cursor: 'pointer' }}
           onClick={(e) => {
             console.log('clicked');
             openInvestigatedProfile(representanteDk);

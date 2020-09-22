@@ -22,16 +22,17 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
     let promise;
     setLoading(true);
     try {
-      promise = pessDk
-        ? Api.getInvestigatedProfile({
-            ...buildRequestParams(),
-            representanteDk,
-            pessDk,
-          })
-        : Api.getInvestigatedProfile({
-            ...buildRequestParams(),
-            representanteDk,
-          });
+      promise =
+        typeof pessDk == 'number'
+          ? Api.getInvestigatedProfile({
+              ...buildRequestParams(),
+              representanteDk,
+              pessDk,
+            })
+          : Api.getInvestigatedProfile({
+              ...buildRequestParams(),
+              representanteDk,
+            });
 
       const data = await promise;
       setProfileData(data);
@@ -60,7 +61,7 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
         </article>
       );
     }
-    if (loading && !pessDk) {
+    if (loading && pessDk === null) {
       return (
         <article className="investigatedProfile-outer">
           <Spinner size="large" />
@@ -100,7 +101,9 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
               return (
                 <button
                   onClick={(e) => {
-                    setPessDk(similarProfile.pess_dk);
+                    setPessDk((prevValue) =>
+                      prevValue == similarProfile.pess_dk ? 'unset' : similarProfile.pess_dk,
+                    );
                   }}
                   className={similarProfile.pess_dk == pessDk ? 'current' : ''}
                 >

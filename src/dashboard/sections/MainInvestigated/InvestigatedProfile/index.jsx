@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 import { useAuth } from '../../../../app/authContext';
@@ -8,6 +9,11 @@ import ProfileDetails from './ProfileDetails';
 import Api from '../../../../api';
 import { Spinner } from '../../../../components/layoutPieces';
 import { LoginPromotron } from '../../../../assets';
+
+const propTypes = {
+  onToggle: PropTypes.func.isRequired,
+  representanteDk: PropTypes.number.isRequired,
+};
 
 function InvestigatedProfile({ onToggle, representanteDk }) {
   const [pessDk, setPessDk] = useState(null);
@@ -48,6 +54,7 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
 
   useEffect(() => {
     getProfileData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pessDk]);
 
   function renderComponent() {
@@ -61,7 +68,7 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
         </article>
       );
     }
-    if (loading && pessDk === null) {
+    if (loading && !profileData) {
       return (
         <article className="investigatedProfile-outer">
           <Spinner size="large" />
@@ -89,7 +96,7 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
               className={`similar-profiles-arrow ${
                 isSimilarProfilesVisible ? 'similar-profiles-arrow--rotated' : ''
               }`}
-            ></div>
+            />
           </button>
 
           <div
@@ -102,10 +109,11 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
                 <button
                   onClick={(e) => {
                     setPessDk((prevValue) =>
-                      prevValue == similarProfile.pess_dk ? 'unset' : similarProfile.pess_dk,
+                      prevValue === similarProfile.pess_dk ? null : similarProfile.pess_dk,
                     );
                   }}
-                  className={similarProfile.pess_dk == pessDk ? 'current' : ''}
+                  className={similarProfile.pess_dk === pessDk ? 'current' : ''}
+                  type="button"
                 >
                   <ProfileDetails perfil={similarProfile} key={similarProfile.pess_dk} />
                 </button>
@@ -134,4 +142,5 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
   return renderComponent();
 }
 
+InvestigatedProfile.propTypes = propTypes;
 export default InvestigatedProfile;

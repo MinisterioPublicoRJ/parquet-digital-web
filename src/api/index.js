@@ -256,6 +256,15 @@ const Api = (() => {
     return data;
   }
 
+  /**
+   * This function gets investigated profile data with representanteDk with pessDk as optional param
+   *
+   * @param   {[string]}  token            [jwt or other login method]
+   * @param   {[number]}  representanteDk  [number representing all simmilar people (pessDk)]
+   * @param   {[number]}  pessDk           [number of an individual profile within representanteDk .similares]
+   *
+   * @return  {[JSON]}                   [profile data for the pessDk (.perfil, .procedimentos) or representanteDk (+ .similares)]
+   */
   async function getInvestigatedProfile({ token, representanteDk, pessDk }) {
     const { data } = pessDk
       ? await axios.get(

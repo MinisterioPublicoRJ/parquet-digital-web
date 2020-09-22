@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  perfil: PropTypes.node.isRequired,
+};
 
 function ProfileDetails({ perfil }) {
   let birthdate = new Date(perfil.dt_nasc);
@@ -29,4 +34,6 @@ function ProfileDetails({ perfil }) {
     </div>
   );
 }
+
+ProfileDetails.propTypes = propTypes;
 export default ProfileDetails;

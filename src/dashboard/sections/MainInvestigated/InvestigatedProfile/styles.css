@@ -145,13 +145,6 @@
   justify-self: flex-start;
 }
 
-button.investigated-profile-btn {
-  color: #8998ac;
-  font-size: var(--smallFont);
-  width: 100%;
-  overflow: hidden;
-}
-
 .profile-close {
   text-align: center;
   position: absolute;

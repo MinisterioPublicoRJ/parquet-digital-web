@@ -28,7 +28,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
   }
 
   /**
-   * uses representanteDk number to open the investigated profile modal, updates the state
+   * uses representanteDk number to open the investigated profile modal
    * @param  {number} representanteDk investigated "id"
    * @return {void}                 updates the state
    */
@@ -76,7 +76,6 @@ function MainInvestigated({ setInvestigatedProfile }) {
       let investigatedNameBtn;
       investigatedNameBtn = (
         <button
-          style={{ cursor: 'pointer' }}
           onClick={(e) => {
             openInvestigatedProfile(representanteDk);
           }}

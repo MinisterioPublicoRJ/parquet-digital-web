@@ -263,8 +263,6 @@ const Api = (() => {
           buildRequestConfig(token),
         )
       : await axios.get(INVESTIGATED_PROFILE_URL({ representanteDk }), buildRequestConfig(token));
-    console.log('data profile api:', data);
-    console.log('pessDk api:', pessDk);
     return data;
   }
 

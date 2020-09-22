@@ -23,7 +23,7 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
     setLoading(true);
     try {
       promise =
-        typeof pessDk == 'number'
+        typeof pessDk === 'number'
           ? Api.getInvestigatedProfile({
               ...buildRequestParams(),
               representanteDk,

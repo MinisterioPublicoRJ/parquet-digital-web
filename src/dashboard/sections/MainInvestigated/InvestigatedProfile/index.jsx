@@ -56,7 +56,7 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
         </article>
       );
     }
-    if (loading) {
+    if (loading && !pessDk) {
       return (
         <article className="investigatedProfile-outer">
           <Spinner size="large" />
@@ -99,6 +99,7 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
                     console.log('similarprofile:', similarProfile);
                     setPessDk(similarProfile.pess_dk);
                   }}
+                  className={similarProfile.pess_dk == pessDk ? 'current' : ''}
                 >
                   <ProfileDetails perfil={similarProfile} key={similarProfile.pess_dk} />
                 </button>
@@ -107,7 +108,11 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
           </div>
 
           <div className="investigatedProfile-tableWrapper">
-            <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
+            {loading ? (
+              <Spinner size="medium" />
+            ) : (
+              <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
+            )}
           </div>
 
           <div className="profile-close">

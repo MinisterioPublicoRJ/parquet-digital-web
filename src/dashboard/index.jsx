@@ -17,18 +17,15 @@ function Dashboard() {
 
   const [currentModalChildren, setCurrentModalChildren] = useState(null);
 
+  const onToggleModal = () => {
+    setRepresentanteDk(null);
+    setIsModalOpen((oldState) => !oldState);
+  };
+
   useEffect(() => {
     let children = null;
     if (representanteDk != null) {
-      children = (
-        <InvestigatedProfile
-          representanteDk={representanteDk}
-          onToggle={() => {
-            setRepresentanteDk(null);
-            setIsModalOpen((oldState) => !oldState);
-          }}
-        />
-      );
+      children = <InvestigatedProfile representanteDk={representanteDk} onToggle={onToggleModal} />;
     } else {
       children = <Glossary onToggle={() => setIsModalOpen((oldState) => !oldState)} />;
     }
@@ -78,7 +75,7 @@ function Dashboard() {
         onToggle={() => setIsIntroOpen((oldState) => !oldState)}
         type={tipo}
       />
-      <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen((oldState) => !oldState)}>
+      <Modal isOpen={isModalOpen} onToggle={onToggleModal}>
         {currentModalChildren}
       </Modal>
       <OfficeSelector

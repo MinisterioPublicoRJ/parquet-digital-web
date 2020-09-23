@@ -213,7 +213,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
           <button
             type="button"
             className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
-            onClick={() => setIsLogoutBtnVisible(prevValue => !prevValue)}
+            onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
           ></button>
         ) : null}
         <button

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
 
 import './styles.css';
 import Api from '../../../api';
@@ -15,7 +14,6 @@ import {
   TUTELA_CATEGORIES,
   PIP_CATEGORIES,
 } from './radarConstants';
-// import PerformanceChart from '../../../components/graphs/PerformanceChart';
 
 function PerformanceRadar() {
   const { user, buildRequestParams } = useAuth();
@@ -40,7 +38,6 @@ function PerformanceRadar() {
       } else {
         // pip
         res = await Api.getPipRadarData(buildRequestParams());
-        console.log(res);
       }
     } catch (e) {
       setError(true);
@@ -121,8 +118,8 @@ function PerformanceRadar() {
           positionProps = EAST_LABEL_PROPS;
           break;
         default:
-          // label = [''];
-          // positionProps = NORTH_LABEL_PROPS;
+          label = [''];
+          positionProps = NORTH_LABEL_PROPS;
       }
       return { category: cat, label, ...positionProps };
     });
@@ -130,7 +127,7 @@ function PerformanceRadar() {
   }
 
   return (
-    <article style={{ gridArea: 'alerts' }} className="page-radar-dashboard">
+    <article className="page-radar-dashboard">
       <div className="radar-header">
         <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
       </div>

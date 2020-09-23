@@ -6,10 +6,17 @@ import { GRAPH_LABELS_TABLE } from '../radarConstants';
 
 // ALL PROPS COME FROM VICOTRY ITSELF
 const propTypes = {
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
-  index: PropTypes.string.isRequired,
-  datum: PropTypes.shape({ y: PropTypes.number, label: PropTypes.stirng }).isRequired,
+  x: PropTypes.number,
+  y: PropTypes.number,
+  index: PropTypes.string,
+  datum: PropTypes.shape({ y: PropTypes.number, label: PropTypes.stirng }),
+};
+
+const defaultProps = {
+  x: undefined,
+  y: undefined,
+  index: undefined,
+  datum: undefined,
 };
 
 function CustomLabel(props) {
@@ -52,4 +59,5 @@ function CustomLabel(props) {
 }
 
 CustomLabel.propTypes = propTypes;
+CustomLabel.defaultProps = defaultProps;
 export default CustomLabel;

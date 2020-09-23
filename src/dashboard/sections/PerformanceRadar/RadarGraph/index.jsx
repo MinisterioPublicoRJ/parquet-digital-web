@@ -9,6 +9,7 @@ import {
   VictoryLabel,
 } from 'victory';
 
+import CustomLabel from './CustomLabel';
 import CHART_THEME from '../../../../themes/chartThemes';
 
 const propTypes = {
@@ -148,6 +149,7 @@ function RadarGraph(props) {
         {userGraph.length ? (
           <VictoryArea
             data={userGraph}
+            labelComponent={<CustomLabel />}
             style={{
               data: { fill: 'url(#myGradient)' },
             }}

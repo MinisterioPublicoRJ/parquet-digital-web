@@ -64,7 +64,7 @@ function PerformanceRadar() {
     return categories.map((cat) => ({
       x: cat,
       y: rawData[cat].percentages * 100,
-      total: rawData[cat].numbers,
+      label: rawData[cat].numbers,
     }));
   }
 

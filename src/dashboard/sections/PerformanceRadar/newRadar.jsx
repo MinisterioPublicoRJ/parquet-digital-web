@@ -13,6 +13,7 @@ import {
   SOUTH_EAST_LABEL_PROPS,
   EAST_LABEL_PROPS,
   TUTELA_CATEGORIES,
+  PIP_CATEGORIES,
 } from './radarConstants';
 // import PerformanceChart from '../../../components/graphs/PerformanceChart';
 
@@ -39,6 +40,7 @@ function PerformanceRadar() {
       } else {
         // pip
         res = await Api.getPipRadarData(buildRequestParams());
+        console.log(res);
       }
     } catch (e) {
       setError(true);
@@ -76,7 +78,7 @@ function PerformanceRadar() {
   }
 
   function generateLabels(graphData, organType) {
-    const categories = organType === 1 ? TUTELA_CATEGORIES : [];
+    const categories = organType === 1 ? TUTELA_CATEGORIES : PIP_CATEGORIES;
     const labels = categories.map((cat) => {
       let positionProps;
       let label;
@@ -90,19 +92,37 @@ function PerformanceRadar() {
           label = ['Termos', 'de ajuste', 'de conduta', `(máx atribuição ${maxValues})`];
           positionProps = WEST_LABEL_PROPS;
           break;
+        case 'agreements':
+          label = ['Acordos', 'de não', 'Persecução', `(máx atribuição ${maxValues})`];
+          positionProps = WEST_LABEL_PROPS;
+          break;
         case 'instaurations':
           label = [`(máx atribuição ${maxValues})`, 'Instauração de', 'Investigações'];
+          positionProps = SOUTH_WEST_LABEL_PROPS;
+          break;
+        case 'openCases':
+          label = [`(máx atribuição ${maxValues})`, 'Devoluções', 'à DP'];
           positionProps = SOUTH_WEST_LABEL_PROPS;
           break;
         case 'rejections':
           label = [`(máx atribuição ${maxValues})`, 'Indeferimentos', 'de plano'];
           positionProps = SOUTH_EAST_LABEL_PROPS;
           break;
+        case 'precautionary':
+          label = ['Medidas', 'Cautelares', `(máx atribuição ${maxValues})`];
+          positionProps = SOUTH_EAST_LABEL_PROPS;
+          break;
         case 'actions':
           label = ['Ações', 'civil', 'publicas', `(máx atribuição ${maxValues})`];
           positionProps = EAST_LABEL_PROPS;
           break;
+        case 'complaints':
+          label = [`(máx atribuição ${maxValues})`, 'Denúncias'];
+          positionProps = EAST_LABEL_PROPS;
+          break;
         default:
+          // label = [''];
+          // positionProps = NORTH_LABEL_PROPS;
       }
       return { category: cat, label, ...positionProps };
     });

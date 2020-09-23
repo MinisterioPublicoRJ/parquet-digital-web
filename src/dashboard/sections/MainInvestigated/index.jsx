@@ -7,7 +7,7 @@ import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import { CustomTable, Spinner, SectionTitle } from '../../../components';
 
-function MainInvestigated() {
+function MainInvestigated({ setInvestigatedProfile }) {
   const { buildRequestParams } = useAuth();
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
@@ -22,9 +22,18 @@ function MainInvestigated() {
     Api.actionMainInvestigated({ ...buildRequestParams(), action: 'removed', representanteDk });
 
     // give user positivie feedback regardless of request success
-    setTableData(oldTableData =>
-      oldTableData.filter(item => item.representanteDk !== representanteDk),
+    setTableData((oldTableData) =>
+      oldTableData.filter((item) => item.representanteDk !== representanteDk),
     );
+  }
+
+  /**
+   * uses representanteDk number to open the investigated profile modal
+   * @param  {number} representanteDk investigated "id"
+   * @return {void}                 updates the state
+   */
+  function openInvestigatedProfile(representanteDk) {
+    setInvestigatedProfile(representanteDk);
   }
 
   /**
@@ -36,9 +45,9 @@ function MainInvestigated() {
     Api.actionMainInvestigated({ ...buildRequestParams(), action: 'pinned', representanteDk });
 
     // give user positivie feedback regardless of request success
-    setTableData(oldTableData => {
+    setTableData((oldTableData) => {
       const updatedArray = [...oldTableData];
-      const representanteIndex = updatedArray.findIndex(item => {
+      const representanteIndex = updatedArray.findIndex((item) => {
         return item.representanteDk === representanteDk;
       });
 
@@ -63,21 +72,36 @@ function MainInvestigated() {
    * @return {array}     formatted according to table component props
    */
   function cleanData(raw) {
-    return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => ({
-      key: `${nmInvestigado}-${nrInvestigacoes}`,
-      nmInvestigado,
-      nrInvestigacoes,
-      isPinned,
-      isRemoved,
-      representanteDk,
-      actions: (
-        <ActionButtons
-          onPin={() => pinInvestigated(representanteDk)}
-          onDelete={() => deleteInvestigated(representanteDk)}
-          isPinned={isPinned}
-        />
-      ),
-    }));
+    return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => {
+      let investigatedNameBtn;
+      investigatedNameBtn = (
+        <button
+          onClick={(e) => {
+            openInvestigatedProfile(representanteDk);
+          }}
+          className="investigated-profile-btn"
+        >
+          {nmInvestigado}
+        </button>
+      );
+      const rowInfo = {
+        key: `${nmInvestigado}-${nrInvestigacoes}`,
+        nmInvestigado: investigatedNameBtn,
+        nrInvestigacoes,
+        isPinned,
+        isRemoved,
+        representanteDk,
+        actions: (
+          <ActionButtons
+            onPin={() => pinInvestigated(representanteDk)}
+            onDelete={() => deleteInvestigated(representanteDk)}
+            isPinned={isPinned}
+          />
+        ),
+        title: nmInvestigado,
+      };
+      return rowInfo;
+    });
   }
 
   /**

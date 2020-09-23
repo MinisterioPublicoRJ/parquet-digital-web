@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import TITLEDICT from './titleConstants';
 import { Badge } from '../../../../assets';
-import { abbrevName } from '../../../../utils';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
@@ -17,13 +16,10 @@ const propTypes = {
 };
 
 function Ranking({ data, title }) {
-  console.log(title);
-  const formattedAbreviated = abbrevName(title);
 
   return (
     <div className="ranking-outer">
       <h3>{TITLEDICT[title]}</h3>
-      <h3>{formattedAbreviated}</h3>
       <ul className="ranking-list">
         {data.map((item, i) => {
           return (

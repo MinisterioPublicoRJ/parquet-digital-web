@@ -205,7 +205,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
     </p>
   );
 
-  //const formattedAbreviated = abbrevName(currentOffice);
+  //const formattedAbreviated = abbrevName(currentOffice.nomeOrgao);
 
   return (
     <article className="today-outer">

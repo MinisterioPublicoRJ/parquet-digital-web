@@ -22,6 +22,8 @@ function PerformanceRadar() {
   const [userData, setUserData] = useState([]);
   const [otherData, setOtherData] = useState([]);
   const [chartLabels, setChartLabels] = useState([]);
+  const [compareData, setCompareData] = useState([]);
+  const [compareError, setCompareError] = useState(false);
   const [dataError, setError] = useState(false);
 
   useEffect(() => {
@@ -48,6 +50,18 @@ function PerformanceRadar() {
       setOtherData(oData);
       generateLabels(res, tipo);
       setLoading(false);
+    }
+  }
+
+  async function getCompareData() {
+    const { tipo } = user.orgaoSelecionado;
+    let res = [];
+    try {
+      res = await Api.getRadarCompareData({ ...buildRequestParams(), organType: tipo });
+    } catch (e) {
+      setCompareError(true);
+    } finally {
+      setCompareData(res);
     }
   }
 
@@ -128,7 +142,7 @@ function PerformanceRadar() {
   }
 
   function handleCompareButton() {
-    console.log('omg someone clicked me');
+    getCompareData();
   }
 
   return (

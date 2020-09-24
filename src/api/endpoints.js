@@ -57,3 +57,6 @@ export const INVESTIGATED_PROFILE_URL = t(
 export const INVESTIGATED_PERSONAL_PROFILE_URL = t(
   `${BASE_URL}/pip/principais-investigados-lista/\${representanteDk}?pess_dk=\${pessDk}`,
 );
+
+export const RADAR_COMPARE_TUTELA = t(`${BASE_URL}/comparador-radares/\${orgao}`);
+export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}`);

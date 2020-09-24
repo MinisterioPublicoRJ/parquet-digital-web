@@ -22,8 +22,8 @@ function MainInvestigated() {
     Api.actionMainInvestigated({ ...buildRequestParams(), action: 'removed', representanteDk });
 
     // give user positivie feedback regardless of request success
-    setTableData(oldTableData =>
-      oldTableData.filter(item => item.representanteDk !== representanteDk),
+    setTableData((oldTableData) =>
+      oldTableData.filter((item) => item.representanteDk !== representanteDk),
     );
   }
 
@@ -33,12 +33,12 @@ function MainInvestigated() {
    * @return {void}                 updates the state
    */
   function pinInvestigated(representanteDk) {
-    Api.actionMainInvestigated({ ...buildRequestParams(), action: 'pinned', representanteDk });
+    Api.actionMainInvestigated({ ...buildRequestParams(), action: 'pin', representanteDk });
 
     // give user positivie feedback regardless of request success
-    setTableData(oldTableData => {
+    setTableData((oldTableData) => {
       const updatedArray = [...oldTableData];
-      const representanteIndex = updatedArray.findIndex(item => {
+      const representanteIndex = updatedArray.findIndex((item) => {
         return item.representanteDk === representanteDk;
       });
 

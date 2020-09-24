@@ -31,7 +31,7 @@ function Pip({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen, setInvestigate
       />
       <YourDesk />
       <Alerts />
-      <PerformanceRadar.Pip />
+      <PerformanceRadar />
       <MainInvestigated setInvestigatedProfile={setInvestigatedProfile} />
       <SuccessIndicators />
       <ProcessingTime />

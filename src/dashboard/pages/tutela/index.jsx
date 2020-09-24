@@ -27,7 +27,7 @@ function Tutela({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
         setIsIntroOpen={setIsIntroOpen}
       />
       <YourDesk />
-      <PerformanceRadar.Tutela />
+      <PerformanceRadar />
       <Alerts />
       <ProcessList />
       <ProcessingTime />

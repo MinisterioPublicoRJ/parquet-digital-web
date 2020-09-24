@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+import RadarGraph from './RadarGraph';
 import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
+import { RadarArrow } from '../../../assets';
 import { Spinner, SectionTitle } from '../../../components/layoutPieces';
-import RadarGraph from './RadarGraph';
 import {
   NORTH_LABEL_PROPS,
   WEST_LABEL_PROPS,
@@ -126,6 +127,10 @@ function PerformanceRadar() {
     setChartLabels(labels);
   }
 
+  function handleCompareButton() {
+    console.log('omg someone clicked me');
+  }
+
   return (
     <article className="page-radar-dashboard">
       <div className="radar-header">
@@ -141,6 +146,14 @@ function PerformanceRadar() {
       <figcaption className="radar-subtitles">
         <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
         <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
+        <button
+          type="button"
+          className="radar-subtitles-item"
+          onClick={() => handleCompareButton()}
+        >
+          <RadarArrow height={15} width={15} />
+          Comparativo
+        </button>
       </figcaption>
     </article>
   );

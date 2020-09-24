@@ -66,5 +66,9 @@ export const snakeToCamel = str => {
 
 export const abbrevName = name => {
   const nam = name.split('', 3);
-  return `${nam[0]}.${nam[1]}.${nam[2]}`.toUpperCase();
+  return `${nam[0][0]}.${nam[1][0]}.${nam[2]}`.toUpperCase();
 };
+
+/*export const abbrevName = name => {
+  return name.match(/^|\b\w{3}/).join(' ');
+};*/

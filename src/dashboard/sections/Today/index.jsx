@@ -205,7 +205,9 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
     </p>
   );
 
-  //const formattedAbreviated = abbrevName(currentOffice.nomeOrgao);
+  const formattedAbreviated = currentOffice.nomeOrgao
+    ? abbrevName(currentOffice.nomeOrgao)
+    : currentOffice.nomeOrgao;
 
   return (
     <article className="today-outer">
@@ -215,8 +217,8 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
           <button
             type="button"
             className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
-            onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
-          ></button>
+            onClick={() => setIsLogoutBtnVisible(prevValue => !prevValue)}
+          />
         ) : null}
         <button
           type="button"
@@ -230,8 +232,8 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
       <div className="today-content">
         <button type="button" onClick={setIsSelectorOpen} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
-          {currentOffice.nomeOrgao && ' na '}
-          {currentOffice.nomeOrgao && <span>{currentOffice.nomeOrgao}</span>}
+          {formattedAbreviated && ' na '}
+          {formattedAbreviated && <span>{formattedAbreviated}</span>}
         </button>
         {percentParagraph}
         {collectionParagraph}

@@ -16,7 +16,6 @@ const propTypes = {
 };
 
 function Ranking({ data, title }) {
-
   return (
     <div className="ranking-outer">
       <h3>{TITLEDICT[title]}</h3>

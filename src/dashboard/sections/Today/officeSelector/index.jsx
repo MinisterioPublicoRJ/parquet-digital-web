@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './styles.css';
 import { useAuth } from '../../../../app/authContext';
 import { Search } from '../../../../assets';
+import { abbrevName } from '../../../../utils';
 
 function handleInnerClick(e) {
   e.stopPropagation();
@@ -38,6 +39,8 @@ function OfficeSelector({ isOpen, onToggle }) {
     setFilteredList(filtered);
   };
 
+  const formattedAbreviated = nomeOrgao => abbrevName(nomeOrgao);
+
   if (isOpen) {
     return (
       <div
@@ -69,7 +72,7 @@ function OfficeSelector({ isOpen, onToggle }) {
                   key={`${orgao.nomeOrgao}-${orgao.nomeUser}`}
                   onClick={() => onOfficeClicked(orgao)}
                 >
-                  {`${orgao.nomeOrgao} \n`}
+                  {`${formattedAbreviated(orgao.nomeOrgao)} \n`}
                   <span>{orgao.nomeUser}</span>
                 </li>
               ))}

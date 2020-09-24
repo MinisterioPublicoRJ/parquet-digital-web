@@ -19,7 +19,7 @@ function MainInvestigated() {
    * @return {void}                 updates the state
    */
   function deleteInvestigated(representanteDk) {
-    Api.actionMainInvestigated({ ...buildRequestParams(), action: 'removed', representanteDk });
+    Api.actionMainInvestigated({ ...buildRequestParams(), action: 'remove', representanteDk });
 
     // give user positivie feedback regardless of request success
     setTableData((oldTableData) =>
@@ -32,8 +32,12 @@ function MainInvestigated() {
    * @param  {number} representanteDk investigated "id"
    * @return {void}                 updates the state
    */
-  function pinInvestigated(representanteDk) {
-    Api.actionMainInvestigated({ ...buildRequestParams(), action: 'pin', representanteDk });
+  function pinInvestigated(isPinned, representanteDk) {
+    Api.actionMainInvestigated({
+      ...buildRequestParams(),
+      action: isPinned ? 'unpin' : 'pin',
+      representanteDk,
+    });
 
     // give user positivie feedback regardless of request success
     setTableData((oldTableData) => {
@@ -72,7 +76,7 @@ function MainInvestigated() {
       representanteDk,
       actions: (
         <ActionButtons
-          onPin={() => pinInvestigated(representanteDk)}
+          onPin={() => pinInvestigated(isPinned, representanteDk)}
           onDelete={() => deleteInvestigated(representanteDk)}
           isPinned={isPinned}
         />

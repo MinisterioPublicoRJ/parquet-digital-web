@@ -39,8 +39,6 @@ function OfficeSelector({ isOpen, onToggle }) {
     setFilteredList(filtered);
   };
 
-  const formattedAbreviated = nomeOrgao => abbrevName(nomeOrgao);
-
   if (isOpen) {
     return (
       <div
@@ -72,7 +70,7 @@ function OfficeSelector({ isOpen, onToggle }) {
                   key={`${orgao.nomeOrgao}-${orgao.nomeUser}`}
                   onClick={() => onOfficeClicked(orgao)}
                 >
-                  {`${formattedAbreviated(orgao.nomeOrgao)} \n`}
+                  {`${abbrevName(orgao.nomeOrgao)} \n`}
                   <span>{orgao.nomeUser}</span>
                 </li>
               ))}

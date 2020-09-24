@@ -188,8 +188,6 @@ const Api = (() => {
 
   async function getPipRadarData({ orgao, token }) {
     const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
-    console.log(data);
-
     return pipRadarTransform(data);
   }
 

@@ -205,10 +205,6 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
     </p>
   );
 
-  const formattedAbreviated = currentOffice.nomeOrgao
-    ? abbrevName(currentOffice.nomeOrgao)
-    : currentOffice.nomeOrgao;
-
   return (
     <article className="today-outer">
       <div className="user-area">
@@ -232,8 +228,10 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
       <div className="today-content">
         <button type="button" onClick={setIsSelectorOpen} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
-          {formattedAbreviated && ' na '}
-          {formattedAbreviated && <span>{formattedAbreviated}</span>}
+          {`${abbrevName(currentOffice.nomeOrgao)}` && ' na '}
+          {`${abbrevName(currentOffice.nomeOrgao)}` && (
+            <span>{`${abbrevName(currentOffice.nomeOrgao)}`}</span>
+          )}
         </button>
         {percentParagraph}
         {collectionParagraph}

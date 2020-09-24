@@ -65,10 +65,8 @@ export const snakeToCamel = str => {
 };
 
 export const abbrevName = name => {
-  const nam = name.split('', 3);
-  return `${nam[0][0]}.${nam[1][0]}.${nam[2]}`.toUpperCase();
+  return name
+    .replace(/\s+/g, ' ')
+    .replace(/promotoria de (justiça de )?investiga[çc][aã]o penal/gi, 'PIP')
+    .replace(/promotoria de justi[çc]a de tutela coletiva/gi, 'PJTC');
 };
-
-/*export const abbrevName = name => {
-  return name.match(/^|\b\w{3}/).join(' ');
-};*/

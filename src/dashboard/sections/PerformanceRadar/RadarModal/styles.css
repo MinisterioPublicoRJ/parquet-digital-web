@@ -35,18 +35,24 @@
 
 .radarModal-mainHeader {
   background-color: white;
-  flex: 2;
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .radarModal-mainHeader h1 {
   margin: 0;
 }
 
+.radarModal-mainHeader p {
+  margin-bottom: 0;
+}
+
 .radarModal-mainGraph {
-  flex: 7;
+  flex: 7.5;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .radarModal-mainSubtitles {
@@ -85,3 +91,5 @@ div .radarModal-mainSubtitles-item:before {
 .radarModal-mainSubtitles-item:nth-child(2):before {
   background-color: #c43a31;
 }
+
+/* PAGE ANIMATIONS */

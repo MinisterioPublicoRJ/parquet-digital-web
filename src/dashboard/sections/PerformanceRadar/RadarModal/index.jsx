@@ -30,12 +30,18 @@ function RadarModal({ compareData, onToggle }) {
         <div className="radarModal-mainGraph">
           {!compareData && <Spinner size="large" />}
           {loadingError && <p>Houve um problema carregando os dados :(</p>}
+          {/*
+            the extra div makes VictoryChart centralized on the parent's empty space,
+            otherwise the svg tag takes 100% of the height and adds empty space under the graph
+          */}
           {loadedData && currentCompared && (
-            <RadarGraph
-              xAxis={compareData.chartLabels}
-              userGraph={compareData.userData}
-              comparisionGraph={currentCompared.graphData}
-            />
+            <div>
+              <RadarGraph
+                xAxis={compareData.chartLabels}
+                userGraph={compareData.userData}
+                comparisionGraph={currentCompared.graphData}
+              />
+            </div>
           )}
         </div>
         <div className="radarModal-mainSubtitles">

@@ -37,7 +37,7 @@ function Pip({
         setIsIntroOpen={setIsIntroOpen}
       />
       <YourDesk />
-      {/* <Alerts /> */}
+      <Alerts />
       <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />
       <MainInvestigated setInvestigatedProfile={setInvestigatedProfile} />
       <SuccessIndicators />

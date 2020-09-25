@@ -35,6 +35,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
     if (compareData.length) {
       updateModalData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compareData]);
 
   async function getPerformanceData() {

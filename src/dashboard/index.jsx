@@ -83,7 +83,7 @@ function Dashboard() {
         onToggle={() => setIsIntroOpen((oldState) => !oldState)}
         type={tipo}
       />
-      {modalType && <Modal onToggle={() => setModalType(null)}>{renderModalChildren()}</Modal>}
+      {modalType && <Modal onToggle={() => closeModal()}>{renderModalChildren()}</Modal>}
       <OfficeSelector
         isOpen={isSelectorOpen}
         onToggle={() => setIsSelectorOpen((prevState) => !prevState)}

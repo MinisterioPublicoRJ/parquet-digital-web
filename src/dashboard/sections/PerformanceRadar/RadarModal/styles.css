@@ -1,0 +1,53 @@
+.radarModal-outer {
+  position: relative;
+  height: 70vh;
+  width: 55vw;
+  display: grid;
+  margin: 0 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 100%;
+}
+
+.radarModal-main {
+  grid-column-start: span 2;
+  padding: 25px 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.radarModal-menu {
+  background-color: var(--lightBlue);
+  padding: 25px 15px;
+}
+
+.radarModal-close {
+  background-color: transparent;
+  border: none;
+  bottom: -9vh;
+  color: #ffffff;
+  font-size: 8vh;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  right: 0;
+}
+
+.radarModal-mainHeader {
+  background-color: white;
+  flex: 2;
+}
+
+.radarModal-mainHeader h1 {
+  margin: 0;
+}
+
+.radarModal-mainGraph {
+  background-color: purple;
+  flex: 7;
+}
+
+.radarModal-mainSubtitles {
+  background-color: green;
+  flex: 1;
+}

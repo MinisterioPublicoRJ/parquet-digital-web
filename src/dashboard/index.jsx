@@ -4,7 +4,9 @@ import { useAuth } from '../app/authContext';
 import { Pip, Tutela, BlankPage } from './pages';
 import { Glossary, Introduction } from './sections';
 import { Modal, Spinner } from '../components';
+
 import OfficeSelector from './sections/Today/officeSelector';
+import RadarModal from './sections/PerformanceRadar/RadarModal';
 import InvestigatedProfile from './sections/MainInvestigated/InvestigatedProfile';
 
 function Dashboard() {
@@ -12,7 +14,7 @@ function Dashboard() {
   const { firstLogin } = useAuth().user;
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin ? true : false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [representanteDk, setRepresentanteDk] = useState(null);
 
   const [currentModalChildren, setCurrentModalChildren] = useState(null);
@@ -27,7 +29,8 @@ function Dashboard() {
     if (representanteDk != null) {
       children = <InvestigatedProfile representanteDk={representanteDk} onToggle={onToggleModal} />;
     } else {
-      children = <Glossary onToggle={() => setIsModalOpen((oldState) => !oldState)} />;
+      children = <RadarModal />
+      // children = <Glossary onToggle={() => setIsModalOpen((oldState) => !oldState)} />;
     }
 
     setCurrentModalChildren(children);

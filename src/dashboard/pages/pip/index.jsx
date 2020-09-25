@@ -30,7 +30,7 @@ function Pip({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen, setInvestigate
         setIsIntroOpen={setIsIntroOpen}
       />
       <YourDesk />
-      <Alerts />
+      {/* <Alerts /> */}
       <PerformanceRadar />
       <MainInvestigated setInvestigatedProfile={setInvestigatedProfile} />
       <SuccessIndicators />

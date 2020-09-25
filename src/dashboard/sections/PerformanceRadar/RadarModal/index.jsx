@@ -2,19 +2,45 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import RadarGraph from '../RadarGraph';
+import { Search } from '../../../../assets';
 import { Spinner } from '../../../../components';
 
 function RadarModal({ compareData, onToggle }) {
   const loadingError = compareData && compareData.otherData === 'error';
   const loadedData = compareData && compareData.userData;
   const [currentCompared, setCurrentCompared] = useState(null);
+  const [filteredList, setFilteredList] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     // only run on updates, not on mount
     if (compareData) {
       setCurrentCompared(compareData.otherData[0]);
+      setFilteredList(compareData.otherData);
     }
   }, [compareData]);
+
+  function filterList({ target }) {
+    const inputValue = target.value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+    const filtered = compareData.otherData.filter(
+      ({ meta }) =>
+        meta.codamp
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .includes(inputValue) ||
+        meta.name
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .includes(inputValue),
+    );
+    setFilteredList(filtered);
+  }
 
   return (
     <div className="radarModal-outer">
@@ -48,22 +74,32 @@ function RadarModal({ compareData, onToggle }) {
           <div className="radarModal-mainSubtitles-item radarModal-item--you">Sua Promotoria</div>
           {currentCompared && (
             <div className="radarModal-mainSubtitles-item radarModal-item--other">
-              {currentCompared.meta.name.toLocaleLowerCase()}
+              {currentCompared.meta.codamp.toLocaleLowerCase()}
             </div>
           )}
         </div>
       </div>
       <div className="radarModal-menu">
         <div className="radarModal-menuHeader">
-          <h3>lista de promotorias</h3>
-          lupa
+          <div className={`radarModal-headerSlider ${isSearching && 'radarModal-searching'}`}>
+            <div>
+              <h3>Lista de Promotorias</h3>
+            </div>
+            <button type="button" onClick={() => setIsSearching((prevSearch) => !prevSearch)}>
+              <Search />
+            </button>
+            <div>
+              <input onChange={filterList} type="text" />
+            </div>
+          </div>
         </div>
         <ul className="radarModal-menuList">
           {compareData &&
-            compareData.otherData.map(({ meta, graphData }) => (
+            filteredList.map(({ meta, graphData }) => (
               <li>
                 <button type="button" onClick={() => setCurrentCompared({ meta, graphData })}>
-                  {meta.codamp}
+                  {meta.name}
+                  <span>{meta.codamp.toLocaleLowerCase()}</span>
                 </button>
               </li>
             ))}

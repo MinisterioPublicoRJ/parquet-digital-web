@@ -39,10 +39,10 @@ function RadarModal({ compareData, onToggle }) {
           )}
         </div>
         <div className="radarModal-mainSubtitles">
-          <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
+          <div className="radarModal-mainSubtitles-item radarModal-item--you">Sua Promotoria</div>
           {currentCompared && (
-            <div className="radar-subtitles-item radar-subtitles-item-MPData">
-              {currentCompared.meta.name}
+            <div className="radarModal-mainSubtitles-item radarModal-item--other">
+              {currentCompared.meta.name.toLocaleLowerCase()}
             </div>
           )}
         </div>

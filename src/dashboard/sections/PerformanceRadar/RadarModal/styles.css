@@ -43,7 +43,6 @@
 }
 
 .radarModal-mainGraph {
-  background-color: purple;
   flex: 7;
   display: flex;
   align-items: center;
@@ -51,6 +50,38 @@
 }
 
 .radarModal-mainSubtitles {
-  background-color: green;
   flex: 1;
+  display: flex;
+}
+
+div .radarModal-mainSubtitles-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5vh;
+  height: 2px;
+}
+
+.radarModal-mainSubtitles-item {
+  color: var(--dark);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--smallFont);
+  font-weight: bold;
+  position: relative;
+  padding-top: 1vh;
+  text-transform: capitalize;
+}
+
+.radarModal-mainSubtitles-item:first-child{
+  padding-right: 60px;
+}
+
+.radarModal-mainSubtitles-item:first-child:before {
+  background-color: #009bff;
+}
+
+.radarModal-mainSubtitles-item:nth-child(2):before {
+  background-color: #c43a31;
 }

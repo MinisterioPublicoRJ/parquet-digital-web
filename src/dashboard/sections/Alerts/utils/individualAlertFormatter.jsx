@@ -525,7 +525,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function gateConstructor({ dropdown, alertCode, count, docNum, docDk }) {
+function gateConstructor({ dropdown, alertCode, count, docNum }) {
   let key;
   let message;
 

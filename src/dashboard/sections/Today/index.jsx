@@ -205,6 +205,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
     </p>
   );
 
+
   return (
     <article className="today-outer">
       <div className="user-area">
@@ -228,10 +229,8 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
       <div className="today-content">
         <button type="button" onClick={setIsSelectorOpen} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
-          {`${abbrevName(currentOffice.nomeOrgao)}` && ' na '}
-          {`${abbrevName(currentOffice.nomeOrgao)}` && (
-            <span>{`${abbrevName(currentOffice.nomeOrgao)}`}</span>
-          )}
+          {currentOffice.nomeOrgao && ' na '}
+          {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
         {percentParagraph}
         {collectionParagraph}

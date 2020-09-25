@@ -37,6 +37,7 @@ export const IT = () => ({
   icon: <ItActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Baixar IT',
   background: '#71D0A4',
+  link: `http://apps.mprj.mp.br/gate/api/Cidadao/downloadPDF/`,
 });
 
 export const CALCULO = () => ({

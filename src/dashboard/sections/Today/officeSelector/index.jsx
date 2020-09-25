@@ -23,9 +23,15 @@ function OfficeSelector({ isOpen, onToggle }) {
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
+    console.log('orgaosvalidos:', user.orgaosValidos);
     const filtered = user.orgaosValidos.filter(
       organ =>
         organ.nomeOrgao
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .includes(inputValue) ||
+        organ.abbrevNomeOrgao
           .toLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
@@ -36,6 +42,7 @@ function OfficeSelector({ isOpen, onToggle }) {
           .replace(/[\u0300-\u036f]/g, '')
           .includes(inputValue),
     );
+    console.log(filtered);
     setFilteredList(filtered);
   };
 

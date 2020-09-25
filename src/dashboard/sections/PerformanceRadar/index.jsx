@@ -16,7 +16,7 @@ import {
   PIP_CATEGORIES,
 } from './radarConstants';
 
-function PerformanceRadar({ setModalData, setModalType}) {
+function PerformanceRadar({ setModalData, setModalType }) {
   const { user, buildRequestParams } = useAuth();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState([]);
@@ -29,6 +29,13 @@ function PerformanceRadar({ setModalData, setModalType}) {
     getPerformanceData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    // so it doesn't run on mount
+    if (compareData.length) {
+      updateModalData();
+    }
+  }, [compareData]);
 
   async function getPerformanceData() {
     let res = {};
@@ -61,8 +68,15 @@ function PerformanceRadar({ setModalData, setModalType}) {
       res = 'error';
     } finally {
       setCompareData(res);
-      setModalData(res);
     }
+  }
+
+  function updateModalData() {
+    setModalData({
+      userData,
+      chartLabels,
+      otherData: compareData,
+    });
   }
 
   function cleanGraphData(rawData) {

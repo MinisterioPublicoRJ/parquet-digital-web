@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+import RadarGraph from '../RadarGraph';
+import { Spinner } from '../../../../components';
 
-function RadarModal() {
+function RadarModal({ compareData, onToggle }) {
+  const loadingError = compareData && compareData.otherData === 'error';
+  const loadedData = compareData && compareData.userData;
+  const [currentCompared, setCurrentCompared] = useState(null);
+
+  useEffect(() => {
+    // only run on updates, not on mount
+    if (compareData) {
+      setCurrentCompared(compareData.otherData[0]);
+    }
+  }, [compareData]);
+
   return (
     <div className="radarModal-outer">
       <div className="radarModal-main">
@@ -14,10 +27,24 @@ function RadarModal() {
             itens dispostos no radar da atuação.
           </p>
         </div>
-        <div className="radarModal-mainGraph">graph goes here</div>
+        <div className="radarModal-mainGraph">
+          {!compareData && <Spinner size="large" />}
+          {loadingError && <p>Houve um problema carregando os dados :(</p>}
+          {loadedData && currentCompared && (
+            <RadarGraph
+              xAxis={compareData.chartLabels}
+              userGraph={compareData.userData}
+              comparisionGraph={currentCompared.graphData}
+            />
+          )}
+        </div>
         <div className="radarModal-mainSubtitles">
           <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
-          <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
+          {currentCompared && (
+            <div className="radar-subtitles-item radar-subtitles-item-MPData">
+              {currentCompared.meta.name}
+            </div>
+          )}
         </div>
       </div>
       <div className="radarModal-menu">
@@ -26,29 +53,17 @@ function RadarModal() {
           lupa
         </div>
         <ul className="radarModal-menuList">
-          <li>
-            <button type="button">
-              1ª PJTC DE DEFESA DO MEIO AMBIENTE E DO PATRIMÔNIO CULTURAL DA CAPITAL
-            </button>
-          </li>
-          <li>
-            <button type="button">
-              1ª PJTC DE DEFESA DO MEIO AMBIENTE E DO PATRIMÔNIO CULTURAL DA CAPITAL
-            </button>
-          </li>
-          <li>
-            <button type="button">
-              1ª PJTC DE DEFESA DO MEIO AMBIENTE E DO PATRIMÔNIO CULTURAL DA CAPITAL
-            </button>
-          </li>
-          <li>
-            <button type="button">
-              1ª PJTC DE DEFESA DO MEIO AMBIENTE E DO PATRIMÔNIO CULTURAL DA CAPITAL
-            </button>
-          </li>
+          {compareData &&
+            compareData.otherData.map(({ meta, graphData }) => (
+              <li>
+                <button type="button" onClick={() => setCurrentCompared({ meta, graphData })}>
+                  {meta.codamp}
+                </button>
+              </li>
+            ))}
         </ul>
       </div>
-      <button type="button" className="radarModal-close">
+      <button type="button" className="radarModal-close" onClick={onToggle}>
         &times;
       </button>
     </div>

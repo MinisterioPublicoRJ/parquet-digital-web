@@ -45,6 +45,9 @@
 .radarModal-mainGraph {
   background-color: purple;
   flex: 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .radarModal-mainSubtitles {

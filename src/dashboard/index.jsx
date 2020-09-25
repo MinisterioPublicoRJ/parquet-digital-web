@@ -14,8 +14,8 @@ function Dashboard() {
   const { firstLogin } = useAuth().user;
 
   // this states should be a part of a context hoook to make things neater
-  const [modalData, setModalData] = useState(null);
   const [modalType, setModalType] = useState('');
+  const [modalData, setModalData] = useState(null);
 
   // maybe this two could be refactored to use the same modal context
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
@@ -26,6 +26,11 @@ function Dashboard() {
   }
   const { tipo } = currentOffice;
 
+  function closeModal() {
+    setModalType(null);
+    setModalData(null);
+  }
+
   function setInvestigatedProfile(representanteDk) {
     setModalType('investigated');
     setModalData(representanteDk);
@@ -33,14 +38,13 @@ function Dashboard() {
   }
 
   function renderModalChildren() {
-    const toggleFunction = () => setModalType(null);
     switch (modalType) {
       case 'glossary':
-        return <Glossary onToggle={toggleFunction} />;
+        return <Glossary onToggle={closeModal} />;
       case 'investigated':
-        return <InvestigatedProfile representanteDk={modalData} onToggle={toggleFunction} />;
+        return <InvestigatedProfile representanteDk={modalData} onToggle={closeModal} />;
       case 'radar':
-        return <RadarModal representanteDk={modalData} onToggle={toggleFunction} />;
+        return <RadarModal compareData={modalData} onToggle={closeModal} />;
       default:
         return null;
     }

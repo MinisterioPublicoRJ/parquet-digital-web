@@ -6,8 +6,11 @@ import './styles.css';
 const propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
+
+// children can be undefined if Modal is not open yet
+const defaultProps = { children: undefined };
 
 /**
  * Prevent close when click in the div.innerWrapper
@@ -41,4 +44,5 @@ function Modal({ isOpen, onToggle, children }) {
 }
 
 Modal.propTypes = propTypes;
+Modal.defaultProps = defaultProps;
 export default Modal;

@@ -12,11 +12,11 @@ import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPiec
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
-  setIsModalOpen: PropTypes.func.isRequired,
+  setModalType: PropTypes.func.isRequired,
   setIsIntroOpen: PropTypes.func.isRequired,
 };
 
-function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
+function Today({ setIsSelectorOpen, setModalType, setIsIntroOpen }) {
   const { user, buildRequestParams, currentOffice, logout } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
@@ -214,7 +214,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
             type="button"
             className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
             onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
-          ></button>
+          />
         ) : null}
         <button
           type="button"
@@ -246,7 +246,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
         </a>
       ) : null}
       <div className="today-robotPic">
-        <div className="today-glossaryBtn" onClick={() => setIsModalOpen(true)}>
+        <div className="today-glossaryBtn" onClick={() => setModalType('glossary')}>
           <GlossaryBook />
         </div>
         <div className="today-introBtn" onClick={() => setIsIntroOpen(true)}>

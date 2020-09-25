@@ -16,17 +16,17 @@ import {
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
-  setIsModalOpen: PropTypes.func.isRequired,
+  setModalType: PropTypes.func.isRequired,
   setIsIntroOpen: PropTypes.func.isRequired,
   setInvestigatedProfile: PropTypes.func.isRequired,
 };
 
-function Pip({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen, setInvestigatedProfile }) {
+function Pip({ setIsSelectorOpen, setModalType, setIsIntroOpen, setInvestigatedProfile }) {
   return (
     <div className="base-grid pip-grid">
       <Today
         setIsSelectorOpen={setIsSelectorOpen}
-        setIsModalOpen={setIsModalOpen}
+        setModalType={setModalType}
         setIsIntroOpen={setIsIntroOpen}
       />
       <YourDesk />

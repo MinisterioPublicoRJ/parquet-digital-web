@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import './styles.css';
 
 const propTypes = {
-  isOpen: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
   children: PropTypes.node,
 };
@@ -19,28 +18,18 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-function Modal({ isOpen, onToggle, children }) {
-  if (isOpen) {
-    return (
+function Modal({ onToggle, children }) {
+  return (
+    <div className="modal-outer" onClick={onToggle} onKeyDown={onToggle} role="button" tabIndex="0">
       <div
-        className="modal-outer"
-        onClick={onToggle}
-        onKeyDown={onToggle}
-        role="button"
-        tabIndex="0"
+        onClick={(e) => handleInnerClick(e)}
+        onKeyDown={(e) => handleInnerClick(e)}
+        className="modal-innerWrapper"
       >
-        <div
-          onClick={e => handleInnerClick(e)}
-          onKeyDown={e => handleInnerClick(e)}
-          className="modal-innerWrapper"
-        >
-          {children}
-        </div>
+        {children}
       </div>
-    );
-  }
-
-  return null;
+    </div>
+  );
 }
 
 Modal.propTypes = propTypes;

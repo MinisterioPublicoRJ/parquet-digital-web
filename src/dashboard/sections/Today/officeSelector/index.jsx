@@ -30,6 +30,11 @@ function OfficeSelector({ isOpen, onToggle }) {
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
           .includes(inputValue) ||
+        organ.abbrevNomeOrgao
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .includes(inputValue) ||
         organ.nomeUser
           .toLowerCase()
           .normalize('NFD')

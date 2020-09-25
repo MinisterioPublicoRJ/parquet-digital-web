@@ -16,14 +16,13 @@ import {
   PIP_CATEGORIES,
 } from './radarConstants';
 
-function PerformanceRadar() {
+function PerformanceRadar({ setModalData, setModalType}) {
   const { user, buildRequestParams } = useAuth();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState([]);
   const [otherData, setOtherData] = useState([]);
   const [chartLabels, setChartLabels] = useState([]);
   const [compareData, setCompareData] = useState([]);
-  const [compareError, setCompareError] = useState(false);
   const [dataError, setError] = useState(false);
 
   useEffect(() => {
@@ -59,9 +58,10 @@ function PerformanceRadar() {
     try {
       res = await Api.getRadarCompareData({ ...buildRequestParams(), organType: tipo });
     } catch (e) {
-      setCompareError(true);
+      res = 'error';
     } finally {
       setCompareData(res);
+      setModalData(res);
     }
   }
 
@@ -143,6 +143,7 @@ function PerformanceRadar() {
 
   function handleCompareButton() {
     getCompareData();
+    setModalType('radar');
   }
 
   return (

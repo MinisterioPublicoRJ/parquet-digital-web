@@ -54,6 +54,7 @@ function Dashboard() {
             setIsSelectorOpen={setIsSelectorOpen}
             setIsIntroOpen={setIsIntroOpen}
             setModalType={setModalType}
+            setModalData={setModalData}
           />
         );
       case 2:
@@ -61,6 +62,7 @@ function Dashboard() {
           <Pip
             setIsSelectorOpen={setIsSelectorOpen}
             setModalType={setModalType}
+            setModalData={setModalData}
             setIsIntroOpen={setIsIntroOpen}
             setInvestigatedProfile={setInvestigatedProfile}
           />

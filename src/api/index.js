@@ -26,6 +26,8 @@ import {
   UNDO_DELETE_ALERT,
   INVESTIGATED_PROFILE_URL,
   INVESTIGATED_PERSONAL_PROFILE_URL,
+  RADAR_COMPARE_TUTELA,
+  RADAR_COMPARE_PIP,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -50,6 +52,7 @@ import {
   scaUserTranform,
   jwtUserTransform,
   snakeToCamelTransform,
+  radarCompareTransform,
 } from './transforms';
 
 // import { setUser } from '../user';
@@ -274,6 +277,14 @@ const Api = (() => {
     return data;
   }
 
+  async function getRadarCompareData({ orgao, organType, token }) {
+    const endpoint =
+      organType === 1 ? RADAR_COMPARE_TUTELA({ orgao }) : RADAR_COMPARE_PIP({ orgao });
+    const { data } = await axios.get(endpoint, buildRequestConfig(token));
+
+    return radarCompareTransform(data);
+  }
+
   return {
     login,
     scaLogin,
@@ -299,6 +310,7 @@ const Api = (() => {
     removeAlert,
     undoRemoveAlert,
     getInvestigatedProfile,
+    getRadarCompareData,
   };
 })();
 

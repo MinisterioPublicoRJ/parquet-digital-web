@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+import RadarGraph from './RadarGraph';
 import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
+import { RadarArrow } from '../../../assets';
 import { Spinner, SectionTitle } from '../../../components/layoutPieces';
-import RadarGraph from './RadarGraph';
 import {
   NORTH_LABEL_PROPS,
   WEST_LABEL_PROPS,
@@ -15,18 +16,27 @@ import {
   PIP_CATEGORIES,
 } from './radarConstants';
 
-function PerformanceRadar() {
+function PerformanceRadar({ setModalData, setModalType }) {
   const { user, buildRequestParams } = useAuth();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState([]);
   const [otherData, setOtherData] = useState([]);
   const [chartLabels, setChartLabels] = useState([]);
+  const [compareData, setCompareData] = useState([]);
   const [dataError, setError] = useState(false);
 
   useEffect(() => {
     getPerformanceData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    // so it doesn't run on mount
+    if (compareData.length) {
+      updateModalData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [compareData]);
 
   async function getPerformanceData() {
     let res = {};
@@ -48,6 +58,26 @@ function PerformanceRadar() {
       generateLabels(res, tipo);
       setLoading(false);
     }
+  }
+
+  async function getCompareData() {
+    const { tipo } = user.orgaoSelecionado;
+    let res = [];
+    try {
+      res = await Api.getRadarCompareData({ ...buildRequestParams(), organType: tipo });
+    } catch (e) {
+      res = 'error';
+    } finally {
+      setCompareData(res);
+    }
+  }
+
+  function updateModalData() {
+    setModalData({
+      userData,
+      chartLabels,
+      otherData: compareData,
+    });
   }
 
   function cleanGraphData(rawData) {
@@ -126,6 +156,11 @@ function PerformanceRadar() {
     setChartLabels(labels);
   }
 
+  function handleCompareButton() {
+    getCompareData();
+    setModalType('radar');
+  }
+
   return (
     <article className="page-radar-dashboard">
       <div className="radar-header">
@@ -141,6 +176,14 @@ function PerformanceRadar() {
       <figcaption className="radar-subtitles">
         <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
         <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
+        <button
+          type="button"
+          className="radar-subtitles-item"
+          onClick={() => handleCompareButton()}
+        >
+          <RadarArrow height={15} width={15} />
+          Comparativo
+        </button>
       </figcaption>
     </article>
   );

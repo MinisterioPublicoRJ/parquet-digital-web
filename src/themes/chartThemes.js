@@ -24,13 +24,13 @@ const CHART_THEME = {
   axisMaxLabel: {
     fill: '#777',
     fontWeight: 'bold',
-    fontSize: 10,
+    fontSize: 8,
     letterSpacing: 0,
   },
   axisLabelNeutral: {
     fill: '#777',
     fontWeight: 'bold',
-    fontSize: 10,
+    fontSize: 9,
     letterSpacing: 0,
   },
 };

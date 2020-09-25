@@ -24,6 +24,8 @@ import {
   PIP_MAIN_INVESTIGATIONS_URL_ACTION,
   DELETE_ALERT,
   UNDO_DELETE_ALERT,
+  INVESTIGATED_PROFILE_URL,
+  INVESTIGATED_PERSONAL_PROFILE_URL,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -52,7 +54,7 @@ import {
 
 // import { setUser } from '../user';
 
-const buildRequestConfig = jwt => ({ params: { jwt } });
+const buildRequestConfig = (jwt) => ({ params: { jwt } });
 
 const Api = (() => {
   async function login(token) {
@@ -186,7 +188,6 @@ const Api = (() => {
 
   async function getPipRadarData({ orgao, token }) {
     const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
-
     return pipRadarTransform(data);
   }
 
@@ -213,7 +214,7 @@ const Api = (() => {
       PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
       buildRequestConfig(token),
     );
-    const cleanData = data.map(item => snakeToCamelTransform(item));
+    const cleanData = data.map((item) => snakeToCamelTransform(item));
     return cleanData;
   }
 
@@ -254,6 +255,25 @@ const Api = (() => {
     return data;
   }
 
+  /**
+   * This function gets investigated profile data with representanteDk with pessDk as optional param
+   *
+   * @param   {[string]}  token            [jwt or other login method]
+   * @param   {[number]}  representanteDk  [number representing all simmilar people (pessDk)]
+   * @param   {[number]}  pessDk           [number of an individual profile within representanteDk .similares]
+   *
+   * @return  {[JSON]}                   [profile data for the pessDk (.perfil, .procedimentos) or representanteDk (+ .similares)]
+   */
+  async function getInvestigatedProfile({ token, representanteDk, pessDk }) {
+    const { data } = pessDk
+      ? await axios.get(
+          INVESTIGATED_PERSONAL_PROFILE_URL({ representanteDk, pessDk }),
+          buildRequestConfig(token),
+        )
+      : await axios.get(INVESTIGATED_PROFILE_URL({ representanteDk }), buildRequestConfig(token));
+    return data;
+  }
+
   return {
     login,
     scaLogin,
@@ -278,6 +298,7 @@ const Api = (() => {
     actionMainInvestigated,
     removeAlert,
     undoRemoveAlert,
+    getInvestigatedProfile,
   };
 })();
 

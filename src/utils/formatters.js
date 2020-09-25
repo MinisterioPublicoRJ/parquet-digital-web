@@ -63,3 +63,10 @@ export const snakeToCamel = str => {
   const capitalize = words.slice(1).map(word => capitalizeWord(word));
   return `${words[0]}${capitalize.join('')}`;
 };
+
+export const abbrevName = name => {
+  return name
+    .replace(/\s+/g, ' ')
+    .replace(/promotoria de (justiça de )?investiga[çc][aã]o penal/gi, 'PIP')
+    .replace(/promotoria de justi[çc]a de tutela coletiva/gi, 'PJTC');
+};

@@ -15,7 +15,7 @@ function generateGrid(xAxis) {
   const axisGrid = [];
   for (let i = 0; i < 5; i++) {
     const gridLevel = [];
-    xAxis.forEach(catObj =>
+    xAxis.forEach((catObj) =>
       gridLevel.push({
         x: catObj.category,
         y: (i + 1) * 20,
@@ -28,11 +28,17 @@ function generateGrid(xAxis) {
 
 const buildLabelStyles = (labels, isGood, invert) =>
   labels.map((_, i) => {
-    if ((invert && i !== 0) || (!invert && i !== labels.length - 1)) return CHART_THEME.axisLabel;
+    if ((invert && i !== 0) || (!invert && i !== labels.length - 1)) {
+      return CHART_THEME.axisLabel;
+    }
 
-    if (isGood) return CHART_THEME.axisLabelGood;
+    if (isGood) {
+      return CHART_THEME.axisLabelGood
+    };
 
-    if (isGood != null) return CHART_THEME.axisLabelBad;
+    if (isGood != null) {
+      return CHART_THEME.axisLabelBad
+    };
 
     return CHART_THEME.axisLabelNeutral;
   });
@@ -217,39 +223,43 @@ function PerformanceChart({ data, axisLabelsTable }) {
         endAngle={450}
         padding={{ top: 40, left: 0, right: 0, bottom: 10 }}
       >
-        {xAxis.map(({ category, label, isGood, dx, dy, textAnchor, invert }) => (
-          <VictoryPolarAxis
-            dependentAxis
-            key={category}
-            label={label}
-            labelRadius={10}
-            labelPlacement="vertical"
-            axisValue={category}
-            style={CHART_THEME.polarAxis}
-            axisLabelComponent={
-              <VictoryLabel
-                textAnchor={textAnchor}
-                dx={dx}
-                dy={dy}
-                style={buildLabelStyles(label, isGood, invert)}
-              />
-            }
-          />
-        ))}
-
+        {/* AXIS */}
+        {xAxis.map((item) => {
+          const { category, label, isGood, dx, dy, textAnchor, invert } = item;
+          return (
+            <VictoryPolarAxis
+              dependentAxis
+              key={category}
+              label={label}
+              labelRadius={10}
+              labelPlacement="vertical"
+              axisValue={category}
+              style={CHART_THEME.polarAxis}
+              axisLabelComponent={
+                <VictoryLabel
+                  textAnchor={textAnchor}
+                  dx={dx}
+                  dy={dy}
+                  style={buildLabelStyles(label, isGood, invert)}
+                />
+              }
+            />
+          );
+        })}
+        {/* GRID */}
         <VictoryGroup style={CHART_THEME.gridGroup}>
           {grid.map((data1, i) => (
             <VictoryArea key={i} data={data1} />
           ))}
         </VictoryGroup>
-
+        {/* filler pro centro do gráfico */}
         <VictoryArea
           data={[{ y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }, { y: -5 }]}
           style={{
             data: { fill: '#ac5fba' },
           }}
         />
-
+        {/* GRÁFICO DO USUÁRIO */}
         <VictoryArea
           data={areaData}
           style={{
@@ -257,6 +267,7 @@ function PerformanceChart({ data, axisLabelsTable }) {
           }}
           labelComponent={<AreaLabel axisLabelsTable={axisLabelsTable} />}
         />
+        {/* AQUI É O GRÁFICO DA MÉDIA */}
         <VictoryArea
           data={medianData}
           style={{
@@ -273,7 +284,7 @@ function PerformanceChart({ data, axisLabelsTable }) {
   );
 }
 
-const AreaLabel = props => {
+const AreaLabel = (props) => {
   const { datum, style, axisLabelsTable } = props;
   const { x, y } = datum;
 

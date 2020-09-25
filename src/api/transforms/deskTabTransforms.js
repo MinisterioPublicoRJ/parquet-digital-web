@@ -1,4 +1,4 @@
-import { snakeToCamel, formatPercentage } from '../../utils';
+import { snakeToCamel, formatPercentage, abbrevName } from '../../utils';
 
 // not implemented yet
 // function mapTransform() {
@@ -16,7 +16,7 @@ function metricsTransform(metrics) {
 function rankingsTransform(rankArray) {
   return rankArray.map(rankObj => {
     const cleanData = rankObj.data.map(item => ({
-      text: item.nm_orgao,
+      text: item.nm_orgao ? abbrevName(item.nm_orgao) : item.nm_orgao,
       value: item.valor_percentual ? formatPercentage(item.valor_percentual) : item.valor,
     }));
     return {

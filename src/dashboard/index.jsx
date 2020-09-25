@@ -13,7 +13,7 @@ function Dashboard() {
   const { currentOffice } = useAuth();
   const { firstLogin } = useAuth().user;
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
-  const [isIntroOpen, setIsIntroOpen] = useState(firstLogin ? true : false);
+  const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [representanteDk, setRepresentanteDk] = useState(null);
 

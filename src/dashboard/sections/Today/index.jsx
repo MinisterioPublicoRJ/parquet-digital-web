@@ -6,7 +6,7 @@ import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import PromotronGif from '../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
-import { formatPercentage, capitalizeTitle } from '../../../utils';
+import { formatPercentage, abbrevName, capitalizeTitle } from '../../../utils';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../assets';
 import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPieces';
 
@@ -229,7 +229,7 @@ function Today({ setIsSelectorOpen, setModalType, setIsIntroOpen }) {
         <button type="button" onClick={setIsSelectorOpen} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
-          {currentOffice.nomeOrgao && <span>{currentOffice.nomeOrgao}</span>}
+          {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
         {percentParagraph}
         {collectionParagraph}

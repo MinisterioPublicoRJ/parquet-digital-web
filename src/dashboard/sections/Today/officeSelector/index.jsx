@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './styles.css';
 import { useAuth } from '../../../../app/authContext';
 import { Search } from '../../../../assets';
+import { abbrevName } from '../../../../utils';
 
 function handleInnerClick(e) {
   e.stopPropagation();
@@ -25,6 +26,11 @@ function OfficeSelector({ isOpen, onToggle }) {
     const filtered = user.orgaosValidos.filter(
       organ =>
         organ.nomeOrgao
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .includes(inputValue) ||
+        organ.abbrevNomeOrgao
           .toLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
@@ -69,7 +75,7 @@ function OfficeSelector({ isOpen, onToggle }) {
                   key={`${orgao.nomeOrgao}-${orgao.nomeUser}`}
                   onClick={() => onOfficeClicked(orgao)}
                 >
-                  {`${orgao.nomeOrgao} \n`}
+                  {`${abbrevName(orgao.nomeOrgao)} \n`}
                   <span>{orgao.nomeUser}</span>
                 </li>
               ))}

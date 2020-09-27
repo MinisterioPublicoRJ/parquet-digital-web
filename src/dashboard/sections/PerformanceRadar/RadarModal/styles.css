@@ -1,0 +1,177 @@
+.radarModal-outer {
+  position: relative;
+  height: 70vh;
+  width: 55vw;
+  display: grid;
+  margin: 0 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 100%;
+}
+
+.radarModal-main {
+  grid-column-start: span 2;
+  padding: 25px 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.radarModal-menu {
+  background-color: var(--lightBlue);
+  padding: 25px 15px;
+  height: calc(100% - 50px);
+}
+
+.radarModal-menuHeader {
+  height: 7%;
+  position: relative;
+  overflow: hidden;
+}
+
+.radarModal-headerSlider {
+  position: absolute;
+  left: 1px;
+  top: 0;
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+  width: calc(200% - 30px);
+  transition: left 1s;
+}
+
+.radarModal-searching {
+  left: calc(-100% + 29px);
+}
+
+.radarModal-menu h3 {
+  display: inline;
+  font-weight: bold;
+}
+
+.radarModal-headerSlider :first-child {
+  width: calc(50% + 1px);
+  overflow: hidden;
+}
+
+.radarModal-headerSlider :nth-child(2) {
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+.radarModal-headerSlider :nth-child(3) {
+  width: calc(50%);
+}
+
+.radarModal-headerSlider :nth-child(3) input {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 100%;
+}
+
+.radarModal-iconWrapper {
+  background-color: white;
+  width: 15px;
+  height: 15px;
+}
+
+.radarModal-menuList {
+  height: 93%;
+  list-style-type: none;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.radarModal-menuList button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-family: var(--defaultFont);
+  font-weight: bold;
+  font-size: var(--smallFont);
+  text-align: left;
+  margin: 5px;
+}
+
+.radarModal-menuList button span {
+  color: var(--darkBlue);
+  font-weight: normal;
+  display: block;
+  text-transform: capitalize;
+}
+
+.radarModal-close {
+  background-color: transparent;
+  border: none;
+  bottom: -9vh;
+  color: #ffffff;
+  font-size: 8vh;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  right: 0;
+}
+
+.radarModal-mainHeader {
+  background-color: white;
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.radarModal-mainHeader h1 {
+  margin: 0;
+}
+
+.radarModal-mainHeader p {
+  margin-bottom: 0;
+}
+
+.radarModal-mainGraph {
+  flex: 7.5;
+  display: flex;
+  align-items: center;
+}
+
+.radarModal-mainSubtitles {
+  flex: 1;
+  display: flex;
+}
+
+div .radarModal-mainSubtitles-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5vh;
+  height: 2px;
+}
+
+.radarModal-mainSubtitles-item {
+  color: var(--dark);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--smallFont);
+  font-weight: bold;
+  position: relative;
+  padding-top: 1vh;
+  text-transform: capitalize;
+}
+
+.radarModal-mainSubtitles-item:first-child{
+  padding-right: 60px;
+}
+
+.radarModal-mainSubtitles-item:first-child:before {
+  background-color: #009bff;
+}
+
+.radarModal-mainSubtitles-item:nth-child(2):before {
+  background-color: #c43a31;
+}

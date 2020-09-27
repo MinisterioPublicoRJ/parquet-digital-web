@@ -6,17 +6,17 @@ import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import PromotronGif from '../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../utils/nomesPromotorias';
-import { formatPercentage, capitalizeTitle } from '../../../utils';
+import { formatPercentage, abbrevName, capitalizeTitle } from '../../../utils';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../assets';
 import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPieces';
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
-  setIsModalOpen: PropTypes.func.isRequired,
+  setModalType: PropTypes.func.isRequired,
   setIsIntroOpen: PropTypes.func.isRequired,
 };
 
-function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
+function Today({ setIsSelectorOpen, setModalType, setIsIntroOpen }) {
   const { user, buildRequestParams, currentOffice, logout } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
@@ -214,7 +214,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
             type="button"
             className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
             onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
-          ></button>
+          />
         ) : null}
         <button
           type="button"
@@ -229,7 +229,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
         <button type="button" onClick={setIsSelectorOpen} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
-          {currentOffice.nomeOrgao && <span>{currentOffice.nomeOrgao}</span>}
+          {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
         {percentParagraph}
         {collectionParagraph}
@@ -246,7 +246,7 @@ function Today({ setIsSelectorOpen, setIsModalOpen, setIsIntroOpen }) {
         </a>
       ) : null}
       <div className="today-robotPic">
-        <div className="today-glossaryBtn" onClick={() => setIsModalOpen(true)}>
+        <div className="today-glossaryBtn" onClick={() => setModalType('glossary')}>
           <GlossaryBook />
         </div>
         <div className="today-introBtn" onClick={() => setIsIntroOpen(true)}>

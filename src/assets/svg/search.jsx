@@ -1,8 +1,13 @@
 import React from 'react';
 
-export default function Search() {
+export default function Search({ height, width }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={width || '25'}
+      height={height || '25'}
+      viewBox="0 0 32 32"
+    >
       <g transform="translate(0 -0.003)">
         <g transform="translate(0 0.003)">
           <path

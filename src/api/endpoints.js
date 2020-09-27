@@ -41,6 +41,7 @@ export const PIP__URL = t(`${BASE_URL}/pip/aproveitamentos/\${orgao}`);
 export const PIP_MONTH_OPPENINGS_URL = t(`${BASE_URL}/pip/aberturas-mensal/\${orgao}/\${cpf}`);
 export const PIP_INVESTIGATIONS_URL = t(`${BASE_URL}/pip/aisp/investigacoes/\${orgao}`);
 export const PIP_RADAR_URL = t(`${BASE_URL}/pip/radar-performance/\${orgao}`);
+
 export const PIP_MAIN_INVESTIGATIONS_URL = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
 );
@@ -57,3 +58,6 @@ export const INVESTIGATED_PROFILE_URL = t(
 export const INVESTIGATED_PERSONAL_PROFILE_URL = t(
   `${BASE_URL}/pip/principais-investigados-lista/\${representanteDk}?pess_dk=\${pessDk}`,
 );
+
+export const RADAR_COMPARE_TUTELA = t(`${BASE_URL}/comparador-radares/\${orgao}`);
+export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}`);

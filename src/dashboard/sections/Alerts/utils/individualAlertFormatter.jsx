@@ -525,9 +525,11 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function gateConstructor({ dropdown, alertCode, count, docNum }) {
+function gateConstructor(alert) {
+  const { dropdown, alertCode, count, docNum, idAlert  } = alert;
   let key;
   let message;
+  let actions;
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -536,7 +538,8 @@ function gateConstructor({ dropdown, alertCode, count, docNum }) {
      em procedimentos desta promotoria de justiça.
     </span>;
   } else {
-    key = `${alertCode}-${docNum}`;
+    key = `${alertCode}-${docNum}-${idAlert}`;
+    actions = [IT({ alertId: idAlert}), DELETE];
     message = (
       <span>
         O<strong> Gate </strong>
@@ -548,7 +551,7 @@ function gateConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [IT(), DELETE],
+    actions,
     backgroundColor: '#374354',
     icon: <CorujaGate />,
     key,

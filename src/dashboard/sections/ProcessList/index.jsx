@@ -14,6 +14,7 @@ const ProcessList = () => {
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
     'Nº do Processo': 'docuNrExterno',
+    Investigados: 'docuPersonagens',
     Classe: 'classeDocumento',
     'Data Andamento': 'dtUltimoAndamento',
     'Rótulo Andamento': 'ultimoAndamento',

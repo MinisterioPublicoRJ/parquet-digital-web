@@ -1,9 +1,9 @@
 export default function radarTransform(res) {
-  const meta = {
-    package: res.pacote_atribuicao,
-    id: res.orgao_id,
-    date: new Date(res.dt_calculo),
-  };
+  // const meta = {
+  //   package: res.pacote_atribuicao,
+  //   id: res.orgao_id,
+  //   date: new Date(res.dt_calculo),
+  // };
   const archives = {
     numbers: res.nr_arquivamentos,
     maxValues: res.max_pacote_arquivamentos,
@@ -46,7 +46,7 @@ export default function radarTransform(res) {
   };
 
   return {
-    meta,
+    // meta,
     archives,
     rejections,
     tac,

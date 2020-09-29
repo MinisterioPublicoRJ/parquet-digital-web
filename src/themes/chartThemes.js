@@ -17,13 +17,20 @@ const CHART_THEME = {
     fill: darkBlue,
     fontSize: 10,
     fontWeight: 'bold',
+    fontVariant: 'all-small-caps',
     letterSpacing: 2,
     lineHeight: 200,
+  },
+  axisMaxLabel: {
+    fill: '#777',
+    fontWeight: 'bold',
+    fontSize: 8,
+    letterSpacing: 0,
   },
   axisLabelNeutral: {
     fill: '#777',
     fontWeight: 'bold',
-    fontSize: 10,
+    fontSize: 9,
     letterSpacing: 0,
   },
 };

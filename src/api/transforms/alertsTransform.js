@@ -11,5 +11,6 @@ export default function alertsTransform(data) {
     orgao: alert.orgao,
     hierarchy: alert.classe_hier,
     daysPassed: alert.dias_passados,
+    alertId: alert.id_alerta,
   }));
 }

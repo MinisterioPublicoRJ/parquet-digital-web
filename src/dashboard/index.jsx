@@ -4,19 +4,51 @@ import { useAuth } from '../app/authContext';
 import { Pip, Tutela, BlankPage } from './pages';
 import { Glossary, Introduction } from './sections';
 import { Modal, Spinner } from '../components';
+
 import OfficeSelector from './sections/Today/officeSelector';
+import RadarModal from './sections/PerformanceRadar/RadarModal';
+import InvestigatedProfile from './sections/MainInvestigated/InvestigatedProfile';
 
 function Dashboard() {
   const { currentOffice } = useAuth();
   const { firstLogin } = useAuth().user;
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // this states should be a part of a context hoook to make things neater
+  const [modalType, setModalType] = useState('');
+  const [modalData, setModalData] = useState(null);
+
+  // maybe this two could be refactored to use the same modal context
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
-  const [isIntroOpen, setIsIntroOpen] = useState(firstLogin ? true : false);
+  const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
 
   if (!currentOffice) {
     return <Spinner size="large" />;
   }
   const { tipo } = currentOffice;
+
+  function closeModal() {
+    setModalType(null);
+    setModalData(null);
+  }
+
+  function setInvestigatedProfile(representanteDk) {
+    setModalType('investigated');
+    setModalData(representanteDk);
+    return representanteDk;
+  }
+
+  function renderModalChildren() {
+    switch (modalType) {
+      case 'glossary':
+        return <Glossary onToggle={closeModal} />;
+      case 'investigated':
+        return <InvestigatedProfile representanteDk={modalData} onToggle={closeModal} />;
+      case 'radar':
+        return <RadarModal compareData={modalData} onToggle={closeModal} />;
+      default:
+        return null;
+    }
+  }
 
   function renderPage() {
     switch (tipo) {
@@ -24,16 +56,19 @@ function Dashboard() {
         return (
           <Tutela
             setIsSelectorOpen={setIsSelectorOpen}
-            setIsModalOpen={setIsModalOpen}
             setIsIntroOpen={setIsIntroOpen}
+            setModalType={setModalType}
+            setModalData={setModalData}
           />
         );
       case 2:
         return (
           <Pip
             setIsSelectorOpen={setIsSelectorOpen}
-            setIsModalOpen={setIsModalOpen}
+            setModalType={setModalType}
+            setModalData={setModalData}
             setIsIntroOpen={setIsIntroOpen}
+            setInvestigatedProfile={setInvestigatedProfile}
           />
         );
       default:
@@ -45,15 +80,13 @@ function Dashboard() {
     <>
       <Introduction
         isOpen={isIntroOpen}
-        onToggle={() => setIsIntroOpen(oldState => !oldState)}
+        onToggle={() => setIsIntroOpen((oldState) => !oldState)}
         type={tipo}
       />
-      <Modal isOpen={isModalOpen} onToggle={() => setIsModalOpen(oldState => !oldState)}>
-        <Glossary onToggle={() => setIsModalOpen(oldState => !oldState)} />
-      </Modal>
+      {modalType && <Modal onToggle={() => closeModal()}>{renderModalChildren()}</Modal>}
       <OfficeSelector
         isOpen={isSelectorOpen}
-        onToggle={() => setIsSelectorOpen(prevState => !prevState)}
+        onToggle={() => setIsSelectorOpen((prevState) => !prevState)}
       />
       {renderPage()}
     </>

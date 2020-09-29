@@ -32,11 +32,12 @@ export const OUVIDORIA = link => ({
   link,
 });
 
-export const IT = () => ({
+export const IT = ({ alertId }) => ({
   actionType: 'download',
   icon: <ItActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Baixar IT',
   background: '#71D0A4',
+  link: `http://apps.mprj.mp.br/gate/api/Cidadao/downloadPDF/${alertId}`,
 });
 
 export const CALCULO = () => ({

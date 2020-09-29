@@ -1,7 +1,5 @@
 import t from 'lodash.template';
 
-// TODO: add _URL suffix to all constants
-
 export const BASE_URL = `${process.env.REACT_APP_BASE_URL}/dominio`;
 
 export const LOGIN_URL = `${BASE_URL}/token/login/`;
@@ -43,6 +41,7 @@ export const PIP__URL = t(`${BASE_URL}/pip/aproveitamentos/\${orgao}`);
 export const PIP_MONTH_OPPENINGS_URL = t(`${BASE_URL}/pip/aberturas-mensal/\${orgao}/\${cpf}`);
 export const PIP_INVESTIGATIONS_URL = t(`${BASE_URL}/pip/aisp/investigacoes/\${orgao}`);
 export const PIP_RADAR_URL = t(`${BASE_URL}/pip/radar-performance/\${orgao}`);
+
 export const PIP_MAIN_INVESTIGATIONS_URL = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
 );
@@ -53,3 +52,12 @@ export const DELETE_ALERT = t(`${BASE_URL}/alertas/dispensar/\${orgao}/comp?aler
 export const UNDO_DELETE_ALERT = t(
   `${BASE_URL}/alertas/retornar/\${orgao}/comp?alerta_id=\${alertId}`,
 );
+export const INVESTIGATED_PROFILE_URL = t(
+  `${BASE_URL}/pip/principais-investigados-lista/\${representanteDk}`,
+);
+export const INVESTIGATED_PERSONAL_PROFILE_URL = t(
+  `${BASE_URL}/pip/principais-investigados-lista/\${representanteDk}?pess_dk=\${pessDk}`,
+);
+
+export const RADAR_COMPARE_TUTELA = t(`${BASE_URL}/comparador-radares/\${orgao}`);
+export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}`);

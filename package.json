@@ -1,7 +1,6 @@
 {
   "name": "promotron-web",
   "version": "0.1.0",
-  "homepage": "/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -20,6 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm i -g serve && serve -s build -l 3000",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

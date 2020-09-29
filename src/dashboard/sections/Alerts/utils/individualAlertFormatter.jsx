@@ -526,7 +526,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
 }
 
 function gateConstructor(alert) {
-  const { dropdown, alertCode, count, docNum, idAlert  } = alert;
+  const { dropdown, alertCode, count, docNum, alertId  } = alert;
   let key;
   let message;
   let actions;
@@ -538,8 +538,8 @@ function gateConstructor(alert) {
      em procedimentos desta promotoria de justiça.
     </span>;
   } else {
-    key = `${alertCode}-${docNum}-${idAlert}`;
-    actions = [IT({ alertId: idAlert}), DELETE];
+    key = `${alertCode}-${docNum}-${alertId}`;
+    actions = [IT({ alertId: alertId}), DELETE];
     message = (
       <span>
         O<strong> Gate </strong>

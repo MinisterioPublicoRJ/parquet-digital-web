@@ -6,33 +6,51 @@ const propTypes = {
 };
 
 function ProfileDetails({ perfil }) {
-  let birthdate = new Date(perfil.dt_nasc);
-  return (
-    <div className="investigatedProfile-details">
-      <p>
-        <strong>Nome:</strong> <br />
-        {perfil.nm_investigado}
-      </p>
-      <p>
-        <span>
-          <strong>Data de Nascimento:</strong> <br />
-          {Intl.DateTimeFormat().format(birthdate)}
-        </span>
-        <span>
-          <strong>RG:</strong> <br />
-          {perfil.rg}
-        </span>
-        <span>
-          <strong>CPF:</strong> <br />
-          {perfil.cpf}
-        </span>
-      </p>
-      <p>
-        <strong>Mãe:</strong> <br />
-        {perfil.nm_mae}
-      </p>
-    </div>
-  );
+  let details = null;
+  if (perfil.hasOwnProperty('cpf')) {
+    const birthdate = perfil.dt_nasc ? new Date(perfil.dt_nasc) : null;
+    details = (
+      <>
+        <p>
+          <strong>Nome:</strong> <br />
+          {perfil.nm_investigado}
+        </p>
+        <p>
+          <span>
+            <strong>Data de Nascimento:</strong> <br />
+            {Intl.DateTimeFormat().format(birthdate)}
+          </span>
+          <span>
+            <strong>RG:</strong> <br />
+            {perfil.rg}
+          </span>
+          <span>
+            <strong>CPF:</strong> <br />
+            {perfil.cpf}
+          </span>
+        </p>
+        <p>
+          <strong>Mãe:</strong> <br />
+          {perfil.nm_mae}
+        </p>
+      </>
+    );
+  } else if (perfil.hasOwnProperty('cnpj')) {
+    details = (
+      <>
+        <p>
+          <strong>Nome:</strong> <br />
+          {perfil.nm_pesj}
+        </p>
+        <p>
+          <strong>CNPJ:</strong> <br />
+          {perfil.cnpj}
+        </p>
+      </>
+    );
+  }
+
+  return <div className="investigatedProfile-details">{details}</div>;
 }
 
 ProfileDetails.propTypes = propTypes;

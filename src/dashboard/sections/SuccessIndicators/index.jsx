@@ -49,7 +49,7 @@ const SuccessIndicators = () => {
       <div className="successIndicators-main">
         <div className="successIndicators-item">
           <h4>Índice de Resolutividade</h4>
-          <span>Denúncias + arquivamentos + acordos/vistas abertas, nos últimos 30 dias</span>
+          <span>Denúncias + acordos/vistas abertas, nos últimos 30 dias</span>
           <div className="successIndicators-tooltip--first">
             <strong>{resolutividadePercent}</strong>
           </div>

@@ -191,7 +191,7 @@ function Today({ setIsSelectorOpen, setModalType, setIsIntroOpen }) {
 
   const percentParagraph = !todayPercent ? null : (
     <p>
-      No último mês a sua promotoria foi mais resolutiva que
+      Nos últimos seis meses a sua promotoria foi mais resolutiva que
       <span style={{ fontWeight: 'bold' }}>{` ${todayPercent} `}</span>
       da casa entre aquelas de mesma atribuição.
       {todayPercent > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}

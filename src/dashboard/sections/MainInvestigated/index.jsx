@@ -60,7 +60,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
       // this is necessary to force ActionButtons to update via change in props
       updatedArray[representanteIndex].actions = (
         <ActionButtons
-          onPin={() => pinInvestigated(representanteDk)}
+          onPin={() => pinInvestigated(!oldPinStatus, representanteDk)}
           onDelete={() => deleteInvestigated(representanteDk)}
           isPinned={!oldPinStatus}
         />
@@ -77,10 +77,10 @@ function MainInvestigated({ setInvestigatedProfile }) {
    */
   function cleanData(raw) {
     return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => {
-      let investigatedNameBtn;
-      investigatedNameBtn = (
+      const investigatedNameBtn = (
         <button
-          onClick={(e) => {
+          type="button"
+          onClick={() => {
             openInvestigatedProfile(representanteDk);
           }}
           className="investigated-profile-btn"

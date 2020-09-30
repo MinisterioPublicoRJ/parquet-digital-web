@@ -85,7 +85,7 @@ function RadarModal({ compareData, onToggle }) {
             <div>
               <h3>Lista de Promotorias</h3>
             </div>
-            <button type="button" onClick={() => setIsSearching((prevSearch) => !prevSearch)}>
+            <button type="button" onClick={() => setIsSearching(prevSearch => !prevSearch)}>
               <Search />
             </button>
             <div>

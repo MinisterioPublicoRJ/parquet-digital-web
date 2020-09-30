@@ -90,7 +90,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
   }
 
   function generateUserData(categories, rawData) {
-    return categories.map((cat) => ({
+    return categories.map(cat => ({
       x: cat,
       y: rawData[cat].percentages * 100,
       label: rawData[cat].numbers,
@@ -98,7 +98,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
   }
 
   function generateCompData(categories, rawData) {
-    return categories.map((cat) => {
+    return categories.map(cat => {
       const { averages, maxValues } = rawData[cat];
       return { x: cat, y: 100 * (averages / (maxValues || 1)) };
     });
@@ -106,7 +106,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
 
   function generateLabels(graphData, organType) {
     const categories = organType === 1 ? TUTELA_CATEGORIES : PIP_CATEGORIES;
-    const labels = categories.map((cat) => {
+    const labels = categories.map(cat => {
       let positionProps;
       let label;
       const maxValues = graphData[cat] ? graphData[cat].maxValues : '-';

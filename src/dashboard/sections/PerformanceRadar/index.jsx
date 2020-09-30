@@ -32,7 +32,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
 
   useEffect(() => {
     // so it doesn't run on mount
-    if (compareData.length) {
+    if (compareData.length || compareData === 'error') {
       updateModalData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,6 +61,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
   }
 
   async function getCompareData() {
+    setCompareData([]);
     const { tipo } = user.orgaoSelecionado;
     let res = [];
     try {

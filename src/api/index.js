@@ -28,6 +28,7 @@ import {
   INVESTIGATED_PERSONAL_PROFILE_URL,
   RADAR_COMPARE_TUTELA,
   RADAR_COMPARE_PIP,
+  //ONGOING_INVESTIGATIONS_LIST,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -53,6 +54,7 @@ import {
   jwtUserTransform,
   snakeToCamelTransform,
   radarCompareTransform,
+  ongoingInvestigationsListTransform,
 } from './transforms';
 
 // import { setUser } from '../user';

@@ -6,9 +6,9 @@
     'today today radar alerts'
     'desk desk radar alerts'
     'desk desk radar alerts'
-    'desk desk processes processes'
-    'desk desk processes processes'
-    'desk desk processes processes'
+    'desk desk processes ongoingInvestigations'
+    'desk desk processes ongoingInvestigations'
+    'desk desk processes ongoingInvestigations'
     'desk desk processingTime processingTime'
     'desk desk processingTime processingTime'
     'desk desk processingTime processingTime';
@@ -22,6 +22,7 @@
       'desk desk'
       'radar alerts'
       'processes processes'
+      'ongoingInvestigations ongoingInvestigations'
       'processingTime processingTime';
   }
 }
@@ -36,6 +37,7 @@
     "radar"
     "alerts"
     "processes"
+    "ongoingInvestigations"
     "processingTime"
     "processingTime";
   }

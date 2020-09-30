@@ -1,0 +1,12 @@
+
+.ongoingInvestigations-outer {
+    grid-area: ongoingInvestigations;
+    display: flex;
+    flex-direction: column;
+    flex: 2 1;
+  }
+  
+  .ongoingInvestigations-tableWrapper {
+    overflow-y: auto;
+  }
+  

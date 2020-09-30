@@ -11,6 +11,7 @@ import {
   Today,
   ProcessingTime,
   YourDesk,
+  OngoingInvestigations,
 } from '../../sections';
 
 const propTypes = {
@@ -33,6 +34,7 @@ function Tutela({ setIsSelectorOpen, setModalType, setIsIntroOpen, setModalData 
       <Alerts />
       <ProcessList />
       <ProcessingTime />
+      <OngoingInvestigations />
     </div>
   );
 }

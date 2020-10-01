@@ -191,6 +191,15 @@ const Api = (() => {
     return processListTransform(data);
   }
 
+  /*async function getOngoingInvestigationsList({ orgao, cpf, token }, list) {
+    const { data } = await axios.get(
+      ONGOING_INVESTIGATIONS_LIST({ orgao, cpf, list }),
+      buildRequestConfig(token),
+    );
+
+    return ongoingInvestigationsListTransform(data);
+  }*/
+
   async function getPipRadarData({ orgao, token }) {
     const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
     return pipRadarTransform(data);
@@ -313,6 +322,7 @@ const Api = (() => {
     undoRemoveAlert,
     getInvestigatedProfile,
     getRadarCompareData,
+    /*getOngoingInvestigationsList,*/
   };
 })();
 

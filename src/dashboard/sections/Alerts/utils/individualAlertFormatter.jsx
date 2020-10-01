@@ -419,9 +419,12 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function ouviConstructor({ dropdown, alertCode, count, docNum }) {
+function ouviConstructor(alert) {
+  const { dropdown, alertCode, count, docNum } = alert;
+
   let key;
   let message;
+  let actions;
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -435,6 +438,7 @@ function ouviConstructor({ dropdown, alertCode, count, docNum }) {
     );
   } else {
     key = `${alertCode}-${docNum}`;
+    actions = [DETAIL(), OUVIDORIA(), DELETE];
     message = (
       <span>
         A ouvidoria
@@ -446,7 +450,7 @@ function ouviConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DETAIL(), DELETE],
+    actions,
     backgroundColor: '#5C6FD9',
     icon: <Ouvidoria />,
     key,

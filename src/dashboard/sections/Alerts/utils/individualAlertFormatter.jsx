@@ -587,7 +587,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
 
   return {
     actions: [DETAIL(), DELETE],
-    backgroundColor: '#374354',
+    backgroundColor: '#5C6FD9',
     icon: <Home />,
     key,
     message,

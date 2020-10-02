@@ -42,7 +42,10 @@ const ProcessList = () => {
 
   return (
     <div className="processList-outer">
-      <SectionTitle value="Processos Judiciais" glueToTop />
+      <button className="button-table-tutela">
+        <SectionTitle value="Processos Judiciais" glueToTop />
+      </button>
+
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (

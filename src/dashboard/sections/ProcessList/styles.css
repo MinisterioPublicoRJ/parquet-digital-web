@@ -9,3 +9,9 @@
 .processList-tableWrapper {
   overflow-y: auto;
 }
+.button-table-tutela{
+  transition: 1s;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+}

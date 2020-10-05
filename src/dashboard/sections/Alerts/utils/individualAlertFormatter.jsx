@@ -11,6 +11,7 @@ import {
   Va,
   Tjrj,
   IconContratacoes,
+  Ro,
 } from '../../../../assets';
 
 import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC } from './actionConstants';
@@ -614,10 +615,8 @@ function roOccurrence({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O procedimento
-        <strong>{` ${docNum}`}</strong> {``}
-        possui {``}
-        <strong> movimentações em segunda instância</strong>.
+        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
+        de ocorrência da <strong>{` ${count}`} DP</strong> não chegaram no MPRJ
       </span>
     );
   }
@@ -625,7 +624,7 @@ function roOccurrence({ dropdown, alertCode, count, docNum }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F8BD6C',
-    icon: <Home />,
+    icon: <Ro />,
     key,
     message,
   };

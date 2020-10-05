@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
-import Api from '../../../api';
-import { CustomTable, Spinner, SectionTitle } from '../../../components';
-import { useAuth } from '../../../app/authContext';
+import Api from '../../../../api';
+import { CustomTable, Spinner, SectionTitle } from '../../../../components';
+import { useAuth } from '../../../../app/authContext';
 
 const ProcessList = () => {
   const { buildRequestParams } = useAuth();

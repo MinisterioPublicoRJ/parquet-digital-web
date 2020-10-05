@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
-import Api from '../../../api';
-import { CustomTable, Spinner, SectionTitle } from '../../../components';
-import { useAuth } from '../../../app/authContext';
+import Api from '../../../../api';
+import { CustomTable, Spinner, SectionTitle } from '../../../../components';
+import { useAuth } from '../../../../app/authContext';
 import ProcessList  from '../ProcessList';
 
 const OngoingInvestigations = () => {
@@ -13,8 +13,6 @@ const OngoingInvestigations = () => {
   const [loading, setLoading] = useState(true);
   const [nextComponent, setnextComponent] = useState(0);
   
-  const opacity = useState()
-
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
     'Nº do Processo': 'docuNrExterno',

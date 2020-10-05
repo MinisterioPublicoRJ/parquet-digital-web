@@ -6,13 +6,14 @@ import './styles.css';
 
 import {
   Alerts,
-  ProcessList,
   PerformanceRadar,
   Today,
   ProcessingTime,
   YourDesk,
-  OngoingInvestigations,
 } from '../../sections';
+import OngoingInvestigations from '../../sections/TablesTutela/OngoingInvestigations';
+import ProcessList from '../../sections/TablesTutela/ProcessList';
+
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,

@@ -64,6 +64,9 @@ export default function individualAlertFormatter(alert) {
     case 'COMP':
       return compConstructor(alert);
 
+    case 'RO':
+      return roOccurrence(alert);
+  
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
       return prcrConstructor(alert);
@@ -74,7 +77,7 @@ export default function individualAlertFormatter(alert) {
 
     case 'DT2I':
       return dt2iConstructor(alert);
-
+    
     default:
       return {};
   }
@@ -588,6 +591,40 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#374354',
+    icon: <Home />,
+    key,
+    message,
+  };
+}
+
+function roOccurrence({ dropdown, alertCode, count, docNum }) {
+  let key;
+  let message;
+
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
+        de ocorrência da <strong>{` ${count}`}</strong> não chegaram no MPRJ
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${docNum}`;
+    message = (
+      <span>
+        O procedimento
+        <strong>{` ${docNum}`}</strong> {``}
+        possui {``}
+        <strong> movimentações em segunda instância</strong>.
+      </span>
+    );
+  }
+
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#F8BD6C',
     icon: <Home />,
     key,
     message,

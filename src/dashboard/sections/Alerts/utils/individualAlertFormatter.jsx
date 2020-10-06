@@ -12,6 +12,7 @@ import {
   Tjrj,
   IconContratacoes,
 } from '../../../../assets';
+import { PRCR_ACTION_GENERATE_DOC } from '../../../../api/endpoints';
 
 import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC } from './actionConstants';
 
@@ -26,7 +27,7 @@ import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC } from '.
  *  message: node,
  * }
  */
-export default function individualAlertFormatter(alert) {
+export default function individualAlertFormatter(alert, cpf) {
   // prettier-ignore
   switch (alert.alertCode) {
     // ALERTAS DA TUTELA
@@ -70,7 +71,7 @@ export default function individualAlertFormatter(alert) {
     case 'PRCR2':
     case 'PRCR3':
     case 'PRCR1':
-      return prcrConstructor(alert);
+      return prcrConstructor(alert, cpf);
 
     // ALERTAS DA PIP
     case 'GATE':
@@ -499,7 +500,7 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function prcrConstructor({ dropdown, alertCode, count, docNum }) {
+function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf) {
   let key;
   let message;
   let actions;
@@ -571,7 +572,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
 
     switch (alertCode) {
       case 'PRCR1':
-        actions = [GENERATE_DOC, CALCULO, DELETE];
+        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk})), CALCULO(), DELETE];
         message = (
           <span>
             O procedimento
@@ -624,7 +625,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
         );
         break;
       default:
-        actions = [GENERATE_DOC, CALCULO, DELETE];
+        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk})), CALCULO(), DELETE];
         message = (
           <span>
             O procedimento

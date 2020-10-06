@@ -23,7 +23,7 @@ const propTypes = {
   onDeletion: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
-  isDeleting: PropTypes.bool,
+  isDeleted: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -31,7 +31,7 @@ const defaultProps = {
   onDeletion: null,
   count: null,
   isOpen: false,
-  isDeleting: false,
+  isDeleted: false,
 };
 
 const AlertBadge = ({
@@ -46,7 +46,7 @@ const AlertBadge = ({
   type,
   count,
   isOpen,
-  isDeleting,
+  isDeleted,
 }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
@@ -86,9 +86,9 @@ const AlertBadge = ({
 
   return (
     <div className="alertBadge-outerContainer">
-      {showHover && !isDeleting && (
+      {showHover && !isDeleted && (
         <div className="alertBadge-hoverContainer">
-          {actions.map(alert => (
+          {actions.map((alert) => (
             <ActionButtons
               key={`${customKey}-${alert.actionType}`}
               clickCallback={() => handleActionPress(alert, customKey, type)}
@@ -97,8 +97,8 @@ const AlertBadge = ({
           ))}
         </div>
       )}
-      {!hideHover && isDeleting && (
-        <div className={`delete-confirmation ${isDeleting ? 'isDeleting' : ''}`}>
+      {!hideHover && isDeleted && (
+        <div className={`delete-confirmation ${isDeleted ? 'isDeleted' : ''}`}>
           <button type="button" className="delete" onClick={() => handleDeletion(customKey)}>
             x
           </button>

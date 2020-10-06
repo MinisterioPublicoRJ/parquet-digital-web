@@ -506,7 +506,9 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
+    actions = [];
     const single = count === 1;
+
     switch (alertCode) {
       case 'PRCR1':
         message = (
@@ -565,20 +567,79 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
     }
   } else {
     key = `${alertCode}-${docNum}`;
-    message = (
-      <span>
-        O procedimento
-        <strong>{` ${docNum} `}</strong>
-        tem um
-        <strong> crime </strong>
-        possivelmente
-        <strong> prescrito </strong>.
-      </span>
-    );
+    actions = [DETAIL, DELETE];
+
+    switch (alertCode) {
+      case 'PRCR1':
+        actions = [GENERATE_DOC, CALCULO, DELETE];
+        message = (
+          <span>
+            O procedimento
+            <strong>{` ${docNum} `}</strong>
+            tem
+            <strong> todos </strong>
+            os seus
+            <strong> crimes </strong>
+            possivelmente
+            <strong> prescritos.</strong>
+          </span>
+        );
+        break;
+      case 'PRCR2':
+        message = (
+          <span>
+            <strong>Todos os crimes </strong>
+            do procedimento
+            <strong>{` ${docNum} `}</strong>
+            possivelmente
+            <strong> prescreverão </strong>
+            em menos de
+            <strong> 90 dias </strong>
+          </span>
+        );
+        break;
+      case 'PRCR3':
+        message = (
+          <span>
+            O procedimento
+            <strong>{` ${docNum} `}</strong>
+            tem pelo menos um
+            <strong> crime </strong>
+            possivelmente
+            <strong> prescrito. </strong>
+          </span>
+        );
+        break;
+      case 'PRCR4':
+        message = (
+          <span> O procedimento
+            <strong>{` ${docNum} `}</strong>
+            tem um
+            <strong> crime </strong>
+            que possivelmente
+            <strong> prescreverá em </strong>
+            menos de
+            <strong> 90 dias. </strong>
+          </span>
+        );
+        break;
+      default:
+        actions = [GENERATE_DOC, CALCULO, DELETE];
+        message = (
+          <span>
+            O procedimento
+            <strong>{` ${docNum} `}</strong>
+            tem um
+            <strong> crime </strong>
+            possivelmente
+            <strong> prescrito </strong>.
+          </span>
+      );
+    }
   }
 
   return {
-    actions: [GENERATE_DOC(), CALCULO(), DELETE],
+    actions,
     backgroundColor: '#F86C72',
     icon: <ClockIcon />,
     key,

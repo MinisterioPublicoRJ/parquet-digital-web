@@ -55,11 +55,11 @@ function Alerts() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
-    const { cpf } = buildRequestParams();
+    const { cpf, token } = buildRequestParams();
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
     const fullList = alertList.concat(hiresAlertList);
-    const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf) : [];
+    const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token) : [];
 
     setAlerts(cleanList);
     setAlertCount(fullList.length);

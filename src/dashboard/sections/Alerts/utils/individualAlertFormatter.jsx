@@ -27,7 +27,7 @@ import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC } from '.
  *  message: node,
  * }
  */
-export default function individualAlertFormatter(alert, cpf) {
+export default function individualAlertFormatter(alert, cpf, token) {
   // prettier-ignore
   switch (alert.alertCode) {
     // ALERTAS DA TUTELA
@@ -71,7 +71,7 @@ export default function individualAlertFormatter(alert, cpf) {
     case 'PRCR2':
     case 'PRCR3':
     case 'PRCR1':
-      return prcrConstructor(alert, cpf);
+      return prcrConstructor(alert, cpf, token);
 
     // ALERTAS DA PIP
     case 'GATE':
@@ -500,7 +500,7 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf) {
+function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
   let key;
   let message;
   let actions;
@@ -572,7 +572,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
 
     switch (alertCode) {
       case 'PRCR1':
-        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk})), CALCULO(), DELETE];
+        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk, token})), CALCULO(), DELETE];
         message = (
           <span>
             O procedimento
@@ -625,7 +625,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
         );
         break;
       default:
-        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk})), CALCULO(), DELETE];
+        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk, token})), CALCULO(), DELETE];
         message = (
           <span>
             O procedimento

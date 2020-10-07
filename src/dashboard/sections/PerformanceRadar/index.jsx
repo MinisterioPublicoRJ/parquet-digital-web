@@ -32,7 +32,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
 
   useEffect(() => {
     // so it doesn't run on mount
-    if (compareData.length) {
+    if (compareData.length || compareData === 'error') {
       updateModalData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,6 +61,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
   }
 
   async function getCompareData() {
+    setCompareData([]);
     const { tipo } = user.orgaoSelecionado;
     let res = [];
     try {
@@ -90,7 +91,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
   }
 
   function generateUserData(categories, rawData) {
-    return categories.map((cat) => ({
+    return categories.map(cat => ({
       x: cat,
       y: rawData[cat].percentages * 100,
       label: rawData[cat].numbers,
@@ -98,7 +99,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
   }
 
   function generateCompData(categories, rawData) {
-    return categories.map((cat) => {
+    return categories.map(cat => {
       const { averages, maxValues } = rawData[cat];
       return { x: cat, y: 100 * (averages / (maxValues || 1)) };
     });
@@ -106,7 +107,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
 
   function generateLabels(graphData, organType) {
     const categories = organType === 1 ? TUTELA_CATEGORIES : PIP_CATEGORIES;
-    const labels = categories.map((cat) => {
+    const labels = categories.map(cat => {
       let positionProps;
       let label;
       const maxValues = graphData[cat] ? graphData[cat].maxValues : '-';

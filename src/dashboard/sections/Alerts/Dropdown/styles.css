@@ -67,12 +67,3 @@
   margin: 6px 2px 0px 4px;
   border-top-color: inherit;
 }
-
-.show-more-alerts:hover:after {
-  border-color: var(--white) transparent transparent transparent;
-}
-
-.show-more-alerts:hover {
-  background-color: var(--pt-purple);
-  color: white;
-}

@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "npm install -g serve",
     "build": "react-scripts build",
     "deploy": "npm i -g serve && serve -s build -l 3000",
     "test": "react-scripts test",

@@ -12,6 +12,7 @@
   min-height: 75px;
   overflow: hidden;
   position: relative;
+  margin-left: 16px;
 }
 
 .alertBadge-hoverContainer {

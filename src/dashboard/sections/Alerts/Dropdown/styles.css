@@ -53,7 +53,6 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  color: var(--pt-purple);
   background-color: var(--white);
 }
 
@@ -63,9 +62,10 @@
   content: '';
   border-width: var(--selectorArrowSize);
   border-style: solid;
-  border-color: var(--pt-purple) transparent transparent transparent;
   position: absolute;
+  border-color: transparent transparent transparent transparent;
   margin: 6px 2px 0px 4px;
+  border-top-color: inherit;
 }
 
 .show-more-alerts:hover:after {

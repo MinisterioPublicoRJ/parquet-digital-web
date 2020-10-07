@@ -18,23 +18,7 @@ function Dropdown({ list, type, setOverlay }) {
   const [isOpen, setIsOpen] = useState(false);
   const [alertsList, setAlertsList] = useState(list);
   const [visibleAlertsList, setVisibleAlertsList] = useState(list.slice(0, 30));
-  const alertChildren = visibleAlertsList.map((alert) => {
-    const { actions, backgroundColor, icon, key, message, isDeleted } = alert;
-    return (
-      <AlertBadge
-        onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
-        key={key}
-        customKey={key}
-        icon={icon}
-        backgroundColor={backgroundColor}
-        message={message}
-        actions={actions}
-        isDeleted={isDeleted}
-        setOverlay={setOverlay}
-        type={type}
-      />
-    );
-  });
+  const [isShowMoreInHover, setIsShowMoreInHover] = useState(false);
 
   const headerAlert = individualAlertFormatter({
     alertCode: type,
@@ -110,17 +94,50 @@ function Dropdown({ list, type, setOverlay }) {
         />
       </button>
       <div style={!isOpen ? { display: 'none' } : {}}>
-        {alertChildren}
-        <button
-          onClick={() => {
-            setVisibleAlertsList((prevValue) => {
-              return alertsList.slice(0, prevValue.length + 30);
-            });
-          }}
-          className="show-more-alerts"
-        >
-          MOSTRAR +30 ALERTAS
-        </button>
+        {visibleAlertsList.map((alert) => {
+          const { actions, backgroundColor, icon, key, message, isDeleted } = alert;
+          return (
+            <AlertBadge
+              onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
+              key={key}
+              customKey={key}
+              icon={icon}
+              backgroundColor={backgroundColor}
+              message={message}
+              actions={actions}
+              isDeleted={isDeleted}
+              setOverlay={setOverlay}
+              type={type}
+            />
+          );
+        })}
+
+        {alertsList.length !== visibleAlertsList.length ? (
+          <button
+            onMouseEnter={() => setIsShowMoreInHover(true)}
+            onMouseLeave={() => setIsShowMoreInHover(false)}
+            style={
+              isShowMoreInHover
+                ? {
+                    color: 'white',
+                    backgroundColor: headerAlert.backgroundColor,
+                  }
+                : {
+                    color: headerAlert.backgroundColor,
+                    backgroundColor: 'white',
+                    borderTopColor: headerAlert.backgroundColor,
+                  }
+            }
+            onClick={() => {
+              setVisibleAlertsList((prevValue) => {
+                return alertsList.slice(0, prevValue.length + 30);
+              });
+            }}
+            className="show-more-alerts"
+          >
+            MOSTRAR +30 ALERTAS
+          </button>
+        ) : null}
       </div>
     </div>
   );

@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import { ProcessList } from '../TablesTutela/ProcessList';
-import { OngoingInvestigations } from '../TablesTutela/OngoingInvestigations';
+import ProcessList from '../TablesTutela/ProcessList';
+import  OngoingInvestigations  from '../TablesTutela/OngoingInvestigations';
+import './styles.css';
+
 
 const TablesTutela = () => {
   // eslint-disable-next-line no-shadow
-  const [processListData, setProcessListData] = useState([]);
+  const [dealWithTables, setdealWithTables] = useState([]);
   const [loading, setLoading] = useState(true);
 
   return (
     <div className="processList-outer">
-      <ProcessList/>
-      <OngoingInvestigations />
+      <div className="processList-tableWrapper" >
+      <div>
+        <ProcessList/>
+      </div>
+      <div>
+        <OngoingInvestigations />
+      </div>
+    </div>
     </div>
   );
 };

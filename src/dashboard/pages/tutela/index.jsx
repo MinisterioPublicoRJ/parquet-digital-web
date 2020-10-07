@@ -10,9 +10,10 @@ import {
   Today,
   ProcessingTime,
   YourDesk,
+  TablesTutela,
 } from '../../sections';
-import OngoingInvestigations from '../../sections/TablesTutela/OngoingInvestigations';
-import ProcessList from '../../sections/TablesTutela/ProcessList';
+//import OngoingInvestigations from '../../sections/TablesTutela/OngoingInvestigations';
+//import ProcessList from '../../sections/TablesTutela/ProcessList';
 
 
 const propTypes = {
@@ -33,9 +34,8 @@ function Tutela({ setIsSelectorOpen, setModalType, setIsIntroOpen, setModalData 
       <YourDesk />
       <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />
       <Alerts />
-      <ProcessList />
       <ProcessingTime />
-      <OngoingInvestigations />
+      <TablesTutela />
     </div>
   );
 }

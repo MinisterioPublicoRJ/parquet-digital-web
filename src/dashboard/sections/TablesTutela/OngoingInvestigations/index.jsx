@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import './styles.css';
 import Api from '../../../../api';
 import { CustomTable, Spinner, SectionTitle } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
@@ -11,7 +10,6 @@ const OngoingInvestigations = () => {
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [nextComponent, setnextComponent] = useState(0);
   
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
@@ -45,7 +43,7 @@ const OngoingInvestigations = () => {
 
   return (
     <div className="ongoingInvestigations-outer" >
-      <button className="button-table-tutela" onClick={() => setnextComponent(nextComponent + 1)}>
+      <button className="button-table-tutela">
         <SectionTitle value="Lista de investigações" glueToTop />
       </button>
       {!processListData.length ? (

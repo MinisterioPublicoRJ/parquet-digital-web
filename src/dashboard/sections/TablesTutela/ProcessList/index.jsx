@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import './styles.css';
 import Api from '../../../../api';
 import { CustomTable, Spinner, SectionTitle } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
@@ -45,7 +44,6 @@ const ProcessList = () => {
       <button className="button-table-tutela">
         <SectionTitle value="Processos Judiciais" glueToTop />
       </button>
-
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (

@@ -54,9 +54,10 @@ export const DETAIL = () => ({
   background: '#F8BD6C',
 });
 
-export const GENERATE_DOC = () => ({
+export const GENERATE_DOC = link => ({
   actionType: 'download',
   icon: <DocActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Gerar Peça',
   background: '#71D0A4',
+  link,
 });

@@ -12,6 +12,7 @@ import {
   Tjrj,
   IconContratacoes,
 } from '../../../../assets';
+import { PRCR_ACTION_GENERATE_DOC } from '../../../../api/endpoints';
 
 import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC } from './actionConstants';
 
@@ -26,7 +27,7 @@ import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC } from '.
  *  message: node,
  * }
  */
-export default function individualAlertFormatter(alert) {
+export default function individualAlertFormatter(alert, cpf, token) {
   // prettier-ignore
   switch (alert.alertCode) {
     // ALERTAS DA TUTELA
@@ -66,7 +67,11 @@ export default function individualAlertFormatter(alert) {
 
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
-      return prcrConstructor(alert);
+    case 'PRCR1':
+    case 'PRCR2':
+    case 'PRCR3':
+    case 'PRCR1':
+      return prcrConstructor(alert, cpf, token);
 
     // ALERTAS DA PIP
     case 'GATE':
@@ -90,14 +95,16 @@ function compConstructor(alert) {
     actions = [];
     key = `${alertCode}-dropdown`;
     const single = count === 1;
-    message =
-    <span>
-      <strong> {`${count}`} </strong>
-      {`${single ? 'compra' : 'compras'}`} <strong>suspeitas</strong> foram verificadas em contratos públicos
-    </span>
+    message = (
+      <span>
+        <strong> {`${count}`} </strong>
+        {`${single ? 'compra' : 'compras'}`} <strong>suspeitas</strong> foram verificadas em
+        contratos públicos
+      </span>
+    );
   } else {
     key = `${contrato}-${iditem}`;
-    actions = [OUVIDORIA(), COMPRAS({compId: contrato_iditem, contrato}), DELETE];
+    actions = [OUVIDORIA(), COMPRAS({ compId: contrato_iditem, contrato }), DELETE];
     message = (
       <span>
         Os valores do contrato
@@ -493,31 +500,147 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function prcrConstructor({ dropdown, alertCode, count, docNum }) {
+function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
   let key;
   let message;
+  let actions;
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
+    actions = [];
     const single = count === 1;
-    message = <span><strong>{` ${count} `}</strong>
-    procedimentos de responsabilidade dessa promotoria  têm algum <strong> crime possivelmente prescrito</strong></span>;
+
+    switch (alertCode) {
+      case 'PRCR1':
+        message = (
+          <span>
+            <strong>{`Há ${count} `}</strong>
+            {single ? ' processo ' : ' processos '}
+            com todos os seus
+            <strong>crimes</strong>
+            possivelmente
+            <strong>prescritos</strong>
+          </span>
+        );
+        break;
+      case 'PRCR2':
+        message = (
+          <span>
+            <strong>{`Há ${count} `}</strong>
+            {single ? ' procedimento ' : ' procedimentos '}
+            em que todos os crimes
+            <strong> prescreverão </strong>
+            em menos de
+            <strong> 90 dias </strong>
+          </span>
+        );
+        break;
+      case 'PRCR3':
+        message = (
+          <span>
+            <strong>{`Há ${count} `}</strong>
+            {single ? ' procedimento ' : ' procedimentos '}
+            com ao menos um crime
+            <strong> possivelmente prescrito. </strong>
+          </span>
+        );
+        break;
+      case 'PRCR4':
+        message = (
+          <span>
+            <strong>{`Há ${count} `}</strong>
+            {single ? ' procedimento ' : ' procedimentos '}
+            com um crime que
+            <strong> possivelmente prescreverá. </strong>
+            em
+            <strong> menos de 90 dias. </strong>
+          </span>
+        );
+        break;
+      default:
+        message = (
+          <span>
+            <strong>{`Há ${count} `}</strong>
+            {single ? ' procedimento ' : 'procedimentos '} de responsabilidade dessa promotoria com
+            algum <strong> crime possivelmente prescrito</strong>
+        </span>
+      );
+    }
   } else {
     key = `${alertCode}-${docNum}`;
-    message = (
-      <span>
-        O procedimento
-        <strong>{` ${docNum} `}</strong>
-        tem um
-        <strong> crime </strong>
-        possivelmente
-        <strong> prescrito </strong>.
-      </span>
-    );
+    actions = [DETAIL, DELETE];
+
+    switch (alertCode) {
+      case 'PRCR1':
+        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk, token})), CALCULO(), DELETE];
+        message = (
+          <span>
+            O procedimento
+            <strong>{` ${docNum} `}</strong>
+            tem
+            <strong> todos </strong>
+            os seus
+            <strong> crimes </strong>
+            possivelmente
+            <strong> prescritos.</strong>
+          </span>
+        );
+        break;
+      case 'PRCR2':
+        message = (
+          <span>
+            <strong>Todos os crimes </strong>
+            do procedimento
+            <strong>{` ${docNum} `}</strong>
+            possivelmente
+            <strong> prescreverão </strong>
+            em menos de
+            <strong> 90 dias </strong>
+          </span>
+        );
+        break;
+      case 'PRCR3':
+        message = (
+          <span>
+            O procedimento
+            <strong>{` ${docNum} `}</strong>
+            tem pelo menos um
+            <strong> crime </strong>
+            possivelmente
+            <strong> prescrito. </strong>
+          </span>
+        );
+        break;
+      case 'PRCR4':
+        message = (
+          <span> O procedimento
+            <strong>{` ${docNum} `}</strong>
+            tem um
+            <strong> crime </strong>
+            que possivelmente
+            <strong> prescreverá em </strong>
+            menos de
+            <strong> 90 dias. </strong>
+          </span>
+        );
+        break;
+      default:
+        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk, token})), CALCULO(), DELETE];
+        message = (
+          <span>
+            O procedimento
+            <strong>{` ${docNum} `}</strong>
+            tem um
+            <strong> crime </strong>
+            possivelmente
+            <strong> prescrito </strong>.
+          </span>
+      );
+    }
   }
 
   return {
-    actions: [GENERATE_DOC(), CALCULO(), DELETE],
+    actions,
     backgroundColor: '#F86C72',
     icon: <ClockIcon />,
     key,
@@ -526,7 +649,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum }) {
 }
 
 function gateConstructor(alert) {
-  const { dropdown, alertCode, count, docNum, alertId  } = alert;
+  const { dropdown, alertCode, count, docNum, alertId } = alert;
   let key;
   let message;
   let actions;
@@ -534,12 +657,15 @@ function gateConstructor(alert) {
   if (dropdown) {
     key = `${alertCode}-dropdown`;
     const single = count === 1;
-    message = <span>O Gate finalizou <strong>{`${count} ${single ? 'IT' : 'ITs'} `}</strong>
-     em procedimentos desta promotoria de justiça.
-    </span>;
+    message = (
+      <span>
+        O Gate finalizou <strong>{`${count} ${single ? 'IT' : 'ITs'} `}</strong>
+        em procedimentos desta promotoria de justiça.
+      </span>
+    );
   } else {
     key = `${alertCode}-${docNum}-${alertId}`;
-    actions = [IT({ alertId: alertId}), DELETE];
+    actions = [IT({ alertId: alertId }), DELETE];
     message = (
       <span>
         O<strong> Gate </strong>

@@ -16,6 +16,7 @@ const propTypes = {
 function Dropdown({ list, type, setOverlay }) {
   const { buildRequestParams } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [alertsList, setAlertsList] = useState(list);
   const [visibleAlertsList, setVisibleAlertsList] = useState(list.slice(0, 30));
   const alertChildren = visibleAlertsList.map((alert) => {
     const { actions, backgroundColor, icon, key, message, isDeleted } = alert;
@@ -38,14 +39,14 @@ function Dropdown({ list, type, setOverlay }) {
   const headerAlert = individualAlertFormatter({
     alertCode: type,
     dropdown: true,
-    count: list.length,
+    count: alertsList.length,
   });
 
   function handleAlertAction(alertKey, undo) {
     if (undo) {
       restoreAlert(alertKey);
     } else {
-      const alert = list.filter(({ key }) => key === alertKey)[0];
+      const alert = alertsList.filter(({ key }) => key === alertKey)[0];
 
       if (alert.isDeleted) {
         removeAlert(alertKey, undo);
@@ -56,39 +57,40 @@ function Dropdown({ list, type, setOverlay }) {
   }
 
   function dismissAlert(alertKey) {
-    const newList = list.map((alert) => {
+    const newList = alertsList.map((alert) => {
       if (alert.key === alertKey) {
         return { ...alert, isDeleted: true };
       }
       return alert;
     });
-    list = newList;
+    setAlertsList(newList);
     setVisibleAlertsList((prevValue) => {
-      return list.slice(0, prevValue.length + 30);
+      return newList.slice(0, prevValue.length);
     });
     Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
   function restoreAlert(alertKey) {
-    const newList = list.map((alert) => {
+    const newList = alertsList.map((alert) => {
       if (alert.key === alertKey) {
         return { ...alert, isDeleted: false };
       }
       return alert;
     });
-    list = newList;
+    setAlertsList(newList);
     setVisibleAlertsList((prevValue) => {
-      return list.slice(0, prevValue.length + 30);
+      return newList.slice(0, prevValue.length);
     });
     Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
   function removeAlert(alertKey) {
-    const newList = list.filter(({ key }) => key !== alertKey);
-    list = newList;
+    const newList = alertsList.filter(({ key }) => key !== alertKey);
+    setAlertsList(newList);
+    setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
   }
 
-  if (!list.length) {
+  if (!alertsList.length) {
     return null;
   }
 
@@ -102,7 +104,7 @@ function Dropdown({ list, type, setOverlay }) {
         <AlertBadge
           {...headerAlert}
           customKey={headerAlert.key}
-          count={list.length}
+          count={alertsList.length}
           isOpen={isOpen}
           hideHover
         />
@@ -112,13 +114,12 @@ function Dropdown({ list, type, setOverlay }) {
         <button
           onClick={() => {
             setVisibleAlertsList((prevValue) => {
-              return list.slice(0, prevValue.length + 30);
+              return alertsList.slice(0, prevValue.length + 30);
             });
-
-            console.log('visibleAlertsList: ', visibleAlertsList);
           }}
+          className="show-more-alerts"
         >
-          MOSTRAR MAIS 30
+          MOSTRAR +30 ALERTAS
         </button>
       </div>
     </div>

@@ -47,7 +47,7 @@
   visibility: hidden;
 }
 
-.delete-confirmation.isDeleting {
+.delete-confirmation.isDeleted {
   opacity: 1;
   visibility: visible;
 }

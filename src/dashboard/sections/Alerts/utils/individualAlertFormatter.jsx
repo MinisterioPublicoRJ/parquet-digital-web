@@ -11,6 +11,7 @@ import {
   Va,
   Tjrj,
   IconContratacoes,
+  Ro,
 } from '../../../../assets';
 import { PRCR_ACTION_GENERATE_DOC } from '../../../../api/endpoints';
 
@@ -65,6 +66,9 @@ export default function individualAlertFormatter(alert, cpf, token) {
     case 'COMP':
       return compConstructor(alert);
 
+    case 'RO':
+      return roOccurrence(alert);
+  
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
     case 'PRCR1':
@@ -79,7 +83,7 @@ export default function individualAlertFormatter(alert, cpf, token) {
 
     case 'DT2I':
       return dt2iConstructor(alert);
-
+    
     default:
       return {};
   }
@@ -426,9 +430,12 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function ouviConstructor({ dropdown, alertCode, count, docNum }) {
+function ouviConstructor(alert) {
+  const { dropdown, alertCode, count, docNum } = alert;
+
   let key;
   let message;
+  let actions;
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -442,6 +449,7 @@ function ouviConstructor({ dropdown, alertCode, count, docNum }) {
     );
   } else {
     key = `${alertCode}-${docNum}`;
+    actions = [DETAIL(), OUVIDORIA(), DELETE];
     message = (
       <span>
         A ouvidoria
@@ -453,7 +461,7 @@ function ouviConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [DETAIL(), DELETE],
+    actions,
     backgroundColor: '#5C6FD9',
     icon: <Ouvidoria />,
     key,
@@ -725,6 +733,38 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#5C6FD9',
     icon: <Home />,
+    key,
+    message,
+  };
+}
+
+function roOccurrence({ dropdown, alertCode, count, docNum }) {
+  let key;
+  let message;
+
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
+        de ocorrência da <strong>{` ${count}`}</strong> não chegaram no MPRJ
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${docNum}`;
+    message = (
+      <span>
+        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
+        de ocorrência da <strong>{` ${count}`} DP</strong> não chegaram no MPRJ
+      </span>
+    );
+  }
+
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#F8BD6C',
+    icon: <Ro />,
     key,
     message,
   };

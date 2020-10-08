@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Api from '../../../../api';
 import { CustomTable, Spinner, SectionTitle } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
-import ProcessList  from '../ProcessList';
 
 const OngoingInvestigations = () => {
   const { buildRequestParams } = useAuth();
@@ -39,15 +38,13 @@ const OngoingInvestigations = () => {
   if (loading) {
     return <Spinner size="medium" />;
   }
-  const pages = [{ display: 'none', component: <ProcessList />},];
-
   return (
     <div className="ongoingInvestigations-outer" >
-      <SectionTitle value="Processos Judiciais" glueToTop />
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (
         <div className="ongoingInvestigations-tableWrapper">
+          <SectionTitle  value="Processos Judiciais" glueToTop />
           <CustomTable data={processListData} columns={tableColumns} showHeader />
         </div>
       )}

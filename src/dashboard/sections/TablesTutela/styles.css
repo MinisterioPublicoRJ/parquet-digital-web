@@ -16,3 +16,15 @@
     text-align: left;
     cursor: pointer;
   }
+  .processList-tableWrapper{
+    opacity: 1;
+  }
+
+  .text {
+    opacity: 0.01;
+    transition: opacity 600ms;
+  }
+    
+  .text.visible {
+    opacity: 1;
+  }

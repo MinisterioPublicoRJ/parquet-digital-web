@@ -40,11 +40,11 @@ const ProcessList = () => {
 
   return (
     <div className="processList-outer">
-      <SectionTitle value="Lista de processos" glueToTop />
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (
         <div className="processList-tableWrapper">
+          <SectionTitle value="Lista de processos" glueToTop />
           <CustomTable data={processListData} columns={tableColumns} showHeader />
         </div>
       )}

@@ -70,7 +70,7 @@ export default function individualAlertFormatter(alert, cpf, token) {
     case 'PRCR1':
     case 'PRCR2':
     case 'PRCR3':
-    case 'PRCR1':
+    case 'PRCR4':
       return prcrConstructor(alert, cpf, token);
 
     // ALERTAS DA PIP
@@ -563,8 +563,8 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
             <strong>{`Há ${count} `}</strong>
             {single ? ' procedimento ' : 'procedimentos '} de responsabilidade dessa promotoria com
             algum <strong> crime possivelmente prescrito</strong>
-        </span>
-      );
+          </span>
+        );
     }
   } else {
     key = `${alertCode}-${docNum}`;
@@ -572,7 +572,11 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
 
     switch (alertCode) {
       case 'PRCR1':
-        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk, token})), CALCULO(), DELETE];
+        actions = [
+          GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })),
+          CALCULO(),
+          DELETE,
+        ];
         message = (
           <span>
             O procedimento
@@ -613,7 +617,9 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
         break;
       case 'PRCR4':
         message = (
-          <span> O procedimento
+          <span>
+            {' '}
+            O procedimento
             <strong>{` ${docNum} `}</strong>
             tem um
             <strong> crime </strong>
@@ -625,7 +631,11 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
         );
         break;
       default:
-        actions = [GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({orgao, cpf, docDk, token})), CALCULO(), DELETE];
+        actions = [
+          GENERATE_DOC(PRCR_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })),
+          CALCULO(),
+          DELETE,
+        ];
         message = (
           <span>
             O procedimento
@@ -635,7 +645,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
             possivelmente
             <strong> prescrito </strong>.
           </span>
-      );
+        );
     }
   }
 

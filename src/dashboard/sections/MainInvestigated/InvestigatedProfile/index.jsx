@@ -82,7 +82,10 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
             <h2>
               <strong>Perfil do Investigado</strong>
             </h2>
-            <ProfileDetails perfil={profileData.perfil} key={profileData.perfil.pess_dk} />
+            <ProfileDetails
+              perfil={profileData.perfil}
+              key={`${profileData.perfil.pess_dk}-main`}
+            />
             <LoginPromotron height={150} />
           </div>
 
@@ -91,8 +94,10 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
             className="similar-profiles-btn"
             onClick={() => setIsSimilarProfilesVisible((prevValue) => !prevValue)}
           >
-            Foram encontrados {profileData.similares.length} perfis similares ao solicitado
-            <div
+            Foram encontrados {profileData.similares.length}
+{' '}
+perfis similares ao solicitado
+<div
               className={`similar-profiles-arrow ${
                 isSimilarProfilesVisible ? 'similar-profiles-arrow--rotated' : ''
               }`}
@@ -114,6 +119,7 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
                   }}
                   className={similarProfile.pess_dk === pessDk ? 'current' : ''}
                   type="button"
+                  key={`${similarProfile.pess_dk}-button`}
                 >
                   <ProfileDetails perfil={similarProfile} key={similarProfile.pess_dk} />
                 </button>

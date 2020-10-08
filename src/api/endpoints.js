@@ -62,3 +62,7 @@ export const INVESTIGATED_PERSONAL_PROFILE_URL = t(
 
 export const RADAR_COMPARE_TUTELA = t(`${BASE_URL}/comparador-radares/\${orgao}`);
 export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}`);
+
+export const PRCR_ACTION_GENERATE_DOC = t(
+  `${BASE_URL}/documentos/minuta-prescricao/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);

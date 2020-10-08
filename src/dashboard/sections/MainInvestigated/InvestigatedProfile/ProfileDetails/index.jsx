@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  perfil: PropTypes.node.isRequired,
+  perfil: PropTypes.object.isRequired,
 };
 
 function ProfileDetails({ perfil }) {
@@ -18,7 +18,7 @@ function ProfileDetails({ perfil }) {
         <p>
           <span>
             <strong>Data de Nascimento:</strong> <br />
-            {Intl.DateTimeFormat().format(birthdate)}
+            {birthdate ? Intl.DateTimeFormat().format(birthdate) : null}
           </span>
           <span>
             <strong>RG:</strong> <br />

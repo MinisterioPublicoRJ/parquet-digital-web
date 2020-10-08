@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import Api from '../../../../api';
 import { CustomTable, Spinner, SectionTitle } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
@@ -41,9 +40,7 @@ const ProcessList = () => {
 
   return (
     <div className="processList-outer">
-      <button className="button-table-tutela">
-        <SectionTitle value="Processos Judiciais" glueToTop />
-      </button>
+      <SectionTitle value="Lista de processos" glueToTop />
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (

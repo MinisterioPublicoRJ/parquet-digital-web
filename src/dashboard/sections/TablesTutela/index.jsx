@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
-import ProcessList from '../TablesTutela/ProcessList';
-import  OngoingInvestigations  from '../TablesTutela/OngoingInvestigations';
+import ProcessList from './ProcessList';
+import OngoingInvestigations from './OngoingInvestigations';
 import './styles.css';
-
 
 const TablesTutela = () => {
   // eslint-disable-next-line no-shadow
-  const [dealWithTables, setdealWithTables] = useState([]);
+  const [showTables, setshowTables] = useState([]);
   const [loading, setLoading] = useState(true);
+  const handleToggle = () => setshowTables(!showTables);
+
 
   return (
     <div className="processList-outer">
-      <div className="processList-tableWrapper" >
-      <div>
-        <ProcessList/>
+      <div className="processList-tableWrapper">
+          <button onClick={handleToggle} className="button-tables">
+          { showTables &&  
+          <OngoingInvestigations /> }
+          </button>
+          <button onClick={handleToggle} className="button-tables">
+          { !showTables && <ProcessList />}
+          </button>
       </div>
-      <div>
-        <OngoingInvestigations />
-      </div>
-    </div>
     </div>
   );
 };

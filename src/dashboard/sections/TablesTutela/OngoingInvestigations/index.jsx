@@ -43,9 +43,7 @@ const OngoingInvestigations = () => {
 
   return (
     <div className="ongoingInvestigations-outer" >
-      <button className="button-table-tutela">
-        <SectionTitle value="Lista de investigações" glueToTop />
-      </button>
+      <SectionTitle value="Processos Judiciais" glueToTop />
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (

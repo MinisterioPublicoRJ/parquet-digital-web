@@ -10,21 +10,19 @@
     overflow-y: auto;
   }
   .button-tables{
-    transition: 1s;
     border: none;
     background-color: transparent;
     text-align: left;
     cursor: pointer;
   }
-  .processList-tableWrapper{
-    opacity: 1;
-  }
 
-  .text {
-    opacity: 0.01;
-    transition: opacity 600ms;
+  .fadeOut {
+    opacity: 0;
+    transition:  opacity 1s;
   }
     
-  .text.visible {
+  .fadeIn {
     opacity: 1;
+    transition:  opacity .5s .5s;
+
   }

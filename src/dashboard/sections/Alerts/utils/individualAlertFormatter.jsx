@@ -84,6 +84,9 @@ export default function individualAlertFormatter(alert, cpf, token) {
     case 'DT2I':
       return dt2iConstructor(alert);
 
+    case 'CTAC':
+      return ctacConstructor(alert);
+    
     default:
       return {};
   }
@@ -765,6 +768,39 @@ function roOccurrence({ dropdown, alertCode, count, docNum }) {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F8BD6C',
     icon: <Ro />,
+    key,
+    message,
+  };
+}
+function ctacConstructor({ dropdown, alertCode, count, docNum }) {
+  let key;
+  let message;
+
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho 
+        Superior do Ministerio Público.
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${docNum}`;
+    message = (
+      <span>
+        <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho 
+        Superior do Ministerio Público.
+      </span>
+    );
+  }
+
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#F86C72',
+    icon: <Clock />,
     key,
     message,
   };

@@ -576,7 +576,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     }
   } else {
     key = `${alertCode}-${docNum}`;
-    actions = [DETAIL, DELETE];
+    actions = [DETAIL(), DELETE];
 
     switch (alertCode) {
       case 'PRCR1':

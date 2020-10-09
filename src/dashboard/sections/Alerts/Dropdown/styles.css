@@ -48,10 +48,10 @@
   line-height: 18px;
   box-shadow: 0px 3px 8px #00000029;
   margin: 1vh;
-  margin-left: 16px;
+  margin-left: 1.2vh;
   border: 0;
   min-height: 75px;
-  width: calc(100% - 1vh - 16px);
+  width: calc(100% - 2.2vh);
   overflow: hidden;
   position: relative;
   cursor: pointer;

@@ -55,11 +55,11 @@ function Alerts() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
-    const { cpf, token } = buildRequestParams();
+    const { cpf, token, orgao } = buildRequestParams();
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
     const fullList = alertList.concat(hiresAlertList);
-    const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token) : [];
+    const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 
     setAlerts(cleanList);
     setAlertCount(fullList.length);
@@ -100,7 +100,7 @@ function Alerts() {
           {loading && <Spinner size="large" />}
           {alertsError && 'Não existem alertas para exibir.'}
           {alerts &&
-            Object.keys(alerts).map(type => (
+            Object.keys(alerts).map((type) => (
               <Dropdown type={type} list={alerts[type]} key={type} setOverlay={setOverlay} />
             ))}
         </div>

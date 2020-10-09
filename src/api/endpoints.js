@@ -65,3 +65,7 @@ export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}
 export const PRCR_ACTION_GENERATE_DOC = t(
   `${BASE_URL}/documentos/minuta-prescricao/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
 );
+
+export const COMPRAS_ACTION_OUVIDORIA = t(
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/comp?alerta_id=\${alertId}&jwt=\${token}`,
+);

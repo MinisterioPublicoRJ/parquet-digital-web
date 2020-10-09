@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import Api from '../../../../api';
 import { CustomTable, Spinner, SectionTitle } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
@@ -32,7 +31,6 @@ const OngoingInvestigations = () => {
       }
     };
     loadData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {

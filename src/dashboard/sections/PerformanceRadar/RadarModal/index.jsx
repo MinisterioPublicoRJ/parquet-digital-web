@@ -6,17 +6,22 @@ import { Search } from '../../../../assets';
 import { Spinner } from '../../../../components';
 
 function RadarModal({ compareData, onToggle }) {
-  const loadingError = compareData && compareData.otherData === 'error';
-  const loadedData = compareData && compareData.userData;
-  const [currentCompared, setCurrentCompared] = useState(null);
+  const [loadedData, setLoadedData] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [loadingError, setLoadingError] = useState(false);
+  const [currentCompared, setCurrentCompared] = useState(null);
 
   useEffect(() => {
     // only run on updates, not on mount
     if (compareData) {
-      setCurrentCompared(compareData.otherData[0]);
-      setFilteredList(compareData.otherData);
+      const { otherData } = compareData;
+      const hasOtherData = otherData !== 'error';
+
+      setLoadingError(!hasOtherData);
+      setLoadedData(compareData.userData);
+      setCurrentCompared(hasOtherData ? otherData[0] : null);
+      setFilteredList(hasOtherData ? otherData : []);
     }
   }, [compareData]);
 
@@ -85,7 +90,7 @@ function RadarModal({ compareData, onToggle }) {
             <div>
               <h3>Lista de Promotorias</h3>
             </div>
-            <button type="button" onClick={() => setIsSearching((prevSearch) => !prevSearch)}>
+            <button type="button" onClick={() => setIsSearching(prevSearch => !prevSearch)}>
               <Search />
             </button>
             <div>
@@ -94,6 +99,7 @@ function RadarModal({ compareData, onToggle }) {
           </div>
         </div>
         <ul className="radarModal-menuList">
+          {loadingError && <p>Nenhuma promotoria encontrada :(</p>}
           {compareData &&
             filteredList.map(({ meta, graphData }) => (
               <li>

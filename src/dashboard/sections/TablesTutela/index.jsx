@@ -1,34 +1,26 @@
 import React, { useState } from 'react';
+
+import './styles.css';
 import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
-import './styles.css';
+import { SectionTitle } from '../../../components';
 
 const TablesTutela = () => {
-  const [showTables, setshowTables] = useState([]);
-  const [fadeIn, setFadeIn] = useState(false);
-  
-  const handleToggle = () => setshowTables(!showTables);
+  const [visibleTab, setVisibleTab] = useState('process');
+
   return (
-    <div className="processList-outer">
-      <div className="processList-tableWrapper">
-        <button
-          onClick={() => {
-            handleToggle();
-            setFadeIn(!fadeIn);
-          }}
-          className="button-tables"
-        >
-          {!showTables && <ProcessList />}
+    <div className="tablesTutela-outer">
+      <div className="tablesTutela-header">
+        <button type="button" onClick={() => setVisibleTab('process')}>
+          <SectionTitle value="Lista de processos" glueToTop />
         </button>
-        <button
-          onClick={() => {
-            handleToggle();
-            setFadeIn(!fadeIn);
-          }}
-          className="button-tables"
-        >
-          {showTables && <OngoingInvestigations />}
+        <button type="button" onClick={() => setVisibleTab('investigation')}>
+          <SectionTitle value="Processos Judiciais" glueToTop />
         </button>
+      </div>
+      <div className="tablesTutela-body">
+        <ProcessList isActive={visibleTab === 'process'} />
+        <OngoingInvestigations isActive={visibleTab === 'investigation'} />
       </div>
     </div>
   );

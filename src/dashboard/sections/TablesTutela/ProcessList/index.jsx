@@ -3,7 +3,7 @@ import Api from '../../../../api';
 import { CustomTable, Spinner, SectionTitle } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const ProcessList = () => {
+const ProcessList = ({ isActive }) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
@@ -39,12 +39,11 @@ const ProcessList = () => {
   }
 
   return (
-    <div className="processList-outer">
+    <div className={`${isActive ? 'processList-outer processList--active' : 'processList-outer'}`}>
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (
         <div className="processList-tableWrapper">
-          <SectionTitle value="Lista de processos" glueToTop />
           <CustomTable data={processListData} columns={tableColumns} showHeader />
         </div>
       )}

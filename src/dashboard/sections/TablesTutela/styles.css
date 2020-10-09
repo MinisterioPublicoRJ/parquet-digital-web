@@ -1,28 +1,55 @@
-
 .processList-outer {
-    grid-area: processes;
-    display: flex;
-    flex-direction: column;
-    flex: 2 1;
-  }
-  
-  .processList-tableWrapper {
-    overflow-y: auto;
-    opacity: 0;
-    transform: scale(0.3);
-    animation: processList-tableWrapper 0.2s forwards;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
 
-  }
-  @keyframes processList-tableWrapper{
-    to{
-      opacity: 1;
-      transform: initial;
-    }
-  }
-  .button-tables{
-    border: none;
-    background-color: transparent;
-    text-align: left;
-    cursor: pointer;
-  }
- 
+.processList--active {
+  z-index: 1;
+  opacity: 1;
+}
+
+.ongoingInvestigations-outer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+
+.ongoingInvestigations--active {
+  z-index: 1;
+  opacity: 1;
+}
+
+.tablesTutela-outer {
+  grid-area: processes;
+  display: flex;
+  flex-direction: column;
+}
+
+.tablesTutela-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.tablesTutela-header button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.tablesTutela-body {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+}

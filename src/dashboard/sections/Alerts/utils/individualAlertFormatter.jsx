@@ -68,7 +68,7 @@ export default function individualAlertFormatter(alert, cpf, token) {
 
     case 'RO':
       return roOccurrence(alert);
-  
+
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
     case 'PRCR1':
@@ -83,7 +83,7 @@ export default function individualAlertFormatter(alert, cpf, token) {
 
     case 'DT2I':
       return dt2iConstructor(alert);
-    
+
     default:
       return {};
   }
@@ -525,9 +525,9 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
             <strong>{`Há ${count} `}</strong>
             {single ? ' processo ' : ' processos '}
             com todos os seus
-            <strong>crimes</strong>
+            <strong> crimes </strong>
             possivelmente
-            <strong>prescritos</strong>
+            <strong> prescritos </strong>
           </span>
         );
         break;

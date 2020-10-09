@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import ActionButtons from './AlertActionButtons';
 
 import './styles.css';
@@ -66,6 +67,18 @@ const AlertBadge = ({
     }
   }
 
+  async function handleActionLinks(alert) {
+    const { link } = alert;
+    const formData = new FormData();
+    if (link) {
+      try {
+        await axios.post(link, formData);
+      } catch (e) {}
+    } else {
+      window.alert('Em breve! :)');
+    }
+  }
+
   function handleActionPress(alert, key, type) {
     const { actionType } = alert;
     switch (actionType) {
@@ -77,6 +90,8 @@ const AlertBadge = ({
         return setOverlay(type);
       case 'link':
         return handleLinks(alert);
+      case 'actionLink':
+        return handleActionLinks(alert);
       default:
         return window.alert('Em breve! :)');
     }

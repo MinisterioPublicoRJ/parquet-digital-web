@@ -33,7 +33,7 @@ export const OUVIDORIA = () => ({
 });
 
 export const OUVIDORIA_COMPRAS = (link) => ({
-  actionType: 'link',
+  actionType: 'actionLink',
   icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
   text: 'Ouvidoria',
   background: '#5C6FD9',

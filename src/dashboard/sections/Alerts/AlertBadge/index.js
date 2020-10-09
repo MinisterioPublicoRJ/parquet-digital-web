@@ -67,13 +67,17 @@ const AlertBadge = ({
     }
   }
 
-  async function handleActionLinks(alert) {
+  async function handleActionLinks(alert, key) {
     const { link } = alert;
     const formData = new FormData();
     if (link) {
       try {
         await axios.post(link, formData);
-      } catch (e) {}
+        // positive feedback after sending to ouvidoria delete the alert
+        handleDeletion(key);
+      } catch (e) {
+        console.log(e);
+      }
     } else {
       window.alert('Em breve! :)');
     }
@@ -91,7 +95,7 @@ const AlertBadge = ({
       case 'link':
         return handleLinks(alert);
       case 'actionLink':
-        return handleActionLinks(alert);
+        return handleActionLinks(alert, key);
       default:
         return window.alert('Em breve! :)');
     }

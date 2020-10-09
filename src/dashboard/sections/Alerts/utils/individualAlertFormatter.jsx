@@ -118,7 +118,7 @@ function compConstructor(alert, orgao, token) {
   } else {
     key = `${contrato}-${iditem}`;
     actions = [
-      OUVIDORIA_COMPRAS(COMPRAS_ACTION_OUVIDORIA({ alertId: iditem, orgao, token })),
+      OUVIDORIA_COMPRAS(COMPRAS_ACTION_OUVIDORIA({ alertId: contrato_iditem, orgao, token })),
       COMPRAS({ compId: contrato_iditem, contrato }),
       DELETE,
     ];

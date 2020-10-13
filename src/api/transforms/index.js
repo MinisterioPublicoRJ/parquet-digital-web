@@ -15,6 +15,7 @@ export { default as successIndicatorsTransform } from './succesIndicatorsTransfo
 export { default as deskTabTransform } from './deskTabTransforms';
 export * from './loginTransform';
 export { default as radarCompareTransform } from './radarCompareTransform';
+export { default as prescribedCrimeTransform } from './prescribedCrimeTransform';
 
 export { default as snakeToCamelTransform } from './snakeToCamelTransform';
 /* eslint-disable camelcase */

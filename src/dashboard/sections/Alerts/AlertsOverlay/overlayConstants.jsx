@@ -1,44 +1,6 @@
 import React from 'react';
 
 export const OVERLAY_TEXTS = {
-  PRCR: (
-    <div>
-      <p>
-        Neste alerta, eu busco lhe informar sobre quais procedimentos possivelmente contêm algum
-        crime já prescrito na data de hoje.
-      </p>
-
-      <p></p>
-
-      <p>
-        Meus cálculos são feitos com base nas regras gerais do Código Penal e se houver algum erro
-        ou falta de registro nos bancos de dados, eles podem não ser perfeitos. Caso isso seja
-        corrigido, minha precisão melhora bastante!
-      </p>
-
-      <p></p>
-
-      <p>Para este caso, meus cálculos foram os seguintes:</p>
-
-      <p></p>
-
-      <p>Tipo Penal: INSERIR DADOS</p>
-
-      <p>Máximo de Pena: INSERIR DADOS</p>
-
-      <p>Data de início: INSERIR DADOS</p>
-
-      <p>Data de prescrição: INSERIR DADOS</p>
-
-      <p></p>
-
-      <p>
-        Como a data de prescrição está no passado, reconheço que há a prescrição que eu lhe alertei.
-        Se eu estiver certo, você pode utilizar o botão de gerar peça e eu lhe entrego um modelo de
-        sugestão.
-      </p>
-    </div>
-  ),
   GATE: (
     <div>
       <p>
@@ -46,7 +8,7 @@ export const OVERLAY_TEXTS = {
         entre a última vez que você viu este procedimento e a data de hoje.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
@@ -63,7 +25,7 @@ export const OVERLAY_TEXTS = {
         entre a última vez que você viu este procedimento e a data de hoje.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
@@ -80,7 +42,7 @@ export const OVERLAY_TEXTS = {
         vez em documentos que versam sobre violência doméstica.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         O alerta só aparece se o documento passou por aqui nos últimos 30 dias, mas você também
@@ -95,14 +57,14 @@ export const OVERLAY_TEXTS = {
         prorrogação.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Neste caso, ele fez um ano sem prorrogação no dia INSERIR DADOS, após ter ocorrido a
         MOVIMENTO no dia INSERIR DADOS.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Caso você concorde com meus cálculos, você pode utilizar o botão de gerar peça e eu lhe
@@ -117,14 +79,14 @@ export const OVERLAY_TEXTS = {
         um ano.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Neste caso, ele fez um ano no dia INSERIR DADOS, após ter sido cadastrado no nosso sistema
         no dia INSERIR DADOS.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
@@ -136,7 +98,7 @@ export const OVERLAY_TEXTS = {
     <div>
       <p>Neste alerta, eu busco lhe informar se um Procedimento Preparatório está fora do prazo.</p>
 
-      <p></p>
+      <p />
 
       <p>
         Neste caso, o alerta aparece se o Procedimento Preparatório foi criado no sistema e se
@@ -144,14 +106,14 @@ export const OVERLAY_TEXTS = {
         mais de 180 dias de sua criação.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Este procedimento foi cadastrado no nosso sistema no dia INSERIR DADOS e agora ele se
         encontra fora do prazo.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
@@ -166,7 +128,7 @@ export const OVERLAY_TEXTS = {
         Promotoria de Justiça, apesar de ter guia de enviado para cá.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta receber a guia e promover o lançamento da data de
@@ -181,7 +143,7 @@ export const OVERLAY_TEXTS = {
         não teve uma destinação dada.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta indeferir de plano ou instaurar procedimento e
@@ -197,7 +159,7 @@ export const OVERLAY_TEXTS = {
         está com registro muito errado no banco.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta fechar a vista, retornar o procedimento ao
@@ -214,7 +176,7 @@ export const OVERLAY_TEXTS = {
         seu trabalho.
       </p>
 
-      <p></p>
+      <p />
 
       <p>
         O alerta só fica disponível para visualização por uma semana, então não se preocupe, pois
@@ -223,4 +185,252 @@ export const OVERLAY_TEXTS = {
       </p>
     </div>
   ),
+};
+
+export const PRCR_TEXTS = (type, data) => {
+  switch (type) {
+    case 'PRCR1':
+      return (
+        <>
+          <p>
+            Neste alerta, eu busco lhe informar sobre quais procedimentos possivelmente contêm todos
+            os seus crimes já prescritos na data de hoje.
+          </p>
+
+          <p>
+            Meus cálculos são feitos com base nas regras gerais do Código Penal e se houver algum
+            erro ou falta de registro nos bancos de dados, eles podem não ser perfeitos. Caso isso
+            seja corrigido, minha precisão melhora bastante!
+          </p>
+
+          <p>Para este caso, meus cálculos foram os seguintes:</p>
+
+          {data.map((crime, index) => (
+            <React.Fragment
+              key={`${crime.investigatedName}-${crime.penalType}-${crime.prescriptionInitialDate}-${index}`}
+            >
+              <p>
+                Personagem:
+                {` ${crime.investigatedName}`}
+              </p>
+
+              <p>
+                Tipo Penal:
+                {` ${crime.penalType}`}
+              </p>
+
+              <p>
+                Máximo de Pena:
+                {` ${crime.maximumPenalty}`}
+              </p>
+
+              <p>
+                Data de início:
+                {` ${crime.prescriptionInitialDate}`}
+              </p>
+
+              <p>
+                Data de prescrição:
+                {` ${crime.prescriptionFinalDate}`}
+              </p>
+            </React.Fragment>
+          ))}
+
+          <p />
+
+          <p>
+            Como a data de prescrição está no passado, reconheço que há a prescrição que eu lhe
+            alertei. Se eu estiver certo, você pode utilizar o botão de gerar peça e eu lhe entrego
+            um modelo de sugestão.
+          </p>
+        </>
+      );
+    case 'PRCR2':
+      return (
+        <>
+          <p>
+            Neste alerta, eu busco lhe informar sobre quais procedimentos possivelmente têm todos os
+            seus crimes prescrevendo em breve, permitindo que você tome alguma ação emergencial para
+            evitar isso. Isso ocorre quando todos os crimes estão próximos de prescrever, mesmo que
+            não haja algum prescrito, mas também quando algum ou alguns já prescreveram e aqueles
+            que restaram no procedimento estão próximos de prescrever. O foco deste alerta é
+            auxiliar a identificar o problema antes e não deixar ocorrer a prescrição no
+            procedimento como um todo.
+          </p>
+
+          <p>
+            Meus cálculos são feitos com base nas regras gerais do Código Penal e se houver algum
+            erro ou falta de registro nos bancos de dados, eles podem não ser perfeitos. Caso isso
+            seja corrigido, minha precisão melhora bastante!
+          </p>
+
+          <p>Para este caso, meus cálculos foram os seguintes:</p>
+
+          {data.map((crime, index) => (
+            <React.Fragment
+              key={`${crime.investigatedName}-${crime.penalType}-${crime.prescriptionInitialDate}-${index}`}
+            >
+              <p>
+                Personagem:
+                {` ${crime.investigatedName}`}
+              </p>
+
+              <p>
+                Tipo Penal:
+                {` ${crime.penalType}`}
+              </p>
+
+              <p>
+                Máximo de Pena:
+                {` ${crime.maximumPenalty}`}
+              </p>
+
+              <p>
+                Data de início:
+                {` ${crime.prescriptionInitialDate}`}
+              </p>
+
+              <p>
+                Data de prescrição:
+                {` ${crime.prescriptionFinalDate}`}
+              </p>
+            </React.Fragment>
+          ))}
+          <p>
+            Como a data de prescrição ocorrerá em menos de 90 dias, eu lhe alertei para ajudar nas
+            medidas que podem ser tomadas.
+          </p>
+
+          <p />
+
+          <p>
+            Caso você acredite que não há o que fazer e é o caso de prescrição inevitável, assim que
+            ocorrer a data de prescrição de todos os crimes, este alerta deixará de existir para se
+            tornar um alerta de todos os crimes prescritos, permitindo que eu elabore uma minuta de
+            arquivamento do procedimento caso você peça.
+          </p>
+        </>
+      );
+    case 'PRCR3':
+      return (
+        <>
+          <p>
+            Neste alerta, eu busco lhe informar sobre quais procedimentos possivelmente têm um de
+            seus crimes já prescrito na data de hoje, mas ainda possuem algum outro crime
+            investigado que não prescreveu, nem está perto de prescrever.
+          </p>
+
+          <p>
+            Meus cálculos são feitos com base nas regras gerais do Código Penal e se houver algum
+            erro ou falta de registro nos bancos de dados, eles podem não ser perfeitos. Caso isso
+            seja corrigido, minha precisão melhora bastante!
+          </p>
+
+          <p>Para este caso, meus cálculos foram os seguintes:</p>
+
+          {data.map((crime, index) => (
+            <React.Fragment
+              key={`${crime.investigatedName}-${crime.penalType}-${crime.prescriptionInitialDate}-${index}`}
+            >
+              <p>
+                Personagem:
+                {` ${crime.investigatedName}`}
+              </p>
+
+              <p>
+                Tipo Penal:
+                {` ${crime.penalType}`}
+              </p>
+
+              <p>
+                Máximo de Pena:
+                {` ${crime.maximumPenalty}`}
+              </p>
+
+              <p>
+                Data de início:
+                {` ${crime.prescriptionInitialDate}`}
+              </p>
+
+              <p>
+                Data de prescrição:
+                {` ${crime.prescriptionFinalDate}`}
+              </p>
+            </React.Fragment>
+          ))}
+
+          <p>
+            Como a data de prescrição está no passado, reconheço que há a prescrição que eu lhe
+            alertei. Todavia, há ainda outros crimes neste procedimento que não reconheci prescrição
+            ou sua proximidade, razão pela qual somente dei este alerta.
+          </p>
+        </>
+      );
+    case 'PRCR4':
+      return (
+        <>
+          <p>
+            Neste alerta, eu busco lhe informar sobre quais procedimentos possivelmente têm algum de
+            seus crimes prescrevendo em breve, permitindo que você tome alguma ação emergencial para
+            evitar isso. Neste caso, não há nenhum crime prescrito no procedimento ainda e mesmo que
+            este crime prescreva, outros delitos podem ainda ser perseguidos e processados. O alerta
+            é bastante pontual para o que está próximo de vencer, permitindo que você tome alguma
+            medida emergencial.
+          </p>
+
+          <p>
+            Meus cálculos são feitos com base nas regras gerais do Código Penal e se houver algum
+            erro ou falta de registro nos bancos de dados, eles podem não ser perfeitos. Caso isso
+            seja corrigido, minha precisão melhora bastante!
+          </p>
+
+          <p>Para este caso, meus cálculos foram os seguintes:</p>
+
+          {data.map((crime, index) => (
+            <React.Fragment
+              key={`${crime.investigatedName}-${crime.penalType}-${crime.prescriptionInitialDate}-${index}`}
+            >
+              <p>
+                Personagem:
+                {` ${crime.investigatedName}`}
+              </p>
+
+              <p>
+                Tipo Penal:
+                {` ${crime.penalType}`}
+              </p>
+
+              <p>
+                Máximo de Pena:
+                {` ${crime.maximumPenalty}`}
+              </p>
+
+              <p>
+                Data de início:
+                {` ${crime.prescriptionInitialDate}`}
+              </p>
+
+              <p>
+                Data de prescrição:
+                {` ${crime.prescriptionFinalDate}`}
+              </p>
+            </React.Fragment>
+          ))}
+          <p>
+            Como a data de prescrição ocorrerá em menos de 90 dias, eu lhe alertei para ajudar nas
+            medidas que podem ser tomadas.
+          </p>
+
+          <p />
+
+          <p>
+            Caso você acredite que não há o que fazer e é o caso de prescrição inevitável, assim que
+            ocorrer a data de prescrição deste crime, este alerta deixará de existir para se tornar
+            um alerta de que algum crime deste procedimento prescreveu, mas não todos, indicando que
+            ainda há o que possa ser trabalhado, apesar da prescrição ocorrida.
+          </p>
+        </>
+      );
+    default:
+  }
 };

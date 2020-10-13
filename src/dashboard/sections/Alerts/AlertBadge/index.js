@@ -26,6 +26,7 @@ const propTypes = {
   count: PropTypes.number,
   isOpen: PropTypes.bool,
   isDeleted: PropTypes.bool,
+  docDk: PropTypes.number,
 };
 
 const defaultProps = {
@@ -50,6 +51,7 @@ const AlertBadge = ({
   count,
   isOpen,
   isDeleted,
+  docDk,
 }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
@@ -60,8 +62,8 @@ const AlertBadge = ({
     onDeletion(key, undo);
   }
 
-  function handleLinks(alert) {
-    const { link } = alert;
+  function handleLinks(alertAction) {
+    const { link } = alertAction;
     if (link) {
       window.open(link, '_blank', 'noopener');
     } else {
@@ -69,8 +71,8 @@ const AlertBadge = ({
     }
   }
 
-  async function handleActionLinks(alert, key) {
-    const { link } = alert;
+  async function handleActionLinks(alertAction, key) {
+    const { link } = alertAction;
     const formData = new FormData();
     if (link) {
       try {
@@ -86,19 +88,19 @@ const AlertBadge = ({
     }
   }
 
-  function handleActionPress(alert, key, type) {
-    const { actionType } = alert;
+  function handleActionPress(alertAction, key, type) {
+    const { actionType } = alertAction;
     switch (actionType) {
       case 'delete':
         return handleDeletion(key);
       case 'download':
-        return handleLinks(alert);
+        return handleLinks(alertAction);
       case 'overlay':
-        return setOverlay(type);
+        return setOverlay(type, docDk);
       case 'link':
-        return handleLinks(alert);
+        return handleLinks(alertAction);
       case 'actionLink':
-        return handleActionLinks(alert, key);
+        return handleActionLinks(alertAction, key);
       default:
         return window.alert('Em breve! :)');
     }
@@ -110,11 +112,11 @@ const AlertBadge = ({
     <div className="alertBadge-outerContainer">
       {showHover && !isDeleted && (
         <div className="alertBadge-hoverContainer">
-          {actions.map((alert) => (
+          {actions.map((alertAction) => (
             <ActionButtons
-              key={`${customKey}-${alert.actionType}`}
-              clickCallback={() => handleActionPress(alert, customKey, type)}
-              {...alert}
+              key={`${customKey}-${alertAction.actionType}`}
+              clickCallback={() => handleActionPress(alertAction, customKey, type)}
+              {...alertAction}
             />
           ))}
         </div>

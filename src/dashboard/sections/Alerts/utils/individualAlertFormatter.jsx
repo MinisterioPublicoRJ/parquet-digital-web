@@ -95,7 +95,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     case 'CTAC':
       return ctacConstructor(alert);
-    
+
     default:
       return {};
   }
@@ -679,6 +679,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     icon: <ClockIcon />,
     key,
     message,
+    docDk,
   };
 }
 
@@ -795,8 +796,8 @@ function ctacConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
-        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho 
-        Superior do Ministerio Público.
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho Superior do
+        Ministerio Público.
       </span>
     );
   } else {
@@ -804,8 +805,8 @@ function ctacConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
-        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho 
-        Superior do Ministerio Público.
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho Superior do
+        Ministerio Público.
       </span>
     );
   }

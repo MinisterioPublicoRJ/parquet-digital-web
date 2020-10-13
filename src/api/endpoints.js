@@ -69,3 +69,7 @@ export const PRCR_ACTION_GENERATE_DOC = t(
 export const COMPRAS_ACTION_OUVIDORIA = t(
   `${BASE_URL}/alertas/ouvidoria/\${orgao}/comp?alerta_id=\${alertId}&jwt=\${token}`,
 );
+
+export const PRCR_ALERT_DATA = t(
+  `${BASE_URL}/alertas/overlay/\${docDk}?tipo=prescricao&jwt=\${token}`,
+);

@@ -48,14 +48,29 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
     }
   }
 
+  /**
+   * Prevent close when click in the div.innerWrapper
+   */
+  function handleInnerClick(e) {
+    e.stopPropagation();
+  }
+
   useEffect(() => {
     getText();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="overlay-outer">
-      <div className="alerts-overlay">
+    <div
+      className="overlay-outer"
+      onClick={(e) => setShowOverlay(false)}
+      onKeyDown={(e) => setShowOverlay(false)}
+    >
+      <div
+        className="alerts-overlay"
+        onClick={(e) => handleInnerClick(e)}
+        onKeyDown={(e) => handleInnerClick(e)}
+      >
         <div>
           {text || <Spinner size="medium" />}
           <button onClick={() => setShowOverlay(false)}> Sair</button>

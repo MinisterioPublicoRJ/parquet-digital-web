@@ -206,7 +206,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment key={data.key}>
+            <React.Fragment key={crime.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -265,7 +265,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment key={data.key}>
+            <React.Fragment key={crime.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -325,7 +325,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment key={data.key}>
+            <React.Fragment key={crime.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -381,7 +381,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment key={data.key}>
+            <React.Fragment key={crime.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}

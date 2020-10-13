@@ -22,6 +22,7 @@ const propTypes = {
   hideHover: PropTypes.bool,
   type: PropTypes.string,
   onDeletion: PropTypes.func,
+  removeAlert: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
   isDeleted: PropTypes.bool,
@@ -43,6 +44,7 @@ const AlertBadge = ({
   customKey,
   hideHover,
   onDeletion,
+  removeAlert,
   setOverlay,
   type,
   count,
@@ -72,9 +74,10 @@ const AlertBadge = ({
     const formData = new FormData();
     if (link) {
       try {
-        await axios.post(link, formData);
         // positive feedback after sending to ouvidoria delete the alert
-        handleDeletion(key);
+        removeAlert(key);
+        const response = await axios.post(link, formData);
+        window.alert(response.data.detail);
       } catch (e) {
         console.log(e);
       }

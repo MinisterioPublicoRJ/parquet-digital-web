@@ -99,6 +99,7 @@ function Dropdown({ list, type, setOverlay }) {
           return (
             <AlertBadge
               onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
+              removeAlert={removeAlert}
               key={key}
               customKey={key}
               icon={icon}

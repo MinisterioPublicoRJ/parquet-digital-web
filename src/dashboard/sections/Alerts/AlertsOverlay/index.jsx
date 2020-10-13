@@ -57,7 +57,7 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
     <div className="overlay-outer">
       <div className="alerts-overlay">
         <div>
-          {text || <Spinner size="large" />}
+          {text || <Spinner size="medium" />}
           <button onClick={() => setShowOverlay(false)}> Sair</button>
           {children}
         </div>

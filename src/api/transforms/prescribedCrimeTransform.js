@@ -6,6 +6,7 @@ export default function prescribedCrimeTransform(data) {
     multiplyingOffenses: crime.delitos_multiplicadores,
     penalFactor: crime.fator_pena,
     maximumFactoredPenalty: crime.max_pena_fatorado,
+    key: crime.adpr_chave,
     prescriptionInitialDate: new Date(crime.dt_inicio_prescricao)
       ? Intl.DateTimeFormat().format(new Date(crime.dt_inicio_prescricao))
       : null,

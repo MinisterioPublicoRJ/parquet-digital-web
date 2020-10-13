@@ -206,9 +206,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment
-              key={`${crime.investigatedName}-${crime.penalType}-${crime.prescriptionInitialDate}-${index}`}
-            >
+            <React.Fragment key={data.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -267,9 +265,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment
-              key={`${crime.investigatedName}-${crime.penalType}-${crime.prescriptionInitialDate}-${index}`}
-            >
+            <React.Fragment key={data.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -329,9 +325,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment
-              key={`${crime.investigatedName}-${crime.penalType}-${crime.prescriptionInitialDate}-${index}`}
-            >
+            <React.Fragment key={data.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -387,9 +381,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment
-              key={`${crime.investigatedName}-${crime.penalType}-${crime.prescriptionInitialDate}-${index}`}
-            >
+            <React.Fragment key={data.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}

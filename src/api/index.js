@@ -28,7 +28,7 @@ import {
   INVESTIGATED_PERSONAL_PROFILE_URL,
   RADAR_COMPARE_TUTELA,
   RADAR_COMPARE_PIP,
-  //ONGOING_INVESTIGATIONS_LIST,
+  ONGOING_INVESTIGATIONS_LIST,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -191,14 +191,14 @@ const Api = (() => {
     return processListTransform(data);
   }
 
-  /*async function getOngoingInvestigationsList({ orgao, cpf, token }, list) {
+  async function getOngoingInvestigationsList({ orgao, cpf, token }, list) {
     const { data } = await axios.get(
       ONGOING_INVESTIGATIONS_LIST({ orgao, cpf, list }),
       buildRequestConfig(token),
     );
 
     return ongoingInvestigationsListTransform(data);
-  }*/
+  }
 
   async function getPipRadarData({ orgao, token }) {
     const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
@@ -322,7 +322,7 @@ const Api = (() => {
     undoRemoveAlert,
     getInvestigatedProfile,
     getRadarCompareData,
-    /*getOngoingInvestigationsList,*/
+    getOngoingInvestigationsList,
   };
 })();
 

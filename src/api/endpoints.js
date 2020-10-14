@@ -35,7 +35,7 @@ export const HIRES_ALERTS = t(`${BASE_URL}/alertas/compras/\${orgao}`);
 export const PROCESSING_TIME_DATA = t(`${BASE_URL}/tempo-tramitacao/\${orgao}?version=1.1`);
 
 export const PROCESSES_LIST = t(`${BASE_URL}/lista/processos/\${orgao}`);
-//export const ONGOING_INVESTIGATIONS_LIST = t(`${BASE_URL}/lista/processos/\${orgao}`);
+export const ONGOING_INVESTIGATIONS_LIST = t(`${BASE_URL}/lista/investigacoes/\${orgao}`);
 
 export const SUCCESS_INDICATORS = t(`${BASE_URL}/pip/indicadores-sucesso/\${orgao}`);
 export const PIP__URL = t(`${BASE_URL}/pip/aproveitamentos/\${orgao}`);

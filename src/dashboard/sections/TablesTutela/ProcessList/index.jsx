@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Api from '../../../../api';
-import { CustomTable, Spinner, SectionTitle } from '../../../../components';
+import { CustomTable, Spinner } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
 const ProcessList = ({ isActive }) => {
@@ -14,7 +14,7 @@ const ProcessList = ({ isActive }) => {
     'Nº do Processo': 'docuNrExterno',
     Investigados: 'docuPersonagens',
     Classe: 'classeDocumento',
-    'Data Andamento': 'dtUltimoAndamento',
+    'Último Andamento': 'dtUltimoAndamento',
     'Rótulo Andamento': 'ultimoAndamento',
   };
 

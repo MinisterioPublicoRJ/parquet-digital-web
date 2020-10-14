@@ -64,7 +64,7 @@ const SuccessIndicators = () => {
           <h4>Taxa de Denúncia (móvel)</h4>
           <span>
             Número de procedimentos com denúncia/Número de procedimentos do Grupo de vistas abertas,
-            no período de 18 a 6 meses atrás
+            desde março de 2020.
           </span>
           <div className="successIndicators-tooltip--second">
             <strong>{elucidacoesPercent}</strong>
@@ -77,8 +77,8 @@ const SuccessIndicators = () => {
         <div className="successIndicators-item">
           <h4>Taxa de Finalização (móvel)</h4>
           <span>
-            Denúncias, arquivamentos, acordos/Número de procedimentos do Grupo de vistas abertas, no
-            período de 18 a 6 meses atrás
+            Denúncias, arquivamentos, acordos/Número de procedimentos do Grupo de vistas abertas,
+            desde março de 2020.
           </span>
           <div className="successIndicators-tooltip--third">
             <strong>{finalizacoesPercent}</strong>

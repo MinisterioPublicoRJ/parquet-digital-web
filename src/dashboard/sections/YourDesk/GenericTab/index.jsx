@@ -56,17 +56,17 @@ function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
       </div>
 
       <div className="GenericTab-lower">
-        {hasRank && (
+        {hasRank ? (
           <div className="GenericTab-lower-left">
             <Ranking data={ranks[0].data} title={ranks[0].name} />
           </div>
-        )}
-        {hasRight && (
+        ) : null}
+        {hasRight ? (
           <div className="GenericTab-lower-right">
             {/* Maps will be added in the future */}
             <Ranking data={ranks[1].data} title={ranks[1].name} />
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

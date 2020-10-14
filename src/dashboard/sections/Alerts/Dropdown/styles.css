@@ -33,9 +33,39 @@
   border: none;
   background-color: var(--white);
   padding: 0;
-  width: 100%;
+  width: 102%;
+  margin-left: -9px;
 }
 
 .box-btn-dropdown {
   margin-top: -8px;
+}
+
+.show-more-alerts {
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  box-shadow: 0px 3px 8px #00000029;
+  margin: 1vh;
+  margin-left: 1.2vh;
+  border: 0;
+  min-height: 75px;
+  width: calc(100% - 2.2vh);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background-color: var(--white);
+}
+
+.show-more-alerts:after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  position: absolute;
+  border-color: transparent transparent transparent transparent;
+  margin: 6px 2px 0px 4px;
+  border-top-color: inherit;
 }

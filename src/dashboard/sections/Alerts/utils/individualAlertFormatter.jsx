@@ -32,7 +32,7 @@ import {
   DETAIL,
   GENERATE_DOC,
   GENERATE_MINUTA,
-  EXTEND_DEADLIN,
+  EXTEND_DEADLINE,
 } from './actionConstants';
 
 /**

@@ -9,6 +9,7 @@ const OngoingInvestigations = ({ isActive }) => {
   const [OngoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
     'Nº do Processo': 'docuNrMp',
@@ -24,7 +25,7 @@ const OngoingInvestigations = ({ isActive }) => {
         const response = await Api.getOngoingInvestigationsList(buildRequestParams());
         setOngoingInvestigationsListData(response);
       } catch (e) {
-        setLoading(true);
+        setOngoingInvestigationsListData(false);
       } finally {
         setLoading(false);
       }

@@ -25,7 +25,7 @@ const ProcessList = ({ isActive }) => {
         const response = await Api.getProcessList(buildRequestParams());
         setProcessListData(response);
       } catch (e) {
-        setLoading(true);
+        setProcessListData(false);
       } finally {
         setLoading(false);
       }

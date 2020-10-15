@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useAuth } from '../app/authContext';
 import { Pip, Tutela, BlankPage } from './pages';
-import { Glossary, Introduction } from './sections';
+import { Glossary, Introduction, MapaTron } from './sections';
 import { Modal, Spinner } from '../components';
 
 import OfficeSelector from './sections/Today/officeSelector';
@@ -45,6 +45,8 @@ function Dashboard() {
         return <InvestigatedProfile representanteDk={modalData} onToggle={closeModal} />;
       case 'radar':
         return <RadarModal compareData={modalData} onToggle={closeModal} />;
+      case 'mapatron':
+        return <MapaTron mapatronData={modalData} onToggle={closeModal} />;
       default:
         return null;
     }

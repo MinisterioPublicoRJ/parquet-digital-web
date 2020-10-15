@@ -17,3 +17,4 @@ export { default as IntroductionSuccessIndicators } from './introduction/introdu
 export { default as Introduction } from './introduction';
 export { default as ScreenGoodBye } from './introduction/screenGoodBye';
 export { default as Glossary } from './Glossary';
+export { default as MapaTron } from './MapaTron';

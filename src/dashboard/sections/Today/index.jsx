@@ -13,10 +13,11 @@ import { SectionTitle, MainTitle, Spinner } from '../../../components/layoutPiec
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
   setModalType: PropTypes.func.isRequired,
+  setModalData: PropTypes.func.isRequired,
   setIsIntroOpen: PropTypes.func.isRequired,
 };
 
-function Today({ setIsSelectorOpen, setModalType, setIsIntroOpen }) {
+function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }) {
   const { user, buildRequestParams, currentOffice, logout } = useAuth();
   const [todayPercent, setTodayPercent] = useState([]);
   const [phrase, setPhrase] = useState([]);
@@ -205,6 +206,16 @@ function Today({ setIsSelectorOpen, setModalType, setIsIntroOpen }) {
     </p>
   );
 
+  /**
+   * uses ${currentOffice.codigo} to open the mapatron modal
+   * @param  {number} mapatronData
+   * @return {void}  updates the state
+   */
+  function openMapaTron(mapatronData) {
+    setModalType('mapatron');
+    setModalData(mapatronData);
+  }
+
   return (
     <article className="today-outer">
       <div className="user-area">
@@ -236,14 +247,9 @@ function Today({ setIsSelectorOpen, setModalType, setIsIntroOpen }) {
         {entriesGroup}
       </div>
       {currentOffice.tipo === 2 ? (
-        <a
-          href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/9062e8f6462349978f249fb63c5f68a5?pip=${currentOffice.codigo}&dp=${currentOffice.dps}`}
-          className="today-btn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <button className="today-btn" onClick={() => openMapaTron(currentOffice.codigo)}>
           Ver mapa da atuação
-        </a>
+        </button>
       ) : null}
       <div className="today-robotPic">
         <div className="today-glossaryBtn" onClick={() => setModalType('glossary')}>

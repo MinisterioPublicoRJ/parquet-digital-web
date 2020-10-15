@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import ActionButtons from './AlertActionButtons';
 
 import './styles.css';
@@ -22,7 +21,7 @@ const propTypes = {
   hideHover: PropTypes.bool,
   type: PropTypes.string,
   onDeletion: PropTypes.func,
-  removeAlert: PropTypes.func,
+  openDialogBox: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
   isDeleted: PropTypes.bool,
@@ -44,7 +43,7 @@ const AlertBadge = ({
   customKey,
   hideHover,
   onDeletion,
-  removeAlert,
+  openDialogBox,
   setOverlay,
   type,
   count,
@@ -70,16 +69,10 @@ const AlertBadge = ({
   }
 
   async function handleActionLinks(alert, key) {
-    const { link } = alert;
-    const formData = new FormData();
+    const { link, actionType } = alert;
     if (link) {
-      try {
-        // positive feedback after sending to ouvidoria delete the alert
-        removeAlert(key);
-        const response = await axios.post(link, formData);
-        window.alert(response.data.detail);
-      } catch (e) {
-        console.log(e);
+      if (actionType === 'openComplaint') {
+        openDialogBox(link, key);
       }
     } else {
       window.alert('Em breve! :)');
@@ -97,7 +90,7 @@ const AlertBadge = ({
         return setOverlay(type);
       case 'link':
         return handleLinks(alert);
-      case 'actionLink':
+      case 'openComplaint':
         return handleActionLinks(alert, key);
       default:
         return window.alert('Em breve! :)');

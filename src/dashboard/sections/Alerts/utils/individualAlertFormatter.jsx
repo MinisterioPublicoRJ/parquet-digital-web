@@ -13,7 +13,14 @@ import {
   IconContratacoes,
   Ro,
 } from '../../../../assets';
-import { PRCR_ACTION_GENERATE_DOC, COMPRAS_ACTION_OUVIDORIA } from '../../../../api/endpoints';
+
+import {
+  PRCR_ACTION_GENERATE_DOC,
+  COMPRAS_ACTION_OUVIDORIA,
+  IC1A_ACTION_GENERATE_DOC,
+  PPFP_ACTION_EXTEND,
+  PPFP_ACTION_CONVERT,
+} from '../../../../api/endpoints';
 
 import {
   DELETE,
@@ -24,6 +31,8 @@ import {
   CALCULO,
   DETAIL,
   GENERATE_DOC,
+  GENERATE_MINUTA,
+  EXTEND_DEADLIN,
 } from './actionConstants';
 
 /**
@@ -54,10 +63,10 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     return pa1aConstructor(alert);
 
     case 'PPFP':
-    return ppfpConstructor(alert);
+    return ppfpConstructor(alert, cpf, token);
 
     case 'IC1A':
-    return ic1aConstructor(alert);
+    return ic1aConstructor(alert, cpf, token);
 
     case 'NF30':
       return nf30Constructor(alert);
@@ -95,7 +104,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     case 'CTAC':
       return ctacConstructor(alert);
-    
+
     default:
       return {};
   }
@@ -298,10 +307,11 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
+function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
   let key;
   let message;
-
+  let actions = [];
+  console.log('has ppfp');
   if (dropdown) {
     key = `${alertCode}-dropdown`;
     const single = count === 1;
@@ -317,6 +327,11 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
     );
   } else {
     key = `${alertCode}-${docNum}`;
+    actions = [
+      GENERATE_MINUTA(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
+      EXTEND_DEADLINE(PPFP_ACTION_EXTEND({ orgao, token, docDk, cpf })),
+      DELETE,
+    ];
     message = (
       <span>
         O procedimento preparatório {``}
@@ -327,7 +342,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [GENERATE_DOC(), CALCULO(), DELETE],
+    actions,
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -335,7 +350,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
+function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
   let key;
   let message;
 
@@ -365,7 +380,11 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [GENERATE_DOC(), CALCULO(), DELETE],
+    actions: [
+      GENERATE_DOC(IC1A_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })),
+      CALCULO(),
+      DELETE,
+    ],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -451,7 +470,7 @@ function ouviConstructor(alert) {
 
   let key;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -686,7 +705,7 @@ function gateConstructor(alert) {
   const { dropdown, alertCode, count, docNum, alertId } = alert;
   let key;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -795,8 +814,8 @@ function ctacConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
-        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho 
-        Superior do Ministerio Público.
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho Superior do
+        Ministerio Público.
       </span>
     );
   } else {
@@ -804,8 +823,8 @@ function ctacConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
-        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho 
-        Superior do Ministerio Público.
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho Superior do
+        Ministerio Público.
       </span>
     );
   }

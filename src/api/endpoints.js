@@ -69,3 +69,12 @@ export const PRCR_ACTION_GENERATE_DOC = t(
 export const COMPRAS_ACTION_OUVIDORIA = t(
   `${BASE_URL}/alertas/ouvidoria/\${orgao}/comp?alerta_id=\${alertId}&jwt=\${token}`,
 );
+export const IC1A_ACTION_GENERATE_DOC = t(
+  `${BASE_URL}/documentos/prorrogacao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPFP_ACTION_EXTEND = t(
+  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPFP_ACTION_CONVERT = t(
+  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);

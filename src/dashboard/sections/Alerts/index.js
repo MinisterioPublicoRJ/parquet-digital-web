@@ -21,7 +21,9 @@ function Alerts() {
   const loading = !alerts && !alertsError;
   const dialogBoxMessage = (
     <>
-      <h3>OUVIDORIA</h3>
+      <h3>
+        <b>OUVIDORIA</b>
+      </h3>
       <p>Deseja que eu abra uma ouvidoria sobre este problema?</p>
     </>
   );

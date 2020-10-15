@@ -52,6 +52,10 @@
   height: 100%;
 }
 
+.alerts-body .modal-innerWrapper {
+  width: 64%;
+}
+
 /* PHONES */
 @media (max-width: 480px) {
   .alerts-wrapper {

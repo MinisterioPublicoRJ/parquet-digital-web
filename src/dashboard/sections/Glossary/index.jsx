@@ -3,8 +3,12 @@ import React from 'react';
 import './styles.css';
 import GLOSSARIO from './glossaryData';
 import { PromotronGlossario } from '../../../assets';
+import { useAuth } from '../../../app/authContext';
 
 function Glossary({ onToggle }) {
+  const { currentOffice } = useAuth();
+  const { tipo } = currentOffice;
+
   const glossaryRef = React.useRef([]); // Hook to ref object
 
   const scrollToRef = index => {
@@ -29,7 +33,7 @@ function Glossary({ onToggle }) {
         </div>
         <div className="glossary-articles-wrapper">
           <div className="glossary-articles">
-            {GLOSSARIO.map((key, i) => (
+            {GLOSSARIO.filter(item => !item.type || item.type === tipo).map((key, i) => (
               <article
                 ref={itemRef => {
                   glossaryRef.current[i] = itemRef;
@@ -46,7 +50,7 @@ function Glossary({ onToggle }) {
           <div className="glossary-list">
             <h3>LISTA DE TERMOS</h3>
             <dl>
-              {GLOSSARIO.map((key, i) => (
+              {GLOSSARIO.filter(item => !item.type || item.type === tipo).map((key, i) => (
                 <div onClick={() => scrollToRef(i)} className="glossary-list-link">
                   <dt>{key.title.replace('Índice de ', '').toLowerCase()}</dt>
                   <dd className="glossary-category">{key.section}</dd>

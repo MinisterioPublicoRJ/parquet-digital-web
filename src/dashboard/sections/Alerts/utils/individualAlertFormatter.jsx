@@ -13,9 +13,27 @@ import {
   IconContratacoes,
   Ro,
 } from '../../../../assets';
-import { PRCR_ACTION_GENERATE_DOC, IC1A_ACTION_GENERATE_DOC, PPFP_ACTION_EXTEND, PPFP_ACTION_CONVERT } from '../../../../api/endpoints';
 
-import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC, GENERATE_MINUTA, EXTEND_DEADLINE } from './actionConstants';
+import {
+  PRCR_ACTION_GENERATE_DOC,
+  COMPRAS_ACTION_OUVIDORIA,
+  IC1A_ACTION_GENERATE_DOC,
+  PPFP_ACTION_EXTEND,
+  PPFP_ACTION_CONVERT,
+} from '../../../../api/endpoints';
+
+import {
+  DELETE,
+  COMPRAS,
+  OUVIDORIA,
+  OUVIDORIA_COMPRAS,
+  IT,
+  CALCULO,
+  DETAIL,
+  GENERATE_DOC,
+  GENERATE_MINUTA,
+  EXTEND_DEADLINE,
+} from './actionConstants';
 
 /**
  * Finds the details for each alert type
@@ -28,7 +46,7 @@ import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC, GENERATE
  *  message: node,
  * }
  */
-export default function individualAlertFormatter(alert, cpf, token) {
+export default function individualAlertFormatter(alert, cpf, token, orgao) {
   // prettier-ignore
   switch (alert.alertCode) {
     // ALERTAS DA TUTELA
@@ -64,7 +82,7 @@ export default function individualAlertFormatter(alert, cpf, token) {
 
     // ALERTAS DE COMPRAS
     case 'COMP':
-      return compConstructor(alert);
+      return compConstructor(alert, orgao, token);
 
     case 'RO':
       return roOccurrence(alert);
@@ -92,7 +110,7 @@ export default function individualAlertFormatter(alert, cpf, token) {
   }
 }
 
-function compConstructor(alert) {
+function compConstructor(alert, orgao, token) {
   const { contrato_iditem, contrato, item, iditem, dropdown, alertCode, count } = alert;
   let key;
   let message;
@@ -111,7 +129,11 @@ function compConstructor(alert) {
     );
   } else {
     key = `${contrato}-${iditem}`;
-    actions = [OUVIDORIA(), COMPRAS({ compId: contrato_iditem, contrato }), DELETE];
+    actions = [
+      OUVIDORIA_COMPRAS(COMPRAS_ACTION_OUVIDORIA({ alertId: contrato_iditem, orgao, token })),
+      COMPRAS({ compId: contrato_iditem, contrato }),
+      DELETE,
+    ];
     message = (
       <span>
         Os valores do contrato

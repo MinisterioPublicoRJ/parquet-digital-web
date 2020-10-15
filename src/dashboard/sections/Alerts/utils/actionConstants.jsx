@@ -33,6 +33,14 @@ export const OUVIDORIA = () => ({
   link: `http://apps.mprj.mp.br/gate/api/Cidadao/downloadPDF/`,
 });
 
+export const OUVIDORIA_COMPRAS = (link) => ({
+  actionType: 'openComplaint',
+  icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
+  text: 'Ouvidoria',
+  background: '#5C6FD9',
+  link,
+});
+
 export const IT = ({ alertId }) => ({
   actionType: 'download',
   icon: <ItActionIcon fillColor="white" width="30px" height="30px" />,

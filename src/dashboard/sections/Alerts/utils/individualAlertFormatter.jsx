@@ -13,7 +13,7 @@ import {
   IconContratacoes,
   Ro,
 } from '../../../../assets';
-import { PRCR_ACTION_GENERATE_DOC } from '../../../../api/endpoints';
+import { PRCR_ACTION_GENERATE_DOC, IC1A_ACTION_GENERATE_DOC } from '../../../../api/endpoints';
 
 import { DELETE, COMPRAS, OUVIDORIA, IT, CALCULO, DETAIL, GENERATE_DOC } from './actionConstants';
 
@@ -48,7 +48,7 @@ export default function individualAlertFormatter(alert, cpf, token) {
     return ppfpConstructor(alert);
 
     case 'IC1A':
-    return ic1aConstructor(alert);
+    return ic1aConstructor(alert, cpf, token);
 
     case 'NF30':
       return nf30Constructor(alert);
@@ -86,7 +86,7 @@ export default function individualAlertFormatter(alert, cpf, token) {
 
     case 'CTAC':
       return ctacConstructor(alert);
-    
+
     default:
       return {};
   }
@@ -322,7 +322,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
+function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
   let key;
   let message;
 
@@ -352,7 +352,7 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [GENERATE_DOC(), CALCULO(), DELETE],
+    actions: [GENERATE_DOC(IC1A_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })), CALCULO(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -438,7 +438,7 @@ function ouviConstructor(alert) {
 
   let key;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -673,7 +673,7 @@ function gateConstructor(alert) {
   const { dropdown, alertCode, count, docNum, alertId } = alert;
   let key;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -782,7 +782,7 @@ function ctacConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
-        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho 
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho
         Superior do Ministerio Público.
       </span>
     );
@@ -791,7 +791,7 @@ function ctacConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
-        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho 
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho
         Superior do Ministerio Público.
       </span>
     );

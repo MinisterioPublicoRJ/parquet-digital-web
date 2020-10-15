@@ -68,3 +68,9 @@ export const PRCR_ACTION_GENERATE_DOC = t(
 export const IC1A_ACTION_GENERATE_DOC = t(
   `${BASE_URL}/documentos/prorrogacao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
 );
+export const PPFP_ACTION_EXTEND = t(
+  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPFP_ACTION_CONVERT = t(
+  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);

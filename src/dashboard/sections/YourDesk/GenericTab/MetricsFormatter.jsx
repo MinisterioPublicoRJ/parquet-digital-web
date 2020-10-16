@@ -17,15 +17,15 @@ function courtCasesMetrics({ nrAcoesUltimos60Dias, variacao12Meses }) {
   const formattedVariation = formatPercentage(Math.abs(variacao12Meses));
   return (
     <p>
-      Você propôs
+      Você ajuizou
       <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
-      nos últimos 60 dias, com
+      nos últimos 60 dias.
       <strong>
         {variacao12Meses >= 0
-          ? ` um aumento de ${formattedVariation} `
-          : ` uma redução de ${formattedVariation} `}
+          ? ` Aumento de ${formattedVariation} `
+          : ` Redução de ${formattedVariation} `}
       </strong>
-      nos últimos 12 meses.
+      com relação ao mesmo período anterior.
     </p>
   );
 }

@@ -1,0 +1,114 @@
+.mapatron-wrapper {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: inherit;
+  max-width: 80vw;
+  max-height: 90vh;
+  min-height: 78vh;
+  background-color: #ffffff;
+}
+
+.mapatron-intro {
+  border-radius: 10px 0 0 10px;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  width: 16vw;
+  background-color: #bddff0;
+  flex-wrap: wrap;
+}
+
+.mapatron-intro h2 {
+  font-size: var(--titleFontSize);
+  font-family: var(--defaultFont);
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #374354;
+  padding: 0px 0px 0px 36px;
+  margin-bottom: 0px;
+}
+
+.mapatron-intro p {
+  font: Regular 14px/20px Segoe UI;
+  font-family: var(--defaultFont);
+  letter-spacing: 0px;
+  color: #3b3b3b;
+  padding: 0px 20px 0px 36px;
+}
+
+.mapatron-intro svg {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  top: 0px;
+  left: 2vw;
+  margin: 3vw 0px 2vw 0px;
+  max-height: 42vh;
+}
+.mapatron-links {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  width: 16vw;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.mapatron-btn {
+  width: 200px;
+  height: 32px;
+  margin: 4px 0px;
+  color: var(--white);
+  background-color: var(--darkBlue);
+  border: 6px var(--darkBlue);
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  line-height: 32px;
+}
+
+.mapatron-btn:hover,
+.mapatron-btn:active {
+  background-color: var(--primary);
+}
+
+.mapatron-iframe-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: inherit;
+  max-height: 78vh;
+  width: 64vw;
+  overflow: hidden;
+  border-radius: 0 10px 10px 0;
+}
+
+.mapatron-iframe-wrapper iframe {
+  overflow: hidden;
+}
+
+.mapatron-close {
+  text-align: center;
+  position: absolute;
+  font-size: 3em;
+  bottom: 0.1vh;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+}
+
+.mapatron-close button {
+  display: contents;
+  font-size: 2em;
+  color: #ffffff;
+}

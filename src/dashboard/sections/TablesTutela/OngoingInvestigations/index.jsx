@@ -6,7 +6,7 @@ import { useAuth } from '../../../../app/authContext';
 const OngoingInvestigations = ({ isActive }) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
-  const [OngoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
+  const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // de-> para dos campos pros nomes das colunas
@@ -44,11 +44,11 @@ const OngoingInvestigations = ({ isActive }) => {
           : 'ongoingInvestigations-outer'
       }`}
     >
-      {!OngoingInvestigationsListData.length ? (
+      {!ongoingInvestigationsListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (
         <div className="ongoingInvestigations-tableWrapper">
-          <CustomTable data={OngoingInvestigationsListData} columns={tableColumns} showHeader />
+          <CustomTable data={ongoingInvestigationsListData} columns={tableColumns} showHeader />
         </div>
       )}
     </div>

@@ -12,9 +12,6 @@ import {
   YourDesk,
   TablesTutela,
 } from '../../sections';
-//import OngoingInvestigations from '../../sections/TablesTutela/OngoingInvestigations';
-//import ProcessList from '../../sections/TablesTutela/ProcessList';
-
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,

@@ -28,7 +28,6 @@ class OpenCasesDetail extends React.Component {
 
   componentDidMount() {
     const { activeTab } = this.state;
-    console.log(activeTab);
     this.getOpenCasesList(activeTab);
   }
 

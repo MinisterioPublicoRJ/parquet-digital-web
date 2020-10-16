@@ -59,8 +59,6 @@ import {
   prescribedCrimeTransform,
 } from './transforms';
 
-// import { setUser } from '../user';
-
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
 
 const Api = (() => {
@@ -193,9 +191,9 @@ const Api = (() => {
     return processListTransform(data);
   }
 
-  async function getOngoingInvestigationsList({ orgao, cpf, token }, list) {
+  async function getOngoingInvestigationsList({ orgao, token }) {
     const { data } = await axios.get(
-      ONGOING_INVESTIGATIONS_LIST({ orgao, cpf, list }),
+      ONGOING_INVESTIGATIONS_LIST({ orgao }),
       buildRequestConfig(token),
     );
 

@@ -11,10 +11,18 @@ const TablesTutela = () => {
   return (
     <div className="tablesTutela-outer">
       <div className="tablesTutela-header">
-        <button type="button" onClick={() => setVisibleTab('process')}>
+        <button
+          className={visibleTab === 'process' ? '' : 'tablesTutela-button--inactive'}
+          type="button"
+          onClick={() => setVisibleTab('process')}
+        >
           <SectionTitle value="Lista de processos" glueToTop />
         </button>
-        <button type="button" onClick={() => setVisibleTab('investigation')}>
+        <button
+          className={visibleTab === 'investigation' ? '' : 'tablesTutela-button--inactive'}
+          type="button"
+          onClick={() => setVisibleTab('investigation')}
+        >
           <SectionTitle value="Processos Judiciais" glueToTop />
         </button>
       </div>

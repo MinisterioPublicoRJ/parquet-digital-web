@@ -5,6 +5,7 @@ import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../api';
 import { Spinner, CustomTable } from '../../../../components';
 import DeskCasesChart from '../deskCases';
+import noOpenCases from '../../../../assets/imgs/robo-s-vistas-abertas.png';
 
 import './styles.css';
 
@@ -65,9 +66,9 @@ class OpenCasesDetail extends React.Component {
 
     // for each category I make and object with the data from all categories and the right colors to use
     // then I push all 3 objects to an array
-    categories.forEach(cat => {
+    categories.forEach((cat) => {
       const categoryChart = {};
-      categories.forEach(item => {
+      categories.forEach((item) => {
         categoryChart[item] = {
           x: item,
           y: data[item],
@@ -105,11 +106,11 @@ class OpenCasesDetail extends React.Component {
     const cleanData = this.cleanChartData(data);
     const categories = Object.keys(data);
 
-    return categories.map(cat => (
+    return categories.map((cat) => (
       <DeskCasesChart
         key={cat}
         active={activeTab === cat}
-        buttonPressed={tab => this.handleChangeActiveTab(tab)}
+        buttonPressed={(tab) => this.handleChangeActiveTab(tab)}
         category={cat}
         color={MAIN_DATA[cat][0]}
         data={cleanData[cat]}
@@ -142,7 +143,14 @@ class OpenCasesDetail extends React.Component {
               showHeader
             />
           )}
-          {emptyTab && <p className="paragraphWrapper"> Nenhum processo para exibir </p>}
+          {emptyTab && (
+            <img
+              height="100%"
+              width="100%"
+              alt="Nenhuma vista aberta até o momento"
+              src={noOpenCases}
+            />
+          )}
         </div>
       </>
     );

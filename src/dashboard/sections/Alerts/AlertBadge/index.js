@@ -21,6 +21,7 @@ const propTypes = {
   hideHover: PropTypes.bool,
   type: PropTypes.string,
   onDeletion: PropTypes.func,
+  openDialogBox: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
   isDeleted: PropTypes.bool,
@@ -42,6 +43,7 @@ const AlertBadge = ({
   customKey,
   hideHover,
   onDeletion,
+  openDialogBox,
   setOverlay,
   type,
   count,
@@ -66,6 +68,17 @@ const AlertBadge = ({
     }
   }
 
+  async function handleActionLinks(alert, key) {
+    const { link, actionType } = alert;
+    if (link) {
+      if (actionType === 'openComplaint') {
+        openDialogBox(link, key);
+      }
+    } else {
+      window.alert('Em breve! :)');
+    }
+  }
+
   function handleActionPress(alert, key, type) {
     const { actionType } = alert;
     switch (actionType) {
@@ -77,6 +90,8 @@ const AlertBadge = ({
         return setOverlay(type);
       case 'link':
         return handleLinks(alert);
+      case 'openComplaint':
+        return handleActionLinks(alert, key);
       default:
         return window.alert('Em breve! :)');
     }

@@ -19,3 +19,4 @@ export { default as ScreenGoodBye } from './introduction/screenGoodBye';
 export { default as Glossary } from './Glossary';
 export { default as TablesTutela } from './TablesTutela';
 
+export { default as MapaTron } from './MapaTron';

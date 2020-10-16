@@ -45,10 +45,10 @@ const SuccessIndicators = () => {
 
   return (
     <article className="successIndicators-outer">
-      <SectionTitle value="Indicadores de sucesso" glueToTop />
+      <SectionTitle value="Indicadores" glueToTop />
       <div className="successIndicators-main">
         <div className="successIndicators-item">
-          <h4>Índice de Resolutividade</h4>
+          <h4>Resolutividade Mensal</h4>
           <span>Denúncias + acordos/vistas abertas, nos últimos 30 dias</span>
           <div className="successIndicators-tooltip--first">
             <strong>{resolutividadePercent}</strong>
@@ -61,10 +61,10 @@ const SuccessIndicators = () => {
           />
         </div>
         <div className="successIndicators-item">
-          <h4>Taxa de Denúncia</h4>
+          <h4>Taxa de Denúncia (móvel)</h4>
           <span>
             Número de procedimentos com denúncia/Número de procedimentos do Grupo de vistas abertas,
-            no período de 18 a 6 meses atrás
+            desde março de 2020.
           </span>
           <div className="successIndicators-tooltip--second">
             <strong>{elucidacoesPercent}</strong>
@@ -75,10 +75,10 @@ const SuccessIndicators = () => {
           />
         </div>
         <div className="successIndicators-item">
-          <h4>Taxa de Finalização</h4>
+          <h4>Taxa de Finalização (móvel)</h4>
           <span>
-            Denúncias, arquivamentos, acordos/Número de procedimentos do Grupo de vistas abertas, no
-            período de 18 a 6 meses atrás
+            Denúncias, arquivamentos, acordos/Número de procedimentos do Grupo de vistas abertas,
+            desde março de 2020.
           </span>
           <div className="successIndicators-tooltip--third">
             <strong>{finalizacoesPercent}</strong>

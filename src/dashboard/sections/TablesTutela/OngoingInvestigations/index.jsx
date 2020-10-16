@@ -9,7 +9,6 @@ const OngoingInvestigations = ({ isActive }) => {
   const [OngoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
     'Nº do Processo': 'docuNrMp',

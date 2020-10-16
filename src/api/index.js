@@ -296,6 +296,11 @@ const Api = (() => {
     return radarCompareTransform(data);
   }
 
+  async function sendOmbudsmanEmail(link) {
+    const formData = new FormData();
+    return axios.post(link, formData);
+  }
+
   return {
     login,
     scaLogin,
@@ -323,6 +328,7 @@ const Api = (() => {
     getInvestigatedProfile,
     getRadarCompareData,
     getOngoingInvestigationsList,
+    sendOmbudsmanEmail,
   };
 })();
 

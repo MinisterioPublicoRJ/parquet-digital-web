@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
@@ -11,9 +11,11 @@ const propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   type: PropTypes.string.isRequired,
   setOverlay: PropTypes.func.isRequired,
+  openDialogBox: PropTypes.func.isRequired,
+  deletedAlertKey: PropTypes.string,
 };
 
-function Dropdown({ list, type, setOverlay }) {
+function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
   const { buildRequestParams } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [alertsList, setAlertsList] = useState(list);
@@ -25,6 +27,11 @@ function Dropdown({ list, type, setOverlay }) {
     dropdown: true,
     count: alertsList.length,
   });
+
+  useEffect(() => {
+    removeAlert(deletedAlertKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deletedAlertKey]);
 
   function handleAlertAction(alertKey, undo) {
     if (undo) {
@@ -69,6 +76,7 @@ function Dropdown({ list, type, setOverlay }) {
   }
 
   function removeAlert(alertKey) {
+    if (!alertKey) return;
     const newList = alertsList.filter(({ key }) => key !== alertKey);
     setAlertsList(newList);
     setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
@@ -95,10 +103,11 @@ function Dropdown({ list, type, setOverlay }) {
       </button>
       <div style={!isOpen ? { display: 'none' } : {}}>
         {visibleAlertsList.map((alert) => {
-          const { actions, backgroundColor, icon, key, message, isDeleted } = alert;
+          const { actions, backgroundColor, icon, key, message, isDeleted, docDk } = alert;
           return (
             <AlertBadge
               onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
+              removeAlert={removeAlert}
               key={key}
               customKey={key}
               icon={icon}
@@ -107,7 +116,9 @@ function Dropdown({ list, type, setOverlay }) {
               actions={actions}
               isDeleted={isDeleted}
               setOverlay={setOverlay}
+              docDk={docDk}
               type={type}
+              openDialogBox={openDialogBox}
             />
           );
         })}

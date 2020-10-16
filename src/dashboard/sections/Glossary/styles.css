@@ -1,11 +1,3 @@
-.wrapper {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 80px;
-}
-
 .glossary-wrapper {
   border-radius: 15px;
   -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
@@ -22,7 +14,7 @@
 }
 
 .glossary-intro {
-  border-radius: 15px 0 0 15px;
+  border-radius: 10px 0 0 10px;
   align-items: center;
   box-sizing: border-box;
   display: flex;

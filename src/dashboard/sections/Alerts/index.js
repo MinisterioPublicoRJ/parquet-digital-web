@@ -4,7 +4,7 @@ import './styles.css';
 import { useAuth } from '../../../app/authContext';
 
 import Api from '../../../api';
-import { SectionTitle, Spinner } from '../../../components';
+import { SectionTitle, Spinner, Modal, DialogBox } from '../../../components';
 import Dropdown from './Dropdown';
 import Overlay from './AlertsOverlay';
 import alertListFormatter from './utils/alertListFormatter';
@@ -16,7 +16,19 @@ function Alerts() {
   const [alertsError, setAlertsError] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [overlayType, setOverlayType] = useState(null);
+  const [docDk, setDocDk] = useState(null);
+
+  const [modalContent, setModalContent] = useState(null);
+  const [deletedAlertKey, setDeletedAlertKey] = useState(null);
   const loading = !alerts && !alertsError;
+  const dialogBoxMessage = (
+    <>
+      <h3>
+        <b>OUVIDORIA</b>
+      </h3>
+      <p>Deseja que eu abra uma ouvidoria sobre este problema?</p>
+    </>
+  );
 
   async function loadAlerts() {
     let alertList = [];
@@ -55,15 +67,34 @@ function Alerts() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
-    const { cpf, token } = buildRequestParams();
+    const { cpf, token, orgao } = buildRequestParams();
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
     const fullList = alertList.concat(hiresAlertList);
-    const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token) : [];
+    const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 
     setAlerts(cleanList);
     setAlertCount(fullList.length);
     setAlertsError(apiError);
+  }
+
+  function openDialogBox(link, key) {
+    setModalContent({ link, key });
+  }
+
+  async function sendEmail() {
+    const { key, link } = modalContent;
+    try {
+      // positive feedback after sending to ouvidoria delete the alert
+      setDeletedAlertKey(key);
+      const response = await Api.sendOmbudsmanEmail(link);
+      window.alert(response.data.detail);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setModalContent(null);
+      setDeletedAlertKey(null);
+    }
   }
 
   /**
@@ -82,8 +113,9 @@ function Alerts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function setOverlay(type) {
+  function setOverlay(type, docDk) {
     setOverlayType(type);
+    setDocDk(docDk);
     setShowOverlay(true);
   }
 
@@ -95,13 +127,31 @@ function Alerts() {
       </div>
       <div className="alerts-body-wrapper">
         <div className="alerts-body" style={showOverlay || loading ? { overflowY: 'hidden' } : {}}>
-          {showOverlay && <Overlay type={overlayType} setShowOverlay={setShowOverlay} />}
+          {showOverlay && (
+            <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
+          )}
+          {modalContent && (
+            <Modal onToggle={() => setModalContent(null)}>
+              <DialogBox
+                action={sendEmail}
+                message={dialogBoxMessage}
+                closeBox={() => setModalContent(null)}
+              />
+            </Modal>
+          )}
 
           {loading && <Spinner size="large" />}
           {alertsError && 'Não existem alertas para exibir.'}
           {alerts &&
-            Object.keys(alerts).map(type => (
-              <Dropdown type={type} list={alerts[type]} key={type} setOverlay={setOverlay} />
+            Object.keys(alerts).map((type) => (
+              <Dropdown
+                type={type}
+                list={alerts[type]}
+                key={type}
+                setOverlay={setOverlay}
+                openDialogBox={openDialogBox}
+                deletedAlertKey={deletedAlertKey}
+              />
             ))}
         </div>
       </div>

@@ -71,8 +71,7 @@ const AlertBadge = ({
   }
 
   async function handleActionLinks(alertAction, key) {
-    const { link } = alertAction;
-    const { link, actionType } = alert;
+    const { link, actionType } = alertAction;
     if (link) {
       if (actionType === 'openComplaint') {
         openDialogBox(link, key);

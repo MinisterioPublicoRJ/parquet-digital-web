@@ -206,7 +206,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment key={crime.key}>
+            <div className="crime-data" key={crime.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -231,7 +231,7 @@ export const PRCR_TEXTS = (type, data) => {
                 Data de prescrição:
                 {` ${crime.prescriptionFinalDate}`}
               </p>
-            </React.Fragment>
+            </div>
           ))}
 
           <p />
@@ -265,7 +265,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment key={crime.key}>
+            <div className="crime-data" key={crime.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -290,7 +290,7 @@ export const PRCR_TEXTS = (type, data) => {
                 Data de prescrição:
                 {` ${crime.prescriptionFinalDate}`}
               </p>
-            </React.Fragment>
+            </div>
           ))}
           <p>
             Como a data de prescrição ocorrerá em menos de 90 dias, eu lhe alertei para ajudar nas
@@ -325,7 +325,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment key={crime.key}>
+            <div className="crime-data" key={crime.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -350,7 +350,7 @@ export const PRCR_TEXTS = (type, data) => {
                 Data de prescrição:
                 {` ${crime.prescriptionFinalDate}`}
               </p>
-            </React.Fragment>
+            </div>
           ))}
 
           <p>
@@ -381,7 +381,7 @@ export const PRCR_TEXTS = (type, data) => {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime, index) => (
-            <React.Fragment key={crime.key}>
+            <div className="crime-data" key={crime.key}>
               <p>
                 Personagem:
                 {` ${crime.investigatedName}`}
@@ -406,7 +406,7 @@ export const PRCR_TEXTS = (type, data) => {
                 Data de prescrição:
                 {` ${crime.prescriptionFinalDate}`}
               </p>
-            </React.Fragment>
+            </div>
           ))}
           <p>
             Como a data de prescrição ocorrerá em menos de 90 dias, eu lhe alertei para ajudar nas

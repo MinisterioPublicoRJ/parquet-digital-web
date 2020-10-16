@@ -55,3 +55,7 @@
 .alerts-overlay .spinner--medium:after {
   margin: auto;
 }
+
+.crime-data {
+  margin: 32px 0px;
+}

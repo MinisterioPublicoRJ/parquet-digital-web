@@ -208,27 +208,27 @@ export const PRCR_TEXTS = (type, data) => {
           {data.map((crime, index) => (
             <div className="crime-data" key={crime.key}>
               <p>
-                Personagem:
+                <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
               </p>
 
               <p>
-                Tipo Penal:
+                <b>Tipo Penal:</b>
                 {` ${crime.penalType}`}
               </p>
 
               <p>
-                Máximo de Pena:
+                <b>Máximo de Pena:</b>
                 {` ${crime.maximumPenalty}`}
               </p>
 
               <p>
-                Data de início:
+                <b>Data de início:</b>
                 {` ${crime.prescriptionInitialDate}`}
               </p>
 
               <p>
-                Data de prescrição:
+                <b>Data de prescrição:</b>
                 {` ${crime.prescriptionFinalDate}`}
               </p>
             </div>
@@ -267,27 +267,27 @@ export const PRCR_TEXTS = (type, data) => {
           {data.map((crime, index) => (
             <div className="crime-data" key={crime.key}>
               <p>
-                Personagem:
+                <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
               </p>
 
               <p>
-                Tipo Penal:
+                <b>Tipo Penal:</b>
                 {` ${crime.penalType}`}
               </p>
 
               <p>
-                Máximo de Pena:
+                <b>Máximo de Pena:</b>
                 {` ${crime.maximumPenalty}`}
               </p>
 
               <p>
-                Data de início:
+                <b>Data de início:</b>
                 {` ${crime.prescriptionInitialDate}`}
               </p>
 
               <p>
-                Data de prescrição:
+                <b>Data de prescrição:</b>
                 {` ${crime.prescriptionFinalDate}`}
               </p>
             </div>
@@ -327,27 +327,27 @@ export const PRCR_TEXTS = (type, data) => {
           {data.map((crime, index) => (
             <div className="crime-data" key={crime.key}>
               <p>
-                Personagem:
+                <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
               </p>
 
               <p>
-                Tipo Penal:
+                <b>Tipo Penal:</b>
                 {` ${crime.penalType}`}
               </p>
 
               <p>
-                Máximo de Pena:
+                <b>Máximo de Pena:</b>
                 {` ${crime.maximumPenalty}`}
               </p>
 
               <p>
-                Data de início:
+                <b>Data de início:</b>
                 {` ${crime.prescriptionInitialDate}`}
               </p>
 
               <p>
-                Data de prescrição:
+                <b>Data de prescrição:</b>
                 {` ${crime.prescriptionFinalDate}`}
               </p>
             </div>
@@ -383,27 +383,27 @@ export const PRCR_TEXTS = (type, data) => {
           {data.map((crime, index) => (
             <div className="crime-data" key={crime.key}>
               <p>
-                Personagem:
+                <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
               </p>
 
               <p>
-                Tipo Penal:
+                <b>Tipo Penal:</b>
                 {` ${crime.penalType}`}
               </p>
 
               <p>
-                Máximo de Pena:
+                <b>Máximo de Pena:</b>
                 {` ${crime.maximumPenalty}`}
               </p>
 
               <p>
-                Data de início:
+                <b>Data de início:</b>
                 {` ${crime.prescriptionInitialDate}`}
               </p>
 
               <p>
-                Data de prescrição:
+                <b>Data de prescrição:</b>
                 {` ${crime.prescriptionFinalDate}`}
               </p>
             </div>

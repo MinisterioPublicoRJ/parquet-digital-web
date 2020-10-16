@@ -16,6 +16,8 @@ function Alerts() {
   const [alertsError, setAlertsError] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [overlayType, setOverlayType] = useState(null);
+  const [docDk, setDocDk] = useState(null);
+
   const [modalContent, setModalContent] = useState(null);
   const [deletedAlertKey, setDeletedAlertKey] = useState(null);
   const loading = !alerts && !alertsError;
@@ -111,8 +113,9 @@ function Alerts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function setOverlay(type) {
+  function setOverlay(type, docDk) {
     setOverlayType(type);
+    setDocDk(docDk);
     setShowOverlay(true);
   }
 
@@ -124,7 +127,9 @@ function Alerts() {
       </div>
       <div className="alerts-body-wrapper">
         <div className="alerts-body" style={showOverlay || loading ? { overflowY: 'hidden' } : {}}>
-          {showOverlay && <Overlay type={overlayType} setShowOverlay={setShowOverlay} />}
+          {showOverlay && (
+            <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
+          )}
           {modalContent && (
             <Modal onToggle={() => setModalContent(null)}>
               <DialogBox

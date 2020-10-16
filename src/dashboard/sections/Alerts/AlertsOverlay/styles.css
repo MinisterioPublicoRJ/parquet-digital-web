@@ -46,3 +46,16 @@
 .alerts-overlay h4 {
   margin-top: 0;
 }
+
+.alerts-overlay .spinner--medium {
+  width: 100%;
+  margin: 4vh auto;
+}
+
+.alerts-overlay .spinner--medium:after {
+  margin: auto;
+}
+
+.crime-data {
+  margin: 32px 0px;
+}

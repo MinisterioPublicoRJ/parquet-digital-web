@@ -22,6 +22,8 @@
   --grayTooltip: #555;
   --darkWelcome: #4a4a4a;
   --lightBlue: #bddff0;
+  --grayPagination: #8998AC;
+
 
   --pt-turquoise: #56e8e1;
   --pt-pink: #ff0086;
@@ -39,6 +41,7 @@
 
   --titleFontSize: calc(var(--defaultFontSize) * 2);
   --titleFont: Roboto;
+  --defaultPagination: 'Montserrat-Regular';
   --defaultWelcomeBold: 'Avenir Black', sans-serif;
   --defaultWelcome: 'Avenir Black', sans-serif;
   --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.1);

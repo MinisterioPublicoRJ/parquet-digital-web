@@ -756,6 +756,7 @@ function roOccurrence({ dropdown, alertCode, count, docNum }) {
     );
   } else {
     key = `${alertCode}-${docNum}`;
+    const single = count === 1;
     message = (
       <span>
         <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>

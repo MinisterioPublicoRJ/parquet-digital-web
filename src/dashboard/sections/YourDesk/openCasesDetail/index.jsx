@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../api';
-import { Spinner, CustomTable } from '../../../../components';
+import { Spinner, CustomTable, Pagination } from '../../../../components';
 import DeskCasesChart from '../deskCases';
 
 import './styles.css';
@@ -23,6 +23,7 @@ class OpenCasesDetail extends React.Component {
     super(props);
     this.state = {
       activeTab: 'under20',
+      //total: 0
     };
   }
 
@@ -141,7 +142,9 @@ class OpenCasesDetail extends React.Component {
               columns={TABLE_COLUMNS}
               showHeader
             />
+
           )}
+          <Pagination />
           {emptyTab && <p className="paragraphWrapper"> Nenhum processo para exibir </p>}
         </div>
       </>

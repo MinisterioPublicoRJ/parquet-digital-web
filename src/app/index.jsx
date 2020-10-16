@@ -108,6 +108,7 @@ function App() {
     authStore.autoLogin(token, scaToken);
   }
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
   if (loading) {
     return <Spinner size="large" />;

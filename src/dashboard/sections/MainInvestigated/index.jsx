@@ -128,6 +128,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
     getMainInvestigated();
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
 
   function render() {

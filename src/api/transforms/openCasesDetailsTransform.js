@@ -10,3 +10,4 @@ const openCasesDetailsTransform = ({
 });
 
 export default openCasesDetailsTransform;
+

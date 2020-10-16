@@ -291,6 +291,11 @@ const Api = (() => {
     return prescribedCrimeTransform(data);
   }
 
+  async function sendOmbudsmanEmail(link) {
+    const formData = new FormData();
+    return axios.post(link, formData);
+  }
+
   return {
     login,
     scaLogin,
@@ -318,6 +323,7 @@ const Api = (() => {
     getInvestigatedProfile,
     getRadarCompareData,
     getPRCRData,
+    sendOmbudsmanEmail,
   };
 })();
 

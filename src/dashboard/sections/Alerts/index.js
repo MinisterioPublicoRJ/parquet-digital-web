@@ -4,7 +4,7 @@ import './styles.css';
 import { useAuth } from '../../../app/authContext';
 
 import Api from '../../../api';
-import { SectionTitle, Spinner } from '../../../components';
+import { SectionTitle, Spinner, Modal, DialogBox } from '../../../components';
 import Dropdown from './Dropdown';
 import Overlay from './AlertsOverlay';
 import alertListFormatter from './utils/alertListFormatter';
@@ -18,7 +18,17 @@ function Alerts() {
   const [overlayType, setOverlayType] = useState(null);
   const [docDk, setDocDk] = useState(null);
 
+  const [modalContent, setModalContent] = useState(null);
+  const [deletedAlertKey, setDeletedAlertKey] = useState(null);
   const loading = !alerts && !alertsError;
+  const dialogBoxMessage = (
+    <>
+      <h3>
+        <b>OUVIDORIA</b>
+      </h3>
+      <p>Deseja que eu abra uma ouvidoria sobre este problema?</p>
+    </>
+  );
 
   async function loadAlerts() {
     let alertList = [];
@@ -68,6 +78,25 @@ function Alerts() {
     setAlertsError(apiError);
   }
 
+  function openDialogBox(link, key) {
+    setModalContent({ link, key });
+  }
+
+  async function sendEmail() {
+    const { key, link } = modalContent;
+    try {
+      // positive feedback after sending to ouvidoria delete the alert
+      setDeletedAlertKey(key);
+      const response = await Api.sendOmbudsmanEmail(link);
+      window.alert(response.data.detail);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setModalContent(null);
+      setDeletedAlertKey(null);
+    }
+  }
+
   /**
    * uses alert key number to remove an alertbadge from the list, updates the state
    * @param  {number} alert key
@@ -101,12 +130,28 @@ function Alerts() {
           {showOverlay && (
             <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
           )}
+          {modalContent && (
+            <Modal onToggle={() => setModalContent(null)}>
+              <DialogBox
+                action={sendEmail}
+                message={dialogBoxMessage}
+                closeBox={() => setModalContent(null)}
+              />
+            </Modal>
+          )}
 
           {loading && <Spinner size="large" />}
           {alertsError && 'Não existem alertas para exibir.'}
           {alerts &&
             Object.keys(alerts).map((type) => (
-              <Dropdown type={type} list={alerts[type]} key={type} setOverlay={setOverlay} />
+              <Dropdown
+                type={type}
+                list={alerts[type]}
+                key={type}
+                setOverlay={setOverlay}
+                openDialogBox={openDialogBox}
+                deletedAlertKey={deletedAlertKey}
+              />
             ))}
         </div>
       </div>

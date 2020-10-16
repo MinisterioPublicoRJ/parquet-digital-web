@@ -698,6 +698,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     icon: <ClockIcon />,
     key,
     message,
+    docDk,
   };
 }
 
@@ -788,6 +789,7 @@ function roOccurrence({ dropdown, alertCode, count, docNum }) {
     );
   } else {
     key = `${alertCode}-${docNum}`;
+    const single = count === 1;
     message = (
       <span>
         <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>

@@ -48,6 +48,14 @@
   border-bottom: 2px solid;
 }
 
+.alerts-body .modal-outer {
+  height: 100%;
+}
+
+.alerts-body .modal-innerWrapper {
+  width: 64%;
+}
+
 /* PHONES */
 @media (max-width: 480px) {
   .alerts-wrapper {

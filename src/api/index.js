@@ -28,6 +28,8 @@ import {
   INVESTIGATED_PERSONAL_PROFILE_URL,
   RADAR_COMPARE_TUTELA,
   RADAR_COMPARE_PIP,
+  ONGOING_INVESTIGATIONS_LIST,
+  PRCR_ALERT_DATA,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -53,9 +55,9 @@ import {
   jwtUserTransform,
   snakeToCamelTransform,
   radarCompareTransform,
+  ongoingInvestigationsListTransform,
+  prescribedCrimeTransform,
 } from './transforms';
-
-// import { setUser } from '../user';
 
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
 
@@ -189,6 +191,15 @@ const Api = (() => {
     return processListTransform(data);
   }
 
+  async function getOngoingInvestigationsList({ orgao, token }) {
+    const { data } = await axios.get(
+      ONGOING_INVESTIGATIONS_LIST({ orgao }),
+      buildRequestConfig(token),
+    );
+
+    return ongoingInvestigationsListTransform(data);
+  }
+
   async function getPipRadarData({ orgao, token }) {
     const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
     return pipRadarTransform(data);
@@ -257,7 +268,6 @@ const Api = (() => {
     );
     return data;
   }
-
   /**
    * This function gets investigated profile data with representanteDk with pessDk as optional param
    *
@@ -283,6 +293,16 @@ const Api = (() => {
     const { data } = await axios.get(endpoint, buildRequestConfig(token));
 
     return radarCompareTransform(data);
+  }
+
+  async function getPRCRData(docDk, { token }) {
+    const { data } = await axios.get(PRCR_ALERT_DATA({ docDk, token }));
+    return prescribedCrimeTransform(data);
+  }
+
+  async function sendOmbudsmanEmail(link) {
+    const formData = new FormData();
+    return axios.post(link, formData);
   }
 
   return {
@@ -311,6 +331,9 @@ const Api = (() => {
     undoRemoveAlert,
     getInvestigatedProfile,
     getRadarCompareData,
+    getOngoingInvestigationsList,
+    getPRCRData,
+    sendOmbudsmanEmail,
   };
 })();
 

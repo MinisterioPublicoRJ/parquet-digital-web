@@ -30,6 +30,7 @@ const OngoingInvestigations = ({ isActive }) => {
       }
     };
     loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {

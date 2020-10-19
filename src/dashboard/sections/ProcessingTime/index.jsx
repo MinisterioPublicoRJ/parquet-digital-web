@@ -52,12 +52,11 @@ const ProcessingTime = () => {
       // 'bad' section, from the last section all the way to max
       { x: 0, y: (max - halfMaxAvg) / max, color: PT_PIE_COLORS[2], label: Number(max).toFixed(0) },
     ];
-    console.log('pieData', pieData);
 
     const points = [
-      { x: 2, y: min / max, type: 'min' },
-      { x: 1, y: (average - min) / max, type: 'average' },
-      { x: 0, y: (max - average) / max, type: 'max' },
+      { x: 2, y: average, type: 'min', label: max },
+      { x: 1, y: max - average, type: 'average', label: max - average },
+      { x: 0, y: 0, type: 'max', label: 0 },
     ];
 
     const pointerPosition = [

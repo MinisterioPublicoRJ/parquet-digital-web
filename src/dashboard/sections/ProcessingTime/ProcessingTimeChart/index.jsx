@@ -169,7 +169,7 @@ function TempoTramitacaoChart({
         {/*  this is the actual pie chart that renders the bars and the labels around it */}
         <VictoryPie {...chartPieSettings} data={data} />
         {/* This pie has the circles */}
-        {/* <VictoryPie {...labelsPieSettings} data={points} /> */}
+        <VictoryPie {...labelsPieSettings} data={points} />
       </VictoryChart>
     </svg>
   );

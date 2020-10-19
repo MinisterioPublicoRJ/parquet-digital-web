@@ -156,6 +156,11 @@
   line-height: 32px;
 }
 
+.today-btn:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
   .today-robotPic {

@@ -779,7 +779,6 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }, alert) {
 
 function roOccurrence(alert, token) {
   const { dropdown, alertCode, count, daysPassed, alertId } = alert;
-  console.log('token: ', token);
   const dpNumber = alertId;
   let key;
   let message;

@@ -20,6 +20,7 @@ import {
   IC1A_ACTION_GENERATE_DOC,
   PPFP_ACTION_EXTEND,
   PPFP_ACTION_CONVERT,
+  UNSENT_OCCURRENCE_LIST,
 } from '../../../../api/endpoints';
 
 import {
@@ -33,6 +34,7 @@ import {
   GENERATE_DOC,
   GENERATE_MINUTA,
   EXTEND_DEADLINE,
+  DOWNLOAD_LIST,
 } from './actionConstants';
 
 /**
@@ -85,7 +87,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
       return compConstructor(alert, orgao, token);
 
     case 'RO':
-      return roOccurrence(alert);
+      return roOccurrence(alert, token);
 
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
@@ -774,7 +776,10 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function roOccurrence({ dropdown, alertCode, count, docNum }) {
+function roOccurrence(alert, token) {
+  const { dropdown, alertCode, count, daysPassed, alertId } = alert;
+  const dpNumber = alertId;
+  const unsentOcurrences = daysPassed;
   let key;
   let message;
 
@@ -783,29 +788,30 @@ function roOccurrence({ dropdown, alertCode, count, docNum }) {
     const single = count === 1;
     message = (
       <span>
-        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${count}`}</strong> não chegaram no MPRJ
+        Há <strong>{` ${count} ${single ? 'DP' : 'DPs'} `}</strong>
+        da sua região com registros de ocorrência que não chegaram no MPRJ
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
-    const single = count === 1;
+    key = `${alertCode}-${alertId}`;
+    const single = unsentOcurrences === 1;
     message = (
       <span>
-        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${count}`} DP</strong> não chegaram no MPRJ
+        <strong>{` ${unsentOcurrences} ${single ? 'registro' : 'registros'} `}</strong>
+        de ocorrência da <strong>{` ${dpNumber}`}ª DP</strong> não chegaram no MPRJ
       </span>
     );
   }
 
   return {
-    actions: [DETAIL(), DELETE],
+    actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE],
     backgroundColor: '#F8BD6C',
     icon: <Ro />,
     key,
     message,
   };
 }
+
 function ctacConstructor({ dropdown, alertCode, count, docNum }) {
   let key;
   let message;

@@ -739,9 +739,10 @@ function gateConstructor(alert) {
   };
 }
 
-function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
+function dt2iConstructor({ dropdown, alertCode, count, docNum }, alert) {
   let key;
   let message;
+  console.log('alert', alert);
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -774,7 +775,8 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function roOccurrence({ dropdown, alertCode, count, docNum }) {
+function roOccurrence(alert) {
+  const { dropdown, alertCode, count, daysPassed, alertId } = alert;
   let key;
   let message;
 
@@ -783,17 +785,17 @@ function roOccurrence({ dropdown, alertCode, count, docNum }) {
     const single = count === 1;
     message = (
       <span>
-        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${count}`}</strong> não chegaram no MPRJ
+        Há <strong>{` ${count} ${single ? 'DP' : 'DPs'} `}</strong>
+        da sua região com registros de ocorrência que não chegaram no MPRJ
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
-    const single = count === 1;
+    key = `${alertCode}-${alertId}`;
+    const single = daysPassed === 1;
     message = (
       <span>
-        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${count}`} DP</strong> não chegaram no MPRJ
+        <strong>{` ${daysPassed} ${single ? 'registro' : 'registros'} `}</strong>
+        de ocorrência da <strong>{` ${alertId}`}ª DP</strong> não chegaram no MPRJ
       </span>
     );
   }

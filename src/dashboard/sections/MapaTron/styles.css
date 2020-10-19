@@ -20,8 +20,10 @@
   box-sizing: border-box;
   display: flex;
   width: 18vw;
+  height: 90vh;
   background-color: #bddff0;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .mapatron-intro h2 {
@@ -52,18 +54,21 @@
   margin: 3vw 0px 2vw 0px;
   max-height: 42vh;
 }
+
 .mapatron-links {
   align-items: center;
   box-sizing: border-box;
   display: flex;
   width: 16vw;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
+  padding-left: 36px;
 }
+
 .mapatron-btn {
-  width: 200px;
+  width: 30%;
+  margin: 1%;
   height: 32px;
-  margin: 4px 0px;
   color: var(--white);
   background-color: var(--darkBlue);
   border: 6px var(--darkBlue);

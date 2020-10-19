@@ -97,6 +97,10 @@
   margin: 5px;
 }
 
+.radarModal-menuList button:active {
+  background-color: gray;
+}
+
 .radarModal-menuList button span {
   color: var(--darkBlue);
   font-weight: normal;
@@ -164,7 +168,7 @@ div .radarModal-mainSubtitles-item:before {
   text-transform: capitalize;
 }
 
-.radarModal-mainSubtitles-item:first-child{
+.radarModal-mainSubtitles-item:first-child {
   padding-right: 60px;
 }
 

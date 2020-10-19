@@ -8,10 +8,10 @@
   justify-content: center;
   flex-wrap: wrap;
   justify-content: inherit;
-  max-width: 80vw;
-  max-height: 90vh;
-  min-height: 78vh;
+  min-width: 95vw;
+  height: 90vh;
   background-color: #ffffff;
+  margin-top: -64px;
 }
 
 .mapatron-intro {
@@ -19,9 +19,11 @@
   align-items: center;
   box-sizing: border-box;
   display: flex;
-  width: 16vw;
+  width: 18vw;
+  height: 90vh;
   background-color: #bddff0;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .mapatron-intro h2 {
@@ -52,18 +54,21 @@
   margin: 3vw 0px 2vw 0px;
   max-height: 42vh;
 }
+
 .mapatron-links {
   align-items: center;
   box-sizing: border-box;
   display: flex;
   width: 16vw;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
+  padding-left: 36px;
 }
+
 .mapatron-btn {
-  width: 200px;
+  width: 30%;
+  margin: 1%;
   height: 32px;
-  margin: 4px 0px;
   color: var(--white);
   background-color: var(--darkBlue);
   border: 6px var(--darkBlue);
@@ -85,8 +90,8 @@
   display: flex;
   flex-direction: column;
   flex-wrap: inherit;
-  max-height: 78vh;
-  width: 64vw;
+  height: 100%;
+  width: 80vw;
   overflow: hidden;
   border-radius: 0 10px 10px 0;
 }

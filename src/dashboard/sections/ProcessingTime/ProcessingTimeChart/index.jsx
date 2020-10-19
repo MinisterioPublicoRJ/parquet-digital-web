@@ -18,7 +18,7 @@ const propTypes = {
       color: PropTypes.string,
     }),
   ).isRequired,
-  scatter: PropTypes.arrayOf(
+  points: PropTypes.arrayOf(
     PropTypes.shape({
       x: PropTypes.number,
       y: PropTypes.number,
@@ -32,7 +32,7 @@ const propTypes = {
 
 function TempoTramitacaoChart({
   data,
-  scatter,
+  points,
   labelText,
   domain,
   labelCompliment,
@@ -69,7 +69,7 @@ function TempoTramitacaoChart({
     height: 200,
     labelComponent: <LabelWrapper />,
     labelRadius: 105,
-    labelPosition: 'endAngle',
+    labelPosition: ({ index }) => (index === 2 ? 'endAngle' : 'startAngle'),
     radius: 100,
     startAngle: -110,
     padAngle: 2,
@@ -139,8 +139,7 @@ function TempoTramitacaoChart({
 
   return (
     <svg width="100%" height="100%" viewBox="0 0 200 200">
-
-      {/* The circle is just a broder for the center text */}
+      {/* The circle is just a border for the center text */}
       <circle cx="100" cy="140" r="40" fill="none" stroke="#B3B3B3" />
 
       <VictoryChart polar {...victoryChartSettings}>
@@ -170,7 +169,7 @@ function TempoTramitacaoChart({
         {/*  this is the actual pie chart that renders the bars and the labels around it */}
         <VictoryPie {...chartPieSettings} data={data} />
         {/* This pie has the circles */}
-        <VictoryPie {...labelsPieSettings} data={scatter} />
+        {/* <VictoryPie {...labelsPieSettings} data={points} /> */}
       </VictoryChart>
     </svg>
   );

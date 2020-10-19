@@ -15,18 +15,14 @@ export default function LabelWrapper(props) {
       customProps = {
         text: `${text}\ndias`,
         y: y - 20,
-        x: x + 27,
-        verticalAnchor: 'start',
-        textAnchor: 'start',
+        x: x + 20,
       };
       break;
     case 2: // min value
       customProps = {
         text: `${text}\ndias`,
-        y: y + 25,
-        x: x - 20,
-        verticalAnchor: 'start',
-        textAnchor: 'end',
+        y: y + 10,
+        x: x - 30,
       };
       break;
     default:

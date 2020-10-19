@@ -29,7 +29,7 @@ const ProcessingTime = () => {
   const mainCategory = getCategoryByType(currentOffice);
   const [loading, setLoading] = useState(true);
 
-  const cleanChartData = raw => {
+  const cleanChartData = (raw) => {
     const organAvg = Number(raw.orgaoData.average).toFixed(0);
     const { min, max, average } = raw.pacoteData;
     const domain = { min, max };
@@ -52,6 +52,7 @@ const ProcessingTime = () => {
       // 'bad' section, from the last section all the way to max
       { x: 0, y: (max - halfMaxAvg) / max, color: PT_PIE_COLORS[2], label: Number(max).toFixed(0) },
     ];
+    console.log('pieData', pieData);
 
     const points = [
       { x: 2, y: min / max, type: 'min' },
@@ -121,7 +122,7 @@ const ProcessingTime = () => {
       <div className="pt-graph">
         <ProcessingTimeChart
           data={chartData.pieData}
-          scatter={chartData.points}
+          points={chartData.points}
           domain={chartData.domain}
           labelText={chartData.organAvg}
           pointerPosition={chartData.pointerPosition}

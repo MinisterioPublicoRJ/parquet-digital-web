@@ -741,10 +741,9 @@ function gateConstructor(alert) {
   };
 }
 
-function dt2iConstructor({ dropdown, alertCode, count, docNum }, alert) {
+function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
   let key;
   let message;
-  console.log('alert', alert);
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;

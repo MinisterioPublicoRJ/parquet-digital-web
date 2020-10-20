@@ -12,9 +12,10 @@ const Pagination = ({ totalPages, handlePageClick, currentPage }) => {
   function renderPageNumberButtons() {
     let firstButtonNumber = 1;
     if (currentPage > 3) firstButtonNumber = currentPage - 2;
-    if (currentPage + 2 > totalPages) firstButtonNumber = totalPages - 4;
+    if (currentPage + 2 > totalPages && totalPages > 5) firstButtonNumber = totalPages - 4;
+    if (firstButtonNumber < 1) firstButtonNumber = 1;
+
     const buttonNumbers = [];
-    console.log('inside render');
     for (let i = firstButtonNumber; i < firstButtonNumber + 5 && i <= totalPages; i++) {
       buttonNumbers.push(i);
     }

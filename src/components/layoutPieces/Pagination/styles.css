@@ -1,0 +1,30 @@
+.mainPagination {
+  display: flex;
+  justify-content: center;
+}
+.btnPaginationItem {
+  display: flex;
+  color: var(--grayPagination);
+  margin-top: 10px;
+}
+.paginationItem {
+  margin-top: 3px;
+}
+.btnPaginationItem > button {
+  color: var(--grayPagination);
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 15px;
+  opacity: 1;
+}
+.btnPaginationItem > button span::after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  border-style: solid;
+  border-color: var(--grayPagination);
+  background-color: var(--grayPagination);
+  border-width: var(--selectorArrowSize);
+  margin: 10px;
+}

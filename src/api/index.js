@@ -138,9 +138,9 @@ const Api = (() => {
     return courtCasesDetailsTransform(data);
   }
 
-  async function getOpenCasesList({ orgao, cpf, token }, list) {
+  async function getOpenCasesList({ orgao, cpf, token }, list, page) {
     const { data } = await axios.get(
-      OPEN_CASES_LIST({ orgao, cpf, list }),
+      OPEN_CASES_LIST({ orgao, cpf, list, page }),
       buildRequestConfig(token),
     );
 

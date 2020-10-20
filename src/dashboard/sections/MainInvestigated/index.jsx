@@ -22,8 +22,8 @@ function MainInvestigated({ setInvestigatedProfile }) {
     Api.actionMainInvestigated({ ...buildRequestParams(), action: 'remove', representanteDk });
 
     // give user positivie feedback regardless of request success
-    setTableData((oldTableData) =>
-      oldTableData.filter((item) => item.representanteDk !== representanteDk),
+    setTableData(oldTableData =>
+      oldTableData.filter(item => item.representanteDk !== representanteDk),
     );
   }
 
@@ -49,9 +49,9 @@ function MainInvestigated({ setInvestigatedProfile }) {
     });
 
     // give user positivie feedback regardless of request success
-    setTableData((oldTableData) => {
+    setTableData(oldTableData => {
       const updatedArray = [...oldTableData];
-      const representanteIndex = updatedArray.findIndex((item) => {
+      const representanteIndex = updatedArray.findIndex(item => {
         return item.representanteDk === representanteDk;
       });
 
@@ -61,7 +61,11 @@ function MainInvestigated({ setInvestigatedProfile }) {
       updatedArray[representanteIndex].actions = (
         <ActionButtons
           onPin={() => pinInvestigated(!oldPinStatus, representanteDk)}
-          onDelete={() => deleteInvestigated(representanteDk)}
+          onDelete={() => {
+            window.confirm(
+              'Essa ação não pode ser desfeita. \r\nVocê tem certeza que deseja excluir?',
+            ) && deleteInvestigated(representanteDk);
+          }}
           isPinned={!oldPinStatus}
         />
       );
@@ -98,7 +102,11 @@ function MainInvestigated({ setInvestigatedProfile }) {
         actions: (
           <ActionButtons
             onPin={() => pinInvestigated(isPinned, representanteDk)}
-            onDelete={() => deleteInvestigated(representanteDk)}
+            onDelete={() => {
+              window.confirm(
+                'Essa ação não pode ser desfeita. \r\nVocê tem certeza que deseja excluir?',
+              ) && deleteInvestigated(representanteDk);
+            }}
             isPinned={isPinned}
           />
         ),

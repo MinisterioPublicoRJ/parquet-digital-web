@@ -24,7 +24,8 @@ class OpenCasesDetail extends React.Component {
     super(props);
     this.state = {
       activeTab: 'under20',
-      //total: 0
+      atualPage: '',
+      totalPage: '20',
     };
   }
 

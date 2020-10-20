@@ -1,24 +1,23 @@
 .mainPagination{
     display: flex;
-    justify-content: space-between;
     justify-content: center;
-    align-items: center;
+}
+.btnPaginationItem{
+    display: flex;
+    color: var(--grayPagination);
+    margin-top: 10px;
+}
+.paginationItem{
+    margin-top: 3px;
 }
 .btnPaginationItem > button{
     color: var(--grayPagination);
-    display: flex;
-    margin: 0 10px;
     border: none;
     cursor: pointer;
     background-color: transparent;
-    flex-direction: row;
     font-family: var(--defaultPagination);
     font-size: 15px;
-    margin-top: 10px;
     opacity: 1;
-}
-.mainPagination > span{
-    margin-top: 10px;
 }
 .btnPaginationItem > button span::after {
     visibility: visible;

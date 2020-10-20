@@ -15,7 +15,7 @@ function openInvestigationsMetrics({ variacaoAcervo }) {
 
 function courtCasesMetrics({ nrAcoes12MesesAtual, nrAcoesUltimos60Dias, variacao12Meses }) {
   const formattedVariation = formatPercentage(Math.abs(variacao12Meses));
-  const formattedVariationAtualMonth = formatPercentage(Math.abs(nrAcoes12MesesAtual));
+  const formattedVariationCurrentAction = formatPercentage(Math.abs(nrAcoes12MesesAtual));
 
   return (
     <p>
@@ -32,7 +32,7 @@ function courtCasesMetrics({ nrAcoes12MesesAtual, nrAcoesUltimos60Dias, variacao
       com relação ao mesmo período anterior.
       <p>No último ano, você  ajuizou  <strong>{` ${nrAcoes12MesesAtual} ${
         nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'} `}</strong>
-      <strong> com aumento de {` ${formattedVariationAtualMonth} `}</strong>{' '}
+      <strong> com aumento de {` ${formattedVariationCurrentAction} `}</strong>{' '}
         em comparação com o ano anterior
       </p>
     </p>

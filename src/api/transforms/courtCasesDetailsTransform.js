@@ -6,7 +6,7 @@ const courtCasesDetailsTransform = ({
 }) => ({
   proposedActions60Days: nr_acoes_propostas_60_dias,
   proposedActionsVariation12Months: variacao_12_meses,
-  proposedActionsAnual: nr_acoes_12_meses_atual,
+  currentProposedActions: nr_acoes_12_meses_atual,
   topProsecutors: top_n.map(p => ({
     name: p.nm_promotoria,
     proposedActions30Days: p.nr_acoes_propostas_30_dias,

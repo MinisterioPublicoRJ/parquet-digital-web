@@ -127,6 +127,11 @@
   z-index: 0;
 }
 
+.today-robotPic img {
+  margin-right: -3px;
+  border-radius: 0 0 15px 0;
+}
+
 .today-glossaryBtn {
   cursor: help;
   position: absolute;

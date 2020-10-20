@@ -73,6 +73,10 @@
   /* --elementPadding: 1.5vh; */
 }
 
+button{
+  cursor: pointer;
+}
+
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
   :root {

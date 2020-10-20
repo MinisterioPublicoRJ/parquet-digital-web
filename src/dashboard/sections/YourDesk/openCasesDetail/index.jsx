@@ -25,7 +25,7 @@ class OpenCasesDetail extends React.Component {
     this.state = {
       activeTab: 'under20',
       currentPage: 1,
-      totalPages: {},
+      totalPages: this.calcTotalPages(props.chartData),
     };
   }
 
@@ -69,21 +69,23 @@ class OpenCasesDetail extends React.Component {
       const newState = {};
       newState[`${tab}Details`] = res;
       newState[`${tab}Error`] = error;
-      this.setState({ ...newState });
+      this.setState({ ...newState, currentPage: page });
     }
   }
 
-  async handlePageClick(page) {
+  handlePageClick(page) {
     if (page < 1 || page > this.state.totalPages[this.state.activeTab]) return;
     const { chartData } = this.props;
     const tabName = this.state.activeTab;
     const hasItems = chartData[tabName];
 
     if (hasItems) {
-      this.getOpenCasesList(tabName, page);
+      const newState = {};
+      newState[`${tabName}Details`] = null;
+      this.setState({ ...newState }, () => {
+        this.getOpenCasesList(tabName, page);
+      });
     }
-
-    this.setState({ currentPage: page });
   }
 
   /**
@@ -175,17 +177,20 @@ class OpenCasesDetail extends React.Component {
               showHeader
             />
           )}
-          <Pagination
-            totalPages={totalPages[activeTab] ? totalPages[activeTab] : 0}
-            handlePageClick={(page) => this.handlePageClick(page)}
-            currentPage={this.state.currentPage}
-          />
           {emptyTab && (
             <img
               height="100%"
               width="100%"
               alt="Nenhuma vista aberta até o momento"
               src={noOpenCases}
+            />
+          )}
+
+          {!emptyTab && (
+            <Pagination
+              totalPages={totalPages[activeTab] || 0}
+              handlePageClick={(page) => this.handlePageClick(page)}
+              currentPage={this.state.currentPage}
             />
           )}
         </div>

@@ -41,7 +41,7 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
     } else {
       setText(
         <p>
-          Isso é um overlay do tipo
+          {'Isso é um overlay do tipo '}
           {type}
         </p>,
       );

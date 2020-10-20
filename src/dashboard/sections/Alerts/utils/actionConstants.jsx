@@ -86,3 +86,11 @@ export const EXTEND_DEADLINE = (link) => ({
   background: '#F8BD6C',
   link,
 });
+
+export const DOWNLOAD_LIST = (link) => ({
+  actionType: 'download',
+  icon: <DocActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Baixar lista',
+  background: '#71D0A4',
+  link,
+});

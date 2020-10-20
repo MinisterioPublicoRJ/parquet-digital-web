@@ -12,6 +12,10 @@ h3 {
   text-transform: uppercase;
 }
 
+button {
+  cursor: pointer;
+}
+
 :focus {
   outline: -webkit-focus-ring-color auto 0px;
 }

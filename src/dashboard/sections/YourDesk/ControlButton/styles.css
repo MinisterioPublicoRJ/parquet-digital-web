@@ -1,4 +1,4 @@
-:root{
+:root {
   --buttonBase: 156;
   --buttonSize: calc(var(--buttonBase) * var(--widthScale));
   --activeButtonSize: calc(var(--buttonSize) * 1.2);
@@ -26,6 +26,7 @@
   text-align: center;
   width: var(--buttonSize);
   transition: 1s;
+  cursor: pointer;
 }
 
 .controlButton--inactive {
@@ -36,6 +37,10 @@
   color: var(--secondary);
   flex-direction: column;
   justify-content: center;
+}
+
+.controlButton--inactive:hover {
+  border: solid var(--primary) 1px;
 }
 
 .controlButton--active {

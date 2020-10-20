@@ -22,6 +22,7 @@ const Pagination = ({ totalPages, handlePageClick, currentPage }) => {
 
     const buttons = buttonNumbers.map((number) => (
       <button
+        key={number}
         type="button"
         className={`pagination-number-button ${currentPage === number ? 'active' : ''}`}
         onClick={(e) => handlePageClick(number)}

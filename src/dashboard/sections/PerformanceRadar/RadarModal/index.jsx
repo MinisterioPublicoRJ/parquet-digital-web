@@ -129,7 +129,7 @@ function RadarModal({ compareData, onToggle }) {
               {loadingError && <p>Nenhuma promotoria encontrada :(</p>}
               {compareData &&
                 filteredList.map(({ meta, graphData }) => (
-                  <li>
+                  <li key={meta.name}>
                     <button type="button" onClick={() => setCurrentCompared({ meta, graphData })}>
                       {meta.name}
                       <span>{meta.codamp.toLocaleLowerCase()}</span>

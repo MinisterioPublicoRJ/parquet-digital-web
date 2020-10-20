@@ -27,6 +27,7 @@ import {
   DELETE,
   COMPRAS,
   OUVIDORIA,
+  SANEAMENTO,
   OUVIDORIA_COMPRAS,
   IT,
   CALCULO,
@@ -86,6 +87,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'COMP':
       return compConstructor(alert, orgao, token);
 
+    case 'ISPS':
+      return ispsConstructor(alert);
+
     case 'RO':
       return roOccurrence(alert, token);
 
@@ -99,7 +103,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     // ALERTAS DA PIP
     case 'GATE':
-    return gateConstructor(alert);
+      return gateConstructor(alert);
 
     case 'DT2I':
       return dt2iConstructor(alert);
@@ -149,6 +153,43 @@ function compConstructor(alert, orgao, token) {
   return {
     actions,
     backgroundColor: '#F8BD6C',
+    icon: <IconContratacoes />,
+    key,
+    message,
+  };
+}
+
+function ispsConstructor(alert) {
+  const { indicador_iditem, indicador, item, iditem, dropdown, alertCode, count } = alert;
+  let key;
+  let message;
+  let actions;
+
+  if (dropdown) {
+    actions = [];
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        <strong> {`${count}`} </strong>
+        {`${single ? 'indicador' : 'indicadores'}`} de saneamento estão em
+        <strong> vermelho </strong> nesta cidade
+      </span>
+    );
+  } else {
+    key = `${indicador}-${iditem}`;
+    actions = [OUVIDORIA(), SANEAMENTO({ compId: indicador_iditem, indicador }), DELETE];
+    message = (
+      <span>
+        Os valores do indicador <strong>{` ${indicador} `}</strong>
+        nesta cidade merecem sua atenção.
+      </span>
+    );
+  }
+
+  return {
+    actions,
+    backgroundColor: '#71D0A4',
     icon: <IconContratacoes />,
     key,
     message,

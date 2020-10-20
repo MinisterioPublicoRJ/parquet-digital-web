@@ -21,6 +21,7 @@ export { default as PromotronGlossario } from './promotronGlossario';
 export { default as GlossaryBook } from './glossaryBook';
 export { default as IntroScreenInterrogation } from './introScreenInterrogation';
 export { default as IconCompras } from './iconCompras';
+export { default as IconSaneamento } from './iconSaneamento';
 export { default as Search } from './search';
 export { default as IconVd } from './iconVd';
 export { default as ItActionIcon } from './itActionIcon';

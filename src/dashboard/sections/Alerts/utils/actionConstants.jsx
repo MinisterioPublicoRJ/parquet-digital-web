@@ -3,6 +3,7 @@ import {
   Bin,
   Ouvidoria,
   IconCompras,
+  IconSaneamento,
   ItActionIcon,
   CalculatorActionIcon,
   DetailActionIcon,
@@ -22,6 +23,14 @@ export const COMPRAS = ({ compId, contrato }) => ({
   icon: <IconCompras fillColor="white" width="30px" height="30px" />,
   text: 'Painel de Compras',
   background: '#F8BD6C',
+  link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
+});
+
+export const SANEAMENTO = ({ compId, contrato }) => ({
+  actionType: 'link',
+  icon: <IconSaneamento fillColor="white" width="30px" height="30px" />,
+  text: 'Painel do Saneamento',
+  background: '#71D0A4',
   link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
 });
 

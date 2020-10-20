@@ -29,7 +29,7 @@ const ProcessingTime = () => {
   const mainCategory = getCategoryByType(currentOffice);
   const [loading, setLoading] = useState(true);
 
-  const cleanChartData = raw => {
+  const cleanChartData = (raw) => {
     const organAvg = Number(raw.orgaoData.average).toFixed(0);
     const { min, max, average } = raw.pacoteData;
     const domain = { min, max };
@@ -54,9 +54,9 @@ const ProcessingTime = () => {
     ];
 
     const points = [
-      { x: 2, y: min / max, type: 'min' },
-      { x: 1, y: (average - min) / max, type: 'average' },
-      { x: 0, y: (max - average) / max, type: 'max' },
+      { x: 2, y: average, type: 'min', label: max },
+      { x: 1, y: max - average, type: 'average', label: max - average },
+      { x: 0, y: 0, type: 'max', label: 0 },
     ];
 
     const pointerPosition = [
@@ -121,7 +121,7 @@ const ProcessingTime = () => {
       <div className="pt-graph">
         <ProcessingTimeChart
           data={chartData.pieData}
-          scatter={chartData.points}
+          points={chartData.points}
           domain={chartData.domain}
           labelText={chartData.organAvg}
           pointerPosition={chartData.pointerPosition}

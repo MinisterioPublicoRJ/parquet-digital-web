@@ -13,17 +13,29 @@ import {
   IconContratacoes,
   Ro,
 } from '../../../../assets';
-import { PRCR_ACTION_GENERATE_DOC } from '../../../../api/endpoints';
+
+import {
+  PRCR_ACTION_GENERATE_DOC,
+  COMPRAS_ACTION_OUVIDORIA,
+  IC1A_ACTION_GENERATE_DOC,
+  PPFP_ACTION_EXTEND,
+  PPFP_ACTION_CONVERT,
+  UNSENT_OCCURRENCE_LIST,
+} from '../../../../api/endpoints';
 
 import {
   DELETE,
   COMPRAS,
-  SANEAMENTO,
   OUVIDORIA,
+  SANEAMENTO,
+  OUVIDORIA_COMPRAS,
   IT,
   CALCULO,
   DETAIL,
   GENERATE_DOC,
+  GENERATE_MINUTA,
+  EXTEND_DEADLINE,
+  DOWNLOAD_LIST,
 } from './actionConstants';
 
 /**
@@ -37,7 +49,7 @@ import {
  *  message: node,
  * }
  */
-export default function individualAlertFormatter(alert, cpf, token) {
+export default function individualAlertFormatter(alert, cpf, token, orgao) {
   // prettier-ignore
   switch (alert.alertCode) {
     // ALERTAS DA TUTELA
@@ -54,10 +66,10 @@ export default function individualAlertFormatter(alert, cpf, token) {
     return pa1aConstructor(alert);
 
     case 'PPFP':
-    return ppfpConstructor(alert);
+    return ppfpConstructor(alert, cpf, token);
 
     case 'IC1A':
-    return ic1aConstructor(alert);
+    return ic1aConstructor(alert, cpf, token);
 
     case 'NF30':
       return nf30Constructor(alert);
@@ -73,13 +85,13 @@ export default function individualAlertFormatter(alert, cpf, token) {
 
     // ALERTAS DE COMPRAS
     case 'COMP':
-      return compConstructor(alert);
+      return compConstructor(alert, orgao, token);
 
     case 'ISPS':
       return ispsConstructor(alert);
 
     case 'RO':
-      return roOccurrence(alert);
+      return roOccurrence(alert, token);
 
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
@@ -96,12 +108,15 @@ export default function individualAlertFormatter(alert, cpf, token) {
     case 'DT2I':
       return dt2iConstructor(alert);
 
+    case 'CTAC':
+      return ctacConstructor(alert);
+
     default:
       return {};
   }
 }
 
-function compConstructor(alert) {
+function compConstructor(alert, orgao, token) {
   const { contrato_iditem, contrato, item, iditem, dropdown, alertCode, count } = alert;
   let key;
   let message;
@@ -120,7 +135,11 @@ function compConstructor(alert) {
     );
   } else {
     key = `${contrato}-${iditem}`;
-    actions = [OUVIDORIA(), COMPRAS({ compId: contrato_iditem, contrato }), DELETE];
+    actions = [
+      OUVIDORIA_COMPRAS(COMPRAS_ACTION_OUVIDORIA({ alertId: contrato_iditem, orgao, token })),
+      COMPRAS({ compId: contrato_iditem, contrato }),
+      DELETE,
+    ];
     message = (
       <span>
         Os valores do contrato
@@ -331,10 +350,11 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
+function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
   let key;
   let message;
-
+  let actions = [];
+  console.log('has ppfp');
   if (dropdown) {
     key = `${alertCode}-dropdown`;
     const single = count === 1;
@@ -350,6 +370,11 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
     );
   } else {
     key = `${alertCode}-${docNum}`;
+    actions = [
+      GENERATE_MINUTA(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
+      EXTEND_DEADLINE(PPFP_ACTION_EXTEND({ orgao, token, docDk, cpf })),
+      DELETE,
+    ];
     message = (
       <span>
         O procedimento preparatório {``}
@@ -360,7 +385,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [GENERATE_DOC(), CALCULO(), DELETE],
+    actions,
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -368,7 +393,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
+function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
   let key;
   let message;
 
@@ -398,7 +423,11 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [GENERATE_DOC(), CALCULO(), DELETE],
+    actions: [
+      GENERATE_DOC(IC1A_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })),
+      CALCULO(),
+      DELETE,
+    ],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
@@ -484,7 +513,7 @@ function ouviConstructor(alert) {
 
   let key;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -625,7 +654,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     }
   } else {
     key = `${alertCode}-${docNum}`;
-    actions = [DETAIL, DELETE];
+    actions = [DETAIL(), DELETE];
 
     switch (alertCode) {
       case 'PRCR1':
@@ -712,6 +741,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     icon: <ClockIcon />,
     key,
     message,
+    docDk,
   };
 }
 
@@ -719,7 +749,7 @@ function gateConstructor(alert) {
   const { dropdown, alertCode, count, docNum, alertId } = alert;
   let key;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     key = `${alertCode}-dropdown`;
@@ -780,14 +810,17 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
 
   return {
     actions: [DETAIL(), DELETE],
-    backgroundColor: '#374354',
+    backgroundColor: '#5C6FD9',
     icon: <Home />,
     key,
     message,
   };
 }
 
-function roOccurrence({ dropdown, alertCode, count, docNum }) {
+function roOccurrence(alert, token) {
+  const { dropdown, alertCode, count, daysPassed, alertId } = alert;
+  const dpNumber = alertId;
+  const unsentOcurrences = daysPassed;
   let key;
   let message;
 
@@ -796,24 +829,59 @@ function roOccurrence({ dropdown, alertCode, count, docNum }) {
     const single = count === 1;
     message = (
       <span>
-        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${count}`}</strong> não chegaram no MPRJ
+        Há <strong>{` ${count} ${single ? 'DP' : 'DPs'} `}</strong>
+        da sua região com registros de ocorrência que não chegaram no MPRJ
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${alertId}`;
+    const single = unsentOcurrences === 1;
+    message = (
+      <span>
+        <strong>{` ${unsentOcurrences} ${single ? 'registro' : 'registros'} `}</strong>
+        de ocorrência da <strong>{` ${dpNumber}`}ª DP</strong> não chegaram no MPRJ
+      </span>
+    );
+  }
+
+  return {
+    actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE],
+    backgroundColor: '#F8BD6C',
+    icon: <Ro />,
+    key,
+    message,
+  };
+}
+
+function ctacConstructor({ dropdown, alertCode, count, docNum }) {
+  let key;
+  let message;
+
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho Superior do
+        Ministerio Público.
       </span>
     );
   } else {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        <strong>{` ${count} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${count}`} DP</strong> não chegaram no MPRJ
+        <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
+        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho Superior do
+        Ministerio Público.
       </span>
     );
   }
 
   return {
     actions: [DETAIL(), DELETE],
-    backgroundColor: '#F8BD6C',
-    icon: <Ro />,
+    backgroundColor: '#F86C72',
+    icon: <Clock />,
     key,
     message,
   };

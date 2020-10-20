@@ -8,6 +8,7 @@ import {
   CalculatorActionIcon,
   DetailActionIcon,
   DocActionIcon,
+  DeadlineIcon,
 } from '../../../../assets';
 
 export const DELETE = {
@@ -41,6 +42,14 @@ export const OUVIDORIA = () => ({
   link: `http://apps.mprj.mp.br/gate/api/Cidadao/downloadPDF/`,
 });
 
+export const OUVIDORIA_COMPRAS = (link) => ({
+  actionType: 'openComplaint',
+  icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
+  text: 'Ouvidoria',
+  background: '#5C6FD9',
+  link,
+});
+
 export const IT = ({ alertId }) => ({
   actionType: 'download',
   icon: <ItActionIcon fillColor="white" width="30px" height="30px" />,
@@ -67,6 +76,30 @@ export const GENERATE_DOC = (link) => ({
   actionType: 'download',
   icon: <DocActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Gerar Peça',
+  background: '#71D0A4',
+  link,
+});
+
+export const GENERATE_MINUTA = (link) => ({
+  actionType: 'download',
+  icon: <DocActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Elaborar minuta',
+  background: '#71D0A4',
+  link,
+});
+
+export const EXTEND_DEADLINE = (link) => ({
+  actionType: 'download',
+  icon: <DeadlineIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Prorrogar',
+  background: '#F8BD6C',
+  link,
+});
+
+export const DOWNLOAD_LIST = (link) => ({
+  actionType: 'download',
+  icon: <DocActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Baixar lista',
   background: '#71D0A4',
   link,
 });

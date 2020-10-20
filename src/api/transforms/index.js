@@ -13,8 +13,10 @@ export { default as totalAlertsTransform } from './totalAlertsTransform';
 export { default as hiresAlertsTransform } from './hiresAlertsTransform';
 export { default as successIndicatorsTransform } from './succesIndicatorsTransform';
 export { default as deskTabTransform } from './deskTabTransforms';
+export { default as ongoingInvestigationsListTransform } from './ongoingInvestigationsListTransform';
 export * from './loginTransform';
 export { default as radarCompareTransform } from './radarCompareTransform';
+export { default as prescribedCrimeTransform } from './prescribedCrimeTransform';
 
 export { default as snakeToCamelTransform } from './snakeToCamelTransform';
 /* eslint-disable camelcase */

@@ -34,6 +34,7 @@ function Pip({
       <Today
         setIsSelectorOpen={setIsSelectorOpen}
         setModalType={setModalType}
+        setModalData={setModalData}
         setIsIntroOpen={setIsIntroOpen}
       />
       <YourDesk />

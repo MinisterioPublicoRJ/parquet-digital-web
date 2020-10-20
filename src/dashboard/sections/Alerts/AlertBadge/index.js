@@ -21,9 +21,11 @@ const propTypes = {
   hideHover: PropTypes.bool,
   type: PropTypes.string,
   onDeletion: PropTypes.func,
+  openDialogBox: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
-  isDeleting: PropTypes.bool,
+  isDeleted: PropTypes.bool,
+  docDk: PropTypes.number,
 };
 
 const defaultProps = {
@@ -31,7 +33,7 @@ const defaultProps = {
   onDeletion: null,
   count: null,
   isOpen: false,
-  isDeleting: false,
+  isDeleted: false,
 };
 
 const AlertBadge = ({
@@ -42,11 +44,13 @@ const AlertBadge = ({
   customKey,
   hideHover,
   onDeletion,
+  openDialogBox,
   setOverlay,
   type,
   count,
   isOpen,
-  isDeleting,
+  isDeleted,
+  docDk,
 }) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
@@ -57,8 +61,8 @@ const AlertBadge = ({
     onDeletion(key, undo);
   }
 
-  function handleLinks(alert) {
-    const { link } = alert;
+  function handleLinks(alertAction) {
+    const { link } = alertAction;
     if (link) {
       window.open(link, '_blank', 'noopener');
     } else {
@@ -66,17 +70,30 @@ const AlertBadge = ({
     }
   }
 
-  function handleActionPress(alert, key, type) {
-    const { actionType } = alert;
+  async function handleActionLinks(alertAction, key) {
+    const { link, actionType } = alertAction;
+    if (link) {
+      if (actionType === 'openComplaint') {
+        openDialogBox(link, key);
+      }
+    } else {
+      window.alert('Em breve! :)');
+    }
+  }
+
+  function handleActionPress(alertAction, key, type) {
+    const { actionType } = alertAction;
     switch (actionType) {
       case 'delete':
         return handleDeletion(key);
       case 'download':
-        return handleLinks(alert);
+        return handleLinks(alertAction);
       case 'overlay':
-        return setOverlay(type);
+        return setOverlay(type, docDk);
       case 'link':
-        return handleLinks(alert);
+        return handleLinks(alertAction);
+      case 'openComplaint':
+        return handleActionLinks(alert, key);
       default:
         return window.alert('Em breve! :)');
     }
@@ -86,19 +103,19 @@ const AlertBadge = ({
 
   return (
     <div className="alertBadge-outerContainer">
-      {showHover && !isDeleting && (
+      {showHover && !isDeleted && (
         <div className="alertBadge-hoverContainer">
-          {actions.map(alert => (
+          {actions.map((alertAction) => (
             <ActionButtons
-              key={`${customKey}-${alert.actionType}`}
-              clickCallback={() => handleActionPress(alert, customKey, type)}
-              {...alert}
+              key={`${customKey}-${alertAction.actionType}`}
+              clickCallback={() => handleActionPress(alertAction, customKey, type)}
+              {...alertAction}
             />
           ))}
         </div>
       )}
-      {!hideHover && isDeleting && (
-        <div className={`delete-confirmation ${isDeleting ? 'isDeleting' : ''}`}>
+      {!hideHover && isDeleted && (
+        <div className={`delete-confirmation ${isDeleted ? 'isDeleted' : ''}`}>
           <button type="button" className="delete" onClick={() => handleDeletion(customKey)}>
             x
           </button>

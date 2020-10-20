@@ -12,7 +12,7 @@ function AuthContextCreator() {
   const [scaUserError, setScaUserError] = useState(false);
   const [userExpired, setUserExpired] = useState(false);
 
-  const tokenLogin = async token => {
+  const tokenLogin = async (token) => {
     if (userError) {
       setUserError(false);
     }
@@ -41,7 +41,7 @@ function AuthContextCreator() {
     }
   };
 
-  const isStoredUserValid = userString => {
+  const isStoredUserValid = (userString) => {
     const userJson = JSON.parse(userString);
     const limitDate = new Date() - 24 * 60 * 60 * 1000;
     const storedDate = +new Date(userJson.timestamp);
@@ -64,8 +64,8 @@ function AuthContextCreator() {
     }
   };
 
-  const updateOffice = newOffice => {
-    setUser(prevUser => ({ ...prevUser, orgaoSelecionado: newOffice }));
+  const updateOffice = (newOffice) => {
+    setUser((prevUser) => ({ ...prevUser, orgaoSelecionado: newOffice }));
   };
 
   const buildRequestParams = () => ({
@@ -108,6 +108,7 @@ function App() {
     authStore.autoLogin(token, scaToken);
   }
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
   if (loading) {
     return <Spinner size="large" />;

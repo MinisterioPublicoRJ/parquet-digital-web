@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
@@ -11,43 +11,35 @@ const propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   type: PropTypes.string.isRequired,
   setOverlay: PropTypes.func.isRequired,
+  openDialogBox: PropTypes.func.isRequired,
+  deletedAlertKey: PropTypes.string,
 };
 
-function Dropdown({ list, type, setOverlay }) {
+function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
   const { buildRequestParams } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const [visibleAlertsList, setVisibleAlertsList] = useState(list);
-  const alertChildren = visibleAlertsList.map(alert => {
-    const { actions, backgroundColor, icon, key, message, isDeleting } = alert;
-    return (
-      <AlertBadge
-        onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
-        key={key}
-        customKey={key}
-        icon={icon}
-        backgroundColor={backgroundColor}
-        message={message}
-        actions={actions}
-        isDeleting={isDeleting}
-        setOverlay={setOverlay}
-        type={type}
-      />
-    );
-  });
+  const [alertsList, setAlertsList] = useState(list);
+  const [visibleAlertsList, setVisibleAlertsList] = useState(list.slice(0, 30));
+  const [isShowMoreInHover, setIsShowMoreInHover] = useState(false);
 
   const headerAlert = individualAlertFormatter({
     alertCode: type,
     dropdown: true,
-    count: list.length,
+    count: alertsList.length,
   });
+
+  useEffect(() => {
+    removeAlert(deletedAlertKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deletedAlertKey]);
 
   function handleAlertAction(alertKey, undo) {
     if (undo) {
       restoreAlert(alertKey);
     } else {
-      const alert = visibleAlertsList.filter(({ key }) => key === alertKey)[0];
+      const alert = alertsList.filter(({ key }) => key === alertKey)[0];
 
-      if (alert.isDeleting) {
+      if (alert.isDeleted) {
         removeAlert(alertKey, undo);
       } else {
         dismissAlert(alertKey);
@@ -56,33 +48,41 @@ function Dropdown({ list, type, setOverlay }) {
   }
 
   function dismissAlert(alertKey) {
-    const newList = visibleAlertsList.map(alert => {
+    const newList = alertsList.map((alert) => {
       if (alert.key === alertKey) {
-        return { ...alert, isDeleting: true };
+        return { ...alert, isDeleted: true };
       }
       return alert;
     });
-    setVisibleAlertsList(newList);
+    setAlertsList(newList);
+    setVisibleAlertsList((prevValue) => {
+      return newList.slice(0, prevValue.length);
+    });
     Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
   function restoreAlert(alertKey) {
-    const newList = visibleAlertsList.map(alert => {
+    const newList = alertsList.map((alert) => {
       if (alert.key === alertKey) {
-        return { ...alert, isDeleting: false };
+        return { ...alert, isDeleted: false };
       }
       return alert;
     });
-    setVisibleAlertsList(newList);
+    setAlertsList(newList);
+    setVisibleAlertsList((prevValue) => {
+      return newList.slice(0, prevValue.length);
+    });
     Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
   function removeAlert(alertKey) {
-    const newList = visibleAlertsList.filter(({ key }) => key !== alertKey);
-    setVisibleAlertsList(newList);
+    if (!alertKey) return;
+    const newList = alertsList.filter(({ key }) => key !== alertKey);
+    setAlertsList(newList);
+    setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
   }
 
-  if (!visibleAlertsList.length) {
+  if (!alertsList.length) {
     return null;
   }
 
@@ -91,17 +91,65 @@ function Dropdown({ list, type, setOverlay }) {
       <button
         className="dropdownBtn"
         type="button"
-        onClick={() => setIsOpen(prevState => !prevState)}
+        onClick={() => setIsOpen((prevState) => !prevState)}
       >
         <AlertBadge
           {...headerAlert}
           customKey={headerAlert.key}
-          count={visibleAlertsList.length}
+          count={alertsList.length}
           isOpen={isOpen}
           hideHover
         />
       </button>
-      <div style={!isOpen ? { display: 'none' } : {}}> {alertChildren}</div>
+      <div style={!isOpen ? { display: 'none' } : {}}>
+        {visibleAlertsList.map((alert) => {
+          const { actions, backgroundColor, icon, key, message, isDeleted, docDk } = alert;
+          return (
+            <AlertBadge
+              onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
+              removeAlert={removeAlert}
+              key={key}
+              customKey={key}
+              icon={icon}
+              backgroundColor={backgroundColor}
+              message={message}
+              actions={actions}
+              isDeleted={isDeleted}
+              setOverlay={setOverlay}
+              docDk={docDk}
+              type={type}
+              openDialogBox={openDialogBox}
+            />
+          );
+        })}
+
+        {alertsList.length !== visibleAlertsList.length ? (
+          <button
+            onMouseEnter={() => setIsShowMoreInHover(true)}
+            onMouseLeave={() => setIsShowMoreInHover(false)}
+            style={
+              isShowMoreInHover
+                ? {
+                    color: 'white',
+                    backgroundColor: headerAlert.backgroundColor,
+                  }
+                : {
+                    color: headerAlert.backgroundColor,
+                    backgroundColor: 'white',
+                    borderTopColor: headerAlert.backgroundColor,
+                  }
+            }
+            onClick={() => {
+              setVisibleAlertsList((prevValue) => {
+                return alertsList.slice(0, prevValue.length + 30);
+              });
+            }}
+            className="show-more-alerts"
+          >
+            MOSTRAR +30 ALERTAS
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 }

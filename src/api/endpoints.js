@@ -35,6 +35,7 @@ export const HIRES_ALERTS = t(`${BASE_URL}/alertas/compras/\${orgao}`);
 export const PROCESSING_TIME_DATA = t(`${BASE_URL}/tempo-tramitacao/\${orgao}?version=1.1`);
 
 export const PROCESSES_LIST = t(`${BASE_URL}/lista/processos/\${orgao}`);
+export const ONGOING_INVESTIGATIONS_LIST = t(`${BASE_URL}/lista/investigacoes/\${orgao}`);
 
 export const SUCCESS_INDICATORS = t(`${BASE_URL}/pip/indicadores-sucesso/\${orgao}`);
 export const PIP__URL = t(`${BASE_URL}/pip/aproveitamentos/\${orgao}`);
@@ -64,4 +65,24 @@ export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}
 
 export const PRCR_ACTION_GENERATE_DOC = t(
   `${BASE_URL}/documentos/minuta-prescricao/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+
+export const COMPRAS_ACTION_OUVIDORIA = t(
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/comp?alerta_id=\${alertId}&jwt=\${token}`,
+);
+
+export const PRCR_ALERT_DATA = t(
+  `${BASE_URL}/alertas/overlay/\${docDk}?tipo=prescricao&jwt=\${token}`,
+);
+export const IC1A_ACTION_GENERATE_DOC = t(
+  `${BASE_URL}/documentos/prorrogacao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPFP_ACTION_EXTEND = t(
+  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPFP_ACTION_CONVERT = t(
+  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const UNSENT_OCCURRENCE_LIST = t(
+  `${BASE_URL}/documentos/ros-ausentes/\${dpNumber}?jwt=\${token}`,
 );

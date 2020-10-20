@@ -9,7 +9,17 @@ function MapaTron({ onToggle, mapatronData }) {
       <div className="mapatron-wrapper">
         <div className="mapatron-intro">
           <h2>Mapa da Atuação</h2>
-          <p>Certifique-se de estar com login ativo no ArcGIS para poder visualizar.</p>
+          <p>Certifique-se de estar com login ativo no ArcGIS para poder visualizar. </p>
+          <p>
+            Olá! Para facilitar o entendimento da situação criminal em sua área, separei a análise
+            em 3 macro áreas. Desta forma, trago (1) o que ocorre em sua área (excluída a cifra
+            negra) pelos dados gerais do ISP; (2) o que tem chegado para você trabalhar, por meio
+            dos Registros de Ocorrência da área; e (3) o que você tem feito, a partir das
+            informações do banco de dados institucional, que vêm do MGP ou Integra.
+          </p>
+          <p>
+            É possível trocar as visualizações apenas clicando na base de dados desejada abaixo:
+          </p>
           <div className="mapatron-links">
             {/*
             <a

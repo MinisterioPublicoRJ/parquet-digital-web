@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import './styles.css';
 
-const Pagination = () => {
-  const [atualPage, setatualPage] = useState(0);
-  const [totalPage, setTotalPage] = useState(20);
-  const [clickPage, setclickPage] = useState([]);
+const propTypes = {
+  totalPages: PropTypes.number.isRequired,
+  handlePageClick: PropTypes.func.isRequired,
+};
 
+const Pagination = ({ totalPages, handlePageClick, currentPage }) => {
   return (
     <div className="mainPagination">
       <div className="btnPaginationItem">
-        <button type="button">lista anterior...</button>
-        <div className="paginationItem">19 20 21</div>
-        <button type="button">... próxima lista</button>
+        <button type="button" onClick={(e) => handlePageClick(currentPage - 1)}>
+          lista anterior...
+        </button>
+        <div className="paginationItem">
+          {currentPage}
+          {' de '}
+          {totalPages}
+        </div>
+        <button type="button" onClick={(e) => handlePageClick(currentPage + 1)}>
+          ... próxima lista
+        </button>
       </div>
     </div>
   );
 };
+
+Pagination.propTypes = propTypes;
 
 export default Pagination;

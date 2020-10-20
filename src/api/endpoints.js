@@ -22,11 +22,11 @@ export const COURT_CASES_DETAILS_URL = t(`${BASE_URL}/suamesa/detalhe/processos/
 export const OPEN_INVESTIGATIONS_DETAILS_URL = t(
   `${BASE_URL}/suamesa/detalhe/investigacoes/\${orgao}`,
 );
-export const OPEN_CASES_DETAILS_URL = t(
-  `${BASE_URL}/suamesa/detalhe/vistas/\${orgao}/\${cpf}?page=3&limit=20`
-);
+export const OPEN_CASES_DETAILS_URL = t(`${BASE_URL}/suamesa/detalhe/vistas/\${orgao}/\${cpf}`);
 
-export const OPEN_CASES_LIST = t(`${BASE_URL}/suamesa/lista/vistas/\${orgao}/\${cpf}/\${list}`);
+export const OPEN_CASES_LIST = t(
+  `${BASE_URL}/suamesa/lista/vistas/\${orgao}/\${cpf}/\${list}?page=\${page}&`,
+);
 
 export const RADAR_DATA = t(`${BASE_URL}/radar/\${orgao}`);
 

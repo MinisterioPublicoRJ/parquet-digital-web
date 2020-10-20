@@ -24,8 +24,8 @@ class OpenCasesDetail extends React.Component {
     super(props);
     this.state = {
       activeTab: 'under20',
-      atualPage: '',
-      totalPage: '20',
+      currentPage: 1,
+      totalPages: {},
     };
   }
 
@@ -34,18 +34,35 @@ class OpenCasesDetail extends React.Component {
     this.getOpenCasesList(activeTab);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.chartData !== this.props.chartData && Object.keys(this.props.chartData).length) {
+      this.setState({ totalPages: this.calcTotalPages(this.props.chartData) });
+    }
+  }
+
+  calcTotalPages(chartData) {
+    const totalPages = {};
+    const categories = Object.keys(chartData);
+    categories.forEach((cat) => {
+      const pages = Math.ceil(chartData[cat] / 20);
+      totalPages[cat] = pages;
+    });
+    return totalPages;
+  }
+
   /**
    * Generic function that fetches the detailed data from each of the 3 time periods
    * @param  {string}  tab one of [under20, between20And30, over30]
    * @return {void}     just saves to state
    */
-  async getOpenCasesList(tab) {
+  async getOpenCasesList(tab, nextPage) {
     const { buildRequestParams } = this.props;
     let error = false;
     let res;
+    const page = nextPage || this.state.currentPage;
 
     try {
-      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab]);
+      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab], page);
     } catch (e) {
       error = true;
     } finally {
@@ -54,6 +71,19 @@ class OpenCasesDetail extends React.Component {
       newState[`${tab}Error`] = error;
       this.setState({ ...newState });
     }
+  }
+
+  async handlePageClick(page) {
+    if (page < 1 || page > this.state.totalPages[this.state.activeTab]) return;
+    const { chartData } = this.props;
+    const tabName = this.state.activeTab;
+    const hasItems = chartData[tabName];
+
+    if (hasItems) {
+      this.getOpenCasesList(tabName, page);
+    }
+
+    this.setState({ currentPage: page });
   }
 
   /**
@@ -93,9 +123,9 @@ class OpenCasesDetail extends React.Component {
     const hasItems = chartData[tabName];
 
     if (hasItems && !this.state[`${tabName}Details`]) {
-      this.getOpenCasesList(tabName);
+      this.getOpenCasesList(tabName, 1);
     }
-    this.setState({ activeTab: tabName });
+    this.setState({ activeTab: tabName, currentPage: 1 });
   }
 
   /**
@@ -123,7 +153,7 @@ class OpenCasesDetail extends React.Component {
 
   render() {
     const { isLoading, chartData } = this.props;
-    const { activeTab } = this.state;
+    const { activeTab, totalPages } = this.state;
 
     if (isLoading) {
       return <Spinner size="large" />;
@@ -144,9 +174,12 @@ class OpenCasesDetail extends React.Component {
               columns={TABLE_COLUMNS}
               showHeader
             />
-
           )}
-          <Pagination />
+          <Pagination
+            totalPages={totalPages[activeTab] ? totalPages[activeTab] : 0}
+            handlePageClick={(page) => this.handlePageClick(page)}
+            currentPage={this.state.currentPage}
+          />
           {emptyTab && (
             <img
               height="100%"

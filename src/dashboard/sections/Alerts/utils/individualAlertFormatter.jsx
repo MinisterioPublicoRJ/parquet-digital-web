@@ -756,7 +756,7 @@ function gateConstructor(alert) {
     const single = count === 1;
     message = (
       <span>
-        O Gate finalizou <strong>{`${count} ${single ? 'IT' : 'ITs'} `}</strong>
+        O<strong> GATE </strong> finalizou <strong>{`${count} ${single ? 'IT' : 'ITs'} `}</strong>
         em procedimentos desta promotoria de justiça.
       </span>
     );
@@ -765,7 +765,7 @@ function gateConstructor(alert) {
     actions = [IT({ alertId: alertId }), DELETE];
     message = (
       <span>
-        O<strong> Gate </strong>
+        O<strong> GATE </strong>
         finalizou a<strong> IT </strong>
         solicitada no procedimento
         <strong>{` ${docNum}`}</strong>.

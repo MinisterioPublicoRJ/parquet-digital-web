@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../api';
-import { Spinner, CustomTable } from '../../../../components';
+import { Spinner, CustomTable, Pagination } from '../../../../components';
 import DeskCasesChart from '../deskCases';
 import noOpenCases from '../../../../assets/imgs/robo-s-vistas-abertas.png';
 
@@ -24,6 +24,8 @@ class OpenCasesDetail extends React.Component {
     super(props);
     this.state = {
       activeTab: 'under20',
+      currentPage: 1,
+      totalPages: this.calcTotalPages(props.chartData),
     };
   }
 
@@ -32,25 +34,57 @@ class OpenCasesDetail extends React.Component {
     this.getOpenCasesList(activeTab);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.chartData !== this.props.chartData && Object.keys(this.props.chartData).length) {
+      this.setState({ totalPages: this.calcTotalPages(this.props.chartData) });
+    }
+  }
+
+  calcTotalPages(chartData) {
+    const totalPages = {};
+    const categories = Object.keys(chartData);
+    categories.forEach((cat) => {
+      const pages = Math.ceil(chartData[cat] / 20);
+      totalPages[cat] = pages;
+    });
+    return totalPages;
+  }
+
   /**
    * Generic function that fetches the detailed data from each of the 3 time periods
    * @param  {string}  tab one of [under20, between20And30, over30]
    * @return {void}     just saves to state
    */
-  async getOpenCasesList(tab) {
+  async getOpenCasesList(tab, nextPage) {
     const { buildRequestParams } = this.props;
     let error = false;
     let res;
+    const page = nextPage || this.state.currentPage;
 
     try {
-      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab]);
+      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab], page);
     } catch (e) {
       error = true;
     } finally {
       const newState = {};
       newState[`${tab}Details`] = res;
       newState[`${tab}Error`] = error;
-      this.setState({ ...newState });
+      this.setState({ ...newState, currentPage: page });
+    }
+  }
+
+  handlePageClick(page) {
+    if (page < 1 || page > this.state.totalPages[this.state.activeTab]) return;
+    const { chartData } = this.props;
+    const tabName = this.state.activeTab;
+    const hasItems = chartData[tabName];
+
+    if (hasItems) {
+      const newState = {};
+      newState[`${tabName}Details`] = null;
+      this.setState({ ...newState }, () => {
+        this.getOpenCasesList(tabName, page);
+      });
     }
   }
 
@@ -91,9 +125,9 @@ class OpenCasesDetail extends React.Component {
     const hasItems = chartData[tabName];
 
     if (hasItems && !this.state[`${tabName}Details`]) {
-      this.getOpenCasesList(tabName);
+      this.getOpenCasesList(tabName, 1);
     }
-    this.setState({ activeTab: tabName });
+    this.setState({ activeTab: tabName, currentPage: 1 });
   }
 
   /**
@@ -121,7 +155,7 @@ class OpenCasesDetail extends React.Component {
 
   render() {
     const { isLoading, chartData } = this.props;
-    const { activeTab } = this.state;
+    const { activeTab, totalPages } = this.state;
 
     if (isLoading) {
       return <Spinner size="large" />;
@@ -149,6 +183,14 @@ class OpenCasesDetail extends React.Component {
               width="100%"
               alt="Nenhuma vista aberta até o momento"
               src={noOpenCases}
+            />
+          )}
+
+          {!emptyTab && (
+            <Pagination
+              totalPages={totalPages[activeTab] || 0}
+              handlePageClick={(page) => this.handlePageClick(page)}
+              currentPage={this.state.currentPage}
             />
           )}
         </div>

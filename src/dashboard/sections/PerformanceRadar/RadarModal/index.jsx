@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import './styles.css';
 import RadarGraph from '../RadarGraph';
@@ -6,9 +6,28 @@ import { Search } from '../../../../assets';
 import { Spinner } from '../../../../components';
 
 function RadarModal({ compareData, onToggle }) {
+  const useFocus = isSearching => {
+    const htmlElRef = useRef(null);
+    const setFocus = () => {
+      setTimeout(() => {
+        htmlElRef.current && htmlElRef.current.focus();
+      }, 800);
+    };
+    const setBlur = () => {
+      htmlElRef.current && htmlElRef.current.blur();
+      htmlElRef.current.value = '';
+      setFilteredList(compareData.otherData);
+    };
+    if (!isSearching) {
+      return [htmlElRef, setFocus];
+    }
+    return [htmlElRef, setBlur];
+  };
+
   const [loadedData, setLoadedData] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [inputRef, setInputFocus] = useFocus(isSearching);
   const [loadingError, setLoadingError] = useState(false);
   const [currentCompared, setCurrentCompared] = useState(null);
 
@@ -91,11 +110,17 @@ function RadarModal({ compareData, onToggle }) {
               <div>
                 <h3>Lista de Promotorias</h3>
               </div>
-              <button type="button" onClick={() => setIsSearching(prevSearch => !prevSearch)}>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsSearching(prevSearch => !prevSearch);
+                  setInputFocus();
+                }}
+              >
                 <Search />
               </button>
               <div>
-                <input onChange={filterList} type="text" />
+                <input ref={inputRef} onChange={filterList} type="text" />
               </div>
             </div>
           </div>
@@ -104,7 +129,7 @@ function RadarModal({ compareData, onToggle }) {
               {loadingError && <p>Nenhuma promotoria encontrada :(</p>}
               {compareData &&
                 filteredList.map(({ meta, graphData }) => (
-                  <li>
+                  <li key={meta.name}>
                     <button type="button" onClick={() => setCurrentCompared({ meta, graphData })}>
                       {meta.name}
                       <span>{meta.codamp.toLocaleLowerCase()}</span>

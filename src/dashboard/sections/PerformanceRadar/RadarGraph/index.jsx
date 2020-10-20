@@ -37,8 +37,7 @@ const propTypes = {
   ).isRequired,
 };
 
-function RadarGraph(props) {
-  const { xAxis, userGraph, comparisionGraph } = props;
+function RadarGraph({ xAxis, userGraph, comparisionGraph }) {
   const grid = generateGrid(xAxis);
 
   /**
@@ -157,9 +156,11 @@ function RadarGraph(props) {
         ) : null}
 
         {/* AQUI É O GRÁFICO DA MÉDIA */}
+        {/* NÃO RETIRE A ANIMAÇÃO, O VICTORY TEM UM SHOULDCOMPONENTUPDATE CAGADO QUE NÃO ATUALIZA MESMO TENDO RECEBIDO UM DATA COMPLETAMENTE NOVO */}
         {userGraph.length ? (
           <VictoryArea
             data={comparisionGraph}
+            animate={{ duration: 2000 }}
             style={{
               data: {
                 fill: 'url(#medianGradient)',

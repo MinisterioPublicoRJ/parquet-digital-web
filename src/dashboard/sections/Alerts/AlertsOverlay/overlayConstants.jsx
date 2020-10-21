@@ -185,6 +185,23 @@ export const OVERLAY_TEXTS = {
       </p>
     </div>
   ),
+  RO: (
+    <div>
+      <p>
+        Esta é uma listagem de todos R.O.s da referida Delegacia que não foram encaminhados ao
+        Ministério Público.
+      </p>
+
+      <p />
+
+      <p>
+        Sua elaboração considera o número mais alto de registro enviado ao MP e o fato de se tratar
+        de uma numeração contínua, indicando que todos os anteriores são existentes. A partir disso
+        são excluídos os números de registro que já passaram no MPRJ e elaborada a lista final com
+        os demais números.
+      </p>
+    </div>
+  ),
 };
 
 export const PRCR_TEXTS = (type, data) => {

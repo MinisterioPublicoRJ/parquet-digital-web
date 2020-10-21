@@ -20,6 +20,8 @@ import {
   IC1A_ACTION_GENERATE_DOC,
   PPFP_ACTION_EXTEND,
   PPFP_ACTION_CONVERT,
+  PPPV_ACTION_EXTEND,
+  PPPV_ACTION_CONVERT,
   UNSENT_OCCURRENCE_LIST,
 } from '../../../../api/endpoints';
 
@@ -68,6 +70,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'PPFP':
     return ppfpConstructor(alert, cpf, token);
 
+    case 'PPPV':
+      return pppvConstructor(alert,cpf, token);
+
     case 'IC1A':
     return ic1aConstructor(alert, cpf, token);
 
@@ -110,7 +115,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     case 'CTAC':
       return ctacConstructor(alert);
-
+  
     default:
       return {};
   }
@@ -344,49 +349,6 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
   return {
     actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#5C6FD9',
-    icon: <ClockIcon />,
-    key,
-    message,
-  };
-}
-
-function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
-  let key;
-  let message;
-  let actions = [];
-  console.log('has ppfp');
-  if (dropdown) {
-    key = `${alertCode}-dropdown`;
-    const single = count === 1;
-    message = (
-      <span>
-        Há
-        <strong>{` ${count} ${
-          single ? 'procedimento preparatório' : 'procedimentos preparatórios'
-        } `}</strong>
-        com
-        <strong> prazo de tratamento esgotado.</strong>
-      </span>
-    );
-  } else {
-    key = `${alertCode}-${docNum}`;
-    actions = [
-      GENERATE_MINUTA(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
-      EXTEND_DEADLINE(PPFP_ACTION_EXTEND({ orgao, token, docDk, cpf })),
-      DELETE,
-    ];
-    message = (
-      <span>
-        O procedimento preparatório {``}
-        <strong>{`${docNum}`}</strong> {``}
-        está com o<strong> prazo de tratamento esgotado</strong>.
-      </span>
-    );
-  }
-
-  return {
-    actions,
-    backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
     message,
@@ -884,6 +846,89 @@ function ctacConstructor({ dropdown, alertCode, count, docNum }) {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
     icon: <Clock />,
+    key,
+    message,
+  };
+}
+
+function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
+  let key;
+  let message;
+  let actions = [];
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        Há
+        <strong>{` ${count} ${
+          single ? 'procedimento preparatório' : 'procedimentos preparatórios'
+        } `}</strong>
+        com
+        <strong> prazo proxímo de vencer.</strong>
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${docNum}`;
+    actions = [
+      GENERATE_MINUTA(PPPV_ACTION_CONVERT({ orgao, token, docDk, cpf })),
+      EXTEND_DEADLINE(PPPV_ACTION_EXTEND({ orgao, token, docDk, cpf })),
+      DELETE,
+    ];
+    message = (
+      <span>
+        O procedimento preparatório {``}
+        <strong>{`${docNum}`}</strong> {``}
+        está com o<strong> prazo de tratamento esgotado</strong>.
+      </span>
+    );
+  }
+
+  return {
+    actions,
+    backgroundColor: '#f86c72',
+    icon: <ClockIcon />,
+    key,
+    message,
+  };
+}
+function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
+  let key;
+  let message;
+  let actions = [];
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        Há
+        <strong>{` ${count} ${
+          single ? 'procedimento preparatório' : 'procedimentos preparatórios'
+        } `}</strong>
+        com
+        <strong> prazo proxímo de vencer.</strong>
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${docNum}`;
+    actions = [
+      GENERATE_MINUTA(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
+      EXTEND_DEADLINE(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
+      DELETE,
+    ];
+    message = (
+      <span>
+        O procedimento preparatório {``}
+        <strong>{`${docNum}`}</strong> {``}
+        está com o<strong> prazo de tratamento esgotado</strong>.
+      </span>
+    );
+  }
+
+  return {
+    actions,
+    backgroundColor: '#f86c72',
+    icon: <ClockIcon />,
     key,
     message,
   };

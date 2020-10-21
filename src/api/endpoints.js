@@ -85,6 +85,12 @@ export const PPFP_ACTION_EXTEND = t(
 export const PPFP_ACTION_CONVERT = t(
   `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
 );
+export const PPPV_ACTION_EXTEND = t(
+  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPPV_ACTION_CONVERT = t(
+  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
 export const UNSENT_OCCURRENCE_LIST = t(
   `${BASE_URL}/documentos/ros-ausentes/\${dpNumber}?jwt=\${token}`,
 );

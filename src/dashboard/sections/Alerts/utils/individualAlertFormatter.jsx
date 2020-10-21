@@ -807,9 +807,7 @@ function roOccurrence(alert, token) {
   }
 
   return {
-    // uncomment and delete the other actions when the text arrives
-    //actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE],
-    actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DELETE],
+    actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE],
     backgroundColor: '#F8BD6C',
     icon: <Ro />,
     key,

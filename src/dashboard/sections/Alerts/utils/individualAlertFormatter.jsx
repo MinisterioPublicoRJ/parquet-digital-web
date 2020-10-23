@@ -911,7 +911,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     key = `${alertCode}-${docNum}`;
     actions = [
       GENERATE_MINUTA(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
-      EXTEND_DEADLINE(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
+      EXTEND_DEADLINE(PPFP_ACTION_EXTEND({ orgao, token, docDk, cpf })),
       DELETE,
     ];
     message = (

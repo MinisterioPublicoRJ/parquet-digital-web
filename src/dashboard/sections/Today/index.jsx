@@ -29,6 +29,7 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
   const [entriesData, setEntriesData] = useState();
 
   // runs on "mount" only
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => loadComponent(), []);
 
   function loadComponent() {

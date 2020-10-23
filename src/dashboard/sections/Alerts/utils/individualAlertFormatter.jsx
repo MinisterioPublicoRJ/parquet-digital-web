@@ -904,7 +904,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
           single ? 'procedimento preparatório' : 'procedimentos preparatórios'
         } `}</strong>
         com
-        <strong> prazo proxímo de vencer.</strong>
+        <strong> prazo de tratamento esgotado.</strong>
       </span>
     );
   } else {
@@ -916,8 +916,8 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     ];
     message = (
       <span>
-        O procedimento preparatório {``}
-        <strong>{`${docNum}`}</strong> {``}
+        O procedimento preparatório
+        <strong>{` ${docNum} `}</strong>
         está com o<strong> prazo de tratamento esgotado</strong>.
       </span>
     );

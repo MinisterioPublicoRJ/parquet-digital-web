@@ -15,9 +15,15 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: space-between;
   width: 65%;
   z-index: 1;
+}
+
+.today-textArea {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .today-content p,
@@ -132,8 +138,14 @@
   border-radius: 0 0 15px 0;
 }
 
+.today-robotPic button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
 .today-glossaryBtn {
-  cursor: help;
   position: absolute;
   right: 0;
   top: 0;

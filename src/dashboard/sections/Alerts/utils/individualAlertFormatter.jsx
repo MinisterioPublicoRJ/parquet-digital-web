@@ -115,7 +115,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     case 'CTAC':
       return ctacConstructor(alert);
-  
+
     default:
       return {};
   }
@@ -212,7 +212,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum }) {
       <span>
         Há
         <strong> {`${count}`} </strong>
-        {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
+        {`${single ? 'procedimento criminal' : 'procedimentos criminais'} no TJRJ há `}
         <strong> mais de 60 dias </strong>
         sem retorno.
       </span>
@@ -221,7 +221,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O processo criminal
+        O procedimento criminal
         <strong>{`${docNum}`}</strong>
         está há
         <strong> mais de 60 dias </strong>
@@ -250,7 +250,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum }) {
       <span>
         Há
         <strong>{` ${count} `}</strong>
-        {`${single ? 'processo não criminal' : 'processos não criminais'} no TJRJ há `}
+        {`${single ? 'procedimento não criminal' : 'procedimentos não criminais'} no TJRJ há `}
         <strong> há mais de 120 dias </strong>
         sem retorno.
       </span>
@@ -259,7 +259,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O processo criminal
+        O procedimento criminal
         <strong>{`${docNum}`}</strong>
         está há
         <strong> mais de 120 dias </strong>
@@ -287,7 +287,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         Há
-        <strong>{` ${count} ${single ? 'processo' : 'processos'} `}</strong>
+        <strong>{` ${count} ${single ? 'procedimento' : 'procedimentos'} `}</strong>
         com
         <strong> vitimas recorrentes </strong>
         de
@@ -298,7 +298,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O processo {``}
+        O procedimento {``}
         <strong>{`${docNum}`}</strong> {``}
         possui
         <strong> vitimas recorrentes </strong>
@@ -329,7 +329,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
         Há
         <strong>{` ${count} `}</strong>
         <strong>{`${
-          single ? 'processo administrativo aberto' : 'processos administrativos abertos'
+          single ? 'procedimento administrativo aberto' : 'procedimentos administrativos abertos'
         } há mais de 1 ano`}</strong>
         .
       </span>
@@ -338,7 +338,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O processo administrativo{``}
+        O procedimento administrativo{``}
         <strong>{`${docNum}`}</strong>
         está aberto
         <strong> há mais de um ano</strong>.
@@ -563,7 +563,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
         message = (
           <span>
             <strong>{`Há ${count} `}</strong>
-            {single ? ' processo ' : ' processos '}
+            {single ? ' procedimento ' : ' procedimentos '}
             com todos os seus
             <strong> crimes </strong>
             possivelmente
@@ -754,7 +754,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         <strong>{`Há ${count} ${single ? 'movimentação' : 'movimentações'} `}</strong>
-        em processo desta promotoria na
+        em procedimento desta promotoria na
         <strong> segunda instância.</strong>
       </span>
     );
@@ -807,9 +807,7 @@ function roOccurrence(alert, token) {
   }
 
   return {
-    // uncomment and delete the other actions when the text arrives
-    //actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE],
-    actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DELETE],
+    actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE],
     backgroundColor: '#F8BD6C',
     icon: <Ro />,
     key,
@@ -906,20 +904,20 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
           single ? 'procedimento preparatório' : 'procedimentos preparatórios'
         } `}</strong>
         com
-        <strong> prazo proxímo de vencer.</strong>
+        <strong> prazo de tratamento esgotado.</strong>
       </span>
     );
   } else {
     key = `${alertCode}-${docNum}`;
     actions = [
       GENERATE_MINUTA(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
-      EXTEND_DEADLINE(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
+      EXTEND_DEADLINE(PPFP_ACTION_EXTEND({ orgao, token, docDk, cpf })),
       DELETE,
     ];
     message = (
       <span>
-        O procedimento preparatório {``}
-        <strong>{`${docNum}`}</strong> {``}
+        O procedimento preparatório
+        <strong>{` ${docNum} `}</strong>
         está com o<strong> prazo de tratamento esgotado</strong>.
       </span>
     );

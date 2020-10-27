@@ -29,6 +29,10 @@
   transition: 1s;
 }
 
+.controlButton--inactive:hover {
+  border: solid var(--primary) 1px;
+}
+
 .controlButton--inactive {
   align-items: center;
   background-color: var(--white);
@@ -54,6 +58,10 @@
   background-color: var(--success);
   color: var(--white);
   cursor: default;
+}
+
+.controlButton-notButton:hover {
+  border: none;
 }
 
 .controlButton-bigNumber {

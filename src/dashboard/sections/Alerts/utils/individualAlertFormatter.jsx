@@ -877,7 +877,7 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
       <span>
         O procedimento preparatório {``}
         <strong>{`${docNum}`}</strong> {``}
-        está com o<strong> prazo de tratamento esgotado</strong>.
+        está com o<strong> prazo proxímo de vencer.</strong>.
       </span>
     );
   }

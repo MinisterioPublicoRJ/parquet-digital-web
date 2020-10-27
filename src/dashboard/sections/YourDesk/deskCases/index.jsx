@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { VictoryPie } from 'victory';
@@ -23,7 +23,21 @@ const propTypes = {
   name: PropTypes.string.isRequired,
 };
 
+const fillerData = [
+  { y: 0, color: 'transparent' },
+  { y: 0, color: 'transparent' },
+  { y: 100, color: 'transparent' },
+];
+
 function DeskCasesChart({ active, buttonPressed, category, color, data, name }) {
+  const [buttonChartData, setButtonChartData] = useState(fillerData);
+  // anti prop, but it's the only way to force VictoryPie to animate
+  useEffect(() => {
+    if (buttonChartData === fillerData) {
+      setButtonChartData(Object.values(data));
+    }
+  }, [data]);
+
   if (active) {
     document.documentElement.style.setProperty('--triangleColor', color);
   }
@@ -37,7 +51,8 @@ function DeskCasesChart({ active, buttonPressed, category, color, data, name }) 
     >
       <div className="deskCasesChart-graph">
         <VictoryPie
-          data={Object.values(data)}
+          data={buttonChartData}
+          animate={{ duration: 2000 }}
           labels={() => null}
           innerRadius={120}
           origin={{ x: 160, y: 165 }}

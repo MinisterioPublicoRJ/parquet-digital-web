@@ -23,7 +23,7 @@ const TablesTutela = () => {
           type="button"
           onClick={() => setVisibleTab('investigation')}
         >
-          <SectionTitle value="Processos Judiciais" glueToTop />
+          <SectionTitle value="Lista de Investigações" glueToTop />
         </button>
       </div>
       <div className="tablesTutela-body">

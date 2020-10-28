@@ -34,12 +34,11 @@ export const SANEAMENTO = ({ compId, contrato }) => ({
   link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
 });
 
-export const OUVIDORIA = () => ({
+export const OUVIDORIA_ISPS = () => ({
   actionType: 'link',
   icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
   text: 'Ouvidoria',
   background: '#5C6FD9',
-  link: `http://apps.mprj.mp.br/gate/api/Cidadao/downloadPDF/`,
 });
 
 export const OUVIDORIA_COMPRAS = (link) => ({

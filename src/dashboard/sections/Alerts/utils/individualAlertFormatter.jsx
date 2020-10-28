@@ -28,7 +28,7 @@ import {
 import {
   DELETE,
   COMPRAS,
-  OUVIDORIA,
+  OUVIDORIA_ISPS,
   SANEAMENTO,
   OUVIDORIA_COMPRAS,
   IT,
@@ -183,7 +183,7 @@ function ispsConstructor(alert) {
     );
   } else {
     key = `${indicador}-${iditem}`;
-    actions = [OUVIDORIA(), SANEAMENTO({ compId: indicador_iditem, indicador }), DELETE];
+    actions = [OUVIDORIA_ISPS(), SANEAMENTO({ compId: indicador_iditem, indicador }), DELETE];
     message = (
       <span>
         Os valores do indicador <strong>{` ${indicador} `}</strong>
@@ -489,7 +489,7 @@ function ouviConstructor(alert) {
     );
   } else {
     key = `${alertCode}-${docNum}`;
-    actions = [DETAIL(), OUVIDORIA(), DELETE];
+    actions = [DETAIL(), DELETE];
     message = (
       <span>
         A ouvidoria
@@ -877,7 +877,7 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
       <span>
         O procedimento preparatório {``}
         <strong>{`${docNum}`}</strong> {``}
-        está com o<strong> prazo de tratamento esgotado</strong>.
+        está com o<strong> prazo proxímo de vencer.</strong>.
       </span>
     );
   }

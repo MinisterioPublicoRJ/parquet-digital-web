@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Api from '../../../../api';
-import { CustomTable, Spinner } from '../../../../components';
+import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
 const OngoingInvestigations = ({ isActive }) => {
@@ -8,6 +8,10 @@ const OngoingInvestigations = ({ isActive }) => {
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState([]);
+
+
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
@@ -16,6 +20,8 @@ const OngoingInvestigations = ({ isActive }) => {
     Classe: 'classeDocumento',
     Personagens: 'docuPersonagens',
   };
+
+
 
   useEffect(() => {
     const loadData = async () => {
@@ -49,6 +55,7 @@ const OngoingInvestigations = ({ isActive }) => {
       ) : (
         <div className="ongoingInvestigations-tableWrapper">
           <CustomTable data={ongoingInvestigationsListData} columns={tableColumns} showHeader />
+          <Pagination />
         </div>
       )}
     </div>

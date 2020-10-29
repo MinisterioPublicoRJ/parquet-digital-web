@@ -20,7 +20,7 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
   function generateButtons(list) {
     return list.map((investigation) => {
       const { representanteDk, docuPersonagens } = investigation;
-      const investigatedNameBtn = (
+      const investigatedNameBtn = representanteDk ? (
         <button
           type="button"
           onClick={() => {
@@ -30,6 +30,8 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
         >
           {docuPersonagens}
         </button>
+      ) : (
+        docuPersonagens
       );
       return { ...investigation, docuPersonagens: investigatedNameBtn };
     });
@@ -41,7 +43,6 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
       try {
         let response = await Api.getOngoingInvestigationsList(buildRequestParams());
         response = generateButtons(response);
-        console.log('response:', response);
         setOngoingInvestigationsListData(response);
       } catch (e) {
         setOngoingInvestigationsListData(false);

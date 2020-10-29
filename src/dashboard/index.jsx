@@ -31,7 +31,7 @@ function Dashboard() {
   }
 
   function setInvestigatedProfile(representanteDk) {
-    setModalType('investigated');
+    if (representanteDk) setModalType('investigated');
     setModalData(representanteDk);
     return representanteDk;
   }

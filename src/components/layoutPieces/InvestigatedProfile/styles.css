@@ -163,7 +163,7 @@
   color: #ffffff;
 }
 
-button.investigated-profile-btn {
+td button.investigated-profile-btn {
   color: #8998ac;
   font-size: var(--smallFont);
   width: 100%;
@@ -171,4 +171,6 @@ button.investigated-profile-btn {
   overflow: hidden;
   border-radius: 4px;
   border: 0;
+  padding: 0;
+  background: transparent;
 }

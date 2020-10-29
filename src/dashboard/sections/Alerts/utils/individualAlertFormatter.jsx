@@ -347,7 +347,8 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    actions: [GENERATE_DOC(), CALCULO(), DELETE],
+    // actions: [GENERATE_DOC(), CALCULO(), DELETE],
+    actions: [GENERATE_DOC(), DELETE],
     backgroundColor: '#5C6FD9',
     icon: <ClockIcon />,
     key,
@@ -387,7 +388,7 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
   return {
     actions: [
       GENERATE_DOC(IC1A_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })),
-      CALCULO(),
+      // CALCULO(),
       DELETE,
     ],
     backgroundColor: '#f86c72',

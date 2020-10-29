@@ -59,10 +59,10 @@ export const OVERLAY_TEXTS = {
 
       <p />
 
-      <p>
+      {/* <p>
         Neste caso, ele fez um ano sem prorrogação no dia INSERIR DADOS, após ter ocorrido a
         MOVIMENTO no dia INSERIR DADOS.
-      </p>
+      </p> */}
 
       <p />
 
@@ -81,10 +81,10 @@ export const OVERLAY_TEXTS = {
 
       <p />
 
-      <p>
+      {/* <p>
         Neste caso, ele fez um ano no dia INSERIR DADOS, após ter sido cadastrado no nosso sistema
         no dia INSERIR DADOS.
-      </p>
+      </p> */}
 
       <p />
 
@@ -108,10 +108,10 @@ export const OVERLAY_TEXTS = {
 
       <p />
 
-      <p>
+      {/* <p>
         Este procedimento foi cadastrado no nosso sistema no dia INSERIR DADOS e agora ele se
         encontra fora do prazo.
-      </p>
+      </p> */}
 
       <p />
 

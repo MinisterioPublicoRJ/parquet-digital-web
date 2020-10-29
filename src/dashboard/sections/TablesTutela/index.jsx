@@ -5,7 +5,7 @@ import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
 import { SectionTitle } from '../../../components';
 
-const TablesTutela = () => {
+const TablesTutela = ({ setInvestigatedProfile }) => {
   const [visibleTab, setVisibleTab] = useState('process');
 
   return (
@@ -27,8 +27,14 @@ const TablesTutela = () => {
         </button>
       </div>
       <div className="tablesTutela-body">
-        <ProcessList isActive={visibleTab === 'process'} />
-        <OngoingInvestigations isActive={visibleTab === 'investigation'} />
+        <ProcessList
+          setInvestigatedProfile={setInvestigatedProfile}
+          isActive={visibleTab === 'process'}
+        />
+        <OngoingInvestigations
+          setInvestigatedProfile={setInvestigatedProfile}
+          isActive={visibleTab === 'investigation'}
+        />
       </div>
     </div>
   );

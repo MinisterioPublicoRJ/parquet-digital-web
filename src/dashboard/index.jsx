@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import { useAuth } from '../app/authContext';
 import { Pip, Tutela, BlankPage } from './pages';
 import { Glossary, Introduction, MapaTron } from './sections';
-import { Modal, Spinner } from '../components';
+import { Modal, Spinner, InvestigatedProfile } from '../components';
 
 import OfficeSelector from './sections/Today/officeSelector';
 import RadarModal from './sections/PerformanceRadar/RadarModal';
-import InvestigatedProfile from './sections/MainInvestigated/InvestigatedProfile';
 
 function Dashboard() {
   const { currentOffice } = useAuth();
@@ -32,7 +31,7 @@ function Dashboard() {
   }
 
   function setInvestigatedProfile(representanteDk) {
-    setModalType('investigated');
+    if (representanteDk) setModalType('investigated');
     setModalData(representanteDk);
     return representanteDk;
   }
@@ -42,7 +41,9 @@ function Dashboard() {
       case 'glossary':
         return <Glossary onToggle={closeModal} />;
       case 'investigated':
-        return <InvestigatedProfile representanteDk={modalData} onToggle={closeModal} />;
+        return (
+          <InvestigatedProfile representanteDk={modalData} onToggle={closeModal} organType={tipo} />
+        );
       case 'radar':
         return <RadarModal compareData={modalData} onToggle={closeModal} />;
       case 'mapatron':
@@ -61,6 +62,7 @@ function Dashboard() {
             setIsIntroOpen={setIsIntroOpen}
             setModalType={setModalType}
             setModalData={setModalData}
+            setInvestigatedProfile={setInvestigatedProfile}
           />
         );
       case 2:

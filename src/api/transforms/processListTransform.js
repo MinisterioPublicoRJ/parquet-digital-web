@@ -1,5 +1,5 @@
 export default function processListTransform(data) {
-  return data.map(process => ({
+  return data.map((process) => ({
     classeDocumento: process.classe_documento,
     docuEtiqueta: process.docu_etiqueta,
     docuNrExterno: process.docu_nr_externo,
@@ -9,5 +9,6 @@ export default function processListTransform(data) {
     idOrgao: process.id_orgao,
     ultimoAndamento: process.ultimo_andamento,
     urlTjrj: process.url_tjrj,
+    representanteDk: process.representante_dk,
   }));
 }

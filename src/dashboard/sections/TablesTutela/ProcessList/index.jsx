@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Api from '../../../../api';
-import { CustomTable, Spinner } from '../../../../components';
+import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
 const ProcessList = ({ isActive }) => {
@@ -8,6 +8,8 @@ const ProcessList = ({ isActive }) => {
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState([]);
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
@@ -24,6 +26,7 @@ const ProcessList = ({ isActive }) => {
       try {
         const response = await Api.getProcessList(buildRequestParams());
         setProcessListData(response);
+        setTotalPages(response.length);
       } catch (e) {
         setProcessListData(false);
       } finally {
@@ -45,6 +48,10 @@ const ProcessList = ({ isActive }) => {
       ) : (
         <div className="processList-tableWrapper">
           <CustomTable data={processListData} columns={tableColumns} showHeader />
+          <Pagination
+            totalPages={totalPages}
+
+          />
         </div>
       )}
     </div>

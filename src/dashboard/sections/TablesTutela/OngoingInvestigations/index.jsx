@@ -25,11 +25,11 @@ const OngoingInvestigations = ({ isActive }) => {
 
   }
   useEffect(() => {
-    const loadData = async () => {
+    const loadData = async (nextPage) => {
       setLoading(true);
+      const page = nextPage || currentPage;
       try {
-        const response = await Api.getOngoingInvestigationsList(buildRequestParams());
-        //const total = Math.ceil(total / limit);
+        const response = await Api.getOngoingInvestigationsList(buildRequestParams(), page);
         setOngoingInvestigationsListData(response);
         setTotalPages(response.length);
       } catch (e) {

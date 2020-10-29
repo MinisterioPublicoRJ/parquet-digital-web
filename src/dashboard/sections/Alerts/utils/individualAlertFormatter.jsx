@@ -23,6 +23,7 @@ import {
   PPPV_ACTION_EXTEND,
   PPPV_ACTION_CONVERT,
   UNSENT_OCCURRENCE_LIST,
+  ABR1_ALERT_ACTION,
 } from '../../../../api/endpoints';
 
 import {
@@ -98,6 +99,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'RO':
       return roOccurrence(alert, token);
 
+    case 'ABR1':
+      return abr1Constructor(alert,cpf, token);
+  
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
     case 'PRCR1':
@@ -930,4 +934,47 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     key,
     message,
   };
+}
+
+function abr1Constructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
+  let key;
+  let message;
+  let actions = [];
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+       Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP
+      </span>
+    );
+    return {
+    backgroundColor: '#f86c72',
+    icon: <ClockIcon />,
+    actions,
+    key,
+    message,
+    }
+  } else {
+    key = `${alertCode}-${docNum}`;
+    actions = [
+      GENERATE_MINUTA(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
+      EXTEND_DEADLINE(PPFP_ACTION_EXTEND({ orgao, token, docDk, cpf })),
+      DELETE,
+    ];
+    message = (
+      <span>
+        O procedimento preparatório
+        <strong>{` ${docNum} `}</strong>
+        está com o<strong> prazo de tratamento esgotado</strong>.
+      </span>
+    );
+    return {
+    backgroundColor: '#2DE288',
+    icon: <ClockIcon />,
+    actions,
+    key,
+    message,
+    }
+  }
 }

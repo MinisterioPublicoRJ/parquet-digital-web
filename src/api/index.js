@@ -30,6 +30,7 @@ import {
   RADAR_COMPARE_PIP,
   ONGOING_INVESTIGATIONS_LIST,
   PRCR_ALERT_DATA,
+  ABR1_ALERT,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';

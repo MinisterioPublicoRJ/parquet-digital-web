@@ -52,6 +52,18 @@ function Alerts() {
     return [alertsTotal, errorAlertsTotal];
   }
 
+  /*async function loadAbr1Alerts() {
+    let Abr1AlertList = [];
+    let Abr1AlertsListError = false;
+    try {
+      Abr1AlertList = await Api.getAbr1Alerts(buildRequestParams());
+      console.log(Abr1AlertList);
+    } catch (e) {
+      Abr1AlertsListError = true;
+    }
+    return [Abr1AlertList, Abr1AlertsListError];
+  }*/
+
   async function loadHiresAlerts() {
     let hiresAlertList = [];
     let hiresListError = false;
@@ -67,6 +79,8 @@ function Alerts() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
+    /*const [Abr1AlertList, errorAbr1List] = await loadAbr1Alerts();*/
+
     const { cpf, token, orgao } = buildRequestParams();
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList);

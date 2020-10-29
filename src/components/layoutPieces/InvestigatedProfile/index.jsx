@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import { useAuth } from '../../../../app/authContext';
-import { CustomTable } from '../../../../components';
+import { useAuth } from '../../../app/authContext';
 import { TABLE_COLUMNS } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
-import Api from '../../../../api';
-import { Spinner } from '../../../../components/layoutPieces';
-import { LoginPromotron } from '../../../../assets';
+import Api from '../../../api';
+import { CustomTable, Spinner } from '..';
+import { LoginPromotron } from '../../../assets';
 
 const propTypes = {
   onToggle: PropTypes.func.isRequired,
   representanteDk: PropTypes.number.isRequired,
+  organType: PropTypes.number.isRequired,
 };
 
-function InvestigatedProfile({ onToggle, representanteDk }) {
+function InvestigatedProfile({ onToggle, representanteDk, organType }) {
   const [pessDk, setPessDk] = useState(null);
   const { buildRequestParams } = useAuth();
   const [profileData, setProfileData] = useState(null);
@@ -25,6 +25,9 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
   const [loading, setLoading] = useState(true);
 
   async function getProfileData() {
+    let organTypeName;
+    if (organType === 1) organTypeName = 'tutela';
+    if (organType === 2) organTypeName = 'pip';
     let promise;
     setLoading(true);
     try {
@@ -32,11 +35,13 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
         typeof pessDk === 'number'
           ? Api.getInvestigatedProfile({
               ...buildRequestParams(),
+              organTypeName,
               representanteDk,
               pessDk,
             })
           : Api.getInvestigatedProfile({
               ...buildRequestParams(),
+              organTypeName,
               representanteDk,
             });
 

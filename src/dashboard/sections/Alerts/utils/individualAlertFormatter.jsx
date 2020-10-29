@@ -936,13 +936,12 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
   };
 }
 
-function abr1Constructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
+function abr1Constructor({ dropdown, alertCode, docNum, orgao, docDk }, cpf, token) {
   let key;
   let message;
   let actions = [];
   if (dropdown) {
     key = `${alertCode}-dropdown`;
-    const single = count === 1;
     message = (
       <span>
        Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP
@@ -951,22 +950,18 @@ function abr1Constructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     return {
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
-    actions,
     key,
     message,
     }
   } else {
     key = `${alertCode}-${docNum}`;
     actions = [
-      GENERATE_MINUTA(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
-      EXTEND_DEADLINE(PPFP_ACTION_EXTEND({ orgao, token, docDk, cpf })),
-      DELETE,
+      DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, docDk, cpf })), DETAIL(), DELETE,
     ];
     message = (
       <span>
-        O procedimento preparatório
-        <strong>{` ${docNum} `}</strong>
-        está com o<strong> prazo de tratamento esgotado</strong>.
+        Clique aqui para baixar o modelo oficial
+         de comunicação com a listagem dos seus procedimentos
       </span>
     );
     return {

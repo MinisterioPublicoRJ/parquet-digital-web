@@ -9,7 +9,7 @@ const OngoingInvestigations = ({ isActive }) => {
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
@@ -19,12 +19,17 @@ const OngoingInvestigations = ({ isActive }) => {
     Personagens: 'docuPersonagens',
   };
 
+  function handlePageClick(page) {
+    if (page < 1 || page > totalPages)
+    return totalPages;
+
+  }
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
       try {
         const response = await Api.getOngoingInvestigationsList(buildRequestParams());
-        console.log(response)
+        //const total = Math.ceil(total / limit);
         setOngoingInvestigationsListData(response);
         setTotalPages(response.length);
       } catch (e) {
@@ -54,8 +59,9 @@ const OngoingInvestigations = ({ isActive }) => {
         <div className="ongoingInvestigations-tableWrapper">
           <CustomTable data={ongoingInvestigationsListData} columns={tableColumns} showHeader />
           <Pagination
-            totalPages={totalPages}
-
+            totalPages={totalPages || 0}
+            handlePageClick={(page) => handlePageClick(page)}
+            currentPage={currentPage}
           />
         </div>
       )}

@@ -20,6 +20,11 @@ const ProcessList = ({ isActive }) => {
     'Rótulo Andamento': 'ultimoAndamento',
   };
 
+  function handlePageClick(page) {
+    if (page < 1 || page > totalPages)
+    return totalPages;
+
+  }
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
@@ -49,8 +54,9 @@ const ProcessList = ({ isActive }) => {
         <div className="processList-tableWrapper">
           <CustomTable data={processListData} columns={tableColumns} showHeader />
           <Pagination
-            totalPages={totalPages}
-
+            totalPages={totalPages || 0}
+            handlePageClick={(page) => handlePageClick(page)}
+            currentPage={currentPage}
           />
         </div>
       )}

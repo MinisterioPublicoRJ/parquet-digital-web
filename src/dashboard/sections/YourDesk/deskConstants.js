@@ -4,8 +4,8 @@ export const TUTELA_BUTTONS = ['openCases', 'openInvestigations', 'courtCases', 
 
 export const BUTTON_TEXTS = {
   openCases: `vistas\nabertas`,
-  closedCasesP: `últimos 30 dias`,
-  closedCasesT: `últimos 30 dias`,
+  closedCasesP: `finalizados últimos 30 dias`,
+  closedCasesT: `finalizados últimos 30 dias`,
   openInvestigations: `investigações\nem curso`,
   courtCases: `processos\nem juízo`,
   pics: 'PIC',

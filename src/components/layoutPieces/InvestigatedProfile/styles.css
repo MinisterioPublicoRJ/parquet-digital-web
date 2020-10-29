@@ -162,3 +162,13 @@
   font-size: 2em;
   color: #ffffff;
 }
+
+button.investigated-profile-btn {
+  color: #8998ac;
+  font-size: var(--smallFont);
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 0;
+}

@@ -3,7 +3,7 @@ import Api from '../../../../api';
 import { CustomTable, Spinner } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const ProcessList = ({ isActive }) => {
+const ProcessList = ({ isActive, setInvestigatedProfile }) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
@@ -18,11 +18,30 @@ const ProcessList = ({ isActive }) => {
     'Rótulo Andamento': 'ultimoAndamento',
   };
 
+  function generateButtons(list) {
+    return list.map((process) => {
+      const { representanteDk, docuPersonagens } = process;
+      const investigatedNameBtn = (
+        <button
+          type="button"
+          onClick={() => {
+            setInvestigatedProfile(representanteDk);
+          }}
+          className="investigated-profile-btn"
+        >
+          {docuPersonagens}
+        </button>
+      );
+      return { ...process, docuPersonagens: investigatedNameBtn };
+    });
+  }
+
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getProcessList(buildRequestParams());
+        let response = await Api.getProcessList(buildRequestParams());
+        response = generateButtons(response);
         setProcessListData(response);
       } catch (e) {
         setProcessListData(false);

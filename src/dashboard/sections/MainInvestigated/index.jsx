@@ -22,18 +22,9 @@ function MainInvestigated({ setInvestigatedProfile }) {
     Api.actionMainInvestigated({ ...buildRequestParams(), action: 'remove', representanteDk });
 
     // give user positivie feedback regardless of request success
-    setTableData(oldTableData =>
-      oldTableData.filter(item => item.representanteDk !== representanteDk),
+    setTableData((oldTableData) =>
+      oldTableData.filter((item) => item.representanteDk !== representanteDk),
     );
-  }
-
-  /**
-   * uses representanteDk number to open the investigated profile modal
-   * @param  {number} representanteDk investigated "id"
-   * @return {void}                 updates the state
-   */
-  function openInvestigatedProfile(representanteDk) {
-    setInvestigatedProfile(representanteDk);
   }
 
   /**
@@ -49,9 +40,9 @@ function MainInvestigated({ setInvestigatedProfile }) {
     });
 
     // give user positivie feedback regardless of request success
-    setTableData(oldTableData => {
+    setTableData((oldTableData) => {
       const updatedArray = [...oldTableData];
-      const representanteIndex = updatedArray.findIndex(item => {
+      const representanteIndex = updatedArray.findIndex((item) => {
         return item.representanteDk === representanteDk;
       });
 
@@ -85,7 +76,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
         <button
           type="button"
           onClick={() => {
-            openInvestigatedProfile(representanteDk);
+            setInvestigatedProfile(representanteDk);
           }}
           className="investigated-profile-btn"
         >

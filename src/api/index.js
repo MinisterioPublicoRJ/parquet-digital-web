@@ -25,7 +25,6 @@ import {
   DELETE_ALERT,
   UNDO_DELETE_ALERT,
   INVESTIGATED_PROFILE_URL,
-  INVESTIGATED_PERSONAL_PROFILE_URL,
   RADAR_COMPARE_TUTELA,
   RADAR_COMPARE_PIP,
   ONGOING_INVESTIGATIONS_LIST,
@@ -277,14 +276,26 @@ const Api = (() => {
    *
    * @return  {[JSON]}                   [profile data for the pessDk (.perfil, .procedimentos) or representanteDk (+ .similares)]
    */
-  async function getInvestigatedProfile({ token, representanteDk, pessDk }) {
-    const { data } = pessDk
-      ? await axios.get(
-          INVESTIGATED_PERSONAL_PROFILE_URL({ representanteDk, pessDk }),
-          buildRequestConfig(token),
-        )
-      : await axios.get(INVESTIGATED_PROFILE_URL({ representanteDk }), buildRequestConfig(token));
+  async function getInvestigatedProfile({ token, organTypeName, representanteDk, pessDk }) {
+    const params = { jwt: token };
+
+    if (pessDk) {
+      params.pess_dk = pessDk;
+    }
+
+    if (organTypeName === 'tutela') {
+      params.orgao_type = organTypeName;
+    }
+
+    const { data } = await axios.get(INVESTIGATED_PROFILE_URL({ representanteDk }), { params });
     return data;
+    // const { data } = pessDk
+    //   ? await axios.get(
+    //       INVESTIGATED_PERSONAL_PROFILE_URL({ representanteDk, pessDk }),
+    //       buildRequestConfig(token),
+    //     )
+    //   : await axios.get(INVESTIGATED_PROFILE_URL({ representanteDk }), buildRequestConfig(token));
+    // return data;
   }
 
   async function getRadarCompareData({ orgao, organType, token }) {

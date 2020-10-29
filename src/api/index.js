@@ -289,13 +289,6 @@ const Api = (() => {
 
     const { data } = await axios.get(INVESTIGATED_PROFILE_URL({ representanteDk }), { params });
     return data;
-    // const { data } = pessDk
-    //   ? await axios.get(
-    //       INVESTIGATED_PERSONAL_PROFILE_URL({ representanteDk, pessDk }),
-    //       buildRequestConfig(token),
-    //     )
-    //   : await axios.get(INVESTIGATED_PROFILE_URL({ representanteDk }), buildRequestConfig(token));
-    // return data;
   }
 
   async function getRadarCompareData({ orgao, organType, token }) {

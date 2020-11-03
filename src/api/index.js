@@ -29,7 +29,7 @@ import {
   RADAR_COMPARE_TUTELA,
   RADAR_COMPARE_PIP,
   ONGOING_INVESTIGATIONS_LIST,
-  PRCR_ALERT_DATA,
+  ALERT_OVERLAY_DATA,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -56,7 +56,7 @@ import {
   snakeToCamelTransform,
   radarCompareTransform,
   ongoingInvestigationsListTransform,
-  prescribedCrimeTransform,
+  alertOverlayTransform,
 } from './transforms';
 
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
@@ -295,9 +295,11 @@ const Api = (() => {
     return radarCompareTransform(data);
   }
 
-  async function getPRCRData(docDk, { token }) {
-    const { data } = await axios.get(PRCR_ALERT_DATA({ docDk, token }));
-    return prescribedCrimeTransform(data);
+  async function getAlertOverlayData(docDk, type, { token }) {
+    const params = { tipo: type.toLocaleLowerCase(), jwt: token };
+
+    const { data } = await axios.get(ALERT_OVERLAY_DATA({ docDk }), { params });
+    return alertOverlayTransform(type, data);
   }
 
   async function sendOmbudsmanEmail(link) {
@@ -332,8 +334,8 @@ const Api = (() => {
     getInvestigatedProfile,
     getRadarCompareData,
     getOngoingInvestigationsList,
-    getPRCRData,
     sendOmbudsmanEmail,
+    getAlertOverlayData,
   };
 })();
 

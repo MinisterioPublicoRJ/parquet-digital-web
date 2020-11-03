@@ -50,77 +50,6 @@ export const OVERLAY_TEXTS = {
       </p>
     </div>
   ),
-  IC1A: (
-    <div>
-      <p>
-        Neste alerta, eu busco lhe informar se um Inquérito Civil está há mais de um ano sem
-        prorrogação.
-      </p>
-
-      <p />
-
-      {/* <p>
-        Neste caso, ele fez um ano sem prorrogação no dia INSERIR DADOS, após ter ocorrido a
-        MOVIMENTO no dia INSERIR DADOS.
-      </p> */}
-
-      <p />
-
-      <p>
-        Caso você concorde com meus cálculos, você pode utilizar o botão de gerar peça e eu lhe
-        entrego um modelo de sugestão.
-      </p>
-    </div>
-  ),
-  PA1A: (
-    <div>
-      <p>
-        Neste alerta, eu busco lhe informar se um Procedimento Administrativo está aberto há mais de
-        um ano.
-      </p>
-
-      <p />
-
-      {/* <p>
-        Neste caso, ele fez um ano no dia INSERIR DADOS, após ter sido cadastrado no nosso sistema
-        no dia INSERIR DADOS.
-      </p> */}
-
-      <p />
-
-      <p>
-        Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
-        utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
-      </p>
-    </div>
-  ),
-  PPFP: (
-    <div>
-      <p>Neste alerta, eu busco lhe informar se um Procedimento Preparatório está fora do prazo.</p>
-
-      <p />
-
-      <p>
-        Neste caso, o alerta aparece se o Procedimento Preparatório foi criado no sistema e se
-        passaram mais de 30 dias sem prorrogação, ou se, mesmo após a prorrogação, já se passaram
-        mais de 180 dias de sua criação.
-      </p>
-
-      <p />
-
-      {/* <p>
-        Este procedimento foi cadastrado no nosso sistema no dia INSERIR DADOS e agora ele se
-        encontra fora do prazo.
-      </p> */}
-
-      <p />
-
-      <p>
-        Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
-        utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
-      </p>
-    </div>
-  ),
   OUVI: (
     <div>
       <p>
@@ -443,3 +372,77 @@ export const PRCR_TEXTS = (type, data) => {
     default:
   }
 };
+
+export const IC1A_TEXT = ({ movement, movementDate, deadline }) => (
+  <div>
+    <p>
+      Neste alerta, eu busco lhe informar se um Inquérito Civil está há mais de um ano sem
+      prorrogação.
+    </p>
+
+    <p />
+
+    <p>
+      {`Neste caso, ele fez um ano sem prorrogação no dia ${deadline}, após ter ocorrido a
+      ${movement} no dia ${movementDate}.`}
+    </p>
+
+    <p />
+
+    <p>
+      Caso você concorde com meus cálculos, você pode utilizar o botão de gerar peça e eu lhe
+      entrego um modelo de sugestão.
+    </p>
+  </div>
+);
+
+export const PA1A_TEXT = ({ deadline, registerDate }) => (
+  <div>
+    <p>
+      Neste alerta, eu busco lhe informar se um Procedimento Administrativo está aberto há mais de
+      um ano.
+    </p>
+
+    <p />
+
+    <p>
+      {`Neste caso, ele fez um ano no dia ${deadline}, após ter sido cadastrado no nosso sistema
+      no dia ${registerDate}.`}
+    </p>
+
+    <p />
+
+    <p>
+      Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
+      utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
+    </p>
+  </div>
+);
+
+export const PPFP_TEXT = ({ registerDate }) => (
+  <div>
+    <p>Neste alerta, eu busco lhe informar se um Procedimento Preparatório está fora do prazo.</p>
+
+    <p />
+
+    <p>
+      Neste caso, o alerta aparece se o Procedimento Preparatório foi criado no sistema e se
+      passaram mais de 30 dias sem prorrogação, ou se, mesmo após a prorrogação, já se passaram
+      mais de 180 dias de sua criação.
+    </p>
+
+    <p />
+
+    <p>
+      {`Este procedimento foi cadastrado no nosso sistema no dia ${registerDate} e agora ele se
+      encontra fora do prazo.`}
+    </p>
+
+    <p />
+
+    <p>
+      Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
+      utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
+    </p>
+  </div>
+);

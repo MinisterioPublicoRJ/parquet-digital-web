@@ -317,7 +317,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
+function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk }) {
   let key;
   let message;
 
@@ -347,12 +347,12 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
   }
 
   return {
-    // actions: [GENERATE_DOC(), CALCULO(), DELETE],
-    actions: [GENERATE_DOC(), DELETE],
+    actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#5C6FD9',
     icon: <ClockIcon />,
     key,
     message,
+    docDk,
   };
 }
 
@@ -388,13 +388,14 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
   return {
     actions: [
       GENERATE_DOC(IC1A_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })),
-      // CALCULO(),
+      CALCULO(),
       DELETE,
     ],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
     key,
     message,
+    docDk,
   };
 }
 

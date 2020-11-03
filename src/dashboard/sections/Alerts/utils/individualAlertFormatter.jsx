@@ -12,6 +12,7 @@ import {
   Tjrj,
   IconContratacoes,
   Ro,
+  Arrow,
 } from '../../../../assets';
 
 import {
@@ -966,7 +967,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao, docDk }, cpf, tok
     );
     return {
     backgroundColor: '#2DE288',
-    icon: <ClockIcon />,
+    icon: <Arrow />,
     actions,
     key,
     message,

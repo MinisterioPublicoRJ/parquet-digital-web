@@ -937,7 +937,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
   };
 }
 
-function abr1Constructor({ dropdown, alertCode, docNum, orgao, docDk }, cpf, token) {
+function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
   let key;
   let message;
   let actions = [];
@@ -957,7 +957,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao, docDk }, cpf, tok
   } else {
     key = `${alertCode}-${docNum}`;
     actions = [
-      DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, docDk, cpf })), DETAIL(), DELETE,
+      DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, cpf })), DELETE,
     ];
     message = (
       <span>

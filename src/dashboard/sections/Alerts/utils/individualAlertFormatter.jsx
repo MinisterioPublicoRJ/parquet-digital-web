@@ -338,8 +338,8 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O procedimento administrativo{``}
-        <strong>{`${docNum}`}</strong>
+        O procedimento administrativo {``} 
+        <strong>{`${docNum}`}</strong> {``}
         está aberto
         <strong> há mais de um ano</strong>.
       </span>

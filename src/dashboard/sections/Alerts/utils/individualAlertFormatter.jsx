@@ -12,6 +12,7 @@ import {
   Tjrj,
   IconContratacoes,
   Ro,
+  Arrow,
 } from '../../../../assets';
 
 import {
@@ -23,6 +24,7 @@ import {
   PPPV_ACTION_EXTEND,
   PPPV_ACTION_CONVERT,
   UNSENT_OCCURRENCE_LIST,
+  ABR1_ALERT_ACTION,
 } from '../../../../api/endpoints';
 
 import {
@@ -98,6 +100,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'RO':
       return roOccurrence(alert, token);
 
+    case 'ABR1':
+      return abr1Constructor(alert,cpf, token);
+  
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
     case 'PRCR1':
@@ -932,4 +937,42 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     key,
     message,
   };
+}
+
+function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
+  let key;
+  let message;
+  let actions = [];
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    message = (
+      <span>
+       Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP
+      </span>
+    );
+    return {
+    backgroundColor: '#f86c72',
+    icon: <ClockIcon />,
+    key,
+    message,
+    }
+  } else {
+    key = `${alertCode}-${docNum}`;
+    actions = [
+      DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, cpf })), DELETE,
+    ];
+    message = (
+      <span>
+        Clique aqui para baixar o modelo oficial
+         de comunicação com a listagem dos seus procedimentos
+      </span>
+    );
+    return {
+    backgroundColor: '#2DE288',
+    icon: <Arrow />,
+    actions,
+    key,
+    message,
+    }
+  }
 }

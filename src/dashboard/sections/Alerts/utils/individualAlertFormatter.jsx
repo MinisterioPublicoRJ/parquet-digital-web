@@ -322,7 +322,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
+function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk }) {
   let key;
   let message;
 
@@ -343,8 +343,8 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O procedimento administrativo{``}
-        <strong>{`${docNum}`}</strong>
+        O procedimento administrativo {``} 
+        <strong>{`${docNum}`}</strong> {``}
         está aberto
         <strong> há mais de um ano</strong>.
       </span>
@@ -357,6 +357,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum }) {
     icon: <ClockIcon />,
     key,
     message,
+    docDk,
   };
 }
 
@@ -399,6 +400,7 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     icon: <ClockIcon />,
     key,
     message,
+    docDk,
   };
 }
 

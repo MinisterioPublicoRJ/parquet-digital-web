@@ -107,7 +107,7 @@ const AlertBadge = ({
         <div className="alertBadge-hoverContainer">
           {actions.map((alertAction) => (
             <ActionButtons
-              key={`${customKey}-${alertAction.actionType}`}
+              key={`${customKey}-${alertAction.actionType}-${alertAction.text}`}
               clickCallback={() => handleActionPress(alertAction, customKey, type)}
               {...alertAction}
             />

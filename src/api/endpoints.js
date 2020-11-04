@@ -73,9 +73,8 @@ export const ABR1_ALERT_ACTION = t(
   `${BASE_URL}/documentos/procedimentos-csmp/\${orgao}/\${cpf}?jwt=\${token}`,
 );
 
-export const PRCR_ALERT_DATA = t(
-  `${BASE_URL}/alertas/overlay/\${docDk}?tipo=prescricao&jwt=\${token}`,
-);
+export const ALERT_OVERLAY_DATA = t(`${BASE_URL}/alertas/overlay/\${docDk}`);
+
 export const IC1A_ACTION_GENERATE_DOC = t(
   `${BASE_URL}/documentos/prorrogacao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
 );

@@ -870,7 +870,7 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
           single ? 'procedimento preparatório' : 'procedimentos preparatórios'
         } `}</strong>
         com
-        <strong> prazo proxímo de vencer.</strong>
+        <strong> prazo próximo de vencer.</strong>
       </span>
     );
   } else {
@@ -884,7 +884,7 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
       <span>
         O procedimento preparatório {``}
         <strong>{`${docNum}`}</strong> {``}
-        está com o<strong> prazo proxímo de vencer.</strong>.
+        está com o<strong> prazo próximo de vencer.</strong>.
       </span>
     );
   }

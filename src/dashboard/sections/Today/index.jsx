@@ -208,7 +208,7 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
           )}
         </div>
       </div>
-      {currentOffice.tipo === 2 ? (
+      {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (
         <button
           type="button"
           className="today-btn"

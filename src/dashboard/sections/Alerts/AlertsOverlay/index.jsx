@@ -5,7 +5,7 @@ import { useAuth } from '../../../../app/authContext';
 import { Spinner } from '../../../../components';
 
 import './styles.css';
-import { OVERLAY_TEXTS, PRCR_TEXTS } from './overlayConstants';
+import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT, PA1A_TEXT } from './overlayConstants';
 
 const propTypes = {
   type: PropTypes.string.isRequired,
@@ -13,39 +13,55 @@ const propTypes = {
   children: PropTypes.node,
 };
 
+const defaultProps = { children: null };
+
 function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
   const { buildRequestParams } = useAuth();
   const [text, setText] = useState();
 
-  async function getPRCRText(type, docDk) {
-    let data = null;
+
+  async function getOverlayText(docType) {
     try {
-      data = await Api.getPRCRData(docDk, buildRequestParams());
-    } catch (e) {
-    } finally {
+      const data = await Api.getAlertOverlayData(docDk, docType, buildRequestParams());
       return data;
+    } catch (e) {
+      return <p>Erro ao carregar os dados</p>;
     }
   }
 
   async function getText() {
-    if (OVERLAY_TEXTS[type])
-      setText(
+    let texts;
+    let data;
+    if (OVERLAY_TEXTS[type]) {
+      texts = (
         <>
-          <h4> {type} </h4>
+          <h4>{type}</h4>
           {OVERLAY_TEXTS[type]}
-        </>,
+        </>
       );
-    else if (type && type.slice(0, 4) === 'PRCR') {
-      const data = await getPRCRText(type, docDk);
-      setText(PRCR_TEXTS(type, data));
     } else {
-      setText(
-        <p>
-          {'Isso é um overlay do tipo '}
-          {type}
-        </p>,
-      );
+      switch (type.toLocaleUpperCase()) {
+        case 'PRCR':
+        case 'PRCR1':
+        case 'PRCR2':
+        case 'PRCR3':
+        case 'PRCR4':
+          data = await getOverlayText('prescricao', docDk);
+          texts = PRCR_TEXTS(type, data);
+          break;
+        case 'IC1A':
+          data = await getOverlayText(type, docDk);
+          texts = IC1A_TEXT(data);
+          break;
+        case 'PA1A':
+          data = await getOverlayText(type, docDk);
+          texts = IC1A_TEXT(data);
+          break;
+        default:
+          texts = <p>{`Os dados para alertas ${type} ainda não estão disponíveis`}</p>;
+      }
     }
+    setText(texts);
   }
 
   /**
@@ -73,7 +89,9 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
       >
         <div>
           {text || <Spinner size="medium" />}
-          <button onClick={() => setShowOverlay(false)}> Sair</button>
+          <button type="button" onClick={() => setShowOverlay(false)}>
+            Sair
+          </button>
           {children}
         </div>
       </div>
@@ -82,4 +100,5 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
 }
 
 AlertsOverlay.propTypes = propTypes;
+AlertsOverlay.defaultProps = defaultProps;
 export default AlertsOverlay;

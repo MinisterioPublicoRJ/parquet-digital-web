@@ -70,9 +70,8 @@ export const COMPRAS_ACTION_OUVIDORIA = t(
   `${BASE_URL}/alertas/ouvidoria/\${orgao}/comp?alerta_id=\${alertId}&jwt=\${token}`,
 );
 
-export const PRCR_ALERT_DATA = t(
-  `${BASE_URL}/alertas/overlay/\${docDk}?tipo=prescricao&jwt=\${token}`,
-);
+export const ALERT_OVERLAY_DATA = t(`${BASE_URL}/alertas/overlay/\${docDk}`);
+
 export const IC1A_ACTION_GENERATE_DOC = t(
   `${BASE_URL}/documentos/prorrogacao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
 );

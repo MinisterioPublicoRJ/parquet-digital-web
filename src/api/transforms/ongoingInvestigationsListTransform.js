@@ -11,5 +11,6 @@ export default function ongoingInvestigationsListTransform(data) {
     idOrgao: list.id_orgao,
     ultimoAndamento: list.ultimo_andamento,
     urlTjrj: list.url_tjrj,
+    representanteDk: list.representante_dk,
   }));
 }

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { VictoryPie, VictoryLabel, VictoryChart, VictoryAxis } from 'victory';
@@ -8,6 +8,12 @@ import ChartPoints from '../ChartPoint';
 import LabelWrapper from '../LabelWrapper';
 
 const graphicColor = ['#F8F9FB']; // Colors
+
+const fillerData = [
+  { y: 0, color: '#B3B3B3' },
+  { y: 0, color: '#B3B3B3' },
+  { y: 100, color: '#B3B3B3' },
+];
 
 const propTypes = {
   data: PropTypes.arrayOf(
@@ -38,7 +44,16 @@ function TempoTramitacaoChart({
   labelCompliment,
   pointerPosition,
 }) {
+  const [chartData, setChartData] = useState(fillerData);
   const { min, max } = domain;
+
+  // anti prop, but the only way to force victory to animate :/
+  useEffect(() => {
+    if (chartData === fillerData) {
+      setChartData(data);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   const victoryChartSettings = {
     domain: { x: [min, max], y: [0, 100] },
@@ -167,7 +182,7 @@ function TempoTramitacaoChart({
         {/* This hides the axis from showing */}
         <VictoryAxis style={{ axis: { stroke: 'none' } }} tickFormat={() => ''} />
         {/*  this is the actual pie chart that renders the bars and the labels around it */}
-        <VictoryPie {...chartPieSettings} data={data} />
+        <VictoryPie {...chartPieSettings} data={chartData} animate={{ easing: 'exp' }} />
         {/* This pie has the circles */}
         <VictoryPie {...labelsPieSettings} data={points} />
       </VictoryChart>

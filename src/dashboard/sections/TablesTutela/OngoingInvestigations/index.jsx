@@ -3,7 +3,7 @@ import Api from '../../../../api';
 import { CustomTable, Spinner } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const OngoingInvestigations = ({ isActive }) => {
+const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
@@ -17,11 +17,32 @@ const OngoingInvestigations = ({ isActive }) => {
     Personagens: 'docuPersonagens',
   };
 
+  function generateButtons(list) {
+    return list.map((investigation) => {
+      const { representanteDk, docuPersonagens } = investigation;
+      const investigatedNameBtn = representanteDk ? (
+        <button
+          type="button"
+          onClick={() => {
+            setInvestigatedProfile(representanteDk);
+          }}
+          className="investigated-profile-btn"
+        >
+          {docuPersonagens}
+        </button>
+      ) : (
+        docuPersonagens
+      );
+      return { ...investigation, docuPersonagens: investigatedNameBtn };
+    });
+  }
+
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getOngoingInvestigationsList(buildRequestParams());
+        let response = await Api.getOngoingInvestigationsList(buildRequestParams());
+        response = generateButtons(response);
         setOngoingInvestigationsListData(response);
       } catch (e) {
         setOngoingInvestigationsListData(false);

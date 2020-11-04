@@ -125,6 +125,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
 
         {alertsList.length !== visibleAlertsList.length ? (
           <button
+            type="button"
             onMouseEnter={() => setIsShowMoreInHover(true)}
             onMouseLeave={() => setIsShowMoreInHover(false)}
             style={

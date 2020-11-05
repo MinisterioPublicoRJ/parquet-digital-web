@@ -102,7 +102,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     case 'ABR1':
       return abr1Constructor(alert,cpf, token);
-  
+
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':
     case 'PRCR1':
@@ -343,7 +343,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk }) {
     key = `${alertCode}-${docNum}`;
     message = (
       <span>
-        O procedimento administrativo {``} 
+        O procedimento administrativo {``}
         <strong>{`${docNum}`}</strong> {``}
         está aberto
         <strong> há mais de um ano</strong>.
@@ -947,7 +947,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
     key = `${alertCode}-dropdown`;
     message = (
       <span>
-       Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP
+       Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP.
       </span>
     );
     return {
@@ -963,8 +963,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
     ];
     message = (
       <span>
-        Clique aqui para baixar o modelo oficial
-         de comunicação com a listagem dos seus procedimentos
+        Clique aqui para baixar uma listagem desses procedimentos. Lembre-se de adequa-la às exigências do CSMP.
       </span>
     );
     return {

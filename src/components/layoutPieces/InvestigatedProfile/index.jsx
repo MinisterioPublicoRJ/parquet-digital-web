@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 import { useAuth } from '../../../app/authContext';
-import { TABLE_COLUMNS } from './investigatedProfileConstants';
+import { TABLE_COLUMNS_PIP, TABLE_COLUMNS_TUTELA } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
 import Api from '../../../api';
 import { CustomTable, Spinner } from '..';
@@ -136,7 +136,11 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
             {loading ? (
               <Spinner size="medium" />
             ) : (
-              <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
+              <CustomTable
+                data={tableData}
+                columns={organType === 1 ? TABLE_COLUMNS_TUTELA : TABLE_COLUMNS_PIP}
+                showHeader
+              />
             )}
           </div>
 

@@ -78,7 +78,7 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
     try {
       res = await Api.getTodayOutData(buildRequestParams());
 
-      setTodayPercent(res ? `${(res * 100).toFixed(0)}%` : res);
+      setTodayPercent(res ? `${(res * 100).toFixed(0)}%` : '0%');
     } catch (e) {
       res = undefined;
       setApiError((prevCount) => prevCount + 1);

@@ -11,7 +11,6 @@ export const TABLE_COLUMNS_PIP = {
 export const TABLE_COLUMNS_TUTELA = {
   'Nº Procedimento': 'documento_nr_mp',
   'Orgão Responsável': 'nm_orgao',
-  Coautores: 'coautores',
   Status: 'fase_documento',
   'Últ. Movimentação': 'dt_ultimo_andamento',
   'Últ. Andamento': 'desc_ultimo_andamento',

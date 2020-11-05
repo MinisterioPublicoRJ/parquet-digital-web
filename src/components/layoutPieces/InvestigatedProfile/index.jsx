@@ -99,10 +99,10 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
             className="similar-profiles-btn"
             onClick={() => setIsSimilarProfilesVisible((prevValue) => !prevValue)}
           >
-            Foram encontrados {profileData.similares.length}
-{' '}
-perfis similares ao solicitado
-<div
+            Foram encontrados
+            {` ${profileData.similares.length} `}
+            perfis similares ao solicitado.
+            <div
               className={`similar-profiles-arrow ${
                 isSimilarProfilesVisible ? 'similar-profiles-arrow--rotated' : ''
               }`}
@@ -117,7 +117,7 @@ perfis similares ao solicitado
             {profileData.similares.map((similarProfile) => {
               return (
                 <button
-                  onClick={(e) => {
+                  onClick={() => {
                     setPessDk((prevValue) =>
                       prevValue === similarProfile.pess_dk ? null : similarProfile.pess_dk,
                     );

@@ -13,9 +13,14 @@ function openInvestigationsMetrics({ variacaoAcervo }) {
   );
 }
 
-function courtCasesMetrics({ nrAcoes12MesesAtual, nrAcoesUltimos60Dias, variacao12Meses }) {
-  const formattedVariation = formatPercentage(Math.abs(variacao12Meses));
-  const formattedVariationCurrentAction = formatPercentage(Math.abs(nrAcoes12MesesAtual));
+function courtCasesMetrics({
+  nrAcoesUltimos60Dias,
+  variacao60Dias,
+  nrAcoes12MesesAtual,
+  variacao12Meses,
+}) {
+  const monthVariation = formatPercentage(Math.abs(variacao60Dias));
+  const yearVariation = formatPercentage(Math.abs(variacao12Meses));
 
   return (
     <p>
@@ -23,15 +28,13 @@ function courtCasesMetrics({ nrAcoes12MesesAtual, nrAcoesUltimos60Dias, variacao
       <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
       nos últimos 60 dias.
       <strong>
-        {variacao12Meses >= 0
-          ? ` Aumento de ${formattedVariation} `
-          : ` Redução de ${formattedVariation} `}
+        {variacao12Meses >= 0 ? ` Aumento de ${monthVariation} ` : ` Redução de ${monthVariation} `}
       </strong>
       com relação ao mesmo período anterior.
       <p>
         No último ano, você ajuizou
         <strong>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`}</strong>
-        <strong>{`, com aumento de ${formattedVariationCurrentAction} `}</strong>
+        <strong>{`, com aumento de ${yearVariation} `}</strong>
         em comparação com o ano anterior.
       </p>
     </p>

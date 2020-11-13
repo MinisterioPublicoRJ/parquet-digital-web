@@ -51,8 +51,8 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
       try {
         let response = await Api.getOngoingInvestigationsList(buildRequestParams());
         console.log(response)
-        response = generateButtons(response);
-        setOngoingInvestigationsListData(response);
+        // response = generateButtons(response);
+        setOngoingInvestigationsListData(response.data);
         setTotalPages(response.length);
       } catch (e) {
         setOngoingInvestigationsListData(false);

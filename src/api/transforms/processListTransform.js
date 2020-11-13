@@ -1,5 +1,5 @@
-export default function processListTransform(data) {
-  return data.map((process) => ({
+export default function processListTransform({ procedimentos, nr_paginas }) {
+  const data = procedimentos.map((process) => ({
     classeDocumento: process.classe_documento,
     docuEtiqueta: process.docu_etiqueta,
     docuNrExterno: process.docu_nr_externo,
@@ -11,4 +11,9 @@ export default function processListTransform(data) {
     urlTjrj: process.url_tjrj,
     representanteDk: process.representante_dk,
   }));
+
+  return {
+    data,
+    pages: nr_paginas,
+  };
 }

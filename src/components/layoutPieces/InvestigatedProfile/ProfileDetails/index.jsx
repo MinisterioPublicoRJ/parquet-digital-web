@@ -12,25 +12,30 @@ function ProfileDetails({ perfil }) {
     details = (
       <>
         <p>
-          <strong>Nome:</strong> <br />
+          <strong>Nome:</strong>
+          <br />
           {perfil.nm_investigado}
         </p>
         <p>
           <span>
-            <strong>Data de Nascimento:</strong> <br />
+            <strong>Data de Nascimento:</strong>
+            <br />
             {birthdate ? Intl.DateTimeFormat().format(birthdate) : null}
           </span>
           <span>
-            <strong>RG:</strong> <br />
+            <strong>RG:</strong>
+            <br />
             {perfil.rg}
           </span>
           <span>
-            <strong>CPF:</strong> <br />
+            <strong>CPF:</strong>
+            <br />
             {perfil.cpf}
           </span>
         </p>
         <p>
-          <strong>Mãe:</strong> <br />
+          <strong>Mãe:</strong>
+          <br />
           {perfil.nm_mae}
         </p>
       </>
@@ -39,11 +44,13 @@ function ProfileDetails({ perfil }) {
     details = (
       <>
         <p>
-          <strong>Nome:</strong> <br />
+          <strong>Nome:</strong>
+          <br />
           {perfil.nm_pesj}
         </p>
         <p>
-          <strong>CNPJ:</strong> <br />
+          <strong>CNPJ:</strong>
+          <br />
           {perfil.cnpj}
         </p>
       </>

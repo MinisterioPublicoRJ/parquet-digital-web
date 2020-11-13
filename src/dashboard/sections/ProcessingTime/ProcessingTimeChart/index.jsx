@@ -52,6 +52,7 @@ function TempoTramitacaoChart({
     if (chartData === fillerData) {
       setChartData(data);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const victoryChartSettings = {

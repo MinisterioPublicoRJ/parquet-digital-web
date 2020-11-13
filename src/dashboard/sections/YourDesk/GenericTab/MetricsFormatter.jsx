@@ -7,7 +7,7 @@ function openInvestigationsMetrics({ variacaoAcervo }) {
   return (
     <p>
       Seu acervo
-      <strong>{` ${variacaoAcervo > 0 ? 'aumentou' : 'diminuiu'}  ${formattedVariation} `}</strong>
+      <strong>{` ${variacaoAcervo > 0 ? 'aumentou' : 'diminuiu'} ${formattedVariation} `}</strong>
       nos últimos 30 dias.
     </p>
   );
@@ -20,9 +20,7 @@ function courtCasesMetrics({ nrAcoes12MesesAtual, nrAcoesUltimos60Dias, variacao
   return (
     <p>
       Você ajuizou
-      <strong>{` ${nrAcoesUltimos60Dias} ${
-        nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'
-      } `}</strong>
+      <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
       nos últimos 60 dias.
       <strong>
         {variacao12Meses >= 0
@@ -30,10 +28,11 @@ function courtCasesMetrics({ nrAcoes12MesesAtual, nrAcoesUltimos60Dias, variacao
           : ` Redução de ${formattedVariation} `}
       </strong>
       com relação ao mesmo período anterior.
-      <p>No último ano, você  ajuizou  <strong>{` ${nrAcoes12MesesAtual} ${
-        nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'} `}</strong>
-      <strong> com aumento de {` ${formattedVariationCurrentAction} `}</strong>{' '}
-        em comparação com o ano anterior
+      <p>
+        No último ano, você ajuizou
+        <strong>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`}</strong>
+        <strong>{`, com aumento de ${formattedVariationCurrentAction} `}</strong>
+        em comparação com o ano anterior.
       </p>
     </p>
   );

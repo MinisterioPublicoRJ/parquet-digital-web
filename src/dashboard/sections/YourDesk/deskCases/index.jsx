@@ -36,6 +36,7 @@ function DeskCasesChart({ active, buttonPressed, category, color, data, name }) 
     if (buttonChartData === fillerData) {
       setButtonChartData(Object.values(data));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   if (active) {

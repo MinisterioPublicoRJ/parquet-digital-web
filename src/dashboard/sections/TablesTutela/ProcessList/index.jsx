@@ -3,7 +3,7 @@ import Api from '../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const ProcessList = ({ isActive }) => {
+const ProcessList = ({ isActive, setInvestigatedProfile }) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
@@ -25,13 +25,35 @@ const ProcessList = ({ isActive }) => {
     return totalPages;
 
   }
+  function generateButtons(list) {
+    return list.map((process) => {
+      const { representanteDk, docuPersonagens } = process;
+      const investigatedNameBtn = representanteDk ? (
+        <button
+          type="button"
+          onClick={() => {
+            setInvestigatedProfile(representanteDk);
+          }}
+          className="investigated-profile-btn"
+        >
+          {docuPersonagens}
+        </button>
+      ) : (
+        docuPersonagens
+      );
+      return { ...process, docuPersonagens: investigatedNameBtn };
+    });
+  }
+
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getProcessList(buildRequestParams());
+        let response = await Api.getProcessList(buildRequestParams());
+        response = generateButtons(response);
+        console.log(response)
         setProcessListData(response);
-        setTotalPages(response.length);
+        //setTotalPages(response.length);
       } catch (e) {
         setProcessListData(false);
       } finally {

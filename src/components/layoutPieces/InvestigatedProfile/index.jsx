@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import { useAuth } from '../../../../app/authContext';
-import { CustomTable } from '../../../../components';
-import { TABLE_COLUMNS } from './investigatedProfileConstants';
+import { useAuth } from '../../../app/authContext';
+import { TABLE_COLUMNS_PIP, TABLE_COLUMNS_TUTELA } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
-import Api from '../../../../api';
-import { Spinner } from '../../../../components/layoutPieces';
-import { LoginPromotron } from '../../../../assets';
+import Api from '../../../api';
+import { CustomTable, Spinner } from '..';
+import { LoginPromotron } from '../../../assets';
 
 const propTypes = {
   onToggle: PropTypes.func.isRequired,
   representanteDk: PropTypes.number.isRequired,
+  organType: PropTypes.number.isRequired,
 };
 
-function InvestigatedProfile({ onToggle, representanteDk }) {
+function InvestigatedProfile({ onToggle, representanteDk, organType }) {
   const [pessDk, setPessDk] = useState(null);
   const { buildRequestParams } = useAuth();
   const [profileData, setProfileData] = useState(null);
@@ -25,6 +25,9 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
   const [loading, setLoading] = useState(true);
 
   async function getProfileData() {
+    let organTypeName;
+    if (organType === 1) organTypeName = 'tutela';
+    if (organType === 2) organTypeName = 'pip';
     let promise;
     setLoading(true);
     try {
@@ -32,11 +35,13 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
         typeof pessDk === 'number'
           ? Api.getInvestigatedProfile({
               ...buildRequestParams(),
+              organTypeName,
               representanteDk,
               pessDk,
             })
           : Api.getInvestigatedProfile({
               ...buildRequestParams(),
+              organTypeName,
               representanteDk,
             });
 
@@ -94,10 +99,10 @@ function InvestigatedProfile({ onToggle, representanteDk }) {
             className="similar-profiles-btn"
             onClick={() => setIsSimilarProfilesVisible((prevValue) => !prevValue)}
           >
-            Foram encontrados {profileData.similares.length}
-{' '}
-perfis similares ao solicitado
-<div
+            Foram encontrados
+            {` ${profileData.similares.length} `}
+            perfis similares ao solicitado.
+            <div
               className={`similar-profiles-arrow ${
                 isSimilarProfilesVisible ? 'similar-profiles-arrow--rotated' : ''
               }`}
@@ -112,7 +117,7 @@ perfis similares ao solicitado
             {profileData.similares.map((similarProfile) => {
               return (
                 <button
-                  onClick={(e) => {
+                  onClick={() => {
                     setPessDk((prevValue) =>
                       prevValue === similarProfile.pess_dk ? null : similarProfile.pess_dk,
                     );
@@ -131,7 +136,11 @@ perfis similares ao solicitado
             {loading ? (
               <Spinner size="medium" />
             ) : (
-              <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
+              <CustomTable
+                data={tableData}
+                columns={organType === 1 ? TABLE_COLUMNS_TUTELA : TABLE_COLUMNS_PIP}
+                showHeader
+              />
             )}
           </div>
 

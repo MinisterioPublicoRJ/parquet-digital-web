@@ -19,6 +19,7 @@
 .controlButton-inner {
   align-items: center;
   border: 0;
+  cursor: pointer;
   display: flex;
   height: var(--buttonSize);
   letter-spacing: 0px;
@@ -26,7 +27,10 @@
   text-align: center;
   width: var(--buttonSize);
   transition: 1s;
-  cursor: pointer;
+}
+
+.controlButton--inactive:hover {
+  border: solid var(--primary) 1px;
 }
 
 .controlButton--inactive {
@@ -37,10 +41,6 @@
   color: var(--secondary);
   flex-direction: column;
   justify-content: center;
-}
-
-.controlButton--inactive:hover {
-  border: solid var(--primary) 1px;
 }
 
 .controlButton--active {
@@ -57,6 +57,11 @@
 .controlButton-notButton {
   background-color: var(--success);
   color: var(--white);
+  cursor: default;
+}
+
+.controlButton-notButton:hover {
+  border: none;
 }
 
 .controlButton-bigNumber {

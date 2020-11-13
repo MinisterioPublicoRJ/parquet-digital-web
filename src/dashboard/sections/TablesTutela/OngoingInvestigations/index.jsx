@@ -3,7 +3,7 @@ import Api from '../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const OngoingInvestigations = ({ isActive }) => {
+const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
@@ -24,12 +24,34 @@ const OngoingInvestigations = ({ isActive }) => {
     return totalPages;
 
   }
+  function generateButtons(list) {
+    return list.map((investigation) => {
+      const { representanteDk, docuPersonagens } = investigation;
+      const investigatedNameBtn = representanteDk ? (
+        <button
+          type="button"
+          onClick={() => {
+            setInvestigatedProfile(representanteDk);
+          }}
+          className="investigated-profile-btn"
+        >
+          {docuPersonagens}
+        </button>
+      ) : (
+        docuPersonagens
+      );
+      return { ...investigation, docuPersonagens: investigatedNameBtn };
+    });
+  }
+
   useEffect(() => {
     const loadData = async (nextPage) => {
       setLoading(true);
       const page = nextPage || currentPage;
       try {
-        const response = await Api.getOngoingInvestigationsList(buildRequestParams(), page);
+        let response = await Api.getOngoingInvestigationsList(buildRequestParams());
+        console.log(response)
+        response = generateButtons(response);
         setOngoingInvestigationsListData(response);
         setTotalPages(response.length);
       } catch (e) {

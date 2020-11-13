@@ -8,11 +8,3 @@
   overflow-y: auto;
   width: 100%;
 }
-
-.mainInvestigated-outer button.investigated-profile-btn {
-  color: #8998ac;
-  font-size: var(--smallFont);
-  width: 100%;
-  cursor: pointer;
-  overflow: hidden;
-}

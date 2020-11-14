@@ -9,7 +9,9 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState();
+  const [page, setPage] = useState(1);
+
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
@@ -19,11 +21,11 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
     Personagens: 'docuPersonagens',
   };
 
-  function handlePageClick(page) {
-    if (page < 1 || page > totalPages)
-    return totalPages;
-
+  function handlePageClick(nextPage) {
+    if (nextPage < 1 || nextPage > totalPages) return;
+    setPage(nextPage);
   }
+
   function generateButtons(list) {
     return list.map((investigation) => {
       const { representanteDk, docuPersonagens } = investigation;
@@ -45,15 +47,13 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
   }
 
   useEffect(() => {
-    const loadData = async (nextPage) => {
+    const loadData = async () => {
       setLoading(true);
-      const page = nextPage || currentPage;
       try {
-        let response = await Api.getOngoingInvestigationsList(buildRequestParams());
-        console.log(response)
-        response = generateButtons(response);
-        setOngoingInvestigationsListData(response);
-        setTotalPages(response.length);
+        const response = await Api.getOngoingInvestigationsList(buildRequestParams(), page);
+        //response = generateButtons(response);
+        setOngoingInvestigationsListData(response.data);
+        setTotalPages(response.pages);
       } catch (e) {
         setOngoingInvestigationsListData(false);
       } finally {
@@ -62,7 +62,7 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
     };
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [page, totalPages]);
 
   if (loading) {
     return <Spinner size="medium" />;
@@ -83,7 +83,7 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
           <Pagination
             totalPages={totalPages || 0}
             handlePageClick={(page) => handlePageClick(page)}
-            currentPage={currentPage}
+            currentPage={page}
           />
         </div>
       )}

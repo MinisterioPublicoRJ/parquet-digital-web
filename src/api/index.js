@@ -181,18 +181,18 @@ const Api = (() => {
     return successIndicatorsTransform(data);
   }
 
-  async function getProcessList({ orgao, cpf, token }, list) {
+  async function getProcessList({ orgao, token }, page) {
     const { data } = await axios.get(
-      PROCESSES_LIST({ orgao, cpf, list }),
+      PROCESSES_LIST({ orgao, page }),
       buildRequestConfig(token),
     );
 
     return processListTransform(data);
   }
 
-  async function getOngoingInvestigationsList({ orgao, token }) {
+  async function getOngoingInvestigationsList({ orgao, token }, page) {
     const { data } = await axios.get(
-      ONGOING_INVESTIGATIONS_LIST({ orgao }),
+      ONGOING_INVESTIGATIONS_LIST({ orgao, page }),
       buildRequestConfig(token),
     );
 

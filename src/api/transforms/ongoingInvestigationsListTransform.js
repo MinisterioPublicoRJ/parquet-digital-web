@@ -1,5 +1,5 @@
-export default function ongoingInvestigationsListTransform(data) {
-  return data.map((list) => ({
+export default function ongoingInvestigationsListTransform({ procedimentos, nr_paginas }) {
+  const data = procedimentos.map((list) => ({
     classeDocumento: list.classe_documento,
     docuEtiqueta: list.docu_etiqueta,
     docuNrExterno: list.docu_nr_externo,
@@ -13,4 +13,9 @@ export default function ongoingInvestigationsListTransform(data) {
     urlTjrj: list.url_tjrj,
     representanteDk: list.representante_dk,
   }));
+
+  return {
+    data,
+    pages: nr_paginas,
+  };
 }

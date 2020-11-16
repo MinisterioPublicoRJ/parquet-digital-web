@@ -11,7 +11,6 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
 
-
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
     'Nº do Processo': 'docuNrMp',
@@ -50,8 +49,8 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
       setLoading(true);
       try {
         const response = await Api.getOngoingInvestigationsList(buildRequestParams(), page);
-        //response = generateButtons(response);
-        setOngoingInvestigationsListData(response.data);
+        const buttonList = generateButtons(response.data);
+        setOngoingInvestigationsListData(buttonList);
         setTotalPages(response.pages);
       } catch (e) {
         setOngoingInvestigationsListData(false);

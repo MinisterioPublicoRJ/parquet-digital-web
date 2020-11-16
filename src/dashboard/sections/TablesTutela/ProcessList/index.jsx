@@ -50,8 +50,8 @@ const ProcessList = ({ isActive, setInvestigatedProfile }) => {
       setLoading(true);
       try {
         const response = await Api.getProcessList(buildRequestParams(), page);
-        //response = generateButtons(response);
-        setProcessListData(response.data);
+        const buttonList = generateButtons(response.data);
+        setProcessListData(buttonList);
         setTotalPages(response.pages);
       } catch (e) {
         setProcessListData(false);

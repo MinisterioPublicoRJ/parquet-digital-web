@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Api from '../../../../api';
-import { CustomTable, Spinner } from '../../../../components';
+import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
 const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
@@ -8,6 +8,9 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState();
+  const [page, setPage] = useState(1);
+  const tableTopDivRef = useRef();
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
@@ -16,6 +19,15 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
     Classe: 'classeDocumento',
     Personagens: 'docuPersonagens',
   };
+
+  function handlePageClick(nextPage) {
+    if (nextPage < 1 || nextPage > totalPages) return;
+
+    if (tableTopDivRef.current) {
+      tableTopDivRef.current.scrollIntoView();
+    }
+    setPage(nextPage);
+  }
 
   function generateButtons(list) {
     return list.map((investigation) => {
@@ -41,9 +53,10 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
     const loadData = async () => {
       setLoading(true);
       try {
-        let response = await Api.getOngoingInvestigationsList(buildRequestParams());
-        response = generateButtons(response);
-        setOngoingInvestigationsListData(response);
+        const response = await Api.getOngoingInvestigationsList(buildRequestParams(), page);
+        const buttonList = generateButtons(response.data);
+        setOngoingInvestigationsListData(buttonList);
+        setTotalPages(response.pages);
       } catch (e) {
         setOngoingInvestigationsListData(false);
       } finally {
@@ -52,7 +65,7 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
     };
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [page, totalPages]);
 
   if (loading) {
     return <Spinner size="medium" />;
@@ -69,7 +82,13 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (
         <div className="ongoingInvestigations-tableWrapper">
+          <div className="investigated-table-top" ref={tableTopDivRef} />
           <CustomTable data={ongoingInvestigationsListData} columns={tableColumns} showHeader />
+          <Pagination
+            totalPages={totalPages || 0}
+            handlePageClick={(page) => handlePageClick(page)}
+            currentPage={page}
+          />
         </div>
       )}
     </div>

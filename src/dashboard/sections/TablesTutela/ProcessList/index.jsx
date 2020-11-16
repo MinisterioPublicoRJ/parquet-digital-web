@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Api from '../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
@@ -10,6 +10,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile }) => {
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
+  const tableTopDivRef = useRef();
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
@@ -22,6 +23,10 @@ const ProcessList = ({ isActive, setInvestigatedProfile }) => {
 
   function handlePageClick(nextPage) {
     if (nextPage < 1 || nextPage > totalPages) return;
+
+    if (tableTopDivRef.current) {
+      tableTopDivRef.current.scrollIntoView();
+    }
     setPage(nextPage);
   }
 
@@ -60,6 +65,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile }) => {
       }
     };
     loadData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, totalPages]);
 
@@ -73,6 +79,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile }) => {
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (
         <div className="processList-tableWrapper">
+          <div className="investigated-table-top" ref={tableTopDivRef} />
           <CustomTable data={processListData} columns={tableColumns} showHeader />
           <Pagination
             totalPages={totalPages || 0}

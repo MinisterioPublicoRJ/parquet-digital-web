@@ -8,7 +8,6 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
 

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 
 import { formatPercentage } from '../../../../utils';
@@ -26,15 +28,15 @@ function courtCasesMetrics({
     <p>
       Você ajuizou
       <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
-      nos últimos 60 dias.
-      <strong>
-        {variacao12Meses >= 0 ? ` Aumento de ${monthVariation} ` : ` Redução de ${monthVariation} `}
-      </strong>
+      nos últimos 60 dias. 
+      <strong> Houve 
+        {variacao60Dias >= 0 ? ` aumento de ${monthVariation} ` : ` redução de ${monthVariation} `}
+       </strong>
       com relação ao mesmo período anterior.
       <p>
         No último ano, você ajuizou
         <strong>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`}</strong>
-        <strong>{`, com aumento de ${yearVariation} `}</strong>
+        <strong>, com {variacao60Dias >= 0 ? `aumento` :  `redução`} de {yearVariation} </strong>
         em comparação com o ano anterior.
       </p>
     </p>

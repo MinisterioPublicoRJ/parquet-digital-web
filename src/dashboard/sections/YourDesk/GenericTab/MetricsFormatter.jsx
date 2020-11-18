@@ -18,26 +18,29 @@ function openInvestigationsMetrics({ variacaoAcervo }) {
 function courtCasesMetrics({
   nrAcoesUltimos60Dias,
   variacao60Dias,
+  nrAcoes60DiasAnterior,
   nrAcoes12MesesAtual,
   variacao12Meses,
+  nrAcoes12MesesAnterior,
 }) {
   const monthVariation = formatPercentage(Math.abs(variacao60Dias));
   const yearVariation = formatPercentage(Math.abs(variacao12Meses));
-
   return (
     <p>
       Você ajuizou
       <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
-      nos últimos 60 dias. 
-      <strong> Houve 
+      nos últimos 60 dias.
+      <strong> Houve
         {variacao60Dias >= 0 ? ` aumento de ${monthVariation} ` : ` redução de ${monthVariation} `}
        </strong>
       com relação ao mesmo período anterior.
       <p>
         No último ano, você ajuizou
         <strong>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`}</strong>
-        <strong>, com {variacao60Dias >= 0 ? `aumento` :  `redução`} de {yearVariation} </strong>
-        em comparação com o ano anterior.
+        <strong>, com {variacao12Meses >= 0 ? `aumento` :  `redução`} de {yearVariation} </strong>
+        em comparação com o ano anterior em que
+        <strong>{` ${nrAcoes12MesesAnterior} ${nrAcoes12MesesAnterior === 1 ? 'ação' : 'ações'} `}</strong>
+        foram ajuizadas.
       </p>
     </p>
   );

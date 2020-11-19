@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 
 import { formatPercentage } from '../../../../utils';
@@ -16,26 +18,30 @@ function openInvestigationsMetrics({ variacaoAcervo }) {
 function courtCasesMetrics({
   nrAcoesUltimos60Dias,
   variacao60Dias,
+  nrAcoes60DiasAnterior,
   nrAcoes12MesesAtual,
   variacao12Meses,
+  nrAcoes12MesesAnterior,
 }) {
   const monthVariation = formatPercentage(Math.abs(variacao60Dias));
   const yearVariation = formatPercentage(Math.abs(variacao12Meses));
-
   return (
     <p>
       Você ajuizou
       <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
       nos últimos 60 dias.
-      <strong>
-        {variacao12Meses >= 0 ? ` Aumento de ${monthVariation} ` : ` Redução de ${monthVariation} `}
-      </strong>
-      com relação ao mesmo período anterior.
+      <strong> Houve
+        {variacao60Dias >= 0 ? ` aumento de ${monthVariation} ` : ` redução de ${monthVariation} `}
+       </strong>
+      com relação ao mesmo período anterior, quando foram ajuizadas
+      <strong>{` ${nrAcoes60DiasAnterior} ${nrAcoes60DiasAnterior === 1 ? 'ação' : 'ações'}.`}</strong>
       <p>
         No último ano, você ajuizou
         <strong>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`}</strong>
-        <strong>{`, com aumento de ${yearVariation} `}</strong>
-        em comparação com o ano anterior.
+        <strong>, com {variacao12Meses >= 0 ? `aumento` :  `redução`} de {yearVariation} </strong>
+        em comparação com o ano anterior em que
+        <strong>{` ${nrAcoes12MesesAnterior} ${nrAcoes12MesesAnterior === 1 ? 'ação' : 'ações'} `}</strong>
+        foram ajuizadas.
       </p>
     </p>
   );

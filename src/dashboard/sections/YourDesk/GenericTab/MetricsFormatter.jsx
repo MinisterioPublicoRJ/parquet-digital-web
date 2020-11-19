@@ -33,7 +33,8 @@ function courtCasesMetrics({
       <strong> Houve
         {variacao60Dias >= 0 ? ` aumento de ${monthVariation} ` : ` redução de ${monthVariation} `}
        </strong>
-      com relação ao mesmo período anterior.
+      com relação ao mesmo período anterior, quando foram ajuizadas
+      <strong>{` ${nrAcoes60DiasAnterior} ${nrAcoes60DiasAnterior === 1 ? 'ação' : 'ações'}.`}</strong>
       <p>
         No último ano, você ajuizou
         <strong>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`}</strong>

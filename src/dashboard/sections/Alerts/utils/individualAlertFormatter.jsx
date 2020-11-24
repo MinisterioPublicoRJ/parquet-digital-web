@@ -90,6 +90,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'VADF':
     return vadfConstructor(alert);
 
+    case 'BDPA':
+    return bdpaConstructor(alert);
+
     // ALERTAS DE COMPRAS
     case 'COMP':
       return compConstructor(alert, orgao, token);
@@ -974,4 +977,35 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
     message,
     }
   }
+}
+
+function bdpaConstructor({ dropdown, alertCode, count, docNum }) {
+  let key;
+  let message;
+
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        <strong>{`Você tem ${count} ${single ? 'procedimento' : 'procedimentos'} `}</strong>
+        de baixa à DP que não retornaram no prazo estipulado.
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${docNum}`;
+    message = (
+      <span>
+        <strong>{`O procedimento ${docNum}`}</strong>
+        {``} sofreu baixa à <strong>nºDP {docNum}</strong> e não retornou no prazo. 
+      </span>
+    );
+  }
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#f86c72',
+    icon: <ClockIcon />,
+    key,
+    message,
+  };
 }

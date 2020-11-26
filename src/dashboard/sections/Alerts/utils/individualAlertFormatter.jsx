@@ -11,8 +11,10 @@ import {
   Va,
   Tjrj,
   IconContratacoes,
+  IconSaneamento,
   Ro,
   Arrow,
+  LogoSaneamento,
 } from '../../../../assets';
 
 import {
@@ -200,7 +202,7 @@ function ispsConstructor(alert) {
   return {
     actions,
     backgroundColor: '#71D0A4',
-    icon: <IconContratacoes />,
+    icon: <LogoSaneamento />,
     key,
     message,
   };

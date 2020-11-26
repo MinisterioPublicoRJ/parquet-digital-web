@@ -10,7 +10,7 @@ export default function alertsTransform(data) {
       class: alert.classe_doc,
       date: alert.data_alerta ? new Date(alert.data_alerta) : undefined,
       orgao: alert.orgao,
-      hierarchy: alert.classe_hier,
+      hierarchy: alert.classe_hierarquia,
       daysPassed: alert.dias_passados,
       alertId: alert.id_alerta,
     };

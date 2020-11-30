@@ -11,8 +11,10 @@ import {
   Va,
   Tjrj,
   IconContratacoes,
+  IconSaneamento,
   Ro,
   Arrow,
+  LogoSaneamento,
 } from '../../../../assets';
 
 import {
@@ -170,7 +172,7 @@ function compConstructor(alert, orgao, token) {
 }
 
 function ispsConstructor(alert) {
-  const { indicador_iditem, indicador, item, iditem, dropdown, alertCode, count } = alert;
+  const { description, hierarchy, dropdown, alertCode, count } = alert;
   let key;
   let message;
   let actions;
@@ -183,16 +185,16 @@ function ispsConstructor(alert) {
       <span>
         <strong> {`${count}`} </strong>
         {`${single ? 'indicador' : 'indicadores'}`} de saneamento estão em
-        <strong> vermelho </strong> nesta cidade
+        <strong> vermelho </strong> em suas comarcas.
       </span>
     );
   } else {
-    key = `${indicador}-${iditem}`;
-    actions = [OUVIDORIA_ISPS(), SANEAMENTO({ compId: indicador_iditem, indicador }), DELETE];
+    key = `${description}-${hierarchy}`;
+    actions = [OUVIDORIA_ISPS(), SANEAMENTO(), DELETE];
     message = (
       <span>
-        Os valores do indicador <strong>{` ${indicador} `}</strong>
-        nesta cidade merecem sua atenção.
+        Os valores do indicador <strong>{` ${description} `}</strong>
+        na comarca de <strong>{` ${hierarchy} `}</strong> merecem sua atenção.
       </span>
     );
   }
@@ -200,7 +202,7 @@ function ispsConstructor(alert) {
   return {
     actions,
     backgroundColor: '#71D0A4',
-    icon: <IconContratacoes />,
+    icon: <LogoSaneamento />,
     key,
     message,
   };

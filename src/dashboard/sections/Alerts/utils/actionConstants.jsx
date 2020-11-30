@@ -26,12 +26,12 @@ export const COMPRAS = ({ compId, contrato }) => ({
   link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
 });
 
-export const SANEAMENTO = ({ compId, contrato }) => ({
+export const SANEAMENTO = () => ({
   actionType: 'link',
   icon: <IconSaneamento fillColor="white" width="30px" height="30px" />,
   text: 'Painel do Saneamento',
   background: '#71D0A4',
-  link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
+  link: `https://geo.mprj.mp.br/portal/apps/experiencebuilder/experience/?id=35ae775b7f37418c9c65f47d62943d67&page=page_10`,
 });
 
 export const OUVIDORIA_ISPS = () => ({

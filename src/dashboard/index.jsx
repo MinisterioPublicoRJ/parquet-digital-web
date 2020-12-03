@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useAuth } from '../app/authContext';
-import { Pip, Tutela, BlankPage } from './pages';
+import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Glossary, Introduction, MapaTron } from './sections';
 import { Modal, Spinner, InvestigatedProfile } from '../components';
 
@@ -76,7 +76,7 @@ function Dashboard() {
           />
         );
       default:
-        return <BlankPage />;
+        return <AlternativeWelcome />;
     }
   }
 

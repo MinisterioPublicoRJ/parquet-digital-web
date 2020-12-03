@@ -20,7 +20,7 @@ function Router() {
 
     if (user) {
       if (user.firstLogin) {
-        path = '/welcome';
+        path = '/AlternativeWelcome';
       } else {
         path = '/dashboard';
       }

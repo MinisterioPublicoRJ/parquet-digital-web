@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BlankPage() {
+function AlternativeWelcome() {
   return (
   <section>
     <h2>Olá, bem-vindo(a) ao Parquet Digital</h2>
@@ -9,4 +9,4 @@ function BlankPage() {
   </section>
 )}
 
-export default BlankPage;
+export default AlternativeWelcome;

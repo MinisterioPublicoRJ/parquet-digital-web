@@ -33,5 +33,7 @@ export { default as Ro } from './ro';
 export { default as DeadlineIcon } from './deadlineIcon';
 export { default as Arrow } from './arrow';
 export { default as LogoSaneamento } from './logoSaneamento';
+export { default as LogoAlternativeWelcome } from './logoAlternativeWelcome';
+
 
 

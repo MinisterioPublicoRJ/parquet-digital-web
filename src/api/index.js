@@ -56,6 +56,7 @@ import {
   radarCompareTransform,
   ongoingInvestigationsListTransform,
   alertOverlayTransform,
+  investigatedProfileTransform,
 } from './transforms';
 
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
@@ -182,10 +183,7 @@ const Api = (() => {
   }
 
   async function getProcessList({ orgao, token }, page) {
-    const { data } = await axios.get(
-      PROCESSES_LIST({ orgao, page }),
-      buildRequestConfig(token),
-    );
+    const { data } = await axios.get(PROCESSES_LIST({ orgao, page }), buildRequestConfig(token));
 
     return processListTransform(data);
   }
@@ -288,7 +286,7 @@ const Api = (() => {
     }
 
     const { data } = await axios.get(INVESTIGATED_PROFILE_URL({ representanteDk }), { params });
-    return data;
+    return investigatedProfileTransform(data);
   }
 
   async function getRadarCompareData({ orgao, organType, token }) {

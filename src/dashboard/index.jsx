@@ -57,23 +57,25 @@ function Dashboard() {
     switch (tipo) {
       case 1:
         return (
-          <Tutela
+          <AlternativeWelcome />
+          /*<Tutela
             setIsSelectorOpen={setIsSelectorOpen}
             setIsIntroOpen={setIsIntroOpen}
             setModalType={setModalType}
             setModalData={setModalData}
             setInvestigatedProfile={setInvestigatedProfile}
-          />
+          />*/
         );
       case 2:
         return (
-          <Pip
+          <AlternativeWelcome />
+          /*<Pip
             setIsSelectorOpen={setIsSelectorOpen}
             setModalType={setModalType}
             setModalData={setModalData}
             setIsIntroOpen={setIsIntroOpen}
             setInvestigatedProfile={setInvestigatedProfile}
-          />
+          />*/
         );
       default:
         return <AlternativeWelcome />;

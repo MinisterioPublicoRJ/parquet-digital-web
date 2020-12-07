@@ -1,49 +1,80 @@
-.mainAlternativeWelcome{
-    display: flex;
-    text-align: left;
+.sectionAlternativeWelcome{
+    display: grid;
+    grid-template-columns: 25% 75%;
     font-family: Roboto;
 }
-.mainAlternativeWelcome h2{
-    font-size: 42px;
+.sectionAlternativeWelcome h2{
+   font-size: 42px;
 }
-.mainAlternativeWelcome p{
-    max-width: 500px;
-    font-size: 15px;
-}
-.secondTextsAlternativeWelcome h2{
+.sectionAlternativeWelcome p{
+    font-size: 14px;
+ }
+.sectionAlternativeWelcome h4{
     font-size: 24px;
+    font-weight: 500 ;
+}
+.bgMp img{
+    height: 100%;
+    width: 300px;
+}
+.bgMp {
+    margin-top: 130px;
+
+}
+.boxTextsAlternativeWelcome{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 150px;
+}
+.mainBoxTextsAlternativeWelcome p{
+    max-width: 400px;
+}
+
+.mainAlternativeWelcome{
+    display: flex;
+    flex-direction: column;
+}
+.firstTextsAlternativeWelcome{
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}
+.firstTextsAlternativeWelcome p{
+    max-width: 550px;
 }
 .mainTextsAlternativeWelcome{
     display: flex;
     justify-content: space-between;
 }
-.secondTextsAlternativeWelcome p{
-    max-width: 430px;
-    font-size: 15px;
-}
-.div-tools-main h2{
-    font-size: 24px;
-}
-.div-tools-main p{
-    font-size: 15px;
-}
 .div-tools{
     display: flex;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.div-tools-imgs img{
+    width: 180px;
+}
+.div-tools-imgs p{
+    font-size: 10px;
+    max-width: 100px;
+
 }
 .div-tools button{
-    width: 80px;
+    width: 70px;
     height: 25px;
     border-color: #B4B4B4;
     background: transparent;
     border-radius: 5px;
+    font-size: 10px;
+    margin-right: 25px;
 }
 .div-tools p{
     max-width: 230px;
 }
-.div-tools-img{
+.div-tools-btn{
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
 }
-
+.div-tools-btn h3{
+    font-size: 10px;
+}

@@ -1,7 +1,7 @@
 import { abbrevName } from '../../utils';
 
 function orgaoTransformer(orgao) {
-  const { cpf, nome, tipo, cdorgao, nm_org, dps, pip_especializada } = orgao;
+  const { cpf, nome, tipo, cdorgao, nm_org, dps, pip_especializada, atribuicao } = orgao;
   return {
     nomeOrgao: nm_org,
     abbrevNomeOrgao: nm_org ? abbrevName(nm_org) : null,
@@ -11,6 +11,7 @@ function orgaoTransformer(orgao) {
     codigo: cdorgao,
     dps,
     isSpecialized: pip_especializada,
+    atrib: atribuicao,
   };
 }
 
@@ -25,6 +26,7 @@ export function scaUserTranform(user) {
     orgao_selecionado,
     orgaos_validos,
     token,
+    atribuicao,
   } = user;
   return {
     nome,
@@ -34,6 +36,7 @@ export function scaUserTranform(user) {
     cpf,
     matricula,
     token,
+    atribuicao,
     orgaoSelecionado: orgaoTransformer(orgao_selecionado),
     orgaosValidos: orgaos_validos.map(item => orgaoTransformer(item)),
   };

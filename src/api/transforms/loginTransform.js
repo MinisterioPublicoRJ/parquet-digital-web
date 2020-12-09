@@ -1,7 +1,7 @@
 import { abbrevName } from '../../utils';
 
 function orgaoTransformer(orgao) {
-  const { cpf, nome, tipo, cdorgao, nm_org, dps, pip_especializada, atribuicao } = orgao;
+  const { cpf, nome, tipo, cdorgao, nm_org, dps, pip_especializada } = orgao;
   return {
     nomeOrgao: nm_org,
     abbrevNomeOrgao: nm_org ? abbrevName(nm_org) : null,
@@ -11,7 +11,6 @@ function orgaoTransformer(orgao) {
     codigo: cdorgao,
     dps,
     isSpecialized: pip_especializada,
-    atrib: atribuicao,
   };
 }
 
@@ -62,6 +61,7 @@ export function jwtUserTransform(user) {
     cpf,
     matricula,
     token,
+    orgao: orgao,
     orgaoSelecionado: {
       nomeOrgao: undefined,
       cpf,

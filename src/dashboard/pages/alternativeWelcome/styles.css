@@ -1,7 +1,9 @@
 .sectionAlternativeWelcome{
     display: grid;
-    grid-template-columns: 25% 75%;
-    font-family: Roboto;
+    grid-template-columns: 22% 75%;
+    font-family: var(--defaultFont);
+    margin-left: -50px;
+
 }
 .sectionAlternativeWelcome h2{
    font-size: 42px;
@@ -14,18 +16,16 @@
     font-weight: 500 ;
 }
 .bgMp img{
-    height: 100%;
-    width: 300px;
-}
-.bgMp {
-    margin-top: 130px;
-
+    min-height: 80%;
+    width: 250px;
+    margin-top: 290px;
 }
 .boxTextsAlternativeWelcome{
     display: flex;
     justify-content: space-around;
-    margin-top: 150px;
+    margin-top: 100px;
 }
+
 .mainBoxTextsAlternativeWelcome p{
     max-width: 400px;
 }
@@ -33,12 +33,14 @@
 .mainAlternativeWelcome{
     display: flex;
     flex-direction: column;
+    margin-top: 201px;
+    padding-top: 30px;
 }
 .firstTextsAlternativeWelcome{
     display: flex;
     flex-direction: column;
-    margin-top: 60px;
 }
+
 .firstTextsAlternativeWelcome p{
     max-width: 550px;
 }
@@ -48,28 +50,36 @@
 }
 .div-tools{
     display: flex;
-    margin-left: 8px;
-    margin-right: 8px;
+   
 }
 .div-tools-imgs img{
-    width: 180px;
-}
-.div-tools-imgs p{
-    font-size: 10px;
-    max-width: 100px;
-
+    width: 200px;
+    margin-left: 5px;
+    margin-right: 5px ;
 }
 .div-tools button{
-    width: 70px;
+    width: 60px;
     height: 25px;
-    border-color: #B4B4B4;
+    border-color: var(--grayAlternative);
     background: transparent;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 10px;
-    margin-right: 25px;
+    margin-right: 5px ;
+    color: var(--grayAlternative);;
+}
+.div-tools button:hover{
+   background-color: #71D0A4;
+   color: white;
+   border: #71D0A4;
+
 }
 .div-tools p{
-    max-width: 230px;
+    max-width: 140px;
+    font-size: 10px;
+    color: var(--grayAlternative);
+}
+.div-tools h3{
+    max-width: 100px;
 }
 .div-tools-btn{
     display: flex;

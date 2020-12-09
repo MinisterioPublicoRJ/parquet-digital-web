@@ -8,6 +8,8 @@ import { ALTERNATIVE_SCREEN } from './mockAlternativeScreen';
 function AlternativeWelcome() {
   const { user, currentOffice } = useAuth();
   console.log(user);
+  console.log(currentOffice);
+
 
   return (
     <section className="sectionAlternativeWelcome">
@@ -71,7 +73,9 @@ function AlternativeWelcome() {
                 />
                 <div className="div-tools-btn">
                   <h3>{i.title}</h3>
-                  <button type="button">Acessar</button>
+                  <a href={i.url} target="_blank">
+                    <button type="button">Acessar</button>
+                  </a>
                 </div>
                 <p>{i.text}</p>
               </section>

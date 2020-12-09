@@ -6,7 +6,7 @@ export default function investigatedProfileTransform({ perfil, similares, proced
     coautores: list.coautores,
     fase_documento: list.fase_documento,
     dt_ultimo_andamento: new Date(list.dt_ultimo_andamento)
-      ? Intl.DateTimeFormat().format(new Date(list.dt_ultimo_andamento))
+      ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(list.dt_ultimo_andamento))
       : null,
 
     desc_ultimo_andamento: list.desc_ultimo_andamento,

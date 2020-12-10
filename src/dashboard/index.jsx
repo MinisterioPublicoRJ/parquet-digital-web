@@ -9,7 +9,7 @@ import OfficeSelector from './sections/Today/officeSelector';
 import RadarModal from './sections/PerformanceRadar/RadarModal';
 
 function Dashboard() {
-  const { currentOffice } = useAuth();
+  const { user, currentOffice } = useAuth();
   const { firstLogin } = useAuth().user;
 
   // this states should be a part of a context hoook to make things neater
@@ -20,10 +20,10 @@ function Dashboard() {
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
 
-  if (!currentOffice) {
+  if (!user) {
     return <Spinner size="large" />;
   }
-  const { tipo } = currentOffice;
+  const type = currentOffice ? currentOffice.tipo : undefined;
 
   function closeModal() {
     setModalType(null);
@@ -42,7 +42,7 @@ function Dashboard() {
         return <Glossary onToggle={closeModal} />;
       case 'investigated':
         return (
-          <InvestigatedProfile representanteDk={modalData} onToggle={closeModal} organType={tipo} />
+          <InvestigatedProfile representanteDk={modalData} onToggle={closeModal} organType={type} />
         );
       case 'radar':
         return <RadarModal compareData={modalData} onToggle={closeModal} />;
@@ -54,28 +54,26 @@ function Dashboard() {
   }
 
   function renderPage() {
-    switch (tipo) {
+    switch (type) {
       case 1:
         return (
-          <AlternativeWelcome />
-          /*<Tutela
+          <Tutela
             setIsSelectorOpen={setIsSelectorOpen}
             setIsIntroOpen={setIsIntroOpen}
             setModalType={setModalType}
             setModalData={setModalData}
             setInvestigatedProfile={setInvestigatedProfile}
-          />*/
+          />
         );
       case 2:
         return (
-          <AlternativeWelcome />
-          /*<Pip
+          <Pip
             setIsSelectorOpen={setIsSelectorOpen}
             setModalType={setModalType}
             setModalData={setModalData}
             setIsIntroOpen={setIsIntroOpen}
             setInvestigatedProfile={setInvestigatedProfile}
-          />*/
+          />
         );
       default:
         return <AlternativeWelcome />;
@@ -87,7 +85,7 @@ function Dashboard() {
       <Introduction
         isOpen={isIntroOpen}
         onToggle={() => setIsIntroOpen((oldState) => !oldState)}
-        type={tipo}
+        type={type}
       />
       {modalType && <Modal onToggle={() => closeModal()}>{renderModalChildren()}</Modal>}
       <OfficeSelector

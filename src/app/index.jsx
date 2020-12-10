@@ -99,8 +99,7 @@ function AuthContextCreator() {
 
 function App() {
   const authStore = AuthContextCreator();
-  const { user, userError, currentOffice } = authStore;
-  const loading = !((user && currentOffice) || userError);
+  const { user, userError } = authStore;
 
   function onMount() {
     const token = window.localStorage.getItem('access_token');
@@ -110,10 +109,11 @@ function App() {
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
-  if (loading) {
+
+  if (!(user || userError)) {
     return <Spinner size="large" />;
   }
-
+  
   return (
     <AuthContext.Provider value={authStore}>
       <Router />

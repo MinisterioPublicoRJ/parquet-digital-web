@@ -36,8 +36,8 @@ export function scaUserTranform(user) {
     matricula,
     token,
     atribuicao,
-    orgaoSelecionado: orgaoTransformer(orgao_selecionado),
-    orgaosValidos: orgaos_validos.map(item => orgaoTransformer(item)),
+    orgaoSelecionado: orgao_selecionado ? orgaoTransformer(orgao_selecionado) : null,
+    orgaosValidos: orgaos_validos ? orgaos_validos.map(item => orgaoTransformer(item)) : [],
   };
 }
 

@@ -10,7 +10,6 @@ function AlternativeWelcome() {
   console.log(user);
   console.log(currentOffice);
 
-
   return (
     <section className="sectionAlternativeWelcome">
       <div className="bgMp">
@@ -48,13 +47,28 @@ function AlternativeWelcome() {
           <div className="mainBoxTextsAlternativeWelcome">
             <h4>Por que não posso acessar?</h4>
             <p>
-              Em uma breve verificação, por consulta no banco de dados do MPRJ, percebemos que a
-              atribuição na qual o(a) está atuando é <strong>{currentOffice.nomeOrgao}</strong> e a
-              aplicação infelizmente ainda não está disponível para este grupo. Estamos trabalhando
-              para atender as demandas de todas as atribuições da casa, mas no momento estamos com a
-              operação disponível apenas para Promotorias de Justiça de Tutela Coletiva e de
-              Investigação Penal. No entanto, algumas ferramentas já existentes e disponíveis para
-              todos (as) podem cumprir parte das funções do Parquet Digital. Confira abaixo!
+              {!currentOffice.nomeOrgao ? (
+                <p>
+                  Olá <strong>{user.nome}</strong> em uma breve verificação, por consulta no banco de dados do MPRJ,
+                  percebemos que a atribuição na qual está atuando infelizmente ainda
+                  não está disponível para este grupo. Estamos trabalhando para atender as demandas
+                  de todas as atribuições da casa, mas no momento estamos com a operação disponível
+                  apenas para Promotorias de Justiça de Tutela Coletiva e de Investigação Penal. No
+                  entanto, algumas ferramentas já existentes e disponíveis para todos (as) podem
+                  cumprir parte das funções do Parquet Digital. Confira abaixo!
+                </p>
+              ) : (
+                <p>
+                  Em uma breve verificação, por consulta no banco de dados do MPRJ, percebemos que a
+                  atribuição na qual o(a) Doutor(a) está atuando é <strong>{currentOffice.nomeOrgao }</strong> e a aplicação
+                  infelizmente ainda não está disponível para este grupo. Estamos trabalhando para
+                  atender as demandas de todas as atribuições da casa, mas no momento estamos com a
+                  operação disponível apenas para Promotorias de Justiça de Tutela Coletiva e de
+                  Investigação Penal. No entanto, algumas ferramentas já existentes e disponíveis
+                  para todos (as) podem cumprir parte das funções do Parquet Digital. Confira
+                  abaixo!
+                </p>
+              )}
             </p>
           </div>
         </div>

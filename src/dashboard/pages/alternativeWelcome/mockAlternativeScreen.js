@@ -12,8 +12,7 @@ export const ALTERNATIVE_SCREEN = [
     title: 'Domínio',
     text: 'Listagem de procedimentos, sua mesa e alguns alertas.',
     img: './image1.png',
-    url:
-      'https://geo.mprj.mp.br/portal/apps/experiencebuilder/experience/?id=35ae775b7f37418c9c65f47d62943d67',
+    url: 'http://apps.mprj.mp.br/sistema/dominio/#/',
   },
   {
     id: 'Painel-Compras-Covid-19',

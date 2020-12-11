@@ -1,9 +1,11 @@
+import LogoDiagnóstico from '../../../assets/imgs/Image.png';
+
 export const ALTERNATIVE_SCREEN = [
   {
     id: 'Diagnostico-das-Promotorias',
     title: 'Diagnóstico das Promotorias',
     text: 'Comparativo de feitos entre Promotorias.',
-    img: './image.png',
+    img: LogoDiagnóstico,
     url:
       'https://tableau2020.mprj.mp.br/t/MPMAPAS/views/DiagnosticoPJ/CAPA?:origin=card_share_link&:embed=n',
   },

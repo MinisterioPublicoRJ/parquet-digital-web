@@ -14,6 +14,10 @@
   /* end of quickfix */
 }
 
+.altWelcome-outer h2 {
+  color: black;
+}
+
 .altWelcome-img {
   grid-row: 1 / span 3;
   grid-column: 1 / span 1;
@@ -42,7 +46,7 @@
 .altWelcome-header-text h1 {
   font-weight: normal;
   text-align: center;
-  font-size: 2.4vw;
+  font-size: 2.2vw;
   margin-bottom: 0;
 }
 
@@ -73,19 +77,67 @@
   margin-bottom: 0;
 }
 
+.altWelcome-suggestions p {
+  color: var(--grayAlternative);
+}
+
 .altWelcome-suggestions-itemRow {
   display: flex;
-  flex: 1;
   flex-direction: row;
+  height: 70%;
+  justify-content: space-between;
+}
+
+.altWelcome-suggestions-itemRow div:last-child {
+  margin-right: 0;
 }
 
 .altWelcome-suggestions-item {
-  background-color: pink;
-  height: 90%;
+  width: 250px;
   margin-right: 10px;
-  overflow: hidden;
-  width: calc(20% - 10px);
   display: flex;
-  flex: 0;
-  /* flex-direction: column; */
+  flex-direction: column;
+}
+
+.altWelcome-suggestions-itemImg {
+  height: 50%;
+}
+
+.altWelcome-suggestions-itemImg img {
+  height: 100%;
+  width: 100%;
+}
+
+.altWelcome-suggestions-itemData {
+  height: 50%;
+  display: flex;
+  font-size: var(--smallFont);
+}
+
+.altWelcome-suggestions-itemData h3 {
+  text-transform: none;
+  margin-top: 5px;
+}
+
+.altWelcome-suggestions-itemData a {
+  background-color: transparent;
+  border: 1px solid var(--grayAlternative);
+  border-radius: 10px;
+  color: var(--grayAlternative);
+  font-size: var(--smallFont);
+  height: calc(var(--smallFont) + 14px);
+  line-height: calc(var(--smallFont) + 14px);
+  margin: 5px 0 0 0;
+  padding: 0 7px;
+  text-decoration: none;
+}
+
+.altWelcome-suggestions-itemData div:first-of-type {
+  flex: 2;
+}
+
+.altWelcome-suggestions-itemData div:last-of-type {
+  flex: 1;
+  justify-content: flex-end;
+  display: flex;
 }

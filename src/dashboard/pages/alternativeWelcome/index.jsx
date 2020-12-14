@@ -3,38 +3,12 @@ import React from 'react';
 import './styles.css';
 
 import BGMP from '../../../assets/imgs/bgMp.png';
-import { useAuth } from '../../../app/authContext';
 import { LogoAlternativeWelcome } from '../../../assets';
-import { ALTERNATIVE_SCREEN } from './suggestionsData';
+import { ALTERNATIVE_SCREEN_DATA } from './suggestionsData';
+
+// TODO: tirar texto duplicado
 
 function AlternativeWelcome() {
-  const { currentOffice } = useAuth();
-  let officeText = (
-    <p>
-      Em uma breve verificação, por consulta no banco de dados do MPRJ, percebemos que a atribuição
-      na qual está atuando infelizmente ainda não é atendida pela aplicação. Estamos trabalhando
-      para atender as demandas de todas as atribuições da casa, mas no momento estamos com a
-      operação disponível apenas para Promotorias de Justiça de Tutela Coletiva e de Investigação
-      Penal. No entanto, algumas ferramentas já existentes e disponíveis para todos (as) podem
-      cumprir parte das funções do Parquet Digital. Confira abaixo!
-    </p>
-  );
-
-  if (currentOffice) {
-    officeText = (
-      <p>
-        Em uma breve verificação, por consulta no banco de dados do MPRJ, percebemos que a
-        atribuição na qual o(a) Doutor(a) está atuando é
-        <strong>{` ${currentOffice.nomeOrgao} `}</strong> e a aplicação infelizmente ainda não está
-        disponível para este grupo. Estamos trabalhando para atender as demandas de todas as
-        atribuições da casa, mas no momento estamos com a operação disponível apenas para
-        Promotorias de Justiça de Tutela Coletiva e de Investigação Penal. No entanto, algumas
-        ferramentas já existentes e disponíveis para todos (as) podem cumprir parte das funções do
-        Parquet Digital. Confira abaixo!
-      </p>
-    );
-  }
-
   return (
     <div className="altWelcome-outer">
       <div className="altWelcome-img">
@@ -68,26 +42,35 @@ function AlternativeWelcome() {
       </p>
       <p className="altWelcome-texts--second">
         <h2>Por que não posso acessar?</h2>
-        {officeText}
+        <p>
+          Em uma breve verificação, por consulta no banco de dados do MPRJ, percebemos que a
+          atribuição na qual está atuando infelizmente ainda não é atendida pela aplicação. Estamos
+          trabalhando para atender as demandas de todas as atribuições da casa, mas no momento
+          estamos com a operação disponível apenas para Promotorias de Justiça de Tutela Coletiva e
+          de Investigação Penal. No entanto, algumas ferramentas já existentes e disponíveis para
+          todos (as) podem cumprir parte das funções do Parquet Digital. Confira abaixo!
+        </p>
       </p>
       <div className="altWelcome-suggestions">
         <h2>Sugestões de ferramentas</h2>
         <p>Seleção de ferramentas que podem ajudar na sua atuação</p>
         <div className="altWelcome-suggestions-itemRow">
-          {ALTERNATIVE_SCREEN.map((item) => (
-            <div className="altWelcome-suggestions-item">
-              <img
-                key={item.id}
-                alt={item.img}
-                src={item.img}
-              />
-              <div className="div-tools-btn">
-                <h3>{item.title}</h3>
-                <a href={item.url}>
-                  <button type="button">Acessar</button>
-                </a>
+          {ALTERNATIVE_SCREEN_DATA.map(({ id, title, text, img, url }) => (
+            <div className="altWelcome-suggestions-item" key={id}>
+              <div className="altWelcome-suggestions-itemImg">
+                <img src={img} alt={`${title} logo`} />
               </div>
-              <p>{item.text}</p>
+              <div className="altWelcome-suggestions-itemData">
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+                <div>
+                  <a href={url} target="new">
+                    Acessar
+                  </a>
+                </div>
+              </div>
             </div>
           ))}
         </div>

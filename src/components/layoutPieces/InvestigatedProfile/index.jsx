@@ -47,7 +47,7 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
 
       const data = await promise;
       setProfileData(data);
-      setTableData(data.procedimentos ? data.procedimentos : []);
+      setTableData(data.procedures ? data.procedures : []);
       return data;
     } catch (error) {
       setApiError(true);
@@ -67,7 +67,7 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
       return (
         <article className="investigatedProfile-outer">
           <h2>
-            <strong>Perfil do Investigado</strong>
+            <strong>profile do Investigado</strong>
           </h2>
           Erro de api!
         </article>
@@ -80,7 +80,7 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
         </article>
       );
     }
-    if (profileData && profileData.perfil) {
+    if (profileData && profileData.profile) {
       return (
         <article className="investigatedProfile-outer">
           <div className="investigatedProfile-header">
@@ -88,8 +88,8 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
               <strong>Perfil do Investigado</strong>
             </h2>
             <ProfileDetails
-              perfil={profileData.perfil}
-              key={`${profileData.perfil.pess_dk}-main`}
+              perfil={profileData.profile}
+              key={`${profileData.profile.pess_dk}-main`}
             />
             <LoginPromotron height={150} />
           </div>
@@ -100,7 +100,7 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
             onClick={() => setIsSimilarProfilesVisible((prevValue) => !prevValue)}
           >
             Foram encontrados
-            {` ${profileData.similares.length} `}
+            {` ${profileData.similars.length} `}
             perfis similares ao solicitado.
             <div
               className={`similar-profiles-arrow ${
@@ -114,7 +114,7 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
               isSimilarProfilesVisible ? 'similar-profiles-list--visible' : ''
             }`}
           >
-            {profileData.similares.map((similarProfile) => {
+            {profileData.similars.map((similarProfile) => {
               return (
                 <button
                   onClick={() => {

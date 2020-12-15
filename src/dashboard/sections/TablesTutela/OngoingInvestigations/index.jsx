@@ -14,7 +14,7 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
 
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
-    'Nº do Processo': 'docuNrMp',
+    'Nº do Procedimento': 'docuNrMp',
     'Último Andamento': 'dtUltimoAndamento',
     Classe: 'classeDocumento',
     Personagens: 'docuPersonagens',

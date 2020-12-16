@@ -17,7 +17,7 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
     'Nº do Procedimento': 'docuNrMp',
     'Último Andamento': 'dtUltimoAndamento',
     Classe: 'classeDocumento',
-    Personagens: 'docuPersonagens',
+    Investigados: 'docuPersonagens',
   };
 
   function handlePageClick(nextPage) {

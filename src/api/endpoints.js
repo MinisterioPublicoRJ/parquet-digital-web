@@ -71,6 +71,9 @@ export const PRCR_ACTION_GENERATE_DOC = t(
 export const COMPRAS_ACTION_OUVIDORIA = t(
   `${BASE_URL}/alertas/ouvidoria/\${orgao}/comp?alerta_id=\${alertId}&jwt=\${token}`,
 );
+export const SANEAMENTO_ACTION_OUVIDORIA = t(
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/isps?alerta_id=\${alertId}_parcela-de-domicilios-em-situacao-de-risco-de-inundacao_rio-de-janeiro&jwt=\${token}`,
+);
 export const ABR1_ALERT_ACTION = t(
   `${BASE_URL}/documentos/procedimentos-csmp/\${orgao}/\${cpf}?jwt=\${token}`,
 );

@@ -27,6 +27,7 @@ import {
   PPPV_ACTION_CONVERT,
   UNSENT_OCCURRENCE_LIST,
   ABR1_ALERT_ACTION,
+  SANEAMENTO_ACTION_OUVIDORIA,
 } from '../../../../api/endpoints';
 
 import {
@@ -151,11 +152,11 @@ function compConstructor(alert, orgao, token) {
       OUVIDORIA_COMPRAS(COMPRAS_ACTION_OUVIDORIA({ alertId: contrato_iditem, orgao, token })),
       COMPRAS({ compId: contrato_iditem, contrato }),
       DELETE,
-    ];
+    ]; 
     message = (
       <span>
         Os valores do contrato
-        <strong>{` ${contrato} `}</strong>, itens:
+        <strong>{` ${contrato} `}</strong> itens:
         <strong>{` ${item.substring(0, 40).toLowerCase()}... `}</strong>
         merecem sua atenção.
       </span>
@@ -171,7 +172,7 @@ function compConstructor(alert, orgao, token) {
   };
 }
 
-function ispsConstructor(alert) {
+function ispsConstructor(alert, orgao, token, alertId ) {
   const { description, hierarchy, dropdown, alertCode, count } = alert;
   let key;
   let message;
@@ -190,7 +191,7 @@ function ispsConstructor(alert) {
     );
   } else {
     key = `${description}-${hierarchy}`;
-    actions = [OUVIDORIA_ISPS(), SANEAMENTO(), DELETE];
+    actions = [OUVIDORIA_ISPS(SANEAMENTO_ACTION_OUVIDORIA({ alertId, orgao, token })), SANEAMENTO(), DELETE];
     message = (
       <span>
         Os valores do indicador <strong>{` ${description} `}</strong>

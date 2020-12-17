@@ -34,11 +34,12 @@ export const SANEAMENTO = () => ({
   link: `https://geo.mprj.mp.br/portal/apps/experiencebuilder/experience/?id=35ae775b7f37418c9c65f47d62943d67&page=page_10`,
 });
 
-export const OUVIDORIA_ISPS = () => ({
+export const OUVIDORIA_ISPS = (link) => ({
   actionType: 'link',
   icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
   text: 'Ouvidoria',
   background: '#5C6FD9',
+  link,
 });
 
 export const OUVIDORIA_COMPRAS = (link) => ({

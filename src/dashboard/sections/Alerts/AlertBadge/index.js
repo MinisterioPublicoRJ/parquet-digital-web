@@ -93,7 +93,7 @@ const AlertBadge = ({
       case 'link':
         return handleLinks(alertAction);
       case 'openComplaint':
-        return handleActionLinks(alert, key);
+        return handleActionLinks(alertAction, key);
       default:
         return window.alert('Em breve! :)');
     }

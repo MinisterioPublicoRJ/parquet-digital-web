@@ -61,7 +61,13 @@ function inquiriesMetrics({
       neste mês, com
       <strong>{` ${nrAberturasVistaAtual} ${nrAberturasVistaAtual === 1 ? 'abertura' : 'aberturas'} de vista`}</strong>
       . Você aproveitou
-      <strong>{` ${nrAproveitamentosAtual} ${nrAproveitamentosAtual === 1 ? 'caso' : 'casos'} para denúncias, cautelares e arquivamentos. Aumento de ${formattedVariation} `}</strong>
+      <strong>{` ${nrAproveitamentosAtual} ${nrAproveitamentosAtual === 1 ? 'caso' : 'casos'} para denúncias, cautelares e arquivamentos `}
+      <strong>
+        {` ${
+          formattedVariation > 0 ? 'aumento' : 'redução'
+        } de ${formattedVariation} `}
+      </strong>
+      </strong>
       nos últimos 30 dias.
     </p>
   );

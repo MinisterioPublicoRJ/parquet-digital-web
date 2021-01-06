@@ -20,7 +20,7 @@ function ProfileDetails({ perfil }) {
           <span>
             <strong>Data de Nascimento:</strong>
             <br />
-            {birthdate ? Intl.DateTimeFormat().format(birthdate) : null}
+            {birthdate ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(birthdate) : null}
           </span>
           <span>
             <strong>RG:</strong>

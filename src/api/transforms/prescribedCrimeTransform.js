@@ -8,10 +8,12 @@ export default function prescribedCrimeTransform(data) {
     maximumFactoredPenalty: crime.max_pena_fatorado,
     key: crime.adpr_chave,
     prescriptionInitialDate: new Date(crime.dt_inicio_prescricao)
-      ? Intl.DateTimeFormat().format(new Date(crime.dt_inicio_prescricao))
+      ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(
+          new Date(crime.dt_inicio_prescricao),
+        )
       : null,
     prescriptionFinalDate: new Date(crime.dt_fim_prescricao)
-      ? Intl.DateTimeFormat().format(new Date(crime.dt_fim_prescricao))
+      ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(crime.dt_fim_prescricao))
       : null,
   }));
 }

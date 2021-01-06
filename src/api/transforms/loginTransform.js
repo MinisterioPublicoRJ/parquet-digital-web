@@ -25,6 +25,7 @@ export function scaUserTranform(user) {
     orgao_selecionado,
     orgaos_validos,
     token,
+    atribuicao,
   } = user;
   return {
     nome,
@@ -34,8 +35,9 @@ export function scaUserTranform(user) {
     cpf,
     matricula,
     token,
-    orgaoSelecionado: orgaoTransformer(orgao_selecionado),
-    orgaosValidos: orgaos_validos.map(item => orgaoTransformer(item)),
+    atribuicao,
+    orgaoSelecionado: orgao_selecionado ? orgaoTransformer(orgao_selecionado) : null,
+    orgaosValidos: orgaos_validos ? orgaos_validos.map(item => orgaoTransformer(item)) : [],
   };
 }
 
@@ -59,6 +61,7 @@ export function jwtUserTransform(user) {
     cpf,
     matricula,
     token,
+    orgao: orgao,
     orgaoSelecionado: {
       nomeOrgao: undefined,
       cpf,

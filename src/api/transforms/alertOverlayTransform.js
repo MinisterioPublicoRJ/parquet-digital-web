@@ -3,16 +3,22 @@ import prescribedCrimeTransform from './prescribedCrimeTransform';
 function ic1aTransform({ desc_movimento, dt_movimento, dt_fim_prazo }) {
   return {
     movement: desc_movimento,
-    movementDate: dt_movimento ? Intl.DateTimeFormat().format(new Date(dt_movimento)) : null,
-    deadline: dt_fim_prazo ? Intl.DateTimeFormat().format(new Date(dt_fim_prazo)) : null,
+    movementDate: dt_movimento
+      ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(dt_movimento))
+      : null,
+    deadline: dt_fim_prazo
+      ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(dt_fim_prazo))
+      : null,
   };
 }
 
 function pa1aTransform({ dt_fim_prazo, docu_dt_cadastro }) {
   return {
-    deadline: dt_fim_prazo ? Intl.DateTimeFormat().format(new Date(dt_fim_prazo)) : null,
+    deadline: dt_fim_prazo
+      ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(dt_fim_prazo))
+      : null,
     registerDate: docu_dt_cadastro
-      ? Intl.DateTimeFormat().format(new Date(docu_dt_cadastro))
+      ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(docu_dt_cadastro))
       : null,
   };
 }
@@ -20,7 +26,7 @@ function pa1aTransform({ dt_fim_prazo, docu_dt_cadastro }) {
 function ppfpTransform({ docu_dt_cadastro }) {
   return {
     registerDate: docu_dt_cadastro
-      ? Intl.DateTimeFormat().format(new Date(docu_dt_cadastro))
+      ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(docu_dt_cadastro))
       : null,
   };
 }

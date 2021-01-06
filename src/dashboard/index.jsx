@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useAuth } from '../app/authContext';
-import { Pip, Tutela, BlankPage } from './pages';
+import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Glossary, Introduction, MapaTron } from './sections';
 import { Modal, Spinner, InvestigatedProfile } from '../components';
 
@@ -9,7 +9,7 @@ import OfficeSelector from './sections/Today/officeSelector';
 import RadarModal from './sections/PerformanceRadar/RadarModal';
 
 function Dashboard() {
-  const { currentOffice } = useAuth();
+  const { user, currentOffice } = useAuth();
   const { firstLogin } = useAuth().user;
 
   // this states should be a part of a context hoook to make things neater
@@ -20,10 +20,10 @@ function Dashboard() {
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
 
-  if (!currentOffice) {
+  if (!user) {
     return <Spinner size="large" />;
   }
-  const { tipo } = currentOffice;
+  const type = currentOffice ? currentOffice.tipo : undefined;
 
   function closeModal() {
     setModalType(null);
@@ -42,7 +42,7 @@ function Dashboard() {
         return <Glossary onToggle={closeModal} />;
       case 'investigated':
         return (
-          <InvestigatedProfile representanteDk={modalData} onToggle={closeModal} organType={tipo} />
+          <InvestigatedProfile representanteDk={modalData} onToggle={closeModal} organType={type} />
         );
       case 'radar':
         return <RadarModal compareData={modalData} onToggle={closeModal} />;
@@ -54,7 +54,7 @@ function Dashboard() {
   }
 
   function renderPage() {
-    switch (tipo) {
+    switch (type) {
       case 1:
         return (
           <Tutela
@@ -76,7 +76,7 @@ function Dashboard() {
           />
         );
       default:
-        return <BlankPage />;
+        return <AlternativeWelcome />;
     }
   }
 
@@ -85,7 +85,7 @@ function Dashboard() {
       <Introduction
         isOpen={isIntroOpen}
         onToggle={() => setIsIntroOpen((oldState) => !oldState)}
-        type={tipo}
+        type={type}
       />
       {modalType && <Modal onToggle={() => closeModal()}>{renderModalChildren()}</Modal>}
       <OfficeSelector

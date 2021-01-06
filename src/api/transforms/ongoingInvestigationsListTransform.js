@@ -5,8 +5,8 @@ export default function ongoingInvestigationsListTransform({ procedimentos, nr_p
     docuNrExterno: list.docu_nr_externo,
     docuNrMp: list.docu_nr_mp,
     docuPersonagens: list.docu_personagens,
-    dtUltimoAndamento: list.dt_ultimo_andamento
-      ? new Date(list.dt_ultimo_andamento).toLocaleDateString()
+    dtUltimoAndamento: new Date(list.dt_ultimo_andamento)
+      ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(list.dt_ultimo_andamento))
       : undefined,
     idOrgao: list.id_orgao,
     ultimoAndamento: list.ultimo_andamento,

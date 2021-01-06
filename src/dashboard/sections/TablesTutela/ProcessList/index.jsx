@@ -15,7 +15,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile }) => {
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
     'Nº do Processo': 'docuNrExterno',
-    Investigados: 'docuPersonagens',
+    Demandados: 'docuPersonagens',
     Classe: 'classeDocumento',
     'Último Andamento': 'dtUltimoAndamento',
     'Rótulo Andamento': 'ultimoAndamento',

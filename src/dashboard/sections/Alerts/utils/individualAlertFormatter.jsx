@@ -98,7 +98,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
       return compConstructor(alert, orgao, token);
 
     case 'ISPS':
-      return ispsConstructor(alert);
+      return ispsConstructor(alert, orgao, token);
 
     case 'RO':
       return roOccurrence(alert, token);
@@ -152,7 +152,7 @@ function compConstructor(alert, orgao, token) {
       OUVIDORIA_COMPRAS(COMPRAS_ACTION_OUVIDORIA({ alertId: contrato_iditem, orgao, token })),
       COMPRAS({ compId: contrato_iditem, contrato }),
       DELETE,
-    ]; 
+    ];
     message = (
       <span>
         Os valores do contrato
@@ -172,8 +172,8 @@ function compConstructor(alert, orgao, token) {
   };
 }
 
-function ispsConstructor(alert, orgao, token, alertId ) {
-  const { description, hierarchy, dropdown, alertCode, count } = alert;
+function ispsConstructor(alert, orgao, token) {
+  const { description, hierarchy, dropdown, alertCode, count, alertId } = alert;
   let key;
   let message;
   let actions;
@@ -191,7 +191,11 @@ function ispsConstructor(alert, orgao, token, alertId ) {
     );
   } else {
     key = `${description}-${hierarchy}`;
-    actions = [OUVIDORIA_ISPS(SANEAMENTO_ACTION_OUVIDORIA({ alertId, orgao, token })), SANEAMENTO(), DELETE];
+    actions = [
+      OUVIDORIA_ISPS(SANEAMENTO_ACTION_OUVIDORIA({ alertId, orgao, token })),
+      SANEAMENTO(),
+      DELETE,
+    ];
     message = (
       <span>
         Os valores do indicador <strong>{` ${description} `}</strong>
@@ -950,31 +954,30 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
     key = `${alertCode}-dropdown`;
     message = (
       <span>
-       Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP.
+        Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP.
       </span>
     );
     return {
-    backgroundColor: '#f86c72',
-    icon: <ClockIcon />,
-    key,
-    message,
-    }
+      backgroundColor: '#f86c72',
+      icon: <ClockIcon />,
+      key,
+      message,
+    };
   } else {
     key = `${alertCode}-${docNum}`;
-    actions = [
-      DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, cpf })), DELETE,
-    ];
+    actions = [DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, cpf })), DELETE];
     message = (
       <span>
-        Clique aqui para baixar uma listagem desses procedimentos. Lembre-se de adequa-la às exigências do CSMP.
+        Clique aqui para baixar uma listagem desses procedimentos. Lembre-se de adequa-la às
+        exigências do CSMP.
       </span>
     );
     return {
-    backgroundColor: '#2DE288',
-    icon: <Arrow />,
-    actions,
-    key,
-    message,
-    }
+      backgroundColor: '#2DE288',
+      icon: <Arrow />,
+      actions,
+      key,
+      message,
+    };
   }
 }

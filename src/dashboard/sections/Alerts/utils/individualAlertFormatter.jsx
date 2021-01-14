@@ -790,7 +790,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
 }
 
 function roOccurrence(alert, token) {
-  const { dropdown, alertCode, count, daysPassed, alertId } = alert;
+  const { dropdown, alertCode, count, daysPassed, alertId, hierarchy } = alert;
   const dpNumber = alertId;
   const unsentOcurrences = daysPassed;
   let key;
@@ -811,7 +811,7 @@ function roOccurrence(alert, token) {
     message = (
       <span>
         <strong>{` ${unsentOcurrences} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${dpNumber}`}ª DP</strong> não chegaram no MPRJ
+        de ocorrência da <strong>{hierarchy}</strong> não chegaram no MPRJ
       </span>
     );
   }

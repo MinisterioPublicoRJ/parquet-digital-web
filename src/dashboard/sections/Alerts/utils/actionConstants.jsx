@@ -35,7 +35,7 @@ export const SANEAMENTO = () => ({
 });
 
 export const OUVIDORIA_ISPS = (link) => ({
-  actionType: 'link',
+  actionType: 'openComplaint',
   icon: <Ouvidoria fillColor="white" width="30px" height="30px" />,
   text: 'Ouvidoria',
   background: '#5C6FD9',

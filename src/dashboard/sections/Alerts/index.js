@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import './styles.css';
 import { useAuth } from '../../../app/authContext';
+import { AlertsContext, AlertsContextCreator } from './alertsContext';
 
 import Api from '../../../api';
 import { SectionTitle, Spinner, Modal, DialogBox } from '../../../components';
@@ -11,15 +12,34 @@ import alertListFormatter from './utils/alertListFormatter';
 
 function Alerts() {
   const { buildRequestParams } = useAuth();
-  const [alerts, setAlerts] = useState(undefined);
-  const [alertCount, setAlertCount] = useState(undefined);
-  const [alertsError, setAlertsError] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [overlayType, setOverlayType] = useState(null);
-  const [docDk, setDocDk] = useState(null);
-
-  const [modalContent, setModalContent] = useState(null);
-  const [deletedAlertKey, setDeletedAlertKey] = useState(null);
+  const alertsStore = AlertsContextCreator();
+  const {
+    alerts,
+    setAlerts,
+    alertCount,
+    setAlertCount,
+    alertsError,
+    setAlertsError,
+    showOverlay,
+    setShowOverlay,
+    overlayType,
+    setOverlayType,
+    docDk,
+    setDocDk,
+    modalContent,
+    setModalContent,
+    deletedAlertKey,
+    setDeletedAlertKey,
+  } = alertsStore;
+  // const [alerts, setAlerts] = useState(undefined);
+  // const [alertCount, setAlertCount] = useState(undefined);
+  // const [alertsError, setAlertsError] = useState(false);
+  // const [showOverlay, setShowOverlay] = useState(false);
+  // const [overlayType, setOverlayType] = useState(null);
+  // const [docDk, setDocDk] = useState(null);
+  //
+  // const [modalContent, setModalContent] = useState(null);
+  // const [deletedAlertKey, setDeletedAlertKey] = useState(null);
   const loading = !alerts && !alertsError;
   const dialogBoxMessage = (
     <>
@@ -35,7 +55,6 @@ function Alerts() {
     let listError = false;
     try {
       alertList = await Api.getAlerts(buildRequestParams());
-      console.log(alertList)
     } catch (e) {
       listError = true;
     }
@@ -112,7 +131,6 @@ function Alerts() {
   // runs on "mount" only
   useEffect(() => {
     loadComponent();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function setOverlay(type, docDk) {
@@ -122,42 +140,44 @@ function Alerts() {
   }
 
   return (
-    <article className="alerts-wrapper">
-      <div className="alerts-header">
-        <SectionTitle value="central de alertas" glueToTop />
-        <span className="alerts-total">{alerts ? alertCount : 0}</span>
-      </div>
-      <div className="alerts-body-wrapper">
-        <div className="alerts-body" style={showOverlay || loading ? { overflowY: 'hidden' } : {}}>
-          {showOverlay && (
-            <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
-          )}
-          {modalContent && (
-            <Modal onToggle={() => setModalContent(null)}>
-              <DialogBox
-                action={sendEmail}
-                message={dialogBoxMessage}
-                closeBox={() => setModalContent(null)}
-              />
-            </Modal>
-          )}
-
-          {loading && <Spinner size="large" />}
-          {alertsError && 'Não existem alertas para exibir.'}
-          {alerts &&
-            Object.keys(alerts).map((type) => (
-              <Dropdown
-                type={type}
-                list={alerts[type]}
-                key={type}
-                setOverlay={setOverlay}
-                openDialogBox={openDialogBox}
-                deletedAlertKey={deletedAlertKey}
-              />
-            ))}
+    <AlertsContext.Provider value={alertsStore}>
+      <article className="alerts-wrapper">
+        <div className="alerts-header">
+          <SectionTitle value="central de alertas" glueToTop />
+          <span className="alerts-total">{alerts ? alertCount : 0}</span>
         </div>
-      </div>
-    </article>
+        <div className="alerts-body-wrapper">
+          <div className="alerts-body" style={showOverlay || loading ? { overflowY: 'hidden' } : {}}>
+            {showOverlay && (
+              <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
+            )}
+            {modalContent && (
+              <Modal onToggle={() => setModalContent(null)}>
+                <DialogBox
+                  action={sendEmail}
+                  message={dialogBoxMessage}
+                  closeBox={() => setModalContent(null)}
+                  />
+              </Modal>
+            )}
+
+            {loading && <Spinner size="large" />}
+            {alertsError && 'Não existem alertas para exibir.'}
+            {alerts &&
+              Object.keys(alerts).map((type) => (
+                <Dropdown
+                  type={type}
+                  list={alerts[type]}
+                  key={type}
+                  setOverlay={setOverlay}
+                  openDialogBox={openDialogBox}
+                  deletedAlertKey={deletedAlertKey}
+                  />
+              ))}
+            </div>
+          </div>
+        </article>
+    </AlertsContext.Provider>
   );
 }
 

@@ -979,7 +979,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
   }
 }
 
-function bdpaConstructor({ dropdown, alertCode, count, docNum }) {
+function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy }) {
   let key;
   let message;
 
@@ -997,7 +997,7 @@ function bdpaConstructor({ dropdown, alertCode, count, docNum }) {
     message = (
       <span>
         <strong>{`O procedimento ${docNum}`}</strong>
-        {``} sofreu baixa à <strong>nºDP {docNum}</strong> e não retornou no prazo. 
+        {``} sofreu baixa à <strong>DP {hierarchy}</strong> e não retornou no prazo. 
       </span>
     );
   }

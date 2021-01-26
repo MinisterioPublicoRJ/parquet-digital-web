@@ -11,10 +11,8 @@ import {
   Va,
   Tjrj,
   IconContratacoes,
-  IconSaneamento,
   Ro,
   Arrow,
-  LogoSaneamento,
 } from '../../../../assets';
 
 import {
@@ -91,6 +89,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     case 'VADF':
     return vadfConstructor(alert);
+
+    case 'BDPA':
+    return bdpaConstructor(alert);
 
     // ALERTAS DE COMPRAS
     case 'COMP':
@@ -172,7 +173,7 @@ function compConstructor(alert, orgao, token) {
 }
 
 function ispsConstructor(alert) {
-  const { description, hierarchy, dropdown, alertCode, count } = alert;
+  const { indicador_iditem, indicador, item, iditem, dropdown, alertCode, count } = alert;
   let key;
   let message;
   let actions;
@@ -185,16 +186,16 @@ function ispsConstructor(alert) {
       <span>
         <strong> {`${count}`} </strong>
         {`${single ? 'indicador' : 'indicadores'}`} de saneamento estão em
-        <strong> vermelho </strong> em suas comarcas.
+        <strong> vermelho </strong> nesta cidade
       </span>
     );
   } else {
-    key = `${description}-${hierarchy}`;
-    actions = [OUVIDORIA_ISPS(), SANEAMENTO(), DELETE];
+    key = `${indicador}-${iditem}`;
+    actions = [OUVIDORIA_ISPS(), SANEAMENTO({ compId: indicador_iditem, indicador }), DELETE];
     message = (
       <span>
-        Os valores do indicador <strong>{` ${description} `}</strong>
-        na comarca de <strong>{` ${hierarchy} `}</strong> merecem sua atenção.
+        Os valores do indicador <strong>{` ${indicador} `}</strong>
+        nesta cidade merecem sua atenção.
       </span>
     );
   }
@@ -202,7 +203,7 @@ function ispsConstructor(alert) {
   return {
     actions,
     backgroundColor: '#71D0A4',
-    icon: <LogoSaneamento />,
+    icon: <IconContratacoes />,
     key,
     message,
   };
@@ -789,7 +790,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
 }
 
 function roOccurrence(alert, token) {
-  const { dropdown, alertCode, count, daysPassed, alertId, hierarchy } = alert;
+  const { dropdown, alertCode, count, daysPassed, alertId } = alert;
   const dpNumber = alertId;
   const unsentOcurrences = daysPassed;
   let key;
@@ -810,7 +811,7 @@ function roOccurrence(alert, token) {
     message = (
       <span>
         <strong>{` ${unsentOcurrences} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{hierarchy}</strong> não chegaram no MPRJ
+        de ocorrência da <strong>{` ${dpNumber}`}ª DP</strong> não chegaram no MPRJ
       </span>
     );
   }
@@ -976,4 +977,35 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
     message,
     }
   }
+}
+
+function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy }) {
+  let key;
+  let message;
+
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        <strong>{`Você tem ${count} ${single ? 'procedimento' : 'procedimentos'} `}</strong>
+        de baixa à DP que não retornaram no prazo estipulado.
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${docNum}`;
+    message = (
+      <span>
+        <strong>{`O procedimento ${docNum}`}</strong>
+        {``} sofreu baixa à <strong>DP {hierarchy}</strong> e não retornou no prazo. 
+      </span>
+    );
+  }
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#f86c72',
+    icon: <ClockIcon />,
+    key,
+    message,
+  };
 }

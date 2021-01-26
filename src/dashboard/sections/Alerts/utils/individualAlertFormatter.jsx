@@ -13,6 +13,7 @@ import {
   IconContratacoes,
   Ro,
   Arrow,
+  LogoSaneamento,
 } from '../../../../assets';
 
 import {
@@ -25,6 +26,7 @@ import {
   PPPV_ACTION_CONVERT,
   UNSENT_OCCURRENCE_LIST,
   ABR1_ALERT_ACTION,
+  SANEAMENTO_ACTION_OUVIDORIA,
 } from '../../../../api/endpoints';
 
 import {
@@ -98,7 +100,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
       return compConstructor(alert, orgao, token);
 
     case 'ISPS':
-      return ispsConstructor(alert);
+      return ispsConstructor(alert, orgao, token);
 
     case 'RO':
       return roOccurrence(alert, token);
@@ -172,8 +174,8 @@ function compConstructor(alert, orgao, token) {
   };
 }
 
-function ispsConstructor(alert) {
-  const { indicador_iditem, indicador, item, iditem, dropdown, alertCode, count } = alert;
+function ispsConstructor(alert, orgao, token) {
+  const { description, hierarchy, dropdown, alertCode, count, alertId } = alert;
   let key;
   let message;
   let actions;
@@ -190,12 +192,16 @@ function ispsConstructor(alert) {
       </span>
     );
   } else {
-    key = `${indicador}-${iditem}`;
-    actions = [OUVIDORIA_ISPS(), SANEAMENTO({ compId: indicador_iditem, indicador }), DELETE];
+    key = `${description}-${hierarchy}`;
+    actions = [
+      OUVIDORIA_ISPS(SANEAMENTO_ACTION_OUVIDORIA({ alertId, orgao, token })),
+      SANEAMENTO(),
+      DELETE,
+    ];    
     message = (
       <span>
-        Os valores do indicador <strong>{` ${indicador} `}</strong>
-        nesta cidade merecem sua atenção.
+        Os valores do indicador <strong>{` ${description} `}</strong> na comarca de <strong>{` ${hierarchy} `}</strong> 
+        merecem sua atenção.
       </span>
     );
   }
@@ -203,7 +209,7 @@ function ispsConstructor(alert) {
   return {
     actions,
     backgroundColor: '#71D0A4',
-    icon: <IconContratacoes />,
+    icon: <LogoSaneamento />,
     key,
     message,
   };

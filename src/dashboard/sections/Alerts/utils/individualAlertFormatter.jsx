@@ -11,10 +11,8 @@ import {
   Va,
   Tjrj,
   IconContratacoes,
-  IconSaneamento,
   Ro,
   Arrow,
-  LogoSaneamento,
 } from '../../../../assets';
 
 import {
@@ -27,7 +25,6 @@ import {
   PPPV_ACTION_CONVERT,
   UNSENT_OCCURRENCE_LIST,
   ABR1_ALERT_ACTION,
-  SANEAMENTO_ACTION_OUVIDORIA,
 } from '../../../../api/endpoints';
 
 import {
@@ -93,12 +90,15 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'VADF':
     return vadfConstructor(alert);
 
+    case 'BDPA':
+    return bdpaConstructor(alert);
+
     // ALERTAS DE COMPRAS
     case 'COMP':
       return compConstructor(alert, orgao, token);
 
     case 'ISPS':
-      return ispsConstructor(alert, orgao, token);
+      return ispsConstructor(alert);
 
     case 'RO':
       return roOccurrence(alert, token);
@@ -156,7 +156,7 @@ function compConstructor(alert, orgao, token) {
     message = (
       <span>
         Os valores do contrato
-        <strong>{` ${contrato} `}</strong> itens:
+        <strong>{` ${contrato} `}</strong>, itens:
         <strong>{` ${item.substring(0, 40).toLowerCase()}... `}</strong>
         merecem sua atenção.
       </span>
@@ -172,8 +172,8 @@ function compConstructor(alert, orgao, token) {
   };
 }
 
-function ispsConstructor(alert, orgao, token) {
-  const { description, hierarchy, dropdown, alertCode, count, alertId } = alert;
+function ispsConstructor(alert) {
+  const { indicador_iditem, indicador, item, iditem, dropdown, alertCode, count } = alert;
   let key;
   let message;
   let actions;
@@ -186,20 +186,16 @@ function ispsConstructor(alert, orgao, token) {
       <span>
         <strong> {`${count}`} </strong>
         {`${single ? 'indicador' : 'indicadores'}`} de saneamento estão em
-        <strong> vermelho </strong> em suas comarcas.
+        <strong> vermelho </strong> nesta cidade
       </span>
     );
   } else {
-    key = `${description}-${hierarchy}`;
-    actions = [
-      OUVIDORIA_ISPS(SANEAMENTO_ACTION_OUVIDORIA({ alertId, orgao, token })),
-      SANEAMENTO(),
-      DELETE,
-    ];
+    key = `${indicador}-${iditem}`;
+    actions = [OUVIDORIA_ISPS(), SANEAMENTO({ compId: indicador_iditem, indicador }), DELETE];
     message = (
       <span>
-        Os valores do indicador <strong>{` ${description} `}</strong>
-        na comarca de <strong>{` ${hierarchy} `}</strong> merecem sua atenção.
+        Os valores do indicador <strong>{` ${indicador} `}</strong>
+        nesta cidade merecem sua atenção.
       </span>
     );
   }
@@ -207,7 +203,7 @@ function ispsConstructor(alert, orgao, token) {
   return {
     actions,
     backgroundColor: '#71D0A4',
-    icon: <LogoSaneamento />,
+    icon: <IconContratacoes />,
     key,
     message,
   };
@@ -794,7 +790,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
 }
 
 function roOccurrence(alert, token) {
-  const { dropdown, alertCode, count, daysPassed, alertId, hierarchy } = alert;
+  const { dropdown, alertCode, count, daysPassed, alertId } = alert;
   const dpNumber = alertId;
   const unsentOcurrences = daysPassed;
   let key;
@@ -815,7 +811,7 @@ function roOccurrence(alert, token) {
     message = (
       <span>
         <strong>{` ${unsentOcurrences} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{hierarchy}</strong> não chegaram no MPRJ
+        de ocorrência da <strong>{` ${dpNumber}`}ª DP</strong> não chegaram no MPRJ
       </span>
     );
   }
@@ -954,30 +950,62 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
     key = `${alertCode}-dropdown`;
     message = (
       <span>
-        Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP.
+       Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP.
       </span>
     );
     return {
-      backgroundColor: '#f86c72',
-      icon: <ClockIcon />,
-      key,
-      message,
-    };
+    backgroundColor: '#f86c72',
+    icon: <ClockIcon />,
+    key,
+    message,
+    }
   } else {
     key = `${alertCode}-${docNum}`;
-    actions = [DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, cpf })), DELETE];
+    actions = [
+      DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, cpf })), DELETE,
+    ];
     message = (
       <span>
-        Clique aqui para baixar uma listagem desses procedimentos. Lembre-se de adequa-la às
-        exigências do CSMP.
+        Clique aqui para baixar uma listagem desses procedimentos. Lembre-se de adequa-la às exigências do CSMP.
       </span>
     );
     return {
-      backgroundColor: '#2DE288',
-      icon: <Arrow />,
-      actions,
-      key,
-      message,
-    };
+    backgroundColor: '#2DE288',
+    icon: <Arrow />,
+    actions,
+    key,
+    message,
+    }
   }
+}
+
+function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy }) {
+  let key;
+  let message;
+
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        <strong>{`Você tem ${count} ${single ? 'procedimento' : 'procedimentos'} `}</strong>
+        de baixa à DP que não retornaram no prazo estipulado.
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${docNum}`;
+    message = (
+      <span>
+        <strong>{`O procedimento ${docNum}`}</strong>
+        {``} sofreu baixa à <strong>DP {hierarchy}</strong> e não retornou no prazo. 
+      </span>
+    );
+  }
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#f86c72',
+    icon: <ClockIcon />,
+    key,
+    message,
+  };
 }

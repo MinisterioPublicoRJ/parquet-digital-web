@@ -55,6 +55,7 @@ function Alerts() {
     let listError = false;
     try {
       alertList = await Api.getAlerts(buildRequestParams());
+      console.log(alertList);
     } catch (e) {
       listError = true;
     }

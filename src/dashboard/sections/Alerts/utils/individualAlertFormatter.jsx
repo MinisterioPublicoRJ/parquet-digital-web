@@ -724,7 +724,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
 }
 
 function gateConstructor(alert) {
-  const { dropdown, alertCode, count, docNum, alertId } = alert;
+  const { dropdown, alertCode, count, docNum, alertId, alertIdExtra } = alert;
   let key;
   let message;
   let actions = [];
@@ -740,7 +740,7 @@ function gateConstructor(alert) {
     );
   } else {
     key = `${alertCode}-${docNum}-${alertId}`;
-    actions = [IT({ alertId: alertId }), DELETE];
+    actions = [IT({ alertIdExtra: alertIdExtra }), DELETE];
     message = (
       <span>
         O<strong> GATE </strong>

@@ -12,6 +12,7 @@ export default function alertsTransform(data) {
       orgao: alert.orgao,
       hierarchy: alert.classe_hierarquia,
       daysPassed: alert.dias_passados,
+      alertIdExtra: alert.id_alerta,
       alertId: alert.alrt_key,
     };
   });

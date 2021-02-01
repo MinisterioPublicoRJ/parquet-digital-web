@@ -739,7 +739,7 @@ function gateConstructor(alert) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}-${alertId}`;
+    key = `${alertCode}-${docNum}-${alertIdExtra}`;
     actions = [IT({ alertIdExtra: alertIdExtra }), DELETE];
     message = (
       <span>
@@ -796,8 +796,8 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
 }
 
 function roOccurrence(alert, token) {
-  const { dropdown, alertCode, count, daysPassed, alertId } = alert;
-  const dpNumber = alertId;
+  const { dropdown, alertCode, count, daysPassed, alertId, alertIdExtra } = alert;
+  const dpNumber = alertIdExtra;
   const unsentOcurrences = daysPassed;
   let key;
   let message;
@@ -812,7 +812,7 @@ function roOccurrence(alert, token) {
       </span>
     );
   } else {
-    key = `${alertCode}-${alertId}`;
+    key = `${alertCode}-${alertIdExtra}`;
     const single = unsentOcurrences === 1;
     message = (
       <span>

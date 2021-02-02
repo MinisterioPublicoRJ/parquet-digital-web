@@ -69,10 +69,10 @@ export const PRCR_ACTION_GENERATE_DOC = t(
 );
 
 export const COMPRAS_ACTION_OUVIDORIA = t(
-  `${BASE_URL}/alertas/ouvidoria/str:\${orgao}/comp?alerta_id=str:\${alertId}&jwt=\${token}`,
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}\${alertId}&jwt=\${token}`,
 );
 export const SANEAMENTO_ACTION_OUVIDORIA = t(
-  `${BASE_URL}/alertas/ouvidoria/str:\${orgao}/isps?alerta_id=str:\${alertId}&jwt=\${token}`,
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}\${alertId}&jwt=\${token}`,
 );
 export const ABR1_ALERT_ACTION = t(
   `${BASE_URL}/documentos/procedimentos-csmp/\${orgao}/\${cpf}?jwt=\${token}`,

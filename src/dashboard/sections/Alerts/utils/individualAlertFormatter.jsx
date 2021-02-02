@@ -179,7 +179,7 @@ function ispsConstructor(alert, orgao, token) {
   let key;
   let message;
   let actions;
-
+  console.log(alertCode)
   if (dropdown) {
     actions = [];
     key = `${alertCode}-dropdown`;
@@ -194,7 +194,7 @@ function ispsConstructor(alert, orgao, token) {
   } else {
     key = `${description}-${hierarchy}`;
     actions = [
-      OUVIDORIA_ISPS(SANEAMENTO_ACTION_OUVIDORIA({ alertId, orgao, token })),
+      OUVIDORIA_ISPS(SANEAMENTO_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
       SANEAMENTO(),
       DELETE,
     ];    
@@ -724,7 +724,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
 }
 
 function gateConstructor(alert) {
-  const { dropdown, alertCode, count, docNum, alertId, alertIdExtra } = alert;
+  const { dropdown, alertCode, count, docNum, alertIdGate } = alert;
   let key;
   let message;
   let actions = [];
@@ -739,8 +739,8 @@ function gateConstructor(alert) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}-${alertIdExtra}`;
-    actions = [IT({ alertIdExtra: alertIdExtra }), DELETE];
+    key = `${alertCode}-${docNum}-${alertIdGate}`;
+    actions = [IT({ alertIdGate: alertIdGate }), DELETE];
     message = (
       <span>
         O<strong> GATE </strong>

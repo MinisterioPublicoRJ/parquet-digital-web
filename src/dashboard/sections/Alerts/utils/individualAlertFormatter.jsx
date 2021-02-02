@@ -26,7 +26,7 @@ import {
   PPPV_ACTION_CONVERT,
   UNSENT_OCCURRENCE_LIST,
   ABR1_ALERT_ACTION,
-  SANEAMENTO_ACTION_OUVIDORIA,
+  LINK_ACTION_OUVIDORIA,
 } from '../../../../api/endpoints';
 
 import {
@@ -132,7 +132,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 }
 
 function compConstructor(alert, orgao, token) {
-  const { contrato_iditem, contrato, item, iditem, dropdown, alertCode, count } = alert;
+  const { contrato_iditem, contrato, item, iditem, dropdown, alertCode, count, alertId } = alert;
   let key;
   let message;
   let actions;
@@ -151,7 +151,7 @@ function compConstructor(alert, orgao, token) {
   } else {
     key = `${contrato}-${iditem}`;
     actions = [
-      OUVIDORIA_COMPRAS(COMPRAS_ACTION_OUVIDORIA({ alertId: contrato_iditem, orgao, token })),
+      OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
       COMPRAS({ compId: contrato_iditem, contrato }),
       DELETE,
     ];
@@ -179,7 +179,7 @@ function ispsConstructor(alert, orgao, token) {
   let key;
   let message;
   let actions;
-  console.log(alertCode)
+
   if (dropdown) {
     actions = [];
     key = `${alertCode}-dropdown`;
@@ -194,13 +194,13 @@ function ispsConstructor(alert, orgao, token) {
   } else {
     key = `${description}-${hierarchy}`;
     actions = [
-      OUVIDORIA_ISPS(SANEAMENTO_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
+      OUVIDORIA_ISPS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
       SANEAMENTO(),
       DELETE,
-    ];    
+    ];
     message = (
       <span>
-        Os valores do indicador <strong>{` ${description} `}</strong> na comarca de <strong>{` ${hierarchy} `}</strong> 
+        Os valores do indicador <strong>{` ${description} `}</strong> na comarca de <strong>{` ${hierarchy} `}</strong>
         merecem sua atenção.
       </span>
     );
@@ -1003,7 +1003,7 @@ function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy }) {
     message = (
       <span>
         <strong>{`O procedimento ${docNum}`}</strong>
-        {``} sofreu baixa à <strong>DP {hierarchy}</strong> e não retornou no prazo. 
+        {``} sofreu baixa à <strong>DP {hierarchy}</strong> e não retornou no prazo.
       </span>
     );
   }

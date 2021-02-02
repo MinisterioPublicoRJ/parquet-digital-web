@@ -53,10 +53,8 @@ export const PIP_MAIN_INVESTIGATIONS_URL = t(
 export const PIP_MAIN_INVESTIGATIONS_URL_ACTION = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
 );
-export const DELETE_ALERT = t(`${BASE_URL}/alertas/dispensar/\${orgao}/comp?alerta_id=\${alertId}`);
-export const UNDO_DELETE_ALERT = t(
-  `${BASE_URL}/alertas/retornar/\${orgao}/comp?alerta_id=\${alertId}`,
-);
+export const DELETE_ALERT = t(`${BASE_URL}/alertas/dispensar/\${orgao}/\${alertId}`);
+export const UNDO_DELETE_ALERT = t(`${BASE_URL}/alertas/retornar/\${orgao}/\${alertId}`);
 export const INVESTIGATED_PROFILE_URL = t(
   `${BASE_URL}/pip/principais-investigados-lista/\${representanteDk}`,
 );
@@ -69,10 +67,10 @@ export const PRCR_ACTION_GENERATE_DOC = t(
 );
 
 export const COMPRAS_ACTION_OUVIDORIA = t(
-  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}\${alertId}&jwt=\${token}`,
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}/\${alertId}?jwt=\${token}`,
 );
-export const SANEAMENTO_ACTION_OUVIDORIA = t(
-  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}\${alertId}&jwt=\${token}`,
+export const LINK_ACTION_OUVIDORIA = t(
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}/\${alertId}?jwt=\${token}`,
 );
 export const ABR1_ALERT_ACTION = t(
   `${BASE_URL}/documentos/procedimentos-csmp/\${orgao}/\${cpf}?jwt=\${token}`,

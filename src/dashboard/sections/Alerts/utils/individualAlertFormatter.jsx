@@ -133,13 +133,12 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
 function compConstructor(alert, orgao, token) {
   const { contrato_iditem, contrato, item, iditem, dropdown, alertCode, count, alertId } = alert;
-  let key;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions;
 
   if (dropdown) {
     actions = [];
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -149,7 +148,6 @@ function compConstructor(alert, orgao, token) {
       </span>
     );
   } else {
-    key = `${contrato}-${iditem}`;
     actions = [
       OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
       COMPRAS({ compId: contrato_iditem, contrato }),
@@ -176,13 +174,12 @@ function compConstructor(alert, orgao, token) {
 
 function ispsConstructor(alert, orgao, token) {
   const { description, hierarchy, dropdown, alertCode, count, alertId } = alert;
-  let key;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions;
 
   if (dropdown) {
     actions = [];
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -192,7 +189,6 @@ function ispsConstructor(alert, orgao, token) {
       </span>
     );
   } else {
-    key = `${description}-${hierarchy}`;
     actions = [
       OUVIDORIA_ISPS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
       SANEAMENTO(),
@@ -215,12 +211,11 @@ function ispsConstructor(alert, orgao, token) {
   };
 }
 
-function dctjConstructor({ dropdown, alertCode, count, docNum }) {
-  let key;
+function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -232,7 +227,6 @@ function dctjConstructor({ dropdown, alertCode, count, docNum }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         O procedimento criminal
@@ -253,12 +247,11 @@ function dctjConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function dntjConstructor({ dropdown, alertCode, count, docNum }) {
-  let key;
+function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -270,7 +263,6 @@ function dntjConstructor({ dropdown, alertCode, count, docNum }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         O procedimento criminal
@@ -291,12 +283,11 @@ function dntjConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
-  let key;
+function mvvdConstructor({ dropdown, alertCode, count, docNum, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -309,7 +300,6 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         O procedimento {``}
@@ -331,12 +321,11 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk }) {
-  let key;
+function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -349,7 +338,6 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         O procedimento administrativo {``}
@@ -370,12 +358,11 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk }) {
   };
 }
 
-function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
-  let key;
+function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, alertId }, cpf, token) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -388,7 +375,6 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         O inquérito civil
@@ -413,12 +399,11 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
   };
 }
 
-function nf30Constructor({ dropdown, alertCode, count, docNum, date }) {
-  let key;
+function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -431,7 +416,6 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}-${date ? date.getTime() : 'teste'}`;
     message = (
       <span>
         A notícia de fato autuada há mais de 120 dias
@@ -451,12 +435,11 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date }) {
   };
 }
 
-function offpConstructor({ dropdown, alertCode, count, docNum }) {
-  let key;
+function offpConstructor({ dropdown, alertCode, count, docNum, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -467,7 +450,6 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         O ofício
@@ -487,14 +469,13 @@ function offpConstructor({ dropdown, alertCode, count, docNum }) {
 }
 
 function ouviConstructor(alert) {
-  const { dropdown, alertCode, count, docNum } = alert;
+  const { dropdown, alertCode, count, docNum, alertId } = alert;
 
-  let key;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -504,7 +485,6 @@ function ouviConstructor(alert) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     actions = [DETAIL(), DELETE];
     message = (
       <span>
@@ -525,12 +505,11 @@ function ouviConstructor(alert) {
   };
 }
 
-function vadfConstructor({ dropdown, alertCode, count, docNum }) {
-  let key;
+function vadfConstructor({ dropdown, alertCode, count, docNum, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -543,7 +522,6 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         Você possui
@@ -564,13 +542,12 @@ function vadfConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
-  let key;
+function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, alertId }, cpf, token) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     actions = [];
     const single = count === 1;
 
@@ -631,7 +608,6 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
         );
     }
   } else {
-    key = `${alertCode}-${docNum}`;
     actions = [DETAIL(), DELETE];
 
     switch (alertCode) {
@@ -724,13 +700,12 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
 }
 
 function gateConstructor(alert) {
-  const { dropdown, alertCode, count, docNum, alertIdGate } = alert;
-  let key;
+  const { dropdown, alertCode, count, docNum, alertIdGate, alertId } = alert;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -739,7 +714,6 @@ function gateConstructor(alert) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}-${alertIdGate}`;
     actions = [IT({ alertIdGate: alertIdGate }), DELETE];
     message = (
       <span>
@@ -760,12 +734,11 @@ function gateConstructor(alert) {
   };
 }
 
-function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
-  let key;
+function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -775,7 +748,6 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         O procedimento
@@ -799,11 +771,10 @@ function roOccurrence(alert, token) {
   const { dropdown, alertCode, count, daysPassed, alertId, alertIdExtra } = alert;
   const dpNumber = alertIdExtra;
   const unsentOcurrences = daysPassed;
-  let key;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -812,7 +783,6 @@ function roOccurrence(alert, token) {
       </span>
     );
   } else {
-    key = `${alertCode}-${alertIdExtra}`;
     const single = unsentOcurrences === 1;
     message = (
       <span>
@@ -831,12 +801,11 @@ function roOccurrence(alert, token) {
   };
 }
 
-function ctacConstructor({ dropdown, alertCode, count, docNum }) {
-  let key;
+function ctacConstructor({ dropdown, alertCode, count, docNum, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -846,7 +815,6 @@ function ctacConstructor({ dropdown, alertCode, count, docNum }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
@@ -865,12 +833,11 @@ function ctacConstructor({ dropdown, alertCode, count, docNum }) {
   };
 }
 
-function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
-  let key;
+function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, alertId }, cpf, token) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -883,7 +850,6 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     actions = [
       GENERATE_MINUTA(PPPV_ACTION_CONVERT({ orgao, token, docDk, cpf })),
       EXTEND_DEADLINE(PPPV_ACTION_EXTEND({ orgao, token, docDk, cpf })),
@@ -906,12 +872,11 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
     message,
   };
 }
-function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, cpf, token) {
-  let key;
+function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, alertId }, cpf, token) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -924,7 +889,6 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     actions = [
       GENERATE_MINUTA(PPFP_ACTION_CONVERT({ orgao, token, docDk, cpf })),
       EXTEND_DEADLINE(PPFP_ACTION_EXTEND({ orgao, token, docDk, cpf })),
@@ -948,12 +912,11 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
   };
 }
 
-function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
-  let key;
+function abr1Constructor({ dropdown, alertCode, docNum, orgao, alertId }, cpf, token) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     message = (
       <span>
        Você está no mês de comunicação de procedimentos com mais de 1 ano de tramitação ao CSMP.
@@ -966,7 +929,6 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
     message,
     }
   } else {
-    key = `${alertCode}-${docNum}`;
     actions = [
       DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, cpf })), DELETE,
     ];
@@ -985,12 +947,11 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao }, cpf, token) {
   }
 }
 
-function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy }) {
-  let key;
+function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
 
   if (dropdown) {
-    key = `${alertCode}-dropdown`;
     const single = count === 1;
     message = (
       <span>
@@ -999,7 +960,6 @@ function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy }) {
       </span>
     );
   } else {
-    key = `${alertCode}-${docNum}`;
     message = (
       <span>
         <strong>{`O procedimento ${docNum}`}</strong>

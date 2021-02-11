@@ -14,6 +14,7 @@ import {
   Ro,
   Arrow,
   LogoSaneamento,
+  FebtIcon,
 } from '../../../../assets';
 
 import {
@@ -125,6 +126,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     case 'CTAC':
       return ctacConstructor(alert);
+
+    case 'FEBT':
+      return febtConstructor(alert);
 
     default:
       return {};
@@ -971,6 +975,34 @@ function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy, alertI
     actions: [DETAIL(), DELETE],
     backgroundColor: '#f86c72',
     icon: <ClockIcon />,
+    key,
+    message,
+  };
+}
+
+function febtConstructor(alert) {
+  const { dropdown, alertId, alertCode, count, hierarchy } = alert;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
+  let message;
+
+  if (dropdown) {
+    const single = count === 1;
+    message = (
+      <span>
+        Há {single ? ` uma DP ` : ` ${count} DPs `} da sua região que não {single ? ` enviou ` : ` enviaram `} novos registros de ocorrência ao MPRJ há mais de 30 dias.
+      </span>
+    );
+  } else {
+    message = (
+      <span>
+        Estamos há mais de 30 dias sem receber novos registros de ocorrência da {hierarchy}.
+      </span>
+    );
+  }
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#F8BD6C',
+    icon: <FebtIcon />,
     key,
     message,
   };

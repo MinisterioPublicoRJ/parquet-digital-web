@@ -34,3 +34,4 @@ export { default as DeadlineIcon } from './deadlineIcon';
 export { default as Arrow } from './arrow';
 export { default as LogoSaneamento } from './logoSaneamento';
 export { default as LogoAlternativeWelcome } from './logoAlternativeWelcome';
+export { default as FebtIcon } from './febtIcon';

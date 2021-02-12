@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 import '../themes/index.css';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 import Router from './router';
 import AuthContext from './authContext';
 import Api from '../api';
@@ -115,8 +115,8 @@ function App() {
     return <Spinner size="large" />;
   }
 
-  ReactGA.initialize('UA-80844385');
-  ReactGA.pageview(window.location.pathname + window.location.search);
+  // ReactGA.initialize('UA-80844385');
+  // ReactGA.pageview(window.location.pathname + window.location.search);
 
   return (
     <AuthContext.Provider value={authStore}>

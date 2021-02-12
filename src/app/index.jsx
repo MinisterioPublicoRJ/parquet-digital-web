@@ -115,7 +115,7 @@ function App() {
     return <Spinner size="large" />;
   }
 
-  ReactGA.initialize('UA-80844385');
+  ReactGA.initialize('UA-80844385', { debug: true });
   ReactGA.pageview(window.location.pathname + window.location.search);
 
   return (

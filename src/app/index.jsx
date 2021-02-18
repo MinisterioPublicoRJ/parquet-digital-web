@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 import '../themes/index.css';
-import ReactGA from 'react-ga';
 import Router from './router';
 import AuthContext from './authContext';
+import GoogleAnalytics from './googleAnalytics';
 import Api from '../api';
 import { Spinner } from '../components/layoutPieces';
 
@@ -115,11 +115,9 @@ function App() {
     return <Spinner size="large" />;
   }
 
-  ReactGA.initialize('UA-80844385', { debug: true });
-  ReactGA.pageview(window.location.pathname + window.location.search);
-
   return (
     <AuthContext.Provider value={authStore}>
+      <GoogleAnalytics trackingId="UA-80844385" />
       <Router />
     </AuthContext.Provider>
   );

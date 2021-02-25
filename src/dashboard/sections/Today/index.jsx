@@ -194,7 +194,7 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
               <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span>
             </p>
           )}
-          {entriesData && entriesData.dayTipe && !loading && (
+          {entriesData && entriesData.dayType && !loading && (
             <p>
               Hoje temos um dia
               <span style={{ fontWeight: 'bold' }}>{` ${entriesData.dayType} `}</span>

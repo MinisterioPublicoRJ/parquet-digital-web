@@ -103,7 +103,16 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
       </button>
       <div style={!isOpen ? { display: 'none' } : {}}>
         {visibleAlertsList.map((alert) => {
-          const { actions, backgroundColor, icon, key, message, isDeleted, docDk } = alert;
+          const {
+            actions,
+            backgroundColor,
+            backgroundColorChild,
+            icon,
+            key,
+            message,
+            isDeleted,
+            docDk,
+          } = alert;
           return (
             <AlertBadge
               onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
@@ -111,7 +120,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
               key={key}
               customKey={key}
               icon={icon}
-              backgroundColor={backgroundColor}
+              backgroundColor={backgroundColorChild || backgroundColor}
               message={message}
               actions={actions}
               isDeleted={isDeleted}

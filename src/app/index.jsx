@@ -117,7 +117,7 @@ function App() {
 
   return (
     <AuthContext.Provider value={authStore}>
-      <GoogleAnalytics trackingId="G-RSK7F4RB6Z" />
+      <GoogleAnalytics trackingId="UA-80844385-12" />
       <Router />
     </AuthContext.Provider>
   );

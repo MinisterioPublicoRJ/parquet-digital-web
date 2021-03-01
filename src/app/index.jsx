@@ -3,6 +3,7 @@ import './styles.css';
 import '../themes/index.css';
 import Router from './router';
 import AuthContext from './authContext';
+import GoogleAnalytics from './googleAnalytics';
 import Api from '../api';
 import { Spinner } from '../components/layoutPieces';
 
@@ -107,15 +108,16 @@ function App() {
     authStore.autoLogin(token, scaToken);
   }
 
-// eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
 
   if (!(user || userError)) {
     return <Spinner size="large" />;
   }
-  
+
   return (
     <AuthContext.Provider value={authStore}>
+      <GoogleAnalytics trackingId="UA-80844385-12" />
       <Router />
     </AuthContext.Provider>
   );

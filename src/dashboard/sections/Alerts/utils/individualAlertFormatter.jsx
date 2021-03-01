@@ -14,6 +14,7 @@ import {
   Ro,
   Arrow,
   LogoSaneamento,
+  FebtIcon,
 } from '../../../../assets';
 
 import {
@@ -126,6 +127,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'CTAC':
       return ctacConstructor(alert);
 
+    case 'FEBT':
+      return febtConstructor(alert);
+
     default:
       return {};
   }
@@ -166,6 +170,7 @@ function compConstructor(alert, orgao, token) {
   return {
     actions,
     backgroundColor: '#F8BD6C',
+    backgroundColorChild: '#E8B064',
     icon: <IconContratacoes />,
     key,
     message,
@@ -205,6 +210,7 @@ function ispsConstructor(alert, orgao, token) {
   return {
     actions,
     backgroundColor: '#71D0A4',
+    backgroundColorChild: '#5DAC87',
     icon: <LogoSaneamento />,
     key,
     message,
@@ -241,6 +247,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <Tjrj />,
     key,
     message,
@@ -277,6 +284,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <Tjrj />,
     key,
     message,
@@ -315,6 +323,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <IconVd />,
     key,
     message,
@@ -391,7 +400,8 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, ale
       CALCULO(),
       DELETE,
     ],
-    backgroundColor: '#f86c72',
+    backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <ClockIcon />,
     key,
     message,
@@ -428,7 +438,8 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }) 
 
   return {
     actions: [DETAIL(), DELETE],
-    backgroundColor: '#f86c72',
+    backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <ClockIcon />,
     key,
     message,
@@ -461,7 +472,8 @@ function offpConstructor({ dropdown, alertCode, count, docNum, alertId }) {
 
   return {
     actions: [DETAIL(), DELETE],
-    backgroundColor: '#f86c72',
+    backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <ClockIcon />,
     key,
     message,
@@ -536,6 +548,7 @@ function vadfConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#28A7E0',
+    backgroundColorChild: '#238CBC',
     icon: <Va />,
     key,
     message,
@@ -692,6 +705,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, ale
   return {
     actions,
     backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <ClockIcon />,
     key,
     message,
@@ -795,6 +809,7 @@ function roOccurrence(alert, token) {
   return {
     actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE],
     backgroundColor: '#F8BD6C',
+    backgroundColorChild: '#E8B064',
     icon: <Ro />,
     key,
     message,
@@ -827,6 +842,7 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <Clock />,
     key,
     message,
@@ -866,7 +882,8 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, ale
 
   return {
     actions,
-    backgroundColor: '#f86c72',
+    backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <ClockIcon />,
     key,
     message,
@@ -905,7 +922,8 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, ale
 
   return {
     actions,
-    backgroundColor: '#f86c72',
+    backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <ClockIcon />,
     key,
     message,
@@ -923,7 +941,8 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao, alertId }, cpf, t
       </span>
     );
     return {
-    backgroundColor: '#f86c72',
+    backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <ClockIcon />,
     key,
     message,
@@ -969,8 +988,38 @@ function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy, alertI
   }
   return {
     actions: [DETAIL(), DELETE],
-    backgroundColor: '#f86c72',
+    backgroundColor: '#F86C72',
+    backgroundColorChild: '#E8676D',
     icon: <ClockIcon />,
+    key,
+    message,
+  };
+}
+
+function febtConstructor(alert) {
+  const { dropdown, alertId, alertCode, count, hierarchy } = alert;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
+  let message;
+
+  if (dropdown) {
+    const single = count === 1;
+    message = (
+      <span>
+        Há {single ? ` uma DP ` : ` ${count} DPs `} da sua região que não {single ? ` enviou ` : ` enviaram `} novos registros de ocorrência ao MPRJ há mais de 30 dias.
+      </span>
+    );
+  } else {
+    message = (
+      <span>
+        Estamos há mais de 30 dias sem receber novos registros de ocorrência da {hierarchy}.
+      </span>
+    );
+  }
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#F8BD6C',
+    backgroundColorChild: '#E8B064',
+    icon: <FebtIcon />,
     key,
     message,
   };

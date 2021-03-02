@@ -3,7 +3,6 @@ import './styles.css';
 import '../themes/index.css';
 import Router from './router';
 import AuthContext from './authContext';
-import GoogleAnalytics from './googleAnalytics';
 import Api from '../api';
 import { Spinner } from '../components/layoutPieces';
 
@@ -117,7 +116,6 @@ function App() {
 
   return (
     <AuthContext.Provider value={authStore}>
-      <GoogleAnalytics trackingId="UA-80844385-12" />
       <Router />
     </AuthContext.Provider>
   );

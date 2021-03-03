@@ -112,27 +112,27 @@ const GLOSSARIO = [
     definition:
       'A lista indica as Promotorias com maior volume de ações ajuizadas no respectivo mês',
   },
-  {
-    title: 'ARQUIVAMENTOS',
-    type: 2,
-    section: 'RADAR DE PERFORMANCE',
-    definition: 'Os andamentos que são considerados arquivamentos para PIPs neste campo são...',
-  },
-  {
-    title: 'DENÚNCIAS',
-    section: 'RADAR DE PERFORMANCE',
-    definition: 'Os andamentos que são considerados denúncias neste campo são...',
-  },
-  {
-    title: 'MEDIDAS CAUTELARES',
-    section: 'RADAR DE PERFORMANCE',
-    definition: 'Os andamentos que são considerados cautelares neste campo são...',
-  },
-  {
-    title: 'ACORDOS DE NÃO PERSECUÇÃO',
-    section: 'RADAR DE PERFORMANCE',
-    definition: 'Os andamentos que são considerados acordos neste campo são...',
-  },
+  // {
+  //   title: 'ARQUIVAMENTOS',
+  //   type: 2,
+  //   section: 'RADAR DE PERFORMANCE',
+  //   definition: 'Os andamentos que são considerados arquivamentos para PIPs neste campo são...',
+  // },
+  // {
+  //   title: 'DENÚNCIAS',
+  //   section: 'RADAR DE PERFORMANCE',
+  //   definition: 'Os andamentos que são considerados denúncias neste campo são...',
+  // },
+  // {
+  //   title: 'MEDIDAS CAUTELARES',
+  //   section: 'RADAR DE PERFORMANCE',
+  //   definition: 'Os andamentos que são considerados cautelares neste campo são...',
+  // },
+  // {
+  //   title: 'ACORDOS DE NÃO PERSECUÇÃO',
+  //   section: 'RADAR DE PERFORMANCE',
+  //   definition: 'Os andamentos que são considerados acordos neste campo são...',
+  // },
   {
     title: 'DEVOLUÇÕES À DP',
     section: 'RADAR DE PERFORMANCE',
@@ -163,13 +163,13 @@ const GLOSSARIO = [
     definition:
       'Os andamentos que são considerados instaurações de investigações neste campo são aqueles cadastrado com os códigos 1092 (Instauração de Procedimento Administrativo), 1094 (Instauração de Inquérito Civil, 1095 (Instauração de Procedimento Preparatório, 6007 (Reconsideração > Reconsideração do indeferimento de Notícia de Fato), 6011 (Portaria > Instauração de Procedimento Preparatório), 6012 (Portaria > Instauração de Inquérito Civil) e 6013 (Portaria > Instauração de Procedimento Administrativo).',
   },
-  {
-    title: 'ARQUIVAMENTOS',
-    type: 1,
-    section: 'RADAR DE PERFORMANCE',
-    definition:
-      'Os andamentos que são considerados arquivamentos para tutela coletiva neste campo são...',
-  },
+  // {
+  //   title: 'ARQUIVAMENTOS',
+  //   type: 1,
+  //   section: 'RADAR DE PERFORMANCE',
+  //   definition:
+  //     'Os andamentos que são considerados arquivamentos para tutela coletiva neste campo são...',
+  // },
   // {
   //   title: 'DOCUMENTOS SINALIZADOS COMO FECHADOS',
   //   section: 'CENTRAL DE ALERTAS',

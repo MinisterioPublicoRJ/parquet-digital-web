@@ -26,7 +26,6 @@ function Router() {
         path = '/dashboard';
       }
     }
-    console.log('path', path);
     return <Redirect to={path} />;
   }
 

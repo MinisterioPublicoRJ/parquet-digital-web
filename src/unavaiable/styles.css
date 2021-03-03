@@ -1,0 +1,84 @@
+/* html {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+body {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.unavaiable-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.unavaiable-banner {
+  display: flex;
+  margin-right: 3vw;
+  width: 20vw;
+}
+.unavaiable-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 74vw;
+}
+.unavaiable-content h1 {
+  font: normal normal 900 90px/118px Roboto;
+  letter-spacing: 0px;
+  color: #374354;
+}
+.unavaiable-content h2 {
+  font: normal normal normal 31px/40px Roboto;
+  letter-spacing: 0px;
+  color: #374354;
+}
+.unavaiable-content h3 {
+  font: normal normal normal 24px/32px Roboto;
+  letter-spacing: 0px;
+  color: #4a4a4a;
+}
+.unavaiable-content h4 {
+  font: normal normal normal 16px/26px Roboto;
+  letter-spacing: -0.44px;
+  color: #4a4a4a;
+}
+
+.unavaiable-content small {
+}
+
+.unavaible-promotron-img {
+  position: relative;
+}
+.unavaiable-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.unavaiable-options div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.unavaiable-options img {
+  margin: 5px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+}
+.unavaiable-title {
+  flex-direction: row;
+}
+.unavaiable-intro {
+  text-align: end;
+  max-width: 50%;
+}

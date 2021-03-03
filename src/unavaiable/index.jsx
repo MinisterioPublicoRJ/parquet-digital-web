@@ -8,7 +8,7 @@ import painelDeComprasImg from '../assets/imgs/Image3.png';
 import painelSaneamentoBasicoImg from '../assets/imgs/Image-2.png';
 import inLocoImg from '../assets/imgs/Image2.png';
 
-const Unavaible = () => {
+const Unavailable = () => {
   return (
     <div className="unavaiable-wrapper">
       <div className="unavaiable-banner">
@@ -69,13 +69,6 @@ const Unavaible = () => {
               <h4>Painel Saneamento Básico</h4>
               <small>Diagnóstico e indicadores de água esgoto e drenagem por município.</small>
             </div>
-            <div>
-              <img src={inLocoImg} alt="InLoco" />
-              <h4>InLoco</h4>
-              <small>
-                Mapa interativo com a disponibilidade de várias camadas de dados georreferenciados.
-              </small>
-            </div>
           </div>
         </section>
       </d>
@@ -83,4 +76,4 @@ const Unavaible = () => {
   );
 };
 
-export default Unavaible;
+export default Unavailable;

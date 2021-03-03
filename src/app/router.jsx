@@ -6,7 +6,7 @@ import Dashboard from '../dashboard';
 import { Welcome, Work, Home, Performance } from '../dashboard/pages/welcomePages';
 
 function Router() {
-  const { user } = useAuth();
+  const { user, isServerDown } = useAuth();
 
   const PrivateRoute = ({ component, path }) => {
     if (user) {
@@ -17,14 +17,16 @@ function Router() {
 
   function findFirstPath() {
     let path = '/login';
-
-    if (user) {
+    if (isServerDown) {
+      path = '/unavailable';
+    } else if (user) {
       if (user.firstLogin) {
         path = '/welcome';
       } else {
         path = '/dashboard';
       }
     }
+    console.log('path', path);
     return <Redirect to={path} />;
   }
 

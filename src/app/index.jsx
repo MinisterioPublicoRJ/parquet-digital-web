@@ -55,7 +55,7 @@ function AuthContextCreator() {
     const userJson = JSON.parse(userString);
     const limitDate = new Date() - 24 * 60 * 60 * 1000;
     // REMOVE ON NEXT DEPLOY, THIS IS SUPPOSED TO BE A ONE TIME HOTFIX
-    const resetDate = new Date(2021, 2, 4);
+    const resetDate = new Date(2021, 2, 5);
     const storedDate = +new Date(userJson.timestamp);
 
     return storedDate > limitDate && storedDate > resetDate;

@@ -51,22 +51,30 @@ const Unavailable = () => {
           <div className="unavaiable-options">
             <div>
               <img src={diagnosticoImg} alt="Diagnóstico das Promotorias de Justiça" />
+	      <a href="http://j.mp/DiagnosticoPromotoriasMPRJ" target="blank">
               <h4>Diagnóstico das Promotorias de Justiça</h4>
+	      </a>
               <small>Comparativo de feitos entre as Promotorias.</small>
             </div>
             <div>
               <img src={dominioImg} alt="Domínio" />
+	      <a href="http://apps.mprj.mp.br/sistema/dominio/" target="blank">
               <h4>Domínio</h4>
+	      </a>
               <small>Listagem de procedimentos, sua mesa e alguns alertas.</small>
             </div>
             <div>
               <img src={painelDeComprasImg} alt="Painel de Compras" />
+	      <a href="http://j.mp/ComprasCovidMPRJ" target="blank">
               <h4>Painel de Compras</h4>
+	      </a>
               <small>Compras públicas para enfrentamento da Covid-19.</small>
             </div>
             <div>
               <img src={painelSaneamentoBasicoImg} alt="Painel Saneamento Básico" />
+	      <a href="http://j.mp/SaneamentoBasicoMPRJ" target="blank">
               <h4>Painel Saneamento Básico</h4>
+	      </a>
               <small>Diagnóstico e indicadores de água esgoto e drenagem por município.</small>
             </div>
           </div>

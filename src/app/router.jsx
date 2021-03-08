@@ -13,18 +13,18 @@ function Router() {
     if (user) {
       return <Route path={path} component={component} />;
     }
-    return <Redirect to="/unavailable" />;
+    return <Redirect to="/login" />;
   };
 
   function findFirstPath() {
-    let path = '/unavailable';
+    let path = '/login';
     if (isServerDown) {
       path = '/unavailable';
     } else if (user) {
       if (user.firstLogin) {
         path = '/welcome';
       } else {
-        path = '/unavailable';
+        path = '/dashboard';
       }
     }
     return <Redirect to={path} />;
@@ -36,8 +36,8 @@ function Router() {
         <Route exact path="/">
           {findFirstPath()}
         </Route>
-        <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Unavailable />}</Route>
-        <PrivateRoute path="/dashboard" component={Unavailable} />
+        <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
+        <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/welcome" component={Welcome} />
         <PrivateRoute path="/work" component={Work} />
         <PrivateRoute path="/home" component={Home} />

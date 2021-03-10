@@ -4,9 +4,10 @@ import { useAuth } from './authContext';
 import Login from '../login';
 import Dashboard from '../dashboard';
 import { Welcome, Work, Home, Performance } from '../dashboard/pages/welcomePages';
+import Unavailable from '../unavaiable/index';
 
 function Router() {
-  const { user } = useAuth();
+  const { user, isServerDown } = useAuth();
 
   const PrivateRoute = ({ component, path }) => {
     if (user) {
@@ -17,8 +18,9 @@ function Router() {
 
   function findFirstPath() {
     let path = '/login';
-
-    if (user) {
+    if (isServerDown) {
+      path = '/unavailable';
+    } else if (user) {
       if (user.firstLogin) {
         path = '/welcome';
       } else {
@@ -40,6 +42,7 @@ function Router() {
         <PrivateRoute path="/work" component={Work} />
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute path="/perfomanceAnalysis" component={Performance} />
+        <Route path="/unavailable" component={Unavailable} />
       </Switch>
     </HashRouter>
   );

@@ -3,7 +3,6 @@ import './styles.css';
 import '../themes/index.css';
 import Router from './router';
 import AuthContext from './authContext';
-import GoogleAnalytics from './googleAnalytics';
 import Api from '../api';
 import { Spinner } from '../components/layoutPieces';
 
@@ -12,6 +11,7 @@ function AuthContextCreator() {
   const [userError, setUserError] = useState(false);
   const [scaUserError, setScaUserError] = useState(false);
   const [userExpired, setUserExpired] = useState(false);
+  const [isServerDown, setIsServerDown] = useState(false);
 
   const tokenLogin = async (token) => {
     if (userError) {
@@ -21,7 +21,11 @@ function AuthContextCreator() {
       const loggedUser = await Api.login(token);
       setUser(loggedUser);
     } catch (e) {
-      setUserError(true);
+      if (!e.response) {
+        setIsServerDown(true);
+      } else {
+        setUserError(true);
+      }
     }
   };
 
@@ -38,16 +42,23 @@ function AuthContextCreator() {
       const storageUser = { timestamp: new Date(), userObj: loggedUser };
       window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
     } catch (e) {
-      setScaUserError(true);
+      if(!e.response) {
+        setIsServerDown(true);
+      }
+      else {
+        setScaUserError(true);
+      }
     }
   };
 
   const isStoredUserValid = (userString) => {
     const userJson = JSON.parse(userString);
     const limitDate = new Date() - 24 * 60 * 60 * 1000;
+    // REMOVE ON NEXT DEPLOY, THIS IS SUPPOSED TO BE A ONE TIME HOTFIX
+    const resetDate = new Date(2021, 2, 5);
     const storedDate = +new Date(userJson.timestamp);
 
-    return storedDate > limitDate;
+    return storedDate > limitDate && storedDate > resetDate;
   };
 
   const autoLogin = (jwt, storedUser) => {
@@ -95,12 +106,13 @@ function AuthContextCreator() {
     scaLogin,
     buildRequestParams,
     logout,
+    isServerDown,
   };
 }
 
 function App() {
   const authStore = AuthContextCreator();
-  const { user, userError } = authStore;
+  const { user, userError, isServerDown } = authStore;
 
   function onMount() {
     const token = window.localStorage.getItem('access_token');
@@ -111,13 +123,12 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
 
-  if (!(user || userError)) {
+  if (!isServerDown && !user && !userError) {
     return <Spinner size="large" />;
   }
 
   return (
     <AuthContext.Provider value={authStore}>
-      <GoogleAnalytics trackingId="UA-80844385-12" />
       <Router />
     </AuthContext.Provider>
   );

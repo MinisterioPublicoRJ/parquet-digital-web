@@ -1,9 +1,12 @@
-/* html {
+/* 
+@Todo fix page alignment
+
+html {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-} */
+}
 
 body {
   padding: 0;
@@ -11,8 +14,8 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-
-.unavailable-wrapper {
+*/
+.unavaiable-wrapper {
   display: flex;
   width: 100vw;
   height: 100vh;

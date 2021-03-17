@@ -170,7 +170,7 @@ function compConstructor(alert, orgao, token) {
   return {
     actions,
     backgroundColor: '#F8BD6C',
-    backgroundColorChild: '#E8B064',
+    backgroundColorChild: '#D69F53',
     icon: <IconContratacoes />,
     key,
     message,
@@ -210,7 +210,7 @@ function ispsConstructor(alert, orgao, token) {
   return {
     actions,
     backgroundColor: '#71D0A4',
-    backgroundColorChild: '#5DAC87',
+    backgroundColorChild: '#439A71',
     icon: <LogoSaneamento />,
     key,
     message,
@@ -247,7 +247,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <Tjrj />,
     key,
     message,
@@ -284,7 +284,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <Tjrj />,
     key,
     message,
@@ -323,7 +323,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <IconVd />,
     key,
     message,
@@ -360,6 +360,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId })
   return {
     actions: [GENERATE_DOC(), CALCULO(), DELETE],
     backgroundColor: '#5C6FD9',
+    backgroundColorChild: '#7956A7',
     icon: <ClockIcon />,
     key,
     message,
@@ -401,7 +402,7 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, ale
       DELETE,
     ],
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
     key,
     message,
@@ -439,7 +440,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }) 
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
     key,
     message,
@@ -473,7 +474,7 @@ function offpConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
     key,
     message,
@@ -511,6 +512,7 @@ function ouviConstructor(alert) {
   return {
     actions,
     backgroundColor: '#5C6FD9',
+    backgroundColorChild: '#7956A7',
     icon: <Ouvidoria />,
     key,
     message,
@@ -548,7 +550,7 @@ function vadfConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#28A7E0',
-    backgroundColorChild: '#238CBC',
+    backgroundColorChild: '#1D78A2',
     icon: <Va />,
     key,
     message,
@@ -705,7 +707,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, ale
   return {
     actions,
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
     key,
     message,
@@ -742,6 +744,7 @@ function gateConstructor(alert) {
   return {
     actions,
     backgroundColor: '#374354',
+    backgroundColorChild: '#14181E',
     icon: <CorujaGate />,
     key,
     message,
@@ -775,6 +778,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#5C6FD9',
+    backgroundColorChild: '#7956A7',
     icon: <Home />,
     key,
     message,
@@ -809,7 +813,7 @@ function roOccurrence(alert, token) {
   return {
     actions: [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE],
     backgroundColor: '#F8BD6C',
-    backgroundColorChild: '#E8B064',
+    backgroundColorChild: '#D69F53',
     icon: <Ro />,
     key,
     message,
@@ -842,7 +846,7 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <Clock />,
     key,
     message,
@@ -883,7 +887,7 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, ale
   return {
     actions,
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
     key,
     message,
@@ -923,7 +927,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, orgao, docDk, ale
   return {
     actions,
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
     key,
     message,
@@ -942,7 +946,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, orgao, alertId }, cpf, t
     );
     return {
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
     key,
     message,
@@ -989,7 +993,7 @@ function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy, alertI
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
-    backgroundColorChild: '#E8676D',
+    backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
     key,
     message,
@@ -1018,7 +1022,7 @@ function febtConstructor(alert) {
   return {
     actions: [DETAIL(), DELETE],
     backgroundColor: '#F8BD6C',
-    backgroundColorChild: '#E8B064',
+    backgroundColorChild: '#D69F53',
     icon: <FebtIcon />,
     key,
     message,

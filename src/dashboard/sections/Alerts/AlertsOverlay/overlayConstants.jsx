@@ -131,6 +131,16 @@ export const OVERLAY_TEXTS = {
       </p>
     </div>
   ),
+  FEBT: (
+    <p>
+      Neste alerta eu tento lhe sinalizar quando a delegacia parou de enviar ROs novos, mais
+      recentes. Para fazer isso, eu procuro na lista (numérica e crescente) de ROs, por delegacia,
+      qual foi o último número a entrar no MPRJ. Assim que eu encontro, vejo qual foi a data de sua
+      entrada e identifico se há mais de um mês não houve entrada de um número de RO mais recente.
+      Se isso ocorre, eu lhe aviso que a delegacia parou de mandar novos ROs para lhe ajudar no seu
+      trabalho de controle externo da polícia.
+    </p>
+  ),
 };
 
 export const PRCR_TEXTS = (type, data) => {
@@ -427,8 +437,8 @@ export const PPFP_TEXT = ({ registerDate }) => (
 
     <p>
       Neste caso, o alerta aparece se o Procedimento Preparatório foi criado no sistema e se
-      passaram mais de 30 dias sem prorrogação, ou se, mesmo após a prorrogação, já se passaram
-      mais de 180 dias de sua criação.
+      passaram mais de 30 dias sem prorrogação, ou se, mesmo após a prorrogação, já se passaram mais
+      de 180 dias de sua criação.
     </p>
 
     <p />

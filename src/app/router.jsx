@@ -4,7 +4,7 @@ import { useAuth } from './authContext';
 import Login from '../login';
 import Dashboard from '../dashboard';
 import { Welcome, Work, Home, Performance } from '../dashboard/pages/welcomePages';
-import Unavailable from '../unavaiable/index';
+import Unavailable from '../unavailable/index';
 
 function Router() {
   const { user, isServerDown } = useAuth();

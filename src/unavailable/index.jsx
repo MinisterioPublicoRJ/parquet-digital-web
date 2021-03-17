@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import unavaibleBanner from '../assets/imgs/unavaiable-banner.png';
+import unavaibleBanner from '../assets/imgs/unavailable-banner.png';
 import promotronReparador from '../assets/imgs/promotron-repador@4x.png';
 import diagnosticoImg from '../assets/imgs/Image-4.png';
 import dominioImg from '../assets/imgs/Image1.png';
@@ -10,8 +10,8 @@ import inLocoImg from '../assets/imgs/Image2.png';
 
 const Unavailable = () => {
   return (
-    <div className="unavaiable-wrapper">
-      <div className="unavaiable-banner">
+    <div className="unavailable-wrapper">
+      <div className="unavailable-banner">
         <img
           width="100%"
           src={unavaibleBanner}
@@ -19,8 +19,8 @@ const Unavailable = () => {
             em evidências e uma análise apurada da sua Promotoria."
         />
       </div>
-      <d iv className="unavaiable-content">
-        <section className="unavaiable-title">
+      <d iv className="unavailable-content">
+        <section className="unavailable-title">
           <div>
             <img
               height="100%"
@@ -30,7 +30,7 @@ const Unavailable = () => {
               alt="Robô Promotron Reparador."
             />
           </div>
-          <div className="unavaiable-intro">
+          <div className="unavailable-intro">
             <h1>Oops!</h1>
             <h2>Estamos passando por problemas técnicos</h2>
             <p>
@@ -48,7 +48,7 @@ const Unavailable = () => {
             Seleção de ferramentas que podem ajudar na sua atuação enquanto o Parquet Digital está
             fora:
           </small>
-          <div className="unavaiable-options">
+          <div className="unavailable-options">
             <div>
               <img src={diagnosticoImg} alt="Diagnóstico das Promotorias de Justiça" />
 	      <a href="http://j.mp/DiagnosticoPromotoriasMPRJ" target="blank">

@@ -27,7 +27,7 @@ function Glossary({ onToggle }) {
           <h2>Glossário</h2>
           <p>
             Aqui você poderá conferir todos os termos usados para compor o painel bem como o
-            significados e como cada índices é calculado.
+            significados e como cada índice é calculado.
           </p>
           <PromotronGlossario height={400} />
         </div>

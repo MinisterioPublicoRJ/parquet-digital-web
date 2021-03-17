@@ -173,7 +173,7 @@ const GLOSSARIO = [
   // {
   //   title: 'DOCUMENTOS SINALIZADOS COMO FECHADOS',
   //   section: 'CENTRAL DE ALERTAS',
-  //   definition: 'texto explicativo',
+  //   definition: 'Neste alerta, eu busco lhe avisar que um documento que está registrado  como fechado está com vista aberta em sua mesa. Neste caso, o documento provavelmente não deveria estar ali, ou está com registro muito errado no banco.',
   // },
   {
     title: 'VISTAS ABERTAS',
@@ -181,10 +181,5 @@ const GLOSSARIO = [
     definition:
       'O conceito de vista aberta é bastante familiar para os promotores, mas há um detalhe que precisa ser explicado com relação ao período da abertura de vista: para os indicadores, não se conta somente a data da abertura da vista, mas sim se ela esteve aberta em algum momento dentro deste período. Isso abarca vistas que estiveram abertas em momento anterior e continuaram abertas durante o período. Esta mesma percepção temporal foi aplicada nas análises detalhadas dos botões do "Sua Mesa". Nos outros lugares, como no botão "Vistas Abertas" e no "Resumo do Dia", o que importa é a data de abertura da vista.',
   },
-  // {
-  //   title: 'TÍTULO DO ITEM',
-  //   section: 'NOME DA SESSÃO EM QUE ELE ESTÁ (EX: SUA MESA)',
-  //   definition: 'texto explicativo',
-  // },
 ];
 export default GLOSSARIO;

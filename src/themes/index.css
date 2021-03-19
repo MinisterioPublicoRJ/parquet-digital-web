@@ -38,7 +38,6 @@
   --defaultFont: Roboto;
   --titleFont: Roboto;
   --defaultFontSize: clamp(12px, 1.5vh, 18px);
-  --smallFont: clamp(8px, 1.2vh, 12px);
 
   --titleFontSize: calc(var(--defaultFontSize) * 2);
   --titleFont: Roboto;

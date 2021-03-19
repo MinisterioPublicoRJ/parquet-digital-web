@@ -730,7 +730,7 @@ function gateConstructor(alert) {
       </span>
     );
   } else {
-    actions = [IT({ alertIdGate: alertIdGate }), DELETE];
+    actions = [IT(alertIdGate), DELETE];
     message = (
       <span>
         O<strong> GATE </strong>

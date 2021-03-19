@@ -59,9 +59,6 @@ import {
  * }
  */
 export default function individualAlertFormatter(alert, cpf, token, orgao) {
-  // prettier-ignore
-  console.log(alert.alertCode, orgao,token);
-
   switch (alert.alertCode) {
 
     // ALERTAS DA TUTELA
@@ -473,7 +470,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
 function offpConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao, cpf, token) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({orgao, alertCode, token }))];
@@ -787,7 +784,7 @@ function gateConstructor(alert, orgao, cpf, token) {
 function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao, cpf, token) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({orgao, alertCode, token }))];
@@ -827,7 +824,7 @@ function roOccurrence(alert, orgao, cpf, token) {
   const unsentOcurrences = daysPassed;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({orgao, alertCode, token }))];
@@ -841,6 +838,7 @@ function roOccurrence(alert, orgao, cpf, token) {
   } else {
     actions = [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE];
     const single = unsentOcurrences === 1;
+    action = [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE];
     message = (
       <span>
         <strong>{` ${unsentOcurrences} ${single ? 'registro' : 'registros'} `}</strong>
@@ -862,7 +860,7 @@ function roOccurrence(alert, orgao, cpf, token) {
 function ctacConstructor({ dropdown, alertCode, count, docNum, alertId }) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     const single = count === 1;
@@ -989,6 +987,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, alertId }, orgao, cpf, t
       </span>
     );
     return {
+    actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
@@ -1017,7 +1016,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, alertId }, orgao, cpf, t
 function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy, alertId }) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     const single = count === 1;
@@ -1050,7 +1049,7 @@ function febtConstructor(alert) {
   const { dropdown, alertId, alertCode, count, hierarchy } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
-  let actions;
+  let actions = [];
 
   if (dropdown) {
     const single = count === 1;

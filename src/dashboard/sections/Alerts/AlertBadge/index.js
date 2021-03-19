@@ -36,25 +36,31 @@ const defaultProps = {
   isDeleted: false,
 };
 
-const AlertBadge = ({
-  actions,
-  backgroundColor,
-  icon,
-  message,
-  customKey,
-  hideHover,
-  onDeletion,
-  openDialogBox,
-  setOverlay,
-  type,
-  count,
-  isOpen,
-  isDeleted,
-  docDk,
-}) => {
+const AlertBadge = (alert) => {
+  
+  const {
+    actions,
+    backgroundColor,
+    icon,
+    message,
+    customKey,
+    hideHover,
+    onDeletion,
+    openDialogBox,
+    setOverlay,
+    type,
+    count,
+    isOpen,
+    isDeleted,
+    docDk,
+  } = alert;
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
+  }
+
+  if(!actions) {
+    console.error(alert)
   }
 
   function handleDeletion(key, undo) {

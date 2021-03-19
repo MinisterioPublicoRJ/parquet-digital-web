@@ -103,3 +103,9 @@ export const DOWNLOAD_LIST = (link) => ({
   background: '#71D0A4',
   link,
 });
+
+export const GENERATE_CSV = (link) => ({
+  actionType: 'download',
+  text: 'CSV',
+  link,
+});

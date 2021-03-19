@@ -99,7 +99,7 @@ const AlertBadge = ({
     }
   }
 
-  const showHover = !hideHover && actions[0];
+  const showHover = !hideHover && actions[1];
 
   return (
     <div className="alertBadge-outerContainer">
@@ -133,12 +133,27 @@ const AlertBadge = ({
       </div>
       <div className="alertBadge-rightContainer">
         <span>{message}</span>
-        {!showHover && (
-          <div className="alertBadge-countWrapper" style={{ backgroundColor }}>
-            <span className={`alertBadge-arrow ${isOpen && 'alertBadge-arrow--open'}`} />
-            {count}
-          </div>
-        )}
+        <div className="alertBadge-smallButtons">
+          {!showHover && (
+            <>
+              {actions[0] && (
+                <div
+                  onClick={() => {
+                    handleActionPress(actions[0]);
+                  }}
+                  className="alertBadge-downloadNumbers"
+                  style={{ backgroundColor: '#2DE288' }}
+                >
+                  {actions[0].text}
+                </div>
+              )}
+              <div className="alertBadge-countWrapper" style={{ backgroundColor }}>
+                <span className={`alertBadge-arrow ${isOpen && 'alertBadge-arrow--open'}`} />
+                {count}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -124,8 +124,8 @@ const GLOSSARIO = [
     section: 'RADAR DE PERFORMANCE',
     definition: (
       <>
-        Os andamentos que são considerados arquivamentos para PIPs podem ser encontrados
-        <a href={ArchiveRulesPdf} target="new">{` nesse PDF.`}</a>
+        Os andamentos que são considerados arquivamentos para PIPs podem ser encontrados{" "}
+        <a href={ArchiveRulesPdf} target="new">nesse PDF.</a>
       </>
     ),
   },
@@ -134,8 +134,8 @@ const GLOSSARIO = [
     section: 'RADAR DE PERFORMANCE',
     definition: (
       <>
-        Os andamentos que são considerados denúncias podem ser encontrados
-        <a href={InstaurationRulesPdf} target="new">{` nesse PDF.`}</a>
+        Os andamentos que são considerados denúncias podem ser encontrados{" "}
+        <a href={InstaurationRulesPdf} target="new">nesse PDF.</a>
       </>
     ),
   },
@@ -144,8 +144,8 @@ const GLOSSARIO = [
     section: 'RADAR DE PERFORMANCE',
     definition: (
       <>
-        Os andamentos que são considerados cautelares podem ser encontrados
-        <a href={PrecautionaryRulesPdf} target="new">{` nesse PDF.`}</a>
+        Os andamentos que são considerados cautelares podem ser encontrados{" "}
+        <a href={PrecautionaryRulesPdf} target="new">nesse PDF.</a>
       </>
     ),
   },

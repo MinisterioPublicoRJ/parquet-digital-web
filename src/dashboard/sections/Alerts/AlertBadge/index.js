@@ -37,7 +37,6 @@ const defaultProps = {
 };
 
 const AlertBadge = (alert) => {
-  
   const {
     actions,
     backgroundColor,
@@ -57,10 +56,6 @@ const AlertBadge = (alert) => {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
-  }
-
-  if(!actions) {
-    console.error(alert)
   }
 
   function handleDeletion(key, undo) {

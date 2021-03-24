@@ -105,8 +105,12 @@
   justify-content: center;
   text-align: left;
 }
+.alertBadge-smallButtons {
+  display: flex;
+  align-self: flex-end;
+}
 
-.alertBadge-countWrapper {
+.alertBadge-countWrapper, .alertBadge-downloadNumbers {
   align-self: flex-end;
   align-items: center;
   border-radius: 4px;
@@ -117,6 +121,7 @@
   height: calc(1.2 * var(--smallFont));
   justify-content: center;
   padding: 2px 5px;
+  margin-left: 5px;
 }
 
 .alertBadge-arrow {

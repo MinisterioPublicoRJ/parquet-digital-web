@@ -147,7 +147,10 @@ function Alerts() {
           <span className="alerts-total">{alerts ? alertCount : 0}</span>
         </div>
         <div className="alerts-body-wrapper">
-          <div className="alerts-body" style={showOverlay || loading ? { overflowY: 'hidden' } : {}}>
+          <div
+            className="alerts-body"
+            style={showOverlay || loading ? { overflowY: 'hidden' } : {}}
+          >
             {showOverlay && (
               <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
             )}
@@ -157,7 +160,7 @@ function Alerts() {
                   action={sendEmail}
                   message={dialogBoxMessage}
                   closeBox={() => setModalContent(null)}
-                  />
+                />
               </Modal>
             )}
 
@@ -172,11 +175,11 @@ function Alerts() {
                   setOverlay={setOverlay}
                   openDialogBox={openDialogBox}
                   deletedAlertKey={deletedAlertKey}
-                  />
+                />
               ))}
-            </div>
           </div>
-        </article>
+        </div>
+      </article>
     </AlertsContext.Provider>
   );
 }

@@ -36,22 +36,23 @@ const defaultProps = {
   isDeleted: false,
 };
 
-const AlertBadge = ({
-  actions,
-  backgroundColor,
-  icon,
-  message,
-  customKey,
-  hideHover,
-  onDeletion,
-  openDialogBox,
-  setOverlay,
-  type,
-  count,
-  isOpen,
-  isDeleted,
-  docDk,
-}) => {
+const AlertBadge = (alert) => {
+  const {
+    actions,
+    backgroundColor,
+    icon,
+    message,
+    customKey,
+    hideHover,
+    onDeletion,
+    openDialogBox,
+    setOverlay,
+    type,
+    count,
+    isOpen,
+    isDeleted,
+    docDk,
+  } = alert;
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
@@ -99,7 +100,7 @@ const AlertBadge = ({
     }
   }
 
-  const showHover = !hideHover && actions[0];
+  const showHover = !hideHover && actions[1];
 
   return (
     <div className="alertBadge-outerContainer">
@@ -133,12 +134,27 @@ const AlertBadge = ({
       </div>
       <div className="alertBadge-rightContainer">
         <span>{message}</span>
-        {!showHover && (
-          <div className="alertBadge-countWrapper" style={{ backgroundColor }}>
-            <span className={`alertBadge-arrow ${isOpen && 'alertBadge-arrow--open'}`} />
-            {count}
-          </div>
-        )}
+        <div className="alertBadge-smallButtons">
+          {!showHover && (
+            <>
+              {actions[0] && (
+                <div
+                  onClick={() => {
+                    handleActionPress(actions[0]);
+                  }}
+                  className="alertBadge-downloadNumbers"
+                  style={{ backgroundColor: '#2DE288' }}
+                >
+                  {actions[0].text}
+                </div>
+              )}
+              <div className="alertBadge-countWrapper" style={{ backgroundColor }}>
+                <span className={`alertBadge-arrow ${isOpen && 'alertBadge-arrow--open'}`} />
+                {count}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -88,6 +88,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'NF30':
     return nf30Constructor(alert, orgao, cpf, token);
 
+    case 'NF120':
+      return nf120Constructor(alert);
+
     case 'OFFP':
     return offpConstructor(alert, orgao, cpf, token);
 
@@ -448,6 +451,45 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
         Há
         <strong>{` ${count} `}</strong>
         {single ? 'notícia de fato autuada há mais de' : 'notícias de fato autuadas há mais de'}
+        <strong> 30 dias </strong>
+        que ainda
+        <strong>
+          {single ? 'não foi tratada ou prorrogada.' : 'não foram tratadas ou prorrogadas.'}
+        </strong>
+      </span>
+    );
+  } else {
+    message = (
+      <span>
+        A notícia de fato autuada há mais de 30 dias
+        <strong>{` ${docNum} `}</strong>
+        ainda está
+        <strong> sem tratamento</strong>.
+      </span>
+    );
+  }
+
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#F86C72',
+    backgroundColorChild: '#D94F55',
+    icon: <ClockIcon />,
+    key,
+    message,
+  };
+}
+
+function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId }) {
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
+  let message;
+
+  if (dropdown) {
+    const single = count === 1;
+    message = (
+      <span>
+        Há
+        <strong>{` ${count} `}</strong>
+        {single ? 'notícia de fato autuada há mais de' : 'notícias de fato autuadas há mais de'}
         <strong> 120 dias </strong>
         {single ? 'que ainda está' : 'que ainda estão'}
         <strong> sem tratamento</strong>.
@@ -768,7 +810,7 @@ function gateConstructor(alert, orgao, cpf, token) {
       </span>
     );
   } else {
-    actions = [IT({ alertIdGate: alertIdGate }), DELETE];
+    actions = [IT(alertIdGate), DELETE];
     message = (
       <span>
         O<strong> GATE </strong>

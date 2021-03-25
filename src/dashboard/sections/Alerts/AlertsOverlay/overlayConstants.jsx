@@ -68,6 +68,20 @@ export const OVERLAY_TEXTS = {
   NF30: (
     <div>
       <p>
+        Neste alerta, eu busco lhe avisar que uma notícia de fato foi autuada há mais de 30 
+        dias e não teve uma destinação dada.
+      </p>
+
+      <p />
+
+      <p>
+        Para que o alerta deixe de aparecer, basta indeferir de plano ou instaurar procedimento e registrar no sistema.
+      </p>
+    </div>
+  ),
+  NF120: (
+    <div>
+      <p>
         Neste alerta, eu busco lhe avisar que uma notícia de fato foi autuada há mais de 120 dias e
         não teve uma destinação dada.
       </p>

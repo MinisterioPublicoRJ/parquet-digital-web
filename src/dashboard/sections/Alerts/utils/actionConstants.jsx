@@ -50,12 +50,12 @@ export const OUVIDORIA_COMPRAS = (link) => ({
   link,
 });
 
-export const IT = ({ alertIdExtra }) => ({
+export const IT = (alertIdGate) => ({
   actionType: 'download',
   icon: <ItActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Baixar IT',
   background: '#71D0A4',
-  link: `http://apps.mprj.mp.br/gate/api/Cidadao/downloadPDF/${alertIdExtra}`,
+  link: `http://apps.mprj.mp.br/gate/api/Cidadao/downloadPDF/${alertIdGate}`,
 });
 
 export const CALCULO = () => ({

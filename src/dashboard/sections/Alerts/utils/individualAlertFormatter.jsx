@@ -496,7 +496,6 @@ function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId })
       </span>
     );
   } else {
-    actions = [DETAIL(), DELETE];
     message = (
       <span>
         A notícia de fato autuada há mais de 120 dias
@@ -508,7 +507,7 @@ function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId })
   }
 
   return {
-    actions,
+    actions: [DETAIL(), DELETE],
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,

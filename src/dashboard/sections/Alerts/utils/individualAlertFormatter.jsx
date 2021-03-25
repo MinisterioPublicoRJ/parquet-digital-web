@@ -83,6 +83,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'NF30':
       return nf30Constructor(alert);
 
+    case 'NF120':
+      return nf120Constructor(alert);
+
     case 'OFFP':
     return offpConstructor(alert);
 
@@ -407,6 +410,46 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, orgao, docDk }, c
 }
 
 function nf30Constructor({ dropdown, alertCode, count, docNum, date }) {
+  let key;
+  let message;
+
+  if (dropdown) {
+    key = `${alertCode}-dropdown`;
+    const single = count === 1;
+    message = (
+      <span>
+        Há
+        <strong>{` ${count} `}</strong>
+        {single ? 'notícia de fato autuada há mais de' : 'notícias de fato autuadas há mais de'}
+        <strong> 30 dias </strong>
+        que
+        <strong>
+          {single ? 'não foi tratada ou prorrogada.' : 'não foram tratadas ou prorrogadas.'}
+        </strong>
+      </span>
+    );
+  } else {
+    key = `${alertCode}-${docNum}-${date ? date.getTime() : 'teste'}`;
+    message = (
+      <span>
+        A notícia de fato autuada há mais de 30 dias
+        <strong>{` ${docNum} `}</strong>
+        ainda está
+        <strong> sem tratamento ou prorrogação</strong>.
+      </span>
+    );
+  }
+
+  return {
+    actions: [DETAIL(), DELETE],
+    backgroundColor: '#f86c72',
+    icon: <ClockIcon />,
+    key,
+    message,
+  };
+}
+
+function nf120Constructor({ dropdown, alertCode, count, docNum, date }) {
   let key;
   let message;
 

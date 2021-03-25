@@ -21,12 +21,17 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
   const [alertsList, setAlertsList] = useState(list);
   const [visibleAlertsList, setVisibleAlertsList] = useState(list.slice(0, 30));
   const [isShowMoreInHover, setIsShowMoreInHover] = useState(false);
-
-  const headerAlert = individualAlertFormatter({
-    alertCode: type,
-    dropdown: true,
-    count: alertsList.length,
-  });
+  const { orgao, token } = buildRequestParams();
+  const headerAlert = individualAlertFormatter(
+    {
+      alertCode: type,
+      dropdown: true,
+      count: alertsList.length,
+    },
+    '',
+    token,
+    orgao,
+  );
 
   useEffect(() => {
     removeAlert(deletedAlertKey);

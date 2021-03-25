@@ -89,7 +89,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     return nf30Constructor(alert, orgao, cpf, token);
 
     case 'NF120':
-      return nf120Constructor(alert);
+      return nf120Constructor(alert, orgao, cpf, token);
 
     case 'OFFP':
     return offpConstructor(alert, orgao, cpf, token);

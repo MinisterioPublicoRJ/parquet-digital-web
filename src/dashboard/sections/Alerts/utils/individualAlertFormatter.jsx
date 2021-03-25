@@ -459,6 +459,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
       </span>
     );
   } else {
+    actions = [DETAIL(), DELETE];
     message = (
       <span>
         A notícia de fato autuada há mais de 30 dias
@@ -470,7 +471,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
   }
 
   return {
-    actions: [DETAIL(), DELETE],
+    actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,
@@ -482,8 +483,10 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
 function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId }) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
+  let actions = [];
 
   if (dropdown) {
+    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({orgao, alertCode, token }))];
     const single = count === 1;
     message = (
       <span>
@@ -496,6 +499,7 @@ function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId })
       </span>
     );
   } else {
+    actions = [DETAIL(), DELETE];
     message = (
       <span>
         A notícia de fato autuada há mais de 120 dias
@@ -507,7 +511,7 @@ function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId })
   }
 
   return {
-    actions: [DETAIL(), DELETE],
+    actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
     icon: <ClockIcon />,

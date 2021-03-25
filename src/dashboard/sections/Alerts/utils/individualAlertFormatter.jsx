@@ -480,7 +480,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
   };
 }
 
-function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId }) {
+function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId }, orgao, cpf, token) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];

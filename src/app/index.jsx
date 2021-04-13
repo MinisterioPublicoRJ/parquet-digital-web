@@ -42,12 +42,13 @@ function AuthContextCreator() {
       const storageUser = { timestamp: new Date(), userObj: loggedUser };
       window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
     } catch (e) {
-      if(!e.response) {
-        setIsServerDown(true);
-      }
-      else {
-        setScaUserError(true);
-      }
+      setScaUserError(true);
+      // if(!e.response) {
+      //   setIsServerDown(true);
+      // }
+      // else {
+      //   setScaUserError(true);
+      // }
     }
   };
 

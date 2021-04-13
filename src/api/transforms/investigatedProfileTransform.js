@@ -5,11 +5,11 @@ export default function investigatedProfileTransform({ perfil, similares, proced
     assuntos: list.assuntos,
     coautores: list.coautores,
     fase_documento: list.fase_documento,
-    dt_ultimo_andamento: new Date(list.dt_ultimo_andamento)
+    dt_ultimo_andamento: list.dt_ultimo_andamento
       ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(list.dt_ultimo_andamento))
-      : null,
+      : '-',
 
-    desc_ultimo_andamento: list.desc_ultimo_andamento,
+    desc_ultimo_andamento: list.desc_ultimo_andamento || '-',
   }));
 
   return {

@@ -10,7 +10,7 @@ const propTypes = {
   onToggle: PropTypes.func.isRequired,
 };
 
-function ProcessDetail({ onToggle }) {
+function ProcessDetail({ docuNrExterno, onToggle }) {
   const [processData, setProcessData] = useState(null);
   const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ function ProcessDetail({ onToggle }) {
   useEffect(() => {
     getProcessData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, );
+  });
 
   function renderComponent() {
     if (apiError) {
@@ -45,16 +45,21 @@ function ProcessDetail({ onToggle }) {
         </article>
       );
     }
-    if (loading && !profileData) {
+    if (docuNrExterno) {
+      return (
+        <div> {docuNrExterno} </div>
+      )
+    }
+    if (loading && !processData) {
       return (
         <article >
           <Spinner size="large" />
         </article>
       );
     }
-    if (profileData && profileData.profile) {
+    if (processData) {
       return (
-            <LoginPromotron height={150} />
+        <LoginPromotron height={150} />
       );
     }
     return null;

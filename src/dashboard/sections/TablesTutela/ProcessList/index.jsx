@@ -3,7 +3,7 @@ import Api from '../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const ProcessList = ({ isActive, setInvestigatedProfile }) => {
+const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail }) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
@@ -32,7 +32,8 @@ const ProcessList = ({ isActive, setInvestigatedProfile }) => {
 
   function generateButtons(list) {
     return list.map((process) => {
-      const { representanteDk, docuPersonagens } = process;
+      const { representanteDk, docuPersonagens, docuNrExterno } = process;
+
       const investigatedNameBtn = representanteDk ? (
         <button
           type="button"
@@ -46,7 +47,18 @@ const ProcessList = ({ isActive, setInvestigatedProfile }) => {
       ) : (
         docuPersonagens
       );
-      return { ...process, docuPersonagens: investigatedNameBtn };
+
+      const processNumberBtn = (<button
+        type="button"
+        onClick={() => {
+          setProcessDetail(docuNrExterno);
+        }}
+        className="process-detail-btn"
+      >
+        {docuNrExterno}
+      </button>)
+
+      return { ...process, docuPersonagens: investigatedNameBtn, docuNrExterno: processNumberBtn };
     });
   }
 

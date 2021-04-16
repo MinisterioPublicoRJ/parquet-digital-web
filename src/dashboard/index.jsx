@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../app/authContext';
 import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Glossary, Introduction, MapaTron } from './sections';
-import { Modal, Spinner, InvestigatedProfile } from '../components';
+import { Modal, Spinner, InvestigatedProfile, ProcessDetail } from '../components';
 
 import OfficeSelector from './sections/Today/officeSelector';
 import RadarModal from './sections/PerformanceRadar/RadarModal';
@@ -34,6 +34,12 @@ function Dashboard() {
     if (representanteDk) setModalType('investigated');
     setModalData(representanteDk);
     return representanteDk;
+  }  
+  
+  function setProcessDetail(docuNrExterno) {
+    if (docuNrExterno) setModalType('process');
+    setModalData(docuNrExterno);
+    return docuNrExterno;
   }
 
   function renderModalChildren() {
@@ -47,7 +53,9 @@ function Dashboard() {
       case 'radar':
         return <RadarModal compareData={modalData} onToggle={closeModal} />;
       case 'mapatron':
-        return <MapaTron mapatronData={modalData} onToggle={closeModal} />;
+          return <MapaTron mapatronData={modalData} onToggle={closeModal} />;    
+      case 'process':
+        return <ProcessDetail docuNrExterno={modalData} onToggle={closeModal} />;
       default:
         return null;
     }
@@ -63,6 +71,7 @@ function Dashboard() {
             setModalType={setModalType}
             setModalData={setModalData}
             setInvestigatedProfile={setInvestigatedProfile}
+            setProcessDetail={setProcessDetail}
           />
         );
       case 2:

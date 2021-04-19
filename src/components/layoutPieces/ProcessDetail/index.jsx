@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import {SmallBadge} from 'mapasteca-web';
 
 import './styles.css';
 import Api from '../../../api';
@@ -46,8 +47,9 @@ function ProcessDetail({ docuNrExterno, onToggle }) {
       );
     }
     if (docuNrExterno) {
+      // const content = <div>{docuNrExterno}</div>;
       return (
-        <div> {docuNrExterno} </div>
+        <div><SmallBadge /></div>
       )
     }
     if (loading && !processData) {

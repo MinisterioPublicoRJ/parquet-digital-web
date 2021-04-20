@@ -37,7 +37,6 @@ function Dashboard() {
   }  
   
   function setProcessDetail(docuNrMp) {
-    console.log("docunrmp setprocessdetail: ", docuNrMp);
     if (docuNrMp) setModalType('process');
     setModalData(docuNrMp);
     return docuNrMp;

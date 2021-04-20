@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {SmallBadge} from 'mapasteca-web';
+import { ListCard } from 'mapasteca-web';
 
 import './styles.css';
 import { useAuth } from '../../../app/authContext';
 import Api from '../../../api';
 import { Spinner } from '..';
-import { LoginPromotron } from '../../../assets';
+import { LoginPromotron, User } from '../../../assets';
 
 const propTypes = {
   onToggle: PropTypes.func.isRequired,
@@ -25,6 +25,7 @@ function ProcessDetail({ docuNrMp, onToggle }) {
     try {
       promise = Api.getProcessDetail({ ...buildRequestParams(), num_doc: docuNrMp });
       const data = await promise;
+      console.log("data: ", data);
       setProcessData(data);
       return data;
     } catch (error) {
@@ -90,7 +91,13 @@ function ProcessDetail({ docuNrMp, onToggle }) {
               </button>
             </div>
           </div>
-          <div><SmallBadge /></div>
+          <div>
+            {processData.characters.map((character) => {
+              return (
+                <ListCard detailColor="#BBBFC5" icon={<User />} content={<> {character.name} </>} />
+              );
+            })}
+          </div>
         </article>
       );
     }

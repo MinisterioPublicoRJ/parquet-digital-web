@@ -19,6 +19,7 @@ export { default as radarCompareTransform } from './radarCompareTransform';
 export { default as prescribedCrimeTransform } from './prescribedCrimeTransform';
 export { default as alertOverlayTransform } from './alertOverlayTransform';
 export { default as investigatedProfileTransform } from './investigatedProfileTransform';
+export { default as processDetailTransform } from './processDetailTransform';
 
 export { default as snakeToCamelTransform } from './snakeToCamelTransform';
 /* eslint-disable camelcase */

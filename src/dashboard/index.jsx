@@ -36,10 +36,11 @@ function Dashboard() {
     return representanteDk;
   }  
   
-  function setProcessDetail(docuNrExterno) {
-    if (docuNrExterno) setModalType('process');
-    setModalData(docuNrExterno);
-    return docuNrExterno;
+  function setProcessDetail(docuNrMp) {
+    console.log("docunrmp setprocessdetail: ", docuNrMp);
+    if (docuNrMp) setModalType('process');
+    setModalData(docuNrMp);
+    return docuNrMp;
   }
 
   function renderModalChildren() {
@@ -55,7 +56,7 @@ function Dashboard() {
       case 'mapatron':
           return <MapaTron mapatronData={modalData} onToggle={closeModal} />;    
       case 'process':
-        return <ProcessDetail docuNrExterno={modalData} onToggle={closeModal} />;
+        return <ProcessDetail docuNrMp={modalData} onToggle={closeModal} />;
       default:
         return null;
     }

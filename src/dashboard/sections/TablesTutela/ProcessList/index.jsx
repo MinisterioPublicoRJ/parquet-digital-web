@@ -32,7 +32,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail }) => 
 
   function generateButtons(list) {
     return list.map((process) => {
-      const { representanteDk, docuPersonagens, docuNrExterno } = process;
+      const { representanteDk, docuPersonagens, docuNrExterno, docuNrMp } = process;
 
       const investigatedNameBtn = representanteDk ? (
         <button
@@ -51,7 +51,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail }) => 
       const processNumberBtn = (<button
         type="button"
         onClick={() => {
-          setProcessDetail(docuNrExterno);
+          setProcessDetail(docuNrMp);
         }}
         className="process-detail-btn"
       >

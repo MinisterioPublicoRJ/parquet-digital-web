@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ThemeProvider } from 'mapasteca-web';
+
 import './styles.css';
 import '../themes/index.css';
 import Router from './router';
@@ -130,7 +132,9 @@ function App() {
 
   return (
     <AuthContext.Provider value={authStore}>
-      <Router />
+      <ThemeProvider>
+        <Router />
+      </ThemeProvider>
     </AuthContext.Provider>
   );
 }

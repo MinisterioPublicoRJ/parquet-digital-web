@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import {SmallBadge} from 'mapasteca-web';
 
 import './styles.css';
 import { useAuth } from '../../../app/authContext';
@@ -89,6 +90,7 @@ function ProcessDetail({ docuNrMp, onToggle }) {
               </button>
             </div>
           </div>
+          <div><SmallBadge /></div>
         </article>
       );
     }

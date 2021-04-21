@@ -32,8 +32,37 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
     } catch (error) {
       setApiError(true);
     } finally {
-      // setLoading(false);
+      setLoading(false);
     }
+  }
+
+  function renderComponentBody() {
+    if (loading) {
+      return (
+        <div className="processDetail-body processDetail-loading">
+          <Spinner size="large" />
+        </div>
+      );
+    }
+    if (processData) {
+      return (
+        <div className="processDetail-body processDetail-loadedData">
+          <h3>PERSONAGENS</h3>
+          <div className="processDetail-personagem">pers</div>
+          <h3>ASSUNTOS</h3>
+          <div className="processDetail-assunto">pers</div>
+          <h3>IDENTIFICAÇÃO</h3>
+          <div className="processDetail-id">pers</div>
+          <h3>ÚLTIMOS ANDAMENTOS</h3>
+          <div className="processDetail-andamento">pers</div>
+        </div>
+      );
+    }
+    return (
+      <div className="processDetail-body processDetail-apiError">
+        <span>erro</span>
+      </div>
+    );
   }
 
   //   function renderComponent() {
@@ -133,6 +162,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
           <ProcessDetailRobot height="120%" />
         </div>
       </div>
+      {renderComponentBody()}
       <div className="modal-close">
         <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
           <span aria-hidden="true">&times;</span>

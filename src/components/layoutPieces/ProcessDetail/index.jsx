@@ -18,14 +18,13 @@ function ProcessDetail({ docuNrMp, onToggle }) {
   const [loading, setLoading] = useState(true);
   const { buildRequestParams } = useAuth();
 
-
   async function getProcessData() {
     let promise;
     setLoading(true);
     try {
       promise = Api.getProcessDetail({ ...buildRequestParams(), num_doc: docuNrMp });
       const data = await promise;
-      console.log("data: ", data);
+      console.log('data: ', data);
       setProcessData(data);
       return data;
     } catch (error) {
@@ -74,29 +73,38 @@ function ProcessDetail({ docuNrMp, onToggle }) {
       );
     }
     if (processData) {
-
       return (
         <article className="process-detail-outer">
           <div className="process-detail-header">
             <h2>
               <strong>Detalhes do procedimento</strong>
             </h2>
-
             N° {processData.documento.nr_mp}
             <LoginPromotron height={150} />
-
-            <div className="modal-close">
-              <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
           </div>
-          <div>
-            {processData.characters.map((character) => {
-              return (
-                <ListCard detailColor="#BBBFC5" icon={<User />} content={<> {character.name} </>} />
-              );
-            })}
+
+          <div className="characters-header">
+            <strong>PERSONAGENS</strong>
+          </div>
+
+          {processData.characters.map((character) => {
+            return (
+              <ListCard
+                detailColor="#BBBFC5"
+                icon={<User width={46} height={46} />}
+                content={<> {character.name} </>}
+              />
+            );
+          })}
+
+          <div className="matters-header">
+            <strong>ASSUNTOS</strong>
+          </div>
+
+          <div className="modal-close">
+            <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         </article>
       );

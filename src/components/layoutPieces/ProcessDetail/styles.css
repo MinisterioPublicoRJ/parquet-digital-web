@@ -1,59 +1,65 @@
 td button.process-detail-btn {
-    color: #8998ac;
-    font-size: var(--smallFont);
-    width: 100%;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 4px;
-    border: 0;
-    padding: 0;
-    background: transparent;
-    text-decoration: underline;
-  }
+  color: #8998ac;
+  font-size: var(--smallFont);
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-decoration: underline;
+}
 
-  .process-detail-outer {
-    -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
-    -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
-    box-shadow: inset 0px 0px 0px 0px #cfcfcf;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 50vw;
-    height: 70vh;
-    position: relative;
-    padding: 0px 16px;
-  }
-  
+.process-detail-outer {
+  -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  display: grid;
+  grid-template-rows: [header] 200px [characters-header] 80px repeat(2, [character] 1fr);
+  grid-template-columns: 1fr 1fr;
+  width: 50vw;
+  height: 70vh;
+  position: relative;
+  padding: 0px 35px;
+  grid-template-areas: 
+  "header header";
+}
+
 .process-detail-header {
-  width: calc(100% + 32px);
+  width: calc(100% + 70px);
   background-color: #bddff0;
   box-sizing: border-box;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  margin: -80px 0px 0px -16px;
   align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 8px 0px 0px 16px;
+  padding: 25px 35px 0px 35px;
+  margin-left: -35px;
+  grid-column-start: span 2;
 }
 
-  .modal-close {
-    text-align: center;
-    position: absolute;
-    font-size: 3em;
-    bottom: -9vh;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
-  }
-  
-  .modal-close button {
-    display: contents;
-    font-size: 2em;
-    color: #ffffff;
-  }
+.characters-header {
+  grid-column-start: span 2;
+}
+
+.modal-close {
+  text-align: center;
+  position: absolute;
+  font-size: 3em;
+  bottom: -9vh;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+}
+
+.modal-close button {
+  display: contents;
+  font-size: 2em;
+  color: #ffffff;
+}

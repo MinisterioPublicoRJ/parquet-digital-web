@@ -34,11 +34,11 @@ function Dashboard() {
     if (representanteDk) setModalType('investigated');
     setModalData(representanteDk);
     return representanteDk;
-  }  
-  
-  function setProcessDetail(docuNrMp) {
+  }
+
+  function setProcessDetail(docuNrMp, docuNrExterno) {
     if (docuNrMp) setModalType('process');
-    setModalData(docuNrMp);
+    setModalData([docuNrMp, docuNrExterno]);
     return docuNrMp;
   }
 
@@ -53,9 +53,15 @@ function Dashboard() {
       case 'radar':
         return <RadarModal compareData={modalData} onToggle={closeModal} />;
       case 'mapatron':
-          return <MapaTron mapatronData={modalData} onToggle={closeModal} />;    
+        return <MapaTron mapatronData={modalData} onToggle={closeModal} />;
       case 'process':
-        return <ProcessDetail docuNrMp={modalData} onToggle={closeModal} />;
+        return (
+          <ProcessDetail
+            docuNrMp={modalData[0]}
+            docuNrExterno={modalData[1]}
+            onToggle={closeModal}
+          />
+        );
       default:
         return null;
     }

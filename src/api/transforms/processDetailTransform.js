@@ -6,7 +6,7 @@ export default function processDetailTransform(data) {
     person_type: personagem.tipo_pessoa,
     quantity: personagem.qtd,
     name: personagem.nome,
-  }))
+  }));
 
-  return {characters, ...data };
+  return { characters, ...data };
 }

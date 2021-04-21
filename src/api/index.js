@@ -311,7 +311,7 @@ const Api = (() => {
     return axios.post(link, formData);
   }
 
-  async function getProcessDetail( {num_doc, token}) {
+  async function getProcessDetail({ num_doc, token }) {
     const params = { jwt: token };
     const { data } = await axios.get(PROCESS_DETAIL({ num_doc }), { params });
     return processDetailTransform(data);
@@ -346,7 +346,7 @@ const Api = (() => {
     getOngoingInvestigationsList,
     sendOmbudsmanEmail,
     getAlertOverlayData,
-    getProcessDetail
+    getProcessDetail,
   };
 })();
 

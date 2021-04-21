@@ -51,7 +51,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail }) => 
       const processNumberBtn = (<button
         type="button"
         onClick={() => {
-          setProcessDetail(docuNrMp);
+          setProcessDetail(docuNrMp, docuNrExterno);
         }}
         className="process-detail-btn"
       >

@@ -16,7 +16,7 @@
 
 .process-detail-outer h3 {
   text-transform: uppercase;
-  font-size: calc(1.1 * var(--defaultFontSize));
+  font-size: calc(1.3 * var(--defaultFontSize));
   margin: 0 0 10px 0;
 }
 
@@ -92,19 +92,22 @@ td button.process-detail-btn {
   margin: 3% 2%;
 }
 
-.processDetail-loading {
+.processDetail-loadingOrError {
   align-items: center;
   justify-content: center;
+}
+.processDetail-loadedData {
+  overflow-y: auto;
 }
 
 .processDetail-body > div {
   /* background-color: pink; */
   display: flex;
-  /* overflow-y: auto; */
+  flex-wrap: wrap;
   margin-bottom: 3%;
 }
 
-.processDetail-personagem {
+/* .processDetail-personagem {
   flex: 2;
 }
 
@@ -118,7 +121,7 @@ td button.process-detail-btn {
 
 .processDetail-andamento {
   flex: 3;
-}
+} */
 
 .characters-header {
   /* grid-column-start: span 2; */

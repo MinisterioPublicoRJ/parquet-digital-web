@@ -21,7 +21,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
   useEffect(() => {
     getProcessData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [apiError]);
+  }, []);
 
   async function getProcessData() {
     setLoading(true);
@@ -33,13 +33,14 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
       setApiError(true);
     } finally {
       setLoading(false);
+      setApiError(true);
     }
   }
 
   function renderComponentBody() {
     if (loading) {
       return (
-        <div className="processDetail-body processDetail-loading">
+        <div className="processDetail-body processDetail-loadingOrError">
           <Spinner size="large" />
         </div>
       );
@@ -59,8 +60,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
       );
     }
     return (
-      <div className="processDetail-body processDetail-apiError">
-        <span>erro</span>
+      <div className="processDetail-body processDetail-loadingOrError">
+        <h3>Falha na conexão, tente novamente mais tarde.</h3>
       </div>
     );
   }

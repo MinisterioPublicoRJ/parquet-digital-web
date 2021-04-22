@@ -100,31 +100,20 @@ td button.process-detail-btn {
   overflow-y: auto;
 }
 
-.processDetail-body > div {
-  /* background-color: pink; */
+.processDetail-section {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   margin-bottom: 3%;
 }
 
-/* .processDetail-personagem {
-  flex: 2;
+.processDetail-section :nth-last-child(-n + 2) {
+  margin-bottom: 0;
 }
 
-.processDetail-assunto {
-  flex: 1;
-}
-
-.processDetail-id {
-  flex: 3;
-}
-
-.processDetail-andamento {
-  flex: 3;
-} */
-
-.characters-header {
-  /* grid-column-start: span 2; */
+.processDetail-ListCardWrapper {
+  width: calc((100% - 4%) / 2);
+  margin-bottom: 2%;
 }
 
 .modal-close {
@@ -143,4 +132,37 @@ td button.process-detail-btn {
   display: contents;
   font-size: 2em;
   color: #ffffff;
+}
+
+.processDetail-idSection {
+  margin-bottom: 3%;
+}
+
+.processDetail-idSection > div, .processDetail-proceedings > div {
+  display: flex;
+}
+
+.processDetail-idSection > div:nth-child(even), .processDetail-proceedings > div:nth-child(odd) {
+  background-color: #F8F9FB;
+}
+
+.processDetail-idSection > div:nth-child(odd), .processDetail-proceedings > div:nth-child(even) {
+  background-color: #F2F2F2;
+}
+
+.processDetail-idSection > div > div, .processDetail-proceedings > div > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px;
+  max-width: calc(33% - 40px);
+}
+
+.processDetail-proceedings > div > div:nth-child(even) {
+  max-width: calc(80% - 40px);
+}
+
+.processDetail-proceedings > div > div:first-child {
+  max-width: calc(20% - 40px);
+  justify-content: center;
 }

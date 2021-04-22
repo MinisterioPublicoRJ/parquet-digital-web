@@ -33,7 +33,6 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
       setApiError(true);
     } finally {
       setLoading(false);
-      setApiError(true);
     }
   }
 
@@ -46,16 +45,99 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
       );
     }
     if (processData) {
+      const {
+        situation,
+        phase,
+        currentOwner,
+        loader,
+        secrecy,
+        docClass,
+        matter,
+      } = processData.identification;
       return (
         <div className="processDetail-body processDetail-loadedData">
           <h3>PERSONAGENS</h3>
-          <div className="processDetail-personagem">pers</div>
+          <div className="processDetail-section">
+            {processData.characters.map(({ name, role }) => (
+              <div className="processDetail-ListCardWrapper">
+                <ListCard
+                  title={name}
+                  content={<span>{role}</span>}
+                  fillColor="#F8F9FB"
+                  detailColor="#C5C6C8"
+                  icon={<User width={46} height={46} />}
+                />
+              </div>
+            ))}
+          </div>
           <h3>ASSUNTOS</h3>
-          <div className="processDetail-assunto">pers</div>
+          <div className="processDetail-section">
+            {processData.matters.map(({ matter, detail }) => (
+              <div className="processDetail-ListCardWrapper">
+                <ListCard
+                  title={matter}
+                  content={<span>{detail}</span>}
+                  detailColor="#C5C6C8"
+                  icon={<User width={46} height={46} />}
+                />
+              </div>
+            ))}
+          </div>
           <h3>IDENTIFICAÇÃO</h3>
-          <div className="processDetail-id">pers</div>
+          <div className="processDetail-idSection">
+            <div>
+              <div>
+                <strong>Número Externo</strong>
+                {docuNrExterno}
+              </div>
+              <div>
+                <strong>Situação</strong>
+                {situation}
+              </div>
+              <div>
+                <strong>Fase</strong>
+                {phase}
+              </div>
+            </div>
+            <div>
+              <div>
+                <strong>Órgão Responsável</strong>
+                {currentOwner}
+              </div>
+              <div>
+                <strong>Órgão de carga</strong>
+                {loader}
+              </div>
+              <div>
+                <strong>Sigilo</strong>
+                {secrecy}
+              </div>
+            </div>
+            <div>
+              <div>
+                <strong>Classe</strong>
+                {docClass}
+              </div>
+              <div>
+                <strong>Atribuição</strong>
+                {matter}
+              </div>
+            </div>
+          </div>
           <h3>ÚLTIMOS ANDAMENTOS</h3>
-          <div className="processDetail-andamento">pers</div>
+          <div className="processDetail-proceedings">
+            {processData.proceedings.map(({ date, person, motion, motionDetails }) => (
+              <div>
+                <div>{date}</div>
+                <div>
+                  <strong>{person}</strong>
+                  {motion}
+                  <br />
+                  {motionDetails}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       );
     }
@@ -66,81 +148,6 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
     );
   }
 
-  //   function renderComponent() {
-  //     if (apiError) {
-  //       return (
-  //         <article className="process-detail-outer">
-  //           <h2>
-  //             <strong>Detalhes do procedimento</strong>
-  //           </h2>
-  //           Erro de api!
-  //           <div className="modal-close">
-  //             <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
-  //               <span aria-hidden="true">&times;</span>
-  //             </button>
-  //           </div>
-  //         </article>
-  //       );
-  //     }
-  //     if (loading && !processData) {
-  //       return (
-  //         <article className="process-detail-outer">
-  //           <h2>
-  //             <strong>Detalhes do procedimento</strong>
-  //           </h2>
-  //           <Spinner size="large" />
-  //
-  //           <div className="modal-close">
-  //             <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
-  //               <span aria-hidden="true">&times;</span>
-  //             </button>
-  //           </div>
-  //         </article>
-  //       );
-  //     }
-  //     if (processData) {
-  //       return (
-  //         <article className="process-detail-outer">
-  //           <div className="process-detail-header">
-  //             <h2>
-  //               <strong>Detalhes do procedimento</strong>
-  //             </h2>
-  //             N° {processData.documento.nr_mp}
-  //             <LoginPromotron height={150} />
-  //           </div>
-  //
-  //           <div className="characters-header">
-  //             <strong>PERSONAGENS</strong>
-  //           </div>
-  //
-  //           {processData.characters.map((character) => {
-  //             return (
-  //               <ListCard
-  //                 detailColor="#BBBFC5"
-  //                 icon={<User width={46} height={46} />}
-  //                 content={<>
-  // {' '}
-  // {character.name}
-  // {' '}
-  //  </>}
-  //               />
-  //             );
-  //           })}
-  //
-  //           <div className="matters-header">
-  //             <strong>ASSUNTOS</strong>
-  //           </div>
-  //
-  //           <div className="modal-close">
-  //             <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
-  //               <span aria-hidden="true">&times;</span>
-  //             </button>
-  //           </div>
-  //         </article>
-  //       );
-  //     }
-  //     return null;
-  //   }
   return (
     <article className="process-detail-outer">
       <div className="process-detail-header">

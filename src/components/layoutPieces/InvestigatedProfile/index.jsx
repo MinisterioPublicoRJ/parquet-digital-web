@@ -67,7 +67,7 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
       return (
         <article className="investigatedProfile-outer">
           <h2>
-            <strong>profile do Investigado</strong>
+            <strong>Perfil do Investigado</strong>
           </h2>
           Erro de api!
         </article>

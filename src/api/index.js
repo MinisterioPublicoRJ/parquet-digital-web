@@ -29,6 +29,7 @@ import {
   RADAR_COMPARE_PIP,
   ONGOING_INVESTIGATIONS_LIST,
   ALERT_OVERLAY_DATA,
+  PROCESS_DETAIL,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -57,6 +58,7 @@ import {
   ongoingInvestigationsListTransform,
   alertOverlayTransform,
   investigatedProfileTransform,
+  processDetailTransform,
 } from './transforms';
 
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
@@ -309,6 +311,12 @@ const Api = (() => {
     return axios.post(link, formData);
   }
 
+  async function getProcessDetail({ num_doc, token }) {
+    const params = { jwt: token };
+    const { data } = await axios.get(PROCESS_DETAIL({ num_doc }), { params });
+    return processDetailTransform(data);
+  }
+
   return {
     login,
     scaLogin,
@@ -338,6 +346,7 @@ const Api = (() => {
     getOngoingInvestigationsList,
     sendOmbudsmanEmail,
     getAlertOverlayData,
+    getProcessDetail,
   };
 })();
 

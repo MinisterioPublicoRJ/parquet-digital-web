@@ -19,6 +19,7 @@ const propTypes = {
   setIsIntroOpen: PropTypes.func.isRequired,
   setModalData: PropTypes.func.isRequired,
   setInvestigatedProfile: PropTypes.func.isRequired,
+  setProcessDetail: PropTypes.func.isRequired,
 };
 
 function Tutela({
@@ -27,6 +28,7 @@ function Tutela({
   setIsIntroOpen,
   setModalData,
   setInvestigatedProfile,
+  setProcessDetail
 }) {
   return (
     <div className="base-grid tutela-grid">
@@ -39,7 +41,7 @@ function Tutela({
       <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />
       <Alerts />
       <ProcessingTime />
-      <TablesTutela setInvestigatedProfile={setInvestigatedProfile} />
+      <TablesTutela setInvestigatedProfile={setInvestigatedProfile} setProcessDetail={setProcessDetail} />
     </div>
   );
 }

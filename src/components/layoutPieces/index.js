@@ -6,3 +6,4 @@ export { default as CustomTable } from './CustomTable';
 export { default as Pagination } from './Pagination';
 export { default as DialogBox } from './DialogBox';
 export { default as InvestigatedProfile } from './InvestigatedProfile';
+export { default as ProcessDetail } from './ProcessDetail';

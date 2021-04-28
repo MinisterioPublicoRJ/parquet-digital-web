@@ -8,3 +8,8 @@
   overflow-y: auto;
   width: 100%;
 }
+
+.mainInvestigated-outer button.main-investigated-search-btn {
+  color:black;
+  margin-left: 16%;
+}

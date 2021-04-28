@@ -147,7 +147,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
         <form>
           <input type="text" value={searchString} onChange={(event)=> setSearchString(event.target.value) }/>
           <button
-          className="investigated-profile-btn"
+          className="main-investigated-search-btn"
             type="button"
             onClick={() => {
               getMainInvestigated(searchString);

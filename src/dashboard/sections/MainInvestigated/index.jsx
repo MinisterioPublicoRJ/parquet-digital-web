@@ -114,6 +114,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
    */
   async function getMainInvestigated(searchString) {
     let response;
+    setLoading(true);
     try {
       response = await Api.getMainInvestigated(buildRequestParams(), searchString);
       setTableData(cleanData(response));

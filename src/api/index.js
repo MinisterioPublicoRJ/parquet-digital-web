@@ -222,10 +222,16 @@ const Api = (() => {
     return deskTabTransform(data);
   }
 
-  async function getMainInvestigated({ orgao, cpf, token }) {
+  async function getMainInvestigated({ orgao, cpf, token }, searchString) {
+    const params = { jwt: token };
+
+    if (searchString) {
+      params.search_string = searchString;
+    }
+
     const { data } = await axios.get(
       PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
-      buildRequestConfig(token),
+      {params},
     );
     const cleanData = data.map((item) => snakeToCamelTransform(item));
     return cleanData;

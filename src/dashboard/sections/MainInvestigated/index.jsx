@@ -12,6 +12,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
+  const [searchString, setSearchString] = useState();
 
   /**
    * uses representanteDk number to remove an investigated from the list, updates the state
@@ -111,10 +112,10 @@ function MainInvestigated({ setInvestigatedProfile }) {
    * Function that fetches the main investigated data
    * @return {void}
    */
-  async function getMainInvestigated() {
+  async function getMainInvestigated(searchString) {
     let response;
     try {
-      response = await Api.getMainInvestigated(buildRequestParams());
+      response = await Api.getMainInvestigated(buildRequestParams(), searchString);
       setTableData(cleanData(response));
     } catch (e) {
       setApiError(true);
@@ -143,6 +144,18 @@ function MainInvestigated({ setInvestigatedProfile }) {
     return (
       <article className="mainInvestigated-outer">
         <SectionTitle value="Principais Investigados" glueToTop />
+        <form>
+          <input type="text" value={searchString} onChange={(event)=> setSearchString(event.target.value) }/>
+          <button
+          className="investigated-profile-btn"
+            type="button"
+            onClick={() => {
+              getMainInvestigated(searchString);
+            }}
+          >
+            Pesquisar
+          </button>
+        </form>
         <div className="mainInvestigated-tableWrapper">
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
         </div>

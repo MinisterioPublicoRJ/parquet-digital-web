@@ -28,7 +28,7 @@ function Tutela({
   setIsIntroOpen,
   setModalData,
   setInvestigatedProfile,
-  setProcessDetail
+  setProcessDetail,
 }) {
   return (
     <div className="base-grid tutela-grid">
@@ -37,11 +37,14 @@ function Tutela({
         setModalType={setModalType}
         setIsIntroOpen={setIsIntroOpen}
       />
-      <YourDesk />
+      <YourDesk setProcessDetail={setProcessDetail} />
       <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />
       <Alerts />
       <ProcessingTime />
-      <TablesTutela setInvestigatedProfile={setInvestigatedProfile} setProcessDetail={setProcessDetail} />
+      <TablesTutela
+        setInvestigatedProfile={setInvestigatedProfile}
+        setProcessDetail={setProcessDetail}
+      />
     </div>
   );
 }

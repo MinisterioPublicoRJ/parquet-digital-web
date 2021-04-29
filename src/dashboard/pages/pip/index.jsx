@@ -20,6 +20,7 @@ const propTypes = {
   setIsIntroOpen: PropTypes.func.isRequired,
   setInvestigatedProfile: PropTypes.func.isRequired,
   setModalData: PropTypes.func.isRequired,
+  setProcessDetail: PropTypes.func.isRequired,
 };
 
 function Pip({
@@ -28,6 +29,7 @@ function Pip({
   setIsIntroOpen,
   setInvestigatedProfile,
   setModalData,
+  setProcessDetail,
 }) {
   return (
     <div className="base-grid pip-grid">
@@ -37,7 +39,7 @@ function Pip({
         setModalData={setModalData}
         setIsIntroOpen={setIsIntroOpen}
       />
-      <YourDesk />
+      <YourDesk setProcessDetail={setProcessDetail} />
       <Alerts />
       <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />
       <MainInvestigated setInvestigatedProfile={setInvestigatedProfile} />

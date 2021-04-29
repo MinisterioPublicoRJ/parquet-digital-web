@@ -73,7 +73,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
           <h3>ASSUNTOS</h3>
           <div className="processDetail-section">
             {processData.matters.map(({ matter, detail }) => (
-              <div className="processDetail-ListCardWrapper">
+              <div className="processDetail-ListCardWrapper" key={`${matter}-${detail}`}>
                 <ListCard
                   title={matter}
                   content={<span>{detail}</span>}

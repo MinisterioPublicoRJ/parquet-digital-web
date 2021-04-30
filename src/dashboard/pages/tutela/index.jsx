@@ -12,6 +12,7 @@ import {
   YourDesk,
   TablesTutela,
 } from '../../sections';
+import { ErrorBoundary } from '../../../components';
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
@@ -32,19 +33,31 @@ function Tutela({
 }) {
   return (
     <div className="base-grid tutela-grid">
-      <Today
-        setIsSelectorOpen={setIsSelectorOpen}
-        setModalType={setModalType}
-        setIsIntroOpen={setIsIntroOpen}
-      />
-      <YourDesk setProcessDetail={setProcessDetail} />
-      <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />
-      <Alerts />
-      <ProcessingTime />
-      <TablesTutela
-        setInvestigatedProfile={setInvestigatedProfile}
-        setProcessDetail={setProcessDetail}
-      />
+      <ErrorBoundary>
+        <Today
+          setIsSelectorOpen={setIsSelectorOpen}
+          setModalType={setModalType}
+          setIsIntroOpen={setIsIntroOpen}
+        />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <YourDesk setProcessDetail={setProcessDetail} />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Alerts />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ProcessingTime />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <TablesTutela
+          setInvestigatedProfile={setInvestigatedProfile}
+          setProcessDetail={setProcessDetail}
+        />
+      </ErrorBoundary>
     </div>
   );
 }

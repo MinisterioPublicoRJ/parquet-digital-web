@@ -13,6 +13,7 @@ import {
   SuccessIndicators,
   ProcessingTime,
 } from '../../sections';
+import { ErrorBoundary } from '../../../components';
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
@@ -31,18 +32,32 @@ function Pip({
 }) {
   return (
     <div className="base-grid pip-grid">
-      <Today
-        setIsSelectorOpen={setIsSelectorOpen}
-        setModalType={setModalType}
-        setModalData={setModalData}
-        setIsIntroOpen={setIsIntroOpen}
-      />
-      <YourDesk />
-      <Alerts />
-      <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />
-      <MainInvestigated setInvestigatedProfile={setInvestigatedProfile} />
-      <SuccessIndicators />
-      <ProcessingTime />
+      <ErrorBoundary>
+        <Today
+          setIsSelectorOpen={setIsSelectorOpen}
+          setModalType={setModalType}
+          setModalData={setModalData}
+          setIsIntroOpen={setIsIntroOpen}
+        />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <YourDesk />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Alerts />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <MainInvestigated setInvestigatedProfile={setInvestigatedProfile} />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <SuccessIndicators />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ProcessingTime />
+      </ErrorBoundary>
     </div>
   );
 }

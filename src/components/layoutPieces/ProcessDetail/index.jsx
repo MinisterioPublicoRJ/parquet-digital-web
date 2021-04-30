@@ -155,11 +155,11 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
           <h2>Detalhes do Procedimento</h2>
           Informações de relevância sobre o procedimento.
           <div>
-            <span>{`Nº ${docuNrExterno}`}</span>
+            <span>{`Nº MPRJ: ${docuNrMp ? docuNrMp : '-'}`}</span>
             <button
               type="button"
               onClick={() => {
-                navigator.clipboard.writeText(docuNrExterno);
+                navigator.clipboard.writeText(docuNrMp);
               }}
             >
               <Copy height="80%" />

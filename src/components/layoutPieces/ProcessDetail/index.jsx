@@ -127,7 +127,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
           <h3>ÚLTIMOS ANDAMENTOS</h3>
           <div className="processDetail-proceedings">
             {processData.proceedings.map(({ date, person, motion, motionDetails }) => (
-              <div>
+              <div key={`${person}-${date}`}>
                 <div>{date}</div>
                 <div>
                   <strong>{person}</strong>

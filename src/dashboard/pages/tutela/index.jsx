@@ -41,7 +41,7 @@ function Tutela({
         />
       </ErrorBoundary>
       <ErrorBoundary>
-        <YourDesk />
+        <YourDesk setProcessDetail={setProcessDetail} />
       </ErrorBoundary>
       <ErrorBoundary>
         <PerformanceRadar setModalType={setModalType} setModalData={setModalData} />

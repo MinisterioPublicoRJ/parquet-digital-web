@@ -2,7 +2,7 @@ export default function ongoingInvestigationsListTransform({ procedimentos, nr_p
   const data = procedimentos.map((list) => ({
     classeDocumento: list.classe_documento,
     docuEtiqueta: list.docu_etiqueta,
-    docuNrExterno: list.docu_nr_externo,
+    docuNrExterno: list.docu_nr_externo ? list.docu_nr_externo : '-',
     docuNrMp: list.docu_nr_mp,
     docuPersonagens: list.docu_personagens,
     dtUltimoAndamento: new Date(list.dt_ultimo_andamento)

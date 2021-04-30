@@ -10,6 +10,8 @@ export default function investigatedProfileTransform({ perfil, similares, proced
       : '-',
 
     desc_ultimo_andamento: list.desc_ultimo_andamento || '-',
+    numExterno: list.documento_nr_externo,
+    tipoPersonagem: list.tipo_personagem,
   }));
 
   return {

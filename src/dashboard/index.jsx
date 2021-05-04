@@ -88,6 +88,7 @@ function Dashboard() {
             setModalData={setModalData}
             setIsIntroOpen={setIsIntroOpen}
             setInvestigatedProfile={setInvestigatedProfile}
+            setProcessDetail={setProcessDetail}
           />
         );
       default:

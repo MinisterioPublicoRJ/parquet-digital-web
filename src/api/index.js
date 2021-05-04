@@ -184,17 +184,26 @@ const Api = (() => {
     return successIndicatorsTransform(data);
   }
 
-  async function getProcessList({ orgao, token }, page) {
-    const { data } = await axios.get(PROCESSES_LIST({ orgao, page }), buildRequestConfig(token));
+  async function getProcessList({ orgao, token }, page, searchString) {
+    const params = { jwt: token };
+
+    if (searchString) {
+      params.search_string = searchString;
+    }
+
+    const { data } = await axios.get(PROCESSES_LIST({ orgao, page }), {params});
 
     return processListTransform(data);
   }
 
-  async function getOngoingInvestigationsList({ orgao, token }, page) {
-    const { data } = await axios.get(
-      ONGOING_INVESTIGATIONS_LIST({ orgao, page }),
-      buildRequestConfig(token),
-    );
+  async function getOngoingInvestigationsList({ orgao, token }, page, searchString) {
+    const params = { jwt: token };
+
+    if (searchString) {
+      params.search_string = searchString;
+    }
+
+    const { data } = await axios.get(ONGOING_INVESTIGATIONS_LIST({ orgao, page }), { params });
 
     return ongoingInvestigationsListTransform(data);
   }
@@ -229,10 +238,7 @@ const Api = (() => {
       params.search_string = searchString;
     }
 
-    const { data } = await axios.get(
-      PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
-      {params},
-    );
+    const { data } = await axios.get(PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }), { params });
     const cleanData = data.map((item) => snakeToCamelTransform(item));
     return cleanData;
   }

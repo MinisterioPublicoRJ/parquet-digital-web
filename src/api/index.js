@@ -191,7 +191,7 @@ const Api = (() => {
       params.search_string = searchString;
     }
 
-    const { data } = await axios.get(PROCESSES_LIST({ orgao, page }), {params});
+    const { data } = await axios.get(PROCESSES_LIST({ orgao, page }), { params });
 
     return processListTransform(data);
   }

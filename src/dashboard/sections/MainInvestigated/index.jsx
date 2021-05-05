@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+import { SearchBox } from 'mapasteca-web';
 import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../api';
@@ -144,19 +145,10 @@ function MainInvestigated({ setInvestigatedProfile }) {
 
     return (
       <article className="mainInvestigated-outer">
-        <SectionTitle value="Principais Investigados" glueToTop />
-        <form>
-          <input type="text" value={searchString} onChange={(event)=> setSearchString(event.target.value) }/>
-          <button
-          className="main-investigated-search-btn"
-            type="button"
-            onClick={() => {
-              getMainInvestigated(searchString);
-            }}
-          >
-            Pesquisar
-          </button>
-        </form>
+        <SearchBox onSearch={getMainInvestigated}>
+          <SectionTitle value="Principais Investigados" glueToTop />
+        </SearchBox>
+
         <div className="mainInvestigated-tableWrapper">
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
         </div>

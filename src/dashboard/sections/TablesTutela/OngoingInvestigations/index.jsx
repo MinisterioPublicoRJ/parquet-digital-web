@@ -3,7 +3,7 @@ import Api from '../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
+const OngoingInvestigations = ({ isActive, setInvestigatedProfile, searchString }) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
@@ -53,7 +53,11 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getOngoingInvestigationsList(buildRequestParams(), page);
+        const response = await Api.getOngoingInvestigationsList(
+          buildRequestParams(),
+          page,
+          searchString,
+        );
         const buttonList = generateButtons(response.data);
         setOngoingInvestigationsListData(buttonList);
         setTotalPages(response.pages);
@@ -65,7 +69,7 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile }) => {
     };
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, totalPages]);
+  }, [page, totalPages, searchString]);
 
   if (loading) {
     return <Spinner size="medium" />;

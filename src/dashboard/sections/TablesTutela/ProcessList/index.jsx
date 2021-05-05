@@ -3,7 +3,7 @@ import Api from '../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail }) => {
+const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searchString}) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
@@ -66,7 +66,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail }) => 
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getProcessList(buildRequestParams(), page);
+        const response = await Api.getProcessList(buildRequestParams(), page, searchString);
         const buttonList = generateButtons(response.data);
         setProcessListData(buttonList);
         setTotalPages(response.pages);
@@ -79,7 +79,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail }) => 
     loadData();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, totalPages]);
+  }, [page, totalPages, searchString]);
 
   if (loading) {
     return <Spinner size="medium" />;

@@ -17,6 +17,7 @@ import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskCo
 const propTypes = {
   currentOffice: PropTypes.shape({ tipo: PropTypes.number }).isRequired,
   buildRequestParams: PropTypes.func.isRequired,
+  setProcessDetail: PropTypes.func.isRequired,
 };
 
 class YourDesk extends React.Component {
@@ -48,7 +49,7 @@ class YourDesk extends React.Component {
     const buttonList = TUTELA_BUTTONS;
     const newState = { buttonList };
 
-    buttonList.forEach(buttonName => {
+    buttonList.forEach((buttonName) => {
       this.getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
     });
@@ -60,7 +61,7 @@ class YourDesk extends React.Component {
     const buttonList = PIP_BUTTONS;
     const newState = { buttonList };
 
-    buttonList.forEach(buttonName => {
+    buttonList.forEach((buttonName) => {
       this.getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
     });
@@ -147,7 +148,7 @@ class YourDesk extends React.Component {
 
   render() {
     const { activeTab, buttonList, openCasesDetails, openCasesDetailsError } = this.state;
-    const { buildRequestParams } = this.props;
+    const { buildRequestParams, setProcessDetail } = this.props;
 
     if (!buttonList) {
       return <div>loading...</div>;
@@ -158,7 +159,7 @@ class YourDesk extends React.Component {
         <div className="desk-header">
           <SectionTitle value="Sua Mesa" glueToTop />
           <div className="desk-controlers">
-            {buttonList.map(buttonTitle => (
+            {buttonList.map((buttonTitle) => (
               <ControlButton
                 key={BUTTON_TEXTS[buttonTitle]}
                 isButton={!buttonTitle.includes('closedCases')}
@@ -178,6 +179,7 @@ class YourDesk extends React.Component {
               buildRequestParams={buildRequestParams}
               chartData={openCasesDetails || {}}
               isLoading={!openCasesDetails && !openCasesDetailsError}
+              setProcessDetail={setProcessDetail}
             />
           ) : (
             <GenericTab
@@ -195,7 +197,13 @@ class YourDesk extends React.Component {
 
 YourDesk.propTypes = propTypes;
 
-export default function() {
+export default function ({ setProcessDetail }) {
   const { currentOffice, buildRequestParams } = useAuth();
-  return <YourDesk currentOffice={currentOffice} buildRequestParams={buildRequestParams} />;
+  return (
+    <YourDesk
+      currentOffice={currentOffice}
+      buildRequestParams={buildRequestParams}
+      setProcessDetail={setProcessDetail}
+    />
+  );
 }

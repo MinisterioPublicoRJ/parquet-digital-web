@@ -3,7 +3,7 @@ import Api from '../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const OngoingInvestigations = ({ isActive, setInvestigatedProfile, searchString }) => {
+const OngoingInvestigations = ({ isActive, setInvestigatedProfile, setProcessDetail, searchString }) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
@@ -31,7 +31,7 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile, searchString 
 
   function generateButtons(list) {
     return list.map((investigation) => {
-      const { representanteDk, docuPersonagens } = investigation;
+      const { representanteDk, docuPersonagens, docuNrMp, docuNrExterno } = investigation;
       const investigatedNameBtn = representanteDk ? (
         <button
           type="button"
@@ -45,7 +45,20 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile, searchString 
       ) : (
         docuPersonagens
       );
-      return { ...investigation, docuPersonagens: investigatedNameBtn };
+      const processDetailBtn = docuNrMp ? (
+        <button
+          type="button"
+          onClick={() => {
+            setProcessDetail(docuNrMp, docuNrExterno);
+          }}
+          className="process-detail-btn"
+        >
+          {docuNrMp}
+        </button>
+      ) : (
+        docuNrMp
+      );
+      return { ...investigation, docuPersonagens: investigatedNameBtn , docuNrMp: processDetailBtn};
     });
   }
 

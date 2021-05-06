@@ -13,6 +13,7 @@ import './styles.css';
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
   buildRequestParams: PropTypes.func.isRequired,
+  setProcessDetail: PropTypes.func.isRequired,
   chartData: PropTypes.shape({
     under20: PropTypes.number,
     between20And30: PropTypes.number,
@@ -51,6 +52,24 @@ class OpenCasesDetail extends React.Component {
     return totalPages;
   }
 
+  generateButtons(list) {
+    return list.map((openCase) => {
+      const {numeroMprj, numeroExterno} = openCase;
+      const processNumberBtn = (
+        <button
+          type="button"
+          onClick={() => {
+            this.props.setProcessDetail(numeroMprj, numeroExterno);
+          }}
+          className="process-detail-btn"
+        >
+          {numeroMprj}
+        </button>
+      );
+      return {...openCase, numeroMprj: processNumberBtn}
+
+    })
+  }
   /**
    * Generic function that fetches the detailed data from each of the 3 time periods
    * @param  {string}  tab one of [under20, between20And30, over30]
@@ -68,7 +87,7 @@ class OpenCasesDetail extends React.Component {
       error = true;
     } finally {
       const newState = {};
-      newState[`${tab}Details`] = res;
+      newState[`${tab}Details`] = this.generateButtons(res);
       newState[`${tab}Error`] = error;
       this.setState({ ...newState, currentPage: page });
     }

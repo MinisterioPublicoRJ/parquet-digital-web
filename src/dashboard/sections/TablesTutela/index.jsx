@@ -42,6 +42,7 @@ const TablesTutela = ({ setInvestigatedProfile, setProcessDetail }) => {
         />
         <OngoingInvestigations
           setInvestigatedProfile={setInvestigatedProfile}
+          setProcessDetail={setProcessDetail}
           isActive={visibleTab === 'investigation'}
           searchString={searchString}
         />

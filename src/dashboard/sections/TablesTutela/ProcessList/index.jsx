@@ -48,15 +48,17 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searc
         docuPersonagens
       );
 
-      const processNumberBtn = (<button
-        type="button"
-        onClick={() => {
-          setProcessDetail(docuNrMp, docuNrExterno);
-        }}
-        className="process-detail-btn"
-      >
-        {docuNrExterno}
-      </button>)
+      const processNumberBtn = (
+        <button
+          type="button"
+          onClick={() => {
+            setProcessDetail(docuNrMp, docuNrExterno);
+          }}
+          className="process-detail-btn"
+        >
+          {docuNrExterno}
+        </button>
+      );
 
       return { ...process, docuPersonagens: investigatedNameBtn, docuNrExterno: processNumberBtn };
     });

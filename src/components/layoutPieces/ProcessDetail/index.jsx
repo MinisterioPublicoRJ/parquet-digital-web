@@ -73,7 +73,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
           <h3>ASSUNTOS</h3>
           <div className="processDetail-section">
             {processData.matters.map(({ matter, detail }) => (
-              <div className="processDetail-ListCardWrapper">
+              <div className="processDetail-ListCardWrapper" key={`${matter}-${detail}`}>
                 <ListCard
                   title={matter}
                   content={<span>{detail}</span>}
@@ -127,7 +127,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
           <h3>ÚLTIMOS ANDAMENTOS</h3>
           <div className="processDetail-proceedings">
             {processData.proceedings.map(({ date, person, motion, motionDetails }) => (
-              <div>
+              <div key={`${person}-${date}`}>
                 <div>{date}</div>
                 <div>
                   <strong>{person}</strong>
@@ -155,11 +155,11 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
           <h2>Detalhes do Procedimento</h2>
           Informações de relevância sobre o procedimento.
           <div>
-            <span>{`Nº ${docuNrExterno}`}</span>
+            <span>{`Nº MPRJ: ${docuNrMp ? docuNrMp : '-'}`}</span>
             <button
               type="button"
               onClick={() => {
-                navigator.clipboard.writeText(docuNrExterno);
+                navigator.clipboard.writeText(docuNrMp);
               }}
             >
               <Copy height="80%" />

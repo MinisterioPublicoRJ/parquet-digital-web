@@ -6,7 +6,8 @@
     "prettier/prettier": ["error"],
     "class-methods-use-this": "off",
     "no-use-before-define": "off",
-    "react-hooks/exhaustive-deps": off
+    "react-hooks/exhaustive-deps": "off",
+    "endOfLine": "auto"
   },
   "env": {
     "browser": true

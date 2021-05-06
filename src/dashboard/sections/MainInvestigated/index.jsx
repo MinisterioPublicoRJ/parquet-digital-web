@@ -137,7 +137,9 @@ function MainInvestigated({ setInvestigatedProfile }) {
     if (loading || apiError) {
       return (
         <article className="mainInvestigated-outer">
-          <SectionTitle value="Principais Investigados" glueToTop />
+          <SearchBox onSearch={getMainInvestigated}>
+            <SectionTitle value="Principais Investigados" glueToTop />
+          </SearchBox>
           {loading ? <Spinner size="medium" /> : <p>Nenhum investigado para exibir</p>}
         </article>
       );

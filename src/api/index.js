@@ -140,10 +140,16 @@ const Api = (() => {
     return courtCasesDetailsTransform(data);
   }
 
-  async function getOpenCasesList({ orgao, cpf, token }, list, page) {
+  async function getOpenCasesList({ orgao, cpf, token }, list, page, searchString) {
+    const params = { jwt: token };
+
+    if (searchString) {
+      params.search_string = searchString;
+    }
+
     const { data } = await axios.get(
       OPEN_CASES_LIST({ orgao, cpf, list, page }),
-      buildRequestConfig(token),
+      {params}
     );
 
     return openCasesListTransform(data);

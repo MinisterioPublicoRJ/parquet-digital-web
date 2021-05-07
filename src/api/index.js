@@ -243,15 +243,21 @@ const Api = (() => {
     return deskTabTransform(data);
   }
 
-  async function getMainInvestigated({ orgao, cpf, token }, searchString) {
+  async function getMainInvestigated({ orgao, cpf, token }, searchString, page) {
     const params = { jwt: token };
 
     if (searchString) {
       params.search_string = searchString;
     }
 
-    const { data } = await axios.get(PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }), { params });
-    const cleanData = data.map((item) => snakeToCamelTransform(item));
+    if (page) {
+      params.page = page;
+    }
+
+    const {data} = await axios.get(PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }), { params });
+    let cleanData = {};
+    cleanData.investigated = data.investigados.map((item) => snakeToCamelTransform(item));
+    cleanData.pages = data.nr_paginas
     return cleanData;
   }
 

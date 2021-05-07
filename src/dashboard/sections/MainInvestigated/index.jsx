@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import './styles.css';
 import { SearchBox } from 'mapasteca-web';
@@ -6,14 +6,17 @@ import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
-import { CustomTable, Spinner, SectionTitle } from '../../../components';
+import { CustomTable, Spinner, SectionTitle, Pagination } from '../../../components';
 
 function MainInvestigated({ setInvestigatedProfile }) {
   const { buildRequestParams } = useAuth();
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
-  const [searchString, setSearchString] = useState();
+  const [totalPages, setTotalPages] = useState();
+  const [page, setPage] = useState(1);
+  const [searchString, setSearchString] = useState("");
+  const tableTopDivRef = useRef();
 
   /**
    * uses representanteDk number to remove an investigated from the list, updates the state
@@ -113,12 +116,13 @@ function MainInvestigated({ setInvestigatedProfile }) {
    * Function that fetches the main investigated data
    * @return {void}
    */
-  async function getMainInvestigated(searchString) {
+  async function getMainInvestigated() {
     let response;
     setLoading(true);
     try {
-      response = await Api.getMainInvestigated(buildRequestParams(), searchString);
-      setTableData(cleanData(response));
+      response = await Api.getMainInvestigated(buildRequestParams(), searchString, page);
+      setTableData(cleanData(response.investigated));
+      setTotalPages(response.pages);
     } catch (e) {
       setApiError(true);
     } finally {
@@ -130,18 +134,35 @@ function MainInvestigated({ setInvestigatedProfile }) {
     getMainInvestigated();
   }
 
+  function onUpdate() {
+    getMainInvestigated();
+  }
+
   function handleSearch(searchStr) {
-    setSearchString(() => )
+    setSearchString(searchStr);
+    setPage(1);
+    //getMainInvestigated(searchStr, 1);
+  }
+
+  function handlePageClick(nextPage) {
+    if (nextPage < 1 || nextPage > totalPages) return;
+
+    if (tableTopDivRef.current) {
+      tableTopDivRef.current.scrollIntoView();
+    }
+    setPage(nextPage);
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(onMount, []);
+  //useEffect(onMount, []);
+
+  useEffect(onUpdate, [searchString, page, totalPages]);
 
   function render() {
     if (loading || apiError) {
       return (
         <article className="mainInvestigated-outer">
-          <SearchBox onSearch={getMainInvestigated}>
+          <SearchBox onSearch={handleSearch}>
             <SectionTitle value="Principais Investigados" glueToTop />
           </SearchBox>
           {loading ? <Spinner size="medium" /> : <p>Nenhum investigado para exibir</p>}
@@ -151,13 +172,18 @@ function MainInvestigated({ setInvestigatedProfile }) {
 
     return (
       <article className="mainInvestigated-outer">
-        <SearchBox onSearch={getMainInvestigated}>
+        <SearchBox onSearch={handleSearch}>
           <SectionTitle value="Principais Investigados" glueToTop />
         </SearchBox>
 
-        <div className="mainInvestigated-tableWrapper">
+        <div className="mainInvestigated-tableWrapper" ref={tableTopDivRef}>
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
         </div>
+        <Pagination
+          totalPages={totalPages || 0}
+          handlePageClick={(page) => handlePageClick(page)}
+          currentPage={page}
+        />
       </article>
     );
   }

@@ -3,7 +3,12 @@ import Api from '../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../components';
 import { useAuth } from '../../../../app/authContext';
 
-const OngoingInvestigations = ({ isActive, setInvestigatedProfile, setProcessDetail, searchString }) => {
+const OngoingInvestigations = ({
+  isActive,
+  setInvestigatedProfile,
+  setProcessDetail,
+  searchString,
+}) => {
   const { buildRequestParams } = useAuth();
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
@@ -58,9 +63,13 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile, setProcessDet
       ) : (
         docuNrMp
       );
-      return { ...investigation, docuPersonagens: investigatedNameBtn , docuNrMp: processDetailBtn};
+      return { ...investigation, docuPersonagens: investigatedNameBtn, docuNrMp: processDetailBtn };
     });
   }
+
+  useEffect(() => {
+    setPage(1);
+  }, [searchString]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -83,6 +92,7 @@ const OngoingInvestigations = ({ isActive, setInvestigatedProfile, setProcessDet
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, totalPages, searchString]);
+
 
   if (loading) {
     return <Spinner size="medium" />;

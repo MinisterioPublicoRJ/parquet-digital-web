@@ -25,7 +25,7 @@ export const OPEN_INVESTIGATIONS_DETAILS_URL = t(
 export const OPEN_CASES_DETAILS_URL = t(`${BASE_URL}/suamesa/detalhe/vistas/\${orgao}/\${cpf}`);
 
 export const OPEN_CASES_LIST = t(
-  `${BASE_URL}/suamesa/lista/vistas/\${orgao}/\${cpf}/\${list}?page=\${page}&`,
+  `${BASE_URL}/suamesa/lista/vistas/\${orgao}/\${cpf}/\${list}?`,
 );
 
 export const RADAR_DATA = t(`${BASE_URL}/radar/\${orgao}`);

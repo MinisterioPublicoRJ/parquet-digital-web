@@ -1,5 +1,5 @@
-export default function openCasesListTransform(data) {
-  return data.map((list) => ({
+export default function openCasesListTransform({ procedimentos, nr_paginas }) {
+  const procedures = procedimentos.map((list) => ({
     classe: list.classe,
     numeroExterno: list.numero_externo,
     dtAbertura: new Date(list.dt_abertura)
@@ -7,4 +7,10 @@ export default function openCasesListTransform(data) {
       : undefined,
     numeroMprj: list.numero_mprj,
   }));
+  const pages = nr_paginas;
+
+  return {
+    procedures,
+    pages,
+  };
 }

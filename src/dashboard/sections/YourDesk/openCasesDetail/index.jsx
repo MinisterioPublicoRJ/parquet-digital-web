@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { SearchBox } from 'mapasteca-web';
 
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../api';
@@ -26,7 +27,8 @@ class OpenCasesDetail extends React.Component {
     this.state = {
       activeTab: 'under20',
       currentPage: 1,
-      totalPages: this.calcTotalPages(props.chartData),
+      totalPages: this.calcTotalPages(this.props.chartData),
+      searchString: "",
     };
   }
 
@@ -74,21 +76,23 @@ class OpenCasesDetail extends React.Component {
    * @param  {string}  tab one of [under20, between20And30, over30]
    * @return {void}     just saves to state
    */
-  async getOpenCasesList(tab, nextPage) {
+  async getOpenCasesList(tab, nextPage, searchString) {
     const { buildRequestParams } = this.props;
     let error = false;
     let res;
     const page = nextPage || this.state.currentPage;
 
     try {
-      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab], page);
+      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab], page, searchString);
     } catch (e) {
       error = true;
     } finally {
       const newState = {};
-      newState[`${tab}Details`] = this.generateButtons(res);
+      const totalPages = {};
+      totalPages[`${tab}`] = res ? res.pages : null;
+      newState[`${tab}Details`] = this.generateButtons(res.procedures);
       newState[`${tab}Error`] = error;
-      this.setState({ ...newState, currentPage: page });
+      this.setState({ ...newState, currentPage: page, totalPages});
     }
   }
 
@@ -102,7 +106,7 @@ class OpenCasesDetail extends React.Component {
       const newState = {};
       newState[`${tabName}Details`] = null;
       this.setState({ ...newState }, () => {
-        this.getOpenCasesList(tabName, page);
+        this.getOpenCasesList(tabName, page, this.state.searchString);
       });
     }
   }
@@ -172,6 +176,11 @@ class OpenCasesDetail extends React.Component {
     ));
   }
 
+  handleSearch(searchStr) {
+    this.setState({searchString: searchStr});
+    this.getOpenCasesList(this.state.activeTab, 1, searchStr);
+  }
+
   render() {
     const { isLoading, chartData } = this.props;
     const { activeTab, totalPages } = this.state;
@@ -187,6 +196,7 @@ class OpenCasesDetail extends React.Component {
     return (
       <>
         <div className="openCases-chartsWrapper">{this.renderCharts(chartData)}</div>
+        <SearchBox onSearch={this.handleSearch.bind(this)}></SearchBox>
         <div className="openCases-tableWrapper">
           {tabLoading && <Spinner size="medium" />}
           {!emptyTab && this.state[`${activeTab}Details`] && (

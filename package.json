@@ -3,19 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.0.2",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "lodash.template": "^4.5.0",
-    "mapasteca-web": "^0.0.5",
+    "mapasteca-web": "^0.0.8",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
     "react-typist": "^2.0.5",
-    "victory": "^35.3.1"
+    "victory": "^35.6.0"
   },
   "scripts": {
     "start": "react-scripts start",

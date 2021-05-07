@@ -140,10 +140,22 @@ const Api = (() => {
     return courtCasesDetailsTransform(data);
   }
 
-  async function getOpenCasesList({ orgao, cpf, token }, list, page) {
+  async function getOpenCasesList({ orgao, cpf, token }, list, page, searchString) {
+    const params = {};
+
+    if (searchString) {
+      params.search_string = searchString;
+    }
+
+    if (page) {
+      params.page = page;
+    }
+
+    params.jwt = token;
+
     const { data } = await axios.get(
-      OPEN_CASES_LIST({ orgao, cpf, list, page }),
-      buildRequestConfig(token),
+      OPEN_CASES_LIST({ orgao, cpf, list }),
+      {params}
     );
 
     return openCasesListTransform(data);
@@ -184,17 +196,26 @@ const Api = (() => {
     return successIndicatorsTransform(data);
   }
 
-  async function getProcessList({ orgao, token }, page) {
-    const { data } = await axios.get(PROCESSES_LIST({ orgao, page }), buildRequestConfig(token));
+  async function getProcessList({ orgao, token }, page, searchString) {
+    const params = { jwt: token };
+
+    if (searchString) {
+      params.search_string = searchString;
+    }
+
+    const { data } = await axios.get(PROCESSES_LIST({ orgao, page }), { params });
 
     return processListTransform(data);
   }
 
-  async function getOngoingInvestigationsList({ orgao, token }, page) {
-    const { data } = await axios.get(
-      ONGOING_INVESTIGATIONS_LIST({ orgao, page }),
-      buildRequestConfig(token),
-    );
+  async function getOngoingInvestigationsList({ orgao, token }, page, searchString) {
+    const params = { jwt: token };
+
+    if (searchString) {
+      params.search_string = searchString;
+    }
+
+    const { data } = await axios.get(ONGOING_INVESTIGATIONS_LIST({ orgao, page }), { params });
 
     return ongoingInvestigationsListTransform(data);
   }
@@ -222,12 +243,21 @@ const Api = (() => {
     return deskTabTransform(data);
   }
 
-  async function getMainInvestigated({ orgao, cpf, token }) {
-    const { data } = await axios.get(
-      PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }),
-      buildRequestConfig(token),
-    );
-    const cleanData = data.map((item) => snakeToCamelTransform(item));
+  async function getMainInvestigated({ orgao, cpf, token }, searchString, page) {
+    const params = { jwt: token };
+
+    if (searchString) {
+      params.search_string = searchString;
+    }
+
+    if (page) {
+      params.page = page;
+    }
+
+    const {data} = await axios.get(PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }), { params });
+    let cleanData = {};
+    cleanData.investigated = data.investigados.map((item) => snakeToCamelTransform(item));
+    cleanData.pages = data.nr_paginas
     return cleanData;
   }
 

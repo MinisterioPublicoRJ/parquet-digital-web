@@ -130,6 +130,10 @@ function MainInvestigated({ setInvestigatedProfile }) {
     getMainInvestigated();
   }
 
+  function handleSearch(searchStr) {
+    setSearchString(() => )
+  }
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
 

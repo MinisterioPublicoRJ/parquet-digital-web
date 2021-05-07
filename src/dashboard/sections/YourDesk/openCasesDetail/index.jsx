@@ -27,7 +27,7 @@ class OpenCasesDetail extends React.Component {
     this.state = {
       activeTab: 'under20',
       currentPage: 1,
-      totalPages: this.calcTotalPages(props.chartData),
+      totalPages: this.calcTotalPages(this.props.chartData),
       searchString: "",
     };
   }
@@ -88,9 +88,11 @@ class OpenCasesDetail extends React.Component {
       error = true;
     } finally {
       const newState = {};
-      newState[`${tab}Details`] = this.generateButtons(res);
+      const totalPages = {};
+      totalPages[`${tab}`] = res ? res.pages : null;
+      newState[`${tab}Details`] = this.generateButtons(res.procedures);
       newState[`${tab}Error`] = error;
-      this.setState({ ...newState, currentPage: page });
+      this.setState({ ...newState, currentPage: page, totalPages});
     }
   }
 
@@ -175,7 +177,6 @@ class OpenCasesDetail extends React.Component {
   }
 
   handleSearch(searchStr) {
-    console.log('handlesearch: ', searchStr);
     this.setState({searchString: searchStr});
     this.getOpenCasesList(this.state.activeTab, 1, searchStr);
   }

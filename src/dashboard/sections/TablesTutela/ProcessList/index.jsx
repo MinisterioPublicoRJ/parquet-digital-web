@@ -63,6 +63,10 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searc
       return { ...process, docuPersonagens: investigatedNameBtn, docuNrExterno: processNumberBtn };
     });
   }
+  
+  useEffect(() => {
+    setPage(1);
+  }, [searchString]);
 
   useEffect(() => {
     const loadData = async () => {

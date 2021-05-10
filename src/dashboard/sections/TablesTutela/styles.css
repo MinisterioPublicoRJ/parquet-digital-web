@@ -34,6 +34,7 @@
 
 .tablesTutela-header {
   display: flex;
+  flex: 1;
   flex-direction: row;
 }
 
@@ -63,3 +64,8 @@
   overflow-y: auto;
 }
 
+/* THIS IS A TEMPORARY SOLUTION AND SHOULD BE REMOVED AFTER REFACTOR */
+div [class^="SearchBox_SearchBoxChildrenContainer"] {
+  display: flex;
+  flex: 1;
+}

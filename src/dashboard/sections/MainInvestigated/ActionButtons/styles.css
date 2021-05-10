@@ -1,4 +1,4 @@
-.mainInvestigated-tableWrapper button {
+.mainInvestigated-tableWrapper tr > td:last-child button {
   background: transparent;
   border: 0;
   color: transparent;

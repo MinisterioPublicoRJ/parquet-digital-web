@@ -178,12 +178,12 @@ function MainInvestigated({ setInvestigatedProfile }) {
 
         <div className="mainInvestigated-tableWrapper" ref={tableTopDivRef}>
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
+          <Pagination
+            totalPages={totalPages || 0}
+            handlePageClick={(page) => handlePageClick(page)}
+            currentPage={page}
+            />
         </div>
-        <Pagination
-          totalPages={totalPages || 0}
-          handlePageClick={(page) => handlePageClick(page)}
-          currentPage={page}
-        />
       </article>
     );
   }

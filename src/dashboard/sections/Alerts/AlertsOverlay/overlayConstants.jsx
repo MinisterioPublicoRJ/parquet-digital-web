@@ -155,6 +155,31 @@ export const OVERLAY_TEXTS = {
       trabalho de controle externo da polícia.
     </p>
   ),
+  CTAC: (
+    <div>
+      <p>
+        Neste alerta, eu busco lhe informar de procedimentos que tiveram TACs celebrados, sem a devida
+        comunicação ao Conselho Superior do Ministério Público.
+      </p>
+
+      <p />
+
+      <p>
+        Para verificar isso, eu procuro no sistema todos os procedimentos que tiveram andamentos de TAC
+        realizados. Em seguida, verifico se todos tiveram andamento de Ciência de Decisão do CSMP, ou
+        de Ofício cujo destinatário tenha sido preenchido com "CSMP" ou "Conselho Superior do Ministério
+        Público", posterior ao TAC.
+        Caso algum desses procedimentos não se encontre dentro desses critérios, eu o aviso desse fato.
+      </p>
+
+      <p />
+
+      <p>
+        Para desativar este alerta, basta realizar um andamento de Ofício neste procedimento, preenchendo
+        o campo destinatário com "CSMP".
+      </p>
+    </div>
+  ),
 };
 
 export const PRCR_TEXTS = (type, data) => {

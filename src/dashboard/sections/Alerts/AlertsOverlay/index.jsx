@@ -5,7 +5,7 @@ import { useAuth } from '../../../../app/authContext';
 import { Spinner } from '../../../../components';
 
 import './styles.css';
-import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT } from './overlayConstants';
+import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT, PA1A_TEXT } from './overlayConstants';
 
 const propTypes = {
   type: PropTypes.string.isRequired,
@@ -55,7 +55,7 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
           break;
         case 'PA1A':
           data = await getOverlayText(type, docDk);
-          texts = IC1A_TEXT(data);
+          texts = PA1A_TEXT(data);
           break;
         default:
           texts = <p>{`Os dados para alertas ${type} ainda não estão disponíveis`}</p>;

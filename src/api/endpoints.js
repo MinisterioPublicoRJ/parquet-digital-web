@@ -78,6 +78,9 @@ export const ABR1_ALERT_ACTION = t(
 
 export const ALERT_OVERLAY_DATA = t(`${BASE_URL}/alertas/overlay/\${docDk}`);
 
+export const CTAC_ACTION_GENERATE_DOC = t(
+  `${BASE_URL}/documentos/comunicacao-tac/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`
+);
 export const IC1A_ACTION_GENERATE_DOC = t(
   `${BASE_URL}/documentos/prorrogacao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
 );

@@ -6,20 +6,11 @@ import diagnosticoImg from '../assets/imgs/Image-4.png';
 import dominioImg from '../assets/imgs/Image1.png';
 import painelDeComprasImg from '../assets/imgs/Image3.png';
 import painelSaneamentoBasicoImg from '../assets/imgs/Image-2.png';
-import inLocoImg from '../assets/imgs/Image2.png';
 
 const Unavailable = () => {
   return (
     <div className="unavailable-wrapper">
-      <div className="unavailable-banner">
-        <img
-          width="100%"
-          src={unavaibleBanner}
-          alt="PARQUET DIGITAL - MPRJ Em Mapas. Painel multitarefas criado para auxiliar a gestão, o entendimento do dia-a-dia com base
-            em evidências e uma análise apurada da sua Promotoria."
-        />
-      </div>
-      <d iv className="unavailable-content">
+      <div className="unavailable-content">
         <section className="unavailable-title">
           <div>
             <img
@@ -35,10 +26,8 @@ const Unavailable = () => {
             <h2>Estamos passando por problemas técnicos</h2>
             <p>
               <b>Nosso sistema está fora do ar. </b>
-              Estamos passando por problemas técnicos na infraestrutura. Em virtude de um problema
-              no hardware que dá suporte à operação direta do Parquet Digital, a plataforma se
-              encontra indisponível. Informamos também que o fornecedor já foi acionado e está
-              atuando para a solução do problema.
+              A Gerência de Análises, Diagnósticos e Geoprocessamento da Diretoria de Gestão do Conhecimento (equipe gestora do MP em Mapas) INFORMA que, em virtude de um problema no hardware que dá suporte à operação do Parquet Digital, a plataforma se encontra indisponível.
+              Informa, ainda, que as providências necessárias para a solução do problema já foram tomadas.
             </p>
           </div>
         </section>
@@ -79,7 +68,7 @@ const Unavailable = () => {
             </div>
           </div>
         </section>
-      </d>
+      </div>
     </div>
   );
 };

@@ -18,15 +18,15 @@ function Router() {
 
   function findFirstPath() {
     let path = '/unavailable';
-    if (isServerDown) {
-      path = '/unavailable';
-    } else if (user) {
-      if (user.firstLogin) {
-        path = '/welcome';
-      } else {
-        path = '/dashboard';
-      }
-    }
+    // if (isServerDown) {
+    //   path = '/unavailable';
+    // } else if (user) {
+    //   if (user.firstLogin) {
+    //     path = '/welcome';
+    //   } else {
+    //     path = '/dashboard';
+    //   }
+    // }
     return <Redirect to={path} />;
   }
 

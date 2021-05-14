@@ -17,7 +17,7 @@ function Router() {
   };
 
   function findFirstPath() {
-    let path = '/login';
+    let path = '/unavailable';
     if (isServerDown) {
       path = '/unavailable';
     } else if (user) {

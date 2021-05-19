@@ -116,6 +116,14 @@ td button.process-detail-btn {
   margin-bottom: 2%;
 }
 
+
+.ListCard-content {
+  height: var(--defaultFontSize);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .modal-close {
   text-align: center;
   position: absolute;

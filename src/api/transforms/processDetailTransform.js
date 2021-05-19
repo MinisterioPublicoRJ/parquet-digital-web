@@ -6,7 +6,7 @@ export default function processDetailTransform(data) {
 
   const matters = data.assuntos.map(({ assunto, assunto_hierarquia }) => ({
     matter: assunto || '-',
-    detail: assunto_hierarquia || '-',
+    detail: assunto_hierarquia ? assunto_hierarquia.split('|').join('\n') : '-',
   }));
 
   const {

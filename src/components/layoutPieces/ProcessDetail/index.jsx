@@ -6,7 +6,7 @@ import './styles.css';
 import { useAuth } from '../../../app/authContext';
 import Api from '../../../api';
 import { Spinner } from '..';
-import { ProcessDetailRobot, User, Copy } from '../../../assets';
+import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
 
 const propTypes = {
   onToggle: PropTypes.func.isRequired,
@@ -61,6 +61,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
             {processData.characters.map(({ name, role }) => (
               <div className="processDetail-ListCardWrapper">
                 <ListCard
+                  fixedHeight
                   title={name}
                   content={<span>{role}</span>}
                   fillColor="#F8F9FB"
@@ -75,10 +76,11 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
             {processData.matters.map(({ matter, detail }) => (
               <div className="processDetail-ListCardWrapper" key={`${matter}-${detail}`}>
                 <ListCard
+                  fixedHeight
                   title={matter}
-                  content={<span>{detail}</span>}
-                  detailColor="#C5C6C8"
-                  icon={<User width={46} height={46} />}
+                  content={<span className="ListCard-content" title={detail}><abbr>{detail}</abbr></span>}
+                  detailColor="#F86C72"
+                  icon={<ProcessFile width={40} height={40} />}
                 />
               </div>
             ))}

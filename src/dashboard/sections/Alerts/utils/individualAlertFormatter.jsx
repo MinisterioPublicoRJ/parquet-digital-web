@@ -20,6 +20,7 @@ import {
 import {
   PRCR_ACTION_GENERATE_DOC,
   COMPRAS_ACTION_OUVIDORIA,
+  CTAC_ACTION_GENERATE_DOC,
   IC1A_ACTION_GENERATE_DOC,
   PPFP_ACTION_EXTEND,
   PPFP_ACTION_CONVERT,
@@ -139,7 +140,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
       return dt2iConstructor(alert, orgao, cpf, token);
 
     case 'CTAC':
-      return ctacConstructor(alert);
+      return ctacConstructor(alert, orgao, cpf, token);
 
     case 'FEBT':
       return febtConstructor(alert);
@@ -910,7 +911,7 @@ function roOccurrence(alert, orgao, cpf, token) {
   };
 }
 
-function ctacConstructor({ dropdown, alertCode, count, docNum, alertId }) {
+function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId }, orgao, cpf, token) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -919,18 +920,22 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, alertId }) {
     const single = count === 1;
     message = (
       <span>
-        <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
-        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho Superior do
-        Ministerio Público.
+        Você <strong>celebrou TAC</strong> em <strong>{`${count}`}</strong> {`${single ? 'procedimento ' : 'procedimentos '}`}
+        e ainda <strong>não comunicou ao conselho Superior do
+        Ministerio Público.</strong>
       </span>
     );
   } else {
-    actions = [DETAIL(), DELETE];
+    actions = [
+      GENERATE_MINUTA(CTAC_ACTION_GENERATE_DOC({ orgao, token, docDk, cpf })),
+      DETAIL(),
+      DELETE,
+    ];
     message = (
       <span>
-        <strong>{`Você celebrou ${count} ${single ? 'tac' : 'tacs'} `}</strong>
-        no procedimento <strong> xxx </strong> e ainda não comunicou ao conselho Superior do
-        Ministerio Público.
+        Você <strong>celebrou um TAC </strong>
+        no procedimento <strong>{`${docNum}`}</strong> e ainda <strong>não comunicou ao conselho Superior do
+        Ministerio Público.</strong>
       </span>
     );
   }
@@ -939,7 +944,7 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, alertId }) {
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
-    icon: <Clock />,
+    icon: <ClockIcon />,
     key,
     message,
   };

@@ -207,12 +207,12 @@ class OpenCasesDetail extends React.Component {
             />
           )}
           {emptyTab && (
-            <img
-              height="100%"
-              width="100%"
-              alt="Nenhuma vista aberta até o momento"
-              src={noOpenCases}
-            />
+            // fills the table with 20 empty lines (ES6 JavaScript)
+            <CustomTable
+            data={Array(20).fill("")}
+            columns={TABLE_COLUMNS}
+            showHeader
+          />
           )}
 
           {!emptyTab && (

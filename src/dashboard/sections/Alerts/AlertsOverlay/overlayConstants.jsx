@@ -180,6 +180,58 @@ export const OVERLAY_TEXTS = {
       </p>
     </div>
   ),
+  DCTJ: (
+    <div>
+      <p>
+        Neste alerta, eu busco lhe informar sobre Procedimentos Criminais que saíram para o TJRJ há mais de 60
+        e menos de 180 dias e ainda não retornaram a esta promotoria.
+      </p>
+
+      <p />
+
+      <p>
+        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar novamente,
+        ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento caso esteja no Tribunal.
+        Para isso, disponibilizo a opção CSV, que traz a lista de todos os procedimentos nesta condição com o
+        número MPRJ e o número externo (número TJRJ).
+      </p>
+    </div>
+  ),
+  DCTJ2: (
+    <div>
+      <p>
+        Neste alerta, eu busco lhe informar sobre Procedimentos Criminais que saíram para o TJRJ há mais de
+        180 dias e ainda não retornaram a esta promotoria. A probabilidade de que ele seja um documento com
+        aplicação do art. 366 do CPP é grande.
+      </p>
+
+      <p />
+
+      <p>
+        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar novamente,
+        ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento caso esteja no Tribunal.
+        Para isso, disponibilizo a opção CSV, que traz a lista de todos os procedimentos nesta condição com o
+        número MPRJ e o número externo (número TJRJ).
+      </p>
+    </div>
+  ),
+  DNTJ: (
+    <div>
+      <p>
+        Neste alerta, eu busco lhe informar sobre procedimentos não criminais que saíram para o TJRJ há mais de
+        120 dias e ainda não retornaram a esta promotoria.
+      </p>
+
+      <p />
+
+      <p>
+        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar novamente,
+        ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento caso esteja no Tribunal.
+        Para isso, disponibilizo a opção CSV, que traz a lista de todos os procedimentos nesta condição com o
+        número MPRJ e o número externo (número TJRJ).
+      </p>
+    </div>
+  ),
 };
 
 export const PRCR_TEXTS = (type, data) => {

@@ -65,7 +65,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     // ALERTAS DA TUTELA
     case 'DCTJ':
     case 'DCTJ2':
-      return dctjConstructor(alert);
+      return dctjConstructor(alert, orgao, cpf, token);
 
     case 'DNTJ':
     return dntjConstructor(alert, orgao, cpf, token);

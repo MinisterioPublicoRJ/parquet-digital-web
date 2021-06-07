@@ -175,9 +175,6 @@ const Api = (() => {
 
   async function getAlerts({ orgao, token }) {
     const { data } = await axios.get(ALERTS_LIST({ orgao }), buildRequestConfig(token));
-    throw new Error("There's been a new relic test error!");
-
-
     return alertsTransform(data);
   }
 

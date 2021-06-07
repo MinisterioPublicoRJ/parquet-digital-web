@@ -16,7 +16,6 @@ export default class ErrorBoundary extends React.Component {
    componentDidCatch(error, errorInfo) {
   // Você também pode registrar o erro em um serviço de relatórios de erro
      //logErrorToMyService(error, errorInfo);
-     console.log("error in boundary: ", error);
      window.newrelic.noticeError(error);
    }
 

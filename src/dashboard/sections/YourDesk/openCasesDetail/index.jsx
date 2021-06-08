@@ -192,14 +192,11 @@ class OpenCasesDetail extends React.Component {
     const tabLoading =
       !emptyTab && !this.state[`${activeTab}Details`] && !this.state[`${activeTab}Error`];
 
-    // Fills an array with 20 empty lines (ES6 JavaScript)
-      const emptyTabArray = Array(20).fill('');
-
     return (
       <>
         <div className="openCases-chartsWrapper">{this.renderCharts(chartData)}</div>
-        <SearchBox onSearch={this.handleSearch.bind(this)}></SearchBox>
-        <div className="openCases-tableWrapper" style={ emptyTab? { overflowY: 'hidden' }: '' }>
+        {!emptyTab && <SearchBox onSearch={this.handleSearch.bind(this)}></SearchBox>}
+        <div className="openCases-tableWrapper" style={emptyTab ? { overflowY: 'hidden' } : ''}>
           {tabLoading && <Spinner size="medium" />}
           {!emptyTab && this.state[`${activeTab}Details`] && (
             <CustomTable
@@ -209,10 +206,10 @@ class OpenCasesDetail extends React.Component {
             />
           )}
           {emptyTab && (
-            // insert the array with empty lines in the table  
+            // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
             <>
               <p> Nenhuma vista aberta até o momento</p>
-              <CustomTable data={emptyTabArray} columns={TABLE_COLUMNS} showHeader />
+              <CustomTable data={Array(20).fill('')} columns={TABLE_COLUMNS} showHeader />
             </>
           )}
 

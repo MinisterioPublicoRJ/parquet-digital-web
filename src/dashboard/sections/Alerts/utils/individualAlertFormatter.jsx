@@ -64,7 +64,8 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     // ALERTAS DA TUTELA
     case 'DCTJ':
-    return dctjConstructor(alert);
+    case 'DCTJ2':
+      return dctjConstructor(alert, orgao, cpf, token);
 
     case 'DNTJ':
     return dntjConstructor(alert, orgao, cpf, token);
@@ -232,33 +233,66 @@ function ispsConstructor(alert, orgao, cpf, token) {
   };
 }
 
-function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }) {
+function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao, cpf, token) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
-  let action;
+  let actions;
 
   if (dropdown) {
+    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
     const single = count === 1;
-    message = (
-      <span>
-        Há
-        <strong> {`${count}`} </strong>
-        {`${single ? 'procedimento criminal' : 'procedimentos criminais'} no TJRJ há `}
-        <strong> mais de 60 dias </strong>
-        sem retorno.
-      </span>
-    );
+
+    switch (alertCode) {
+      case 'DCTJ':
+        message = (
+          <span>
+            Há
+            <strong> {`${count}`} </strong>
+            {`${single ? 'procedimento criminal' : 'procedimentos criminais'} no TJRJ há `}
+            <strong> mais de 60 dias </strong>
+            sem retorno.
+          </span>
+        );
+        break;
+      case 'DCTJ2':
+        message = (
+          <span>
+            Há
+            <strong> {`${count}`} </strong>
+            {`${single ? 'procedimento criminal' : 'procedimentos criminais'} no TJRJ há `}
+            <strong> mais de 180 dias </strong>
+            sem retorno.
+          </span>
+        );
+        break;
+    }
   } else {
     actions = [DETAIL(), DELETE];
-    message = (
-      <span>
-        O procedimento criminal
-        <strong>{`${docNum}`}</strong>
-        está há
-        <strong> mais de 60 dias </strong>
-        no TJRJ sem retorno
-      </span>
-    );
+
+    switch (alertCode) {
+      case 'DCTJ':
+        message = (
+          <span>
+            O procedimento criminal 
+            <strong> {`${docNum}`} </strong> 
+            está há
+            <strong> mais de 60 dias </strong>
+            no TJRJ sem retorno.
+          </span>
+        );
+        break;
+      case 'DCTJ2':
+        message = (
+          <span>
+            O procedimento criminal
+            <strong> {`${docNum}`} </strong>
+            está há
+            <strong> mais de 180 dias </strong>
+            no TJRJ sem retorno.
+          </span>
+        );
+        break;
+    }
   }
 
   return {
@@ -277,13 +311,13 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   let actions = [];
 
   if (dropdown) {
-    //actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({orgao, alertCode, token }))];
+    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({orgao, alertCode, token }))];
     const single = count === 1;
     message = (
       <span>
         Há
         <strong>{` ${count} `}</strong>
-        {`${single ? 'procedimento não criminal' : 'procedimentos não criminais'} no TJRJ há `}
+        {`${single ? 'procedimento não criminal' : 'procedimentos não criminais'} no TJRJ `}
         <strong> há mais de 120 dias </strong>
         sem retorno.
       </span>
@@ -292,11 +326,11 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        O procedimento criminal
+        O procedimento não-criminal
         <strong>{`${docNum}`}</strong>
         está há
         <strong> mais de 120 dias </strong>
-        no TJRJ sem retorno
+        no TJRJ sem retorno.
       </span>
     );
   }

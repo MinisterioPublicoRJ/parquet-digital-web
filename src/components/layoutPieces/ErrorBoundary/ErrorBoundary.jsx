@@ -13,10 +13,11 @@ export default class ErrorBoundary extends React.Component {
     return { hasError: true };
   }
 
-  // componentDidCatch(error, errorInfo) {
+   componentDidCatch(error, errorInfo) {
   // Você também pode registrar o erro em um serviço de relatórios de erro
-  //   logErrorToMyService(error, errorInfo);
-  // }
+     //logErrorToMyService(error, errorInfo);
+     window.newrelic.noticeError(error);
+   }
 
   render() {
     const { hasError } = this.state;

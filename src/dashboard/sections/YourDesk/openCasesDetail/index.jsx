@@ -28,7 +28,7 @@ class OpenCasesDetail extends React.Component {
       activeTab: 'under20',
       currentPage: 1,
       totalPages: this.calcTotalPages(this.props.chartData),
-      searchString: "",
+      searchString: '',
     };
   }
 
@@ -55,7 +55,7 @@ class OpenCasesDetail extends React.Component {
 
   generateButtons(list) {
     return list.map((openCase) => {
-      const {numeroMprj, numeroExterno} = openCase;
+      const { numeroMprj, numeroExterno } = openCase;
       const processNumberBtn = (
         <button
           type="button"
@@ -67,9 +67,8 @@ class OpenCasesDetail extends React.Component {
           {numeroMprj}
         </button>
       );
-      return {...openCase, numeroMprj: processNumberBtn}
-
-    })
+      return { ...openCase, numeroMprj: processNumberBtn };
+    });
   }
   /**
    * Generic function that fetches the detailed data from each of the 3 time periods
@@ -92,7 +91,7 @@ class OpenCasesDetail extends React.Component {
       totalPages[`${tab}`] = res ? res.pages : null;
       newState[`${tab}Details`] = this.generateButtons(res.procedures);
       newState[`${tab}Error`] = error;
-      this.setState({ ...newState, currentPage: page, totalPages});
+      this.setState({ ...newState, currentPage: page, totalPages });
     }
   }
 
@@ -177,7 +176,7 @@ class OpenCasesDetail extends React.Component {
   }
 
   handleSearch(searchStr) {
-    this.setState({searchString: searchStr});
+    this.setState({ searchString: searchStr });
     this.getOpenCasesList(this.state.activeTab, 1, searchStr);
   }
 
@@ -196,8 +195,8 @@ class OpenCasesDetail extends React.Component {
     return (
       <>
         <div className="openCases-chartsWrapper">{this.renderCharts(chartData)}</div>
-        <SearchBox onSearch={this.handleSearch.bind(this)}></SearchBox>
-        <div className="openCases-tableWrapper">
+        {!emptyTab && <SearchBox onSearch={this.handleSearch.bind(this)}></SearchBox>}
+        <div className={`openCases-tableWrapper ${emptyTab ? 'empty-table' : ''}`}>
           {tabLoading && <Spinner size="medium" />}
           {!emptyTab && this.state[`${activeTab}Details`] && (
             <CustomTable
@@ -207,12 +206,11 @@ class OpenCasesDetail extends React.Component {
             />
           )}
           {emptyTab && (
-            <img
-              height="100%"
-              width="100%"
-              alt="Nenhuma vista aberta até o momento"
-              src={noOpenCases}
-            />
+            // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
+            <>
+              <p className="no-openCases"> Nenhuma vista aberta até o momento</p>
+              <CustomTable data={Array(20).fill('')} columns={TABLE_COLUMNS} showHeader />
+            </>
           )}
 
           {!emptyTab && (

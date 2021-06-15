@@ -22,3 +22,17 @@
   color: var(--primary);
   text-decoration: underline;
 }
+
+.empty-table {
+  overflow: hidden;
+  position: relative;
+}
+
+.no-openCases {
+  position: absolute;
+  width: 240px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}

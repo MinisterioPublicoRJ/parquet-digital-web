@@ -9,8 +9,35 @@ export const AppProvider = ({ store, children }) => (
 export const useAppContext = () => useContext(AppContext);
 
 export function AppStoreInitializer() {
-  // const [hasFatalError, setHasFatalError] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  return {};
+  const loginWithToken = (jwtToken, storedUser) => {
+    if (jwtToken) {
+      loginWithJtwToken(jwtToken);
+    }
+    else if (storedUser) { //check if user is valid
+      loginWithStoredUser(storedUser)
+    }
+  }
+
+  const loginWithJtwToken = () => {};
+
+  const loginWithStoredUser = () => {};
+
+  // const autoLogin = (jwt, storedUser) => {
+  //   if (jwt) {
+  //     tokenLogin(jwt);
+  //   } else if (storedUser && isStoredUserValid(storedUser)) {
+  //     const { userObj } = JSON.parse(storedUser);
+  //     setUser(userObj);
+  //   } else {
+  //     if (storedUser) {
+  //       setUserExpired(true);
+  //       window.localStorage.removeItem('sca_token');
+  //     }
+  //     setUserError(true);
+  //   }
+  // };
+
+  return { tokenLogin, isLoading };
 }

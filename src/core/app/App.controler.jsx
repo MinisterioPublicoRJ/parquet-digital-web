@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import { AppProvider, AppStoreInitializer } from './App.context';
 
 function AppControler({ AppView }) {
-  const store = AppStoreInitializer();
-  // const { hasFatalError, setHasFatalError } = store;
+  const appStore = AppStoreInitializer();
+  // const { hasFatalError, setHasFatalError } = appStore;
 
   // will run on mount and every time it goes from an error state back to normal
   // this behaviour forces the page to reload when the error page is clicked
@@ -18,15 +18,16 @@ function AppControler({ AppView }) {
   //   }
   // }, [hasFatalError]);
 
-  function loadComponent() {
-    console.log('i was called!');
-    // loadAlertCount();
+  function onMount() {
+    const token = window.localStorage.getItem('access_token');
+    const scaToken = window.localStorage.getItem('sca_token');
+    appStore.loginWithToken(token, scaToken);
   }
 
   // function loadAlertCount() {}
 
   // return (
-  //   <AppProvider store={store}>
+  //   <AppProvider store={appStore}>
   //     <ErrorBoundary
   //       setError={setHasFatalError}
   //       hasCrashed={hasFatalError}
@@ -36,6 +37,10 @@ function AppControler({ AppView }) {
   //     </ErrorBoundary>
   //   </AppProvider>
   // );
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(onMount, []);
+
   return (
     <AppProvider store={store}>
       <AppView />

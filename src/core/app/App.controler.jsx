@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-// import ErrorBoundary from '../../components/layoutPieces/ErrorBoundary/ErrorBoundary';
-// import ErrorScreen from '../../../../../components/refactor/ErrorScreen/ErrorScreen.view';
-// import { useAuth } from '../../../../../app/authContext';
+import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 import { AppProvider, AppStoreInitializer } from './App.context';
 
-function AppControler({ AppView }) {
+function AppControler({ appView: AppView, appErrorView: AppErrorView }) {
   const appStore = AppStoreInitializer();
-  // const { hasFatalError, setHasFatalError } = appStore;
+  const { appHasCrashed, setAppHasCrashed } = appStore;
 
   // will run on mount and every time it goes from an error state back to normal
   // this behaviour forces the page to reload when the error page is clicked
@@ -24,26 +22,18 @@ function AppControler({ AppView }) {
     appStore.loginWithToken(token, scaToken);
   }
 
-  // function loadAlertCount() {}
-
-  // return (
-  //   <AppProvider store={appStore}>
-  //     <ErrorBoundary
-  //       setError={setHasFatalError}
-  //       hasCrashed={hasFatalError}
-  //       errorScreen={<ErrorScreen gridArea="alerts" />}
-  //     >
-  //       <AppView />
-  //     </ErrorBoundary>
-  //   </AppProvider>
-  // );
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
 
   return (
-    <AppProvider store={store}>
-      <AppView />
+    <AppProvider store={appStore}>
+      <ErrorBoundary
+        errorScreen={<AppErrorView />}
+        hasError={appHasCrashed}
+        setError={() => setAppHasCrashed(true)}
+      >
+        <AppView />
+      </ErrorBoundary>
     </AppProvider>
   );
 }

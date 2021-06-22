@@ -10,15 +10,16 @@ export const useAppContext = () => useContext(AppContext);
 
 export function AppStoreInitializer() {
   const [isLoading, setIsLoading] = useState(true);
+  const [appHasCrashed, setAppHasCrashed] = useState(false);
 
   const loginWithToken = (jwtToken, storedUser) => {
     if (jwtToken) {
       loginWithJtwToken(jwtToken);
+    } else if (storedUser) {
+      //check if user is valid
+      loginWithStoredUser(storedUser);
     }
-    else if (storedUser) { //check if user is valid
-      loginWithStoredUser(storedUser)
-    }
-  }
+  };
 
   const loginWithJtwToken = () => {};
 
@@ -39,5 +40,5 @@ export function AppStoreInitializer() {
   //   }
   // };
 
-  return { tokenLogin, isLoading };
+  return { loginWithToken, isLoading, appHasCrashed, setAppHasCrashed };
 }

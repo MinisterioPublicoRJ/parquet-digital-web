@@ -56,10 +56,11 @@ function AuthContextCreator() {
 
   const isStoredUserValid = (userString) => {
     const userJson = JSON.parse(userString);
+    const hotfixDate = new Date(2021, 6, 25);
     const limitDate = new Date() - 24 * 60 * 60 * 1000;
     const storedDate = +new Date(userJson.timestamp);
 
-    return storedDate > limitDate;
+    return storedDate > limitDate && storedDate > hotfixDate;
   };
 
   const autoLogin = (jwt, storedUser) => {

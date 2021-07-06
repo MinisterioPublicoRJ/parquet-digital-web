@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppControler from './core/app/App.controler';
-import AppView from './web/views/app/App.view';
-import AppErrorView from './web/views/app/AppError.view';
+import App from './web/views/app';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <AppControler appView={AppView} appErrorView={AppErrorView} />,
+  <App />,
   document.getElementById('root'),
 );
 

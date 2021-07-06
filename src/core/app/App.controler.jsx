@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import ErrorBoundary from '../errorBoundary/ErrorBoundary';
+// import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 import { AppProvider, AppStoreInitializer } from './App.context';
 
-function AppControler({ appView: AppView, appErrorView: AppErrorView }) {
+function AppControler({ children }) {
   const appStore = AppStoreInitializer();
   const { appHasCrashed, setAppHasCrashed } = appStore;
 
@@ -27,13 +27,7 @@ function AppControler({ appView: AppView, appErrorView: AppErrorView }) {
 
   return (
     <AppProvider store={appStore}>
-      <ErrorBoundary
-        errorScreen={<AppErrorView />}
-        hasError={appHasCrashed}
-        setError={() => setAppHasCrashed(true)}
-      >
-        <AppView />
-      </ErrorBoundary>
+      { children }
     </AppProvider>
   );
 }

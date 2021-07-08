@@ -12,7 +12,6 @@ function App() {
     <AppControler>
       <ErrorBoundary
         errorScreen={<AppErrorView />}
-        contextHook={useAppContext}
       >
         <AppView />
       </ErrorBoundary>

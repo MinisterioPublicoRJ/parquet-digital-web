@@ -9,7 +9,8 @@ export const AppProvider = ({ store, children }) => (
 export const useAppContext = () => useContext(AppContext);
 
 export function AppStoreInitializer() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(true);
+  const [autoLoginFailed, setAutoLoginFailed] = useState(false);
   const [appHasCrashed, setAppHasCrashed] = useState(false);
 
   const loginWithToken = (jwtToken, storedUser) => {
@@ -18,6 +19,9 @@ export function AppStoreInitializer() {
     } else if (storedUser) {
       //check if user is valid
       loginWithStoredUser(storedUser);
+    } else {
+      // no token was available
+      setAutoLoginFailed(true);
     }
   };
 
@@ -25,20 +29,14 @@ export function AppStoreInitializer() {
 
   const loginWithStoredUser = () => {};
 
-  // const autoLogin = (jwt, storedUser) => {
-  //   if (jwt) {
-  //     tokenLogin(jwt);
-  //   } else if (storedUser && isStoredUserValid(storedUser)) {
-  //     const { userObj } = JSON.parse(storedUser);
-  //     setUser(userObj);
-  //   } else {
-  //     if (storedUser) {
-  //       setUserExpired(true);
-  //       window.localStorage.removeItem('sca_token');
-  //     }
-  //     setUserError(true);
-  //   }
-  // };
+  const loginWithSCACredentials = () => {};
 
-  return { loginWithToken, isLoading, appHasCrashed, setAppHasCrashed };
+  return {
+    autoLoginFailed,
+    appHasCrashed,
+    setAppHasCrashed,
+
+    loginWithToken,
+    loginWithSCACredentials,
+  };
 }

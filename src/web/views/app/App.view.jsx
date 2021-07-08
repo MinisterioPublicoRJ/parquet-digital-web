@@ -1,9 +1,14 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import './App.styles.css';
+
+import { appOuter } from './App.module.css';
+import Router from '../../router/Router';
 
 export function AppView() {
-  return <div className="App-outer">HELLO I AM APP</div>;
+  return (
+    <div className={appOuter}>
+      <Router />
+    </div>
+  );
 }
 
 export default AppView;

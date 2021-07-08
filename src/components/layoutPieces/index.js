@@ -5,6 +5,6 @@ export { default as Spinner } from './Spinner';
 export { default as CustomTable } from './CustomTable';
 export { default as Pagination } from './Pagination';
 export { default as DialogBox } from './DialogBox';
-export { default as ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
+// export { default as ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
 export { default as InvestigatedProfile } from './InvestigatedProfile';
 export { default as ProcessDetail } from './ProcessDetail';

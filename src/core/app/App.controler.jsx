@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 import { AppProvider, AppStoreInitializer } from './App.context';
 
-function AppControler({ children }) {
+function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: ErrorScreen }) {
   const appStore = AppStoreInitializer();
   const { appHasCrashed, setAppHasCrashed } = appStore;
 
@@ -27,7 +27,9 @@ function AppControler({ children }) {
 
   return (
     <AppProvider store={appStore}>
-      { children }
+      <ErrorBoundary hasError={appHasCrashed} setError={setAppHasCrashed} errorScreen={<ErrorScreen />}>
+        { children }
+      </ErrorBoundary>
     </AppProvider>
   );
 }

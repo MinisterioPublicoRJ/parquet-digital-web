@@ -9,12 +9,8 @@ import { useAppContext } from '../../../core/app/App.context';
 // renomar as variáveis em ErrorBoundary
 function App() {
   return (
-    <AppControler>
-      <ErrorBoundary
-        errorScreen={<AppErrorView />}
-      >
-        <AppView />
-      </ErrorBoundary>
+    <AppControler errorBoundary={ErrorBoundary} errorScreen={AppErrorView}>
+      <AppView />
     </AppControler>
   )
 }

@@ -10,7 +10,7 @@ export default class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
     const { setError } = this.props;
     window.newrelic.noticeError(error);
-    setError();
+    setError(true);
   }
 
   render() {

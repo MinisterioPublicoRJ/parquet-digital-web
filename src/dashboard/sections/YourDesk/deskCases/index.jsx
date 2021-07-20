@@ -35,7 +35,22 @@ function DeskCasesChart({ active, buttonPressed, category, color, data, name }) 
   useEffect(() => {
     if (buttonChartData === fillerData) {
       setButtonChartData(Object.values(data));
-    }
+    } else {
+      let y = 0;
+      let index = 0;
+
+      while (y === 0 && index < 2) {
+        y = buttonChartData[index].y;
+        index += 1;
+      }
+      if (y === 0 && buttonChartData.length === 3)
+        setButtonChartData((oldValue) =>
+          oldValue.concat({
+            y: 1,
+            color: '#E8E8E8',
+          }),
+        );
+    } 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 

@@ -15,7 +15,7 @@ E depois rodar npm install na pasta com o código
 
 Note que é importante também ter um arquivo .env com o endereço de onde os dados serão requeridos (API) no formato 
 
-### REACT_APP_BASE_URL=exemplo.com
+REACT_APP_BASE_URL=exemplo.com
 
 Por fim rode o comando npm start para acessar localmente
 

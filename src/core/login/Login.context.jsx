@@ -13,6 +13,12 @@ export function LoginStoreInitializer() {
   const [secret, setSecret] = useState('');
   const [isLoading, setLoadingState] = useState(false);
 
+  useEffect(() => {
+    if (scaUserError) {
+      setLoadingState(false);
+    }
+  }, [scaUserError]);
+
   return {
   };
 }

@@ -10,8 +10,8 @@
 .loginInner {
   align-items: center;
   border-radius: 15px;
-  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
-  border: 1px solid #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px var(--lightGray);
+  border: 1px solid var(--lightGray);
   display: flex;
   height: 50%;
   width: 50%;
@@ -34,10 +34,10 @@
 }
 
 .loginInput {
-  border: 1px solid #CFCFCF;
+  border: 1px solid var(--lightGray);
   border-radius: 7px;
   box-sizing: border-box;
-  color: #CFCFCF;
+  color: #505050;
   font-family: var(--defaultFont);
   height: 40px;
   padding: 0 18px 0 18px;
@@ -47,13 +47,14 @@
 /* Removes ugly dark border on Chrome */
 .loginInput:focus {
   outline: none;
+  color: var(--darkGray);
 }
 
 .loginSubmitBtn {
-  background-color: #CFCFCF;
+  background-color: var(--lightGray);
   border: none;
   border-radius: 7px;
-  color: #505050;
+  color: var(--darkGray);
   font-family: var(--defaultFont);
   height: 40px;
   text-transform: uppercase;
@@ -61,60 +62,26 @@
   /* cursor: pointer; */
 }
 
-/* .btn-login:hover {
-  background-color: #bddff0;
-} */
-
-/* label {
-  align-items: center;
-  color: #8a8a8a;
-  display: flex;
-  font-family: var(--defaultFont);
-  font-size: 12px;
-  padding-left: 0;
-} */
+.loginSubmitBtn:hover {
+  background-color: var(--lightBlue);
+}
 
 /* Chrome, Firefox, Opera, Safari 10.1+ */
 ::placeholder {
-  /* color: #cecece; */
-  /* opacity: 1; Firefox */
+  color: var(--lightGray);
+  opacity: 1;
 }
-/* Internet Explorer 10-11 */
-:-ms-input-placeholder {
-  /* color: #cecece; */
-}
-/* Microsoft Edge */
-::-ms-input-placeholder {
-  /* color: #cecece; */
-}
-/* .greetings{
-  color: #8a8a8a;
-  font-family: var(--defaultFont);
-  font-size: 12px;
-} */
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
-
+  .loginImageBanner {
+    display: none;
+  }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-  /* .wrapper-login {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    min-width: 460px;
+  .loginImageBanner {
+    display: none;
   }
-  .Login-form{
-    margin-top: 20px;
-  }
-  .Login-input{
-    margin-top: 20px;
-    width: 100%;
-  }
-  .btn-login{
-    margin-top: 20px;
-    width: 100%;
-  } */
 }

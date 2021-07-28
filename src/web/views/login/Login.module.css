@@ -38,7 +38,7 @@
   border-radius: 7px;
   box-sizing: border-box;
   color: #505050;
-  font-family: var(--defaultFont);
+  /* font-family: var(--defaultFont); */
   height: 40px;
   padding: 0 18px 0 18px;
   text-align: center;
@@ -55,15 +55,13 @@
   border: none;
   border-radius: 7px;
   color: var(--darkGray);
-  font-family: var(--defaultFont);
   height: 40px;
   text-transform: uppercase;
   width: 70%;
-  /* cursor: pointer; */
 }
 
 .loginSubmitBtn:hover {
-  background-color: var(--lightBlue);
+  background-color: var(--colorSolidBlue);
 }
 
 /* Chrome, Firefox, Opera, Safari 10.1+ */

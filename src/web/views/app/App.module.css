@@ -1,24 +1,15 @@
-.appOuter {
-  height: 100vh;
-  width: 100vw;
-}
-
-body {
-  margin: 0;
-}
-
 :root {
   /* FONTS */
   --defaultFont: Roboto;
 
-  /* COLORS */
+/* COLORS */
   /* From our design system's page on Notion */
 
   /* Paleta Primária */
   --colorMprj: #374354;
   --colorThemeBlue: #BDDFF0;
-  /* --lightBlue: #BDDFF0; */
   --colorSolidBlue: #28A7E0;
+  --lightGray: #CFCFCF;
 
   /* Alertas */
   --colorFailure: #F86C72;
@@ -34,6 +25,15 @@ body {
   --colorParquetProfile: #FF0000;
 
   /* Login */
-  --lightGray: #CFCFCF;
   --darkGray: #505050;
+}
+
+body {
+  font-family: var(--defaultFont);
+  margin: 0;
+}
+
+.appOuter {
+  height: 100vh;
+  width: 100vw;
 }

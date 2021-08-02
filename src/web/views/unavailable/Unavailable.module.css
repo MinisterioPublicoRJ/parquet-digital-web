@@ -15,7 +15,7 @@ body {
   overflow: hidden;
 }
 */
-.unavaiableWrapper {
+.unavailableWrapper {
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -83,4 +83,7 @@ section {
 .unavailableIntro {
   text-align: end;
   max-width: 50%;
+}
+.unavailableImg {
+  width: 16vw;
 }

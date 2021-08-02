@@ -1,5 +1,5 @@
 import React from 'react';
-import {unavailableWrapper, unavailableContent, unavailableTitle,  unavaiblePromotronImg, unavailableIntro, unavailableOptions } from './Unavailable.module.css';
+import {unavailableWrapper, unavailableContent, unavailableTitle,  unavaiblePromotronImg, unavailableIntro, unavailableOptions, unavailableImg } from './Unavailable.module.css';
 import unavaibleBanner from '../../../assets/imgs/unavailable-banner.png';
 import promotronReparador from '../../../assets/imgs/promotron-repador@4x.png';
 import diagnosticoImg from '../../../assets/imgs/Image-4.png';
@@ -10,6 +10,7 @@ import painelSaneamentoBasicoImg from '../../../assets/imgs/Image-2.png';
 const Unavailable = () => {
   return (
     <div className={unavailableWrapper}>
+      <div className={unavailableImg}></div>
       <div className={unavailableContent}>
         <section className={unavailableTitle}>
           <div>

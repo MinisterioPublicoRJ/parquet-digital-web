@@ -68,6 +68,7 @@ body {
   flex: 1;
   flex-direction: column;
   margin-top: 10px;
+  margin-right: 32px;
 }
 .unavailableOptions img {
   margin: 5px;
@@ -84,6 +85,11 @@ section {
   text-align: end;
   max-width: 50%;
 }
-.unavailableImg {
+.unavailableBannerWrapper {
   width: 16vw;
+}
+.unavailableBannerImg {
+  
+  height:100%;
+  width:100%;
 }

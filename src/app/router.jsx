@@ -5,6 +5,8 @@ import Login from '../login';
 import Dashboard from '../dashboard';
 import { Welcome, Work, Home, Performance } from '../dashboard/pages/welcomePages';
 import Unavailable from '../unavailable/index';
+import Welcome from '../web/views/welcomeScreen/WelcomeScreen';
+
 
 function Router() {
   const { user, isServerDown } = useAuth();
@@ -43,6 +45,7 @@ function Router() {
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute path="/perfomanceAnalysis" component={Performance} />
         <Route path="/unavailable" component={Unavailable} />
+        <Route path="/welcome" component={Unavailable} />
       </Switch>
     </HashRouter>
   );

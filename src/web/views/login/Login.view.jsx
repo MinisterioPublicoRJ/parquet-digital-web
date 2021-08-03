@@ -4,7 +4,7 @@ import { useAppContext } from '../../../core/app/App.context';
 import LoginBanner from '../../assets/images/loginPageBanner.png';
 import { LoginPromotron } from '../../../assets';
 
-const Login = () => {
+const Login = ({ setUsername, setSecret, isLoading }) => {
   // const { scaLogin, scaUserError, userExpired } = useAppContext();
   const [username, setUsername] = useState('');
   const [secret, setSecret] = useState('');
@@ -15,12 +15,6 @@ const Login = () => {
     setLoadingState(true);
     // scaLogin(username, secret);
   }
-
-  // useEffect(() => {
-  //   if (scaUserError) {
-  //     setLoadingState(false);
-  //   }
-  // }, [scaUserError]);
 
   return (
     <div className={loginWrapper}>

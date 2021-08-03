@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import Api from '../api/Api';
 
 const AppContext = createContext();
 
@@ -32,6 +33,7 @@ export function AppStoreInitializer() {
   const loginWithSCACredentials = () => {};
 
   return {
+    Api,
     autoLoginFailed,
     appHasCrashed,
     setAppHasCrashed,

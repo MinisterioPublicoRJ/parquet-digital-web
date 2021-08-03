@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const LoginContext = createContext();
 
@@ -13,11 +13,11 @@ export function LoginStoreInitializer() {
   const [secret, setSecret] = useState('');
   const [isLoading, setLoadingState] = useState(false);
 
-  useEffect(() => {
-    if (scaUserError) {
-      setLoadingState(false);
-    }
-  }, [scaUserError]);
+  // useEffect(() => {
+  //   if (scaUserError) {
+  //     setLoadingState(false);
+  //   }
+  // }, [scaUserError]);
 
   return {
   };

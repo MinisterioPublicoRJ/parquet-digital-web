@@ -1,31 +1,31 @@
-.wrapper-welcome {
+.wrapperWelcome {
     text-align: center;
-  }
+}
   
-  .wrapper-welcome h2 {
+.wrapperWelcome h2 {
     font-family: var(--defaultWelcomeBold);
     font-size: 32px;
     opacity: 1;
     color: var(--darkWelcome);
     font-weight: 900;
-  }
+}
   
-  .wrapper-welcome p {
+.wrapperWelcome p {
     font-family: var(--defaultWelcome);
     opacity: 1;
     padding: 19px;
-  }
+}
   
-  .welcome-texts {
+.welcomeTexts {
     width: 797px;
-  }
+}
   
-  .all-btns {
+.all-btns {
     display: flex;
     justify-content: space-between;
-  }
+}
   
-  .all-btns button {
+.all-btns button {
     width: 118px;
     cursor: pointer;
     height: 40px;
@@ -33,9 +33,9 @@
     color: var(--darkWelcome);
     font-size: 21px;
     border: none;
-  }
+}
   
-  .btns-welcome button {
+.btns-welcome button {
     width: 118px;
     cursor: pointer;
     height: 40px;
@@ -43,61 +43,61 @@
     color: var(--darkWelcome);
     font-size: 21px;
     border: none;
-  }
+}
   
-  .btn-next {
+.btn-next {
     background: #d6d6d6 0% 0% no-repeat padding-box;
     border-radius: 0px 20px 20px 0px;
     opacity: 1;
     border-color: #d6d6d6;
-  }
+}
   
-  .btn-previous {
+.btn-previous {
     background: #d6d6d6 0% 0% no-repeat padding-box;
     border-radius: 20px 0px 0px 20px;
     opacity: 1;
     border-color: #d6d6d6;
-  }
+}
   
-  .btn-jumper {
+.btn-jumper {
     background: #efefef 0% 0% no-repeat padding-box;
     border-radius: 20px;
     opacity: 1;
     border-color: #d6d6d6;
-  }
+}
   
-  .btn-start {
+.btn-start {
     background: #5ff09d 0% 0% no-repeat padding-box;
     border-radius: 20px;
     opacity: 1;
     border-color: #d6d6d6;
-  }
+}
   
-  .div-main-previous {
+.div-main-previous {
     display: flex;
     justify-content: flex-end;
-  }
+}
   
-  .btns-welcome {
+.btns-welcome {
     display: flex;
     justify-content: flex-end;
-  }
+}
   
-  @media (max-width: 480px) {
-    .wrapper-welcome {
+@media (max-width: 480px) {
+    .wrapperWelcome {
       display: flex;
       flex-direction: column;
     }
   
-    .wrapper-welcome img {
+    .wrapperWelcome img {
       width: 100%;
     }
   
-    .welcome-texts {
+    .welcomeTexts {
       width: 100%;
     }
   
-    .wrapper-welcome h2 {
+    .wrapperWelcome h2 {
       font-size: 22px;
     }
 }

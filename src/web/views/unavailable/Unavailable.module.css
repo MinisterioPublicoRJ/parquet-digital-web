@@ -1,11 +1,9 @@
-
 html {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 body {
   padding: 0;
   width: 100vw;
@@ -39,6 +37,8 @@ body {
   font: normal normal normal 31px/40px Roboto;
   letter-spacing: 0px;
   color: #374354;
+  width: 320px;
+  margin-left: auto;
 }
 .unavailableContent h3 {
   font: normal normal normal 24px/32px Roboto;
@@ -52,10 +52,9 @@ body {
   color: #4a4a4a;
 }
 .unavailableContent small {
-  color: var(--lightGray);
+  color: var(--mediumGray);
   margin-bottom: 24px;
 }
-
 .unavaiblePromotronImg {
   position: relative;
 }
@@ -91,6 +90,9 @@ section {
   flex-direction: column;
   justify-content: flex-end;
 }
+.unavailableIntro p {
+  color: var(--darkGray);
+}
 .unavailableBannerWrapper {
   width: 16vw;
 }
@@ -111,16 +113,15 @@ section {
 .unavailableOptionHeader button{
   background-color: transparent;
   border-radius: 8px;
-  border: 1px solid var(--darkGray);
+  border: 1px solid var(--mediumGray);
   padding: 5px 16px;
-  color: var(--darkGray);
+  color: var(--mediumGray);
 }
 .unavailableOptionHeader button:hover{
   border:1px solid var(--colorSuccess);
   background-color: var(--colorSuccess);
   color:white;
 }
-
 .unavailableOptions div small {
-  color: var(--lightGray);
+  color: var(--mediumGray);
 }

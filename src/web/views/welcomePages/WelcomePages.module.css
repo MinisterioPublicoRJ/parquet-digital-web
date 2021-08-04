@@ -6,7 +6,7 @@
     align-items: center;
     margin-top: 80px;
 }
-      
+     
 .welcomeTexts {
     width: 814px;
     font: normal 21px Avenir;
@@ -35,12 +35,12 @@
     border: none;
 }
   
-.btnsWelcome button {
+.wrapperWelcome button {
     width: 118px;
     cursor: pointer;
     height: 40px;
     margin: 10px;
-    color: var(--darkWelcome);
+    color: #4A4A4A;
     font-size: 21px;
     border: none;
 }

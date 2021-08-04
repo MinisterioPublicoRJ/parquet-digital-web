@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Run from '../../../../assets/gifs/run.gif';
+import Run from '../../../assets/gifs/run.gif';
 import {
     wrapperWelcome,
     bannerWelcome,

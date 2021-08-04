@@ -20,12 +20,12 @@
     width: 797px;
 }
   
-.all-btns {
+.allBtns {
     display: flex;
     justify-content: space-between;
 }
   
-.all-btns button {
+.allBtns button {
     width: 118px;
     cursor: pointer;
     height: 40px;
@@ -35,7 +35,7 @@
     border: none;
 }
   
-.btns-welcome button {
+.btnsWelcome button {
     width: 118px;
     cursor: pointer;
     height: 40px;
@@ -45,40 +45,40 @@
     border: none;
 }
   
-.btn-next {
+.btnNext {
     background: #d6d6d6 0% 0% no-repeat padding-box;
     border-radius: 0px 20px 20px 0px;
     opacity: 1;
     border-color: #d6d6d6;
 }
   
-.btn-previous {
+.btnPrevious {
     background: #d6d6d6 0% 0% no-repeat padding-box;
     border-radius: 20px 0px 0px 20px;
     opacity: 1;
     border-color: #d6d6d6;
 }
   
-.btn-jumper {
+.btnJumper {
     background: #efefef 0% 0% no-repeat padding-box;
     border-radius: 20px;
     opacity: 1;
     border-color: #d6d6d6;
 }
   
-.btn-start {
+.btnStart {
     background: #5ff09d 0% 0% no-repeat padding-box;
     border-radius: 20px;
     opacity: 1;
     border-color: #d6d6d6;
 }
   
-.div-main-previous {
+.divMainPrevious {
     display: flex;
     justify-content: flex-end;
 }
   
-.btns-welcome {
+.btnsWelcome {
     display: flex;
     justify-content: flex-end;
 }

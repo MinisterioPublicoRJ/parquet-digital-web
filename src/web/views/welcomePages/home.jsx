@@ -5,13 +5,12 @@ import {
     wrapperWelcome,
     bannerWelcome,
     welcomeTexts,
-    allAtns,
+    allBtns,
     divMainPrevious,
     btnPrevious,
     btns,
     btnNext,
     btnJumper
-    
 } from './WelcomePages.module.css';
   
 const Home = () => {
@@ -27,7 +26,7 @@ const Home = () => {
           ainda mais célere e capaz de atingir o maior impacto possível.
         </p>
       </div>
-      <div className={allAtns}>
+      <div className={allBtns}>
         <div className={divMainPrevious}>
           <Link to="./work">
             <button type="button" className={btnPrevious}>

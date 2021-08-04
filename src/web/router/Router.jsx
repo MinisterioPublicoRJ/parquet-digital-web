@@ -3,8 +3,8 @@ import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 //import Unavailable from '../../unavailable';
 
-import { LoadingScreen, Login, Unavailable, WelcomePages } from '../views';
-import { Welcome, Home } from '../views/welcomePages';
+import { LoadingScreen, Login, Unavailable } from '../views';
+import { Welcome, Home, Work, PerfomanceAnalysis } from '../views/welcomePages';
 
 
 function Router() {
@@ -16,6 +16,8 @@ function Router() {
         <Route path="/indisponivel" component={Unavailable} />
         <Route path="/welcome" component={Welcome} />
         <Route path="/home" component={Home} />
+        <Route path="/work" component={Work} />
+        <Route path="/perfomanceAnalysis" component={PerfomanceAnalysis} />
       </Switch>
     </HashRouter>
   );

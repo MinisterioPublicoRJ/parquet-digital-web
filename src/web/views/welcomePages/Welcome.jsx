@@ -8,7 +8,6 @@ import {
   btnsWelcome,
   btnNext,
   btnJumper
-  
 } from './WelcomePages.module.css';
 
 const Welcome = () => {

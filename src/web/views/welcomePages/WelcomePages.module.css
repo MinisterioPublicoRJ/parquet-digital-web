@@ -1,23 +1,23 @@
 .wrapperWelcome {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
 }
-  
-.wrapperWelcome h2 {
-    font-family: var(--defaultWelcomeBold);
+      
+.welcomeTexts {
+    width: 814px;
+    font: normal 21px Avenir;
+    letter-spacing: 0px;
+    color: #4A4A4A;
+    opacity: 1;
+}
+.welcomeTexts h2 {
     font-size: 32px;
     opacity: 1;
-    color: var(--darkWelcome);
     font-weight: 900;
-}
-  
-.wrapperWelcome p {
-    font-family: var(--defaultWelcome);
-    opacity: 1;
-    padding: 19px;
-}
-  
-.welcomeTexts {
-    width: 797px;
 }
   
 .allBtns {

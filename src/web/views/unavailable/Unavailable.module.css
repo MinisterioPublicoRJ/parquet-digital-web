@@ -25,7 +25,7 @@ body {
 .unavailableContent {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   width: 74vw;
   height: 100%;
   margin: 0px 5vw;
@@ -44,11 +44,16 @@ body {
   font: normal normal normal 24px/32px Roboto;
   letter-spacing: 0px;
   color: #4a4a4a;
+  margin-bottom: 16px;
 }
 .unavailableContent h4 {
   font: normal normal normal 16px/26px Roboto;
   letter-spacing: -0.44px;
   color: #4a4a4a;
+}
+.unavailableContent small {
+  color: var(--lightGray);
+  margin-bottom: 24px;
 }
 
 .unavaiblePromotronImg {
@@ -65,15 +70,11 @@ body {
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 10px;
 }
 .unavailableOptions div + div {
-  margin-top: 10px;
   margin-left: 32px;
 }
-.unavailableOptions img {
-  margin: 5px;
-}
-
 section {
   display: flex;
   flex-direction: column;
@@ -81,10 +82,14 @@ section {
 .unavailableTitle {
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 24px;
 }
 .unavailableIntro {
   text-align: end;
   max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .unavailableBannerWrapper {
   width: 16vw;
@@ -97,10 +102,25 @@ section {
 .unavailableOptions .unavailableOptionHeader{
   display: flex;
   flex-direction: row;
-}
-.unavailableOptionHeader h4{
-  width: 70%;
+  align-items: center;
 }
 .unavailableOptionHeader a {
-  width: 30%;
+  flex-basis: content;
+  margin-left: 6%;
+}
+.unavailableOptionHeader button{
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid var(--darkGray);
+  padding: 5px 16px;
+  color: var(--darkGray);
+}
+.unavailableOptionHeader button:hover{
+  border:1px solid var(--colorSuccess);
+  background-color: var(--colorSuccess);
+  color:white;
+}
+
+.unavailableOptions div small {
+  color: var(--lightGray);
 }

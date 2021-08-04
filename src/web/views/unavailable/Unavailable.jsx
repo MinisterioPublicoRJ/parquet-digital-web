@@ -3,12 +3,13 @@ import {
   unavailableWrapper,
   unavailableContent,
   unavailableTitle,
-  unavaiblePromotronImg,
-  unavailableIntro,
+  unavailableTitleBanner,
+  unavailableTitleText,
   unavailableOptions,
   unavailableBannerWrapper,
   unavailableBannerImg,
   unavailableOptionHeader,
+  unavailableSugestions,
 } from './Unavailable.module.css';
 import promotronReparador from '../../../assets/imgs/promotron-repador@4x.png';
 import diagnosticoImg from '../../../assets/imgs/Image-4.png';
@@ -30,16 +31,12 @@ const Unavailable = () => {
       </div>
       <div className={unavailableContent}>
         <section className={unavailableTitle}>
-          <div>
-            <img
-              height="100%"
-              width="100%"
-              className={unavaiblePromotronImg}
-              src={promotronReparador}
-              alt="Robô Promotron Reparador."
+          <img
+            className={unavailableTitleBanner}
+            src={promotronReparador}
+            alt="Robô Promotron Reparador."
             />
-          </div>
-          <div className={unavailableIntro}>
+          <div className={unavailableTitleText}>
             <h1>Oops!</h1>
             <h2>Estamos passando por problemas técnicos</h2>
             <p>
@@ -51,7 +48,7 @@ const Unavailable = () => {
             </p>
           </div>
         </section>
-        <section>
+        <section className={unavailableSugestions}>
           <h3>Sugestões de ferramentas:</h3>
           <small>
             Seleção de ferramentas que podem ajudar na sua atuação enquanto o Parquet Digital está

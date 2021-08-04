@@ -1,33 +1,61 @@
-html {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-body {
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
 .unavailableWrapper {
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+  /* forces image to respect parent sizing on FF */
+  /* https://support.mozilla.org/en-US/questions/935671 */
+  overflow: hidden;
 }
-.unavailableBanner {
-  display: flex;
-  margin-right: 3vw;
-  width: 20vw;
+
+.unavailableBannerWrapper {
+  width: 16vw;
 }
+
+.unavailableBannerImg {
+  height:100%;
+  width:100%;
+}
+
 .unavailableContent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 74vw;
   height: 100%;
-  margin: 0px 5vw;
+  margin: 2.5vw 5vw;
+  width: 74vw;
+  /* justify-content: center; */
+  /* overflow: hidden; */
 }
+
+.unavailableTitle {
+  background-color: pink;
+  display: flex;
+  flex-direction: row;
+  height: 66%;
+  /* justify-content: space-between; */
+  /* margin-bottom: 24px; */
+}
+
+.unavailableTitleBanner {
+  width: 45%;
+  /* position: relative; */
+}
+
+.unavailableTitleText {
+  /* text-align: end; */
+  /* max-width: 50%; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: flex-end; */
+}
+
+.unavailableSugestions {
+  background-color: green;
+  height: 33%;
+  /* flex: 1; */
+}
+
+/* ksxjiuhdwyfeg */
+
 .unavailableContent h1 {
   font: normal normal 900 90px/118px Roboto;
   letter-spacing: 0px;
@@ -55,9 +83,7 @@ body {
   color: var(--mediumGray);
   margin-bottom: 24px;
 }
-.unavaiblePromotronImg {
-  position: relative;
-}
+
 .unavailableOptions {
   display: flex;
   flex-direction: row;
@@ -71,57 +97,38 @@ body {
   justify-content: space-between;
   margin-top: 10px;
 }
-.unavailableOptions div + div {
+/* .unavailableOptions div + div {
   margin-left: 32px;
-}
-section {
+} */
+/* section {
   display: flex;
   flex-direction: column;
-}
-.unavailableTitle {
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-.unavailableIntro {
-  text-align: end;
-  max-width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.unavailableIntro p {
+} */
+
+/* .unavailableTitleText p {
   color: var(--darkGray);
-}
-.unavailableBannerWrapper {
-  width: 16vw;
-}
-.unavailableBannerImg {
-  
-  height:100%;
-  width:100%;
-}
-.unavailableOptions .unavailableOptionHeader{
+} */
+/* .unavailableOptions .unavailableOptionHeader{
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-.unavailableOptionHeader a {
+} */
+/* .unavailableOptionHeader a {
   flex-basis: content;
   margin-left: 6%;
-}
-.unavailableOptionHeader button{
+} */
+/* .unavailableOptionHeader button{
   background-color: transparent;
   border-radius: 8px;
   border: 1px solid var(--mediumGray);
   padding: 5px 16px;
   color: var(--mediumGray);
-}
-.unavailableOptionHeader button:hover{
+} */
+/* .unavailableOptionHeader button:hover{
   border:1px solid var(--colorSuccess);
   background-color: var(--colorSuccess);
   color:white;
-}
-.unavailableOptions div small {
+} */
+/* .unavailableOptions div small {
   color: var(--mediumGray);
-}
+} */

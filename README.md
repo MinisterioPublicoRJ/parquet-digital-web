@@ -11,10 +11,10 @@ Tendo o git basta clonar o repositório atual:
 
 E depois rodar npm install na pasta com o código
 
-### npm install
+### `npm install`
 
-Note que é importante também ter um arquivo .env com o endereço de onde os dados serão requeridos.
+Note que é importante também ter um arquivo .env com o endereço de onde os dados serão requeridos (API) no formato REACT_APP_BASE_URL=exemplo.com
 
 Por fim rode o comando npm start para acessar localmente
 
-### npm start
+### `npm start`

@@ -2,6 +2,11 @@
   /* FONTS */
   --defaultFont: Roboto;
 
+  
+  --defaultFontSize: clamp(12px, 1.5vh, 18px);
+  --titleFontSize: calc(var(--defaultFontSize) * 2);
+  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);
+
 /* COLORS */
   /* From our design system's page on Notion */
 

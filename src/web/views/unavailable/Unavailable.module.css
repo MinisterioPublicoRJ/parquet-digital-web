@@ -1,5 +1,6 @@
 .unavailableWrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   height: 100%;
   width: 100%;
   /* forces image to respect parent sizing on FF */
@@ -8,7 +9,7 @@
 }
 
 .unavailableBannerWrapper {
-  width: 16vw;
+  grid-column: 1 / span 1;
 }
 
 .unavailableBannerImg {
@@ -17,11 +18,10 @@
 }
 
 .unavailableContent {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin: 2.5vw 5vw;
-  width: 74vw;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-column: 2 / 6;
   /* justify-content: center; */
   /* overflow: hidden; */
 }
@@ -30,8 +30,8 @@
   background-color: pink;
   display: flex;
   flex-direction: row;
-  height: 66%;
-  /* justify-content: space-between; */
+  grid-column: 1 / 6;
+  grid-row: 1 / span 5;
   /* margin-bottom: 24px; */
 }
 
@@ -50,37 +50,34 @@
 
 .unavailableSugestions {
   background-color: green;
-  height: 33%;
+  grid-column: 1 / 6;
+  grid-row: 6 / span 4;
   /* flex: 1; */
 }
 
 /* ksxjiuhdwyfeg */
 
 .unavailableContent h1 {
-  font: normal normal 900 calc(var(--titleFontSize)* 2.5) Roboto;
-  letter-spacing: 0px;
-  color: #374354;
+  font: normal normal 900 calc(var(--titleFontSize)* 2.5) var(--defaultFont);
+  color: var(--colorMprj);
 }
 .unavailableContent h2 {
-  font: normal normal normal calc(var(--titleFontSize)) Roboto;
-  letter-spacing: 0px;
-  color: #374354;
+  font: normal normal normal calc(var(--titleFontSize)) var(--defaultFont);
+  color: var(--colorMprj);
   width: 320px;
   margin-left: auto;
 }
 .unavailableContent h3 {
-  font: normal normal normal var(--sectionTitleFontSize) Roboto;
-  letter-spacing: 0px;
-  color: #4a4a4a;
+  font: normal normal normal var(--sectionTitleFontSize) var(--defaultFont);
+  color: var(--darkWelcome);
   margin-bottom: 16px;
 }
 .unavailableContent h4 {
-  font: normal normal normal var(--defaultFontSize) Roboto;
-  letter-spacing: -0.44px;
-  color: #4a4a4a;
+  font: normal normal normal var(--defaultFontSize) var(--defaultFont);
+  color: var(--darkWelcome);
 }
 .unavailableContent p {
-  font: normal normal normal var(--defaultFontSize) Roboto;  
+  font: normal normal normal var(--defaultFontSize) var(--defaultFont);  
 }
 .unavailableContent small {
   color: var(--mediumGray);

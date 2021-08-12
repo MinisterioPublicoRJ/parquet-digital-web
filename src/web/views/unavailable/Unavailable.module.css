@@ -40,6 +40,12 @@
   /* position: relative; */
 }
 
+.unavailableTitleBanner img {
+  width: auto;
+  max-width: 30vw;
+  height: 100%;
+}
+
 .unavailableTitleText {
   text-align: end;
   max-width: 50%;

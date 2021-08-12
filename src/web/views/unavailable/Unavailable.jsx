@@ -31,11 +31,9 @@ const Unavailable = () => {
       </div>
       <div className={unavailableContent}>
         <section className={unavailableTitle}>
-          <img
-            className={unavailableTitleBanner}
-            src={promotronReparador}
-            alt="Robô Promotron Reparador."
-            />
+          <div className={unavailableTitleBanner}>
+            <img src={promotronReparador} alt="Robô Promotron Reparador." />
+          </div>
           <div className={unavailableTitleText}>
             <h1>Oops!</h1>
             <h2>Estamos passando por problemas técnicos</h2>

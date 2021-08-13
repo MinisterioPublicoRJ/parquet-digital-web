@@ -13,8 +13,8 @@
 }
 
 .unavailableBannerImg {
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
 }
 
 .unavailableContent {
@@ -32,39 +32,45 @@
   flex-direction: row;
   grid-column: 1 / 6;
   grid-row: 1 / span 5;
+  justify-content: space-around;
   /* margin-bottom: 24px; */
 }
 
 .unavailableTitleBanner {
   width: 45%;
-  /* position: relative; */
+  display: flex;
+  align-items: flex-end;
 }
 
 .unavailableTitleBanner img {
   width: auto;
-  max-width: 30vw;
-  height: 100%;
+  height: 90%;
 }
 
 .unavailableTitleText {
+  overflow: hidden;
   text-align: end;
   max-width: 50%;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: flex-end; */
+  display: grid;
+  place-items: end;
+  place-content: end;
+}
+
+.unavailableTitleText * {
+  max-width: 32vw;
+
 }
 
 .unavailableSugestions {
   background-color: green;
   grid-column: 1 / 6;
   grid-row: 6 / span 4;
-  /* flex: 1; */
 }
 
 /* ksxjiuhdwyfeg */
 
 .unavailableContent h1 {
-  font: normal normal 900 calc(var(--titleFontSize)* 2.5) var(--defaultFont);
+  font: normal normal 900 calc(var(--titleFontSize) * 2.5) var(--defaultFont);
   color: var(--colorMprj);
 }
 .unavailableContent h2 {
@@ -83,7 +89,7 @@
   color: var(--darkWelcome);
 }
 .unavailableContent p {
-  font: normal normal normal var(--defaultFontSize) var(--defaultFont);  
+  font: normal normal normal var(--defaultFontSize) var(--defaultFont);
 }
 .unavailableContent small {
   color: var(--mediumGray);

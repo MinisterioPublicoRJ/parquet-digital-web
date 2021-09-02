@@ -6,9 +6,10 @@ import {
     wrapperWelcome,
     bannerWelcome,
     welcomeTexts,
-    allBtns,
+    paBtns,
     btnPrevious,
-    btnStart
+    btnStart, 
+    prevDiv
   } from './WelcomePages.module.css';
 
 const PerformanceAnalysis = () => {
@@ -25,18 +26,20 @@ const PerformanceAnalysis = () => {
           métricas importantes.
         </p>
       </div>
-      <div className={allBtns}>
+      <div className={paBtns}>
+        <div className={prevDiv}>
         <Link to="./home">
           <button type="button" className={btnPrevious}>
             anterior
           </button>
         </Link>
-        <div className="btns">
-          <Link to="./dashboard">
-            <button type="button" className={btnStart}>
-              pular
-            </button>
-          </Link>
+        </div>
+        <div>
+        <Link to="./dashboard">
+          <button type="button" className={btnStart}>
+            iniciar
+          </button>
+        </Link>
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@ const Home = () => {
             </button>
           </Link>
         </div>
-        <div className={btns}>
+        <div>
           <Link to="./perfomanceAnalysis">
             <button type="button" className={btnNext}>
               próximo

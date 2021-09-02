@@ -31,7 +31,7 @@ const Work = () => {
             anterior
           </button>
         </Link>
-        <div className="btns">
+        <div>
           <Link to="./home">
             <button type="button" className={btnNext}>
               próximo

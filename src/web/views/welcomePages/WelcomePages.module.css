@@ -1,14 +1,19 @@
+html{
+    overflow-x: hidden;
+}
+
 .wrapperWelcome {
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
-}
-     
-.welcomeTexts {
+    margin: auto;
+    margin-top: 40px;
     width: 814px;
+}
+
+.welcomeTexts {
     font: normal 21px Avenir;
     letter-spacing: 0px;
     color: #4A4A4A;
@@ -23,16 +28,7 @@
 .allBtns {
     display: flex;
     justify-content: space-between;
-}
-  
-.allBtns button {
-    width: 118px;
-    cursor: pointer;
-    height: 40px;
-    margin: 10px;
-    color: var(--darkWelcome);
-    font-size: 21px;
-    border: none;
+    width: inherit;
 }
   
 .wrapperWelcome button {
@@ -40,7 +36,7 @@
     cursor: pointer;
     height: 40px;
     margin: 10px;
-    color: #4A4A4A;
+    color: #4a4a4a;
     font-size: 21px;
     border: none;
 }
@@ -72,17 +68,25 @@
     opacity: 1;
     border-color: #d6d6d6;
 }
-  
-.divMainPrevious {
+
+.welcomeBtns {
     display: flex;
     justify-content: flex-end;
+    width: inherit;
 }
-  
-.btnsWelcome {
+
+.paBtns{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-auto-flow: row;
+    width: inherit;
+}
+
+.prevDiv{
     display: flex;
-    justify-content: flex-end;
+    justify-content: start;
 }
-  
+    
 @media (max-width: 480px) {
     .wrapperWelcome {
       display: flex;

@@ -5,7 +5,7 @@ import {
   wrapperWelcome,
   bannerWelcome,
   welcomeTexts,
-  btnsWelcome,
+  welcomeBtns,
   btnNext,
   btnJumper
 } from './WelcomePages.module.css';
@@ -24,7 +24,7 @@ const Welcome = () => {
           processos.
         </p>
       </div>
-      <div className={btnsWelcome}>
+      <div className={welcomeBtns}>
         <Link to="./work">
           <button type="button" className={btnNext}>
             próximo

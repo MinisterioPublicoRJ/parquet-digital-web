@@ -1,19 +1,28 @@
-.wrapperWelcome {
-    text-align: center;
+.alignmentWrapper{
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: auto;
-    width: 814px;
+}
+
+.wrapperWelcome {
+    text-align: center;
+    width: 42vw;
+}
+
+.wrapperWelcome img {
+    width: 42vw;
 }
 
 .welcomeTexts {
-    font: normal 21px Avenir;
+    font: normal 18px var(--defaultFont);
     letter-spacing: 0px;
-    color: #4A4A4A;
+    color: var(--darkWelcome);
     opacity: 1;
 }
+
 .welcomeTexts h2 {
     font-size: 32px;
     opacity: 1;
@@ -27,12 +36,12 @@
 }
   
 .wrapperWelcome button {
-    width: 118px;
+    width: 8vw;
     cursor: pointer;
-    height: 40px;
+    height: 5vh;
     margin: 10px;
-    color: #4a4a4a;
-    font-size: 21px;
+    color: var(--darkWelcome);
+    font-size: 18px;
     border: none;
 }
   
@@ -84,8 +93,13 @@
     
 @media (max-width: 480px) {
     .wrapperWelcome {
-      display: flex;
-      flex-direction: column;
+      width: 80vw;
+    }
+
+    .wrapperWelcome button {
+        width: 20vw;
+        height: 4vh;
+        font-size: 14px;
     }
   
     .wrapperWelcome img {
@@ -94,10 +108,30 @@
   
     .welcomeTexts {
       width: 100%;
+      font-size: 16px;
     }
   
     .wrapperWelcome h2 {
       font-size: 22px;
     }
 }
+ 
+@media (min-width:481px) and (max-width: 1025px){
+    .wrapperWelcome {
+        width: 80vw;
+    }
+
+    .welcomeTexts{
+        font-size: 24px;
+    }
+
+    .wrapperWelcome img {
+        width: 80vw;
+    }
   
+    .wrapperWelcome button {
+        width: 16vw;
+        height: 4vh;
+        font-size: 20px;
+    }
+}

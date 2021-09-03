@@ -7,11 +7,13 @@ import {
   welcomeTexts,
   welcomeBtns,
   btnNext,
-  btnJumper
+  btnJumper,
+  alignmentWrapper
 } from './WelcomePages.module.css';
 
 const Welcome = () => {
   return (
+    <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
       <div className={bannerWelcome}>
         <img height="100%" src={Trabalho} alt="trabalho-promoton" />
@@ -36,6 +38,7 @@ const Welcome = () => {
           </button>
         </Link>
       </div>
+    </div>
     </div>
   );
 };

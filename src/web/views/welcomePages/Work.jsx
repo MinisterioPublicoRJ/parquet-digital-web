@@ -8,11 +8,13 @@ import {
     allBtns,
     btnPrevious,
     btnNext,
-    btnJumper
+    btnJumper,
+    alignmentWrapper
   } from './WelcomePages.module.css';
   
 const Work = () => {
   return (
+    <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
       <div className={bannerWelcome}>
         <img height="100%" src={Chat} alt="trabalho-promoton" />
@@ -20,9 +22,9 @@ const Work = () => {
       <div className={welcomeTexts}>
         <h2>Entendimento e Clareza</h2>
         <p>
-          Afim de subsidiar o máximo desempenho da sua Promotoria e facilitar o seu trabalho, o robô
-          fornece uma ajuda estratégica na observação e gestão do seu acervo e resolução dos seus
-          processos.
+        O robô auxilia o melhor entendimento da rotina de trabalho da Promotoria e otimiza
+        a visualização das demandas com base em alertas, indicativos, metas e
+        acompanhamento funcional.
         </p>
       </div>
       <div className={allBtns}>
@@ -44,6 +46,7 @@ const Work = () => {
           </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -9,11 +9,13 @@ import {
     paBtns,
     btnPrevious,
     btnStart, 
-    prevDiv
+    prevDiv,
+    alignmentWrapper
   } from './WelcomePages.module.css';
 
 const PerformanceAnalysis = () => {
   return (
+    <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
       <div className={bannerWelcome}>
         <img height="100%" src={Analise} alt="trabalho-promoton" />
@@ -42,6 +44,7 @@ const PerformanceAnalysis = () => {
         </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 };

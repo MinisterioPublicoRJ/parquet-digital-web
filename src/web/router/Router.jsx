@@ -15,8 +15,8 @@ function Router() {
         <Route exact path="/login" component={Login} />
         <Route path="/indisponivel" component={Unavailable} />
         <Route path="/gestao" component={Gestao} />
-        <Route path="/celeridade" component={Celeridade} />
         <Route path="/entendimento" component={Entendimento} />
+        <Route path="/celeridade" component={Celeridade} />
         <Route path="/atuacao" component={Atuacao} />
       </Switch>
     </HashRouter>

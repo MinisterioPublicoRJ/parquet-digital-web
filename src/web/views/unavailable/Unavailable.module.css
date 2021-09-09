@@ -1,8 +1,8 @@
 .unavailableWrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   /* forces image to respect parent sizing on FF */
   /* https://support.mozilla.org/en-US/questions/935671 */
   overflow: hidden;
@@ -10,6 +10,7 @@
 
 .unavailableBannerWrapper {
   grid-column: 1 / span 1;
+  height: 100vh;
 }
 
 .unavailableBannerImg {
@@ -18,6 +19,7 @@
 }
 
 .unavailableContent {
+  height: 100vh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(9, 1fr);
@@ -65,6 +67,16 @@
   background-color: green;
   grid-column: 1 / 6;
   grid-row: 6 / span 4;
+  padding: 0.5vh 1vw;
+}
+
+.unavailableSugestions small {
+  font-size: var(--smallFont);
+}
+
+
+.unavailableContent .unavailableSugestions > h3 {
+  margin: clamp(2px, 1vh, 16px) 0;
 }
 
 /* ksxjiuhdwyfeg */
@@ -93,13 +105,14 @@
 }
 .unavailableContent small {
   color: var(--mediumGray);
-  margin-bottom: 24px;
+  margin-bottom: var(--smallFont);
 }
 
 .unavailableOptions {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  column-gap: clamp(16px, 4vw, 64px);
 }
 
 .unavailableOptions div {
@@ -110,8 +123,9 @@
   margin-top: 10px;
   overflow: hidden;
 }
+
 .unavailableOptions img {
-  width: 80%;
+  width: 100%;
 }
 /* .unavailableOptions div + div {
   margin-left: 32px;
@@ -121,30 +135,33 @@
   flex-direction: column;
 } */
 
-/* .unavailableTitleText p {
+.unavailableTitleText p {
   color: var(--darkGray);
-} */
-/* .unavailableOptions .unavailableOptionHeader{
+} 
+.unavailableOptions .unavailableOptionHeader{
   display: flex;
   flex-direction: row;
   align-items: center;
-} */
-/* .unavailableOptionHeader a {
+  justify-content: space-between;
+} 
+.unavailableOptionHeader  h4 {
+  margin: 0.5vh;
+}
+.unavailableOptionHeader a {
   flex-basis: content;
-  margin-left: 6%;
-} */
-/* .unavailableOptionHeader button{
+} 
+.unavailableOptionHeader button{
   background-color: transparent;
   border-radius: 8px;
   border: 1px solid var(--mediumGray);
   padding: 5px 16px;
   color: var(--mediumGray);
-} */
-/* .unavailableOptionHeader button:hover{
+} 
+.unavailableOptionHeader button:hover{
   border:1px solid var(--colorSuccess);
   background-color: var(--colorSuccess);
   color:white;
-} */
-/* .unavailableOptions div small {
+} 
+.unavailableOptions div small {
   color: var(--mediumGray);
-} */
+} 

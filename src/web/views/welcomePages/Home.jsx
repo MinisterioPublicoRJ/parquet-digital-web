@@ -8,12 +8,11 @@ import {
     allBtns,
     divMainPrevious,
     btnPrevious,
-    btns,
     btnNext,
     btnJumper,
     alignmentWrapper
 } from './WelcomePages.module.css';
-  
+
 const Home = () => {
   return (
     <div className={alignmentWrapper}>

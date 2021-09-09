@@ -13,7 +13,7 @@ import {
     alignmentWrapper
   } from './WelcomePages.module.css';
 
-const PerformanceAnalysis = () => {
+const Atuacao = () => {
   return (
     <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
@@ -30,7 +30,7 @@ const PerformanceAnalysis = () => {
       </div>
       <div className={paBtns}>
         <div className={prevDiv}>
-        <Link to="./home">
+        <Link to="./celeridade">
           <button type="button" className={btnPrevious}>
             anterior
           </button>
@@ -49,4 +49,4 @@ const PerformanceAnalysis = () => {
   );
 };
 
-export default PerformanceAnalysis;
+export default Atuacao;

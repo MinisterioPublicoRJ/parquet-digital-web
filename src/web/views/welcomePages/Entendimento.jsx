@@ -1,42 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Run from '../../../assets/gifs/run.gif';
+import Chat from '../../../assets/gifs/chat.gif';
 import {
     wrapperWelcome,
     bannerWelcome,
     welcomeTexts,
     allBtns,
-    divMainPrevious,
     btnPrevious,
     btnNext,
     btnJumper,
     alignmentWrapper
-} from './WelcomePages.module.css';
-
-const Home = () => {
+  } from './WelcomePages.module.css';
+  
+const Work = () => {
   return (
     <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
       <div className={bannerWelcome}>
-        <img height="100%" src={Run} alt="trabalho-promoton" />
+        <img height="100%" src={Chat} alt="trabalho-promoton" />
       </div>
       <div className={welcomeTexts}>
-        <h2>Celeridade nos Processos</h2>
+        <h2>Entendimento e Clareza</h2>
         <p>
-          O robô das promotorias tem como missão ajudar o trabalho do Promotor, tornando sua atuação
-          ainda mais célere e capaz de atingir o maior impacto possível.
+        O robô auxilia o melhor entendimento da rotina de trabalho da Promotoria e otimiza
+        a visualização das demandas com base em alertas, indicativos, metas e
+        acompanhamento funcional.
         </p>
       </div>
       <div className={allBtns}>
-        <div className={divMainPrevious}>
-          <Link to="./work">
-            <button type="button" className={btnPrevious}>
-              anterior
-            </button>
-          </Link>
-        </div>
+        <Link to="./gestao">
+          <button type="button" className={btnPrevious}>
+            anterior
+          </button>
+        </Link>
         <div>
-          <Link to="./perfomanceAnalysis">
+          <Link to="./celeridade">
             <button type="button" className={btnNext}>
               próximo
             </button>
@@ -53,4 +51,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Work;

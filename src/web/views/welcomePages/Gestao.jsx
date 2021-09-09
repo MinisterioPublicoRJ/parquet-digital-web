@@ -11,7 +11,7 @@ import {
   alignmentWrapper
 } from './WelcomePages.module.css';
 
-const Welcome = () => {
+const Gestao = () => {
   return (
     <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
@@ -27,7 +27,7 @@ const Welcome = () => {
         </p>
       </div>
       <div className={welcomeBtns}>
-        <Link to="./work">
+        <Link to="./entendimento">
           <button type="button" className={btnNext}>
             próximo
           </button>
@@ -43,4 +43,4 @@ const Welcome = () => {
   );
 };
 
-export default Welcome;
+export default Gestao;

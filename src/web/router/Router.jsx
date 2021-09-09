@@ -4,7 +4,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 //import Unavailable from '../../unavailable';
 
 import { LoadingScreen, Login, Unavailable } from '../views';
-import { Gestao, Celeridade, Atuacao, Entendimento } from '../views/welcomePages';
+import { Gestao, Entendimento, Celeridade, Atuacao } from '../views/welcomePages';
 
 
 function Router() {

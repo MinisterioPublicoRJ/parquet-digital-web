@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Trabalho from '../../../assets/gifs/trabalho.gif';
+import {Nav, createPath} from './Nav.jsx';
 import {
   wrapperWelcome,
   bannerWelcome,
@@ -11,7 +11,9 @@ import {
   alignmentWrapper
 } from './WelcomePages.module.css';
 
-const Gestao = () => {
+const Gestao = ({history}) => {
+  Nav(history, 1);
+
   return (
     <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
@@ -27,16 +29,12 @@ const Gestao = () => {
         </p>
       </div>
       <div className={welcomeBtns}>
-        <Link to="./entendimento">
-          <button type="button" className={btnNext}>
+          <a className={btnNext} onClick={()=>createPath(2, history)}>
             próximo
-          </button>
-        </Link>
-        <Link to="./dashboard">
-          <button type="button" className={btnJumper}>
+          </a>
+          <a className={btnJumper} onClick={()=>createPath(5, history)}>
             pular
-          </button>
-        </Link>
+          </a>
       </div>
     </div>
     </div>

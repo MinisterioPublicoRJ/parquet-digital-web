@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Run from '../../../assets/gifs/run.gif';
+import {Nav, createPath} from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
@@ -13,7 +13,9 @@ import {
     alignmentWrapper
 } from './WelcomePages.module.css';
 
-const Celeridade = () => {
+const Celeridade = ({history}) => {
+  Nav(history, 3);
+
   return (
     <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
@@ -28,24 +30,16 @@ const Celeridade = () => {
         </p>
       </div>
       <div className={allBtns}>
-        <div className={divMainPrevious}>
-          <Link to="./entendimento">
-            <button type="button" className={btnPrevious}>
-              anterior
-            </button>
-          </Link>
-        </div>
+        <a className={btnPrevious} onClick={()=>createPath(2, history)}>
+            anterior
+          </a>
         <div>
-          <Link to="./atuacao">
-            <button type="button" className={btnNext}>
-              próximo
-            </button>
-          </Link>
-          <Link to="./dashboard">
-            <button type="button" className={btnJumper}>
-              pular
-            </button>
-          </Link>
+          <a className={btnNext} onClick={()=>createPath(4, history)}>
+            próximo
+          </a>
+          <a className={btnJumper} onClick={()=>createPath(5, history)}>
+            pular
+          </a>
         </div>
       </div>
     </div>

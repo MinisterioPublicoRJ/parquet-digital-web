@@ -1,0 +1,85 @@
+.loginWrapper {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loginInner {
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: inset 0px 0px 0px 0px var(--lightGray);
+  border: 1px solid var(--lightGray);
+  display: flex;
+  height: 50%;
+  width: 50%;
+}
+
+.loginImageBanner {
+  display: flex;
+  height: 100%;
+  flex: 1;
+}
+
+.loginFormArea {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 80%;
+  justify-content: space-between;
+}
+
+.loginInput {
+  border: 1px solid var(--lightGray);
+  border-radius: 7px;
+  box-sizing: border-box;
+  color: #505050;
+  /* font-family: var(--defaultFont); */
+  height: 40px;
+  padding: 0 18px 0 18px;
+  text-align: center;
+  width: 70%;
+}
+/* Removes ugly dark border on Chrome */
+.loginInput:focus {
+  outline: none;
+  color: var(--darkGray);
+}
+
+.loginSubmitBtn {
+  background-color: var(--lightGray);
+  border: none;
+  border-radius: 7px;
+  color: var(--darkGray);
+  height: 40px;
+  text-transform: uppercase;
+  width: 70%;
+}
+
+.loginSubmitBtn:hover {
+  background-color: var(--colorSolidBlue);
+}
+
+/* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  color: var(--lightGray);
+  opacity: 1;
+}
+
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+  .loginImageBanner {
+    display: none;
+  }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .loginImageBanner {
+    display: none;
+  }
+}

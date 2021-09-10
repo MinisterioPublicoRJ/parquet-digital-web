@@ -1,0 +1,137 @@
+.alignmentWrapper{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapperWelcome {
+    text-align: center;
+    width: 42vw;
+}
+
+.wrapperWelcome img {
+    width: 42vw;
+}
+
+.welcomeTexts {
+    font: normal 18px var(--defaultFont);
+    letter-spacing: 0px;
+    color: var(--darkWelcome);
+    opacity: 1;
+}
+
+.welcomeTexts h2 {
+    font-size: 32px;
+    opacity: 1;
+    font-weight: 900;
+}
+  
+.allBtns {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}
+  
+.wrapperWelcome button {
+    width: 8vw;
+    cursor: pointer;
+    height: 5vh;
+    margin: 10px;
+    color: var(--darkWelcome);
+    font-size: 18px;
+    border: none;
+}
+  
+.btnNext {
+    background: #d6d6d6 0% 0% no-repeat padding-box;
+    border-radius: 0px 20px 20px 0px;
+    opacity: 1;
+    border-color: #d6d6d6;
+}
+  
+.btnPrevious {
+    background: #d6d6d6 0% 0% no-repeat padding-box;
+    border-radius: 20px 0px 0px 20px;
+    opacity: 1;
+    border-color: #d6d6d6;
+}
+  
+.btnJumper {
+    background: #efefef 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+    border-color: #d6d6d6;
+}
+  
+.btnStart {
+    background: #5ff09d 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+    border-color: #d6d6d6;
+}
+
+.welcomeBtns {
+    display: flex;
+    justify-content: flex-end;
+    width: inherit;
+}
+
+.paBtns{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-auto-flow: row;
+    width: inherit;
+}
+
+.prevDiv{
+    display: flex;
+    justify-content: start;
+}
+    
+@media (max-width: 480px) {
+    .wrapperWelcome {
+      width: 80vw;
+    }
+
+    .wrapperWelcome button {
+        width: 20vw;
+        height: 4vh;
+        font-size: 14px;
+    }
+  
+    .wrapperWelcome img {
+      width: 100%;
+    }
+  
+    .welcomeTexts {
+      width: 100%;
+      font-size: 16px;
+    }
+  
+    .wrapperWelcome h2 {
+      font-size: 22px;
+    }
+}
+ 
+@media (min-width:481px) and (max-width: 1025px){
+    .wrapperWelcome {
+        width: 80vw;
+    }
+
+    .welcomeTexts{
+        font-size: 24px;
+    }
+
+    .wrapperWelcome img {
+        width: 80vw;
+    }
+  
+    .wrapperWelcome button {
+        width: 16vw;
+        height: 4vh;
+        font-size: 20px;
+    }
+}

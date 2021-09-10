@@ -68,7 +68,7 @@ export const OVERLAY_TEXTS = {
   NF30: (
     <div>
       <p>
-        Neste alerta, eu busco lhe avisar que uma notícia de fato foi autuada há mais de 30 
+        Neste alerta, eu busco lhe avisar que uma notícia de fato foi autuada há mais de 30
         dias e não teve uma destinação dada.
       </p>
 
@@ -232,6 +232,15 @@ export const OVERLAY_TEXTS = {
       </p>
     </div>
   ),
+  onDel: (
+    <div>
+      <p>
+        Somente membros podem descartar definitivamente um alerta. Servidores só podem descartar para o seu próprio usuário
+        e somente durante o uso nesta sessão.
+      </p>
+      <p>Tem certeza de que deseja continuar esta ação? Caso desista, clique em "Desfazer".</p>
+    </div>
+  )
 };
 
 export const PRCR_TEXTS = (type, data) => {

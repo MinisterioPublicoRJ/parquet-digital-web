@@ -32,7 +32,7 @@
     width: inherit;
 }
   
-.wrapperWelcome a {
+.wrapperWelcome Link {
     width: 8vw;
     cursor: pointer;
     height: 5vh;
@@ -40,7 +40,6 @@
     color: var(--darkWelcome);
     font-size: 18px;
     border: none;
-    vertical-align: middle;
 }
   
 .btnNext {
@@ -90,7 +89,7 @@
       width: 80vw;
     }
 
-    .wrapperWelcome a {
+    .wrapperWelcome button {
         width: 20vw;
         height: 4vh;
         font-size: 14px;
@@ -123,7 +122,7 @@
         width: 80vw;
     }
   
-    .wrapperWelcome a {
+    .wrapperWelcome button {
         width: 16vw;
         height: 4vh;
         font-size: 20px;

@@ -10,6 +10,7 @@ import {
     btnPrevious,
     btnStart, 
     prevDiv,
+    startDiv,
     alignmentWrapper
   } from './WelcomePages.module.css';
 
@@ -36,7 +37,7 @@ const Atuacao = ({history}) => {
             anterior
           </Link>
         </div>
-        <div>
+        <div className={startDiv}>
           <Link to={"./dashboard"} className={btnStart}>
             iniciar
           </Link>

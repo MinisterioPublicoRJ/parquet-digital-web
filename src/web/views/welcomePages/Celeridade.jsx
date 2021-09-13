@@ -7,7 +7,7 @@ import {
     bannerWelcome,
     welcomeTexts,
     allBtns,
-    divMainPrevious,
+    placeholderDiv,
     btnPrevious,
     btnNext,
     btnJumper,
@@ -34,7 +34,7 @@ const Celeridade = ({history}) => {
         <Link to={"./entendimento"} className={btnPrevious}>
             anterior
           </Link>
-        <div>
+        <div className={placeholderDiv}>
           <Link to={"./atuacao"} className={btnNext}>
             próximo
           </Link>

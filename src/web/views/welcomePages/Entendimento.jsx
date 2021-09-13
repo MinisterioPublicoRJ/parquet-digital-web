@@ -10,6 +10,7 @@ import {
     btnPrevious,
     btnNext,
     btnJumper,
+    placeholderDiv,
     alignmentWrapper
   } from './WelcomePages.module.css';
   
@@ -34,7 +35,7 @@ const Work = ({history}) => {
         <Link to={"./gestao"} className={btnPrevious}>
             anterior
           </Link>
-        <div>
+        <div className={placeholderDiv}>
           <Link to={"./celeridade"} className={btnNext}>
             próximo
           </Link>

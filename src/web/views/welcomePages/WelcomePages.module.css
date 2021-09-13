@@ -32,11 +32,12 @@
     width: inherit;
 }
   
-.wrapperWelcome Link {
+.wrapperWelcome a {
     width: 8vw;
-    cursor: pointer;
     height: 5vh;
-    margin: 10px;
+    line-height: 5vh;
+    text-decoration-line: none;
+    cursor: pointer;
     color: var(--darkWelcome);
     font-size: 18px;
     border: none;
@@ -45,25 +46,22 @@
 .btnNext {
     background: #d6d6d6 0% 0% no-repeat padding-box;
     border-radius: 0px 20px 20px 0px;
-    border-color: #d6d6d6;
 }
   
 .btnPrevious {
     background: #d6d6d6 0% 0% no-repeat padding-box;
     border-radius: 20px 0px 0px 20px;
-    border-color: #d6d6d6;
 }
   
 .btnJumper {
     background: #efefef 0% 0% no-repeat padding-box;
     border-radius: 20px;
-    border-color: #d6d6d6;
+    margin-left: 10px;
 }
   
 .btnStart {
     background: #5ff09d 0% 0% no-repeat padding-box;
     border-radius: 20px;
-    border-color: #d6d6d6;
 }
 
 .welcomeBtns {
@@ -77,6 +75,15 @@
     grid-template-columns: 33% 33% 33%;
     grid-auto-flow: row;
     width: inherit;
+}
+
+.placeholderDiv{
+    display: flex;
+}
+
+.startDiv{
+    display: flex;
+    justify-content: center;
 }
 
 .prevDiv{

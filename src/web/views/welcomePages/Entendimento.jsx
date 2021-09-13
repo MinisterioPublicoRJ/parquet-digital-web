@@ -1,6 +1,7 @@
 import React from 'react';
 import Chat from '../../../assets/gifs/chat.gif';
-import {Nav, createPath} from './Nav.jsx';
+import {Link} from 'react-router-dom';
+import Nav from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
@@ -30,16 +31,16 @@ const Work = ({history}) => {
         </p>
       </div>
       <div className={allBtns}>
-        <a className={btnPrevious} onClick={()=>createPath(1, history)}>
+        <Link to={"./gestao"} className={btnPrevious}>
             anterior
-          </a>
+          </Link>
         <div>
-          <a className={btnNext} onClick={()=>createPath(3, history)}>
+          <Link to={"./celeridade"} className={btnNext}>
             próximo
-          </a>
-          <a className={btnJumper} onClick={()=>createPath(5, history)}>
+          </Link>
+          <Link to={"./dashboard"} className={btnJumper}>
             pular
-          </a>
+          </Link>
         </div>
       </div>
     </div>

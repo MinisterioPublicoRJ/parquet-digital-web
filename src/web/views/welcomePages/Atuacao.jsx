@@ -1,6 +1,7 @@
 import React from 'react';
 import Analise from '../../../assets/gifs/analise.gif';
-import {Nav, createPath} from './Nav.jsx';
+import {Link} from 'react-router-dom';
+import Nav from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
@@ -31,14 +32,14 @@ const Atuacao = ({history}) => {
       </div>
       <div className={paBtns}>
         <div className={prevDiv}>
-          <a className={btnPrevious} onClick={()=>createPath(3, history)}>
+          <Link to={"./celeridade"} className={btnPrevious}>
             anterior
-          </a>
+          </Link>
         </div>
         <div>
-          <a className={btnStart} onClick={()=>createPath(5, history)}>
+          <Link to={"./dashboard"} className={btnStart}>
             iniciar
-          </a>
+          </Link>
         </div>
       </div>
     </div>

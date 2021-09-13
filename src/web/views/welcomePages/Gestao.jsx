@@ -1,6 +1,7 @@
 import React from 'react';
 import Trabalho from '../../../assets/gifs/trabalho.gif';
-import {Nav, createPath} from './Nav.jsx';
+import {Link} from 'react-router-dom';
+import Nav from './Nav.jsx';
 import {
   wrapperWelcome,
   bannerWelcome,
@@ -29,16 +30,16 @@ const Gestao = ({history}) => {
         </p>
       </div>
       <div className={welcomeBtns}>
-          <a className={btnNext} onClick={()=>createPath(2, history)}>
+          <Link to={"./entendimento"} className={btnNext}>
             próximo
-          </a>
-          <a className={btnJumper} onClick={()=>createPath(5, history)}>
+          </Link>
+          <Link to={"./dashboard"} className={btnJumper}>
             pular
-          </a>
+          </Link>
       </div>
     </div>
     </div>
   );
 };
-
+//createPath(2, history), createPath(5, history)
 export default Gestao;

@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 
-export function Nav(hist, cur){
+function Nav(hist, cur){
   let path;
   useEffect(onMount, []);
   
@@ -23,30 +23,32 @@ export function Nav(hist, cur){
       createPath(5, hist);
     }
   };
+
+  function createPath(path) {
+    if(path===0){
+      path=null;
+    }
+    else if(path===1){
+      path="./gestao";
+      hist.push(path);
+    }
+    else if(path===2){
+      path="./entendimento";
+      hist.push(path);
+    }
+    else if(path===3){
+      path="./celeridade";
+      hist.push(path);
+    }
+    else if(path===4){
+      path="./atuacao";
+      hist.push(path);
+    }
+    else if(path===5){
+      path="./dashboard";
+      hist.push(path);
+    }
+  };
 }
 
-export function createPath(path, hist) {
-  if(path===0){
-    path=null;
-  }
-  else if(path===1){
-    path="./gestao";
-    hist.push(path);
-  }
-  else if(path===2){
-    path="./entendimento";
-    hist.push(path);
-  }
-  else if(path===3){
-    path="./celeridade";
-    hist.push(path);
-  }
-  else if(path===4){
-    path="./atuacao";
-    hist.push(path);
-  }
-  else if(path===5){
-    path="./dashboard";
-    hist.push(path);
-  }
-};
+export default Nav;

@@ -18,14 +18,11 @@
 
 .welcomeTexts {
     font: normal 18px var(--defaultFont);
-    letter-spacing: 0px;
     color: var(--darkWelcome);
-    opacity: 1;
 }
 
 .welcomeTexts h2 {
     font-size: 32px;
-    opacity: 1;
     font-weight: 900;
 }
   
@@ -49,28 +46,24 @@
 .btnNext {
     background: #d6d6d6 0% 0% no-repeat padding-box;
     border-radius: 0px 20px 20px 0px;
-    opacity: 1;
     border-color: #d6d6d6;
 }
   
 .btnPrevious {
     background: #d6d6d6 0% 0% no-repeat padding-box;
     border-radius: 20px 0px 0px 20px;
-    opacity: 1;
     border-color: #d6d6d6;
 }
   
 .btnJumper {
     background: #efefef 0% 0% no-repeat padding-box;
     border-radius: 20px;
-    opacity: 1;
     border-color: #d6d6d6;
 }
   
 .btnStart {
     background: #5ff09d 0% 0% no-repeat padding-box;
     border-radius: 20px;
-    opacity: 1;
     border-color: #d6d6d6;
 }
 

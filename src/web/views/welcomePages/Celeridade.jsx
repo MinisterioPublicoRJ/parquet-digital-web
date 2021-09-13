@@ -1,6 +1,7 @@
 import React from 'react';
 import Run from '../../../assets/gifs/run.gif';
-import {Nav, createPath} from './Nav.jsx';
+import {Link} from 'react-router-dom';
+import Nav from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
@@ -30,16 +31,16 @@ const Celeridade = ({history}) => {
         </p>
       </div>
       <div className={allBtns}>
-        <a className={btnPrevious} onClick={()=>createPath(2, history)}>
+        <Link to={"./entendimento"} className={btnPrevious}>
             anterior
-          </a>
+          </Link>
         <div>
-          <a className={btnNext} onClick={()=>createPath(4, history)}>
+          <Link to={"./atuacao"} className={btnNext}>
             próximo
-          </a>
-          <a className={btnJumper} onClick={()=>createPath(5, history)}>
+          </Link>
+          <Link to={"./dashboard"} className={btnJumper}>
             pular
-          </a>
+          </Link>
         </div>
       </div>
     </div>

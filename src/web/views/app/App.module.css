@@ -40,6 +40,9 @@
 
   /* Login */
   --darkGray: #505050;
+
+  /* Welcome Pages */
+  --darkWelcome: #4a4a4a;
 }
 
 body {

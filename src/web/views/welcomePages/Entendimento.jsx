@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Chat from '../../../assets/gifs/chat.gif';
+import {Link} from 'react-router-dom';
+import Nav from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
@@ -9,10 +10,13 @@ import {
     btnPrevious,
     btnNext,
     btnJumper,
+    placeholderDiv,
     alignmentWrapper
   } from './WelcomePages.module.css';
   
-const Work = () => {
+const Work = ({history}) => {
+  Nav(history, 2);
+
   return (
     <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
@@ -28,21 +32,15 @@ const Work = () => {
         </p>
       </div>
       <div className={allBtns}>
-        <Link to="./gestao">
-          <button type="button" className={btnPrevious}>
+        <Link to={"./gestao"} className={btnPrevious}>
             anterior
-          </button>
-        </Link>
-        <div>
-          <Link to="./celeridade">
-            <button type="button" className={btnNext}>
-              próximo
-            </button>
           </Link>
-          <Link to="./dashboard">
-            <button type="button" className={btnJumper}>
-              pular
-            </button>
+        <div className={placeholderDiv}>
+          <Link to={"./celeridade"} className={btnNext}>
+            próximo
+          </Link>
+          <Link to={"./dashboard"} className={btnJumper}>
+            pular
           </Link>
         </div>
       </div>

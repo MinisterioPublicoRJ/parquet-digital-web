@@ -1,19 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Run from '../../../assets/gifs/run.gif';
+import {Link} from 'react-router-dom';
+import Nav from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
     welcomeTexts,
     allBtns,
-    divMainPrevious,
+    placeholderDiv,
     btnPrevious,
     btnNext,
     btnJumper,
     alignmentWrapper
 } from './WelcomePages.module.css';
 
-const Celeridade = () => {
+const Celeridade = ({history}) => {
+  Nav(history, 3);
+
   return (
     <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
@@ -28,23 +31,15 @@ const Celeridade = () => {
         </p>
       </div>
       <div className={allBtns}>
-        <div className={divMainPrevious}>
-          <Link to="./entendimento">
-            <button type="button" className={btnPrevious}>
-              anterior
-            </button>
+        <Link to={"./entendimento"} className={btnPrevious}>
+            anterior
           </Link>
-        </div>
-        <div>
-          <Link to="./atuacao">
-            <button type="button" className={btnNext}>
-              próximo
-            </button>
+        <div className={placeholderDiv}>
+          <Link to={"./atuacao"} className={btnNext}>
+            próximo
           </Link>
-          <Link to="./dashboard">
-            <button type="button" className={btnJumper}>
-              pular
-            </button>
+          <Link to={"./dashboard"} className={btnJumper}>
+            pular
           </Link>
         </div>
       </div>

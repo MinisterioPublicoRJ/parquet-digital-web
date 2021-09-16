@@ -1,7 +1,7 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Analise from '../../../assets/gifs/analise.gif';
+import {Link} from 'react-router-dom';
+import Nav from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
@@ -10,10 +10,13 @@ import {
     btnPrevious,
     btnStart, 
     prevDiv,
+    startDiv,
     alignmentWrapper
   } from './WelcomePages.module.css';
 
-const Atuacao = () => {
+const Atuacao = ({history}) => {
+  Nav(history, 4);
+
   return (
     <div className={alignmentWrapper}>
     <div className={wrapperWelcome}>
@@ -30,18 +33,14 @@ const Atuacao = () => {
       </div>
       <div className={paBtns}>
         <div className={prevDiv}>
-        <Link to="./celeridade">
-          <button type="button" className={btnPrevious}>
+          <Link to={"./celeridade"} className={btnPrevious}>
             anterior
-          </button>
-        </Link>
+          </Link>
         </div>
-        <div>
-        <Link to="./dashboard">
-          <button type="button" className={btnStart}>
+        <div className={startDiv}>
+          <Link to={"./dashboard"} className={btnStart}>
             iniciar
-          </button>
-        </Link>
+          </Link>
         </div>
       </div>
     </div>

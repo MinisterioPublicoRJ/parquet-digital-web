@@ -4,6 +4,8 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 //import Unavailable from '../../unavailable';
 
 import { LoadingScreen, Login, Unavailable } from '../views';
+import { Gestao, Entendimento, Celeridade, Atuacao } from '../views/welcomePages';
+
 
 function Router() {
   return (
@@ -12,6 +14,10 @@ function Router() {
         <Route exact path="/" component={LoadingScreen} />
         <Route exact path="/login" component={Login} />
         <Route path="/indisponivel" component={Unavailable} />
+        <Route path="/gestao" component={Gestao} />
+        <Route path="/entendimento" component={Entendimento} />
+        <Route path="/celeridade" component={Celeridade} />
+        <Route path="/atuacao" component={Atuacao} />
       </Switch>
     </HashRouter>
   );

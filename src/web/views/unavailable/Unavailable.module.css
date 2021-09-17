@@ -1,95 +1,141 @@
-/*
-@Todo fix page alignment
-
-html {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-body {
-  padding: 0;
-  width: 100vw;
+.unavailableWrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   height: 100vh;
+  width: 100vw;
+  /* forces image to respect parent sizing on FF */
+  /* https://support.mozilla.org/en-US/questions/935671 */
   overflow: hidden;
 }
-*/
-.unavailableWrapper {
-  display: flex;
-  width: 100vw;
+.unavailableBannerWrapper {
+  grid-column: 1 / span 1;
   height: 100vh;
 }
-.unavailableBanner {
-  display: flex;
-  margin-right: 3vw;
-  width: 20vw;
+.unavailableBannerImg {
+  height: 100%;
+  width: 100%;
 }
 .unavailableContent {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-column: 2 / 6;
+  padding: var(--unavailableContentPadding);
+}
+.unavailableTitle {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 74vw;
-  height: 100%;
-  /* margin-top: 300px; */
+  flex-direction: row;
+  grid-column: 1 / 6;
+  grid-row: 1 / span 5;
+  justify-content: space-between;
+}
+.unavailableTitleBanner {
+  width: 45%;
+  display: flex;
+  align-items: flex-end;
+}
+.unavailableTitleBanner img {
+  width: auto;
+  height: 90%;
+}
+.unavailableTitleText {
+  overflow: hidden;
+  text-align: end;
+  max-width: 50%;
+  display: grid;
+  place-items: end;
+  place-content: end;
+}
+.unavailableTitleText * {
+  max-width: 32vw;
+}
+.unavailableSugestions {
+  grid-column: 1 / 6;
+  grid-row: 6 / span 4;
+}
+.unavailableSugestions small {
+  font-size: var(--smallFont);
+}
+.unavailableContent .unavailableSugestions > h3 {
+  margin: clamp(2px, 1vh, 16px) 0;
 }
 .unavailableContent h1 {
-  font: normal normal 900 90px/118px Roboto;
-  letter-spacing: 0px;
-  color: #374354;
+  font: normal normal 900 calc(var(--titleFontSize) * 2.5) var(--defaultFont);
+  color: var(--colorMprj);
+  margin: 0;
 }
 .unavailableContent h2 {
-  font: normal normal normal 31px/40px Roboto;
-  letter-spacing: 0px;
-  color: #374354;
+  font: normal normal normal calc(var(--titleFontSize)) var(--defaultFont);
+  color: var(--colorMprj);
+  width: 320px;
+  margin-left: auto;
 }
 .unavailableContent h3 {
-  font: normal normal normal 24px/32px Roboto;
-  letter-spacing: 0px;
-  color: #4a4a4a;
+  font: normal normal normal var(--sectionTitleFontSize) var(--defaultFont);
+  color: var(--darkWelcome);
+  margin-bottom: 16px;
 }
 .unavailableContent h4 {
-  font: normal normal normal 16px/26px Roboto;
-  letter-spacing: -0.44px;
-  color: #4a4a4a;
+  font: normal normal normal var(--defaultFontSize) var(--defaultFont);
+  color: var(--darkWelcome);
 }
-
-.unavaiblePromotronImg {
-  position: relative;
+.unavailableContent p {
+  font: normal normal normal var(--defaultFontSize) var(--defaultFont);
+}
+.unavailableContent small {
+  color: var(--mediumGray);
+  margin-bottom: var(--smallFont);
 }
 .unavailableOptions {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  column-gap: clamp(12px, 2.5vw, 48px);
 }
-
-.unavailableOptions div {
-  display: flex;
+.unavailableOptions > div {
   flex: 1;
-  flex-direction: column;
   margin-top: 10px;
-  margin-right: 32px;
+  overflow: hidden;
 }
 .unavailableOptions img {
-  margin: 5px;
+  width: 100%;
 }
-
-section {
+.unavailableTitleText p {
+  color: var(--darkGray);
+  font-size: var(--TitleTextFontSize);
+}
+.unavailableOptions .unavailableOptionHeader {
   display: flex;
-  flex-direction: column;
-}
-.unavailableTitle {
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-.unavailableIntro {
-  text-align: end;
-  max-width: 50%;
+.unavailableOptionHeader {
+  height: clamp(63px, 3vh, 100px);
 }
-.unavailableBannerWrapper {
-  width: 16vw;
+.unavailableOptionHeader h4 {
+  margin: 0 1vh 0 0;
+  font-size: var(--defaultFontSize);
 }
-.unavailableBannerImg {
-  
-  height:100%;
-  width:100%;
+.unavailableOptionHeader a {
+  flex-basis: content;
+}
+.unavailableOptionHeader button {
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid var(--mediumGray);
+  padding: 5px 16px;
+  color: var(--mediumGray);
+  font-size: var(--defaultFontSize);
+}
+.unavailableOptionHeader button:hover {
+  border: 1px solid var(--colorSuccess);
+  background-color: var(--colorSuccess);
+  color: white;
+}
+.unavailableOptions div small {
+  color: var(--mediumGray);
+  display: inline-block;
+}
+.unavailableOptions button {
+  cursor: pointer;
 }

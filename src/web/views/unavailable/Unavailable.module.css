@@ -57,7 +57,6 @@
 .unavailableSugestions small {
   font-size: var(--smallFont);
 }
-
 .unavailableContent .unavailableSugestions > h3 {
   margin: clamp(2px, 1vh, 16px) 0;
 }
@@ -97,7 +96,6 @@
   margin-top: 10px;
   overflow: hidden;
 }
-
 .unavailableOptions img {
   width: 100%;
 }

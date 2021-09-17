@@ -41,5 +41,5 @@ const Gestao = ({history}) => {
     </div>
   );
 };
-//createPath(2, history), createPath(5, history)
+
 export default Gestao;

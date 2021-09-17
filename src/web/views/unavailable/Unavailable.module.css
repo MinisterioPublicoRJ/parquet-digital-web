@@ -7,17 +7,14 @@
   /* https://support.mozilla.org/en-US/questions/935671 */
   overflow: hidden;
 }
-
 .unavailableBannerWrapper {
   grid-column: 1 / span 1;
   height: 100vh;
 }
-
 .unavailableBannerImg {
   height: 100%;
   width: 100%;
 }
-
 .unavailableContent {
   height: 100vh;
   display: grid;
@@ -25,30 +22,23 @@
   grid-template-rows: repeat(9, 1fr);
   grid-column: 2 / 6;
   padding: var(--unavailableContentPadding);
-  /* justify-content: center; */
-  /* overflow: hidden; */
 }
-
 .unavailableTitle {
   display: flex;
   flex-direction: row;
   grid-column: 1 / 6;
   grid-row: 1 / span 5;
   justify-content: space-between;
-  /* margin-bottom: 24px; */
 }
-
 .unavailableTitleBanner {
   width: 45%;
   display: flex;
   align-items: flex-end;
 }
-
 .unavailableTitleBanner img {
   width: auto;
   height: 90%;
 }
-
 .unavailableTitleText {
   overflow: hidden;
   text-align: end;
@@ -57,28 +47,20 @@
   place-items: end;
   place-content: end;
 }
-
 .unavailableTitleText * {
   max-width: 32vw;
-
 }
-
 .unavailableSugestions {
   grid-column: 1 / 6;
   grid-row: 6 / span 4;
 }
-
 .unavailableSugestions small {
   font-size: var(--smallFont);
 }
 
-
 .unavailableContent .unavailableSugestions > h3 {
   margin: clamp(2px, 1vh, 16px) 0;
 }
-
-/* ksxjiuhdwyfeg */
-
 .unavailableContent h1 {
   font: normal normal 900 calc(var(--titleFontSize) * 2.5) var(--defaultFont);
   color: var(--colorMprj);
@@ -106,18 +88,12 @@
   color: var(--mediumGray);
   margin-bottom: var(--smallFont);
 }
-
 .unavailableOptions {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   column-gap: clamp(12px, 2.5vw, 48px);
 }
-
 .unavailableOptions > div {
   flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
   margin-top: 10px;
   overflow: hidden;
 }
@@ -125,55 +101,43 @@
 .unavailableOptions img {
   width: 100%;
 }
-/* .unavailableOptions div + div {
-  margin-left: 32px;
-} */
-/* section {
-  display: flex;
-  flex-direction: column;
-} */
-
 .unavailableTitleText p {
   color: var(--darkGray);
-  font-size: var(--TitleTextFontSize) ;
-} 
-.unavailableOptions .unavailableOptionHeader{
+  font-size: var(--TitleTextFontSize);
+}
+.unavailableOptions .unavailableOptionHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-} 
+}
 .unavailableOptionHeader {
   height: clamp(63px, 3vh, 100px);
 }
-.unavailableOptionHeader  h4 {
+.unavailableOptionHeader h4 {
   margin: 0 1vh 0 0;
   font-size: var(--defaultFontSize);
 }
 .unavailableOptionHeader a {
   flex-basis: content;
-} 
-.unavailableOptionHeader button{
+}
+.unavailableOptionHeader button {
   background-color: transparent;
   border-radius: 8px;
   border: 1px solid var(--mediumGray);
   padding: 5px 16px;
   color: var(--mediumGray);
   font-size: var(--defaultFontSize);
-
-} 
-.unavailableOptionHeader button:hover{
-  border:1px solid var(--colorSuccess);
+}
+.unavailableOptionHeader button:hover {
+  border: 1px solid var(--colorSuccess);
   background-color: var(--colorSuccess);
-  color:white;
-} 
+  color: white;
+}
 .unavailableOptions div small {
   color: var(--mediumGray);
   display: inline-block;
-} 
-.unavailableOptions div .unavailableOptionHeader {
-  flex-basis: 50px;
-} 
-button {
+}
+.unavailableOptions button {
   cursor: pointer;
 }

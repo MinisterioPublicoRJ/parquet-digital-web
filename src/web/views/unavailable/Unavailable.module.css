@@ -114,8 +114,7 @@
   column-gap: clamp(12px, 2.5vw, 48px);
 }
 
-.unavailableOptions div {
-  display: flex;
+.unavailableOptions > div {
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
@@ -145,7 +144,7 @@
   justify-content: space-between;
 } 
 .unavailableOptionHeader {
-  height: clamp(42px, 2vh, 70px);
+  height: clamp(63px, 3vh, 100px);
 }
 .unavailableOptionHeader  h4 {
   margin: 0 1vh 0 0;
@@ -170,6 +169,7 @@
 } 
 .unavailableOptions div small {
   color: var(--mediumGray);
+  display: inline-block;
 } 
 .unavailableOptions div .unavailableOptionHeader {
   flex-basis: 50px;

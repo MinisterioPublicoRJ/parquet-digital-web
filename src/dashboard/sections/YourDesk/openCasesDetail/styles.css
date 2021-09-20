@@ -36,3 +36,7 @@
   top: 50%;
   transform: translate(-50%,-50%);
 }
+
+.openCases-tableWrapper td:first-child, .openCases-tableWrapper th:first-child {
+  width: 42px;
+}

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { BASE_URL, SCA_LOGIN } from './endpoints';
 
-function Api() {
+function ApiCreator() {
   const axiosInstance = axios.create({
     baseURL: BASE_URL,
   });
@@ -26,4 +26,4 @@ function Api() {
   };
 }
 
-export default Api();
+export default ApiCreator;

@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-function LoginControler({ children, errorBoundary: ErrorBoundary, errorScreen: ErrorScreen }) {
-  const [loginHasCrashed, setLoginHasCrashed] = useState(false);
-  const [isLoading, setLoadingState] = useState(false);
-  const [username, setUsername] = useState('');
-  const [secret, setSecret] = useState('');
+import { useAppContext } from '../app/App.context';
+import { LoginProvider, LoginStoreInitializer } from './Login.context';
 
+function LoginControler({ children, errorBoundary: ErrorBoundary, errorScreen: ErrorScreen }) {
+  const { scaLogin, scaLoginFailed, autoLoginFailed, loginWithSCACredentials } = useAppContext();
+  const loginStore = LoginStoreInitializer();
+  const { loginHasCrashed, setLoginHasCrashed, username, password, isLoading, setLoadingState } = loginStore;
+
+  // if view changes state to loading, tries to login
   useEffect(() => {
-    if (scaUserError) {
+    if(isLoading) {
+      onFormSubmit();
+    }
+  }, [isLoading]);
+
+  // exits loading state if login fails
+  useEffect(() => {
+    if (scaLoginFailed) {
       setLoadingState(false);
     }
-  }, [scaUserError]);
+  }, [scaLoginFailed]);
 
   function onFormSubmit() {
-    // e.preventDefault();
-    setLoadingState(true);
-    // scaLogin(username, secret);
+    loginWithSCACredentials(username, password);
   }
 
   return (
-    <ErrorBoundary hasError={loginHasCrashed} setError={setLoginHasCrashed} errorScreen={<ErrorScreen />}>
-      { children }
-    </ErrorBoundary>
+    <LoginProvider store={loginStore}>
+      <ErrorBoundary hasError={loginHasCrashed} setError={setLoginHasCrashed} errorScreen={<ErrorScreen />}>
+        { children }
+      </ErrorBoundary>
+    </LoginProvider>
   )
 }
 

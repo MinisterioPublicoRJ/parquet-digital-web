@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
+
 import { loginWrapper, loginInner, loginImageBanner, loginFormArea, loginInput, loginSubmitBtn } from './Login.module.css'
 import { useAppContext } from '../../../core/app/App.context';
 import LoginBanner from '../../assets/images/loginPageBanner.png';
 import { LoginPromotron } from '../../../assets';
+import { useLoginContext } from '../../../core/login/Login.context';
 
-const Login = ({ setUsername, setSecret, isLoading }) => {
-  // const { scaLogin, scaUserError, userExpired } = useAppContext();
-  const [username, setUsername] = useState('');
-  const [secret, setSecret] = useState('');
-  const [isLoading, setLoadingState] = useState(false);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setLoadingState(true);
-    // scaLogin(username, secret);
-  }
+const Login = () => {
+  const { autoLoginFailed, scaLoginFailed } = useAppContext();
+  const { isLoading, setLoadingState, username, setUsername, password, setPassword } = useLoginContext();
 
   return (
     <div className={loginWrapper}>
@@ -28,7 +22,7 @@ const Login = ({ setUsername, setSecret, isLoading }) => {
             em evidências e uma análise apurada da sua Promotoria."
           />
         </div>
-        <form className={loginFormArea} onSubmit={handleSubmit}>
+        <form className={loginFormArea} onSubmit={() => setLoadingState(true)}>
           <LoginPromotron height={150} />
           <input
             className={loginInput}
@@ -41,15 +35,15 @@ const Login = ({ setUsername, setSecret, isLoading }) => {
             className={loginInput}
             placeholder="Senha"
             type="password"
-            onChange={({ target }) => setSecret(target.value)}
+            onChange={({ target }) => setPassword(target.value)}
             required
           />
           <button className={loginSubmitBtn} disabled={isLoading} type="submit">
             {isLoading ? 'CARREGANDO' : 'ENTRAR'}
           </button>
           <div className="greetings">
-            {/*scaUserError && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
-            {userExpired && <strong>Sua sessão expirou</strong>*/}
+            {autoLoginFailed && <strong>Sua sessão expirou</strong>}
+            {scaLoginFailed && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
           </div>
         </form>
       </div>

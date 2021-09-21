@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import Api from '../api/Api';
+import ApiCreator from '../api/Api';
 
 const AppContext = createContext();
 
@@ -10,9 +10,11 @@ export const AppProvider = ({ store, children }) => (
 export const useAppContext = () => useContext(AppContext);
 
 export function AppStoreInitializer() {
+  const Api = ApiCreator();
   const [user, setUser] = useState(true);
   const [autoLoginFailed, setAutoLoginFailed] = useState(false);
   const [appHasCrashed, setAppHasCrashed] = useState(false);
+  const [scaLoginFailed, setScaLoginFailed] = useState(false);
 
   const loginWithToken = (jwtToken, storedUser) => {
     if (jwtToken) {
@@ -30,14 +32,17 @@ export function AppStoreInitializer() {
 
   const loginWithStoredUser = () => {};
 
-  const loginWithSCACredentials = () => {};
+  const loginWithSCACredentials = () => {
+    setScaLoginFailed(true);
+  };
 
   return {
     Api,
-    autoLoginFailed,
     appHasCrashed,
     setAppHasCrashed,
 
+    autoLoginFailed,
+    scaLoginFailed,
     loginWithToken,
     loginWithSCACredentials,
   };

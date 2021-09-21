@@ -2,6 +2,17 @@
   /* FONTS */
   --defaultFont: Roboto;
 
+  
+  --defaultFontSize: clamp(12px, 1.5vh, 18px);
+  --titleFontSize: calc(var(--defaultFontSize) * 2);
+  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);
+  --TitleTextFontSize: calc(var(--defaultFontSize) * 1.2);
+  --smallFont: clamp(10px, 1.2vh, 14px);
+
+  /* SPACING */
+
+  --unavailableContentPadding: 0.5vh 4vw;
+
 /* COLORS */
   /* From our design system's page on Notion */
 
@@ -10,6 +21,9 @@
   --colorThemeBlue: #BDDFF0;
   --colorSolidBlue: #28A7E0;
   --lightGray: #CFCFCF;
+  --mediumGray: #B4B4B4;
+  --darkWelcome: #4a4a4a;
+
 
   /* Alertas */
   --colorFailure: #F86C72;

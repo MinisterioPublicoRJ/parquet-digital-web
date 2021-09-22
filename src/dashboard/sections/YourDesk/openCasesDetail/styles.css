@@ -40,3 +40,22 @@
 .openCases-tableWrapper td:first-child, .openCases-tableWrapper th:first-child {
   width: 42px;
 }
+
+button.alert-tag {
+  background-color: red;
+  border-radius: 8px;
+  border: 0;
+  width: 1.8vw;
+  height: 1.8vh;
+  color: white;
+  font-size: var(--smallFont);
+  font-weight: 600;
+  padding: 0;
+}
+
+.alert-tag-sigla {
+  display: none;
+}
+.alert-tag-sigla:hover{
+  display: block;
+}

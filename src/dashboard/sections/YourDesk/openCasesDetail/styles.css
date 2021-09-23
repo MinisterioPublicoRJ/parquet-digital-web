@@ -41,6 +41,10 @@
   width: 42px;
 }
 
+.alert-tag-wrapper {
+  position: relative;
+}
+
 button.alert-tag {
   background-color: red;
   border-radius: 8px;
@@ -54,8 +58,12 @@ button.alert-tag {
 }
 
 .alert-tag-sigla {
-  display: none;
+  opacity: 0;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: blue;
 }
 .alert-tag-sigla:hover{
-  display: block;
+  opacity: 1;
 }

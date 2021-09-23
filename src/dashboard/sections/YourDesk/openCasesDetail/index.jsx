@@ -68,15 +68,18 @@ class OpenCasesDetail extends React.Component {
         </button>
       );
       const alertTagButton = (
-        <button
-          type="button"
-          className="alert-tag"
-        >
-          {alertCount}
+        <div className="alert-tag-wrapper">
+          <button
+            type="button"
+            className="alert-tag"
+          >
+            {alertCount}
+          </button>
+
           <div className="alert-tag-sigla">
             {alertSigla}
           </div>
-        </button>
+        </div>
       )
       return { ...openCase, numeroMprj: processNumberBtn, alertTag: alertTagButton };
     });

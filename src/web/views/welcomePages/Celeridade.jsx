@@ -1,7 +1,7 @@
 import React from 'react';
 import Run from '../../../assets/gifs/run.gif';
 import {Link} from 'react-router-dom';
-import Nav from './Nav.jsx';
+import {setHistory, Nav, setPath} from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
@@ -15,6 +15,7 @@ import {
 } from './WelcomePages.module.css';
 
 const Celeridade = ({history}) => {
+  setHistory(history);
   Nav(history, 3);
 
   return (
@@ -31,14 +32,14 @@ const Celeridade = ({history}) => {
         </p>
       </div>
       <div className={allBtns}>
-        <Link to={"./entendimento"} className={btnPrevious}>
+        <Link to={setPath("previous")} className={btnPrevious}>
             anterior
           </Link>
         <div className={placeholderDiv}>
-          <Link to={"./atuacao"} className={btnNext}>
+          <Link to={setPath("next")} className={btnNext}>
             próximo
           </Link>
-          <Link to={"./dashboard"} className={btnJumper}>
+          <Link to={setPath("dash")} className={btnJumper}>
             pular
           </Link>
         </div>

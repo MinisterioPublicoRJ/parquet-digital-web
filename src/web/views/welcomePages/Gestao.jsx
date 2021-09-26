@@ -1,7 +1,7 @@
 import React from 'react';
 import Trabalho from '../../../assets/gifs/trabalho.gif';
 import {Link} from 'react-router-dom';
-import Nav from './Nav.jsx';
+import {setHistory, Nav, setPath} from './Nav.jsx';
 import {
   wrapperWelcome,
   bannerWelcome,
@@ -13,7 +13,9 @@ import {
 } from './WelcomePages.module.css';
 
 const Gestao = ({history}) => {
-  Nav(history, 1);
+  setHistory(history);
+  Nav();
+  console.log(history.location.pathname);
 
   return (
     <div className={alignmentWrapper}>
@@ -30,10 +32,10 @@ const Gestao = ({history}) => {
         </p>
       </div>
       <div className={welcomeBtns}>
-          <Link to={"./entendimento"} className={btnNext}>
+          <Link to={setPath("next")} className={btnNext}>
             próximo
           </Link>
-          <Link to={"./dashboard"} className={btnJumper}>
+          <Link to={setPath("dash")} className={btnJumper}>
             pular
           </Link>
       </div>

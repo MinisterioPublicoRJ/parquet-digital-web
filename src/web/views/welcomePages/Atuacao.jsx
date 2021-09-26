@@ -1,7 +1,7 @@
 import React from 'react';
 import Analise from '../../../assets/gifs/analise.gif';
 import {Link} from 'react-router-dom';
-import Nav from './Nav.jsx';
+import {setHistory, Nav, setPath} from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
@@ -15,6 +15,7 @@ import {
   } from './WelcomePages.module.css';
 
 const Atuacao = ({history}) => {
+  setHistory(history);
   Nav(history, 4);
 
   return (
@@ -33,12 +34,12 @@ const Atuacao = ({history}) => {
       </div>
       <div className={paBtns}>
         <div className={prevDiv}>
-          <Link to={"./celeridade"} className={btnPrevious}>
+          <Link to={setPath("previous")} className={btnPrevious}>
             anterior
           </Link>
         </div>
         <div className={startDiv}>
-          <Link to={"./dashboard"} className={btnStart}>
+          <Link to={setPath("dash")} className={btnStart}>
             iniciar
           </Link>
         </div>

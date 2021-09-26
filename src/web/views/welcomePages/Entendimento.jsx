@@ -1,7 +1,7 @@
 import React from 'react';
 import Chat from '../../../assets/gifs/chat.gif';
 import {Link} from 'react-router-dom';
-import Nav from './Nav.jsx';
+import {setHistory, Nav, setPath} from './Nav.jsx';
 import {
     wrapperWelcome,
     bannerWelcome,
@@ -15,6 +15,7 @@ import {
   } from './WelcomePages.module.css';
   
 const Work = ({history}) => {
+  setHistory(history);
   Nav(history, 2);
 
   return (
@@ -32,14 +33,14 @@ const Work = ({history}) => {
         </p>
       </div>
       <div className={allBtns}>
-        <Link to={"./gestao"} className={btnPrevious}>
+          <Link to={setPath("previous")} className={btnPrevious}>
             anterior
           </Link>
         <div className={placeholderDiv}>
-          <Link to={"./celeridade"} className={btnNext}>
+          <Link to={setPath("next")} className={btnNext}>
             próximo
           </Link>
-          <Link to={"./dashboard"} className={btnJumper}>
+          <Link to={setPath("dash")} className={btnJumper}>
             pular
           </Link>
         </div>

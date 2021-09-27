@@ -1,14 +1,6 @@
 import {useEffect} from 'react';
 
-var hist;
-var loc;
-
-function setHistory(setHist) {
-  hist = setHist;
-  loc = hist.location.pathname;
-}
-
-function Nav(){
+function Nav(hist){
   useEffect(onMount, []);
   
   function onMount() {
@@ -18,69 +10,44 @@ function Nav(){
   
   function onKeyDown({key}) {
     if (key === "ArrowRight"){
-      hist.push(setPath("next"));
+      hist.push(getPath(hist, "next"));
     }
     if (key === "ArrowLeft"){
-      hist.push(setPath("previous"));
+      hist.push(getPath(hist, "previous"));
     }
     if (key === "Escape"){
-      hist.push(setPath("dash"));
+      hist.push(getPath(hist, "dash"));
     }
     if (key ==="Enter"){
-      hist.push(setPath("dash"));
+      hist.push(getPath(hist, "dash"));
     }
   }
 }
 
-function setPath(direction) {
+function getPath(hist, direction) {
   if(direction==="next"){
-    switch(loc){
-      case "/gestao": {return("./entendimento");} break;
-      case "/entendimento": {return("./celeridade");} break;
-      case "/celeridade": {return("./atuacao");} break;
-      case "/atuacao": {return("./dashboard");} break;
+    switch(hist.location.pathname){
+      case "/gestao": return("./entendimento");
+      case "/entendimento": return("./celeridade");
+      case "/celeridade": return("./atuacao");
+      case "/atuacao": return("./dashboard");
     }
   }
   else if(direction==="previous"){
-    switch(loc){
-      case "/gestao": {return("./gestao");} break;
-      case "/entendimento": {return("./gestao");} break;
-      case "/celeridade": {return("./entendimento");} break;
-      case "/atuacao": {return("./celeridade");} break;
+    switch(hist.location.pathname){
+      case "/gestao": return("./gestao");
+      case "/entendimento": return("./gestao");
+      case "/celeridade": return("./entendimento");
+      case "/atuacao": return("./celeridade");
     }
   }
   else if(direction==="dash"){
     return("./dashboard");
   }
-  else return(loc);
-  /*
-  if(path===0){
-    path=null;
-  }
-  else if(path===1){
-    path="./gestao";
-    hist.push(path);
-  }
-  else if(path===2){
-    path="./entendimento";
-    hist.push(path);
-  }
-  else if(path===3){
-    path="./celeridade";
-    hist.push(path);
-  }
-  else if(path===4){
-    path="./atuacao";
-    hist.push(path);
-  }
-  else if(path===5){
-    path="./dashboard";
-    hist.push(path);
-  }*/
+  else return(hist.location.pathname);
 }
 
 export {
-  setHistory,
   Nav,
-  setPath
+  getPath
 };

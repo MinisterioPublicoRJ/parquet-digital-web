@@ -105,4 +105,4 @@ export const UNSENT_OCCURRENCE_LIST = t(
 export const PROCESSES_LIST_GENERATE_DOC = t(
   `${BASE_URL}/alertas/baixar/\${orgao}?tipo_alerta=\${alertCode}&jwt=\${token}`,
 );
-export const PROCESS_DETAIL = t(`${BASE_URL}/painel-doc/\${num_doc}`);
+export const PROCESS_DETAIL = t(`${BASE_URL}/painel-doc/\${orgao}/\${num_doc}`);

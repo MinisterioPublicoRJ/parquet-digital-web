@@ -7,6 +7,9 @@ import { useAuth } from '../../../app/authContext';
 import Api from '../../../api';
 import { Spinner } from '..';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
+import AlertBadge  from '../../../dashboard/sections/Alerts/AlertBadge';
+import individualAlertFormatter from '../../../dashboard/sections/Alerts/utils/individualAlertFormatter';
+
 
 const propTypes = {
   onToggle: PropTypes.func.isRequired,
@@ -17,6 +20,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
   const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
   const { buildRequestParams } = useAuth();
+  const { cpf, token, orgao } = buildRequestParams();
+
 
   useEffect(() => {
     getProcessData();
@@ -56,6 +61,46 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
       } = processData.identification;
       return (
         <div className="processDetail-body processDetail-loadedData">
+
+
+          <h4>Este procedimento possui {processData.alerts.alertCount}</h4>
+
+          <div className="processDetail-section">
+
+            {processData.alerts.map((alert) => {
+
+              const formattedAlert = individualAlertFormatter(alert, cpf, token, orgao)
+              const {
+                backgroundColor,
+                backgroundColorChild,
+                icon,
+                key,
+                message,
+                docDk,
+                type
+              } = formattedAlert;
+              return (
+                <div className="processDetail-ListCardWrapper">
+
+                  <AlertBadge
+                    key={key}
+                    customKey={key}
+                    icon={icon}
+                    backgroundColor={backgroundColorChild || backgroundColor}
+                    message={message}
+                    docDk={docDk}
+                    type={type}
+                  />
+                </div>
+
+              );
+            })}
+
+
+          </div>
+
+
+
           <h3>PERSONAGENS</h3>
           <div className="processDetail-section">
             {processData.characters.map(({ name, role }) => (

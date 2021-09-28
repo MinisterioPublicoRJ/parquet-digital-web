@@ -38,5 +38,13 @@ export default function processDetailTransform(data) {
     }),
   );
 
-  return { characters, matters, identification, proceedings };
+  
+  const alerts = data.alertas.map(
+    ({ alrt_sigla, alrt_count }) => ({
+      alertSigla: alrt_sigla,
+      alrtCount: alrt_count,
+    }),
+  );
+
+  return { characters, matters, identification, proceedings, alerts };
 }

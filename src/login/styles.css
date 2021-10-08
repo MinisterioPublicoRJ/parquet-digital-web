@@ -115,7 +115,6 @@ label {
   color: #cecece;
 }
 
-/* Atenção: deve ser usada a senha do SCA/contracheque! */
 .greetings {
   color: #8a8a8a;
   font-family: var(--defaultFont);

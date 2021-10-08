@@ -55,6 +55,7 @@ const Login = () => {
           </button>
           <div className="greetings">
             {scaUserError && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
+            {scaUserError && <strong>Atenção: deve ser usada a senha do SCA/contracheque!</strong>}
             {userExpired && <strong>Sua sessão expirou</strong>}
           </div>
         </form>

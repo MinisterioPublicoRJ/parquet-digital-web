@@ -35,7 +35,7 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
     if (OVERLAY_TEXTS[type]) {
       texts = (
         <>
-          <h4>{type}</h4>
+          <h4>{type === 'onDel' ? 'Dispensar Alerta' : type}</h4>
           {OVERLAY_TEXTS[type]}
         </>
       );
@@ -90,7 +90,7 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
         <div>
           {text || <Spinner size="medium" />}
           <button type="button" onClick={() => setShowOverlay(false)}>
-            Sair
+            {type === 'onDel' ? 'Entendi' : 'Sair'}
           </button>
           {children}
         </div>

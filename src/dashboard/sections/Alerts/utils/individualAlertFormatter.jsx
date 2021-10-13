@@ -22,6 +22,7 @@ import {
   COMPRAS_ACTION_OUVIDORIA,
   CTAC_ACTION_GENERATE_DOC,
   IC1A_ACTION_GENERATE_DOC,
+  PA1A_ACTION_GENERATE_DOC,
   PPFP_ACTION_EXTEND,
   PPFP_ACTION_CONVERT,
   PPPV_ACTION_EXTEND,
@@ -128,7 +129,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'PRCR2':
     //procedimentos ao menos um crime possivelmente prescrito
     case 'PRCR3':
-    //procedimentos um crime prescreverá < 90 dias 
+    //procedimentos um crime prescreverá < 90 dias
     case 'PRCR4':
       return prcrConstructor(alert, orgao, cpf, token);
 
@@ -273,8 +274,8 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
       case 'DCTJ':
         message = (
           <span>
-            O procedimento criminal 
-            <strong> {`${docNum}`} </strong> 
+            O procedimento criminal
+            <strong> {`${docNum}`} </strong>
             está há
             <strong> mais de 60 dias </strong>
             no TJRJ sem retorno.
@@ -406,7 +407,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
       </span>
     );
   } else {
-    actions = [GENERATE_DOC(), CALCULO(), DELETE];
+    actions = [GENERATE_DOC(PA1A_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })), CALCULO(), DELETE];
     message = (
       <span>
         O procedimento administrativo {``}

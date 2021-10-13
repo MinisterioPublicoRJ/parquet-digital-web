@@ -1,7 +1,6 @@
 import {useEffect} from 'react';
 
-function Nav(hist, cur){
-  let path;
+function Nav(hist){
   useEffect(onMount, []);
   
   function onMount() {
@@ -11,44 +10,44 @@ function Nav(hist, cur){
   
   function onKeyDown({key}) {
     if (key === "ArrowRight"){
-      createPath(cur+1, hist);
+      hist.push(getPath(hist, "next"));
     }
     if (key === "ArrowLeft"){
-      createPath(cur-1, hist);
+      hist.push(getPath(hist, "previous"));
     }
     if (key === "Escape"){
-      createPath(5, hist);
+      hist.push(getPath(hist, "dash"));
     }
-    if (key ==="Enter" && cur===4){
-      createPath(5, hist);
+    if (key ==="Enter"){
+      hist.push(getPath(hist, "dash"));
     }
-  };
-
-  function createPath(path) {
-    if(path===0){
-      path=null;
-    }
-    else if(path===1){
-      path="./gestao";
-      hist.push(path);
-    }
-    else if(path===2){
-      path="./entendimento";
-      hist.push(path);
-    }
-    else if(path===3){
-      path="./celeridade";
-      hist.push(path);
-    }
-    else if(path===4){
-      path="./atuacao";
-      hist.push(path);
-    }
-    else if(path===5){
-      path="./dashboard";
-      hist.push(path);
-    }
-  };
+  }
 }
 
-export default Nav;
+function getPath(hist, direction) {
+  if(direction==="next"){
+    switch(hist.location.pathname){
+      case "/gestao": return("./entendimento");
+      case "/entendimento": return("./celeridade");
+      case "/celeridade": return("./atuacao");
+      case "/atuacao": return("./dashboard");
+    }
+  }
+  else if(direction==="previous"){
+    switch(hist.location.pathname){
+      case "/gestao": return("./gestao");
+      case "/entendimento": return("./gestao");
+      case "/celeridade": return("./entendimento");
+      case "/atuacao": return("./celeridade");
+    }
+  }
+  else if(direction==="dash"){
+    return("./dashboard");
+  }
+  else return(hist.location.pathname);
+}
+
+export {
+  Nav,
+  getPath
+};

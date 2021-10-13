@@ -86,6 +86,7 @@ const AlertBadge = (alert) => {
     const { actionType } = alertAction;
     switch (actionType) {
       case 'delete':
+        setOverlay('onDel', '')
         return handleDeletion(key);
       case 'download':
         return handleLinks(alertAction);

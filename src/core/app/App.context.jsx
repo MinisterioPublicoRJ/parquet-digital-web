@@ -32,8 +32,9 @@ export function AppStoreInitializer() {
 
   const loginWithStoredUser = () => {};
 
-  const loginWithSCACredentials = () => {
-    setScaLoginFailed(true);
+  const loginWithSCACredentials = (username, password) => {
+    Api.loginWithSCACredentials(username, password);
+    //setScaLoginFailed(true);
   };
 
   return {

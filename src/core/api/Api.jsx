@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URL, SCA_LOGIN } from './endpoints';
+import {scaUserTransform} from './transforms'
 
 function ApiCreator() {
   const axiosInstance = axios.create({
@@ -16,12 +17,12 @@ function ApiCreator() {
     formData.set('username', username);
     formData.set('password', password);
 
-    const res = await axiosInstance.post(SCA_LOGIN, formData);
-    const {token, cpf, orgao_selecionado} = res.data;
+    const {data} = await axiosInstance.post(SCA_LOGIN, formData);
+    const {token, cpf, orgao_selecionado} = data;
     console.log('token: ', token, '\ncpf: ', cpf, 'orgao_selecionado: ', orgao_selecionado);
     axiosInstance.defaults.params = {jwt: token};
     
-    // return scaUserTranform(data);
+    return scaUserTransform(data);
   }
 
   return {

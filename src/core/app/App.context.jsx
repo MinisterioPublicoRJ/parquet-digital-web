@@ -32,8 +32,12 @@ export function AppStoreInitializer() {
 
   const loginWithStoredUser = () => {};
 
-  const loginWithSCACredentials = (username, password) => {
-    Api.loginWithSCACredentials(username, password);
+  const loginWithSCACredentials = async (username, password) => {    
+    const loggedUser = await Api.loginWithSCACredentials(username, password);
+    console.log('\n\n\n\nlogged user: ', loggedUser, '\n\n\n\n\n\n\n\n\n\n');
+    setUser(loggedUser);
+    const storageUser = { timestamp: new Date(), userObj: loggedUser };
+    window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
     //setScaLoginFailed(true);
   };
 

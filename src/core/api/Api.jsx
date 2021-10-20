@@ -12,7 +12,6 @@ function ApiCreator() {
   }
 
   async function loginWithSCACredentials(username, password) {
-    console.log('loggin in');
     const formData = new FormData();
     formData.set('username', username);
     formData.set('password', password);
@@ -21,10 +20,7 @@ function ApiCreator() {
     const {token, cpf, orgao_selecionado} = res.data;
     console.log('token: ', token, '\ncpf: ', cpf, 'orgao_selecionado: ', orgao_selecionado);
     axiosInstance.defaults.params = {jwt: token};
-    console.log('res', res);
     
-    const request = await axiosInstance.get(`/pip/principais-investigados/${orgao_selecionado.cdorgao}/${cpf}`);
-    console.log("request: ",request);
     // return scaUserTranform(data);
   }
 

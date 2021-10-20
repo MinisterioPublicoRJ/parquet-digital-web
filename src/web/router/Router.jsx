@@ -2,8 +2,9 @@ import React from 'react';
 // import history from 'history/browser';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 //import Unavailable from '../../unavailable';
+import PrivateRoute from './PrivateRoute';
 
-import { LoadingScreen, Login, Unavailable } from '../views';
+import { LoadingScreen, Login, Unavailable, Dashboard } from '../views';
 import { Gestao, Entendimento, Celeridade, Atuacao } from '../views/welcomePages';
 
 
@@ -18,6 +19,7 @@ function Router() {
         <Route path="/entendimento" component={Entendimento} />
         <Route path="/celeridade" component={Celeridade} />
         <Route path="/atuacao" component={Atuacao} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
       </Switch>
     </HashRouter>
   );

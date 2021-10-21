@@ -10,6 +10,11 @@ const Login = () => {
   const { autoLoginFailed, scaLoginFailed } = useAppContext();
   const { isLoading, setLoadingState, username, setUsername, password, setPassword } = useLoginContext();
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setLoadingState(true);
+    };
+
   return (
     <div className={loginWrapper}>
       <div className={loginInner}>
@@ -22,7 +27,7 @@ const Login = () => {
             em evidências e uma análise apurada da sua Promotoria."
           />
         </div>
-        <form className={loginFormArea} onSubmit={() => setLoadingState(true)}>
+        <form className={loginFormArea} onSubmit={onSubmit}>
           <LoginPromotron height={150} />
           <input
             className={loginInput}

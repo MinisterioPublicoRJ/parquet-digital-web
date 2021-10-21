@@ -6,7 +6,7 @@ const Dashboard = () => {
   const { user } = useAppContext();
 
   return (
-    <div>hi {user}</div>
+    <div>hi {user?.nome}</div>
   ); 
 };
 

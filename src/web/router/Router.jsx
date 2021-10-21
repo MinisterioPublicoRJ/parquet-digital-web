@@ -14,11 +14,30 @@ function Router() {
   const { user } = useAppContext();
   console.log('user in router:', user);
 
+  function findFirstPath() {
+    let path = '/login';
+    if (false) {
+      path = '/unavailable';
+    } else if (user) {
+      if (user.firstLogin) {
+        path = '/welcome';
+      } else {
+        path = '/dashboard';
+      }
+    }
+    return <Redirect to={path} />;
+  }
+
+
   return (
     <HashRouter>
       <Switch>
-        <Route exact path="/" component={LoadingScreen} />
-        <Route exact path="/login" > {user ? <Redirect to="/dashboard" /> : <Login />} </Route>
+        <Route exact path="/">
+          {findFirstPath()}
+        </Route>
+        {/* <Route exact path="/" component={LoadingScreen} /> */}
+        <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
+{/*         <Route path="/login" component={Login} /> */}
         <Route path="/indisponivel" component={Unavailable} />
         <Route path="/gestao" component={Gestao} />
         <Route path="/entendimento" component={Entendimento} />

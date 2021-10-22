@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { BASE_URL, SCA_LOGIN } from './endpoints';
-import {scaUserTransform} from './transforms'
+import { BASE_URL, SCA_LOGIN, TOKEN_LOGIN } from './endpoints';
+import {scaUserTransform, jwtUserTransform} from './transforms'
 
 function ApiCreator() {
   const axiosInstance = axios.create({
@@ -25,8 +25,20 @@ function ApiCreator() {
     return scaUserTransform(data);
   }
 
+  
+  async function loginWithJwtCredentials(token) {
+    const formData = new FormData();
+    formData.set('jwt', token);
+
+    const { data } = await axiosInstance.post(TOKEN_LOGIN, formData);
+
+    return jwtUserTransform(data);
+  }
+
+
   return {
     loginWithSCACredentials,
+    loginWithJwtCredentials,
   };
 }
 

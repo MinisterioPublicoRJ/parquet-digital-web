@@ -40,7 +40,18 @@ export function AppStoreInitializer() {
   };
 
 
-  const loginWithJwtToken = () => {};
+  const loginWithJwtToken = async (token) => {
+    try {
+      const loggedUser = await Api.loginWithJwtCredentials(token);
+      setUser(loggedUser);
+    } catch (e) {
+      if (!e.response) {
+        //setIsServerDown(true);
+      } else {
+        //setUserError(true);
+      }
+    }
+  };
 
   const loginWithStoredUser = (storedUser) => {
     console.log('loggin in with stored user \n\n\n\n\n');

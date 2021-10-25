@@ -11,15 +11,16 @@ export const useAppContext = () => useContext(AppContext);
 
 export function AppStoreInitializer() {
   const Api = ApiCreator();
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(null);
   const [autoLoginFailed, setAutoLoginFailed] = useState(false);
   const [appHasCrashed, setAppHasCrashed] = useState(false);
   const [scaLoginFailed, setScaLoginFailed] = useState(false);
   const [userExpired, setUserExpired] = useState(false);
+  const [isServerDown, setIsServerDown] = useState(false);
+
 
 
   const loginWithToken = (jwtToken, storedUser) => {
-    console.log("loginwithtoken, jwt: ", jwtToken, "storeduser: ", storedUser);
     if (jwtToken) {
       loginWithJwtToken(jwtToken);
     } else if (storedUser) {
@@ -46,7 +47,7 @@ export function AppStoreInitializer() {
       setUser(loggedUser);
     } catch (e) {
       if (!e.response) {
-        //setIsServerDown(true);
+        setIsServerDown(true);
       } else {
         //setUserError(true);
       }
@@ -54,9 +55,7 @@ export function AppStoreInitializer() {
   };
 
   const loginWithStoredUser = (storedUser) => {
-    console.log('loggin in with stored user \n\n\n\n\n');
     if (isStoredUserValid(storedUser)) {
-      console.log('storeduser is valid: ', storedUser);
       const { userObj } = JSON.parse(storedUser);
       setUser(userObj);
     } else {
@@ -67,14 +66,27 @@ export function AppStoreInitializer() {
   };
 
   const loginWithSCACredentials = async (username, password) => {    
-    const loggedUser = await Api.loginWithSCACredentials(username, password);
-    console.log('\n\n\n\nlogged user: ', loggedUser, '\n\n\n\n\n\n\n\n\n\n');
-    setUser(loggedUser);
-    const storageUser = { timestamp: new Date(), userObj: loggedUser };
-    window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
-    //setScaLoginFailed(true);
+    try {        
+      const loggedUser = await Api.loginWithSCACredentials(username, password);
+      setUser(loggedUser);
+      const storageUser = { timestamp: new Date(), userObj: loggedUser };
+      window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
+    } catch (e){
+      if (!e.response) {
+        setIsServerDown(true);
+      } else {
+        setScaLoginFailed(true);
+      }
+    }
   };
 
+  // add backend integration when available
+  const logout = () => {
+    setUser(undefined);
+    /* setUserError(true); */
+    window.localStorage.removeItem('sca_token');
+    window.localStorage.removeItem('access_token');
+  };
   return {
     Api,
     appHasCrashed,
@@ -85,7 +97,9 @@ export function AppStoreInitializer() {
 
     autoLoginFailed,
     scaLoginFailed,
+
     loginWithToken,
     loginWithSCACredentials,
+    logout,
   };
 }

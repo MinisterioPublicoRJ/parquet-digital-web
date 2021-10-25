@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { useAppContext } from '../../../core/app/App.context';
 
 const Dashboard = () => {
-  const { user } = useAppContext();
+  const { user, logout } = useAppContext();
 
   return (
-    <div>hi {user?.nome}</div>
+    <div style={{margin: '10%'}}>
+      <div> Olá {user?.nome}</div>
+      <button onClick={logout}> Logout </button>
+    </div>
   ); 
 };
 

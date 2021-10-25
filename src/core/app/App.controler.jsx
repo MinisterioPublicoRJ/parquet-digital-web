@@ -19,6 +19,7 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
   function onMount() {
     const token = window.localStorage.getItem('access_token');
     const scaToken = window.localStorage.getItem('sca_token');
+    // tries to login automatically with saved token
     appStore.loginWithToken(token, scaToken);
   }
 

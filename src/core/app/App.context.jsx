@@ -73,7 +73,8 @@ export function AppStoreInitializer() {
       window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
     } catch (e){
       setScaLoginFailed(true);
-      /* CORS error in the browser makes response opaque - can't distinguish between network error or status  !=ok in browser */
+      /* CORS error in the browser makes response opaque - can't distinguish between network error or status  !=ok in browser
+        https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed */
  /*      if (!e.response) {
         setIsServerDown(true);
       } else {
@@ -85,7 +86,6 @@ export function AppStoreInitializer() {
   // add backend integration when available
   const logout = () => {
     setUser(undefined);
-    /* setUserError(true); */
     window.localStorage.removeItem('sca_token');
     window.localStorage.removeItem('access_token');
     // forces loading screen to login page

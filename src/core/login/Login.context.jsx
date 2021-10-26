@@ -9,16 +9,19 @@ export const LoginProvider = ({ store, children }) => (
 export const useLoginContext = () => useContext(LoginContext);
 
 export function LoginStoreInitializer() {
-  const [username, setUsername] = useState('');
-  const [secret, setSecret] = useState('');
+  const [loginHasCrashed, setLoginHasCrashed] = useState(false);
   const [isLoading, setLoadingState] = useState(false);
-
-  useEffect(() => {
-    if (scaUserError) {
-      setLoadingState(false);
-    }
-  }, [scaUserError]);
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
 
   return {
+    loginHasCrashed,
+    setLoginHasCrashed,
+    isLoading,
+    setLoadingState,
+    username,
+    setUsername,
+    password,
+    setPassword,
   };
 }

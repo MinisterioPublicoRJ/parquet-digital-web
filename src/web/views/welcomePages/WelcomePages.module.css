@@ -88,7 +88,7 @@
 
 .prevDiv{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 }
     
 @media (max-width: 480px) {

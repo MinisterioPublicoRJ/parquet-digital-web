@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { loginWrapper, loginInner, loginImageBanner, loginFormArea, loginInput, loginSubmitBtn } from './Login.module.css'
+
+import { loginWrapper, loginInner, loginImageBanner, loginFormArea, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
 import { useAppContext } from '../../../core/app/App.context';
 import LoginBanner from '../../assets/images/loginPageBanner.png';
 import { LoginPromotron } from '../../../assets';
+import { useLoginContext } from '../../../core/login/Login.context';
 
 const Login = () => {
-  // const { scaLogin, scaUserError, userExpired } = useAppContext();
-  const [username, setUsername] = useState('');
-  const [secret, setSecret] = useState('');
-  const [isLoading, setLoadingState] = useState(false);
+  const { scaLoginFailed } = useAppContext();
+  const { isLoading, setLoadingState, setUsername, setPassword, userExpired } = useLoginContext();
 
-  async function handleSubmit(e) {
+  const onSubmit = (e) => {
     e.preventDefault();
     setLoadingState(true);
-    // scaLogin(username, secret);
-  }
-
-  // useEffect(() => {
-  //   if (scaUserError) {
-  //     setLoadingState(false);
-  //   }
-  // }, [scaUserError]);
+    };
 
   return (
     <div className={loginWrapper}>
@@ -34,7 +27,7 @@ const Login = () => {
             em evidências e uma análise apurada da sua Promotoria."
           />
         </div>
-        <form className={loginFormArea} onSubmit={handleSubmit}>
+        <form className={loginFormArea} onSubmit={onSubmit}>
           <LoginPromotron height={150} />
           <input
             className={loginInput}
@@ -47,15 +40,17 @@ const Login = () => {
             className={loginInput}
             placeholder="Senha"
             type="password"
-            onChange={({ target }) => setSecret(target.value)}
+            onChange={({ target }) => setPassword(target.value)}
             required
           />
           <button className={loginSubmitBtn} disabled={isLoading} type="submit">
             {isLoading ? 'CARREGANDO' : 'ENTRAR'}
           </button>
-          <div className="greetings">
-            {/*scaUserError && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
-            {userExpired && <strong>Sua sessão expirou</strong>*/}
+          <div className={greetings}>
+            {userExpired && <strong>Sua sessão expirou</strong>}
+            {scaLoginFailed && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
+            {scaLoginFailed && <strong>Atenção: deve ser usada a senha do SCA/contracheque!</strong>}
+{/*         {autoLoginFailed && <strong>Houve algum erro ao tentar acessar com as informações armazenadas no navegador.</strong>} */}
           </div>
         </form>
       </div>

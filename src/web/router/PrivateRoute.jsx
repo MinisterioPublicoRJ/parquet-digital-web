@@ -5,7 +5,7 @@ function ProtectedRoute({ component, path, isLogged }) {
   if (isLogged) {
     return <Route path={path} component={component} />;
   }
-  return <Redirect to="/login" />;
+  return <Redirect to="/" />;
 }
 
 export default ProtectedRoute;

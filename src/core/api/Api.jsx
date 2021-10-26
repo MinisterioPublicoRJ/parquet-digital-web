@@ -19,7 +19,6 @@ function ApiCreator() {
 
     const {data} = await axiosInstance.post(SCA_LOGIN, formData);
     const {token, cpf, orgao_selecionado} = data;
-    console.log('token: ', token, '\ncpf: ', cpf, 'orgao_selecionado: ', orgao_selecionado);
     axiosInstance.defaults.params = {jwt: token};
     
     return scaUserTransform(data);

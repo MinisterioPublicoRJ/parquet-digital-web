@@ -12,15 +12,14 @@ import { useAppContext } from '../../core/app/App.context';
 
 function Router() {
   const { user } = useAppContext();
-  console.log('user in router:', user);
 
   function findFirstPath() {
-    let path = '/login';
+    let path = '/carregando';
     if (false) {
-      path = '/unavailable';
+      path = '/indisponivel';
     } else if (user) {
       if (user.firstLogin) {
-        path = '/welcome';
+        path = '/gestao';
       } else {
         path = '/dashboard';
       }
@@ -35,9 +34,8 @@ function Router() {
         <Route exact path="/">
           {findFirstPath()}
         </Route>
-        {/* <Route exact path="/" component={LoadingScreen} /> */}
+        <Route path="/carregando" component={LoadingScreen} />
         <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
-{/*         <Route path="/login" component={Login} /> */}
         <Route path="/indisponivel" component={Unavailable} />
         <Route path="/gestao" component={Gestao} />
         <Route path="/entendimento" component={Entendimento} />

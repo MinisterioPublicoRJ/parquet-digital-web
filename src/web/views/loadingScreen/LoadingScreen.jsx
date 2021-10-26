@@ -5,7 +5,7 @@ import { Spinner } from '../../../components';
 import { useAppContext } from '../../../core/app/App.context';
 
 function LoadingScreen({ history }) {
-  const { autoLoginFailed } = useAppContext();
+  const { autoLoginFailed, user } = useAppContext();
 
   function onAutoLoginFail() {
     // skips the mounting call
@@ -13,12 +13,16 @@ function LoadingScreen({ history }) {
       history.push('/login');
     }
   }
-
-  function onLoginAutoLoginSuccess() {
-    console.log('it worked!');
+  
+  function onAutoLoginSuccess() {
+    if(user) {
+      history.push('/dashboard');
+    }
   }
 
   useEffect(onAutoLoginFail, [autoLoginFailed]);
+
+  useEffect(onAutoLoginSuccess, [user]);
 
   return (
     <div className={loadingScreenOuter}>

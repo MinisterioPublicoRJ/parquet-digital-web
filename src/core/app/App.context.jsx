@@ -72,11 +72,13 @@ export function AppStoreInitializer() {
       const storageUser = { timestamp: new Date(), userObj: loggedUser };
       window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
     } catch (e){
-      if (!e.response) {
+      setScaLoginFailed(true);
+      /* CORS error in the browser makes response opaque - can't distinguish between network error or status  !=ok in browser */
+ /*      if (!e.response) {
         setIsServerDown(true);
       } else {
         setScaLoginFailed(true);
-      }
+      } */
     }
   };
 
@@ -86,11 +88,15 @@ export function AppStoreInitializer() {
     /* setUserError(true); */
     window.localStorage.removeItem('sca_token');
     window.localStorage.removeItem('access_token');
+    // forces loading screen to login page
+    setAutoLoginFailed(true);
   };
+
   return {
     Api,
     appHasCrashed,
     setAppHasCrashed,
+    isServerDown,
 
     user,
     userExpired,

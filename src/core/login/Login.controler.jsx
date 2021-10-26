@@ -5,7 +5,7 @@ import { useAppContext } from '../app/App.context';
 import { LoginProvider, LoginStoreInitializer } from './Login.context';
 
 function LoginControler({ children, errorBoundary: ErrorBoundary, errorScreen: ErrorScreen }) {
-  const { scaLogin, scaLoginFailed, autoLoginFailed, loginWithSCACredentials } = useAppContext();
+  const { scaLoginFailed, loginWithSCACredentials } = useAppContext();
   const loginStore = LoginStoreInitializer();
   const { loginHasCrashed, setLoginHasCrashed, username, password, isLoading, setLoadingState } = loginStore;
 

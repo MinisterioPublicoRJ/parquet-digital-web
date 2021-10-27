@@ -1,0 +1,65 @@
+.alerts-wrapper {
+  grid-area: alerts;
+  display: flex;
+  flex-direction: column;
+}
+
+.alerts-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.alerts-total {
+  align-items: center;
+  background-color: var(--danger);
+  border-radius: 20px;
+  color: var(--white);
+  display: flex;
+  font-weight: bold;
+  height: var(--sectionTitleFontSize);
+  justify-content: center;
+  min-width: calc(2 * var(--defaultFontSize));
+  padding: 1px 5px;
+}
+
+.alerts-total span {
+  color: var(--white);
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.alerts-body-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.alerts-body {
+  overflow-y: scroll;
+  min-height: 220px;
+  height: 100%;
+}
+
+.alerts-decision--positive {
+  color: var(--primary);
+  border-bottom: 2px solid;
+}
+.alerts-decision--negative {
+  color: var(--warning);
+  border-bottom: 2px solid;
+}
+
+.alerts-body .modal-outer {
+  height: 100%;
+}
+
+.alerts-body .modal-innerWrapper {
+  width: 64%;
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .alerts-wrapper {
+    /* overflow-y: scroll;
+    width: 100%; */
+  }
+}

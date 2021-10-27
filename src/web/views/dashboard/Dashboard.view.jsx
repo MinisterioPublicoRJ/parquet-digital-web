@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
 import { useAppContext } from '../../../core/app/App.context';
+import './Dashboard.css'
+
+import {
+  Alerts,
+  ProcessingTime,
+} from '../sections';
+
 
 const Dashboard = () => {
   const { user, logout } = useAppContext();
 
   return (
-    <div style={{margin: '10%'}}>
+    <div className="base-grid tutela-grid">
+      <ProcessingTime/>
       <div> Olá {user?.nome}</div>
       <button onClick={logout}> Logout </button>
     </div>

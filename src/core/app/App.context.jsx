@@ -92,6 +92,23 @@ export function AppStoreInitializer() {
     setAutoLoginFailed(true);
   };
 
+
+
+
+
+  
+  const buildRequestParams = () => ({
+    token: user.token,
+    orgao: user.orgaoSelecionado.codigo,
+    cpf: user.orgaoSelecionado.cpf,
+  });
+
+
+
+
+
+
+
   return {
     Api,
     appHasCrashed,
@@ -107,5 +124,10 @@ export function AppStoreInitializer() {
     loginWithToken,
     loginWithSCACredentials,
     logout,
+
+
+    buildRequestParams,
+    currentOffice: user ? user.orgaoSelecionado : null,
+
   };
 }

@@ -55,6 +55,14 @@ function Alerts() {
     let listError = false;
     try {
       alertList = await Api.getAlerts(buildRequestParams());
+/*       console.log('alertList: ', alertList);
+      
+      console.log("\n\n\n\n\n\n\n\n\n\SectionTitle: ", SectionTitle);
+      console.log("AlertsContext: ", AlertsContext);
+      console.log("buildRequestParams: ", buildRequestParams);
+      console.log("Api: ", Api);
+      console.log("alertListFormatter: ", alertListFormatter);
+      console.log("\n\n\n\n\n\n\n\n\n: "); */
     } catch (e) {
       //window.newrelic.noticeError(e);
       listError = true;

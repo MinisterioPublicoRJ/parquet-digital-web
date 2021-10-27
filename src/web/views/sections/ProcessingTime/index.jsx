@@ -12,7 +12,6 @@ import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../..
 import processTypeDict from './processingTimeConstants';
 
 const getCategoryByType = ({ tipo }) => {
-  console.log('tipo: ', tipo);
   switch (tipo) {
     case 1:
       return 'tutelaInqueritosCivis';
@@ -64,9 +63,7 @@ const ProcessingTime = () => {
       { x: 1, y: organAvg / max, type: 'pointer' },
       { x: 0, y: (max - organAvg) / max },
     ];
-    console.log('cleaned the chart data: ', pieData, points, domain, organAvg, pointerPosition);
     setChartData({ pieData, points, domain, organAvg, pointerPosition });
-    console.log('set chart data: ');
   };
 
   useEffect(() => {
@@ -74,20 +71,11 @@ const ProcessingTime = () => {
       setLoading(true);
       try {
         const response = await Api.getProcessingTimeData(buildRequestParams());
-        console.log('response: ', response);
         setProcessingTime(response);
         cleanChartData(response[mainCategory]);
       } catch (e) {
         setChartData(false);
       } finally {
-        console.log("\n\n\n\n\n\n\n\n\n\nprocessingtimechart: ", ProcessingTimeChart);
-        console.log("SectionTitle: ", SectionTitle);
-        console.log("PinAzul: ", PinAzul);
-        console.log("PinVermelho: ", PinVermelho);
-        console.log("Markfaster: ", Markfaster);
-        console.log("MarkMind: ", MarkMind);
-        console.log("MarkSlower: ", MarkSlower);
-        console.log("\n\n\n\n\n\n\n\n\n\nprocessingtimechart: ", ProcessingTimeChart);
         setLoading(false);
       }
     };

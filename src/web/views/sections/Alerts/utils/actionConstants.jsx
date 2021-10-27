@@ -9,7 +9,7 @@ import {
   DetailActionIcon,
   DocActionIcon,
   DeadlineIcon,
-} from '../../../../assets';
+} from '../../../../../assets';
 
 export const DELETE = {
   actionType: 'delete',

@@ -49,7 +49,6 @@ function TempoTramitacaoChart({
 
   // anti prop, but the only way to force victory to animate :/
   useEffect(() => {
-    console.log('\n\n\n\nchartData: ', chartData, 'fillerData: ', fillerData, '\n\n\n\n\n\n');
     if (chartData === fillerData) {
       setChartData(data);
     }

@@ -15,7 +15,7 @@ import {
   Arrow,
   LogoSaneamento,
   FebtIcon,
-} from '../../../../assets';
+} from '../../../../../assets';
 
 import {
   PRCR_ACTION_GENERATE_DOC,

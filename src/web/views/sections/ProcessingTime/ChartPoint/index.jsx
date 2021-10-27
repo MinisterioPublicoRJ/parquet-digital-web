@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MarkMind, Markfaster, MarkSlower } from '../../../../assets';
+import { MarkMind, Markfaster, MarkSlower } from '../../../../../assets';
 // import ProcessingTimeArrow from '../../../assets/svg/processingTimeArrow';
 
 // This props are supplied by Victory itself
@@ -15,8 +15,6 @@ const proptypes = {
 const ChartPoints = ({ x, y, datum }) => {
   const { type } = datum;
   let point;
-
-  console.log('type in chartpoint: ', type);
 
   switch (type) {
     case 'min':
@@ -33,7 +31,6 @@ const ChartPoints = ({ x, y, datum }) => {
       break;
   }
   
-  console.log('point in chartpoint: ', point);
   return point;
 };
 

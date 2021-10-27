@@ -7,7 +7,7 @@ import { SectionTitle, Spinner } from '../../../../components';
 import ProcessingTimeChart from './ProcessingTimeChart';
 import { PT_PIE_COLORS } from '../../../../themes/chartThemes';
 
-import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../../assets';
+import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../../../assets';
 
 import processTypeDict from './processingTimeConstants';
 
@@ -80,6 +80,14 @@ const ProcessingTime = () => {
       } catch (e) {
         setChartData(false);
       } finally {
+        console.log("\n\n\n\n\n\n\n\n\n\nprocessingtimechart: ", ProcessingTimeChart);
+        console.log("SectionTitle: ", SectionTitle);
+        console.log("PinAzul: ", PinAzul);
+        console.log("PinVermelho: ", PinVermelho);
+        console.log("Markfaster: ", Markfaster);
+        console.log("MarkMind: ", MarkMind);
+        console.log("MarkSlower: ", MarkSlower);
+        console.log("\n\n\n\n\n\n\n\n\n\nprocessingtimechart: ", ProcessingTimeChart);
         setLoading(false);
       }
     };

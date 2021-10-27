@@ -12,6 +12,8 @@
   /* SPACING */
 
   --unavailableContentPadding: 0.5vh 4vw;
+  --bodyVerticalPadding: 2.5vh;
+  --bodyHorizontalPadding: 5vh;
 
 /* COLORS */
   /* From our design system's page on Notion */

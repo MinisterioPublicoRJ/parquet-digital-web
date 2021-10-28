@@ -7,7 +7,7 @@ import { useAuth } from '../../../app/authContext';
 import Api from '../../../api';
 import { Spinner } from '..';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
-import AlertBadge  from '../../../dashboard/sections/Alerts/AlertBadge';
+import AlertBadge from '../../../dashboard/sections/Alerts/AlertBadge';
 import individualAlertFormatter from '../../../dashboard/sections/Alerts/utils/individualAlertFormatter';
 
 
@@ -21,6 +21,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
   const [loading, setLoading] = useState(true);
   const { buildRequestParams } = useAuth();
   const { cpf, token, orgao } = buildRequestParams();
+  const [isAlertsVisible, setIsAlertsVisible] = useState(false);
+
 
 
   useEffect(() => {
@@ -33,7 +35,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
     setProcessData(null);
     try {
       const data = await Api.getProcessDetail({ ...buildRequestParams(), num_doc: docuNrMp });
-      setProcessData(data);
+      setProcessData(data);      
     } catch (error) {
       setApiError(true);
     } finally {
@@ -63,43 +65,52 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
         <div className="processDetail-body processDetail-loadedData">
 
 
-          <h4>Este procedimento possui {processData.alerts.alertCount}</h4>
+          <h4></h4>
 
-          <div className="processDetail-section">
+          <button
+            type="button"
+            className="process-alerts-btn"
+            onClick={() => setIsAlertsVisible((prevValue) => !prevValue)}
+          >
+            Este procedimento possui {processData.alerts.length} alertas
+            <div
+              className={`process-alerts-arrow ${isAlertsVisible ? 'process-alerts-arrow--rotated' : ''
+                }`}
+            />
+          </button>
+
+          <div
+            className={`process-alerts-list ${isAlertsVisible ? 'process-alerts-list--visible' : ''
+              }`}
+          >
 
             {processData.alerts.map((alert) => {
 
-              const formattedAlert = individualAlertFormatter(alert, cpf, token, orgao)
+              const formattedAlert = individualAlertFormatter({docNum:docuNrMp, ...alert}, cpf, token, orgao);
               const {
                 backgroundColor,
                 backgroundColorChild,
                 icon,
                 key,
                 message,
-                docDk,
-                type
+                type,
+                actions
               } = formattedAlert;
               return (
-                <div className="processDetail-ListCardWrapper">
-
                   <AlertBadge
                     key={key}
                     customKey={key}
                     icon={icon}
                     backgroundColor={backgroundColorChild || backgroundColor}
                     message={message}
-                    docDk={docDk}
+                    docDk={docuNrMp}
+                    docNum={docuNrMp}
                     type={type}
+                    actions={actions}
                   />
-                </div>
-
               );
             })}
-
-
           </div>
-
-
 
           <h3>PERSONAGENS</h3>
           <div className="processDetail-section">

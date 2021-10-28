@@ -41,7 +41,7 @@ export default function processDetailTransform(data) {
   
   const alerts = data.alertas.map(
     ({ alrt_sigla, alrt_count }) => ({
-      alertSigla: alrt_sigla,
+      alertCode: alrt_sigla,
       alrtCount: alrt_count,
     }),
   );

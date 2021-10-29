@@ -68,7 +68,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
             className="process-alerts-btn"
             onClick={() => setIsAlertsVisible((prevValue) => !prevValue)}
           >
-            Este procedimento possui {processData.alerts.length} alertas
+            Este procedimento possui {processData.alerts.length} alerta{processData.alerts.length === 1 ? '' : 's'} 
             <div
               className={`process-alerts-arrow ${isAlertsVisible ? 'process-alerts-arrow--rotated' : ''
                 }`}

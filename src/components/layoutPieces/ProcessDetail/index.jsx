@@ -63,10 +63,6 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
       } = processData.identification;
       return (
         <div className="processDetail-body processDetail-loadedData">
-
-
-          <h4></h4>
-
           <button
             type="button"
             className="process-alerts-btn"
@@ -104,9 +100,9 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
                     backgroundColor={backgroundColorChild || backgroundColor}
                     message={message}
                     docDk={docuNrMp}
-                    docNum={docuNrMp}
                     type={type}
-                    actions={actions}
+                    /* Passes empty actions to hide actions */
+                    actions={[]} 
                   />
               );
             })}

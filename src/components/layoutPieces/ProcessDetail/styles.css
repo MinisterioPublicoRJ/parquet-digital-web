@@ -208,6 +208,7 @@ td button.process-detail-btn {
   height: min-content;
   padding-left: 0;
   cursor: pointer;
+  display: flex;
 }
 
 .process-alerts-list {
@@ -228,7 +229,7 @@ td button.process-detail-btn {
 .process-alerts-list--visible {
   opacity: 1;
   flex-basis: auto;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .process-alerts-list::-webkit-scrollbar {
@@ -245,4 +246,9 @@ td button.process-detail-btn {
   margin: 2px;
   text-align: left;
   cursor: pointer;
+}
+
+/* hides dropdown arrow while actions are unavailable on Process Detail */
+.process-alerts-list .alertBadge-smallButtons {
+  display: none;
 }

@@ -66,7 +66,7 @@ class OpenCasesDetail extends React.Component {
         >
           {numeroMprj}
         </button>
-      );
+      );/* commented alertTag that is half done while back end isn't done
       const alertTagButton = (
         <div className="alert-tag-wrapper">
           <button
@@ -80,8 +80,8 @@ class OpenCasesDetail extends React.Component {
             {alertSigla}
           </div>
         </div>
-      )
-      return { ...openCase, numeroMprj: processNumberBtn, alertTag: alertTagButton };
+      ) */
+      return { ...openCase, numeroMprj: processNumberBtn, /* alertTag: alertTagButton  */};
     });
   }
   /**

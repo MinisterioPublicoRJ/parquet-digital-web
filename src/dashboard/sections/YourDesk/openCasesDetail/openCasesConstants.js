@@ -5,7 +5,7 @@ export const MAIN_DATA = {
 };
 
 export const TABLE_COLUMNS = {
-  'Alertas': 'alertTag',
+  /* 'Alertas': 'alertTag', */
   MPRJ: 'numeroMprj',
   'Nº Externo': 'numeroExterno',
   'Último Andamento no MP': 'dtAbertura',

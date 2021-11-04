@@ -1,24 +1,36 @@
 import React, { useState, useEffect } from 'react';
+import { Pip, Tutela } from './pages';
 
 import { useAppContext } from '../../../core/app/App.context';
 import './Dashboard.css'
 
-import {
-  Alerts,
-  ProcessingTime,
-} from '../sections';
-
-
 const Dashboard = () => {
-  const { user, logout } = useAppContext();
+  const { user, logout, currentOffice } = useAppContext(); 
+  const { firstLogin } = useAppContext().user;
+  const type = currentOffice ? currentOffice.tipo : undefined;
+
+  console.log(firstLogin);
+  console.log(user, currentOffice);
+
+  function renderPage() {
+    switch (type) {
+      case 1:
+        return (
+          <Tutela/>
+        );
+      case 2:
+        return (
+          <Pip/>
+        );
+      default:
+        return <Tutela />;
+    }
+  }
 
   return (
-    <div className="base-grid tutela-grid">
-      <ProcessingTime/>
-      <Alerts/>
-      <div> Olá {user?.nome}</div>
-      <button onClick={logout}> Logout </button>
-    </div>
+    <>
+      {renderPage()}
+    </>
   ); 
 };
 

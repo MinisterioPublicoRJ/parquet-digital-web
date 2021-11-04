@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MarkMind, Markfaster, MarkSlower } from '../../../../../assets';
+import { MarkMind, Markfaster, MarkSlower } from '../../../../../../assets/svg';
 // import ProcessingTimeArrow from '../../../assets/svg/processingTimeArrow';
 
 // This props are supplied by Victory itself

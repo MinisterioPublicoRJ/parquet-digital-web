@@ -10,16 +10,16 @@ import {
   unavailableBannerImg,
   unavailableOptionHeader,
   unavailableSugestions,
-} from './Unavailable.module.css';
-import promotronReparador from '../../../assets/imgs/promotron-repador@4x.png';
-import diagnosticoImg from '../../../assets/imgs/Image-4.png';
-import dominioImg from '../../../assets/imgs/Image1.png';
-import painelDeComprasImg from '../../../assets/imgs/Image3.png';
-import painelSaneamentoBasicoImg from '../../../assets/imgs/Image-2.png';
-import inLocoImg from '../../assets/images/inLoco.png';
-import unavailableBanner from '../../assets/images/unavailableBanner.png';
+} from './UnavailablePage.module.css';
+import promotronReparador from '../../../../../assets/imgs/promotron-repador@4x.png';
+import diagnosticoImg from '../../../../../assets/imgs/Image-4.png';
+import dominioImg from '../../../../../assets/imgs/Image1.png';
+import painelDeComprasImg from '../../../../../assets/imgs/Image3.png';
+import painelSaneamentoBasicoImg from '../../../../../assets/imgs//Image-2.png';
+import inLocoImg from '../../../../assets/images/inLoco.png';
+import unavailableBanner from '../../../../assets/images/unavailableBanner.png';
 
-const Unavailable = () => {
+const UnavailablePage = () => {
   return (
     <div className={unavailableWrapper}>
       <div className={unavailableBannerWrapper}>
@@ -112,4 +112,4 @@ const Unavailable = () => {
   );
 };
 
-export default Unavailable;
+export default UnavailablePage;

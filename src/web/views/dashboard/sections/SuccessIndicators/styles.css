@@ -1,0 +1,114 @@
+.successIndicators-outer {
+  grid-area: indicators;
+  color: var(--darkBlue);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.successIndicators-outer h4 {
+  margin: 5px 0 -5px 0;
+  font-weight: bold;
+}
+/* Css Tooltip Phrase  */
+.successIndicators-item {
+  position: relative;
+  display: inline-block;
+}
+
+.successIndicators-item span {
+  visibility: hidden;
+  width: 250px;
+  background-color: var(--grayTooltip);
+  color: var(--white);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 30%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.successIndicators-item span::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--grayTooltip) transparent transparent transparent;
+}
+.successIndicators-item:hover span {
+  visibility: visible;
+  opacity: 1;
+}
+
+.successIndicators-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Css Tooltip percent  */
+
+.successIndicators-item strong {
+  width: 60px;
+  color: var(--white);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 45%;
+  right: 0%;
+  margin-left: -60px;
+  transition: opacity 0.3s;
+}
+.successIndicators-item .successIndicators-tooltip--first strong::after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f86c72 transparent transparent transparent;
+}
+.successIndicators-item .successIndicators-tooltip--second strong::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f8bd6c transparent transparent transparent;
+}
+.successIndicators-item .successIndicators-tooltip--third strong::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #71d0a4 transparent transparent transparent;
+}
+
+.successIndicators-tooltip--first strong {
+  background-color: #f86c72;
+  border-color: #f86c72 transparent transparent transparent;
+}
+.successIndicators-tooltip--second strong {
+  background-color: #f8bd6c;
+  border-color: #f8bd6c transparent transparent transparent;
+}
+.successIndicators-tooltip--third strong {
+  background-color: #71d0a4;
+  border-color: #71d0a4 transparent transparent transparent;
+}

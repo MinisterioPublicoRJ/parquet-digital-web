@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
-import Api from '../../../../api';
-import { useAppContext } from '../../../../core/app/App.context';
-import { SectionTitle, Spinner } from '../../../../components';
+import Api from '../../../../../api';
+import { useAppContext } from '../../../../../core/app/App.context';
+import { SectionTitle, Spinner } from '../../../../../components';
 import ProcessingTimeChart from './ProcessingTimeChart';
-import { PT_PIE_COLORS } from '../../../../themes/chartThemes';
+import { PT_PIE_COLORS } from '../../../../../themes/chartThemes';
 
-import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../../../assets';
+import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../../../../assets';
 
 import processTypeDict from './processingTimeConstants';
 
@@ -28,7 +28,6 @@ const ProcessingTime = () => {
   const [chartData, setChartData] = useState(null);
   const mainCategory = getCategoryByType(currentOffice);
   const [loading, setLoading] = useState(true);
-
   const cleanChartData = (raw) => {
     const organAvg = Number(raw.orgaoData.average).toFixed(0);
     const { min, max, average } = raw.pacoteData;

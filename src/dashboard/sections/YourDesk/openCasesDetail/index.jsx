@@ -55,7 +55,7 @@ class OpenCasesDetail extends React.Component {
 
   generateButtons(list) {
     return list.map((openCase) => {
-      const { numeroMprj, numeroExterno } = openCase;
+      const { numeroMprj, numeroExterno, alertSigla, alertCount } = openCase;
       const processNumberBtn = (
         <button
           type="button"
@@ -66,8 +66,22 @@ class OpenCasesDetail extends React.Component {
         >
           {numeroMprj}
         </button>
-      );
-      return { ...openCase, numeroMprj: processNumberBtn };
+      );/* commented alertTag that is half done while back end isn't done
+      const alertTagButton = (
+        <div className="alert-tag-wrapper">
+          <button
+            type="button"
+            className="alert-tag"
+          >
+            {alertCount}
+          </button>
+
+          <div className="alert-tag-sigla">
+            {alertSigla}
+          </div>
+        </div>
+      ) */
+      return { ...openCase, numeroMprj: processNumberBtn, /* alertTag: alertTagButton  */};
     });
   }
   /**
@@ -209,7 +223,7 @@ class OpenCasesDetail extends React.Component {
             // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
             <>
               <p className="no-openCases"> Nenhuma vista aberta até o momento</p>
-              <CustomTable data={Array(20).fill({content: ''})} columns={TABLE_COLUMNS} showHeader />
+              <CustomTable data={Array(20).fill({ content: '' })} columns={TABLE_COLUMNS} showHeader />
             </>
           )}
 

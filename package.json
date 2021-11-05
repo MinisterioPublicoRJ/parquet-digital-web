@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "axios": "^0.21.4",
     "lodash.template": "^4.5.0",
     "mapasteca-web": "^0.0.11",

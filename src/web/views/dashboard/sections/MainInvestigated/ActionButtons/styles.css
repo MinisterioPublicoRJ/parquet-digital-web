@@ -1,0 +1,8 @@
+.mainInvestigated-tableWrapper tr > td:last-child button {
+  background: transparent;
+  border: 0;
+  color: transparent;
+  height: 100%;
+  width: 25px;
+  padding: 0;
+}

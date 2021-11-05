@@ -1,0 +1,15 @@
+.mainInvestigated-outer {
+  grid-area: mainInvestigated;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainInvestigated-tableWrapper {
+  overflow-y: auto;
+  width: 100%;
+}
+
+.mainInvestigated-outer button.main-investigated-search-btn {
+  color:black;
+  margin-left: 16%;
+}

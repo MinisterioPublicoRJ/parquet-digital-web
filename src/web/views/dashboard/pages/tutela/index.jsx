@@ -13,7 +13,9 @@ function Tutela() {
         <ErrorBoundary> 
           <Today />
         </ErrorBoundary>
-        {/*<Alerts />*/}
+        <ErrorBoundary> 
+          <Alerts />
+        </ErrorBoundary>
         <ErrorBoundary> 
           <ProcessingTime />
         </ErrorBoundary>

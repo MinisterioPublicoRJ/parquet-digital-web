@@ -221,11 +221,13 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
         <button
           type="button"
           className="today-glossaryBtn"
-          onClick={() => setModalType('glossary')}
+          //onClick={() => setModalType('glossary')}
         >
           <GlossaryBook />
         </button>
-        <button type="button" className="today-introBtn" onClick={() => setIsIntroOpen(true)}>
+        <button type="button" className="today-introBtn"
+          //onClick={() => setIsIntroOpen(true)}
+        >
           <IntroScreenInterrogation />
         </button>
         <img height="100%" src={PromotronGif} alt="robô-promoton" />

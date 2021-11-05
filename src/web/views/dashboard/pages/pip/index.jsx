@@ -4,12 +4,15 @@ import React from 'react';
 import './styles.css';
 import '../styles.css';
 
-import { Alerts, ProcessingTime, SuccessIndicators  } from '../../sections';
+import { Alerts, ProcessingTime, SuccessIndicators, Today  } from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Pip() {
   return (
     <div className="base-grid pip-grid">
+       <ErrorBoundary> 
+          <Today />
+        </ErrorBoundary>
         {/*<Alerts />*/}
         <ErrorBoundary> 
          <ProcessingTime />

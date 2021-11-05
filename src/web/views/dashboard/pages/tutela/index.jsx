@@ -4,15 +4,21 @@ import React from 'react';
 import './styles.css';
 import '../styles.css';
 
-import { Alerts, ProcessingTime, SuccessIndicators} from '../../sections';
+import { Alerts, ProcessingTime, SuccessIndicators, TablesTutela, Today} from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Tutela() {
   return (
     <div className="base-grid pip-grid">
+        <ErrorBoundary> 
+          <Today />
+        </ErrorBoundary>
         {/*<Alerts />*/}
         <ErrorBoundary> 
           <ProcessingTime />
+        </ErrorBoundary>
+        <ErrorBoundary> 
+          <TablesTutela />
         </ErrorBoundary>
         <ErrorBoundary> 
           <SuccessIndicators />

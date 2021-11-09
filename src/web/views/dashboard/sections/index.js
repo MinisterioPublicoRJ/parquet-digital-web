@@ -4,7 +4,7 @@ export { default as ProcessingTime } from './ProcessingTime';
 export { default as SuccessIndicators } from './SuccessIndicators';
 export { default as TablesTutela } from './TablesTutela';
 export { default as MainInvestigated } from './MainInvestigated';
-
+export { default as PerformanceRadar } from './PerformanceRadar';
 /* export { default as PerformanceRadar } from './PerformanceRadar';
 export { default as MainInvestigated } from './MainInvestigated';
 export { default as Today } from './Today';

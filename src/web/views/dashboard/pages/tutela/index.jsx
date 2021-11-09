@@ -4,7 +4,7 @@ import React from 'react';
 import './styles.css';
 import '../styles.css';
 
-import { Alerts, ProcessingTime, SuccessIndicators, TablesTutela, Today} from '../../sections';
+import { Alerts, ProcessingTime, SuccessIndicators, TablesTutela, Today, PerformanceRadar} from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Tutela() {
@@ -21,6 +21,9 @@ function Tutela() {
         </ErrorBoundary>
         <ErrorBoundary> 
           <TablesTutela />
+        </ErrorBoundary>
+        <ErrorBoundary> 
+         <PerformanceRadar />
         </ErrorBoundary>
         <ErrorBoundary> 
           <SuccessIndicators />

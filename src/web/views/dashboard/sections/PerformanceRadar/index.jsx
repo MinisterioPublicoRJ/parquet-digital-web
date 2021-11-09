@@ -5,7 +5,7 @@ import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { RadarArrow } from '../../../../assets';
-import { Spinner, SectionTitle } from '../../../../../components/layoutPieces';
+import { Spinner, SectionTitle } from '../../../../components/layoutPieces';
 import {
   NORTH_LABEL_PROPS,
   WEST_LABEL_PROPS,

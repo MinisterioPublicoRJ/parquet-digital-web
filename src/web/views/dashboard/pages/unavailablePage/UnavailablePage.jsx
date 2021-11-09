@@ -11,11 +11,11 @@ import {
   unavailableOptionHeader,
   unavailableSugestions,
 } from './UnavailablePage.module.css';
-import promotronReparador from '../../../../../assets/imgs/promotron-repador@4x.png';
-import diagnosticoImg from '../../../../../assets/imgs/Image-4.png';
-import dominioImg from '../../../../../assets/imgs/Image1.png';
-import painelDeComprasImg from '../../../../../assets/imgs/Image3.png';
-import painelSaneamentoBasicoImg from '../../../../../assets/imgs//Image-2.png';
+import promotronReparador from '../../../../assets/imgs/promotron-repador@4x.png';
+import diagnosticoImg from '../../../../assets/imgs/Image-4.png';
+import dominioImg from '../../../../assets/imgs/Image1.png';
+import painelDeComprasImg from '../../../../assets/imgs/Image3.png';
+import painelSaneamentoBasicoImg from '../../../../assets/imgs//Image-2.png';
 import inLocoImg from '../../../../assets/imgs/inLoco.png';
 import unavailableBanner from '../../../../assets/imgs/unavailableBanner.png';
 

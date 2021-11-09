@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
-import { SectionTitle, Spinner } from '../../../../../components';
+import { SectionTitle, Spinner } from '../../../../components';
 import ProcessingTimeChart from './ProcessingTimeChart';
-import { PT_PIE_COLORS } from '../../../../../themes/chartThemes';
+import { PT_PIE_COLORS } from '../../../../themes/chartThemes';
 
-import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../../../../assets';
+import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../../../assets';
 
 import processTypeDict from './processingTimeConstants';
 

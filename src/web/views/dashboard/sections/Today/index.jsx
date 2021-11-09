@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
-import { abbrevName, capitalizeTitle } from '../../../../../utils';
+import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
-import NOMES_PROMOTORIAS from '../../../../../utils/nomesPromotorias';
-import { MainTitle, Spinner } from '../../../../../components/layoutPieces';
+import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
+import { MainTitle, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 
 const propTypes = {

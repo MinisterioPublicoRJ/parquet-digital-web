@@ -5,7 +5,7 @@ import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import { SectionTitle, Spinner } from '../../../components';
 import ProcessingTimeChart from './ProcessingTimeChart';
-import { PT_PIE_COLORS } from '../../../themes/chartThemes';
+import { PT_PIE_COLORS } from '../../../web/themes/chartThemes';
 
 import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower } from '../../../assets';
 

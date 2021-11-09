@@ -10,7 +10,7 @@ import {
 } from 'victory';
 
 import CustomLabel from './CustomLabel';
-import CHART_THEME from '../../../../themes/chartThemes';
+import CHART_THEME from '../../../../web/themes/chartThemes';
 
 const propTypes = {
   xAxis: PropTypes.arrayOf(

@@ -3,7 +3,7 @@ import './styles.css';
 import { SearchBox } from 'mapasteca-web';
 import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
-import { SectionTitle } from '../../../../../components';
+import { SectionTitle } from '../../../../components';
 
 const TablesTutela = ({ setInvestigatedProfile, setProcessDetail }) => {
   const [visibleTab, setVisibleTab] = useState('process');

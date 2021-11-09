@@ -1,5 +1,5 @@
 import React from 'react';
-import Trabalho from '../../../../../assets/gifs/trabalho.gif';
+import Trabalho from '../../../../assets/gifs/trabalho.gif';
 import {Link} from 'react-router-dom';
 import {Nav, getPath} from './Nav.jsx';
 import {

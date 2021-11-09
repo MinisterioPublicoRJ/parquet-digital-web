@@ -1,0 +1,38 @@
+.openCases-chartsWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.openCases-tableWrapper {
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+  flex-direction: column;
+}
+
+.pagination-number-button {
+  border: 0;
+  background-color: transparent;
+  color: var(--grayPagination);
+}
+
+.pagination-number-button.active {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.empty-table {
+  overflow: hidden;
+  position: relative;
+}
+
+.no-openCases {
+  position: absolute;
+  width: 240px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Chat from '../../../../../assets/gifs/chat.gif';
+import Chat from '../../../../assets/gifs/chat.gif';
 import {Link} from 'react-router-dom';
 import {Nav, getPath} from './Nav.jsx';
 import {

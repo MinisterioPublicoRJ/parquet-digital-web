@@ -1,5 +1,5 @@
 import React from 'react';
-import Run from '../../../../../assets/gifs/run.gif';
+import Run from '../../../../assets/gifs/run.gif';
 import {Link} from 'react-router-dom';
 import {Nav, getPath} from './Nav.jsx';
 import {

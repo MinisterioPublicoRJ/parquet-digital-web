@@ -4,7 +4,7 @@ import React from 'react';
 import './styles.css';
 import '../styles.css';
 
-import { Alerts, ProcessingTime, SuccessIndicators, TablesTutela, Today, PerformanceRadar} from '../../sections';
+import {YourDesk, Alerts, ProcessingTime, SuccessIndicators, TablesTutela, Today, PerformanceRadar} from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Tutela() {
@@ -12,6 +12,9 @@ function Tutela() {
     <div className="base-grid pip-grid">
         <ErrorBoundary> 
           <Today />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <YourDesk />
         </ErrorBoundary>
         <ErrorBoundary> 
           <Alerts />
@@ -28,8 +31,6 @@ function Tutela() {
         <ErrorBoundary> 
           <SuccessIndicators />
         </ErrorBoundary>
-
-
     </div>
   );
 }

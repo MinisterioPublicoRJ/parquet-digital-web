@@ -4,9 +4,9 @@ import './styles.css';
 import { SearchBox } from 'mapasteca-web';
 import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
-import Api from '../../../../../api';
+import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
-import { CustomTable, Spinner, SectionTitle, Pagination } from '../../../../../components';
+import { CustomTable, Spinner, SectionTitle, Pagination } from '../../../../components';
 
 function MainInvestigated({ setInvestigatedProfile }) {
   const { buildRequestParams } = useAppContext();

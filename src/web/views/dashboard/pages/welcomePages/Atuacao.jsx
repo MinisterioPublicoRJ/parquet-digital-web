@@ -1,5 +1,5 @@
 import React from 'react';
-import Analise from '../../../../../assets/gifs/analise.gif';
+import Analise from '../../../../assets/gifs/analise.gif';
 import {Link} from 'react-router-dom';
 import {Nav, getPath} from './Nav.jsx';
 import {

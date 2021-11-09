@@ -4,7 +4,7 @@ import React from 'react';
 import './styles.css';
 import '../styles.css';
 
-import { Alerts, ProcessingTime, SuccessIndicators, Today, MainInvestigated, PerformanceRadar  } from '../../sections';
+import { Alerts, ProcessingTime, SuccessIndicators, Today, YourDesk, MainInvestigated, PerformanceRadar  } from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Pip() {
@@ -13,12 +13,15 @@ function Pip() {
        <ErrorBoundary> 
           <Today />
         </ErrorBoundary>
-        <ErrorBoundary> 
-          <Alerts />
+        {/*<ErrorBoundary>
+          <YourDesk />
         </ErrorBoundary>
         {/*<ErrorBoundary>
         <MainInvestigated />
         </ErrorBoundary>*/}
+        <ErrorBoundary> 
+          <Alerts />
+        </ErrorBoundary>
          <ErrorBoundary> 
          <ProcessingTime />
         </ErrorBoundary>
@@ -27,6 +30,9 @@ function Pip() {
         </ErrorBoundary>
         <ErrorBoundary> 
           <SuccessIndicators />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <ProcessingTime />
         </ErrorBoundary>
     </div>
   );

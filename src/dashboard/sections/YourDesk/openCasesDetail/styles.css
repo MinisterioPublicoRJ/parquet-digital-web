@@ -36,3 +36,43 @@
   top: 50%;
   transform: translate(-50%,-50%);
 }
+/* makes alert tag header smaller 
+.openCases-tableWrapper td:first-child, .openCases-tableWrapper th:first-child {
+  width: 3vw;
+  overflow-x: visible;
+  overflow-y: hidden;
+}
+ */
+.alert-tag-wrapper {
+  position: relative;
+  height: calc( 1.5 * var(--smallFont)); 
+  /* height 100% doesn't have expected behavior, known "bug" (?) */
+  width: 100%;
+}
+
+button.alert-tag {
+  position: absolute;
+  background-color: red;
+  border-radius: 8px;
+  border: 0;
+  width: 1.6vw;
+  height: 1.8vh;
+  color: white;
+  font-size: var(--smallFont);
+  font-weight: 500;
+  padding: 0;
+  left: 1vw;
+}
+
+.alert-tag-sigla {
+  opacity: 0;
+  position: absolute;
+  width: 7vw;
+  left: -7vw;
+  height: 100%;
+  background-color: red;
+}
+.alert-tag-wrapper:hover .alert-tag-sigla{
+  opacity: 1;
+  left: 0;
+}

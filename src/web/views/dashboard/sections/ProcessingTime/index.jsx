@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './styles.css';
-import Api from '../../../../../api';
+import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../../components';
 import ProcessingTimeChart from './ProcessingTimeChart';

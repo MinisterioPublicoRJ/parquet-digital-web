@@ -16,9 +16,9 @@ function Pip() {
         <ErrorBoundary> 
           <Alerts />
         </ErrorBoundary>
-        <ErrorBoundary>
+        {/*<ErrorBoundary>
         <MainInvestigated />
-      </ErrorBoundary>
+        </ErrorBoundary>*/}
         <ErrorBoundary> 
          <ProcessingTime />
         </ErrorBoundary>

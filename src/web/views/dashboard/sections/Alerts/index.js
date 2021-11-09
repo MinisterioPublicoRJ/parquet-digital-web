@@ -4,7 +4,7 @@ import './styles.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { AlertsContext, AlertsContextCreator } from './alertsContext';
 
-import Api from '../../../../../api';
+import Api from '../../../../api';
 import { SectionTitle, Spinner, Modal, DialogBox } from '../../../../../components';
 import Dropdown from './Dropdown';
 import Overlay from './AlertsOverlay';

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.css';
 import SuccessIndicatorsChart from './SuccessIndicatorsChart';
-import Api from '../../../../../api';
+import Api from '../../../../api';
 import { formatPercent } from '../../../../../utils';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../../components';

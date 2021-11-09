@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Api from '../../../../../../api';
+import Api from '../../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
 

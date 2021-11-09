@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import Api from '../../../../../../api';
+import Api from '../../../../../api';
 import AlertBadge from '../AlertBadge';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import individualAlertFormatter from '../utils/individualAlertFormatter';

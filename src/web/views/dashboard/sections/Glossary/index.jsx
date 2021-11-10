@@ -2,11 +2,11 @@ import React from 'react';
 
 import './styles.css';
 import GLOSSARIO from './glossaryData';
-import { PromotronGlossario } from '../../../assets';
-import { useAuth } from '../../../app/authContext';
+import { PromotronGlossario } from '../../../../assets/svg';
+import { useAppContext } from '../../../../../core/app/App.context';
 
 function Glossary({ onToggle }) {
-  const { currentOffice } = useAuth();
+  const { currentOffice } = useAppContext();
   const { tipo } = currentOffice;
 
   const glossaryRef = React.useRef([]); // Hook to ref object

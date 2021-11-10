@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './styles.css';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Search } from '../../../../../assets';
-import { abbrevName } from '../../../../../../utils';
+import { abbrevName } from '../../../../../utils';
 
 function handleInnerClick(e) {
   e.stopPropagation();

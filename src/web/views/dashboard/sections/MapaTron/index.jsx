@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './styles.css';
-import { PromotronGlossario } from '../../../assets';
+import { PromotronGlossario } from '../../../../assets';
 
 function MapaTron({ onToggle, mapatronData }) {
   return (

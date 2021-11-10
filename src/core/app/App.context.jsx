@@ -93,10 +93,6 @@ export function AppStoreInitializer() {
   };
 
 
-
-
-
-  
   const buildRequestParams = () => ({
     token: user.token,
     orgao: user.orgaoSelecionado.codigo,
@@ -105,29 +101,19 @@ export function AppStoreInitializer() {
 
 
 
-
-
-
-
   return {
     Api,
     appHasCrashed,
     setAppHasCrashed,
     isServerDown,
-
     user,
     userExpired,
-
     autoLoginFailed,
     scaLoginFailed,
-
     loginWithToken,
     loginWithSCACredentials,
     logout,
-
-
     buildRequestParams,
     currentOffice: user ? user.orgaoSelecionado : null,
-
   };
 }

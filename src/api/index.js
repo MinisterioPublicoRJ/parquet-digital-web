@@ -254,7 +254,7 @@ const Api = (() => {
     }
 
     const {data} = await axios.get(PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }), { params });
-    let cleanData = {};
+    const cleanData = {};
     cleanData.investigated = data.investigados.map((item) => snakeToCamelTransform(item));
     cleanData.pages = data.nr_paginas
     return cleanData;

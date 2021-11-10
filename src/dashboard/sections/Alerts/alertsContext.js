@@ -2,9 +2,7 @@ import { createContext, useContext, useState } from 'react';
 
 export const AlertsContext = createContext();
 
-export const useAlertsContext = () => {
-  return useContext(AlertsContext);
-};
+export const useAlertsContext = () => useContext(AlertsContext);
 
 export const AlertsContextCreator = () => {
   // const { buildRequestParams } = useAuth();

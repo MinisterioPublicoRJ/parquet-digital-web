@@ -11,14 +11,14 @@ const propTypes = {
   type: PropTypes.string.isRequired,
   setShowOverlay: PropTypes.func.isRequired,
   children: PropTypes.node,
+  docDk: PropTypes.string,
 };
 
-const defaultProps = { children: null };
+const defaultProps = { children: null, docDk: '' };
 
 function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
   const { buildRequestParams } = useAuth();
   const [text, setText] = useState();
-
 
   async function getOverlayText(docType) {
     try {
@@ -73,14 +73,13 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
 
   useEffect(() => {
     getText();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div
       className="overlay-outer"
-      onClick={(e) => setShowOverlay(false)}
-      onKeyDown={(e) => setShowOverlay(false)}
+      onClick={() => setShowOverlay(false)}
+      onKeyDown={() => setShowOverlay(false)}
     >
       <div
         className="alerts-overlay"

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -12,7 +13,7 @@ const propTypes = {
   type: PropTypes.string.isRequired,
   setOverlay: PropTypes.func.isRequired,
   openDialogBox: PropTypes.func.isRequired,
-  deletedAlertKey: PropTypes.string,
+  deletedAlertKey: PropTypes.string.isRequired,
 };
 
 function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
@@ -35,7 +36,6 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
 
   useEffect(() => {
     removeAlert(deletedAlertKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deletedAlertKey]);
 
   function handleAlertAction(alertKey, undo) {
@@ -60,9 +60,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
       return alert;
     });
     setAlertsList(newList);
-    setVisibleAlertsList((prevValue) => {
-      return newList.slice(0, prevValue.length);
-    });
+    setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
     Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
@@ -74,9 +72,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
       return alert;
     });
     setAlertsList(newList);
-    setVisibleAlertsList((prevValue) => {
-      return newList.slice(0, prevValue.length);
-    });
+    setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
     Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
@@ -155,9 +151,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
                   }
             }
             onClick={() => {
-              setVisibleAlertsList((prevValue) => {
-                return alertsList.slice(0, prevValue.length + 30);
-              });
+              setVisibleAlertsList((prevValue) => alertsList.slice(0, prevValue.length + 30));
             }}
             className="show-more-alerts"
           >

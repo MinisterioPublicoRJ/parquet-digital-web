@@ -7,7 +7,7 @@ const todayOutliersTransform = ({
 }) => ({
   acervoQtd: acervo_qtd,
   primQ: primeiro_quartil,
-  mediana: mediana,
+  mediana,
   terQ: terceiro_quartil,
   cod: cod_atribuicao,
 });

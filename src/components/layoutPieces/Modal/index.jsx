@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -21,6 +22,7 @@ function handleInnerClick(e) {
 function Modal({ onToggle, children }) {
   return (
     <div className="modal-outer" onClick={onToggle} onKeyDown={onToggle} role="button" tabIndex="0">
+      {/* this div needs refactoring! */}
       <div
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={(e) => handleInnerClick(e)}

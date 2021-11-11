@@ -19,11 +19,11 @@ const Dashboard = () => {
     switch (type) {
       case 1:
         return (
-          <Tutela/>
+          <Pip/>
         );
       case 2:
         return (
-          <Pip/>
+          <Tutela/>
         );
       default:
         return <AlternativeWelcome />;

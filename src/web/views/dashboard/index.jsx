@@ -2,7 +2,7 @@ import React from 'react';
 
 import DashboardView from './Dashboard.view.jsx';
 import AppErrorView from '../app/AppError.view';
-import DashboardControler from '../../../core/dashboard/Dashboard.controler';
+import DashboardControler from '../../../core/dashboardControler/Dashboard.controler';
 import ErrorBoundary from '../../errorBoundary/ErrorBoundary';
 // import { useDashboardContext } from '../../../core/Dashboard/Dashboard.context';
 

@@ -13,9 +13,9 @@ function Pip() {
        <ErrorBoundary> 
           <Today />
         </ErrorBoundary>
-        {/*<ErrorBoundary>
+        <ErrorBoundary>
           <YourDesk />
-        </ErrorBoundary>*/}
+        </ErrorBoundary>
         <ErrorBoundary>
         <MainInvestigated />
         </ErrorBoundary>

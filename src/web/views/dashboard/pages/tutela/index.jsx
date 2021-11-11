@@ -9,7 +9,7 @@ import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Tutela() {
   return (
-    <div className="base-grid pip-grid">
+    <div className="base-grid tutela-grid">
         <ErrorBoundary> 
           <Today />
         </ErrorBoundary>
@@ -27,9 +27,6 @@ function Tutela() {
         </ErrorBoundary>
         <ErrorBoundary> 
          <PerformanceRadar />
-        </ErrorBoundary>
-        <ErrorBoundary> 
-          <SuccessIndicators />
         </ErrorBoundary>
     </div>
   );

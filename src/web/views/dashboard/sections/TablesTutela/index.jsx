@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './styles.css';
-//import { SearchBox } from 'mapasteca-web';
+import { SearchBox } from 'mapasteca-web';
 import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
 import { SectionTitle } from '../../../../components';
@@ -15,7 +15,7 @@ const TablesTutela = ({ setInvestigatedProfile, setProcessDetail }) => {
 
   return (
     <div className="tablesTutela-outer">
-      {/*<SearchBox onSearch={onSearch}>*/}
+      <SearchBox onSearch={onSearch}>
         <div className="tablesTutela-header">
           <button
             className={visibleTab === 'process' ? '' : 'tablesTutela-button--inactive'}
@@ -32,7 +32,7 @@ const TablesTutela = ({ setInvestigatedProfile, setProcessDetail }) => {
             <SectionTitle value="Lista de Investigações" glueToTop />
           </button>
         </div>
-      {/*</SearchBox>*/}
+      </SearchBox>
       <div className="tablesTutela-body">
         <ProcessList
           setInvestigatedProfile={setInvestigatedProfile}

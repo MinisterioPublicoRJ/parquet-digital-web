@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Spinner } from '../../components';
-import { Glossary, Introduction, MapaTron } from './sections';
-import OfficeSelector from './sections/Today/officeSelector';
-
 import { useAppContext } from '../../../core/app/App.context';
 import './Dashboard.css'
 
@@ -19,11 +16,11 @@ const Dashboard = () => {
     switch (type) {
       case 1:
         return (
-          <Pip/>
+          <Tutela/>
         );
       case 2:
         return (
-          <Tutela/>
+          <Pip/>
         );
       default:
         return <AlternativeWelcome />;
@@ -36,12 +33,7 @@ const Dashboard = () => {
         type={type}
       />
     : null
-    } 
-    {/*<Introduction
-        type={type}
-      />
-      <OfficeSelector
-    />*/}
+    } */}
       {renderPage()}
     </>
   ); 

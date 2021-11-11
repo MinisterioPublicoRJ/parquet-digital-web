@@ -1,4 +1,4 @@
-.pip-grid {
+.tutela-grid {
   grid-template-areas:
     'today today radar alerts'
     'today today radar alerts'
@@ -6,9 +6,9 @@
     'today today radar alerts'
     'desk desk radar alerts'
     'desk desk radar alerts'
-    'desk desk mainInvestigated indicators'
-    'desk desk mainInvestigated indicators '
-    'desk desk mainInvestigated indicators '
+    'desk desk processes processes '
+    'desk desk processes processes '
+    'desk desk processes processes '
     'desk desk processingTime processingTime'
     'desk desk processingTime processingTime'
     'desk desk processingTime processingTime';
@@ -16,30 +16,27 @@
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
-  .pip-grid {
+  .tutela-grid {
     grid-template-areas:
       'today today'
       'desk desk'
       'radar alerts'
-      'mainInvestigated indicators'
+      'processes processes'
       'processingTime processingTime';
   }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-  .pip-grid {
-    height: 450vh;
-    grid-template-rows: repeat(9, minmax(0, 1fr));
+  .tutela-grid {
     grid-template-areas:
-      'today'
-      'desk'
-      'desk'
-      'radar'
-      'alerts'
-      'mainInvestigated'
-      'indicators'
-      'processingTime'
-      'processingTime';
+    "today"
+    "desk"
+    "desk"
+    "radar"
+    "alerts"
+    "processes"
+    "processingTime"
+    "processingTime";
   }
 }

@@ -90,7 +90,6 @@ const OngoingInvestigations = ({
       }
     };
     loadData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, totalPages, searchString]);
 
 
@@ -113,7 +112,7 @@ const OngoingInvestigations = ({
           <CustomTable data={ongoingInvestigationsListData} columns={tableColumns} showHeader />
           <Pagination
             totalPages={totalPages || 0}
-            handlePageClick={(page) => handlePageClick(page)}
+            handlePageClick={(nextPage) => handlePageClick(nextPage)}
             currentPage={page}
           />
         </div>

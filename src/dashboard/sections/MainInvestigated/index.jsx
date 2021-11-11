@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './styles.css';
 import { SearchBox } from 'mapasteca-web';
 import ActionButtons from './ActionButtons';
-import { TABLE_COLUMNS } from './mainInvestigatedConstants';
+import TABLE_COLUMNS from './mainInvestigatedConstants';
 import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import { CustomTable, Spinner, SectionTitle, Pagination } from '../../../components';

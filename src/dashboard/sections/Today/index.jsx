@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -29,7 +30,6 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
   const [entriesData, setEntriesData] = useState();
 
   // runs on "mount" only
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => loadComponent(), []);
 
   function loadComponent() {
@@ -153,6 +153,7 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
     <article className="today-outer">
       <div className="user-area">
         <MainTitle value={assembleGreeting()} glueToTop />
+        {/* Botão precisa ter texto dentro! */}
         {user.orgaosValidos && user.orgaosValidos.length ? (
           <button
             type="button"

@@ -50,8 +50,7 @@ function DeskCasesChart({ active, buttonPressed, category, color, data, name }) 
             color: '#E8E8E8',
           }),
         );
-    } 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
   }, [data]);
 
   if (active) {

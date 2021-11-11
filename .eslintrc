@@ -12,7 +12,9 @@
     "no-plusplus": "off",
     "jsx-a11y/no-static-element-interactions": "warn",
     "react/jsx-props-no-spreading": "warn",
-    "react/jsx-no-bind": "warn"
+    "react/jsx-no-bind": "warn",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-noninteractive-element-interactions": "warn",
   },
   "env": {
     "browser": true

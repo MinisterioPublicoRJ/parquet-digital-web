@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './AlertActionButtons';
@@ -21,7 +22,7 @@ const propTypes = {
   hideHover: PropTypes.bool,
   type: PropTypes.string,
   onDeletion: PropTypes.func,
-  openDialogBox: PropTypes.func,
+  openDialogBox: PropTypes.func.isRequired,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
   isDeleted: PropTypes.bool,
@@ -34,6 +35,8 @@ const defaultProps = {
   count: null,
   isOpen: false,
   isDeleted: false,
+  type: '',
+  docDk: null,
 };
 
 const AlertBadge = (alert) => {
@@ -82,16 +85,16 @@ const AlertBadge = (alert) => {
     }
   }
 
-  function handleActionPress(alertAction, key, type) {
+  function handleActionPress(alertAction, key, overlayType) {
     const { actionType } = alertAction;
     switch (actionType) {
       case 'delete':
-        setOverlay('onDel', '')
+        setOverlay('onDel', '');
         return handleDeletion(key);
       case 'download':
         return handleLinks(alertAction);
       case 'overlay':
-        return setOverlay(type, docDk);
+        return setOverlay(overlayType, docDk);
       case 'link':
         return handleLinks(alertAction);
       case 'openComplaint':

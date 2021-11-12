@@ -56,7 +56,7 @@ function Alerts() {
     try {
       alertList = await Api.getAlerts(buildRequestParams());
     } catch (e) {
-      //window.newrelic.noticeError(e);
+      // window.newrelic.noticeError(e);
       listError = true;
     }
     return [alertList, listError];
@@ -134,9 +134,9 @@ function Alerts() {
     loadComponent();
   }, []);
 
-  function setOverlay(type, docDk) {
+  function setOverlay(type, documentDk) {
     setOverlayType(type);
-    setDocDk(docDk);
+    setDocDk(documentDk);
     setShowOverlay(true);
   }
 

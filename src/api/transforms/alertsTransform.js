@@ -1,6 +1,5 @@
 export default function alertsTransform(data) {
-  return data.map((alert) => {
-    return {
+  return data.map((alert) => ({
       alertCode: alert.sigla,
       description: alert.descricao,
       docNum: alert.num_doc,
@@ -14,6 +13,5 @@ export default function alertsTransform(data) {
       daysPassed: alert.dias_passados,
       alertIdGate: alert.id_alerta,
       alertId: alert.alrt_key,
-    };
-  });
+    }));
 }

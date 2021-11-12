@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
 
 import './styles.css';
@@ -6,7 +7,7 @@ import { Search } from '../../../../assets';
 import { Spinner } from '../../../../components';
 
 function RadarModal({ compareData, onToggle }) {
-  const useFocus = isSearching => {
+  const useFocus = (isSearching) => {
     const htmlElRef = useRef(null);
     const setFocus = () => {
       setTimeout(() => {
@@ -113,7 +114,7 @@ function RadarModal({ compareData, onToggle }) {
               <button
                 type="button"
                 onClick={() => {
-                  setIsSearching(prevSearch => !prevSearch);
+                  setIsSearching((prevSearch) => !prevSearch);
                   setInputFocus();
                 }}
               >

@@ -31,12 +31,10 @@ function SuccessIndicatorsChart({ data, color }) {
   };
 
   return (
-    <>
-      <VictoryStack {...chartConfig} animate={{ onLoad: { duration: 1500 } }}>
-        <VictoryBar {...barConfig} />
-        <VictoryBar {...grayBarConfig} />
-      </VictoryStack>
-    </>
+    <VictoryStack {...chartConfig} animate={{ onLoad: { duration: 1500 } }}>
+      <VictoryBar {...barConfig} />
+      <VictoryBar {...grayBarConfig} />
+    </VictoryStack>
   );
 }
 SuccessIndicatorsChart.propTypes = propTypes;

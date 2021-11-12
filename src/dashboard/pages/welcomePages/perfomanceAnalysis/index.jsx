@@ -4,8 +4,7 @@ import Analise from '../../../../assets/gifs/analise.gif';
 
 import '../styles.css';
 
-const PerformanceAnalysis = () => {
-  return (
+const PerformanceAnalysis = () => (
     <div className="wrapper-welcome">
       <div className="banner-welcome">
         <img height="100%" src={Analise} alt="trabalho-promoton" />
@@ -34,6 +33,5 @@ const PerformanceAnalysis = () => {
       </div>
     </div>
   );
-};
 
 export default PerformanceAnalysis;

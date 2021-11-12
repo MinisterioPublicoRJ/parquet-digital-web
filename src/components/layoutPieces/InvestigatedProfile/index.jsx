@@ -6,7 +6,8 @@ import { useAuth } from '../../../app/authContext';
 import { TABLE_COLUMNS_PIP, TABLE_COLUMNS_TUTELA } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
 import Api from '../../../api';
-import { CustomTable, Spinner } from '..';
+import Spinner from '../Spinner';
+import CustomTable from '../CustomTable';
 import { LoginPromotron } from '../../../assets';
 
 const propTypes = {
@@ -59,7 +60,6 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
 
   useEffect(() => {
     getProfileData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pessDk]);
 
   function renderComponent() {
@@ -114,8 +114,7 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
               isSimilarProfilesVisible ? 'similar-profiles-list--visible' : ''
             }`}
           >
-            {profileData.similars.map((similarProfile) => {
-              return (
+            {profileData.similars.map((similarProfile) => (
                 <button
                   onClick={() => {
                     setPessDk((prevValue) =>
@@ -128,8 +127,7 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
                 >
                   <ProfileDetails perfil={similarProfile} key={similarProfile.pess_dk} />
                 </button>
-              );
-            })}
+              ))}
           </div>
 
           <div className="investigatedProfile-tableWrapper">

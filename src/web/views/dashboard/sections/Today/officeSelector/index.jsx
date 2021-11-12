@@ -9,7 +9,7 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-function OfficeSelector({ isOpen, onToggle }) {
+function OfficeSelector({ isOpen, onToggle, close }) {
   const { user, updateOffice } = useAppContext();
   const [filteredList, setFilteredList] = useState(user.orgaosValidos);
 

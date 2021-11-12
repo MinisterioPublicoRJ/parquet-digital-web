@@ -9,15 +9,13 @@ import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 import MapaTron from '../MapaTron';
+import OfficeSelector from './officeSelector';
 
 const propTypes = {
-  setIsSelectorOpen: PropTypes.func.isRequired,
-  setModalType: PropTypes.func.isRequired,
-  setModalData: PropTypes.func.isRequired,
-  setIsIntroOpen: PropTypes.func.isRequired,
+  Today: PropTypes.func.isRequired,
 };
 
-function Today({ setIsSelectorOpen, setModalType }) {
+function Today() {
   const { user, buildRequestParams, currentOffice, logout } = useAppContext();
 
   /* STATE */
@@ -27,8 +25,10 @@ function Today({ setIsSelectorOpen, setModalType }) {
   const [groupName, setgroupName] = useState('');
   const [collectionAnalysis, setCollectionAnalysis] = useState('');
   const [entriesData, setEntriesData] = useState();
-  const [portalMapatron, setPortalMapatron] = useState(false);
-  const Toggle = () => setPortalMapatron(!portalMapatron);
+  const [portalMapatron, setportalMapatron] = useState(false);
+  const [portalOfficeSelector, setportalOfficeSelector] = useState(false);
+  const Toggle = () => setportalMapatron(!portalMapatron);
+  const ToggleOfficeSelector = () => setportalOfficeSelector(!portalOfficeSelector);
   
   // runs on "mount" only
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -161,11 +161,15 @@ function Today({ setIsSelectorOpen, setModalType }) {
         </button>
       </div>
       <div className="today-content">
-        <button type="button" onClick={setIsSelectorOpen} disabled={!user.orgaosValidos[0]}>
+        <button type="button" onClick={() => ToggleOfficeSelector(false)} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
           {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
+        <Modal close={ToggleOfficeSelector} open={portalOfficeSelector}> 
+          <OfficeSelector close={ToggleOfficeSelector} />
+          <h1>Oiiiiii</h1>
+        </Modal>
         <div className="today-textArea">
           {apiError === 3 && <p>Sem dados para exibir.</p>}
           {loading && <Spinner size="large" />}

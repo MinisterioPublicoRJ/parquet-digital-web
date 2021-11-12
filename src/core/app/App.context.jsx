@@ -19,7 +19,6 @@ export function AppStoreInitializer() {
   const [isServerDown, setIsServerDown] = useState(false);
 
 
-
   const loginWithToken = (jwtToken, storedUser) => {
     if (jwtToken) {
       loginWithJwtToken(jwtToken);
@@ -100,6 +99,9 @@ export function AppStoreInitializer() {
   });
 
 
+  const updateOffice = (newOffice) => {
+    setUser((prevUser) => ({ ...prevUser, orgaoSelecionado: newOffice }));
+  };
 
   return {
     Api,
@@ -115,5 +117,6 @@ export function AppStoreInitializer() {
     logout,
     buildRequestParams,
     currentOffice: user ? user.orgaoSelecionado : null,
+    updateOffice
   };
 }

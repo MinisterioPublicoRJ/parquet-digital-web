@@ -5,7 +5,7 @@ import { useAppContext } from '../../../core/app/App.context';
 import './Dashboard.view.css'
 
 
-const Dashboard = ({ close }) => {
+const Dashboard = () => {
   const { user, currentOffice } = useAppContext(); 
   const { firstLogin } = useAppContext().user;
   const type = currentOffice ? currentOffice.tipo : undefined;
@@ -13,6 +13,7 @@ const Dashboard = ({ close }) => {
   if (!user) {
     return <Spinner size="large" />;
   }
+
   function renderPage() {
     switch (type) {
       case 1:
@@ -39,5 +40,6 @@ const Dashboard = ({ close }) => {
     </>
   ); 
 };
+
 
 export default Dashboard;

@@ -16,7 +16,7 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
   //     loadComponent();
   //   }
   // }, [hasFatalError]);
-
+ 
   function onMount() {
     const token = window.localStorage.getItem('access_token');
     const scaToken = window.localStorage.getItem('sca_token');

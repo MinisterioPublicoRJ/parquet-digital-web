@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Search } from '../../../../../assets';
@@ -8,20 +8,19 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-function OfficeSelector({ onToggle, close}) {
+function OfficeSelector({ ToggleOfficeSelector, close}) {
   const { user, updateOffice } = useAppContext();
   const [filteredList, setFilteredList] = useState(user.orgaosValidos);
 
   function onOfficeClicked(office) {
     updateOffice(office);
-    onToggle();
   }
 
   const handleChange = e => {
     const inputValue = e.target.value
       .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
+      .replace(/[\u0300-\u036f]/g, ''); 
     const filtered = user.orgaosValidos.filter(
       organ =>
         organ.nomeOrgao
@@ -46,8 +45,8 @@ function OfficeSelector({ onToggle, close}) {
     return (
       <div
         className="selector-outer"
-        onClick={onToggle}
-        onKeyDown={onToggle}
+        onClick={ToggleOfficeSelector}
+        onKeyDown={ToggleOfficeSelector}
         role="button"
         tabIndex="0"
         onClick={() => close()}
@@ -70,7 +69,7 @@ function OfficeSelector({ onToggle, close}) {
           <div className="selector-listWrapper">
             <ul>
               {filteredList.map(orgao => (
-                <li
+                <li 
                   key={`${orgao.nomeOrgao}-${orgao.nomeUser}`}
                   onClick={() => onOfficeClicked(orgao)}
                 >

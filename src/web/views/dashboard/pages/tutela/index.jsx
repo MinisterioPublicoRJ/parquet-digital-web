@@ -4,7 +4,7 @@ import React from 'react';
 import './styles.css';
 import '../styles.css';
 
-import {YourDesk, Alerts, ProcessingTime, SuccessIndicators, TablesTutela, Today, PerformanceRadar} from '../../sections';
+import {YourDesk, Alerts, ProcessingTime, TablesTutela, Today, PerformanceRadar} from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Tutela() {

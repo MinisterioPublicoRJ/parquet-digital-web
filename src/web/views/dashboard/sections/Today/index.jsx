@@ -168,7 +168,6 @@ function Today() {
         </button>
         <Modal close={ToggleOfficeSelector} open={portalOfficeSelector}> 
           <OfficeSelector close={ToggleOfficeSelector} />
-          <h1>Oiiiiii</h1>
         </Modal>
         <div className="today-textArea">
           {apiError === 3 && <p>Sem dados para exibir.</p>}

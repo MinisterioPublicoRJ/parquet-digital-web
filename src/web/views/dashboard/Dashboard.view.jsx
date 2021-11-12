@@ -4,7 +4,8 @@ import { Spinner } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
 import './Dashboard.view.css'
 
-const Dashboard = () => {
+
+const Dashboard = ({ close }) => {
   const { user, currentOffice } = useAppContext(); 
   const { firstLogin } = useAppContext().user;
   const type = currentOffice ? currentOffice.tipo : undefined;

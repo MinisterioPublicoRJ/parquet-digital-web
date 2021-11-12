@@ -4,7 +4,6 @@ import ReactDom from 'react-dom';
 import './styles.css';
 
 const propTypes = {
-  onToggle: PropTypes.func.isRequired,
   children: PropTypes.node,
 };
 

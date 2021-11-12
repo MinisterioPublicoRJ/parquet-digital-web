@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import ReactDom from 'react-dom';
 import './styles.css';
 
 const propTypes = {
@@ -18,9 +18,11 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-function Modal({ onToggle, children }) {
-  return (
-    <div className="modal-outer" onClick={onToggle} onKeyDown={onToggle} role="button" tabIndex="0">
+export default function Modal({ open, children, close  }) {
+  if(!open) return null
+  
+  return ReactDom.createPortal (
+    <div className="modal-outer" show={open} onClick={() => close()} onKeyDown={() => close()} role="button" tabIndex="0">
       <div
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={(e) => handleInnerClick(e)}
@@ -28,10 +30,10 @@ function Modal({ onToggle, children }) {
       >
         {children}
       </div>
-    </div>
+    </div>,
+      document.querySelector('#portal')
   );
 }
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
-export default Modal;

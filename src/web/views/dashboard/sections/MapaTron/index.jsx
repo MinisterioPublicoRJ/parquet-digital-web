@@ -1,9 +1,13 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import './styles.css';
 import { PromotronGlossario } from '../../../../assets';
 
-function MapaTron({ onToggle, mapatronData }) {
+const propTypes = {
+  close: PropTypes.func.isRequired,
+};
+
+function MapaTron({ mapatronData ,close }) {
   return (
     <>
       <div className="mapatron-wrapper">
@@ -67,12 +71,12 @@ function MapaTron({ onToggle, mapatronData }) {
         </div>
       </div>
       <div className="mapatron-close">
-        <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
+        <button type="button" className="close" aria-label="Fechar" onClick={() => close()} >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
     </>
   );
 }
-
+MapaTron.propTypes = propTypes;
 export default MapaTron;

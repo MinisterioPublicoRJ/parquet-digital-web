@@ -60,10 +60,11 @@
   height: 40px;
   text-transform: uppercase;
   width: 70%;
+  font-family: Segoe UI Semibold;
 }
 
 .loginSubmitBtn:hover {
-  background-color: var(--colorSolidBlue);
+  background-color: var(--pt-blue);
 }
 
 /* Chrome, Firefox, Opera, Safari 10.1+ */

@@ -17,7 +17,6 @@ function MainInvestigated({ setInvestigatedProfile }) {
   const [page, setPage] = useState(1);
   const [searchString, setSearchString] = useState("");
   const tableTopDivRef = useRef();
-  console.log(buildRequestParams);
   /**
    * uses representanteDk number to remove an investigated from the list, updates the state
    * @param  {number} representanteDk investigated "id"

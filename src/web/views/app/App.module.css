@@ -1,9 +1,61 @@
+:root {
+  /* FONTS */
+  --defaultFont: Roboto;
+
+  
+  --defaultFontSize: clamp(12px, 1.5vh, 18px);
+  --titleFontSize: calc(var(--defaultFontSize) * 2);
+  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);
+  --TitleTextFontSize: calc(var(--defaultFontSize) * 1.2);
+  --smallFont: clamp(10px, 1.2vh, 14px);
+
+  /* SPACING */
+
+  --unavailableContentPadding: 0.5vh 4vw;
+
+/* COLORS */
+  /* From our design system's page on Notion */
+
+  /* Paleta Primária */
+  --colorMprj: #374354;
+  --colorThemeBlue: #BDDFF0;
+  --colorSolidBlue: #28A7E0;
+  --lightGray: #CFCFCF;
+  --mediumGray: #B4B4B4;
+  --darkWelcome: #4a4a4a;
+
+
+  /* Alertas */
+  --colorFailure: #F86C72;
+  --colorWarning: #F8BD6C;
+  --colorSuccess: #71D0A4;
+  --colorAdm: #5C6FD9;
+  --colorCsi: #192440;
+  --colorVistas: #28A7E0;
+
+  /* Gráficos */
+  --colorIdentidade: #CA63F1;
+  --colorOfficeProfile: #6D00FC;
+  --colorParquetProfile: #FF0000;
+
+  /* Login */
+  --darkGray: #505050;
+
+  /* Welcome Pages */
+  --darkWelcome: #4a4a4a;
+}
+
 body {
-  color: var(--dark);
   font-family: var(--defaultFont);
-  font-size: var(--defaultFontSize);
   margin: 0;
+  color: var(--dark);
+  font-size: var(--defaultFontSize);
   padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
+}
+
+.appOuter {
+  height: 100vh;
+  width: 100vw;
 }
 
 h3 {
@@ -14,10 +66,6 @@ h3 {
 
 button {
   cursor: pointer;
-}
-
-:focus {
-  outline: -webkit-focus-ring-color auto 0px;
 }
 
 /* Let's get this party started */
@@ -46,4 +94,4 @@ div::-webkit-scrollbar-thumb:window-inactive {
 div {
   scrollbar-width: thin;
   scrollbar-color: #8998ac transparent;
-}
+} 

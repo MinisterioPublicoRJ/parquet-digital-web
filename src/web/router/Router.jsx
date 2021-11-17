@@ -1,11 +1,11 @@
 import React from 'react';
-// import history from 'history/browser';
+//import history from 'history/browser';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
-//import Unavailable from '../../unavailable';
+//import UnavailablePage from '../views/dashboard/pages/unavailablePage/UnavailablePage';
 import PrivateRoute from './PrivateRoute';
 
-import { LoadingScreen, Login, Unavailable, Dashboard } from '../views';
-import { Gestao, Entendimento, Celeridade, Atuacao } from '../views/welcomePages';
+import { LoadingScreen, Login, Dashboard } from '../views';
+import { Gestao, Entendimento, Celeridade, Atuacao } from '../../web/views/dashboard/pages/welcomePages';
 
 import { useAppContext } from '../../core/app/App.context';
 
@@ -36,7 +36,7 @@ function Router() {
         </Route>
         <Route path="/carregando" component={LoadingScreen} />
         <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
-        <Route path="/indisponivel" component={Unavailable} />
+        {/*<Route path="/indisponivel" component={UnavailablePage} />*/}
         <Route path="/gestao" component={Gestao} />
         <Route path="/entendimento" component={Entendimento} />
         <Route path="/celeridade" component={Celeridade} />

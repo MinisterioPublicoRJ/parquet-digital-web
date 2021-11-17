@@ -1,4 +1,4 @@
-import { abbrevName } from '../../../utils';
+import { abbrevName } from '../../../web/utils';
 
 function orgaoTransformer(orgao) {
   const { cpf, nome, tipo, cdorgao, nm_org, dps, pip_especializada } = orgao;

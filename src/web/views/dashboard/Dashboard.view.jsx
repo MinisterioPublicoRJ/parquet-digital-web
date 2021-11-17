@@ -1,15 +1,41 @@
 import React, { useState, useEffect } from 'react';
-
+import { Pip, Tutela, AlternativeWelcome } from './pages';
+import { Spinner } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
+import './Dashboard.css'
 
 const Dashboard = () => {
-  const { user, logout } = useAppContext();
+  const { user, currentOffice } = useAppContext(); 
+  const { firstLogin } = useAppContext().user;
+  const type = currentOffice ? currentOffice.tipo : undefined;
+
+  if (!user) {
+    return <Spinner size="large" />;
+  }
+  function renderPage() {
+    switch (type) {
+      case 1:
+        return (
+          <Tutela/>
+        );
+      case 2:
+        return (
+          <Pip/>
+        );
+      default:
+        return <AlternativeWelcome />;
+    }
+  }
 
   return (
-    <div style={{margin: '10%'}}>
-      <div> Olá {user?.nome}</div>
-      <button onClick={logout}> Logout </button>
-    </div>
+    <>
+    {/*{firstLogin <Introduction
+        type={type}
+      />
+    : null
+    } */}
+      {renderPage()}
+    </>
   ); 
 };
 

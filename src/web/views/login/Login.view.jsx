@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { loginWrapper, loginInner, loginImageBanner, loginFormArea, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
 import { useAppContext } from '../../../core/app/App.context';
-import LoginBanner from '../../assets/images/loginPageBanner.png';
-import { LoginPromotron } from '../../../assets';
+import LoginBanner from '../../assets/imgs/loginPageBanner.png';
+import { LoginPromotron } from '../../assets';
 import { useLoginContext } from '../../../core/login/Login.context';
 
 const Login = () => {

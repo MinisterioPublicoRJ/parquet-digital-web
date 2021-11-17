@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { loadingScreenOuter } from './LoadingScreen.module.css';
-import { Spinner } from '../../../components';
+import { Spinner } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
 
 function LoadingScreen({ history }) {

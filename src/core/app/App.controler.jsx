@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'mapasteca-web';
 
 // import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 import { AppProvider, AppStoreInitializer } from './App.context';
@@ -28,9 +29,11 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
 
   return (
     <AppProvider store={appStore}>
-      <ErrorBoundary hasError={appHasCrashed} setError={setAppHasCrashed} errorScreen={<ErrorScreen />}>
-        { children }
-      </ErrorBoundary>
+      <ThemeProvider>
+        <ErrorBoundary hasError={appHasCrashed} setError={setAppHasCrashed} errorScreen={<ErrorScreen />}>
+          { children }
+        </ErrorBoundary>
+      </ThemeProvider>
     </AppProvider>
   );
 }

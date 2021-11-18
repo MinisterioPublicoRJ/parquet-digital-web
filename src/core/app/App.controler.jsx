@@ -7,7 +7,7 @@ import { AppProvider, AppStoreInitializer } from './App.context';
 
 function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: ErrorScreen }) {
   const appStore = AppStoreInitializer();
-  const { appHasCrashed, setAppHasCrashed } = appStore;
+  const { appHasCrashed, setAppHasCrashed, setCurrentOffice, user } = appStore;
 
   // will run on mount and every time it goes from an error state back to normal
   // this behaviour forces the page to reload when the error page is clicked
@@ -23,10 +23,10 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
     // tries to login automatically with saved token
     appStore.loginWithToken(token, scaToken);
   }
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
-
+  useEffect(()=> setCurrentOffice(user?.orgaoSelecionado), [user]);
+  
   return (
     <AppProvider store={appStore}>
       <ThemeProvider>

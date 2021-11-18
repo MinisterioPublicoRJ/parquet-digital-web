@@ -12,7 +12,7 @@ function Dashboard() {
   const { currentOffice } = useAppContext(); 
 
   return (
-    <DashboardControler errorBoundary={ErrorBoundary} errorScreen={AppErrorView} key={currentOffice.codigo}>
+    <DashboardControler errorBoundary={ErrorBoundary} errorScreen={AppErrorView} key={currentOffice?.codigo}>
       <DashboardView />
     </DashboardControler>
   )

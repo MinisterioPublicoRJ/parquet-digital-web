@@ -17,6 +17,8 @@ export function AppStoreInitializer() {
   const [scaLoginFailed, setScaLoginFailed] = useState(false);
   const [userExpired, setUserExpired] = useState(false);
   const [isServerDown, setIsServerDown] = useState(false);
+  const [currentOffice, setCurrentOffice] = useState(user ? user.orgaoSelecionado : null);
+
 
 
   const loginWithToken = (jwtToken, storedUser) => {
@@ -101,6 +103,7 @@ export function AppStoreInitializer() {
 
   const updateOffice = (newOffice) => {
     setUser((prevUser) => ({ ...prevUser, orgaoSelecionado: newOffice }));
+    /* setCurrentOffice(newOffice); */
   };
 
   return {
@@ -116,7 +119,8 @@ export function AppStoreInitializer() {
     loginWithSCACredentials,
     logout,
     buildRequestParams,
-    currentOffice: user ? user.orgaoSelecionado : null,
+    currentOffice,
+    setCurrentOffice,
     updateOffice
   };
 }

@@ -17,7 +17,7 @@ export function AppStoreInitializer() {
   const [scaLoginFailed, setScaLoginFailed] = useState(false);
   const [userExpired, setUserExpired] = useState(false);
   const [isServerDown, setIsServerDown] = useState(false);
-  const [currentOffice, setCurrentOffice] = useState(user ? user.orgaoSelecionado : null);
+  const [currentOffice, setCurrentOffice] = useState(null);
 
 
 

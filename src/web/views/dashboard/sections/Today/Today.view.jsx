@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './styles.css';
+import './Today.css';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
@@ -8,8 +8,8 @@ import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
-import MapaTron from '../MapaTron';
-import OfficeSelector from './officeSelector';
+import MapaTron from '../MapaTron/Mapatron.view';
+import OfficeSelector from './officeSelector/OfficeSelector.view';
 
 const propTypes = {
   Today: PropTypes.func.isRequired,
@@ -25,10 +25,7 @@ function Today() {
   const [groupName, setgroupName] = useState('');
   const [collectionAnalysis, setCollectionAnalysis] = useState('');
   const [entriesData, setEntriesData] = useState();
-  const [portalMapatron, setportalMapatron] = useState(false);
-  const [portalOfficeSelector, setportalOfficeSelector] = useState(false);
-  const Toggle = () => setportalMapatron(!portalMapatron);
-  const ToggleOfficeSelector = () => setportalOfficeSelector(!portalOfficeSelector);
+  const [modalType, setModalType] = useState(false);
   
   // runs on "mount" only
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -165,14 +162,17 @@ function Today() {
         </button>
       </div>
       <div className="today-content">
-        <button type="button" onClick={() => ToggleOfficeSelector(false)} disabled={!user.orgaosValidos[0]}>
+        <button type="button" onClick={() => setModalType('officeSelector')} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
           {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
-        <Modal close={ToggleOfficeSelector} open={portalOfficeSelector}> 
-          <OfficeSelector close={ToggleOfficeSelector} />
-        </Modal>
+        {
+          modalType === 'officeSelector' && 
+          <Modal close={setModalType}> 
+            <OfficeSelector close={setModalType} />
+          </Modal> 
+        }
         <div className="today-textArea">
           {apiError === 3 && <p>Sem dados para exibir.</p>}
           {loading && <Spinner size="large" />}
@@ -211,13 +211,16 @@ function Today() {
         <button
           type="button"
           className="today-btn"
-          onClick={() => Toggle(currentOffice.codigo)}
+          onClick={() => setModalType('mapatron')}
         >
           Ver mapa da atuação
         </button>
-        <Modal close={Toggle} open={portalMapatron}> 
-          <MapaTron close={Toggle} />
-        </Modal>
+        { 
+          modalType === 'mapatron' && 
+          <Modal close={setModalType}> 
+            <MapaTron mapatronData={currentOffice.codigo} close={setModalType} />
+          </Modal> 
+        }
       </>
       ) : null}
       <div className="today-robotPic">

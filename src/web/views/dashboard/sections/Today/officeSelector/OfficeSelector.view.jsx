@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles.css';
+import './OfficeSelector.css';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Search } from '../../../../../assets';
 import { abbrevName } from '../../../../../utils';
@@ -8,7 +8,7 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-function OfficeSelector({ ToggleOfficeSelector, close}) {
+function OfficeSelector({ close }) {
   const { user, updateOffice } = useAppContext();
   const [filteredList, setFilteredList] = useState(user.orgaosValidos);
 
@@ -45,11 +45,10 @@ function OfficeSelector({ ToggleOfficeSelector, close}) {
     return (
       <div
         className="selector-outer"
-        onClick={ToggleOfficeSelector}
-        onKeyDown={ToggleOfficeSelector}
         role="button"
         tabIndex="0"
         onClick={() => close()}
+        onKeyDown={() => close()}
       >
         <div
           className="selector-modal"

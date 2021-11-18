@@ -17,11 +17,10 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-export default function Modal({ open, children, close  }) {
-  if(!open) return null
+export default function Modal({ children, close  }) {
   
   return ReactDom.createPortal (
-    <div className="modal-outer" show={open} onClick={() => close()} onKeyDown={() => close()} role="button" tabIndex="0">
+    <div className="modal-outer" onClick={() => close()} onKeyDown={() => close()} role="button" tabIndex="0">
       <div
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={(e) => handleInnerClick(e)}

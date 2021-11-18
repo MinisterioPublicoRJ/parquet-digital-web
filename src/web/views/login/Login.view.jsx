@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
+import '../../themes/index.css';
 import { loginWrapper, loginInner, loginImageBanner, loginFormArea, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
 import { useAppContext } from '../../../core/app/App.context';
 import LoginBanner from '../../assets/imgs/loginPageBanner.png';

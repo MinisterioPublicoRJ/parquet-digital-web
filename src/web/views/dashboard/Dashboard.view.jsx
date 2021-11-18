@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Spinner } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
-import './Dashboard.css'
+import './Dashboard.view.css'
 
 const Dashboard = () => {
   const { user, currentOffice } = useAppContext(); 

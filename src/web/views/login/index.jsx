@@ -1,5 +1,4 @@
 import React from 'react';
-
 import LoginView from './Login.view.jsx';
 import AppErrorView from '../app/AppError.view';
 import LoginControler from '../../../core/login/Login.controler';

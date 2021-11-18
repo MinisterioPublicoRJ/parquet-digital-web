@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
 import './styles.css';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
-import { MainTitle, Spinner } from '../../../../components/layoutPieces';
+import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
+import MapaTron from '../MapaTron';
 
 const propTypes = {
   setIsSelectorOpen: PropTypes.func.isRequired,
@@ -17,7 +17,7 @@ const propTypes = {
   setIsIntroOpen: PropTypes.func.isRequired,
 };
 
-function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }) {
+function Today({ setIsSelectorOpen, setModalType }) {
   const { user, buildRequestParams, currentOffice, logout } = useAppContext();
 
   /* STATE */
@@ -27,7 +27,9 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
   const [groupName, setgroupName] = useState('');
   const [collectionAnalysis, setCollectionAnalysis] = useState('');
   const [entriesData, setEntriesData] = useState();
-
+  const [portalMapatron, setPortalMapatron] = useState(false);
+  const Toggle = () => setPortalMapatron(!portalMapatron);
+  
   // runs on "mount" only
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => loadComponent(), []);
@@ -60,16 +62,6 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
   }
 
   /**
-   * uses ${currentOffice.codigo} to open the mapatron modal
-   * @param  {number} mapatronData
-   * @return {void}  updates the state
-   */
-  function openMapaTron(mapatronData) {
-    setModalType('mapatron');
-    setModalData(mapatronData);
-  }
-
-  /**
    * loads percentage data for the first sentence
    * @return {void}
    */
@@ -84,7 +76,6 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
       setApiError((prevCount) => prevCount + 1);
     }
   }
-
   /**
    * loads/reloads info an calls formatters for second sentence data
    * @return {void}
@@ -209,13 +200,18 @@ function Today({ setIsSelectorOpen, setModalType, setModalData, setIsIntroOpen }
         </div>
       </div>
       {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (
+      <>
         <button
           type="button"
           className="today-btn"
-          onClick={() => openMapaTron(currentOffice.codigo)}
+          onClick={() => Toggle(currentOffice.codigo)}
         >
           Ver mapa da atuação
         </button>
+        <Modal close={Toggle} open={portalMapatron}> 
+          <MapaTron close={Toggle} />
+        </Modal>
+      </>
       ) : null}
       <div className="today-robotPic">
         <button

@@ -21,12 +21,12 @@ export function AppStoreInitializer() {
 
 
 
-  const loginWithToken = (jwtToken, storedUser) => {
+  const loginWithToken = (jwtToken, storedUser, storedOffice) => {
     if (jwtToken) {
       loginWithJwtToken(jwtToken);
     } else if (storedUser) {
       //check if user is valid
-      loginWithStoredUser(storedUser);
+      loginWithStoredUser(storedUser, storedOffice);
     } else {
       // no token was available
       setAutoLoginFailed(true);
@@ -44,8 +44,9 @@ export function AppStoreInitializer() {
 
   const loginWithJwtToken = async (token) => {
     try {
-      const loggedUser = await Api.loginWithJwtCredentials(token);
+      const {loggedUser, orgaoSelecionado} = await Api.loginWithJwtCredentials(token);
       setUser(loggedUser);
+      setCurrentOffice(orgaoSelecionado);
     } catch (e) {
       if (!e.response) {
         setIsServerDown(true);
@@ -55,23 +56,28 @@ export function AppStoreInitializer() {
     }
   };
 
-  const loginWithStoredUser = (storedUser) => {
+  const loginWithStoredUser = (storedUser, storedOffice) => {
     if (isStoredUserValid(storedUser)) {
       const { userObj } = JSON.parse(storedUser);
+      const currOffice = JSON.parse(storedOffice);
       setUser(userObj);
+      setCurrentOffice(currOffice);
     } else {
       setUserExpired(true);
       window.localStorage.removeItem('sca_token');
+      window.localStorage.removeItem('current_office');
     }
 
   };
 
   const loginWithSCACredentials = async (username, password) => {    
     try {        
-      const loggedUser = await Api.loginWithSCACredentials(username, password);
+      const {loggedUser, orgaoSelecionado} = await Api.loginWithSCACredentials(username, password);
       setUser(loggedUser);
-      const storageUser = { timestamp: new Date(), userObj: loggedUser };
+      setCurrentOffice(orgaoSelecionado);
+      const storageUser = { timestamp: new Date(), userObj: loggedUser};
       window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
+      window.localStorage.setItem('current_office', JSON.stringify(orgaoSelecionado));
     } catch (e){
       setScaLoginFailed(true);
       /* CORS error in the browser makes response opaque - can't distinguish between network error or status  !=ok in browser
@@ -89,6 +95,7 @@ export function AppStoreInitializer() {
     setUser(undefined);
     window.localStorage.removeItem('sca_token');
     window.localStorage.removeItem('access_token');
+    window.localStorage.removeItem('current_office');
     // forces loading screen to login page
     setAutoLoginFailed(true);
   };
@@ -96,14 +103,14 @@ export function AppStoreInitializer() {
 
   const buildRequestParams = () => ({
     token: user.token,
-    orgao: user.orgaoSelecionado.codigo,
-    cpf: user.orgaoSelecionado.cpf,
+    orgao: currentOffice.codigo,
+    cpf: currentOffice.cpf,
   });
 
 
   const updateOffice = (newOffice) => {
-    setUser((prevUser) => ({ ...prevUser, orgaoSelecionado: newOffice }));
-    /* setCurrentOffice(newOffice); */
+    setCurrentOffice(newOffice);
+    window.localStorage.setItem('current_office', JSON.stringify(newOffice));
   };
 
   return {
@@ -120,7 +127,6 @@ export function AppStoreInitializer() {
     logout,
     buildRequestParams,
     currentOffice,
-    setCurrentOffice,
     updateOffice
   };
 }

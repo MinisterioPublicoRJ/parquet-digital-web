@@ -16,6 +16,6 @@ export { default as IntroductionAlerts } from './introduction/IntroductionAlerts
 export { default as IntroductionSuccessIndicators } from './introduction/introductionSuccessIndicators';
 export { default as Introduction } from './introduction';
 export { default as ScreenGoodBye } from './introduction/screenGoodBye';
-export { default as Glossary } from './Glossary';
+export { default as Glossary } from './Glossary/Glossary.view';
 export { default as MapaTron } from './MapaTron/Mapatron.view';
  

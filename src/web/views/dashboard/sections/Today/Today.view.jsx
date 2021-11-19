@@ -10,6 +10,7 @@ import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 import MapaTron from '../MapaTron/Mapatron.view';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
+import Glossary from '../Glossary/Glossary.view';
 
 const propTypes = {
   Today: PropTypes.func.isRequired,
@@ -227,10 +228,16 @@ function Today() {
         <button
           type="button"
           className="today-glossaryBtn"
-          //onClick={() => setModalType('glossary')}
+          onClick={() => setModalType('glossary')}
         >
           <GlossaryBook />
         </button>
+        {
+          modalType === 'glossary' && 
+          <Modal close={setModalType}> 
+            <Glossary close={setModalType} />
+          </Modal> 
+        }
         <button type="button" className="today-introBtn"
           //onClick={() => setIsIntroOpen(true)}
         >

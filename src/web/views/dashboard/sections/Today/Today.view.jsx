@@ -247,7 +247,7 @@ function Today() {
         {       
           modalType === 'introduction' &&
           <Modal close={setModalType}>
-            <Introduction isOpen={modalType === 'introduction'} onToggle={setModalType} type={currentOffice.tipo} />
+            <Introduction onToggle={setModalType} type={currentOffice.tipo} />
           </Modal>
 
 

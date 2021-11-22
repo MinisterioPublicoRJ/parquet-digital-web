@@ -7,13 +7,12 @@ import './styles.css';
 import { PIP_GRID, TUTELA_GRID } from './introductionConstants';
 
 const propTypes = {
-  isOpen: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
   type: PropTypes.number.isRequired,
 };
 
-function Introduction({ isOpen, onToggle, type }) {
-  const show = isOpen && (type === 1 || type === 2);
+function Introduction({ onToggle, type }) {
+  const show = (type === 1 || type === 2);
   const [currentPage, setCurrentPage] = useState(0);
   const pages = type === 1 ? TUTELA_GRID : PIP_GRID;
 
@@ -21,8 +20,7 @@ function Introduction({ isOpen, onToggle, type }) {
     if (movement === 'forward') {
       if (pages.length > currentPage + 1) {
         setCurrentPage(prevValue => prevValue + 1);
-      } else if (isOpen) {
-        isOpen = false;
+      } else {
         onToggle();
       }
     } else if (movement === 'backward') {
@@ -35,7 +33,7 @@ function Introduction({ isOpen, onToggle, type }) {
   function handleKeyPress(event) {
     if (event.key === 'ArrowLeft' || event.keyCode === 37) handleNav('backward');
     if (event.key === 'ArrowRight' || event.keyCode === 39) handleNav('forward');
-    if ((event.key === 'Escape' || event.keyCode === 27) && isOpen) onToggle();
+    if (event.key === 'Escape' || event.keyCode === 27) onToggle();
   }
 
   useEventListener('keydown', handleKeyPress);

@@ -9,10 +9,10 @@ import { Spinner } from '..';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
 
 const propTypes = {
-  onToggle: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
-function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
+function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [processData, setProcessData] = useState(null);
   const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -174,7 +174,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
       </div>
       {renderComponentBody()}
       <div className="modal-close">
-        <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
+        <button type="button" className="close" aria-label="Fechar" onClick={close}>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

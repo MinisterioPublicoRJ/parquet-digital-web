@@ -7,13 +7,15 @@ import Api from '../../../../../api';
 import { Spinner, CustomTable, Pagination } from '../../../../../components';
 import DeskCasesChart from '../deskCases';
 import noOpenCases from '../../../../../assets/imgs/robo-s-vistas-abertas.png';
+import { Modal } from '../../../../../components/layoutPieces';
+import { ProcessDetail } from '../../../../../components';
+
 
 import './styles.css';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
   buildRequestParams: PropTypes.func.isRequired,
-  setProcessDetail: PropTypes.func.isRequired,
   chartData: PropTypes.shape({
     under20: PropTypes.number,
     between20And30: PropTypes.number,
@@ -29,7 +31,11 @@ class OpenCasesDetail extends React.Component {
       currentPage: 1,
       totalPages: this.calcTotalPages(this.props.chartData),
       searchString: '',
+      numeroMprj: null,
+      numeroExterno: null,
+      isProcessDetailOpen: false,
     };
+    this.handleProcessDetail = this.handleProcessDetail.bind(this);
   }
 
   componentDidMount() {
@@ -60,7 +66,7 @@ class OpenCasesDetail extends React.Component {
         <button
           type="button"
           onClick={() => {
-            this.props.setProcessDetail(numeroMprj, numeroExterno);
+            this.handleProcessDetail(numeroMprj, numeroExterno);
           }}
           className="process-detail-btn"
         >
@@ -180,6 +186,10 @@ class OpenCasesDetail extends React.Component {
     this.getOpenCasesList(this.state.activeTab, 1, searchStr);
   }
 
+  handleProcessDetail(numeroMprj, numeroExterno) {
+    this.setState(prevState => ({numeroMprj, numeroExterno, isProcessDetailOpen: !prevState.isProcessDetailOpen}));
+  }
+
   render() {
     const { isLoading, chartData } = this.props;
     const { activeTab, totalPages } = this.state;
@@ -220,6 +230,12 @@ class OpenCasesDetail extends React.Component {
               currentPage={this.state.currentPage}
             />
           )}
+          {
+            this.state.isProcessDetailOpen &&
+            <Modal close={this.handleProcessDetail}>
+              <ProcessDetail docuNrExterno={this.state.numeroExterno} docuNrMp={this.state.numeroMprj} close={this.handleProcessDetail}/>
+            </Modal>
+          }          
         </div>
       </>
     );

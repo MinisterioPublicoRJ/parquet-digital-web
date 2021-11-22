@@ -249,8 +249,6 @@ function Today() {
           <Modal close={setModalType}>
             <Introduction onToggle={setModalType} type={currentOffice.tipo} />
           </Modal>
-
-
         }
         <img height="100%" src={PromotronGif} alt="robô-promoton" />
       </div>

@@ -6,16 +6,17 @@ import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
-import { CustomTable, Spinner, SectionTitle, Pagination } from '../../../../components';
+import { CustomTable, Spinner, SectionTitle, Pagination, Modal, InvestigatedProfile } from '../../../../components';
 
-function MainInvestigated({ setInvestigatedProfile }) {
-  const { buildRequestParams } = useAppContext();
+function MainInvestigated() {
+  const { buildRequestParams, currentOffice } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
   const [searchString, setSearchString] = useState("");
+  const [investigatedProfile, setInvestigatedProfile ] = useState();
   const tableTopDivRef = useRef();
   /**
    * uses representanteDk number to remove an investigated from the list, updates the state
@@ -183,6 +184,12 @@ function MainInvestigated({ setInvestigatedProfile }) {
             currentPage={page}
             />
         </div>
+        {
+          investigatedProfile && 
+          <Modal close={() => setInvestigatedProfile(null)}>
+            <InvestigatedProfile onToggle={() => setInvestigatedProfile(null)} representanteDk={investigatedProfile} organType={currentOffice.tipo} />
+          </Modal>
+        }
       </article>
     );
   }

@@ -16,7 +16,7 @@ const propTypes = {
 };
 
 function InvestigatedProfile({ onToggle, representanteDk, organType }) {
-  const [pessDk, setPessDk] = useAppContext(null);
+  const [pessDk, setPessDk] = useState(null);
   const { buildRequestParams } = useAppContext();
   const [profileData, setProfileData] = useState(null);
   const [tableData, setTableData] = useState([]);

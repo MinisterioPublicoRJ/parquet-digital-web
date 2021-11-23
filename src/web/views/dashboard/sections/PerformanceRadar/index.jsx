@@ -193,8 +193,8 @@ function PerformanceRadar() {
 
       { 
         isRadarModalOpen && 
-        <Modal close={setIsRadarModalOpen}>
-          <RadarModal compareData={radarModalData} close={setIsRadarModalOpen} />
+        <Modal close={() => setIsRadarModalOpen(false)}>
+          <RadarModal compareData={radarModalData} close={() => setIsRadarModalOpen(false)} />
         </Modal>
 
       }

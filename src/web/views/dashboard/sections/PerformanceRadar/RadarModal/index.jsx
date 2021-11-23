@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import './styles.css';
 import RadarGraph from '../RadarGraph';
-import { Search } from '../../../../assets';
-import { Spinner } from '../../../../components';
+import { Search } from '../../../../../assets';
+import { Spinner } from '../../../../../components';
 
-function RadarModal({ compareData, onToggle }) {
+function RadarModal({ compareData, close }) {
   const useFocus = isSearching => {
     const htmlElRef = useRef(null);
     const setFocus = () => {
@@ -141,7 +141,7 @@ function RadarModal({ compareData, onToggle }) {
         </div>
       </div>
       <div className="radarModal-close">
-        <button type="button" className="radarModal-close" aria-label="Fechar" onClick={onToggle}>
+        <button type="button" className="radarModal-close" aria-label="Fechar" onClick={close}>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

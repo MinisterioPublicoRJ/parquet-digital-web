@@ -15,8 +15,10 @@ import {
   TUTELA_CATEGORIES,
   PIP_CATEGORIES,
 } from './radarConstants';
+import RadarModal from './RadarModal/'
+import { Modal } from '../../../../components';
 
-function PerformanceRadar({ setModalData, setModalType }) {
+function PerformanceRadar() {
   const { currentOffice, buildRequestParams } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState([]);
@@ -24,6 +26,8 @@ function PerformanceRadar({ setModalData, setModalType }) {
   const [chartLabels, setChartLabels] = useState([]);
   const [compareData, setCompareData] = useState([]);
   const [dataError, setError] = useState(false);
+  const [isRadarModalOpen, setIsRadarModalOpen] = useState(false);
+  const [radarModalData, setRadarModalData] = useState();
 
   useEffect(() => {
     getPerformanceData();
@@ -74,7 +78,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
   }
 
   function updateModalData() {
-    setModalData({
+    setRadarModalData({
       userData,
       chartLabels,
       otherData: compareData,
@@ -159,7 +163,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
 
   function handleCompareButton() {
     getCompareData();
-    setModalType('radar');
+    setIsRadarModalOpen(true);
   }
 
   return (
@@ -186,6 +190,14 @@ function PerformanceRadar({ setModalData, setModalType }) {
           Comparativo
         </button>
       </figcaption>
+
+      { 
+        isRadarModalOpen && 
+        <Modal close={setIsRadarModalOpen}>
+          <RadarModal compareData={radarModalData} close={setIsRadarModalOpen} />
+        </Modal>
+
+      }
     </article>
   );
 }

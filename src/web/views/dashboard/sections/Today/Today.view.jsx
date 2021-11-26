@@ -11,7 +11,8 @@ import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 import MapaTron from '../MapaTron/Mapatron.view';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import Glossary from '../Glossary/Glossary.view';
-import Introduction from '../introduction/index';
+import Introduction from '../Introduction/index.jsx';
+//import { Glossary, Introduction, MapaTron } from './sections';
 
 const propTypes = {
   Today: PropTypes.func.isRequired,

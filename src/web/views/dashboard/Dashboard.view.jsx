@@ -3,6 +3,7 @@ import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Spinner } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
 import './Dashboard.view.css'
+import { Introduction } from './sections';
 
 
 const Dashboard = () => {
@@ -31,11 +32,9 @@ const Dashboard = () => {
 
   return (
     <>
-    {/*{firstLogin <Introduction
-        type={type}
-      />
-    : null
-    } */}
+      {firstLogin &&
+       <Introduction type={type}/>
+      }
       {renderPage()}
     </>
   ); 

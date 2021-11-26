@@ -17,7 +17,6 @@ import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskCo
 const propTypes = {
   currentOffice: PropTypes.shape({ tipo: PropTypes.number }).isRequired,
   buildRequestParams: PropTypes.func.isRequired,
-  setProcessDetail: PropTypes.func.isRequired,
 };
 
 class YourDesk extends React.Component {
@@ -148,7 +147,7 @@ class YourDesk extends React.Component {
 
   render() {
     const { activeTab, buttonList, openCasesDetails, openCasesDetailsError } = this.state;
-    const { buildRequestParams, setProcessDetail } = this.props;
+    const { buildRequestParams } = this.props;
 
     if (!buttonList) {
       return <div>loading...</div>;
@@ -179,7 +178,6 @@ class YourDesk extends React.Component {
               buildRequestParams={buildRequestParams}
               chartData={openCasesDetails || {}}
               isLoading={!openCasesDetails && !openCasesDetailsError}
-              setProcessDetail={setProcessDetail}
             />
           ) : (
             <GenericTab
@@ -197,13 +195,12 @@ class YourDesk extends React.Component {
 
 YourDesk.propTypes = propTypes;
 
-export default function ({ setProcessDetail }) {
+export default function () {
   const { currentOffice, buildRequestParams } = useAppContext();
   return (
     <YourDesk
       currentOffice={currentOffice}
       buildRequestParams={buildRequestParams}
-      setProcessDetail={setProcessDetail}
     />
   );
 }

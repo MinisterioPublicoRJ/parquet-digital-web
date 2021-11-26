@@ -15,14 +15,15 @@ const propTypes = {
   organType: PropTypes.number.isRequired,
 };
 
-function InvestigatedProfile({ onToggle, representanteDk, organType }) {
-  const [pessDk, setPessDk] = useAppContext(null);
-  const { buildRequestParams } = useAppContext();
+function InvestigatedProfile({ close, representanteDk }) {
+  const [pessDk, setPessDk] = useState(null);
+  const { buildRequestParams, currentOffice } = useAppContext();
   const [profileData, setProfileData] = useState(null);
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [isSimilarProfilesVisible, setIsSimilarProfilesVisible] = useState(false);
   const [loading, setLoading] = useState(true);
+  const organType = currentOffice.tipo;
 
   async function getProfileData() {
     let organTypeName;
@@ -145,7 +146,7 @@ function InvestigatedProfile({ onToggle, representanteDk, organType }) {
           </div>
 
           <div className="profile-close">
-            <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
+            <button type="button" className="close" aria-label="Fechar" onClick={close}>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>

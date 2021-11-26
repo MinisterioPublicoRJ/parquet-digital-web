@@ -11,6 +11,7 @@ import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 import MapaTron from '../MapaTron/Mapatron.view';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import Glossary from '../Glossary/Glossary.view';
+import Introduction from '../introduction/index';
 
 const propTypes = {
   Today: PropTypes.func.isRequired,
@@ -27,7 +28,7 @@ function Today() {
   const [collectionAnalysis, setCollectionAnalysis] = useState('');
   const [entriesData, setEntriesData] = useState();
   const [modalType, setModalType] = useState(false);
-  
+
   // runs on "mount" only
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => loadComponent(), []);
@@ -169,10 +170,10 @@ function Today() {
           {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
         {
-          modalType === 'officeSelector' && 
-          <Modal close={setModalType}> 
+          modalType === 'officeSelector' &&
+          <Modal close={setModalType}>
             <OfficeSelector close={setModalType} />
-          </Modal> 
+          </Modal>
         }
         <div className="today-textArea">
           {apiError === 3 && <p>Sem dados para exibir.</p>}
@@ -208,21 +209,21 @@ function Today() {
         </div>
       </div>
       {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (
-      <>
-        <button
-          type="button"
-          className="today-btn"
-          onClick={() => setModalType('mapatron')}
-        >
-          Ver mapa da atuação
-        </button>
-        { 
-          modalType === 'mapatron' && 
-          <Modal close={setModalType}> 
-            <MapaTron mapatronData={currentOffice.codigo} close={setModalType} />
-          </Modal> 
-        }
-      </>
+        <>
+          <button
+            type="button"
+            className="today-btn"
+            onClick={() => setModalType('mapatron')}
+          >
+            Ver mapa da atuação
+          </button>
+          {
+            modalType === 'mapatron' &&
+            <Modal close={setModalType}>
+              <MapaTron mapatronData={currentOffice.codigo} close={setModalType} />
+            </Modal>
+          }
+        </>
       ) : null}
       <div className="today-robotPic">
         <button
@@ -233,16 +234,22 @@ function Today() {
           <GlossaryBook />
         </button>
         {
-          modalType === 'glossary' && 
-          <Modal close={setModalType}> 
+          modalType === 'glossary' &&
+          <Modal close={setModalType}>
             <Glossary close={setModalType} />
-          </Modal> 
+          </Modal>
         }
         <button type="button" className="today-introBtn"
-          //onClick={() => setIsIntroOpen(true)}
+          onClick={() => setModalType('introduction')}
         >
           <IntroScreenInterrogation />
         </button>
+        {       
+          modalType === 'introduction' &&
+          <Modal close={setModalType}>
+            <Introduction onToggle={setModalType} type={currentOffice.tipo} />
+          </Modal>
+        }
         <img height="100%" src={PromotronGif} alt="robô-promoton" />
       </div>
     </article>

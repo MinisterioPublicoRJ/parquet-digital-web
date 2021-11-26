@@ -4,6 +4,7 @@ import { Spinner } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
 import './Dashboard.view.css'
 
+
 const Dashboard = () => {
   const { user, currentOffice } = useAppContext(); 
   const { firstLogin } = useAppContext().user;
@@ -12,6 +13,7 @@ const Dashboard = () => {
   if (!user) {
     return <Spinner size="large" />;
   }
+
   function renderPage() {
     switch (type) {
       case 1:
@@ -38,5 +40,6 @@ const Dashboard = () => {
     </>
   ); 
 };
+
 
 export default Dashboard;

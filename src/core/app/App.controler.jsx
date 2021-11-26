@@ -16,17 +16,17 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
   //     loadComponent();
   //   }
   // }, [hasFatalError]);
-
+ 
   function onMount() {
     const token = window.localStorage.getItem('access_token');
     const scaToken = window.localStorage.getItem('sca_token');
+    const storedOffice = window.localStorage.getItem('current_office');
     // tries to login automatically with saved token
-    appStore.loginWithToken(token, scaToken);
+    appStore.loginWithToken(token, scaToken, storedOffice);
   }
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
-
+  
   return (
     <AppProvider store={appStore}>
       <ThemeProvider>

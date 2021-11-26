@@ -28,6 +28,7 @@ export function scaUserTransform(user) {
     atribuicao,
   } = user;
   return {
+    loggedUser: {
     nome,
     sexo,
     firstLogin: first_login,
@@ -36,8 +37,9 @@ export function scaUserTransform(user) {
     matricula,
     token,
     atribuicao,
-    orgaoSelecionado: orgao_selecionado ? orgaoTransformer(orgao_selecionado) : null,
     orgaosValidos: orgaos_validos ? orgaos_validos.map(item => orgaoTransformer(item)) : [],
+    },    
+    orgaoSelecionado: orgao_selecionado ? orgaoTransformer(orgao_selecionado) : null,    
   };
 }
 
@@ -54,7 +56,7 @@ export function jwtUserTransform(user) {
     tipo_orgao,
   } = user;
   return {
-    nome,
+    loggedUser: {nome,
     sexo,
     firstLogin: first_login,
     firstLoginToday: first_login_today,
@@ -62,6 +64,8 @@ export function jwtUserTransform(user) {
     matricula,
     token,
     orgao: orgao,
+    orgaosValidos: []
+  },
     orgaoSelecionado: {
       nomeOrgao: undefined,
       cpf,
@@ -69,6 +73,5 @@ export function jwtUserTransform(user) {
       tipo: tipo_orgao,
       codigo: orgao,
     },
-    orgaosValidos: [],
   };
 }

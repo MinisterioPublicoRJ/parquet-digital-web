@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-
-import './styles.css';
+import React, { useState, useEffect } from 'react';
+import './OfficeSelector.css';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Search } from '../../../../../assets';
 import { abbrevName } from '../../../../../utils';
@@ -9,20 +8,19 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-function OfficeSelector({ isOpen, onToggle }) {
+function OfficeSelector({ close }) {
   const { user, updateOffice } = useAppContext();
   const [filteredList, setFilteredList] = useState(user.orgaosValidos);
 
   function onOfficeClicked(office) {
     updateOffice(office);
-    onToggle();
   }
 
   const handleChange = e => {
     const inputValue = e.target.value
       .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
+      .replace(/[\u0300-\u036f]/g, ''); 
     const filtered = user.orgaosValidos.filter(
       organ =>
         organ.nomeOrgao
@@ -44,14 +42,13 @@ function OfficeSelector({ isOpen, onToggle }) {
     setFilteredList(filtered);
   };
 
-  if (isOpen) {
     return (
       <div
         className="selector-outer"
-        onClick={onToggle}
-        onKeyDown={onToggle}
         role="button"
         tabIndex="0"
+        onClick={() => close()}
+        onKeyDown={() => close()}
       >
         <div
           className="selector-modal"
@@ -71,7 +68,7 @@ function OfficeSelector({ isOpen, onToggle }) {
           <div className="selector-listWrapper">
             <ul>
               {filteredList.map(orgao => (
-                <li
+                <li 
                   key={`${orgao.nomeOrgao}-${orgao.nomeUser}`}
                   onClick={() => onOfficeClicked(orgao)}
                 >
@@ -85,7 +82,5 @@ function OfficeSelector({ isOpen, onToggle }) {
       </div>
     );
   }
-  return null;
-}
 
 export default OfficeSelector;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './styles.css';
+import './Today.css';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
@@ -8,16 +8,15 @@ import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
-import MapaTron from '../MapaTron';
+import MapaTron from '../MapaTron/Mapatron.view';
+import OfficeSelector from './officeSelector/OfficeSelector.view';
+import Glossary from '../Glossary/Glossary.view';
 
 const propTypes = {
-  setIsSelectorOpen: PropTypes.func.isRequired,
-  setModalType: PropTypes.func.isRequired,
-  setModalData: PropTypes.func.isRequired,
-  setIsIntroOpen: PropTypes.func.isRequired,
+  Today: PropTypes.func.isRequired,
 };
 
-function Today({ setIsSelectorOpen, setModalType }) {
+function Today() {
   const { user, buildRequestParams, currentOffice, logout } = useAppContext();
 
   /* STATE */
@@ -27,12 +26,15 @@ function Today({ setIsSelectorOpen, setModalType }) {
   const [groupName, setgroupName] = useState('');
   const [collectionAnalysis, setCollectionAnalysis] = useState('');
   const [entriesData, setEntriesData] = useState();
-  const [portalMapatron, setPortalMapatron] = useState(false);
-  const Toggle = () => setPortalMapatron(!portalMapatron);
+  const [modalType, setModalType] = useState(false);
   
   // runs on "mount" only
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => loadComponent(), []);
+
+  /*useEffect(() => 
+    setportalOfficeSelector()
+  , [currentOffice ]);*/
 
   function loadComponent() {
     loadTodayPercentages();
@@ -161,11 +163,17 @@ function Today({ setIsSelectorOpen, setModalType }) {
         </button>
       </div>
       <div className="today-content">
-        <button type="button" onClick={setIsSelectorOpen} disabled={!user.orgaosValidos[0]}>
+        <button type="button" onClick={() => setModalType('officeSelector')} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
           {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
+        {
+          modalType === 'officeSelector' && 
+          <Modal close={setModalType}> 
+            <OfficeSelector close={setModalType} />
+          </Modal> 
+        }
         <div className="today-textArea">
           {apiError === 3 && <p>Sem dados para exibir.</p>}
           {loading && <Spinner size="large" />}
@@ -204,23 +212,32 @@ function Today({ setIsSelectorOpen, setModalType }) {
         <button
           type="button"
           className="today-btn"
-          onClick={() => Toggle(currentOffice.codigo)}
+          onClick={() => setModalType('mapatron')}
         >
           Ver mapa da atuação
         </button>
-        <Modal close={Toggle} open={portalMapatron}> 
-          <MapaTron close={Toggle} />
-        </Modal>
+        { 
+          modalType === 'mapatron' && 
+          <Modal close={setModalType}> 
+            <MapaTron mapatronData={currentOffice.codigo} close={setModalType} />
+          </Modal> 
+        }
       </>
       ) : null}
       <div className="today-robotPic">
         <button
           type="button"
           className="today-glossaryBtn"
-          //onClick={() => setModalType('glossary')}
+          onClick={() => setModalType('glossary')}
         >
           <GlossaryBook />
         </button>
+        {
+          modalType === 'glossary' && 
+          <Modal close={setModalType}> 
+            <Glossary close={setModalType} />
+          </Modal> 
+        }
         <button type="button" className="today-introBtn"
           //onClick={() => setIsIntroOpen(true)}
         >

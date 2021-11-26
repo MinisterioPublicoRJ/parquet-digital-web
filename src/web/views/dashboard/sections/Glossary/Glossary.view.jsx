@@ -5,7 +5,7 @@ import GLOSSARIO from './glossaryData';
 import { PromotronGlossario } from '../../../../assets/svg';
 import { useAppContext } from '../../../../../core/app/App.context';
 
-function Glossary({ onToggle }) {
+function Glossary({ close }) {
   const { currentOffice } = useAppContext();
   const { tipo } = currentOffice;
 
@@ -61,7 +61,7 @@ function Glossary({ onToggle }) {
         </div>
       </div>
       <div className="glossary-close">
-        <button type="button" className="close" aria-label="Fechar" onClick={onToggle}>
+        <button type="button" className="close" aria-label="Fechar" onClick={close}>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

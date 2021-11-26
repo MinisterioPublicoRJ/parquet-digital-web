@@ -17,7 +17,7 @@ import {
 } from './radarConstants';
 
 function PerformanceRadar({ setModalData, setModalType }) {
-  const { user, buildRequestParams } = useAppContext();
+  const { currentOffice, buildRequestParams } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState([]);
   const [otherData, setOtherData] = useState([]);
@@ -40,7 +40,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
 
   async function getPerformanceData() {
     let res = {};
-    const { tipo } = user.orgaoSelecionado;
+    const { tipo } = currentOffice;
     try {
       // tutela
       if (tipo === 1) {
@@ -62,7 +62,7 @@ function PerformanceRadar({ setModalData, setModalType }) {
 
   async function getCompareData() {
     setCompareData([]);
-    const { tipo } = user.orgaoSelecionado;
+    const { tipo } = currentOffice;
     let res = [];
     try {
       res = await Api.getRadarCompareData({ ...buildRequestParams(), organType: tipo });

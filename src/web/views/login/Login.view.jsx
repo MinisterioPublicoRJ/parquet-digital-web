@@ -44,7 +44,7 @@ const Login = () => {
             required
           />
           <button className={loginSubmitBtn} disabled={isLoading} type="submit">
-            {isLoading ? 'CARREGANDO' : 'ENTRAR'}
+            {isLoading ? 'CARREGANDO...' : 'ENTRAR'}
           </button>
           <div className={greetings}>
             {userExpired && <strong>Sua sessão expirou</strong>}

@@ -6,11 +6,12 @@ import './Dashboard.view.css'
 import { Introduction } from './sections';
 
 
-const Dashboard = ({ close }) => {
+const Dashboard = () => {
   const { user, currentOffice } = useAppContext(); 
   const { firstLogin } = useAppContext().user;
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [modalType, setModalType] = useState(false);
+  const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
 
 
   if (!user) {
@@ -21,25 +22,24 @@ const Dashboard = ({ close }) => {
     switch (type) {
       case 1:
         return (
-          <Tutela/>
+          <Tutela />
         );
       case 2:
         return (
-          <Pip/>
+          <Pip />
         );
       default:
         return <AlternativeWelcome />;
     }
   }
 
+  
   return (
     <>
-      {!firstLogin && 
-       <Modal close={setModalType}>
-        <Introduction onToggle={setModalType} type={type} />
-       </Modal>
-      }
-      {renderPage()}
+    {!firstLogin &&
+      <Introduction isOpen={isIntroOpen} onToggle={() => setIsIntroOpen((oldState) => !oldState)} type={type} />
+    }
+    {renderPage()}
     </>
   ); 
 };

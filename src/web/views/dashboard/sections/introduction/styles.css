@@ -146,9 +146,9 @@
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 0 0 100vw rgb(0 0 0 / 54%);
-  height: 110%;
+  height: 104%;
   margin-left: -10px;
-  width: 105%;
+  width: 104%;
   position: relative;
 }
 

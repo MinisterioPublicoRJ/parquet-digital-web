@@ -11,7 +11,7 @@ const propTypes = {
   type: PropTypes.number.isRequired,
 };
 
-function Introduction({ onToggle, type }) {
+function Introduction({ isOpen, onToggle, type }) {
   const show = (type === 1 || type === 2);
   const [currentPage, setCurrentPage] = useState(0);
   const pages = type === 1 ? TUTELA_GRID : PIP_GRID;

@@ -8,11 +8,8 @@ import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
-import MapaTron from '../MapaTron/Mapatron.view';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
-import Glossary from '../Glossary/Glossary.view';
-import Introduction from '../Introduction/index.jsx';
-//import { Glossary, Introduction, MapaTron } from './sections';
+import { Glossary, Introduction, MapaTron } from '../../sections';
 
 const propTypes = {
   Today: PropTypes.func.isRequired,

@@ -36,8 +36,10 @@ const Dashboard = () => {
   
   return (
     <>
-    {!firstLogin &&
-      <Introduction isOpen={isIntroOpen} onToggle={() => setIsIntroOpen((oldState) => !oldState)} type={type} />
+    {firstLogin  &&     
+      <Modal close={setModalType}>
+        <Introduction close={setModalType} type={currentOffice.tipo} />
+      </Modal>
     }
     {renderPage()}
     </>

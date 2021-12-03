@@ -11,7 +11,7 @@ const propTypes = {
   type: PropTypes.number.isRequired,
 };
 
-function Introduction({ isOpen, onToggle, type }) {
+function Introduction({ isOpen, onToggle, type, close }) {
   const show = (type === 1 || type === 2);
   const [currentPage, setCurrentPage] = useState(0);
   const pages = type === 1 ? TUTELA_GRID : PIP_GRID;
@@ -45,7 +45,10 @@ function Introduction({ isOpen, onToggle, type }) {
           <div className={`text-div text-div--${pages[currentPage].focus}`}>
             {pages[currentPage].component}
             <div className="btns-introduction">
-              <button className="btn-leave" type="button" aria-label="Fechar" onClick={onToggle}>
+              <button className="btn-leave" type="button" aria-label="Fechar"
+               onClick={() => close()}
+               onKeyDown={() => close()}
+               onClick={onToggle}>
                 Sair
               </button>
               {currentPage ? (

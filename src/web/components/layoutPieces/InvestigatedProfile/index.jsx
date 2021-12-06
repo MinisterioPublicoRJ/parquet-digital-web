@@ -10,7 +10,7 @@ import { CustomTable, Spinner } from '..';
 import { LoginPromotron } from '../../../assets';
 
 const propTypes = {
-  onToggle: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
   representanteDk: PropTypes.number.isRequired,
   organType: PropTypes.number.isRequired,
 };

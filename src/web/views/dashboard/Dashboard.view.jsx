@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
@@ -8,11 +8,9 @@ import { Introduction } from './sections';
 
 const Dashboard = () => {
   const { user, currentOffice } = useAppContext(); 
-  const { firstLogin } = useAppContext().user;
+  const { firstLogin } = user;
   const type = currentOffice ? currentOffice.tipo : undefined;
-  const [modalType, setModalType] = useState(false);
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
-
 
   if (!user) {
     return <Spinner size="large" />;
@@ -33,12 +31,11 @@ const Dashboard = () => {
     }
   }
 
-  
   return (
     <>
-    {firstLogin  &&     
-      <Modal close={setModalType}>
-        <Introduction close={setModalType} type={currentOffice.tipo} />
+    {isIntroOpen &&     
+      <Modal close={() => setIsIntroOpen()}>
+        <Introduction close={() => setIsIntroOpen()} type={currentOffice.tipo} />
       </Modal>
     }
     {renderPage()}

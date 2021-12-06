@@ -7,11 +7,11 @@ import './styles.css';
 import { PIP_GRID, TUTELA_GRID } from './introductionConstants';
 
 const propTypes = {
-  onToggle: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
   type: PropTypes.number.isRequired,
 };
 
-function Introduction({ isOpen, onToggle, type, close }) {
+function Introduction({ type, close }) {
   const show = (type === 1 || type === 2);
   const [currentPage, setCurrentPage] = useState(0);
   const pages = type === 1 ? TUTELA_GRID : PIP_GRID;
@@ -21,7 +21,7 @@ function Introduction({ isOpen, onToggle, type, close }) {
       if (pages.length > currentPage + 1) {
         setCurrentPage(prevValue => prevValue + 1);
       } else {
-        onToggle();
+        close();
       }
     } else if (movement === 'backward') {
       if (currentPage - 1 >= 0) {
@@ -33,7 +33,7 @@ function Introduction({ isOpen, onToggle, type, close }) {
   function handleKeyPress(event) {
     if (event.key === 'ArrowLeft' || event.keyCode === 37) handleNav('backward');
     if (event.key === 'ArrowRight' || event.keyCode === 39) handleNav('forward');
-    if (event.key === 'Escape' || event.keyCode === 27) onToggle();
+    if (event.key === 'Escape' || event.keyCode === 27) close();
   }
 
   useEventListener('keydown', handleKeyPress);
@@ -46,9 +46,9 @@ function Introduction({ isOpen, onToggle, type, close }) {
             {pages[currentPage].component}
             <div className="btns-introduction">
               <button className="btn-leave" type="button" aria-label="Fechar"
-               onClick={() => close()}
-               onKeyDown={() => close()}
-               onClick={onToggle}>
+               onClick={close}
+               onKeyDown={close}
+               onClick={close}>
                 Sair
               </button>
               {currentPage ? (

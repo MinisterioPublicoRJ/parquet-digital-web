@@ -5,7 +5,6 @@ import { useAuth } from '../../../../app/authContext';
 
 const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searchString}) => {
   const { buildRequestParams } = useAuth();
-  // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState();
@@ -63,7 +62,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searc
       return { ...process, docuPersonagens: investigatedNameBtn, docuNrExterno: processNumberBtn };
     });
   }
-  
+
   useEffect(() => {
     setPage(1);
   }, [searchString]);
@@ -83,8 +82,6 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searc
       }
     };
     loadData();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, totalPages, searchString]);
 
   if (loading) {
@@ -101,7 +98,7 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searc
           <CustomTable data={processListData} columns={tableColumns} showHeader />
           <Pagination
             totalPages={totalPages || 0}
-            handlePageClick={(page) => handlePageClick(page)}
+            handlePageClick={(nextPage) => handlePageClick(nextPage)}
             currentPage={page}
           />
         </div>

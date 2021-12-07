@@ -20,8 +20,7 @@ function Ranking({ data, title }) {
     <div className="ranking-outer">
       <h3>{TITLEDICT[title]}</h3>
       <ul className="ranking-list">
-        {data.map((item, i) => {
-          return (
+        {data.map((item, i) => (
             <li key={item.text} className="ranking-li">
               <span className="ranking-icon">
                 <Badge width={25} number={i + 1} />
@@ -29,8 +28,7 @@ function Ranking({ data, title }) {
               <strong className="ranking-featured">{item.value || '0'}</strong>
               <span className="ranking-label">{item.text}</span>
             </li>
-          );
-        })}
+          ))}
       </ul>
     </div>
   );

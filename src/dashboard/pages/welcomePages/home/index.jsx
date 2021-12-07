@@ -4,8 +4,7 @@ import Run from '../../../../assets/gifs/run.gif';
 
 import '../styles.css';
 
-const Home = () => {
-  return (
+const Home = () => (
     <div className="wrapper-welcome">
       <div className="banner-welcome">
         <img height="100%" src={Run} alt="trabalho-promoton" />
@@ -40,6 +39,5 @@ const Home = () => {
       </div>
     </div>
   );
-};
 
 export default Home;

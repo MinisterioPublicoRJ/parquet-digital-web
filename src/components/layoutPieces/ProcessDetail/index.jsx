@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ListCard } from 'mapasteca-web';
@@ -5,29 +6,31 @@ import { ListCard } from 'mapasteca-web';
 import './styles.css';
 import { useAuth } from '../../../app/authContext';
 import Api from '../../../api';
-import { Spinner } from '..';
+import Spinner from '../Spinner';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
 import AlertBadge from '../../../dashboard/sections/Alerts/AlertBadge';
 import individualAlertFormatter from '../../../dashboard/sections/Alerts/utils/individualAlertFormatter';
 
-
 const propTypes = {
   onToggle: PropTypes.func.isRequired,
+  docuNrMp: PropTypes.string,
+  docuNrExterno: PropTypes.string,
 };
+const defaultProps = {
+  docuNrMp: '',
+  docuNrExterno: '',
+}
 
 function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
   const [processData, setProcessData] = useState(null);
-  const [apiError, setApiError] = useState(false);
+  // const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
   const { buildRequestParams } = useAuth();
   const { cpf, token, orgao } = buildRequestParams();
   const [isAlertsVisible, setIsAlertsVisible] = useState(false);
 
-
-
   useEffect(() => {
     getProcessData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function getProcessData() {
@@ -35,9 +38,9 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
     setProcessData(null);
     try {
       const data = await Api.getProcessDetail({ ...buildRequestParams(), num_doc: docuNrMp });
-      setProcessData(data);      
+      setProcessData(data);
     } catch (error) {
-      setApiError(true);
+      // setApiError(true);
     } finally {
       setLoading(false);
     }
@@ -52,15 +55,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
       );
     }
     if (processData) {
-      const {
-        situation,
-        phase,
-        currentOwner,
-        loader,
-        secrecy,
-        docClass,
-        matter,
-      } = processData.identification;
+      const { situation, phase, currentOwner, loader, secrecy, docClass, matter } =
+        processData.identification;
       return (
         <div className="processDetail-body processDetail-loadedData">
           <button
@@ -68,42 +64,41 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
             className="process-alerts-btn"
             onClick={() => setIsAlertsVisible((prevValue) => !prevValue)}
           >
-            Este procedimento possui {processData.alerts.length} alerta{processData.alerts.length === 1 ? '' : 's'} 
+            Este procedimento possui {processData.alerts.length} alerta
+            {processData.alerts.length === 1 ? '' : 's'}
             <div
-              className={`process-alerts-arrow ${isAlertsVisible ? 'process-alerts-arrow--rotated' : ''
-                }`}
+              className={`process-alerts-arrow ${
+                isAlertsVisible ? 'process-alerts-arrow--rotated' : ''
+              }`}
             />
           </button>
 
           <div
-            className={`process-alerts-list ${isAlertsVisible ? 'process-alerts-list--visible' : ''
-              }`}
+            className={`process-alerts-list ${
+              isAlertsVisible ? 'process-alerts-list--visible' : ''
+            }`}
           >
-
             {processData.alerts.map((alert) => {
-
-              const formattedAlert = individualAlertFormatter({docNum:docuNrMp, ...alert}, cpf, token, orgao);
-              const {
-                backgroundColor,
-                backgroundColorChild,
-                icon,
-                key,
-                message,
-                type,
-                actions
-              } = formattedAlert;
+              const formattedAlert = individualAlertFormatter(
+                { docNum: docuNrMp, ...alert },
+                cpf,
+                token,
+                orgao,
+              );
+              const { backgroundColor, backgroundColorChild, icon, key, message, type } =
+                formattedAlert;
               return (
-                  <AlertBadge
-                    key={key}
-                    customKey={key}
-                    icon={icon}
-                    backgroundColor={backgroundColorChild || backgroundColor}
-                    message={message}
-                    docDk={docuNrMp}
-                    type={type}
-                    /* Passes empty actions to hide actions */
-                    actions={[]} 
-                  />
+                <AlertBadge
+                  key={key}
+                  customKey={key}
+                  icon={icon}
+                  backgroundColor={backgroundColorChild || backgroundColor}
+                  message={message}
+                  docDk={docuNrMp}
+                  type={type}
+                  /* Passes empty actions to hide actions */
+                  actions={[]}
+                />
               );
             })}
           </div>
@@ -125,12 +120,17 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
           </div>
           <h3>ASSUNTOS</h3>
           <div className="processDetail-section">
+            {/* needs refacotinrg, matter is declared int he upper scope */}
             {processData.matters.map(({ matter, detail }) => (
               <div className="processDetail-ListCardWrapper" key={`${matter}-${detail}`}>
                 <ListCard
                   fixedHeight
                   title={matter}
-                  content={<span className="ListCard-content" title={detail}><abbr>{detail}</abbr></span>}
+                  content={
+                    <span className="ListCard-content" title={detail}>
+                      <abbr>{detail}</abbr>
+                    </span>
+                  }
                   detailColor="#F86C72"
                   icon={<ProcessFile width={40} height={40} />}
                 />
@@ -209,7 +209,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
           <h2>Detalhes do Procedimento</h2>
           Informações de relevância sobre o procedimento.
           <div>
-            <span>{`Nº MPRJ: ${docuNrMp ? docuNrMp : '-'}`}</span>
+            <span>{`Nº MPRJ: ${docuNrMp || '-'}`}</span>
             <button
               type="button"
               onClick={() => {
@@ -235,4 +235,5 @@ function ProcessDetail({ docuNrMp, docuNrExterno, onToggle }) {
 }
 
 ProcessDetail.propTypes = propTypes;
+ProcessDetail.defaultProps = defaultProps;
 export default ProcessDetail;

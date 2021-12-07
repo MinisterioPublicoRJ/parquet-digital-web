@@ -1,8 +1,6 @@
 import React from 'react';
 
 export default function Bin({ fillColor, width, height }) {
-  fillColor = fillColor !== '' ? fillColor : '#b9b9b9';
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +8,7 @@ export default function Bin({ fillColor, width, height }) {
       height={height || '17.407'}
       viewBox="0 0 14.138 17.407"
     >
-      <g fill={fillColor} transform="translate(0.003 0.002)">
+      <g fill={fillColor || '#b9b9b9'} transform="translate(0.003 0.002)">
         <path
           className="a"
           d="M222.806,154.7a.408.408,0,0,0-.408.408v7.7a.408.408,0,0,0,.815,0v-7.7A.408.408,0,0,0,222.806,154.7Zm0,0"

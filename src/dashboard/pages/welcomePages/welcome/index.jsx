@@ -4,8 +4,7 @@ import Trabalho from '../../../../assets/gifs/trabalho.gif';
 
 import '../styles.css';
 
-const Welcome = () => {
-  return (
+const Welcome = () => (
     <div className="wrapper-welcome">
       <div className="banner-welcome">
         <img height="100%" src={Trabalho} alt="trabalho-promoton" />
@@ -32,6 +31,5 @@ const Welcome = () => {
       </div>
     </div>
   );
-};
 
 export default Welcome;

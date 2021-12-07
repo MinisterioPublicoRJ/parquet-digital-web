@@ -7,15 +7,12 @@ export default class ErrorBoundary extends React.Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     // Atualiza o state para que a próxima renderização mostre a UI alternativa.
-    console.log(error);
     return { hasError: true };
   }
 
-   componentDidCatch(error, errorInfo) {
-  // Você também pode registrar o erro em um serviço de relatórios de erro
-     //logErrorToMyService(error, errorInfo);
+   componentDidCatch(error) {
      window.newrelic.noticeError(error);
    }
 

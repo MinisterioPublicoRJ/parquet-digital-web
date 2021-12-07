@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import { Switch, Route, HashRouter, Redirect } from 'react-router-dom';
 import { useAuth } from './authContext';

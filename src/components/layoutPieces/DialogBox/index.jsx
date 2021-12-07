@@ -19,10 +19,10 @@ function DialogBox({ action, message, closeBox }) {
   return (
     <div className="dialog-box">
       {message}
-      <button className="dialog-box-yes-btn" onClick={(event) => handleClick('yes')}>
+      <button type="button" className="dialog-box-yes-btn" onClick={() => handleClick('yes')}>
         Sim
       </button>
-      <button className="dialog-box-no-btn" onClick={(event) => handleClick()}>
+      <button type="button" className="dialog-box-no-btn" onClick={() => handleClick()}>
         Não
       </button>
     </div>

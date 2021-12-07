@@ -4,8 +4,7 @@ import Chat from '../../../../assets/gifs/chat.gif';
 
 import '../styles.css';
 
-const Work = () => {
-  return (
+const Work = () => (
     <div className="wrapper-welcome">
       <div className="banner-welcome">
         <img height="100%" src={Chat} alt="trabalho-promoton" />
@@ -39,6 +38,5 @@ const Work = () => {
       </div>
     </div>
   );
-};
 
 export default Work;

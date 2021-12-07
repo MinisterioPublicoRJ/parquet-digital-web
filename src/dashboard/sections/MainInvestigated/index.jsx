@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
 
 import './styles.css';
 import { SearchBox } from 'mapasteca-web';
 import ActionButtons from './ActionButtons';
-import { TABLE_COLUMNS } from './mainInvestigatedConstants';
+import TABLE_COLUMNS from './mainInvestigatedConstants';
 import Api from '../../../api';
 import { useAuth } from '../../../app/authContext';
 import { CustomTable, Spinner, SectionTitle, Pagination } from '../../../components';
@@ -15,7 +16,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
   const [apiError, setApiError] = useState(false);
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
-  const [searchString, setSearchString] = useState("");
+  const [searchString, setSearchString] = useState('');
   const tableTopDivRef = useRef();
 
   /**
@@ -47,9 +48,9 @@ function MainInvestigated({ setInvestigatedProfile }) {
     // give user positivie feedback regardless of request success
     setTableData((oldTableData) => {
       const updatedArray = [...oldTableData];
-      const representanteIndex = updatedArray.findIndex((item) => {
-        return item.representanteDk === representanteDk;
-      });
+      const representanteIndex = updatedArray.findIndex(
+        (item) => item.representanteDk === representanteDk,
+      );
 
       const oldPinStatus = updatedArray[representanteIndex].isPinned;
       updatedArray[representanteIndex].isPinned = !oldPinStatus;
@@ -130,9 +131,9 @@ function MainInvestigated({ setInvestigatedProfile }) {
     }
   }
 
-  function onMount() {
-    getMainInvestigated();
-  }
+  // function onMount() {
+  //   getMainInvestigated();
+  // }
 
   function onUpdate() {
     getMainInvestigated();
@@ -141,7 +142,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
   function handleSearch(searchStr) {
     setSearchString(searchStr);
     setPage(1);
-    //getMainInvestigated(searchStr, 1);
+    // getMainInvestigated(searchStr, 1);
   }
 
   function handlePageClick(nextPage) {
@@ -153,8 +154,7 @@ function MainInvestigated({ setInvestigatedProfile }) {
     setPage(nextPage);
   }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  //useEffect(onMount, []);
+  // useEffect(onMount, []);
 
   useEffect(onUpdate, [searchString, page, totalPages]);
 
@@ -180,9 +180,9 @@ function MainInvestigated({ setInvestigatedProfile }) {
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
           <Pagination
             totalPages={totalPages || 0}
-            handlePageClick={(page) => handlePageClick(page)}
+            handlePageClick={(pageNum) => handlePageClick(pageNum)}
             currentPage={page}
-            />
+          />
         </div>
       </article>
     );

@@ -7,7 +7,7 @@
     "class-methods-use-this": "off",
     "no-use-before-define": "off",
     "react-hooks/exhaustive-deps": "off",
-    "endOfLine": "auto"
+    "endOfLine": "warn"
   },
   "env": {
     "browser": true

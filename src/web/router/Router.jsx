@@ -1,7 +1,7 @@
 import React from 'react';
 //import history from 'history/browser';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
-//import UnavailablePage from '../views/dashboard/pages/unavailablePage/UnavailablePage';
+import UnavailablePage from '../views/dashboard/pages/unavailablePage/UnavailablePage';
 import PrivateRoute from './PrivateRoute';
 
 import { LoadingScreen, Login, Dashboard } from '../views';
@@ -11,11 +11,11 @@ import { useAppContext } from '../../core/app/App.context';
 
 
 function Router() {
-  const { user } = useAppContext();
+  const { user, isServerDown  } = useAppContext();
 
   function findFirstPath() {
-    let path = '/carregando';
-    if (false) {
+    let path = '/login';
+    if (isServerDown) {
       path = '/indisponivel';
     } else if (user) {
       if (user.firstLogin) {
@@ -36,7 +36,7 @@ function Router() {
         </Route>
         <Route path="/carregando" component={LoadingScreen} />
         <Route path="/login">{user ? <Redirect to="/dashboard" /> : <Login />}</Route>
-        {/*<Route path="/indisponivel" component={UnavailablePage} />*/}
+        <Route path="/indisponivel" component={UnavailablePage} />
         <Route path="/gestao" component={Gestao} />
         <Route path="/entendimento" component={Entendimento} />
         <Route path="/celeridade" component={Celeridade} />

@@ -244,8 +244,8 @@ function Today() {
         </button>
         {       
           modalType === 'introduction' &&
-          <Modal close={setModalType}>
-            <Introduction onToggle={setModalType} type={currentOffice.tipo} />
+          <Modal close={() => setModalType()}>
+            <Introduction close={() => setModalType()} type={currentOffice.tipo} />
           </Modal>
         }
         <img height="100%" src={PromotronGif} alt="robô-promoton" />

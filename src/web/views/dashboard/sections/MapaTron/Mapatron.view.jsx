@@ -7,7 +7,7 @@ const propTypes = {
   close: PropTypes.func.isRequired,
 };
 
-function MapaTron({ mapatronData ,close }) {
+function MapaTron({ mapatronData, close }) {
   return (
     <>
       <div className="mapatron-wrapper">

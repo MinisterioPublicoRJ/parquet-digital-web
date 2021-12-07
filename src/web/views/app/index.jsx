@@ -4,7 +4,6 @@ import AppView from './App.view.jsx';
 import AppErrorView from './AppError.view';
 import AppControler from '../../../core/app/App.controler';
 import ErrorBoundary from '../../errorBoundary/ErrorBoundary';
-import { useAppContext } from '../../../core/app/App.context';
 
 // renomear as variáveis em ErrorBoundary
 function App() {

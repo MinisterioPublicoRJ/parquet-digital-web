@@ -8,10 +8,8 @@ import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
-import MapaTron from '../MapaTron/Mapatron.view';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
-import Glossary from '../Glossary/Glossary.view';
-import Introduction from '../introduction/index';
+import { Glossary, Introduction, MapaTron } from '../../sections';
 
 const propTypes = {
   Today: PropTypes.func.isRequired,
@@ -246,8 +244,8 @@ function Today() {
         </button>
         {       
           modalType === 'introduction' &&
-          <Modal close={setModalType}>
-            <Introduction onToggle={setModalType} type={currentOffice.tipo} />
+          <Modal close={() => setModalType()}>
+            <Introduction close={() => setModalType()} type={currentOffice.tipo} />
           </Modal>
         }
         <img height="100%" src={PromotronGif} alt="robô-promoton" />

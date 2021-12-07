@@ -187,7 +187,7 @@ function MainInvestigated() {
         {
           investigatedProfile && 
           <Modal close={() => setInvestigatedProfile(null)}>
-            <InvestigatedProfile onToggle={() => setInvestigatedProfile(null)} representanteDk={investigatedProfile} organType={currentOffice.tipo} />
+            <InvestigatedProfile close={() => setInvestigatedProfile(null)} representanteDk={investigatedProfile} organType={currentOffice.tipo} />
           </Modal>
         }
       </article>

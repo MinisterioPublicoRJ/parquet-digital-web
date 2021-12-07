@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   justify-content: center;
   height: 100vh;
-  width: 100vw;
 }
 
 .loginInner {
@@ -32,7 +31,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   height: 80%;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .loginInput {
@@ -45,6 +44,7 @@
   padding: 0 18px 0 18px;
   text-align: center;
   width: 70%;
+  margin-top: 20px;
 }
 /* Removes ugly dark border on Chrome */
 .loginInput:focus {
@@ -61,6 +61,7 @@
   text-transform: uppercase;
   width: 70%;
   font-family: Segoe UI Semibold;
+  margin-top: 20px;
 }
 
 .loginSubmitBtn:hover {

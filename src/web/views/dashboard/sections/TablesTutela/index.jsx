@@ -13,8 +13,6 @@ const TablesTutela = () => {
   const [extDocNum, setExtDocNum] = useState(null);
   const [mpDocNum, setMpDocNum] = useState(null);
   
-
-
   function setInvestigatedProfile(representanteDk){
     setRepDk(representanteDk);
   }

@@ -19,8 +19,9 @@ function YourDesk() {
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [docs, setDocs] = useState([]);
   const activeTab = 'openCases';
-  //console.log(type);
 
+  // console.log(type);
+  // Function to render type tutela or pip
   const renderProsecution = async () => {
     switch (type) {
       case 1:
@@ -34,54 +35,62 @@ function YourDesk() {
     renderProsecution();
   };
 
+  // useEffect(() => renderProsecution(), getOpenCasesDetails(), []);
   useEffect(() => renderProsecution(), []);
-  console.log(renderProsecution());
 
+  // console.log(renderProsecution());
+
+  // function to get names of buttons Tutela
   function getTutela() {
     const buttonList = TUTELA_BUTTONS;
     const newState = { buttonList };
-
+    // console.log(newState);
     buttonList.forEach((buttonName) => {
+      getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
     });
-
     return newState;
   }
+
+  // function to get names of buttons Pip
 
   function getPip() {
     const buttonList = PIP_BUTTONS;
     const newState = { buttonList };
     // console.log(newState);
-
     buttonList.forEach((buttonName) => {
-      // getDocument(buttonName);
+      getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
     });
-
     return newState;
   }
 
-  useEffect(() => {
-    const getDocument = async (docName) => {
-      const dbName = BUTTON_DICT[docName];
-      let doc;
-      let docError = false;
-      try {
-        const params = { ...buildRequestParams(), docType: dbName };
-        doc = await Api.getIntegratedDeskDocs(params);
-        setDocs(doc);
-        console.log(doc);
-      } catch (e) {
-        docError = true;
-      } finally {
-        const updatedState = {};
-        updatedState[docName] = doc;
-        updatedState[`loading${capitalizeWord(docName)}`] = false;
-        updatedState[`error${capitalizeWord(docName)}`] = docError;
-      }
-    };
-    getDocument();
-  }, []);
+  function loadComponent(buttonName) {
+    getPip(buttonName);
+    getTutela(buttonName);
+  }
+  useEffect(() => loadComponent(), []);
+
+  async function getDocument(docName) {
+    const dbName = BUTTON_DICT[docName];
+    let doc;
+    let docError = false;
+    try {
+      const params = { ...buildRequestParams(), docType: dbName };
+      doc = await Api.getIntegratedDeskDocs(params);
+      setDocs(params);
+    } catch (e) {
+      docError = true;
+    } finally {
+      const updatedState = {};
+      updatedState[docName] = doc;
+      updatedState[`loading${capitalizeWord(docName)}`] = false;
+      updatedState[`error${capitalizeWord(docName)}`] = docError;
+
+      setDocs(updatedState);
+      console.log(updatedState);
+    }
+  }
 
   /* async function getTabDetails(tabName) {
     const dbName = BUTTON_DICT[tabName];
@@ -108,7 +117,6 @@ function YourDesk() {
    * @return {void} saves details to the state
    */
   /* async function getOpenCasesDetails() {
-    const { buildRequestParams } = useAppContext();
     let openCasesDetails;
     let openCasesDetailsError = false;
     try {
@@ -116,7 +124,7 @@ function YourDesk() {
     } catch (e) {
       openCasesDetailsError = true;
     } finally {
-      this.setState({ openCasesDetails, openCasesDetailsError, openCasesDetailsLoading: false });
+      return  openCasesDetails, openCasesDetailsError, openCasesDetailsLoading: false ;
     }
   } */
 
@@ -140,7 +148,7 @@ function YourDesk() {
     // this.setState({ activeTab: tabName });
   }
   let buttonList;
-  console.log(buttonList);
+  // console.log(buttonList);
   if (!buttonList) {
     return <div>loading...</div>;
   }
@@ -149,7 +157,7 @@ function YourDesk() {
       <div className="desk-header">
         <SectionTitle value="Sua Mesa" glueToTop />
         <div className="desk-controlers">
-          {docs.map((buttonTitle) => (
+          {buttonList.map((buttonTitle) => (
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}

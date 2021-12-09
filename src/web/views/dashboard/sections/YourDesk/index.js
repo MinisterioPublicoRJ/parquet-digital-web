@@ -19,7 +19,7 @@ function YourDesk() {
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [docs, setDocs] = useState([]);
   const activeTab = 'openCases';
-  console.log(type);
+  //console.log(type);
 
   const renderProsecution = async () => {
     switch (type) {
@@ -35,14 +35,13 @@ function YourDesk() {
   };
 
   useEffect(() => renderProsecution(), []);
-  // console.log(renderProsecution());
+  console.log(renderProsecution());
 
   function getTutela() {
     const buttonList = TUTELA_BUTTONS;
     const newState = { buttonList };
 
     buttonList.forEach((buttonName) => {
-      // getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
     });
 
@@ -52,7 +51,7 @@ function YourDesk() {
   function getPip() {
     const buttonList = PIP_BUTTONS;
     const newState = { buttonList };
-    console.log(newState);
+    // console.log(newState);
 
     buttonList.forEach((buttonName) => {
       // getDocument(buttonName);
@@ -150,7 +149,7 @@ function YourDesk() {
       <div className="desk-header">
         <SectionTitle value="Sua Mesa" glueToTop />
         <div className="desk-controlers">
-          {buttonList.map((buttonTitle) => (
+          {docs.map((buttonTitle) => (
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}

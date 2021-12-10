@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   height: 100vh;
-  width: 100vw;
   /* forces image to respect parent sizing on FF */
   /* https://support.mozilla.org/en-US/questions/935671 */
   overflow: hidden;
@@ -46,7 +45,9 @@
   display: grid;
   place-items: end;
   place-content: end;
+  margin-left: -77px;
 }
+
 .unavailableTitleText * {
   max-width: 32vw;
 }

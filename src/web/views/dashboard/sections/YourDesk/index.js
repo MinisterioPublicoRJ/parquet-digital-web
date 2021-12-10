@@ -105,6 +105,7 @@ class YourDesk extends React.Component {
       updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
 
       this.setState(updatedState);
+
     }
   }
 

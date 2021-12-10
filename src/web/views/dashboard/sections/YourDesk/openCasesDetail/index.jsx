@@ -61,7 +61,7 @@ class OpenCasesDetail extends React.Component {
 
   generateButtons(list) {
     return list.map((openCase) => {
-      const { numeroMprj, numeroExterno } = openCase;
+      const { numeroMprj, numeroExterno, alertSigla, alertCount } = openCase;
       const processNumberBtn = (
         <button
           type="button"
@@ -73,7 +73,22 @@ class OpenCasesDetail extends React.Component {
           {numeroMprj}
         </button>
       );
-      return { ...openCase, numeroMprj: processNumberBtn };
+      /* commented alertTag that is half done while back end isn't done
+      const alertTagButton = (
+        <div className="alert-tag-wrapper">
+          <button
+            type="button"
+            className="alert-tag"
+          >
+            {alertCount}
+          </button>
+
+          <div className="alert-tag-sigla">
+            {alertSigla}
+          </div>
+        </div>
+      ) */
+      return { ...openCase, numeroMprj: processNumberBtn, /* alertTag: alertTagButton  */ };
     });
   }
   /**

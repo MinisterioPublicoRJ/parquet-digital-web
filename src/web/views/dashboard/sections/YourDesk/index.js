@@ -88,7 +88,6 @@ function YourDesk() {
       updatedState[`error${capitalizeWord(docName)}`] = docError;
 
       setDocs(updatedState);
-      console.log(updatedState);
     }
   }
 
@@ -148,7 +147,7 @@ function YourDesk() {
     // this.setState({ activeTab: tabName });
   }
   let buttonList;
-  // console.log(buttonList);
+  console.log(docs);
   if (!buttonList) {
     return <div>loading...</div>;
   }
@@ -157,7 +156,7 @@ function YourDesk() {
       <div className="desk-header">
         <SectionTitle value="Sua Mesa" glueToTop />
         <div className="desk-controlers">
-          {buttonList.map((buttonTitle) => (
+          {docs.map((buttonTitle) => (
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}

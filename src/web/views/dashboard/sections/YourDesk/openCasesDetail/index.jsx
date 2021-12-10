@@ -8,8 +8,6 @@ import { Spinner, CustomTable, Pagination } from '../../../../../components';
 import DeskCasesChart from '../deskCases';
 import { Modal } from '../../../../../components/layoutPieces';
 import { ProcessDetail } from '../../../../../components';
-
-
 import './styles.css';
 
 const propTypes = {

@@ -18,6 +18,7 @@ function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [docs, setDocs] = useState([]);
+  const [casesDetails, setCasesDetails] = useState([]);
   const activeTab = 'openCases';
 
   // console.log(type);
@@ -115,7 +116,7 @@ function YourDesk() {
    * Loads the data used in the OpenCases tab
    * @return {void} saves details to the state
    */
-  /* async function getOpenCasesDetails() {
+  async function getOpenCasesDetails() {
     let openCasesDetails;
     let openCasesDetailsError = false;
     try {
@@ -125,7 +126,7 @@ function YourDesk() {
     } finally {
       return  openCasesDetails, openCasesDetailsError, openCasesDetailsLoading: false ;
     }
-  } */
+  }
 
   /**
    * Triggered by buttonPress, updates the state

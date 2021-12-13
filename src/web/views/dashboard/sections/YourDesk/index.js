@@ -19,6 +19,8 @@ function YourDesk() {
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [docs, setDocs] = useState([]);
   const [casesDetails, setCasesDetails] = useState([]);
+  const [tabDetails, setTabDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
   const activeTab = 'openCases';
 
   // console.log(type);
@@ -35,8 +37,6 @@ function YourDesk() {
     }
     renderProsecution();
   };
-
-  // useEffect(() => renderProsecution(), getOpenCasesDetails(), []);
   useEffect(() => renderProsecution(), []);
 
   // console.log(renderProsecution());
@@ -53,8 +53,7 @@ function YourDesk() {
     return newState;
   }
 
-  // function to get names of buttons Pip
-
+  // function to get names of buttons Pip o Tutela
   function getPip() {
     const buttonList = PIP_BUTTONS;
     const newState = { buttonList };
@@ -69,6 +68,8 @@ function YourDesk() {
   function loadComponent(buttonName) {
     getPip(buttonName);
     getTutela(buttonName);
+    getOpenCasesDetails(casesDetails);
+    // getTabDetails(tabDetails);
   }
   useEffect(() => loadComponent(), []);
 
@@ -86,20 +87,21 @@ function YourDesk() {
       const updatedState = {};
       updatedState[docName] = doc;
       updatedState[`loading${capitalizeWord(docName)}`] = false;
-      updatedState[`error${capitalizeWord(docName)}`] = docError;
-
+      updatedState[`${capitalizeWord(docName)}`] = docError;
       setDocs(updatedState);
+      // console.log(updatedState);
     }
   }
 
-  /* async function getTabDetails(tabName) {
+  /*async function getTabDetails(tabName) {
     const dbName = BUTTON_DICT[tabName];
-    const { buildRequestParams } = this.props;
     let tabDetail;
     let tabDetailError = false;
     try {
       const params = { ...buildRequestParams(), docType: dbName };
       tabDetail = await Api.getIntegratedDeskDetails(params);
+      setTabDetails(params);
+      console.log(params);
     } catch (e) {
       tabDetailError = true;
     } finally {
@@ -107,10 +109,9 @@ function YourDesk() {
       updatedState[`${tabName}Details`] = tabDetail;
       updatedState[`loading${capitalizeWord(tabName)}Details`] = false;
       updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
-
-      this.setState(updatedState);
+      setTabDetails(updatedState);
     }
-  } */
+  }*/
 
   /**
    * Loads the data used in the OpenCases tab
@@ -118,13 +119,15 @@ function YourDesk() {
    */
   async function getOpenCasesDetails() {
     let openCasesDetails;
-    let openCasesDetailsError = false;
+    setLoading(true);
     try {
       openCasesDetails = await Api.getOpenCasesDetails(buildRequestParams());
+      console.log(openCasesDetails);
+      setCasesDetails(openCasesDetails);
     } catch (e) {
-      openCasesDetailsError = true;
+      setCasesDetails(false);
     } finally {
-      return  openCasesDetails, openCasesDetailsError, openCasesDetailsLoading: false ;
+      setLoading(false);
     }
   }
 
@@ -138,14 +141,14 @@ function YourDesk() {
     if (!tabName) {
       switch (tabName) {
         case 'openCases':
-          // getOpenCasesDetails();
+          getOpenCasesDetails();
           break;
         default:
           // getTabDetails(tabName);
           break;
       }
     }
-    // this.setState({ activeTab: tabName });
+    return { activeTab: tabName };
   }
   let buttonList;
   console.log(docs);

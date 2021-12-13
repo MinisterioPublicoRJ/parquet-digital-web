@@ -7,8 +7,8 @@ import { LoginPromotron } from '../../assets';
 import { useLoginContext } from '../../../core/login/Login.context';
 
 const Login = () => {
-  const { scaLoginFailed } = useAppContext();
-  const { isLoading, setLoadingState, setUsername, setPassword, userExpired } = useLoginContext();
+  const { scaLoginFailed, userExpired } = useAppContext();
+  const { isLoading, setLoadingState, setUsername, setPassword } = useLoginContext();
 
   const onSubmit = (e) => {
     e.preventDefault();

@@ -45,7 +45,7 @@ function YourDesk() {
     const buttonList = TUTELA_BUTTONS;
     setButtonList(buttonList);
     const newState = { buttonList };
-    // console.log(newState);
+    //console.log(newState);
     buttonList.forEach((buttonName) => {
       getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
@@ -70,9 +70,9 @@ function YourDesk() {
     getPip(buttonName);
     getTutela(buttonName);
     getOpenCasesDetails(openCasesDetails);
-    getTabDetails(buttonList[0]);
+    // getTabDetails(buttonList);
   }
- // useEffect(() => loadComponent(), [tabDetails]);
+ useEffect(() => loadComponent(), []);
 
   async function getDocument(docName) {
     const dbName = BUTTON_DICT[docName];
@@ -111,6 +111,8 @@ function YourDesk() {
       updatedState[`loading${capitalizeWord(tabName)}Details`] = false;
       updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
       setTabDetails(updatedState);
+      console.log(updatedState);
+
     }
   }
 
@@ -145,14 +147,13 @@ function YourDesk() {
           getOpenCasesDetails();
           break;
         default:
-          // getTabDetails(tabName);
+          getTabDetails(tabName);
           break;
       }
     }
     return { activeTab: tabName };
   }
-  // let buttonList;
-  // console.log('docs:', docs);
+
   if (!buttonList) {
     return <div>loading...</div>;
   }
@@ -184,8 +185,7 @@ function YourDesk() {
           />
         ) : (
           <GenericTab
-            // {...this.state[`${activeTab}Details`]}
-            tab={activeTab}
+            tab={[`${activeTab}Details`]}
             tabTitle={BUTTON_TEXTS[activeTab]}
             error={[`error${capitalizeWord(activeTab)}Details`]}
           />

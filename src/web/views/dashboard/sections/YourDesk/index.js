@@ -42,11 +42,11 @@ function YourDesk() {
 
   // function to get names of buttons Tutela
   function getTutela() {
-    const buttonList = TUTELA_BUTTONS;
-    setButtonList(buttonList);
-    const newState = { buttonList };
+    const bList = TUTELA_BUTTONS;
+    setButtonList(bList);
+    const newState = { bList };
     // console.log(newState);
-    buttonList.forEach((buttonName) => {
+    bList.forEach((buttonName) => {
       getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
     });
@@ -70,9 +70,8 @@ function YourDesk() {
     getPip(buttonName);
     getTutela(buttonName);
     getOpenCasesDetails(openCasesDetails);
-    getTabDetails(buttonList[0]);
   }
- // useEffect(() => loadComponent(), [tabDetails]);
+  useEffect(() => loadComponent(), [activeTab]);
 
   async function getDocument(docName) {
     const dbName = BUTTON_DICT[docName];
@@ -81,7 +80,7 @@ function YourDesk() {
     try {
       const params = { ...buildRequestParams(), docType: dbName };
       doc = await Api.getIntegratedDeskDocs(params);
-      setDocs(params);
+      //setDocs(params);
     } catch (e) {
       docError = true;
     } finally {
@@ -89,8 +88,8 @@ function YourDesk() {
       updatedState[docName] = doc;
       updatedState[`loading${capitalizeWord(docName)}`] = false;
       updatedState[`${capitalizeWord(docName)}`] = docError;
-      setDocs(updatedState);
-      console.log('updatedState: ', updatedState);
+      setDocs(prevState => ({...prevState, ...updatedState}));
+      //console.log('updatedState: ', updatedState);
     }
   }
 
@@ -102,7 +101,7 @@ function YourDesk() {
       const params = { ...buildRequestParams(), docType: dbName };
       tabDetail = await Api.getIntegratedDeskDetails(params);
       setTabDetails(params);
-      console.log(params);
+      console.log('tabDetails', params);
     } catch (e) {
       tabDetailError = true;
     } finally {
@@ -123,7 +122,7 @@ function YourDesk() {
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
-      console.log(casesDetails);
+ //     console.log(casesDetails);
       setOpenCasesDetails(casesDetails);
     } catch (e) {
       setOpenCasesDetails(false);
@@ -139,20 +138,22 @@ function YourDesk() {
    * @return {void}
    */
   function handleChangeActiveTab(tabName) {
+    console.log('activetab:', activeTab);
+    setActiveTab(tabName);
     if (!tabName) {
       switch (tabName) {
         case 'openCases':
           getOpenCasesDetails();
           break;
         default:
-          // getTabDetails(tabName);
+          getTabDetails(tabName);
           break;
       }
     }
-    return { activeTab: tabName };
   }
   // let buttonList;
-  // console.log('docs:', docs);
+  console.log('docs:', docs);
+  console.log('docs[openCases]:', docs['openCases']);
   if (!buttonList) {
     return <div>loading...</div>;
   }
@@ -165,12 +166,12 @@ function YourDesk() {
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}
-              error={[`error${capitalizeWord(buttonTitle)}`]}
+              error={docs[`error${capitalizeWord(buttonTitle)}`]}
               buttonPressed={() => handleChangeActiveTab(buttonTitle)}
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
-              number={[buttonTitle]}
-              loading={[`loading${capitalizeWord(buttonTitle)}`]}
+              number={docs[buttonTitle]}
+              loading={docs[`loading${capitalizeWord(buttonTitle)}`]}
             />
           ))}
         </div>

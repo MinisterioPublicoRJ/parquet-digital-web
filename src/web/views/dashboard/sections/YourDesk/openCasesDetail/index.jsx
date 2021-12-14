@@ -6,11 +6,8 @@ import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../../api';
 import { Spinner, CustomTable, Pagination } from '../../../../../components';
 import DeskCasesChart from '../deskCases';
-import noOpenCases from '../../../../../assets/imgs/robo-s-vistas-abertas.png';
 import { Modal } from '../../../../../components/layoutPieces';
 import { ProcessDetail } from '../../../../../components';
-
-
 import './styles.css';
 
 const propTypes = {

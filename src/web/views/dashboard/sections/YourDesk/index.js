@@ -38,7 +38,9 @@ function YourDesk() {
         break;
     }
   };
-  useEffect(() => renderProsecution(), []);
+  useEffect(() => {
+    renderProsecution()
+  }, []);
 
   // function to get names of buttons Tutela
   function getTutela() {
@@ -66,12 +68,13 @@ function YourDesk() {
     return newState;
   }
 
-  function loadComponent(buttonName) {
-    getPip(buttonName);
-    getTutela(buttonName);
+  function loadComponent() {
     getOpenCasesDetails(openCasesDetails);
   }
-  useEffect(() => loadComponent(), [activeTab]);
+
+  useEffect(() => {
+    loadComponent()
+  }, []);
 
   async function getDocument(docName) {
     const dbName = BUTTON_DICT[docName];
@@ -88,7 +91,7 @@ function YourDesk() {
       updatedState[docName] = doc;
       updatedState[`loading${capitalizeWord(docName)}`] = false;
       updatedState[`${capitalizeWord(docName)}`] = docError;
-      setDocs(prevState => ({...prevState, ...updatedState}));
+      setDocs(prevState => ({ ...prevState, ...updatedState }));
       //console.log('updatedState: ', updatedState);
     }
   }
@@ -122,7 +125,7 @@ function YourDesk() {
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
- //     console.log(casesDetails);
+      //     console.log(casesDetails);
       setOpenCasesDetails(casesDetails);
     } catch (e) {
       setOpenCasesDetails(false);

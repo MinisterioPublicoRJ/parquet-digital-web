@@ -104,7 +104,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
       const newState = {};
       const totalPages = {};
       totalPages[`${tab}`] = res ? res.pages : null;
-      newState[`${tab}Details`] = generateButtons(res.procedures);
+      if (res) newState[`${tab}Details`] = generateButtons(res.procedures);
       newState[`${tab}Error`] = error;
       setDocs(prevState => ({...prevState, ...newState, currentPage: page, totalPages }));
     }

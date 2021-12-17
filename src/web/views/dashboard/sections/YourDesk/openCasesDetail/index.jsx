@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { SearchBox } from 'mapasteca-web';
 
@@ -20,33 +20,31 @@ const propTypes = {
   }).isRequired,
 };
 
-class OpenCasesDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: 'under20',
-      currentPage: 1,
-      totalPages: this.calcTotalPages(this.props.chartData),
-      searchString: '',
-      numeroMprj: null,
-      numeroExterno: null,
-      isProcessDetailOpen: false,
-    };
-    this.handleProcessDetail = this.handleProcessDetail.bind(this);
-  }
+function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
-  componentDidMount() {
-    const { activeTab } = this.state;
-    this.getOpenCasesList(activeTab);
-  }
+  const [activeTab, setActiveTab] = useState('under20');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(calcTotalPages(chartData));
+  const [searchString, setSearchString] = useState('');
+  const [numeroMprj, setNumeroMprj] = useState(null);
+  const [numeroExterno, setNumeroExterno] = useState(null);
+  const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
+  const [docs, setDocs ] = useState(false);
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.chartData !== this.props.chartData && Object.keys(this.props.chartData).length) {
-      this.setState({ totalPages: this.calcTotalPages(this.props.chartData) });
+
+  useEffect(() => {
+    getOpenCasesList(activeTab);
+
+  },[]);
+
+  useEffect(() => { 
+    
+    if (Object.keys(chartData).length) {
+      setTotalPages(calcTotalPages(chartData));
     }
-  }
+  } ,[chartData])
 
-  calcTotalPages(chartData) {
+  function calcTotalPages(chartData) {
     const totalPages = {};
     const categories = Object.keys(chartData);
     categories.forEach((cat) => {
@@ -56,14 +54,14 @@ class OpenCasesDetail extends React.Component {
     return totalPages;
   }
 
-  generateButtons(list) {
+  function generateButtons(list) {
     return list.map((openCase) => {
       const { numeroMprj, numeroExterno, alertSigla, alertCount } = openCase;
       const processNumberBtn = (
         <button
           type="button"
           onClick={() => {
-            this.handleProcessDetail(numeroMprj, numeroExterno);
+            handleProcessDetail(numeroMprj, numeroExterno);
           }}
           className="process-detail-btn"
         >
@@ -93,11 +91,10 @@ class OpenCasesDetail extends React.Component {
    * @param  {string}  tab one of [under20, between20And30, over30]
    * @return {void}     just saves to state
    */
-  async getOpenCasesList(tab, nextPage, searchString) {
-    const { buildRequestParams } = this.props;
+  async function getOpenCasesList(tab, nextPage, searchString) {
     let error = false;
     let res;
-    const page = nextPage || this.state.currentPage;
+    const page = nextPage || currentPage;
 
     try {
       res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab], page, searchString);
@@ -107,26 +104,29 @@ class OpenCasesDetail extends React.Component {
       const newState = {};
       const totalPages = {};
       totalPages[`${tab}`] = res ? res.pages : null;
-      newState[`${tab}Details`] = this.generateButtons(res.procedures);
+      newState[`${tab}Details`] = generateButtons(res.procedures);
       newState[`${tab}Error`] = error;
-      this.setState({ ...newState, currentPage: page, totalPages });
+      setDocs(prevState => ({...prevState, ...newState, currentPage: page, totalPages }));
     }
   }
 
-  handlePageClick(page) {
-    if (page < 1 || page > this.state.totalPages[this.state.activeTab]) return;
-    const { chartData } = this.props;
-    const tabName = this.state.activeTab;
+  function handlePageClick(page) {
+    if (page < 1 || page > totalPages[activeTab]) return;
+    const tabName = activeTab;
     const hasItems = chartData[tabName];
 
     if (hasItems) {
       const newState = {};
       newState[`${tabName}Details`] = null;
-      this.setState({ ...newState }, () => {
-        this.getOpenCasesList(tabName, page, this.state.searchString);
-      });
+      setDocs(prevState => ({...prevState, ...newState }));
     }
   }
+
+  // useEffect for calling getOpenCasesList after docs state changes 
+
+  useEffect(() => {
+    getOpenCasesList(activeTab, currentPage, searchString);
+  },[docs,currentPage])
 
   /**
    * [cleanChartData description]
@@ -134,7 +134,7 @@ class OpenCasesDetail extends React.Component {
    * @return {json}      same keys as chartData, each key has again same keys as
    *                     chartData and point to an object with x/y/color values
    */
-  cleanChartData(data) {
+  function cleanChartData(data) {
     const categories = Object.keys(data);
     const cleanData = {};
 
@@ -160,14 +160,14 @@ class OpenCasesDetail extends React.Component {
    * one of [under20, between20And30, over30]
    * @return {void}
    */
-  handleChangeActiveTab(tabName) {
-    const { chartData } = this.props;
+  function handleChangeActiveTab(tabName) {
     const hasItems = chartData[tabName];
 
-    if (hasItems && !this.state[`${tabName}Details`]) {
-      this.getOpenCasesList(tabName, 1);
+    if (hasItems && !docs[`${tabName}Details`]) {
+      getOpenCasesList(tabName, 1);
     }
-    this.setState({ activeTab: tabName, currentPage: 1 });
+    setActiveTab(tabName);
+    setCurrentPage(1);
   }
 
   /**
@@ -175,16 +175,15 @@ class OpenCasesDetail extends React.Component {
    * @param  {[type]} data chartData prop
    * @return {Array}      JSX for PieChart buttons
    */
-  renderCharts(data) {
-    const { activeTab } = this.state;
-    const cleanData = this.cleanChartData(data);
+  function renderCharts(data) {
+    const cleanData = cleanChartData(data);
     const categories = Object.keys(data);
 
     return categories.map((cat) => (
       <DeskCasesChart
         key={cat}
         active={activeTab === cat}
-        buttonPressed={(tab) => this.handleChangeActiveTab(tab)}
+        buttonPressed={(tab) => handleChangeActiveTab(tab)}
         category={cat}
         color={MAIN_DATA[cat][0]}
         data={cleanData[cat]}
@@ -193,65 +192,62 @@ class OpenCasesDetail extends React.Component {
     ));
   }
 
-  handleSearch(searchStr) {
-    this.setState({ searchString: searchStr });
-    this.getOpenCasesList(this.state.activeTab, 1, searchStr);
+  function handleSearch(searchStr) {
+    setSearchString(searchStr);
+    getOpenCasesList(activeTab, 1, searchStr);
   }
 
-  handleProcessDetail(numeroMprj, numeroExterno) {
-    this.setState(prevState => ({numeroMprj, numeroExterno, isProcessDetailOpen: !prevState.isProcessDetailOpen}));
+  function handleProcessDetail(numeroMprj, numeroExterno) {
+    setNumeroMprj(numeroMprj);
+    setNumeroExterno(numeroExterno);
+    setIsProcessDetailOpen(prevState => !prevState);
   }
 
-  render() {
-    const { isLoading, chartData } = this.props;
-    const { activeTab, totalPages } = this.state;
-
-    if (isLoading) {
-      return <Spinner size="large" />;
-    }
-
-    const emptyTab = !chartData[activeTab];
-    const tabLoading =
-      !emptyTab && !this.state[`${activeTab}Details`] && !this.state[`${activeTab}Error`];
-
-    return (
-      <>
-        <div className="openCases-chartsWrapper">{this.renderCharts(chartData)}</div>
-        {!emptyTab && <SearchBox onSearch={this.handleSearch.bind(this)}></SearchBox>}
-        <div className={`openCases-tableWrapper ${emptyTab ? 'empty-table' : ''}`}>
-          {tabLoading && <Spinner size="medium" />}
-          {!emptyTab && this.state[`${activeTab}Details`] && (
-            <CustomTable
-              data={this.state[`${activeTab}Details`]}
-              columns={TABLE_COLUMNS}
-              showHeader
-            />
-          )}
-          {emptyTab && (
-            // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
-            <>
-              <p className="no-openCases"> Nenhuma vista aberta até o momento</p>
-              <CustomTable data={Array(20).fill({content: ''})} columns={TABLE_COLUMNS} showHeader />
-            </>
-          )}
-
-          {!emptyTab && (
-            <Pagination
-              totalPages={totalPages[activeTab] || 0}
-              handlePageClick={(page) => this.handlePageClick(page)}
-              currentPage={this.state.currentPage}
-            />
-          )}
-          {
-            this.state.isProcessDetailOpen &&
-            <Modal close={this.handleProcessDetail}>
-              <ProcessDetail docuNrExterno={this.state.numeroExterno} docuNrMp={this.state.numeroMprj} close={this.handleProcessDetail}/>
-            </Modal>
-          }          
-        </div>
-      </>
-    );
+  if (isLoading) {
+    return <Spinner size="large" />;
   }
+
+  const emptyTab = !chartData[activeTab];
+  const tabLoading =
+    !emptyTab && !docs[`${activeTab}Details`] && !docs[`${activeTab}Error`];
+
+  return (
+    <>
+      <div className="openCases-chartsWrapper">{renderCharts(chartData)}</div>
+      {!emptyTab && <SearchBox onSearch={handleSearch}></SearchBox>}
+      <div className={`openCases-tableWrapper ${emptyTab ? 'empty-table' : ''}`}>
+        {tabLoading && <Spinner size="medium" />}
+        {!emptyTab && docs[`${activeTab}Details`] && (
+          <CustomTable
+            data={docs[`${activeTab}Details`]}
+            columns={TABLE_COLUMNS}
+            showHeader
+          />
+        )}
+        {emptyTab && (
+          // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
+          <>
+            <p className="no-openCases"> Nenhuma vista aberta até o momento</p>
+            <CustomTable data={Array(20).fill({ content: '' })} columns={TABLE_COLUMNS} showHeader />
+          </>
+        )}
+
+        {!emptyTab && (
+          <Pagination
+            totalPages={totalPages[activeTab] || 0}
+            handlePageClick={(page) => this.handlePageClick(page)}
+            currentPage={currentPage}
+          />
+        )}
+        {
+          isProcessDetailOpen &&
+          <Modal close={handleProcessDetail}>
+            <ProcessDetail docuNrExterno={numeroExterno} docuNrMp={numeroMprj} close={handleProcessDetail} />
+          </Modal>
+        }
+      </div>
+    </>
+  );
 }
 
 OpenCasesDetail.propTypes = propTypes;

@@ -73,7 +73,6 @@ function YourDesk() {
     try {
       const params = { ...buildRequestParams(), docType: dbName };
       doc = await Api.getIntegratedDeskDocs(params);
-      setDocs(params);
     } catch (e) {
       docError = true;
     } finally {
@@ -93,7 +92,6 @@ function YourDesk() {
     try {
       const params = { ...buildRequestParams(), docType: dbName };
       tabDetail = await Api.getIntegratedDeskDetails(params);
-      setTabDetails(params);
       console.log('tabDetails', params);
     } catch (e) {
       tabDetailError = true;
@@ -135,7 +133,6 @@ function YourDesk() {
    * @return {void}
    */
   function handleChangeActiveTab(tabName) {
-    console.log('activetab:', activeTab);
     setActiveTab(tabName);
     if (!tabName) {
       switch (tabName) {
@@ -148,7 +145,6 @@ function YourDesk() {
       }
     }
   }
-  console.log('docs[openCases]:', docs.openCases);
   if (!buttonList) {
     return <div>loading...</div>;
   }

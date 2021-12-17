@@ -19,13 +19,10 @@ function YourDesk() {
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [docs, setDocs] = useState([]);
   const [openCasesDetails, setOpenCasesDetails] = useState([]);
-  const [tabDetails, setTabDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buttonList, setButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('openCases');
 
-  // console.log(type);
-  // Function to render type tutela or pip
   const renderProsecution = async () => {
     switch (type) {
       case 1:
@@ -56,7 +53,6 @@ function YourDesk() {
     const buttonList = PIP_BUTTONS;
     const newState = { buttonList };
     setButtonList(buttonList);
-    // console.log(newState);
     buttonList.forEach((buttonName) => {
       getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
@@ -64,7 +60,6 @@ function YourDesk() {
     return newState;
   }
 
- 
   async function getDocument(docName) {
     const dbName = BUTTON_DICT[docName];
     let doc;
@@ -80,7 +75,6 @@ function YourDesk() {
       updatedState[`loading${capitalizeWord(docName)}`] = false;
       updatedState[`${capitalizeWord(docName)}`] = docError;
       setDocs((prevState) => ({ ...prevState, ...updatedState }));
-      // console.log('updatedState: ', updatedState);
     }
   }
 
@@ -90,7 +84,8 @@ function YourDesk() {
     let tabDetailError = false;
     try {
       const params = { ...buildRequestParams(), docType: dbName };
-      tabDetail = await Api.getIntegratedDeskDetails(params);
+      tabDetail = await Api.getIntegratedDeskDetails(params); 
+      console.log(tabDetail);
     } catch (e) {
       tabDetailError = true;
     } finally {
@@ -98,8 +93,9 @@ function YourDesk() {
       updatedState[`${tabName}Details`] = tabDetail;
       updatedState[`loading${capitalizeWord(tabName)}Details`] = false;
       updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
-      setTabDetails(updatedState);
-      console.log(updatedState);
+      setActiveTab(updatedState);
+      console.log('updatedState: ', updatedState);
+
     }
   }
 
@@ -143,7 +139,6 @@ function YourDesk() {
       }
     }
     return { activeTab: tabName };
-
   }
   if (!buttonList) {
     return <div>loading...</div>;
@@ -176,9 +171,9 @@ function YourDesk() {
           />
         ) : (
           <GenericTab
-            tab={[`${activeTab}Details`]}
-            tabTitle={BUTTON_TEXTS[activeTab]}
-            error={[`error${capitalizeWord(activeTab)}Details`]}
+            tab={activeTab}
+            tabTitle={activeTab[BUTTON_TEXTS[activeTab]]}
+            error={activeTab[`error${capitalizeWord(activeTab)}Details`]}
           />
         )}
       </div>

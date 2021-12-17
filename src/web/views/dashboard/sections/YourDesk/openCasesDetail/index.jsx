@@ -98,7 +98,6 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
     try {
       res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab], page, searchString);
-      console.log(res);
     } catch (e) {
       error = true;
     } finally {

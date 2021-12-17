@@ -27,7 +27,6 @@ function YourDesk() {
   // console.log(type);
   // Function to render type tutela or pip
   const renderProsecution = async () => {
-    console.log('rendering');
     switch (type) {
       case 1:
         return getTutela();
@@ -92,7 +91,6 @@ function YourDesk() {
     try {
       const params = { ...buildRequestParams(), docType: dbName };
       tabDetail = await Api.getIntegratedDeskDetails(params);
-      console.log('tabDetails', params);
     } catch (e) {
       tabDetailError = true;
     } finally {
@@ -101,6 +99,7 @@ function YourDesk() {
       updatedState[`loading${capitalizeWord(tabName)}Details`] = false;
       updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
       setTabDetails(updatedState);
+      console.log(updatedState);
     }
   }
 
@@ -113,7 +112,6 @@ function YourDesk() {
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
-      console.log(casesDetails);
       setOpenCasesDetails(casesDetails);
     } catch (e) {
       setOpenCasesDetails(false);
@@ -134,7 +132,7 @@ function YourDesk() {
    */
   function handleChangeActiveTab(tabName) {
     setActiveTab(tabName);
-    if (!tabName) {
+    if (!`${tabName}Details`) {
       switch (tabName) {
         case 'openCases':
           getOpenCasesDetails();
@@ -144,6 +142,8 @@ function YourDesk() {
           break;
       }
     }
+    return { activeTab: tabName };
+
   }
   if (!buttonList) {
     return <div>loading...</div>;

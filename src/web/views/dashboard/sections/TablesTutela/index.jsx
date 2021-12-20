@@ -4,7 +4,6 @@ import { SearchBox } from 'mapasteca-web';
 import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
 import { InvestigatedProfile, Modal, ProcessDetail, SectionTitle } from '../../../../components';
-import { set } from 'lodash';
 
 const TablesTutela = () => {
   const [visibleTab, setVisibleTab] = useState('process');

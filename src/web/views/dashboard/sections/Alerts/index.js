@@ -31,15 +31,7 @@ function Alerts() {
     deletedAlertKey,
     setDeletedAlertKey,
   } = alertsStore;
-  // const [alerts, setAlerts] = useState(undefined);
-  // const [alertCount, setAlertCount] = useState(undefined);
-  // const [alertsError, setAlertsError] = useState(false);
-  // const [showOverlay, setShowOverlay] = useState(false);
-  // const [overlayType, setOverlayType] = useState(null);
-  // const [docDk, setDocDk] = useState(null);
-  //
-  // const [modalContent, setModalContent] = useState(null);
-  // const [deletedAlertKey, setDeletedAlertKey] = useState(null);
+
   const loading = !alerts && !alertsError;
   const dialogBoxMessage = (
     <>

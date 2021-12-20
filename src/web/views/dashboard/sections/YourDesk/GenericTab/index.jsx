@@ -33,7 +33,15 @@ const defaultProps = {
 };
 
 function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
-  console.log(tab, error, metrics, ranks, map, tabTitle, 'oiiii')
+  console.log(
+    tab,
+    error,
+    metrics,
+    ranks,
+    map,
+    tabTitle,
+    'Cadê a porra dos valores das propriedades',
+  );
   const loading = !error && !metrics;
   if (loading) {
     return <Spinner size="large" />;
@@ -42,10 +50,11 @@ function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
     return <div className="GenericTab-main">Nenhum dado para exibir</div>;
   }
 
+
+
   const hasMetrics = Object.keys(metrics).length;
   const hasRank = ranks.length;
   const hasRight = Object.keys(map).length || ranks.length > 1;
-
   return (
     <div className="GenericTab-main">
       <div className="GenericTab-upper">

@@ -126,7 +126,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
   useEffect(() => {
     getOpenCasesList(activeTab, currentPage, searchString);
-  },[docs,currentPage])
+  }, [docs, currentPage]);
 
   /**
    * [cleanChartData description]
@@ -235,7 +235,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
         {!emptyTab && (
           <Pagination
             totalPages={totalPages[activeTab] || 0}
-            handlePageClick={(page) => this.handlePageClick(page)}
+            handlePageClick={(page) => handlePageClick(page)}
             currentPage={currentPage}
           />
         )}

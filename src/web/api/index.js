@@ -233,9 +233,9 @@ const Api = (() => {
     return deskIntegratedTransform(data);
   }
 
-  async function getIntegratedDeskDetails({ orgao, token, cpf, docType }) {
+  async function getIntegratedDeskDetails({ orgao, token, cpf, docType, type }) {
     const { data } = await axios.get(
-      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType }),
+      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType, type }),
       buildRequestConfig(token),
     );
 

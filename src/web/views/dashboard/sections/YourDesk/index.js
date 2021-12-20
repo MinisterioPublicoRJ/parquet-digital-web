@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 import { useAppContext } from '../../../../../core/app/App.context';
-import { SectionTitle } from '../../../../components';
+import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
 import ControlButton from './ControlButton';
 import OpenCasesDetail from './openCasesDetail';
@@ -12,29 +12,30 @@ import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskCo
 
 const propTypes = {
   currentOffice: PropTypes.shape({ tipo: PropTypes.number }).isRequired,
+  setProcessDetail: PropTypes.func.isRequired,
 };
 
-function YourDesk() {
+function YourDesk({ setProcessDetail }) {
   const { currentOffice, buildRequestParams } = useAppContext();
-  const type = currentOffice ? currentOffice.tipo : undefined;
   const [docs, setDocs] = useState([]);
   const [openCasesDetails, setOpenCasesDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buttonList, setButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('openCases');
 
-  const renderProsecution = async () => {
-    switch (type) {
+  useEffect(() => {
+    switch (currentOffice.tipo) {
       case 1:
-        return getTutela();
+        getTutela();
+        break;
       case 2:
         document.documentElement.style.setProperty('--buttonBase', 131);
-        return getPip();
+        getPip();
+        break;
       default:
         break;
     }
-  };
-  useEffect(() => renderProsecution(), []);
+  }, []);
 
   // function to get names of buttons Tutela
   function getTutela() {
@@ -64,17 +65,20 @@ function YourDesk() {
     const dbName = BUTTON_DICT[docName];
     let doc;
     let docError = false;
+    setLoading(true);
     try {
-      const params = { ...buildRequestParams(), docType: dbName };
-      doc = await Api.getIntegratedDeskDocs(params);
-    } catch (e) {
-      docError = true;
-    } finally {
+      doc = await Api.getIntegratedDeskDocs({ ...buildRequestParams(), docType: dbName });
+      // console.log(doc)
       const updatedState = {};
       updatedState[docName] = doc;
       updatedState[`loading${capitalizeWord(docName)}`] = false;
       updatedState[`${capitalizeWord(docName)}`] = docError;
       setDocs((prevState) => ({ ...prevState, ...updatedState }));
+    } catch (e) {
+      docError = true;
+      setDocs(false);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -82,20 +86,20 @@ function YourDesk() {
     const dbName = BUTTON_DICT[tabName];
     let tabDetail;
     let tabDetailError = false;
+    setLoading(true);
     try {
-      const params = { ...buildRequestParams(), docType: dbName };
-      console.log(params);
-      tabDetail = await Api.getIntegratedDeskDetails(params); 
-    } catch (e) {
-      tabDetailError = true;
-    } finally {
+      tabDetail = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
+      console.log(tabDetail);
       const updatedState = {};
       updatedState[`${tabName}Details`] = tabDetail;
       updatedState[`loading${capitalizeWord(tabName)}Details`] = false;
       updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
-      setActiveTab(updatedState);
-      console.log('updatedState: ', updatedState);
-
+      setActiveTab((prevState) => ({ ...prevState, ...updatedState }));
+    } catch (e) {
+      tabDetailError = true;
+      setActiveTab(false);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -108,6 +112,7 @@ function YourDesk() {
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
+      // console.log(casesDetails)
       setOpenCasesDetails(casesDetails);
     } catch (e) {
       setOpenCasesDetails(false);
@@ -115,10 +120,8 @@ function YourDesk() {
       setLoading(false);
     }
   }
-  function loadComponent() {
-    getOpenCasesDetails(openCasesDetails);
-  }
-  useEffect(() => loadComponent(), []);
+
+  useEffect(() => getOpenCasesDetails(), []);
 
   /**
    * Triggered by buttonPress, updates the state
@@ -140,9 +143,11 @@ function YourDesk() {
     }
     return { activeTab: tabName };
   }
-  if (!buttonList) {
-    return <div>loading...</div>;
+
+  if (loading && !buttonList) {
+    return <Spinner size="large" />;
   }
+
   return (
     <article className="desk-outer">
       <div className="desk-header">
@@ -168,10 +173,11 @@ function YourDesk() {
             buildRequestParams={buildRequestParams}
             chartData={openCasesDetails || {}}
             isLoading={!openCasesDetails}
+            setProcessDetail={setProcessDetail}
           />
         ) : (
           <GenericTab
-            tab={activeTab}
+            tab={activeTab[`${activeTab}Details`]}
             tabTitle={activeTab[BUTTON_TEXTS[activeTab]]}
             error={activeTab[`error${capitalizeWord(activeTab)}Details`]}
           />
@@ -183,7 +189,13 @@ function YourDesk() {
 
 YourDesk.propTypes = propTypes;
 
-export default function () {
+export default function ({ setProcessDetail }) {
   const { currentOffice, buildRequestParams } = useAppContext();
-  return <YourDesk currentOffice={currentOffice} buildRequestParams={buildRequestParams} />;
+  return (
+    <YourDesk
+      currentOffice={currentOffice}
+      buildRequestParams={buildRequestParams}
+      setProcessDetail={setProcessDetail}
+    />
+  );
 }

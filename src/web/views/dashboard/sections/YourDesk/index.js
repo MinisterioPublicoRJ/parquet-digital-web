@@ -84,8 +84,8 @@ function YourDesk() {
     let tabDetailError = false;
     try {
       const params = { ...buildRequestParams(), docType: dbName };
+      console.log(params);
       tabDetail = await Api.getIntegratedDeskDetails(params); 
-      console.log(tabDetail);
     } catch (e) {
       tabDetailError = true;
     } finally {

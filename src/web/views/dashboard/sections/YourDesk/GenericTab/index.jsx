@@ -33,7 +33,7 @@ const defaultProps = {
 };
 
 function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
-
+  console.log(tab, error, metrics, ranks, map, tabTitle, 'oiiii')
   const loading = !error && !metrics;
   if (loading) {
     return <Spinner size="large" />;

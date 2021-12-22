@@ -31,12 +31,6 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
   const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
   const [docs, setDocs ] = useState(false);
 
-
-  useEffect(() => {
-    getOpenCasesList(activeTab);
-
-  },[]);
-
   useEffect(() => { 
     
     if (Object.keys(chartData).length) {
@@ -88,25 +82,33 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
   }
   /**
    * Generic function that fetches the detailed data from each of the 3 time periods
-   * @param  {string}  tab one of [under20, between20And30, over30]
    * @return {void}     just saves to state
    */
-  async function getOpenCasesList(tab, nextPage, searchString) {
+  async function getOpenCasesList() {
     let error = false;
     let res;
-    const page = nextPage || currentPage;
 
+    console.log('getting open cases list');
     try {
-      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab], page, searchString);
+      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[activeTab], currentPage, searchString);
     } catch (e) {
       error = true;
     } finally {
       const newState = {};
-      const totalPages = {};
-      totalPages[`${tab}`] = res ? res.pages : null;
-      if (res) newState[`${tab}Details`] = generateButtons(res.procedures);
-      newState[`${tab}Error`] = error;
-      setDocs(prevState => ({...prevState, ...newState, currentPage: page, totalPages }));
+      const totPages = totalPages;
+      totPages[`${activeTab}`] = res ? res.pages : null;
+      if (res) newState[`${activeTab}Details`] = generateButtons(res.procedures);
+      newState[`${activeTab}Error`] = error;
+      console.log('finally');
+      if (newState[`${activeTab}Details`] !== docs[`${activeTab}Details`] || newState[`${activeTab}Error`] !== docs[`${activeTab}Error`] ){
+        console.log('if');
+        console.log('newState[`${activeTab}Details`]:', newState[`${activeTab}Details`]);
+        console.log('docs[`${activeTab}Details`]:', docs[`${activeTab}Details`]);
+        console.log('newState[`${activeTab}Error`]:', newState[`${activeTab}Error`]);
+        console.log('docs[`${activeTab}Error`]:', docs[`${activeTab}Error`]);
+        setDocs(prevState => ({...prevState, ...newState}));
+      }
+      setTotalPages(totPages);
     }
   }
 
@@ -119,14 +121,15 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
       const newState = {};
       newState[`${tabName}Details`] = null;
       setDocs(prevState => ({...prevState, ...newState }));
+      setCurrentPage(page);
     }
   }
 
   // useEffect for calling getOpenCasesList after docs state changes 
 
   useEffect(() => {
-    getOpenCasesList(activeTab, currentPage, searchString);
-  },[docs,currentPage])
+    getOpenCasesList();
+  },[currentPage, searchString])
 
   /**
    * [cleanChartData description]
@@ -162,12 +165,11 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
    */
   function handleChangeActiveTab(tabName) {
     const hasItems = chartData[tabName];
-
-    if (hasItems && !docs[`${tabName}Details`]) {
-      getOpenCasesList(tabName, 1);
-    }
     setActiveTab(tabName);
     setCurrentPage(1);
+    if (hasItems && !docs[`${tabName}Details`]) {
+      getOpenCasesList(1);
+    }
   }
 
   /**
@@ -194,7 +196,6 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
   function handleSearch(searchStr) {
     setSearchString(searchStr);
-    getOpenCasesList(activeTab, 1, searchStr);
   }
 
   function handleProcessDetail(numeroMprj, numeroExterno) {
@@ -235,7 +236,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
         {!emptyTab && (
           <Pagination
             totalPages={totalPages[activeTab] || 0}
-            handlePageClick={(page) => this.handlePageClick(page)}
+            handlePageClick={(page) => handlePageClick(page)}
             currentPage={currentPage}
           />
         )}

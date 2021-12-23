@@ -32,16 +32,9 @@ const defaultProps = {
   map: undefined,
 };
 
-function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
-  console.log(
-    tab,
-    error,
-    metrics,
-    ranks,
-    map,
-    tabTitle,
-    'Cadê a porra dos valores das propriedades',
-  );
+function GenericTab(props) {
+  const { tab, error, metrics, ranks, map, tabTitle } = props;
+
   const loading = !error && !metrics;
   if (loading) {
     return <Spinner size="large" />;

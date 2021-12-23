@@ -15,13 +15,14 @@ const propTypes = {
   setProcessDetail: PropTypes.func.isRequired,
 };
 
-function YourDesk({ setProcessDetail }) {
+function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
   const [docs, setDocs] = useState([]);
   const [openCasesDetails, setOpenCasesDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buttonList, setButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('openCases');
+  const [tabDetail, setTabDetail] = useState({});
 
   useEffect(() => {
     switch (currentOffice.tipo) {
@@ -68,7 +69,6 @@ function YourDesk({ setProcessDetail }) {
     setLoading(true);
     try {
       doc = await Api.getIntegratedDeskDocs({ ...buildRequestParams(), docType: dbName });
-      // console.log(doc)
       const updatedState = {};
       updatedState[docName] = doc;
       updatedState[`loading${capitalizeWord(docName)}`] = false;
@@ -84,20 +84,19 @@ function YourDesk({ setProcessDetail }) {
 
   async function getTabDetails(tabName) {
     const dbName = BUTTON_DICT[tabName];
-    let tabDetail;
+    let tabData;
     let tabDetailError = false;
     setLoading(true);
     try {
-      tabDetail = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
-      console.log(tabDetail);
-      const updatedState = {};
-      updatedState[`${tabName}Details`] = tabDetail;
-      updatedState[`loading${capitalizeWord(tabName)}Details`] = false;
+      tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
+      const updatedState = {...tabDetail};
+      updatedState[tabName] = tabData;
       updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
-      setActiveTab((prevState) => ({ ...prevState, ...updatedState }));
+      setTabDetail(updatedState);
+      console.log(updatedState)
     } catch (e) {
       tabDetailError = true;
-      setActiveTab(false);
+      setTabDetail(false);
     } finally {
       setLoading(false);
     }
@@ -112,7 +111,6 @@ function YourDesk({ setProcessDetail }) {
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
-      // console.log(casesDetails)
       setOpenCasesDetails(casesDetails);
     } catch (e) {
       setOpenCasesDetails(false);
@@ -131,7 +129,7 @@ function YourDesk({ setProcessDetail }) {
    */
   function handleChangeActiveTab(tabName) {
     setActiveTab(tabName);
-    if (!`${tabName}Details`) {
+    if (!tabDetail[tabName]) {
       switch (tabName) {
         case 'openCases':
           getOpenCasesDetails();
@@ -173,11 +171,11 @@ function YourDesk({ setProcessDetail }) {
             buildRequestParams={buildRequestParams}
             chartData={openCasesDetails || {}}
             isLoading={!openCasesDetails}
-            setProcessDetail={setProcessDetail}
           />
         ) : (
           <GenericTab
-            tab={activeTab[`${activeTab}Details`]}
+            {...tabDetail[activeTab]}
+            tab={[`${activeTab}Details`]}
             tabTitle={activeTab[BUTTON_TEXTS[activeTab]]}
             error={activeTab[`error${capitalizeWord(activeTab)}Details`]}
           />
@@ -189,13 +187,7 @@ function YourDesk({ setProcessDetail }) {
 
 YourDesk.propTypes = propTypes;
 
-export default function ({ setProcessDetail }) {
+export default function () {
   const { currentOffice, buildRequestParams } = useAppContext();
-  return (
-    <YourDesk
-      currentOffice={currentOffice}
-      buildRequestParams={buildRequestParams}
-      setProcessDetail={setProcessDetail}
-    />
-  );
+  return <YourDesk currentOffice={currentOffice} buildRequestParams={buildRequestParams} />;
 }

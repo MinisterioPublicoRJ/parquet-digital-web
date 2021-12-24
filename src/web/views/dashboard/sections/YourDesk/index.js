@@ -60,7 +60,6 @@ function YourDesk() {
     const buttonList = PIP_BUTTONS;
     const newState = { buttonList };
     setButtonList(buttonList);
-    // console.log(newState);
     buttonList.forEach((buttonName) => {
       getDocument(buttonName);
       newState[`loading${capitalizeWord(buttonName)}`] = true;
@@ -141,7 +140,6 @@ function YourDesk() {
    * @return {void}
    */
   function handleChangeActiveTab(tabName) {
-    console.log('activetab:', activeTab);
     setActiveTab(tabName);
     if (!tabName) {
       switch (tabName) {
@@ -155,8 +153,6 @@ function YourDesk() {
     }
   }
   // let buttonList;
-  console.log('docs:', docs);
-  console.log('docs[openCases]:', docs['openCases']);
   if (!buttonList) {
     return <div>loading...</div>;
   }

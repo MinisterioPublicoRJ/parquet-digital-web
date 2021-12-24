@@ -29,7 +29,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
   const [numeroMprj, setNumeroMprj] = useState(null);
   const [numeroExterno, setNumeroExterno] = useState(null);
   const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
-  const [docs, setDocs ] = useState(false);
+  const [tabDetails, setTabDetails ] = useState(false);
 
   useEffect(() => { 
     
@@ -97,16 +97,10 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
       const newState = {};
       const totPages = totalPages;
       totPages[`${activeTab}`] = res ? res.pages : null;
-      if (res) newState[`${activeTab}Details`] = generateButtons(res.procedures);
-      newState[`${activeTab}Error`] = error;
-      console.log('finally');
-      if (newState[`${activeTab}Details`] !== docs[`${activeTab}Details`] || newState[`${activeTab}Error`] !== docs[`${activeTab}Error`] ){
-        console.log('if');
-        console.log('newState[`${activeTab}Details`]:', newState[`${activeTab}Details`]);
-        console.log('docs[`${activeTab}Details`]:', docs[`${activeTab}Details`]);
-        console.log('newState[`${activeTab}Error`]:', newState[`${activeTab}Error`]);
-        console.log('docs[`${activeTab}Error`]:', docs[`${activeTab}Error`]);
-        setDocs(prevState => ({...prevState, ...newState}));
+      if (res) newState[activeTab] = generateButtons(res.procedures);
+      if (error) newState[activeTab] = undefined;
+      if (newState[activeTab] !== tabDetails[activeTab]){
+        setTabDetails(prevState => ({...prevState, ...newState}));
       }
       setTotalPages(totPages);
     }
@@ -119,17 +113,24 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
     if (hasItems) {
       const newState = {};
-      newState[`${tabName}Details`] = null;
-      setDocs(prevState => ({...prevState, ...newState }));
+      newState[tabName] = null;
+      setTabDetails(prevState => ({...prevState, ...newState }));
       setCurrentPage(page);
     }
   }
 
-  // useEffect for calling getOpenCasesList after docs state changes 
+  // useEffect for calling getOpenCasesList after tabDetails state changes 
 
   useEffect(() => {
     getOpenCasesList();
   },[currentPage, searchString])
+  
+  useEffect(() => {
+    const hasItems = chartData[activeTab];
+    if (hasItems && !tabDetails[activeTab]) {
+      getOpenCasesList();
+    }
+  },[activeTab])
 
   /**
    * [cleanChartData description]
@@ -164,12 +165,8 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
    * @return {void}
    */
   function handleChangeActiveTab(tabName) {
-    const hasItems = chartData[tabName];
     setActiveTab(tabName);
     setCurrentPage(1);
-    if (hasItems && !docs[`${tabName}Details`]) {
-      getOpenCasesList(1);
-    }
   }
 
   /**
@@ -210,7 +207,10 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
   const emptyTab = !chartData[activeTab];
   const tabLoading =
-    !emptyTab && !docs[`${activeTab}Details`] && !docs[`${activeTab}Error`];
+    !emptyTab && !tabDetails[activeTab];
+
+  console.log('\n\ntabDETAILS:', tabDetails);
+  console.log('activeTab', activeTab);
 
   return (
     <>
@@ -218,9 +218,9 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
       {!emptyTab && <SearchBox onSearch={handleSearch}></SearchBox>}
       <div className={`openCases-tableWrapper ${emptyTab ? 'empty-table' : ''}`}>
         {tabLoading && <Spinner size="medium" />}
-        {!emptyTab && docs[`${activeTab}Details`] && (
+        {!emptyTab && tabDetails[activeTab] && (
           <CustomTable
-            data={docs[`${activeTab}Details`]}
+            data={tabDetails[activeTab]}
             columns={TABLE_COLUMNS}
             showHeader
           />

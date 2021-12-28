@@ -33,8 +33,6 @@ const defaultProps = {
 };
 
 function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
-  // const { tab, error, metrics, ranks, map, tabTitle } = props;
-  console.log( tab, error, metrics, ranks, map, tabTitle)
 
   const loading = !error && !metrics;
   if (loading) {

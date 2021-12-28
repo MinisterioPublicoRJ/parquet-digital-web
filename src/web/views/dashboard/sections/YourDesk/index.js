@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 import { useAppContext } from '../../../../../core/app/App.context';
@@ -71,7 +71,6 @@ function YourDesk() {
       doc = await Api.getIntegratedDeskDocs({ ...buildRequestParams(), docType: dbName });
       const updatedState = {};
       updatedState[docName] = doc;
-      updatedState[`loading${capitalizeWord(docName)}`] = false;
       updatedState[`${capitalizeWord(docName)}`] = docError;
       setDocs((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
@@ -79,6 +78,7 @@ function YourDesk() {
       setDocs(false);
     } finally {
       setLoading(false);
+      docError = false;
     }
   }
 
@@ -93,12 +93,12 @@ function YourDesk() {
       updatedState[tabName] = tabData;
       updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
       setTabDetail(updatedState);
-      console.log(updatedState)
     } catch (e) {
       tabDetailError = true;
       setTabDetail(false);
     } finally {
       setLoading(false);
+      tabDetailError = false;
     }
   }
 

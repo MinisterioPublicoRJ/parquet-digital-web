@@ -38,7 +38,7 @@ function YourDesk() {
     }
   }, []);
 
-  // function to get names of buttons Tutela
+  // function to get name of buttons Tutela
   function getTutela() {
     const bList = TUTELA_BUTTONS;
     setButtonList(bList);
@@ -50,7 +50,7 @@ function YourDesk() {
     return newState;
   }
 
-  // function to get names of buttons Pip o Tutela
+  // function to get name of buttons Pip 
   function getPip() {
     const buttonList = PIP_BUTTONS;
     const newState = { buttonList };
@@ -175,8 +175,8 @@ function YourDesk() {
         ) : (
           <GenericTab
             {...tabDetail[activeTab]}
-            tab={[`${activeTab}Details`]}
-            tabTitle={activeTab[BUTTON_TEXTS[activeTab]]}
+            tab={activeTab}
+            tabTitle={[BUTTON_TEXTS[activeTab]]}
             error={activeTab[`error${capitalizeWord(activeTab)}Details`]}
           />
         )}

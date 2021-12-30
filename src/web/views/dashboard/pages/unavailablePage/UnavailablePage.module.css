@@ -1,15 +1,15 @@
 .unavailableWrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  height: 100vh;
-  width: 100vw;
+  height: calc(100vh - 2 * var(--bodyVerticalPadding));
+  width: calc(100vw - 2 * var(--bodyHorizontalPadding));
   /* forces image to respect parent sizing on FF */
   /* https://support.mozilla.org/en-US/questions/935671 */
   overflow: hidden;
 }
 .unavailableBannerWrapper {
   grid-column: 1 / span 1;
-  height: 100vh;
+  height: calc(100vh - 2 * var(--bodyVerticalPadding));
 }
 .unavailableBannerImg {
   height: 100%;
@@ -34,10 +34,14 @@
   width: 45%;
   display: flex;
   align-items: flex-end;
+  position: relative;
 }
 .unavailableTitleBanner img {
   width: auto;
   height: 90%;
+  position: absolute;
+  z-index: -1;
+  top: 42px;
 }
 .unavailableTitleText {
   overflow: hidden;
@@ -47,6 +51,7 @@
   place-items: end;
   place-content: end;
 }
+
 .unavailableTitleText * {
   max-width: 32vw;
 }

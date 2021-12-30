@@ -18,7 +18,7 @@ const propTypes = {
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
   const [docs, setDocs] = useState([]);
-  const [openCasesDetails, setOpenCasesDetails] = useState([]);
+  const [openCasesDetails, setOpenCasesDetails] = useState(undefined);
   const [loading, setLoading] = useState(true);
   const [buttonList, setButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('openCases');
@@ -65,40 +65,35 @@ function YourDesk() {
   async function getDocument(docName) {
     const dbName = BUTTON_DICT[docName];
     let doc;
-    let docError = false;
+    const updatedState = {};
     setLoading(true);
     try {
       doc = await Api.getIntegratedDeskDocs({ ...buildRequestParams(), docType: dbName });
-      const updatedState = {};
       updatedState[docName] = doc;
-      updatedState[`${capitalizeWord(docName)}`] = docError;
       setDocs((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
-      docError = true;
-      setDocs(false);
+      updatedState[docName] = undefined;
+      setDocs((prevState) => ({ ...prevState, ...updatedState }));
     } finally {
       setLoading(false);
-      docError = false;
     }
   }
 
   async function getTabDetails(tabName) {
     const dbName = BUTTON_DICT[tabName];
     let tabData;
-    let tabDetailError = false;
+    let updatedState = {...tabDetail};
+    console.log('tabDetail: ', tabDetail);
     setLoading(true);
     try {
       tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
-      const updatedState = {...tabDetail};
       updatedState[tabName] = tabData;
-      updatedState[`error${capitalizeWord(tabName)}Details`] = tabDetailError;
-      setTabDetail(updatedState);
+      setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
-      tabDetailError = true;
-      setTabDetail(false);
+      updatedState[tabName] = undefined;
+      setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } finally {
       setLoading(false);
-      tabDetailError = false;
     }
   }
 
@@ -111,6 +106,7 @@ function YourDesk() {
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
+      console.log('casesDetails:', casesDetails);
       setOpenCasesDetails(casesDetails);
     } catch (e) {
       setOpenCasesDetails(false);
@@ -155,7 +151,7 @@ function YourDesk() {
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}
-              error={docs[`error${capitalizeWord(buttonTitle)}`]}
+              error={!docs[buttonTitle]}
               buttonPressed={() => handleChangeActiveTab(buttonTitle)}
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
@@ -177,7 +173,7 @@ function YourDesk() {
             {...tabDetail[activeTab]}
             tab={activeTab}
             tabTitle={[BUTTON_TEXTS[activeTab]]}
-            error={activeTab[`error${capitalizeWord(activeTab)}Details`]}
+            error={!tabDetail[activeTab] && !loading}
           />
         )}
       </div>

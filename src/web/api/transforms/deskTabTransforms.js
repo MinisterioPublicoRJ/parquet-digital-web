@@ -1,10 +1,5 @@
 import { snakeToCamel, formatPercentage, abbrevName } from '../../utils';
 
-// not implemented yet
-// function mapTransform() {
-//   return {};
-// }
-
 function metricsTransform(metrics) {
   const transformedMetrics = {};
   Object.keys(metrics).forEach(key => {
@@ -30,6 +25,7 @@ export default function deskTabTransform(raw) {
   const map = {};
   const metrics = metricsTransform(raw.metrics);
   const ranks = rankingsTransform(raw.rankings);
+
   return {
     map,
     metrics,

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
-import './Dashboard.view.css'
 import { Introduction } from './sections';
 
 

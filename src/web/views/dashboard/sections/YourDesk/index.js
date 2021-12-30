@@ -17,7 +17,7 @@ const propTypes = {
 
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
-  const [docs, setDocs] = useState([]);
+  const [docsQuantity, setDocsQuantity] = useState([]);
   const [openCasesDetails, setOpenCasesDetails] = useState(undefined);
   const [loading, setLoading] = useState(true);
   const [buttonList, setButtonList] = useState(false);
@@ -25,6 +25,7 @@ function YourDesk() {
   const [tabDetail, setTabDetail] = useState({});
 
   useEffect(() => {
+    getOpenCasesDetails();
     switch (currentOffice.tipo) {
       case 1:
         getTutela();
@@ -40,40 +41,42 @@ function YourDesk() {
 
   // function to get name of buttons Tutela
   function getTutela() {
-    const bList = TUTELA_BUTTONS;
-    setButtonList(bList);
-    const newState = { bList };
-    bList.forEach((buttonName) => {
-      getDocument(buttonName);
-      newState[`loading${capitalizeWord(buttonName)}`] = true;
+    const buttons = TUTELA_BUTTONS;
+    setButtonList(buttons);
+    const newState = { buttons };
+    buttons.forEach((buttonName) => {
+      getDocumentQuantity(buttonName);
     });
     return newState;
   }
 
   // function to get name of buttons Pip 
   function getPip() {
-    const buttonList = PIP_BUTTONS;
-    const newState = { buttonList };
-    setButtonList(buttonList);
-    buttonList.forEach((buttonName) => {
-      getDocument(buttonName);
-      newState[`loading${capitalizeWord(buttonName)}`] = true;
+    const buttons = PIP_BUTTONS;
+    const newState = { buttons };
+    setButtonList(buttons);
+    buttons.forEach((buttonName) => {
+      getDocumentQuantity(buttonName);
     });
     return newState;
   }
 
-  async function getDocument(docName) {
+  /**
+   * Loads the quantity of each document type
+   * @param {string} docName 
+   */
+  async function getDocumentQuantity(docName) {
     const dbName = BUTTON_DICT[docName];
-    let doc;
+    let docQt;
     const updatedState = {};
     setLoading(true);
     try {
-      doc = await Api.getIntegratedDeskDocs({ ...buildRequestParams(), docType: dbName });
-      updatedState[docName] = doc;
-      setDocs((prevState) => ({ ...prevState, ...updatedState }));
+      docQt = await Api.getIntegratedDeskDocs({ ...buildRequestParams(), docType: dbName });
+      updatedState[docName] = docQt;
+      setDocsQuantity((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState[docName] = undefined;
-      setDocs((prevState) => ({ ...prevState, ...updatedState }));
+      setDocsQuantity((prevState) => ({ ...prevState, ...updatedState }));
     } finally {
       setLoading(false);
     }
@@ -82,8 +85,7 @@ function YourDesk() {
   async function getTabDetails(tabName) {
     const dbName = BUTTON_DICT[tabName];
     let tabData;
-    let updatedState = {...tabDetail};
-    console.log('tabDetail: ', tabDetail);
+    let updatedState = {};
     setLoading(true);
     try {
       tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
@@ -103,19 +105,21 @@ function YourDesk() {
    */
   async function getOpenCasesDetails() {
     let casesDetails;
+    let updatedState = {};
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
-      console.log('casesDetails:', casesDetails);
+      updatedState['openCases'] = true;
       setOpenCasesDetails(casesDetails);
+      setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
-      setOpenCasesDetails(false);
+      updatedState['openCases'] = false;
+      setOpenCasesDetails(undefined);
+      setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } finally {
       setLoading(false);
     }
   }
-
-  useEffect(() => getOpenCasesDetails(), []);
 
   /**
    * Triggered by buttonPress, updates the state
@@ -151,12 +155,12 @@ function YourDesk() {
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}
-              error={!docs[buttonTitle]}
+              error={!docsQuantity[buttonTitle] && !loading}
               buttonPressed={() => handleChangeActiveTab(buttonTitle)}
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
-              number={docs[buttonTitle]}
-              loading={docs[`loading${capitalizeWord(buttonTitle)}`]}
+              number={docsQuantity[buttonTitle]}
+              loading={!docsQuantity[buttonTitle] && loading}
             />
           ))}
         </div>
@@ -166,7 +170,7 @@ function YourDesk() {
           <OpenCasesDetail
             buildRequestParams={buildRequestParams}
             chartData={openCasesDetails || {}}
-            isLoading={!openCasesDetails}
+            isLoading={!openCasesDetails && loading}
           />
         ) : (
           <GenericTab

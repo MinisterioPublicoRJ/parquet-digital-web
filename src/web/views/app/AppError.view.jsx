@@ -1,9 +1,8 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import { UnavailablePage } from '../dashboard/pages';
 
 function AppErrorView() {
-  // unavailable page goes here!
-  return <div>HELLO I IS BROKEN</div>;
+  return <UnavailablePage />;
 }
 
 export default AppErrorView;

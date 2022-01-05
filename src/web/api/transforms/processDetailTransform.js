@@ -38,10 +38,6 @@ export default function processDetailTransform(data) {
     }),
   );
 
-  console.log('data: ', data);
-
-  console.log('dataalertas: ', data.alertas);
-
   const alerts = data.alertas.map(
     ({ alrt_sigla, alrt_count, classe_hierarquia }) => ({
       alertCode: alrt_sigla,

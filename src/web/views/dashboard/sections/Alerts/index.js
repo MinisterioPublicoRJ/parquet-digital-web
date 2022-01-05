@@ -104,7 +104,6 @@ function Alerts() {
       const response = await Api.sendOmbudsmanEmail(link);
       window.alert(response.data.detail);
     } catch (e) {
-      console.log(e);
     } finally {
       setModalContent(null);
       setDeletedAlertKey(null);

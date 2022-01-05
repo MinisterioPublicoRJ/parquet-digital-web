@@ -139,7 +139,6 @@ function YourDesk() {
           break;
       }
     }
-    return { activeTab: tabName };
   }
 
   if (loading && !buttonList) {

@@ -24,34 +24,40 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(calcTotalPages(chartData));
+  const [totalPagesByCat, setTotalPagesByCat] = useState(calcTotalPagesByCat(chartData));
   const [searchString, setSearchString] = useState('');
   const [numeroMprj, setNumeroMprj] = useState(null);
   const [numeroExterno, setNumeroExterno] = useState(null);
   const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
-  const [docs, setDocs ] = useState(false);
-
-
-  useEffect(() => {
-    getOpenCasesList(activeTab);
-
-  },[]);
+  const [tabDetails, setTabDetails ] = useState({});
 
   useEffect(() => { 
     
     if (Object.keys(chartData).length) {
-      setTotalPages(calcTotalPages(chartData));
+      setTotalPagesByCat(calcTotalPagesByCat(chartData));
     }
-  } ,[chartData])
+    if (Object.keys(chartData).length) {
+      setTabDetails(initializeTabDetails(chartData));
+    }
+  } ,[chartData]);
 
-  function calcTotalPages(chartData) {
-    const totalPages = {};
+  function initializeTabDetails(chartData){    
+    let details = {};
+    const categories = Object.keys(chartData);
+    categories.forEach((cat) => {
+      details[cat] = {};
+    });
+    return details;
+  }
+  // calculates total pages for each category, returns a dict with each cat as key
+  function calcTotalPagesByCat(chartData) {
+    const totalPagesByCat = {};
     const categories = Object.keys(chartData);
     categories.forEach((cat) => {
       const pages = Math.ceil(chartData[cat] / 20);
-      totalPages[cat] = pages;
+      totalPagesByCat[cat] = pages;
     });
-    return totalPages;
+    return totalPagesByCat;
   }
 
   function generateButtons(list) {
@@ -88,45 +94,43 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
   }
   /**
    * Generic function that fetches the detailed data from each of the 3 time periods
-   * @param  {string}  tab one of [under20, between20And30, over30]
    * @return {void}     just saves to state
    */
-  async function getOpenCasesList(tab, nextPage, searchString) {
+  async function getOpenCasesList() {
     let error = false;
     let res;
-    const page = nextPage || currentPage;
-
     try {
-      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[tab], page, searchString);
+      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[activeTab], currentPage, searchString);
     } catch (e) {
       error = true;
     } finally {
-      const newState = {};
-      const totalPages = {};
-      totalPages[`${tab}`] = res ? res.pages : null;
-      if (res) newState[`${tab}Details`] = generateButtons(res.procedures);
-      newState[`${tab}Error`] = error;
-      setDocs(prevState => ({...prevState, ...newState, currentPage: page, totalPages }));
+      let newCurrentPageState = {...tabDetails[activeTab]};
+      const totPages = totalPagesByCat;
+      totPages[activeTab] = res ? res.pages : null;
+      if (res) newCurrentPageState = generateButtons(res.procedures);
+      if (error) newCurrentPageState = undefined;
+      if (newCurrentPageState !== tabDetails[activeTab][currentPage]){
+        setTabDetails({...tabDetails, [activeTab]: {...tabDetails[activeTab], [currentPage]: newCurrentPageState}});
+      }
+      setTotalPagesByCat(totPages);
     }
   }
 
   function handlePageClick(page) {
-    if (page < 1 || page > totalPages[activeTab]) return;
-    const tabName = activeTab;
-    const hasItems = chartData[tabName];
+    if (page < 1 || page > totalPagesByCat[activeTab]) return;
+    const hasItems = chartData[activeTab];
 
     if (hasItems) {
-      const newState = {};
-      newState[`${tabName}Details`] = null;
-      setDocs(prevState => ({...prevState, ...newState }));
+      setCurrentPage(page);
     }
   }
-
-  // useEffect for calling getOpenCasesList after docs state changes 
-
+  
   useEffect(() => {
-    getOpenCasesList(activeTab, currentPage, searchString);
-  }, [docs, currentPage]);
+    const hasItems = chartData[activeTab];
+    if (hasItems && tabDetails[activeTab] && !tabDetails[activeTab][currentPage]) {
+      getOpenCasesList();
+    };
+  },[activeTab, chartData, currentPage, searchString, tabDetails]);
 
   /**
    * [cleanChartData description]
@@ -161,11 +165,6 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
    * @return {void}
    */
   function handleChangeActiveTab(tabName) {
-    const hasItems = chartData[tabName];
-
-    if (hasItems && !docs[`${tabName}Details`]) {
-      getOpenCasesList(tabName, 1);
-    }
     setActiveTab(tabName);
     setCurrentPage(1);
   }
@@ -194,7 +193,6 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
   function handleSearch(searchStr) {
     setSearchString(searchStr);
-    getOpenCasesList(activeTab, 1, searchStr);
   }
 
   function handleProcessDetail(numeroMprj, numeroExterno) {
@@ -208,8 +206,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
   }
 
   const emptyTab = !chartData[activeTab];
-  const tabLoading =
-    !emptyTab && !docs[`${activeTab}Details`] && !docs[`${activeTab}Error`];
+  const tabLoading = !emptyTab && tabDetails[activeTab] && !tabDetails[activeTab][currentPage];
 
   return (
     <>
@@ -217,9 +214,9 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
       {!emptyTab && <SearchBox onSearch={handleSearch}></SearchBox>}
       <div className={`openCases-tableWrapper ${emptyTab ? 'empty-table' : ''}`}>
         {tabLoading && <Spinner size="medium" />}
-        {!emptyTab && docs[`${activeTab}Details`] && (
+        {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
           <CustomTable
-            data={docs[`${activeTab}Details`]}
+            data={tabDetails[activeTab][currentPage]}
             columns={TABLE_COLUMNS}
             showHeader
           />
@@ -234,7 +231,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
         {!emptyTab && (
           <Pagination
-            totalPages={totalPages[activeTab] || 0}
+            totalPages={totalPagesByCat[activeTab] || 0}
             handlePageClick={(page) => handlePageClick(page)}
             currentPage={currentPage}
           />

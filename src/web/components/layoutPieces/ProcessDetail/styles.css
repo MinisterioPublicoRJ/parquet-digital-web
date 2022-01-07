@@ -174,3 +174,81 @@ td button.process-detail-btn {
   max-width: calc(20% - 40px);
   justify-content: center;
 }
+
+.process-alerts-list button.current {
+  background-color: #bddff0;
+}
+
+.process-alerts-arrow {
+  opacity: 1;
+  display: inline-block;
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--darkBlue) transparent transparent transparent;
+  background-color: transparent;
+  position: relative;
+  padding: 0;
+  width: 0;
+  margin: 4px 8px -4px 8px;
+  transition: transform 1s;
+}
+
+.process-alerts-arrow--rotated {
+  transform: rotate(-180deg) translateY(4px);
+}
+
+.process-alerts-btn {
+  cursor: default;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 0;
+  padding: 2px 4px;
+  font-weight: bold;
+  height: min-content;
+  padding-left: 0;
+  cursor: pointer;
+  display: flex;
+  margin-bottom: var(--defaultFontSize);
+}
+
+.process-alerts-list {
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+  align-items: flex-start;
+  justify-content: flex-start;
+  opacity: 0;
+  flex: 0 0;
+  transition: all 1s;
+}
+
+.process-alerts-list .alertBadge-outerContainer {
+  width: 33%;
+}
+
+.process-alerts-list--visible {
+  opacity: 1;
+  flex-basis: auto;
+  overflow-y: hidden;
+}
+
+.process-alerts-list::-webkit-scrollbar {
+  height: 4px;
+}
+
+.process-alerts-list button {
+  font-size: var(--smallFont);
+  min-width: 33%;
+  height: 98%;
+  background-color: #f8f9fb;
+  border: 0;
+  border-radius: 2px;
+  margin: 2px;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* hides dropdown arrow while actions are unavailable on Process Detail */
+.process-alerts-list .alertBadge-smallButtons {
+  display: none;
+}

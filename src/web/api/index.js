@@ -233,9 +233,9 @@ const Api = (() => {
     return deskIntegratedTransform(data);
   }
 
-  async function getIntegratedDeskDetails({ orgao, token, cpf, docType }) {
+  async function getIntegratedDeskDetails({ orgao, token, cpf, docType, type }) {
     const { data } = await axios.get(
-      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType }),
+      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType, type }),
       buildRequestConfig(token),
     );
 
@@ -340,9 +340,9 @@ const Api = (() => {
     return axios.post(link, formData);
   }
 
-  async function getProcessDetail({ num_doc, token }) {
+  async function getProcessDetail({ orgao,  token, num_doc }) {
     const params = { jwt: token };
-    const { data } = await axios.get(PROCESS_DETAIL({ num_doc }), { params });
+    const { data } = await axios.get(PROCESS_DETAIL({ num_doc, orgao }), { params });
     return processDetailTransform(data);
   }
 

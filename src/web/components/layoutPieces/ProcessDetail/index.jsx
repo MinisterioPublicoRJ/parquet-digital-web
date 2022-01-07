@@ -7,6 +7,8 @@ import { useAppContext } from '../../../../core/app/App.context';
 import Api from '../../../api';
 import { Spinner } from '..';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
+import AlertBadge from '../../../views/dashboard/sections/Alerts/AlertBadge';
+import individualAlertFormatter from '../../../views/dashboard/sections/Alerts/utils/individualAlertFormatter';
 
 const propTypes = {
   close: PropTypes.func.isRequired,
@@ -17,6 +19,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
   const { buildRequestParams } = useAppContext();
+  const { cpf, token, orgao } = buildRequestParams();
+  const [isAlertsVisible, setIsAlertsVisible] = useState(false);
 
   useEffect(() => {
     getProcessData();
@@ -56,6 +60,38 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
       } = processData.identification;
       return (
         <div className="processDetail-body processDetail-loadedData">
+
+
+
+          <div
+            className={`process-alerts-list ${isAlertsVisible ? 'process-alerts-list--visible' : ''
+              }`}
+          >
+            {processData.alerts.map((alert) => {
+              const formattedAlert = individualAlertFormatter(
+                { docNum: docuNrMp, ...alert },
+                cpf,
+                token,
+                orgao,
+              );
+              const { backgroundColor, backgroundColorChild, icon, key, message, type } =
+                formattedAlert;
+              return (
+                <AlertBadge
+                  key={key}
+                  customKey={key}
+                  icon={icon}
+                  backgroundColor={backgroundColorChild || backgroundColor}
+                  message={message}
+                  docDk={docuNrMp}
+                  type={type}
+                  /* Passes empty actions to hide actions */
+                  actions={[]}
+                />
+              );
+            })}
+          </div>
+
           <h3>PERSONAGENS</h3>
           <div className="processDetail-section">
             {processData.characters.map(({ name, role }) => (

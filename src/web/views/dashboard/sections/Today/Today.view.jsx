@@ -31,10 +31,6 @@ function Today() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => loadComponent(), []);
 
-  /*useEffect(() => 
-    setportalOfficeSelector()
-  , [currentOffice ]);*/
-
   function loadComponent() {
     loadTodayPercentages();
     loadCollection();

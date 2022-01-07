@@ -75,8 +75,15 @@ function inquiriesMetrics({
 
 function aispsMetrics({ variacaoAcervo }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
+
   return (
-    <p>
+    <>
+    {formattedVariation === "0%" ? (
+      <p> Não houve {" "}
+        <strong>aumento nem redução no número de procedimentos das suas AISPs </strong>nos últimos 30 dias.
+      </p>
+    ) : (
+      <p>
       Houve
       {variacaoAcervo > 0 ? ' um ' : ' uma '}
       <strong>
@@ -86,6 +93,8 @@ function aispsMetrics({ variacaoAcervo }) {
       </strong>
       nos últimos 30 dias.
     </p>
+    )}
+  </>
   );
 }
 

@@ -7,7 +7,6 @@ import GenericTab from './GenericTab';
 import ControlButton from './ControlButton';
 import OpenCasesDetail from './openCasesDetail';
 import Api from '../../../../api';
-import { capitalizeWord } from '../../../../utils';
 import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
 
 const propTypes = {
@@ -85,7 +84,7 @@ function YourDesk() {
   async function getTabDetails(tabName) {
     const dbName = BUTTON_DICT[tabName];
     let tabData;
-    let updatedState = {};
+    const updatedState = {};
     setLoading(true);
     try {
       tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
@@ -105,7 +104,7 @@ function YourDesk() {
    */
   async function getOpenCasesDetails() {
     let casesDetails;
-    let updatedState = {};
+    const updatedState = {};
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());

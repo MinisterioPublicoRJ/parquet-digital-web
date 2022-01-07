@@ -36,13 +36,9 @@ function courtCasesMetrics({
     {monthVariation === "0%" ? (
       <span> Não houve aumento nem redução </span>
     ) : (
-    <span> 
-      {variacao60Dias  >= 0 ? (
-      <strong>Houve aumento de {monthVariation}</strong>
-      ) : (
-      <strong>Houve redução de {monthVariation}</strong>
-      )}
-    </span>
+    <strong>
+      <span>Houve {variacao60Dias >= 0 ? ` aumento de ${monthVariation} ` : ` redução de ${monthVariation} `}</span>
+    </strong>
     )}
     </>
     {" "}

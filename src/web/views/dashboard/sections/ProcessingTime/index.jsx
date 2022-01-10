@@ -85,7 +85,6 @@ const ProcessingTime = () => {
     return (
       <article className="page-tramitacao">
         <div className="pt-texts">
-          <SectionTitle value="tempo de tramitação" />
           {loading ? <Spinner size="large" /> : <p>Nenhum dado para exibir</p>}
         </div>
       </article>

@@ -37,13 +37,12 @@
   transform: translate(-50%,-50%);
 }
 
-/* makes alert tag header smaller 
+/* makes alert tag header smaller */
 .openCases-tableWrapper td:first-child, .openCases-tableWrapper th:first-child {
   width: 3vw;
   overflow-x: visible;
   overflow-y: hidden;
 }
- */
  .alert-tag-wrapper {
   position: relative;
   height: calc( 1.5 * var(--smallFont)); 
@@ -64,7 +63,6 @@ button.alert-tag {
   padding: 0;
   left: 1vw;
 }
-
 .alert-tag-sigla {
   opacity: 0;
   position: absolute;

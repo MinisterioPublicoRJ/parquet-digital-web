@@ -61,7 +61,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   function generateButtons(list) {
     return list.map((openCase) => {
-      const { numeroMprj, numeroExterno, alertSigla, alertCount } = openCase;
+      const { numeroMprj, numeroExterno, alertSigla, alertsCount } = openCase;
       const processNumberBtn = (
         <button
           type="button"
@@ -73,22 +73,22 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           {numeroMprj}
         </button>
       );
-      /* commented alertTag that is half done while back end isn't done
+      /* commented alertTag that is half done while back end isn't done */
       const alertTagButton = (
         <div className="alert-tag-wrapper">
           <button
             type="button"
             className="alert-tag"
           >
-            {alertCount}
+            {alertsCount}
           </button>
 
           <div className="alert-tag-sigla">
             {alertSigla}
           </div>
         </div>
-      ) */
-      return { ...openCase, numeroMprj: processNumberBtn, /* alertTag: alertTagButton  */ };
+      );
+      return { ...openCase, numeroMprj: processNumberBtn,  alertTag: alertTagButton };
     });
   }
   /**

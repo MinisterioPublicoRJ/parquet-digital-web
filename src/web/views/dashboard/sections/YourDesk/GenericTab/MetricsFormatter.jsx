@@ -142,8 +142,16 @@ function picsMetrics({
       <strong>{` ${nrAproveitamentosAtual} `}</strong>
       {nrAproveitamentosAtual === 1 ? ' caso para ' : ` casos para `}
       <strong>denúncias, cautelares e arquivamentos.</strong>
-      <strong>{`${variacaoAberturasVista > 0 ? ' Aumento' : ' Diminuição'} de ${formattedVariation} `}</strong>
-      nos últimos 30 dias.
+      {formattedVariation === "0%"  ? (
+      <span> Não houve {" "}
+        <strong>aumento nem redução</strong> nos últimos 30 dias.
+      </span>
+      ) : (
+      <span>
+      <strong>{`${variacaoAberturasVista > 0 ? ' Aumento' : ' Diminuição'} de ${formattedVariation} `}</strong> 
+      {" "}nos últimos 30 dias.
+      </span>
+      )}
     </p>
   );
 }

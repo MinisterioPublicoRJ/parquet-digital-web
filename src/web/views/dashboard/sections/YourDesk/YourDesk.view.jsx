@@ -4,7 +4,7 @@ import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
 import ControlButton from './ControlButton';
-import OpenCasesDetail from './openCasesDetail';
+import OpenCasesList from './OpenCasesList/OpenCasesList.view';
 import Api from '../../../../api';
 import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
 
@@ -159,7 +159,7 @@ function YourDesk() {
       </div>
       <div className="desk-tabs">
         {activeTab === 'openCases' ? (
-          <OpenCasesDetail
+          <OpenCasesList
             buildRequestParams={buildRequestParams}
             chartData={openCasesDetails || {}}
             isLoading={!openCasesDetails && loading}

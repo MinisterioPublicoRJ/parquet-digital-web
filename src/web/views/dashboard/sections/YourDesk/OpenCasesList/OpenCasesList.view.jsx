@@ -19,7 +19,7 @@ const propTypes = {
   }).isRequired,
 };
 
-function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
+function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
@@ -246,5 +246,5 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
   );
 }
 
-OpenCasesDetail.propTypes = propTypes;
-export default OpenCasesDetail;
+OpenCasesList.propTypes = propTypes;
+export default OpenCasesList;

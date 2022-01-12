@@ -224,12 +224,14 @@ td button.process-detail-btn {
 
 .process-alerts-list .alertBadge-outerContainer {
   width: 33%;
+  height: calc(100% - 2vh);
 }
 
 .process-alerts-list--visible {
   opacity: 1;
   flex-basis: auto;
   overflow-y: hidden;
+  min-height: calc(2vh + 75px);
 }
 
 .process-alerts-list::-webkit-scrollbar {

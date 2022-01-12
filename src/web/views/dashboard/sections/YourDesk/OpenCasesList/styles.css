@@ -51,17 +51,15 @@
 }
 
 button.alert-tag {
-  position: absolute;
-  background-color: red;
-  border-radius: 8px;
-  border: 0;
-  width: 1.6vw;
-  height: 1.8vh;
-  color: white;
-  font-size: var(--smallFont);
-  font-weight: 500;
-  padding: 0;
-  left: 1vw;
+  align-items: center;
+  background-color: var(--danger);
+  border-radius: 20px;
+  color: var(--white);
+  font-weight: bold;
+  height: var(--sectionTitleFontSize);
+  justify-content: center;
+  min-width: calc(2 * var(--defaultFontSize));
+  border: none;
 }
 .alert-tag-sigla {
   opacity: 0;
@@ -69,7 +67,7 @@ button.alert-tag {
   width: 7vw;
   left: -7vw;
   height: 100%;
-  background-color: red;
+  background-color: var(--danger);
 }
 .alert-tag-wrapper:hover .alert-tag-sigla{
   opacity: 1;

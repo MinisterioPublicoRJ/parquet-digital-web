@@ -60,8 +60,20 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
       } = processData.identification;
       return (
         <div className="processDetail-body processDetail-loadedData">
-
-
+          
+          <button
+            type="button"
+            className="process-alerts-btn"
+            onClick={() => setIsAlertsVisible((prevValue) => !prevValue)}
+          >
+            Este procedimento possui {processData.alerts.length} alerta
+            {processData.alerts.length === 1 ? '' : 's'}
+            <div
+              className={`process-alerts-arrow ${
+                isAlertsVisible ? 'process-alerts-arrow--rotated' : ''
+              }`}
+            />
+          </button>
 
           <div
             className={`process-alerts-list ${isAlertsVisible ? 'process-alerts-list--visible' : ''

@@ -106,6 +106,7 @@ function picsMetrics({
   variacaoAberturasVista,
 }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAberturasVista));
+  console.log(variacaoAberturasVista, formattedVariation)
   return (
     <p>
       Constatei que
@@ -126,7 +127,7 @@ function picsMetrics({
       <strong>{` ${nrAproveitamentosAtual} `}</strong>
       {nrAproveitamentosAtual === 1 ? ' caso para ' : ` casos para `}
       <strong>denúncias, cautelares e arquivamentos.</strong>
-      {variacaoAberturasVista === 0 ? (
+      {formattedVariation === "0%"  ? (
       <span> Não houve {" "}
         <strong>aumento nem redução</strong> nos últimos 30 dias.
       </span>

@@ -26,24 +26,40 @@ function courtCasesMetrics({
   const monthVariation = formatPercentage(Math.abs(variacao60Dias));
   const yearVariation = formatPercentage(Math.abs(variacao12Meses));
   return (
-    <p>
+    <div>
+      <span>
       Você ajuizou
       <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
-      nos últimos 60 dias.
-      <strong> Houve
-        {variacao60Dias >= 0 ? ` aumento de ${monthVariation} ` : ` redução de ${monthVariation} `}
-       </strong>
-      com relação ao mesmo período anterior, quando foram ajuizadas
-      <strong>{` ${nrAcoes60DiasAnterior} ${nrAcoes60DiasAnterior === 1 ? 'ação' : 'ações'}.`}</strong>
-      <p>
+      nos últimos 60 dias.{" "}
+      </span>
+    <>
+    {monthVariation === "0%" ? (
+      <span> Não houve aumento nem redução </span>
+    ) : (
+    <strong>
+      <span>Houve {variacao60Dias >= 0 ? ` aumento de ${monthVariation} ` : ` redução de ${monthVariation} `}</span>
+    </strong>
+    )}
+    </>
+    {" "}
+    com relação ao mesmo período anterior, quando foram ajuizadas
+    <strong>
+      <span>{` ${nrAcoes60DiasAnterior} ${nrAcoes60DiasAnterior === 1 ? 'ação' : 'ações'}.`}</span>
+    </strong>
+    <p>
         No último ano, você ajuizou
-        <strong>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`}</strong>
-        <strong>, com {variacao12Meses >= 0 ? `aumento` :  `redução`} de {yearVariation} </strong>
-        em comparação com o ano anterior em que
-        <strong>{` ${nrAcoes12MesesAnterior} ${nrAcoes12MesesAnterior === 1 ? 'ação' : 'ações'} `}</strong>
+        <strong>
+          <span>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`}
+        , com {variacao12Meses >= 0 ? `aumento` :  `redução`} de {yearVariation}
+         </span>       
+        </strong>
+        {" "}em comparação com o ano anterior em que
+        <strong>
+          <span>{` ${nrAcoes12MesesAnterior} ${nrAcoes12MesesAnterior === 1 ? 'ação' : 'ações'} `}</span>
+        </strong>
         foram ajuizadas.
       </p>
-    </p>
+    </div>
   );
 }
 

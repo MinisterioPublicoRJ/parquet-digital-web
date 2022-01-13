@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { SearchBox } from 'mapasteca-web';
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../../api';
-import { Spinner, CustomTable, Pagination } from '../../../../../components';
+import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import DeskCasesChart from '../deskCases';
 import { Modal } from '../../../../../components/layoutPieces';
-import { ProcessDetail } from '../../../../../components';
+
 import './styles.css';
+import { isNull } from 'lodash';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
@@ -20,7 +21,6 @@ const propTypes = {
 };
 
 function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
-
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByCat, setTotalPagesByCat] = useState(calcTotalPagesByCat(chartData));
@@ -28,20 +28,19 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [numeroMprj, setNumeroMprj] = useState(null);
   const [numeroExterno, setNumeroExterno] = useState(null);
   const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
-  const [tabDetails, setTabDetails ] = useState({});
+  const [tabDetails, setTabDetails] = useState({});
 
-  useEffect(() => { 
-    
+  useEffect(() => {
     if (Object.keys(chartData).length) {
       setTotalPagesByCat(calcTotalPagesByCat(chartData));
     }
     if (Object.keys(chartData).length) {
       setTabDetails(initializeTabDetails(chartData));
     }
-  } ,[chartData]);
+  }, [chartData]);
 
-  function initializeTabDetails(chartData){    
-    let details = {};
+  function initializeTabDetails(chartData) {
+    const details = {};
     const categories = Object.keys(chartData);
     categories.forEach((cat) => {
       details[cat] = {};
@@ -60,35 +59,42 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
 
   function generateButtons(list) {
-    return list.map((openCase) => {
-      const { numeroMprj, numeroExterno, alertSigla, alertsCount } = openCase;
+    return list.map((alerts) => {
+      // console.log(alerts, numeroMprj, numeroExterno);
       const processNumberBtn = (
         <button
           type="button"
           onClick={() => {
-            handleProcessDetail(numeroMprj, numeroExterno);
+            handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno);
           }}
           className="process-detail-btn"
         >
-          {numeroMprj}
+          {alerts.numeroMprj}
         </button>
       );
       /* commented alertTag that is half done while back end isn't done */
       const alertTagButton = (
         <div className="alert-tag-wrapper">
-          <button
-            type="button"
-            className="alert-tag"
-          >
-            {alertsCount}
+          <button type="button" className="alert-tag">
+            {alerts.alertsCount}
           </button>
-
-          <div className="alert-tag-sigla">
-            {alertSigla}
-          </div>
+          {alerts.listAlerts !== [] || null ? (
+            <div className="alert-tag-sigla">
+              <button type="button">
+                {Array.from(alerts).forEach((item) => {
+                  console.log(item.listAlerts, 'Euuuuu');
+                })}
+                <p>DBPA</p>
+              </button>
+            </div>
+          ) : null}
         </div>
       );
-      return { ...openCase, numeroMprj: processNumberBtn,  alertTag: alertTagButton };
+      return {
+        ...alerts,
+        numeroMprj: processNumberBtn,
+        alertTag: alertTagButton,
+      };
     });
   }
   /**
@@ -99,17 +105,26 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     let error = false;
     let res;
     try {
-      res = await Api.getOpenCasesList(buildRequestParams(), TAB_MATCHER[activeTab], currentPage, searchString);
+      res = await Api.getOpenCasesList(
+        buildRequestParams(),
+        TAB_MATCHER[activeTab],
+        currentPage,
+        searchString,
+      );
+      // console.log(res, "Falaaa");
     } catch (e) {
       error = true;
     } finally {
-      let newCurrentPageState = {...tabDetails[activeTab]};
+      let newCurrentPageState = { ...tabDetails[activeTab] };
       const totPages = totalPagesByCat;
       totPages[activeTab] = res ? res.pages : null;
       if (res) newCurrentPageState = generateButtons(res.procedures);
       if (error) newCurrentPageState = undefined;
-      if (newCurrentPageState !== tabDetails[activeTab][currentPage]){
-        setTabDetails({...tabDetails, [activeTab]: {...tabDetails[activeTab], [currentPage]: newCurrentPageState}});
+      if (newCurrentPageState !== tabDetails[activeTab][currentPage]) {
+        setTabDetails({
+          ...tabDetails,
+          [activeTab]: { ...tabDetails[activeTab], [currentPage]: newCurrentPageState },
+        });
       }
       setTotalPagesByCat(totPages);
     }
@@ -123,13 +138,13 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       setCurrentPage(page);
     }
   }
-  
+
   useEffect(() => {
     const hasItems = chartData[activeTab];
     if (hasItems && tabDetails[activeTab] && !tabDetails[activeTab][currentPage]) {
       getOpenCasesList();
-    };
-  },[activeTab, chartData, currentPage, searchString, tabDetails]);
+    }
+  }, [activeTab, chartData, currentPage, searchString, tabDetails]);
 
   /**
    * [cleanChartData description]
@@ -197,7 +212,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   function handleProcessDetail(numeroMprj, numeroExterno) {
     setNumeroMprj(numeroMprj);
     setNumeroExterno(numeroExterno);
-    setIsProcessDetailOpen(prevState => !prevState);
+    setIsProcessDetailOpen((prevState) => !prevState);
   }
 
   if (isLoading) {
@@ -210,7 +225,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   return (
     <>
       <div className="openCases-chartsWrapper">{renderCharts(chartData)}</div>
-      {!emptyTab && <SearchBox onSearch={handleSearch}></SearchBox>}
+      {!emptyTab && <SearchBox onSearch={handleSearch} />}
       <div className={`openCases-tableWrapper ${emptyTab ? 'empty-table' : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
@@ -224,7 +239,11 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
           <>
             <p className="no-openCases"> Nenhuma vista aberta até o momento</p>
-            <CustomTable data={Array(20).fill({ content: '' })} columns={TABLE_COLUMNS} showHeader />
+            <CustomTable
+              data={Array(20).fill({ content: '' })}
+              columns={TABLE_COLUMNS}
+              showHeader
+            />
           </>
         )}
 
@@ -235,12 +254,15 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             currentPage={currentPage}
           />
         )}
-        {
-          isProcessDetailOpen &&
+        {isProcessDetailOpen && (
           <Modal close={handleProcessDetail}>
-            <ProcessDetail docuNrExterno={numeroExterno} docuNrMp={numeroMprj} close={handleProcessDetail} />
+            <ProcessDetail
+              docuNrExterno={numeroExterno}
+              docuNrMp={numeroMprj}
+              close={handleProcessDetail}
+            />
           </Modal>
-        }
+        )}
       </div>
     </>
   );

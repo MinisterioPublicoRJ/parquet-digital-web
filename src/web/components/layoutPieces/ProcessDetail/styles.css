@@ -1,6 +1,6 @@
 .process-detail-outer {
   /* accounts for size of close button */
-  height: calc(90vh - 6em);
+  height: calc(92vh - 6em);
   position: relative;
   width: 60vw;
   /* -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;

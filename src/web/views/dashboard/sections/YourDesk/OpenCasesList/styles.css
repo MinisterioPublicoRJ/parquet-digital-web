@@ -58,16 +58,31 @@ button.alert-tag {
   font-weight: bold;
   height: var(--sectionTitleFontSize);
   justify-content: center;
-  min-width: calc(2 * var(--defaultFontSize));
+  min-width: calc(1.8 * var(--defaultFontSize));
   border: none;
 }
 .alert-tag-sigla {
   opacity: 0;
   position: absolute;
-  width: 7vw;
-  left: -7vw;
+  width: 100%;
   height: 100%;
   background-color: var(--danger);
+  color: var(--white);
+  bottom: 5vh;
+  transition: opacity 0.3s;
+  z-index: 1;
+   
+}
+.alert-tag-sigla button {
+  opacity: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: var(--white);
+  bottom: 5vh;
+  transition: opacity 0.3s;
+  z-index: 1;
+   
 }
 .alert-tag-wrapper:hover .alert-tag-sigla{
   opacity: 1;

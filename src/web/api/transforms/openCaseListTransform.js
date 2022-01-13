@@ -7,10 +7,10 @@ export default function openCasesListTransform({ procedimentos, nr_paginas }) {
       : undefined,
     numeroMprj: list.numero_mprj,
     alertsCount: list.alertas_count,
-    splitAlertsCount: list.alertas_split_count,
+    listAlerts: list.alertas_split_count,
+    
   }));
   const pages = nr_paginas;
-
   return {
     procedures,
     pages,

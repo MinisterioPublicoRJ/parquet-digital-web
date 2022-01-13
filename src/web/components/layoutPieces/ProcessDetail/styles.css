@@ -225,6 +225,12 @@ td button.process-detail-btn {
 .process-alerts-list .alertBadge-outerContainer {
   width: 33%;
   height: calc(100% - 2vh);
+  margin-left: 0;
+  margin-right: 2vh;
+}
+
+.process-alerts-list:nth-child(3n +0) {
+  margin-right: 0;
 }
 
 .process-alerts-list--visible {

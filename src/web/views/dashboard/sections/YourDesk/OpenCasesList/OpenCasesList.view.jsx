@@ -6,9 +6,7 @@ import Api from '../../../../../api';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import DeskCasesChart from '../deskCases';
 import { Modal } from '../../../../../components/layoutPieces';
-
 import './styles.css';
-import { isNull } from 'lodash';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
@@ -57,10 +55,8 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     });
     return totalPagesByCat;
   }
-
   function generateButtons(list) {
     return list.map((alerts) => {
-      // console.log(alerts, numeroMprj, numeroExterno);
       const processNumberBtn = (
         <button
           type="button"
@@ -78,16 +74,10 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           <button type="button" className="alert-tag">
             {alerts.alertsCount}
           </button>
-          {alerts.listAlerts !== [] || null ? (
-            <div className="alert-tag-sigla">
-              <button type="button">
-                {Array.from(alerts).forEach((item) => {
-                  console.log(item.listAlerts, 'Euuuuu');
-                })}
-                <p>DBPA</p>
-              </button>
-            </div>
-          ) : null}
+          <button type="button" className="alert-tag-sigla">
+            {alerts.alertsCount} {" "}
+            {Object.keys(alerts.listAlerts)}
+          </button>
         </div>
       );
       return {
@@ -111,7 +101,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
         currentPage,
         searchString,
       );
-      // console.log(res, "Falaaa");
     } catch (e) {
       error = true;
     } finally {

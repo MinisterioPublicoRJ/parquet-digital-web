@@ -11,7 +11,6 @@ import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskCo
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
   const [docsQuantity, setDocsQuantity] = useState([]);
-  const [openCasesDetails, setOpenCasesDetails] = useState(undefined);
   const [loading, setLoading] = useState(true);
   const [buttonList, setButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('openCases');
@@ -94,16 +93,14 @@ function YourDesk() {
    */
   async function getOpenCasesDetails() {
     let casesDetails;
-    const updatedState = {};
+    let updatedState = {};
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
-      updatedState['openCases'] = true;
-      setOpenCasesDetails(casesDetails);
+      updatedState['openCases'] = casesDetails;
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState['openCases'] = false;
-      setOpenCasesDetails(undefined);
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } finally {
       setLoading(false);
@@ -157,8 +154,8 @@ function YourDesk() {
         {activeTab === 'openCases' ? (
           <OpenCasesList
             buildRequestParams={buildRequestParams}
-            chartData={openCasesDetails || {}}
-            isLoading={!openCasesDetails && loading}
+            chartData={tabDetail['openCases'] || {}}
+            isLoading={!tabDetail['openCases'] && loading}
           />
         ) : (
           <GenericTab

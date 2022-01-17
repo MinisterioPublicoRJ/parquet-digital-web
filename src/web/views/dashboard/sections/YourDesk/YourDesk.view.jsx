@@ -36,22 +36,18 @@ function YourDesk() {
   function getTutela() {
     const buttons = TUTELA_BUTTONS;
     setButtonList(buttons);
-    const newState = { buttons };
     buttons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
     });
-    return newState;
   }
 
   // function to get name of buttons Pip 
   function getPip() {
     const buttons = PIP_BUTTONS;
-    const newState = { buttons };
     setButtonList(buttons);
     buttons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
     });
-    return newState;
   }
 
   /**

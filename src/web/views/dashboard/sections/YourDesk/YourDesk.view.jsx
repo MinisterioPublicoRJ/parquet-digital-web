@@ -154,7 +154,7 @@ function YourDesk() {
         {activeTab === 'openCases' ? (
           <OpenCasesList
             buildRequestParams={buildRequestParams}
-            chartData={tabDetail['openCases'] || {}}
+            chartData={tabDetail['openCases']}
             isLoading={!tabDetail['openCases'] && loading}
           />
         ) : (

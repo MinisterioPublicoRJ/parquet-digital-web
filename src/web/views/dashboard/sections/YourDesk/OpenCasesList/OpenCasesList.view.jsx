@@ -23,7 +23,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPagesByCat, setTotalPagesByCat] = useState(calcTotalPagesByCat(chartData));
+  const [totalPagesByCat, setTotalPagesByCat] = useState({});
   const [searchString, setSearchString] = useState('');
   const [numeroMprj, setNumeroMprj] = useState(null);
   const [numeroExterno, setNumeroExterno] = useState(null);
@@ -31,6 +31,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails ] = useState({});
 
   useEffect(() => { 
+    if (!chartData) return;
     
     if (Object.keys(chartData).length) {
       setTotalPagesByCat(calcTotalPagesByCat(chartData));
@@ -50,6 +51,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
   // calculates total pages for each category, returns a dict with each cat as key
   function calcTotalPagesByCat(chartData) {
+    if (!chartData) return;
     const totalPagesByCat = {};
     const categories = Object.keys(chartData);
     categories.forEach((cat) => {
@@ -125,6 +127,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
   
   useEffect(() => {
+    if (!chartData) return;
     const hasItems = chartData[activeTab];
     if (hasItems && tabDetails[activeTab] && !tabDetails[activeTab][currentPage]) {
       getOpenCasesList();
@@ -200,7 +203,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     setIsProcessDetailOpen(prevState => !prevState);
   }
 
-  if (isLoading) {
+  if (isLoading || !chartData) {
     return <Spinner size="large" />;
   }
 

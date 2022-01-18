@@ -19,11 +19,11 @@ const propTypes = {
   }).isRequired,
 };
 
-function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
+function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPagesByCat, setTotalPagesByCat] = useState(calcTotalPagesByCat(chartData));
+  const [totalPagesByTab, setTotalPagesByTab] = useState({});
   const [searchString, setSearchString] = useState('');
   const [numeroMprj, setNumeroMprj] = useState(null);
   const [numeroExterno, setNumeroExterno] = useState(null);
@@ -31,9 +31,10 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails ] = useState({});
 
   useEffect(() => { 
+    if (!chartData) return;
     
     if (Object.keys(chartData).length) {
-      setTotalPagesByCat(calcTotalPagesByCat(chartData));
+      setTotalPagesByTab(calcTotalPagesByTab(chartData));
     }
     if (Object.keys(chartData).length) {
       setTabDetails(initializeTabDetails(chartData));
@@ -49,14 +50,15 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
     return details;
   }
   // calculates total pages for each category, returns a dict with each cat as key
-  function calcTotalPagesByCat(chartData) {
-    const totalPagesByCat = {};
+  function calcTotalPagesByTab(chartData) {
+    if (!chartData) return;
+    const totalPagesByTab = {};
     const categories = Object.keys(chartData);
     categories.forEach((cat) => {
       const pages = Math.ceil(chartData[cat] / 20);
-      totalPagesByCat[cat] = pages;
+      totalPagesByTab[cat] = pages;
     });
-    return totalPagesByCat;
+    return totalPagesByTab;
   }
 
   function generateButtons(list) {
@@ -104,19 +106,19 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
       error = true;
     } finally {
       let newCurrentPageState = {...tabDetails[activeTab]};
-      const totPages = totalPagesByCat;
+      const totPages = totalPagesByTab;
       totPages[activeTab] = res ? res.pages : null;
       if (res) newCurrentPageState = generateButtons(res.procedures);
       if (error) newCurrentPageState = undefined;
       if (newCurrentPageState !== tabDetails[activeTab][currentPage]){
         setTabDetails({...tabDetails, [activeTab]: {...tabDetails[activeTab], [currentPage]: newCurrentPageState}});
       }
-      setTotalPagesByCat(totPages);
+      setTotalPagesByTab(totPages);
     }
   }
 
   function handlePageClick(page) {
-    if (page < 1 || page > totalPagesByCat[activeTab]) return;
+    if (page < 1 || page > totalPagesByTab[activeTab]) return;
     const hasItems = chartData[activeTab];
 
     if (hasItems) {
@@ -125,6 +127,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
   }
   
   useEffect(() => {
+    if (!chartData) return;
     const hasItems = chartData[activeTab];
     if (hasItems && tabDetails[activeTab] && !tabDetails[activeTab][currentPage]) {
       getOpenCasesList();
@@ -200,7 +203,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
     setIsProcessDetailOpen(prevState => !prevState);
   }
 
-  if (isLoading) {
+  if (isLoading || !chartData) {
     return <Spinner size="large" />;
   }
 
@@ -230,7 +233,7 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
 
         {!emptyTab && (
           <Pagination
-            totalPages={totalPagesByCat[activeTab] || 0}
+            totalPages={totalPagesByTab[activeTab] || 0}
             handlePageClick={(page) => handlePageClick(page)}
             currentPage={currentPage}
           />
@@ -246,5 +249,5 @@ function OpenCasesDetail({ isLoading, buildRequestParams, chartData }) {
   );
 }
 
-OpenCasesDetail.propTypes = propTypes;
-export default OpenCasesDetail;
+OpenCasesList.propTypes = propTypes;
+export default OpenCasesList;

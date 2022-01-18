@@ -28,9 +28,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
   const [tabDetails, setTabDetails] = useState({});
 
-  useEffect(() => { 
+  useEffect(() => {
     if (!chartData) return;
-    
+
     if (Object.keys(chartData).length) {
       setTotalPagesByTab(calcTotalPagesByTab(chartData));
     }
@@ -71,7 +71,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           {alerts.numeroMprj}
         </button>
       );
-      /* commented alertTag that is half done while back end isn't done */
       const alertTagButton = (
         <div className="alert-tag-wrapper">
           <div
@@ -82,9 +81,10 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           </div>
           {alerts.listAlerts && (
             <button type="button" className="alert-tag-sigla">
-              <p className="paragraph-tag-sigla">{alerts.alertsCount}</p>
               {Object.keys(alerts.listAlerts).map((item) => {
-                return <p key={item}>{item}</p>
+                return (
+                  <p key={item}>Alerta: {item}</p>
+                );
               })}
             </button>
           )}
@@ -114,7 +114,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     } catch (e) {
       error = true;
     } finally {
-      let newCurrentPageState = {...tabDetails[activeTab]};
+      let newCurrentPageState = { ...tabDetails[activeTab] };
       const totPages = totalPagesByTab;
       totPages[activeTab] = res ? res.pages : null;
       if (res) newCurrentPageState = generateButtons(res.procedures);

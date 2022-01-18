@@ -72,10 +72,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
         </button>
       );
       const alertTagButton = (
-        <div className="alert-tag-wrapper">
+        <div className={`alert-tag-wrapper ${alerts.alertsCount > 0 ? '' : 'empty'}` }>
           <div
             className="alert-tag"
-            style={{ background: alerts.alertsCount > 0 ? '#f86c72' : '#42dca7' }}
           >
             {alerts.alertsCount}
           </div>

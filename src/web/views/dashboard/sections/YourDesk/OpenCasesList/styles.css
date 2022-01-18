@@ -61,13 +61,6 @@ button.alert-tag {
   min-width: calc(1.8 * var(--defaultFontSize));
   border: none;
 }
-.alert-tag-wrapper::before{
-  content: "";
-  color: var(--danger);
-  display: inline-block;
-  height: 20px;
-  width: 10px;
-}
 
 button.alert-tag-sigla {
   opacity: 0;
@@ -82,7 +75,8 @@ button.alert-tag-sigla {
   text-align: left;
   font-size: 12px;
   border: none;
-  left: 1vh;
+  display: flex;
+  bottom: 3vh;
 }
 .alert-tag-wrapper:hover .alert-tag-sigla{
   opacity: 1;

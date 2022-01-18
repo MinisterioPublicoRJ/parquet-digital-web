@@ -57,6 +57,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
   function generateButtons(list) {
     return list.map((alerts) => {
+      console.log(alerts.listAlerts);
       const processNumberBtn = (
         <button
           type="button"
@@ -71,13 +72,18 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       /* commented alertTag that is half done while back end isn't done */
       const alertTagButton = (
         <div className="alert-tag-wrapper">
-          <button type="button" className="alert-tag">
+          <button
+            type="button"
+            className="alert-tag"
+            style={{ background: alerts.alertsCount > 0 ? '#f86c72' : '#42dca7' }}
+          >
             {alerts.alertsCount}
           </button>
-          <button type="button" className="alert-tag-sigla">
-            {alerts.alertsCount} {" "}
-            {Object.keys(alerts.listAlerts)}
-          </button>
+          {alerts.listAlerts && (
+            <button type="button" className="alert-tag-sigla">
+              {alerts.alertsCount} {Object.keys(alerts.listAlerts)}
+            </button>
+          )}
         </div>
       );
       return {

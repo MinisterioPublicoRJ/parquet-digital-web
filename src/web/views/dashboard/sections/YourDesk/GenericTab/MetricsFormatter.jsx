@@ -78,11 +78,17 @@ function inquiriesMetrics({
       <strong>{` ${nrAberturasVistaAtual} ${nrAberturasVistaAtual === 1 ? 'abertura' : 'aberturas'} de vista`}</strong>
       . Você aproveitou
       <strong>{` ${nrAproveitamentosAtual} ${nrAproveitamentosAtual === 1 ? 'caso' : 'casos'} para denúncias, cautelares e arquivamentos. `}
+      {formattedVariation === "0%" ? (
+      <span> Não houve {" "}
+        <strong>aumento nem redução</strong>{" "}
+      </span>
+      ) : (
       <strong>
         {` ${
-          formattedVariation > 0 ? 'Aumento' : 'Redução'
+          variacaoAproveitamentos > 0 ? 'Aumento' : 'Redução'
         } de ${formattedVariation} `}
       </strong>
+      )}
       </strong>
       nos últimos 30 dias.
     </p>

@@ -73,17 +73,13 @@ button.alert-tag-sigla {
   background-color: var(--danger);
   font-weight: bold;
   text-align: left;
-  font-size: 12px;
+  font-size: 11px;
   border: none;
   bottom: 4vh;
 } 
-button.alert-tag-sigla > p.paragraph-tag-sigla{
-  font-weight: bold ;
-}
+
 button.alert-tag-sigla p{
   margin: 0 auto;
-  font-weight: 300 ;
-
 }
 .alert-tag-wrapper:hover .alert-tag-sigla{
   opacity: 1;

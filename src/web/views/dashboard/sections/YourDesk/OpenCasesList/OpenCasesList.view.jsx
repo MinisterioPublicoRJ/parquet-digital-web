@@ -81,7 +81,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           {alerts.listAlerts && (
             <button type="button" className="alert-tag-sigla">
               {Object.keys(alerts.listAlerts).map((item) => {
-                return <p key={item}>Alerta:{item}</p>;
+                return <p key={item}>Alerta: {item}</p>;
               })}
             </button>
           )}

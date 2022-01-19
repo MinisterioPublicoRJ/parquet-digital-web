@@ -89,7 +89,7 @@ button.alert-tag-sigla {
 button.alert-tag-sigla p{
   margin: 0 auto;
 }
-.alert-tag-wrapper:hover .alert-tag-sigla{
+.alert-tag-wrapper:hover .alert-tag-sigla, .alert-tag-sigla:focus{
   opacity: 1;
   transition: opacity .5s;
   position: absolute;

@@ -72,14 +72,17 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
         </button>
       );
       const alertTagButton = (
-        <div className={`alert-tag-wrapper ${alerts.alertsCount > 0 ? '' : 'empty'}` }>
+        <div className={`alert-tag-wrapper ${alerts.alertsCount > 0 ? '' : 'empty'}`}>
           <div
             className="alert-tag"
           >
             {alerts.alertsCount}
           </div>
           {alerts.listAlerts && (
-            <button type="button" className="alert-tag-sigla">
+            <button type="button" className="alert-tag-sigla"
+              onClick={() => {
+                handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno);
+              }}>
               {Object.keys(alerts.listAlerts).map((item) => {
                 return <p key={item}>Alerta: {item}</p>;
               })}

@@ -47,7 +47,14 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
   const sections = Object.keys(columns);
   return (
     <tr key={`table-row-${rowN}`}>
-      {sections.map((key, i) => (
+      {sections.map((key, i) => {
+      
+      let currentTitle = dataUnit[columns[key]];
+      while (currentTitle?.props && typeof(currentTitle.props.children) === 'object') {
+        currentTitle = currentTitle.props.children[0];        
+      }
+      if (typeof(currentTitle?.props?.children) !== 'undefined') currentTitle = currentTitle.props.children;
+      return (
         <React.Fragment key={`${rowN}-Col${i}`}>
           {isPhone && (
             <th scope="row" key={`${key}-${i}`}>
@@ -55,18 +62,15 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
             </th>
           )}
           <td
-            title={
-              dataUnit[columns[key]] && dataUnit[columns[key]].props
-                ? dataUnit[columns[key]].props.children
-                : dataUnit[columns[key]]
-            }
+            title={currentTitle}
             className="capitalizeTitle"
             key={dataUnit[columns[key]]}
           >
             {dataUnit[columns[key]]}
           </td>
         </React.Fragment>
-      ))}
+      )}
+      )}
     </tr>
   );
 }

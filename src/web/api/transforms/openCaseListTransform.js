@@ -6,9 +6,10 @@ export default function openCasesListTransform({ procedimentos, nr_paginas }) {
       ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(list.dt_abertura))
       : undefined,
     numeroMprj: list.numero_mprj,
+    alertsCount: list.alertas_count,
+    listAlerts: list.alertas_split_count,
   }));
   const pages = nr_paginas;
-
   return {
     procedures,
     pages,

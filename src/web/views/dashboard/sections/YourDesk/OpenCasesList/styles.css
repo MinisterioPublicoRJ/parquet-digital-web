@@ -37,43 +37,62 @@
   transform: translate(-50%,-50%);
 }
 
-/* makes alert tag header smaller 
+/* makes alert tag header smaller */
 .openCases-tableWrapper td:first-child, .openCases-tableWrapper th:first-child {
   width: 3vw;
+  overflow: visible;
+/* this is the expected overflow behaviour, but chrome seems to bug with it, will
+    use a different rule until a permanent bug fix is found   
   overflow-x: visible;
-  overflow-y: hidden;
+  overflow-y: hidden; */
 }
- */
- .alert-tag-wrapper {
+
+.alert-tag-wrapper {
   position: relative;
   height: calc( 1.5 * var(--smallFont)); 
   /* height 100% doesn't have expected behavior, known "bug" (?) */
   width: 100%;
 }
-
-button.alert-tag {
-  position: absolute;
-  background-color: red;
-  border-radius: 8px;
-  border: 0;
-  width: 1.6vw;
-  height: 1.8vh;
-  color: white;
-  font-size: var(--smallFont);
-  font-weight: 500;
-  padding: 0;
-  left: 1vw;
+.empty.alert-tag-wrapper .alert-tag {
+  background-color: var(--pt-green);
 }
+.alert-tag {
+  align-items: center;
+  background-color: var(--danger);
+  border-radius: 20px;
+  color: var(--white);
+  font-weight: bold;
+  height: var(--sectionTitleFontSize);
+  justify-content: center;
+  border: none;
+  width: calc(2 * var(--defaultFontSize));
+  display: flex;
+  margin-left: 10px;
 
-.alert-tag-sigla {
+}
+button.alert-tag-sigla {
   opacity: 0;
-  position: absolute;
-  width: 7vw;
-  left: -7vw;
-  height: 100%;
-  background-color: red;
-}
-.alert-tag-wrapper:hover .alert-tag-sigla{
-  opacity: 1;
+  position: relative;
+  /*parent + td padding top and bottom */
+  height: calc(100% + 10px);
+  color: var(--white);
+  z-index: 1;
+  background-color: var(--danger);
+  font-weight: bold;
+  text-align: left;
+  font-size: 10px;
+  border: none;
   left: 0;
+  top:0;
+} 
+
+button.alert-tag-sigla p{
+  margin: 0 auto;
+}
+.alert-tag-wrapper:hover .alert-tag-sigla, .alert-tag-sigla:focus{
+  opacity: 1;
+  transition: opacity .5s;
+  position: absolute;
+  width: 25vh;
+
 }

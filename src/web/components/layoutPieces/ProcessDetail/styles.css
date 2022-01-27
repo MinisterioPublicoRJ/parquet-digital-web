@@ -1,17 +1,8 @@
 .process-detail-outer {
   /* accounts for size of close button */
-  height: calc(90vh - 6em);
+  height: calc(92vh - 6em);
   position: relative;
   width: 60vw;
-  /* -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
-  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
-  box-shadow: inset 0px 0px 0px 0px #cfcfcf; */
-  /* display: grid;
-  grid-template-rows: [header] 200px [characters-header] 80px repeat(2, [character] 1fr);
-  grid-template-columns: 1fr 1fr; */
-  /* padding: 0px 35px; */
-  /* grid-template-areas:
-  "header header"; */
 }
 
 .process-detail-outer h3 {
@@ -26,17 +17,7 @@
   height: 13%;
   padding: 3% 2%;
   width: 96%;
-  /* box-sizing: border-box; */
-  /* border-top-left-radius: 8px; */
-  /* border-top-right-radius: 8px; */
-  /* align-items: center; */
   display: flex;
-  /* flex-direction: row; */
-  /* flex-wrap: wrap; */
-  /* justify-content: space-between; */
-  /* padding: 25px 35px 0px 35px; */
-  /* margin-left: -35px; */
-  /* grid-column-start: span 2; */
 }
 
 .processDetail-headerLeft {
@@ -115,7 +96,6 @@ td button.process-detail-btn {
   width: calc((100% - 4%) / 2);
   margin-bottom: 2%;
 }
-
 
 .ListCard-content {
   height: var(--defaultFontSize);
@@ -224,12 +204,20 @@ td button.process-detail-btn {
 
 .process-alerts-list .alertBadge-outerContainer {
   width: 33%;
+  height: calc(100% - 2vh);
+  margin-left: 0;
+  margin-right: 2vh;
+}
+
+.process-alerts-list:nth-child(3n +0) {
+  margin-right: 0;
 }
 
 .process-alerts-list--visible {
   opacity: 1;
   flex-basis: auto;
   overflow-y: hidden;
+  min-height: calc(2vh + 75px);
 }
 
 .process-alerts-list::-webkit-scrollbar {

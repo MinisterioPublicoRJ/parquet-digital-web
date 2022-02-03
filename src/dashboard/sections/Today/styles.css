@@ -171,6 +171,7 @@
   text-decoration: none;
   text-align: center;
   line-height: 32px;
+  display: none;
 }
 
 .today-btn:hover {

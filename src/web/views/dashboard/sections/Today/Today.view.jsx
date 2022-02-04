@@ -141,17 +141,16 @@ function Today() {
     <article className="today-outer">
       <div className="user-area">
         <MainTitle value={assembleGreeting()} glueToTop />
-        {user.orgaosValidos && user.orgaosValidos.length ? (
+        {/*{user.orgaosValidos && user.orgaosValidos.length ? (
           <button
             type="button"
             className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
             onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
           />
-        ) : null}
+        ) : null}*/}
         <button
           type="button"
-          className={`logout-btn ${isLogoutBtnVisible ? 'logout-btn--visible' : ''}`}
-          disabled={!isLogoutBtnVisible}
+          className="logout-btn--visible"
           onClick={logout}
         >
           CLIQUE PRA SAIR

@@ -97,10 +97,10 @@
   transform: rotate(-90deg) translate(2px);
 }
 
-.logout-btn {
-  opacity: 0;
+.logout-btn--visible {
+  opacity: 1;
   transition: opacity 1s;
-  cursor: default;
+  cursor: pointer;
   border-radius: 4px;
   color: var(--grayTexts);
   background-color: var(--grayLight);
@@ -108,12 +108,8 @@
   font-size: var(--smallFont);
   padding: 2px 4px;
   font-weight: bold;
-}
-
-.logout-btn--visible {
-  opacity: 1;
-  transition: opacity 1s;
-  cursor: pointer;
+  margin-left: 20px;
+  height: 20px;
 }
 
 .logout-btn--visible:hover {

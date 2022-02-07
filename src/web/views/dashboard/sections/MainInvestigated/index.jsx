@@ -152,10 +152,6 @@ function MainInvestigated() {
     }
     setPage(nextPage);
   }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  //useEffect(onMount, []);
-
   useEffect(onUpdate, [searchString, page, totalPages]);
 
   function render() {

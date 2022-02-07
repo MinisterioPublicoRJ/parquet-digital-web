@@ -153,7 +153,7 @@ function Today() {
           className="logout-btn--visible"
           onClick={logout}
         >
-          CLIQUE PRA SAIR
+          CLIQUE PARA SAIR
         </button>
       </div>
       <div className="today-content">

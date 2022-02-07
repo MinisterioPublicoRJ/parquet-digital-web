@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import './styles.css';
-//import { SearchBox } from 'mapasteca-web';
+import { SearchBox } from 'mapasteca-web';
 import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../../api';
@@ -162,9 +162,6 @@ function MainInvestigated() {
     if (loading || apiError) {
       return (
         <article className="mainInvestigated-outer">
-         {/*} <SearchBox onSearch={handleSearch}>
-            <SectionTitle value="Principais Investigados" glueToTop />
-          </SearchBox>*/}
           {loading ? <Spinner size="medium" /> : <p>Nenhum investigado para exibir</p>}
         </article>
       );
@@ -172,10 +169,9 @@ function MainInvestigated() {
 
     return (
       <article className="mainInvestigated-outer">
-        {/*<SearchBox onSearch={handleSearch}>
+        <SearchBox onSearch={handleSearch}>
           <SectionTitle value="Principais Investigados" glueToTop />
-        </SearchBox>*/}
-        <SectionTitle value="Principais Investigados" glueToTop />
+        </SearchBox>
         <div className="mainInvestigated-tableWrapper" ref={tableTopDivRef}>
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
           <Pagination

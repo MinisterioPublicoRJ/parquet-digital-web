@@ -22,7 +22,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByTab, setTotalPagesByTab] = useState({});
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = useState(null);
   const [numeroMprj, setNumeroMprj] = useState(null);
   const [numeroExterno, setNumeroExterno] = useState(null);
   const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
@@ -73,16 +73,15 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       );
       const alertTagButton = (
         <div className={`alert-tag-wrapper ${alerts.alertsCount > 0 ? '' : 'empty'}`}>
-          <div
-            className="alert-tag"
-          >
-            {alerts.alertsCount}
-          </div>
+          <div className="alert-tag">{alerts.alertsCount}</div>
           {alerts.listAlerts && (
-            <button type="button" className="alert-tag-sigla"
+            <button
+              type="button"
+              className="alert-tag-sigla"
               onClick={() => {
                 handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno);
-              }}>
+              }}
+            >
               {Object.keys(alerts.listAlerts).map((item) => {
                 return <p key={item}>Alerta: {item}</p>;
               })}
@@ -205,9 +204,10 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     ));
   }
 
-  function handleSearch(searchStr) {
+  const onSearch = (searchStr) => {
     setSearchString(searchStr);
-  }
+    getOpenCasesList(activeTab, 1, searchStr);
+  };
 
   function handleProcessDetail(numeroMprj, numeroExterno) {
     setNumeroMprj(numeroMprj);
@@ -225,7 +225,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   return (
     <>
       <div className="openCases-chartsWrapper">{renderCharts(chartData)}</div>
-      {!emptyTab && <SearchBox onSearch={handleSearch} />}
+      <SearchBox onSearch={onSearch} />
       <div className={`openCases-tableWrapper ${emptyTab ? 'empty-table' : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
@@ -233,6 +233,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             data={tabDetails[activeTab][currentPage]}
             columns={TABLE_COLUMNS}
             showHeader
+            searchString={searchString}
           />
         )}
         {emptyTab && (

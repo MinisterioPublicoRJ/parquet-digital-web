@@ -3,11 +3,20 @@
   "plugins": ["prettier"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "prettier/prettier": ["error"],
+    "prettier/prettier": ["warn"],
     "class-methods-use-this": "off",
     "no-use-before-define": "off",
     "react-hooks/exhaustive-deps": "off",
-    "endOfLine": "warn"
+    "endOfLine": "warn",
+    "camelcase": "warn",
+    "react/prop-types": "warn",
+    "no-plusplus": "off",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "react/jsx-props-no-spreading": "warn",
+    "react/jsx-no-bind": "warn",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-noninteractive-element-interactions": "warn",
+    "react/function-component-definition": "warn"
   },
   "env": {
     "browser": true

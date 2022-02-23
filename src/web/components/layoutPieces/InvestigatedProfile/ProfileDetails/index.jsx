@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  perfil: PropTypes.object.isRequired,
+  perfil: PropTypes.shape({}).isRequired,
 };
 
 function ProfileDetails({ perfil }) {

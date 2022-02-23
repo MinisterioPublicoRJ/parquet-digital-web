@@ -61,7 +61,7 @@ export function jwtUserTransform(user) {
     cpf,
     matricula,
     token,
-    orgao: orgao,
+    orgao,
     orgaoSelecionado: {
       nomeOrgao: undefined,
       cpf,

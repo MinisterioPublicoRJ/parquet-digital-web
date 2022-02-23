@@ -3,11 +3,11 @@
   "plugins": ["prettier"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "prettier/prettier": ["warn"],
+    "prettier/prettier": "off",
     "class-methods-use-this": "off",
     "no-use-before-define": "off",
     "react-hooks/exhaustive-deps": "off",
-    "endOfLine": "warn",
+    "endOfLine": "off",
     "camelcase": "warn",
     "react/prop-types": "warn",
     "no-plusplus": "off",
@@ -16,7 +16,15 @@
     "react/jsx-no-bind": "warn",
     "jsx-a11y/click-events-have-key-events": "warn",
     "jsx-a11y/no-noninteractive-element-interactions": "warn",
-    "react/function-component-definition": "warn"
+    "react/function-component-definition": "warn", 
+    "no-unused-vars": "warn",
+    "dot-notation": "warn",
+    "object-shorthand": "warn",
+    "react/no-unused-state": "warn",
+    "react/no-unescaped-entities": "warn",
+    "import/order": "warn",
+    "import/extensions": "warn",
+    "spaced-comment": "warn"
   },
   "env": {
     "browser": true

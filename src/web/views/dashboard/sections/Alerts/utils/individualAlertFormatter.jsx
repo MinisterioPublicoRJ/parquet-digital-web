@@ -488,7 +488,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
         <strong>{` ${count} `}</strong>
         {single ? 'notícia de fato autuada há mais de' : 'notícias de fato autuadas há mais de'}
         <strong> 30 dias </strong>
-        que ainda
+        que ainda 
         <strong>
           {single ? 'não foi tratada ou prorrogada.' : 'não foram tratadas ou prorrogadas.'}
         </strong>

@@ -31,7 +31,6 @@ function PerformanceRadar() {
 
   useEffect(() => {
     getPerformanceData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -39,7 +38,6 @@ function PerformanceRadar() {
     if (compareData.length || compareData === 'error') {
       updateModalData();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compareData]);
 
   async function getPerformanceData() {

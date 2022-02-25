@@ -84,7 +84,6 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searc
     };
     loadData();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, totalPages, searchString]);
 
   if (loading) {

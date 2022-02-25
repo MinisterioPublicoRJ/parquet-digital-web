@@ -28,7 +28,6 @@ function Today() {
   const [modalType, setModalType] = useState(false);
 
   // runs on "mount" only
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => loadComponent(), []);
 
   function loadComponent() {

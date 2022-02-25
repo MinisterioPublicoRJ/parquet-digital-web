@@ -14,7 +14,6 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
     // tries to login automatically with saved token
     appStore.loginWithToken(token, scaToken, storedOffice);
   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(onMount, []);
   
   return (

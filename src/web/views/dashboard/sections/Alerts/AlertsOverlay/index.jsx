@@ -73,7 +73,6 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
 
   useEffect(() => {
     getText();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -3,7 +3,7 @@
   "plugins": ["prettier"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "prettier/prettier": "off",
+    "prettier/prettier": ["off"],
     "class-methods-use-this": "off",
     "no-use-before-define": "off",
     "react-hooks/exhaustive-deps": "off",

@@ -35,7 +35,6 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
 
   useEffect(() => {
     removeAlert(deletedAlertKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deletedAlertKey]);
 
   function handleAlertAction(alertKey, undo) {

@@ -60,7 +60,6 @@ function InvestigatedProfile({ close, representanteDk }) {
 
   useEffect(() => {
     getProfileData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pessDk]);
 
   function renderComponent() {
@@ -115,22 +114,20 @@ function InvestigatedProfile({ close, representanteDk }) {
               isSimilarProfilesVisible ? 'similar-profiles-list--visible' : ''
             }`}
           >
-            {profileData.similars.map((similarProfile) => {
-              return (
-                <button
-                  onClick={() => {
-                    setPessDk((prevValue) =>
-                      prevValue === similarProfile.pess_dk ? null : similarProfile.pess_dk,
-                    );
-                  }}
-                  className={similarProfile.pess_dk === pessDk ? 'current' : ''}
-                  type="button"
-                  key={`${similarProfile.pess_dk}-button`}
-                >
-                  <ProfileDetails perfil={similarProfile} key={similarProfile.pess_dk} />
-                </button>
-              );
-            })}
+            {profileData.similars.map((similarProfile) => (
+              <button
+                onClick={() => {
+                  setPessDk((prevValue) =>
+                    prevValue === similarProfile.pess_dk ? null : similarProfile.pess_dk,
+                  );
+                }}
+                className={similarProfile.pess_dk === pessDk ? 'current' : ''}
+                type="button"
+                key={`${similarProfile.pess_dk}-button`}
+              >
+                <ProfileDetails perfil={similarProfile} key={similarProfile.pess_dk} />
+              </button>
+            ))}
           </div>
 
           <div className="investigatedProfile-tableWrapper">

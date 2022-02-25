@@ -24,7 +24,6 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
 
   useEffect(() => {
     getProcessData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function getProcessData() {

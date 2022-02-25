@@ -6,7 +6,8 @@ import { useAppContext } from '../../../../core/app/App.context';
 import { TABLE_COLUMNS_PIP, TABLE_COLUMNS_TUTELA } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
 import Api from '../../../api';
-import { CustomTable, Spinner } from '..';
+import Spinner from '../Spinner';
+import CustomTable from '../CustomTable';
 import { LoginPromotron } from '../../../assets';
 
 const propTypes = {

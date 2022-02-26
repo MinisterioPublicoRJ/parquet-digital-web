@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 
 export const OVERLAY_TEXTS = {
@@ -68,14 +69,15 @@ export const OVERLAY_TEXTS = {
   NF30: (
     <div>
       <p>
-        Neste alerta, eu busco lhe avisar que uma notícia de fato foi autuada há mais de 30
-        dias e não teve uma destinação dada.
+        Neste alerta, eu busco lhe avisar que uma notícia de fato foi autuada há mais de 30 dias e
+        não teve uma destinação dada.
       </p>
 
       <p />
 
       <p>
-        Para que o alerta deixe de aparecer, basta indeferir de plano ou instaurar procedimento e registrar no sistema.
+        Para que o alerta deixe de aparecer, basta indeferir de plano ou instaurar procedimento e
+        registrar no sistema.
       </p>
     </div>
   ),
@@ -158,92 +160,92 @@ export const OVERLAY_TEXTS = {
   CTAC: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar de procedimentos que tiveram TACs celebrados, sem a devida
-        comunicação ao Conselho Superior do Ministério Público.
+        Neste alerta, eu busco lhe informar de procedimentos que tiveram TACs celebrados, sem a
+        devida comunicação ao Conselho Superior do Ministério Público.
       </p>
 
       <p />
 
       <p>
-        Para verificar isso, eu procuro no sistema todos os procedimentos que tiveram andamentos de TAC
-        realizados. Em seguida, verifico se todos tiveram andamento de Ciência de Decisão do CSMP, ou
-        de Ofício cujo destinatário tenha sido preenchido com "CSMP" ou "Conselho Superior do Ministério
-        Público", posterior ao TAC.
-        Caso algum desses procedimentos não se encontre dentro desses critérios, eu o aviso desse fato.
+        Para verificar isso, eu procuro no sistema todos os procedimentos que tiveram andamentos de
+        TAC realizados. Em seguida, verifico se todos tiveram andamento de Ciência de Decisão do
+        CSMP, ou de Ofício cujo destinatário tenha sido preenchido com "CSMP" ou "Conselho Superior
+        do Ministério Público", posterior ao TAC. Caso algum desses procedimentos não se encontre
+        dentro desses critérios, eu o aviso desse fato.
       </p>
 
       <p />
 
       <p>
-        Para desativar este alerta, basta realizar um andamento de Ofício neste procedimento, preenchendo
-        o campo destinatário com "CSMP".
+        Para desativar este alerta, basta realizar um andamento de Ofício neste procedimento,
+        preenchendo o campo destinatário com "CSMP".
       </p>
     </div>
   ),
   DCTJ: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Procedimentos Criminais que saíram para o TJRJ há mais de 60
-        e menos de 180 dias e ainda não retornaram a esta promotoria.
+        Neste alerta, eu busco lhe informar sobre Procedimentos Criminais que saíram para o TJRJ há
+        mais de 60 e menos de 180 dias e ainda não retornaram a esta promotoria.
       </p>
 
       <p />
 
       <p>
-        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar novamente,
-        ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento caso esteja no Tribunal.
-        Para isso, disponibilizo a opção CSV, que traz a lista de todos os procedimentos nesta condição com o
-        número MPRJ e o número externo (número TJRJ).
+        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
+        novamente, ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento
+        caso esteja no Tribunal. Para isso, disponibilizo a opção CSV, que traz a lista de todos os
+        procedimentos nesta condição com o número MPRJ e o número externo (número TJRJ).
       </p>
     </div>
   ),
   DCTJ2: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Procedimentos Criminais que saíram para o TJRJ há mais de
-        180 dias e ainda não retornaram a esta promotoria. A probabilidade de que ele seja um documento com
-        aplicação do art. 366 do CPP é grande.
+        Neste alerta, eu busco lhe informar sobre Procedimentos Criminais que saíram para o TJRJ há
+        mais de 180 dias e ainda não retornaram a esta promotoria. A probabilidade de que ele seja
+        um documento com aplicação do art. 366 do CPP é grande.
       </p>
 
       <p />
 
       <p>
-        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar novamente,
-        ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento caso esteja no Tribunal.
-        Para isso, disponibilizo a opção CSV, que traz a lista de todos os procedimentos nesta condição com o
-        número MPRJ e o número externo (número TJRJ).
+        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
+        novamente, ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento
+        caso esteja no Tribunal. Para isso, disponibilizo a opção CSV, que traz a lista de todos os
+        procedimentos nesta condição com o número MPRJ e o número externo (número TJRJ).
       </p>
     </div>
   ),
   DNTJ: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre procedimentos não criminais que saíram para o TJRJ há mais de
-        120 dias e ainda não retornaram a esta promotoria.
+        Neste alerta, eu busco lhe informar sobre procedimentos não criminais que saíram para o TJRJ
+        há mais de 120 dias e ainda não retornaram a esta promotoria.
       </p>
 
       <p />
 
       <p>
-        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar novamente,
-        ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento caso esteja no Tribunal.
-        Para isso, disponibilizo a opção CSV, que traz a lista de todos os procedimentos nesta condição com o
-        número MPRJ e o número externo (número TJRJ).
+        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
+        novamente, ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento
+        caso esteja no Tribunal. Para isso, disponibilizo a opção CSV, que traz a lista de todos os
+        procedimentos nesta condição com o número MPRJ e o número externo (número TJRJ).
       </p>
     </div>
   ),
   onDel: (
     <div>
       <p>
-        Somente membros podem descartar definitivamente um alerta. Servidores só podem descartar para o seu próprio usuário
-        e somente durante o uso nesta sessão.
+        Somente membros podem descartar definitivamente um alerta. Servidores só podem descartar
+        para o seu próprio usuário e somente durante o uso nesta sessão.
       </p>
       <p>Tem certeza de que deseja continuar esta ação? Caso desista, clique em "Desfazer".</p>
     </div>
-  )
+  ),
 };
 
-export const PRCR_TEXTS = (type, data) => {
+export function PRCR_TEXTS(type, data) {
   switch (type) {
     case 'PRCR1':
       return (
@@ -261,7 +263,7 @@ export const PRCR_TEXTS = (type, data) => {
 
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
-          {data.map((crime, index) => (
+          {data.map((crime) => (
             <div className="crime-data" key={crime.key}>
               <p>
                 <b>Personagem:</b>
@@ -319,8 +321,8 @@ export const PRCR_TEXTS = (type, data) => {
           </p>
 
           <p>Para este caso, meus cálculos foram os seguintes:</p>
-
-          {data.map((crime, index) => (
+          
+          {data.map((crime) => (
             <div className="crime-data" key={crime.key}>
               <p>
                 <b>Personagem:</b>
@@ -481,10 +483,10 @@ export const PRCR_TEXTS = (type, data) => {
       );
     default:
   }
-};
+}
 
-export const IC1A_TEXT = ({ movement, movementDate, deadline }) => (
-  <div>
+export function IC1A_TEXT({ movement, movementDate, deadline }) {
+  return <div>
     <p>
       Neste alerta, eu busco lhe informar se um Inquérito Civil está há mais de um ano sem
       prorrogação.
@@ -504,10 +506,10 @@ export const IC1A_TEXT = ({ movement, movementDate, deadline }) => (
       entrego um modelo de sugestão.
     </p>
   </div>
-);
+}
 
-export const PA1A_TEXT = ({ deadline, registerDate }) => (
-  <div>
+export function PA1A_TEXT({ deadline, registerDate }) {
+  return <div>
     <p>
       Neste alerta, eu busco lhe informar se um Procedimento Administrativo está aberto há mais de
       um ano.
@@ -527,10 +529,10 @@ export const PA1A_TEXT = ({ deadline, registerDate }) => (
       utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
     </p>
   </div>
-);
+}
 
-export const PPFP_TEXT = ({ registerDate }) => (
-  <div>
+export function PPFP_TEXT({ registerDate }) {
+  return <div>
     <p>Neste alerta, eu busco lhe informar se um Procedimento Preparatório está fora do prazo.</p>
 
     <p />
@@ -555,4 +557,4 @@ export const PPFP_TEXT = ({ registerDate }) => (
       utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
     </p>
   </div>
-);
+}

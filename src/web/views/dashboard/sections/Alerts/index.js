@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useEffect } from 'react';
 
 import './styles.css';
@@ -104,6 +105,7 @@ function Alerts() {
       const response = await Api.sendOmbudsmanEmail(link);
       window.alert(response.data.detail);
     } catch (e) {
+      window.alert('Houve um erro: '. e);
     } finally {
       setModalContent(null);
       setDeletedAlertKey(null);
@@ -125,9 +127,9 @@ function Alerts() {
     loadComponent();
   }, []);
 
-  function setOverlay(type, docDk) {
+  function setOverlay(type, documentDk) {
     setOverlayType(type);
-    setDocDk(docDk);
+    setDocDk(documentDk);
     setShowOverlay(true);
   }
 

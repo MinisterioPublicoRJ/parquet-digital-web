@@ -7,7 +7,7 @@ const propTypes = {
 
 function ProfileDetails({ perfil }) {
   let details = null;
-  if (perfil.hasOwnProperty('cpf')) {
+  if (Object.prototype.hasOwnProperty.call(perfil, 'cpf')) {
     const birthdate = perfil.dt_nasc ? new Date(perfil.dt_nasc) : null;
     details = (
       <>
@@ -40,7 +40,8 @@ function ProfileDetails({ perfil }) {
         </p>
       </>
     );
-  } else if (perfil.hasOwnProperty('cnpj')) {
+  } else if (Object.prototype.hasOwnProperty.call(perfil, 'cnpj')) {
+
     details = (
       <>
         <p>

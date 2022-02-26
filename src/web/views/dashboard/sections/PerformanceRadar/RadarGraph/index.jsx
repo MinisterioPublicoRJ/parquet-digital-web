@@ -110,8 +110,7 @@ function RadarGraph({ xAxis, userGraph, comparisionGraph }) {
         endAngle={383}
         padding={{ top: 40, left: 0, right: 0, bottom: 10 }}
       >
-        {xAxis.map(({ category, label, textAnchor, dx, dy }, i) => {
-          return (
+        {xAxis.map(({ category, label, textAnchor, dx, dy }, i) => (
             <VictoryPolarAxis
               dependentAxis
               key={category}
@@ -125,8 +124,7 @@ function RadarGraph({ xAxis, userGraph, comparisionGraph }) {
                 <VictoryLabel textAnchor={textAnchor} dx={dx} dy={dy} style={styleLabels(label)} />
               }
             />
-          );
-        })}
+          ))}
         {/* JUST DRAWS THE GRAY GRID */}
         <VictoryGroup style={CHART_THEME.gridGroup}>
           {grid.map((gridRow) => (

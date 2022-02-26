@@ -93,14 +93,14 @@ function YourDesk() {
    */
   async function getOpenCasesDetails() {
     let casesDetails;
-    let updatedState = {};
+    const updatedState = {};
     setLoading(true);
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
-      updatedState['openCases'] = casesDetails;
+      updatedState.openCases = casesDetails;
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
-      updatedState['openCases'] = false;
+      updatedState.openCases = false;
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } finally {
       setLoading(false);
@@ -154,8 +154,8 @@ function YourDesk() {
         {activeTab === 'openCases' ? (
           <OpenCasesList
             buildRequestParams={buildRequestParams}
-            chartData={tabDetail['openCases']}
-            isLoading={!tabDetail['openCases'] && loading}
+            chartData={tabDetail.openCases}
+            isLoading={!tabDetail.openCases && loading}
           />
         ) : (
           <GenericTab

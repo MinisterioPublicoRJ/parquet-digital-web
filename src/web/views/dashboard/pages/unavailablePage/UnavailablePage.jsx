@@ -15,11 +15,11 @@ import promotronReparador from '../../../../assets/imgs/promotron-repador@4x.png
 import diagnosticoImg from '../../../../assets/imgs/Image-4.png';
 import dominioImg from '../../../../assets/imgs/Image1.png';
 import painelDeComprasImg from '../../../../assets/imgs/Image3.png';
-import painelSaneamentoBasicoImg from '../../../../assets/imgs//Image-2.png';
+import painelSaneamentoBasicoImg from "../../../../assets/imgs/Image-2.png";
 import inLocoImg from '../../../../assets/imgs/inLoco.png';
 import unavailableBanner from '../../../../assets/imgs/unavailableBanner.png';
 
-const UnavailablePage = () => {
+function UnavailablePage() {
   return (
     <div className={unavailableWrapper}>
       <div className={unavailableBannerWrapper}>
@@ -58,7 +58,7 @@ const UnavailablePage = () => {
               <div className={unavailableOptionHeader}>
                 <h4>Diagnóstico das Promotorias de Justiça</h4>
                 <a href="http://j.mp/DiagnosticoPromotoriasMPRJ" target="blank">
-                  <button>Acessar</button>
+                  <button type='button'>Acessar</button>
                 </a>
               </div>
               <small>Comparativo de feitos entre as Promotorias.</small>
@@ -68,7 +68,7 @@ const UnavailablePage = () => {
               <div className={unavailableOptionHeader}>
                 <h4>Domínio</h4>
                 <a href="http://apps.mprj.mp.br/sistema/dominio/" target="blank">
-                  <button>Acessar</button>
+                  <button type='button'>Acessar</button>
                 </a>
               </div>
               <small>Listagem de procedimentos, sua mesa e alguns alertas.</small>
@@ -78,7 +78,7 @@ const UnavailablePage = () => {
               <div className={unavailableOptionHeader}>
                 <h4>Painel de Compras</h4>
                 <a href="http://j.mp/ComprasCovidMPRJ" target="blank">
-                  <button>Acessar</button>
+                  <button type='button'>Acessar</button>
                 </a>
               </div>
               <small>Compras públicas para enfrentamento da Covid-19.</small>
@@ -88,7 +88,7 @@ const UnavailablePage = () => {
               <div className={unavailableOptionHeader}>
                 <h4>Painel Saneamento Básico</h4>
                 <a href="http://j.mp/SaneamentoBasicoMPRJ" target="blank">
-                  <button>Acessar</button>
+                  <button type='button'>Acessar</button>
                 </a>
               </div>
               <small>Diagnóstico e indicadores de água esgoto e drenagem por município.</small>
@@ -98,7 +98,7 @@ const UnavailablePage = () => {
               <div className={unavailableOptionHeader}>
                 <h4>InLoco</h4>
                 <a href="http://inloco.mprj.mp.br/" target="blank">
-                  <button>Acessar</button>
+                  <button type='button'>Acessar</button>
                 </a>
               </div>
               <small>
@@ -110,6 +110,6 @@ const UnavailablePage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default UnavailablePage;

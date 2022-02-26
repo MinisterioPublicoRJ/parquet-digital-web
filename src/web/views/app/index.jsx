@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AppView from './App.view.jsx';
+import {AppView} from './App.view';
 import AppErrorView from './AppError.view';
 import AppControler from '../../../core/app/App.controler';
 import ErrorBoundary from '../../errorBoundary/ErrorBoundary';

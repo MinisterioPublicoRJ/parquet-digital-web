@@ -52,6 +52,7 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
       
       let currentTitle = dataUnit[columns[key]];
       while (currentTitle?.props && typeof(currentTitle.props.children) === 'object') {
+        // eslint-disable-next-line prefer-destructuring
         currentTitle = currentTitle.props.children[0];        
       }
       if (typeof(currentTitle?.props?.children) !== 'undefined') currentTitle = currentTitle.props.children;

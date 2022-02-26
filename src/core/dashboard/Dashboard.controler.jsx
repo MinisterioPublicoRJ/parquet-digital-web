@@ -10,6 +10,4 @@ function DashboardControler({ children, errorBoundary: ErrorBoundary, errorScree
   )
 }
 
-DashboardControler.propTypes = { AppView: PropTypes.func.isRequired };
-
 export default DashboardControler;

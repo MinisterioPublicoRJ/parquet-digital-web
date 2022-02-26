@@ -47,8 +47,7 @@ function Introduction({ type, close }) {
             <div className="btns-introduction">
               <button className="btn-leave" type="button" aria-label="Fechar"
                onClick={close}
-               onKeyDown={close}
-               onClick={close}>
+               onKeyDown={close}>
                 Sair
               </button>
               {currentPage ? (

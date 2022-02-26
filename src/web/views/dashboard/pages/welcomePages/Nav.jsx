@@ -31,6 +31,7 @@ function getPath(hist, direction) {
       case "/entendimento": return("./celeridade");
       case "/celeridade": return("./atuacao");
       case "/atuacao": return("./dashboard");
+      default: return null;
     }
   }
   else if(direction==="previous"){
@@ -39,6 +40,7 @@ function getPath(hist, direction) {
       case "/entendimento": return("./gestao");
       case "/celeridade": return("./entendimento");
       case "/atuacao": return("./celeridade");
+      default: return null;
     }
   }
   else if(direction==="dash"){

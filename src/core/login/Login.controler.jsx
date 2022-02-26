@@ -36,6 +36,4 @@ function LoginControler({ children, errorBoundary: ErrorBoundary, errorScreen: E
   )
 }
 
-LoginControler.propTypes = { AppView: PropTypes.func.isRequired };
-
 export default LoginControler;

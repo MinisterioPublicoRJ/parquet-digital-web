@@ -3,7 +3,7 @@ import Api from '../../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
 
-const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searchString}) => {
+function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searchString}) {
   const { buildRequestParams } = useAppContext();
   // eslint-disable-next-line no-shadow
   const [processListData, setProcessListData] = useState([]);
@@ -100,13 +100,13 @@ const ProcessList = ({ isActive, setInvestigatedProfile, setProcessDetail, searc
           <CustomTable data={processListData} columns={tableColumns} showHeader />
           <Pagination
             totalPages={totalPages || 0}
-            handlePageClick={(page) => handlePageClick(page)}
+            handlePageClick={(clickedPage) => handlePageClick(clickedPage)}
             currentPage={page}
           />
         </div>
       )}
     </div>
   );
-};
+}
 
 export default ProcessList;

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './AlertActionButtons';
@@ -19,13 +20,13 @@ const propTypes = {
   message: PropTypes.node.isRequired,
   customKey: PropTypes.string.isRequired,
   hideHover: PropTypes.bool,
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   onDeletion: PropTypes.func,
-  openDialogBox: PropTypes.func,
+  openDialogBox: PropTypes.func.isRequired,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
   isDeleted: PropTypes.bool,
-  docDk: PropTypes.number,
+  docDk: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
@@ -36,7 +37,7 @@ const defaultProps = {
   isDeleted: false,
 };
 
-const AlertBadge = (alert) => {
+function AlertBadge(alert) {
   const {
     actions,
     backgroundColor,
@@ -82,7 +83,7 @@ const AlertBadge = (alert) => {
     }
   }
 
-  function handleActionPress(alertAction, key, type) {
+  function handleActionPress(alertAction, key, overlayType) {
     const { actionType } = alertAction;
     switch (actionType) {
       case 'delete':
@@ -91,7 +92,7 @@ const AlertBadge = (alert) => {
       case 'download':
         return handleLinks(alertAction);
       case 'overlay':
-        return setOverlay(type, docDk);
+        return setOverlay(overlayType, docDk);
       case 'link':
         return handleLinks(alertAction);
       case 'openComplaint':
@@ -111,6 +112,7 @@ const AlertBadge = (alert) => {
             <ActionButtons
               key={`${customKey}-${alertAction.actionType}-${alertAction.text}`}
               clickCallback={() => handleActionPress(alertAction, customKey, type)}
+              // eslint-disable-next-line react/jsx-props-no-spreading
               {...alertAction}
             />
           ))}
@@ -145,6 +147,7 @@ const AlertBadge = (alert) => {
                   }}
                   className="alertBadge-downloadNumbers"
                   style={{ backgroundColor: '#2DE288' }}
+                  type
                 >
                   {actions[0].text}
                 </div>
@@ -159,7 +162,7 @@ const AlertBadge = (alert) => {
       </div>
     </div>
   );
-};
+}
 
 AlertBadge.propTypes = propTypes;
 AlertBadge.defaultProps = defaultProps;

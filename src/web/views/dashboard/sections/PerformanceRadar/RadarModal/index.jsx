@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
 
 import './styles.css';

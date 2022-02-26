@@ -27,6 +27,4 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
   );
 }
 
-AppControler.propTypes = { AppView: PropTypes.func.isRequired };
-
 export default AppControler;

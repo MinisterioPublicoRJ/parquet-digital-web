@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
 
 import './styles.css';
@@ -47,9 +48,7 @@ function MainInvestigated() {
     // give user positivie feedback regardless of request success
     setTableData((oldTableData) => {
       const updatedArray = [...oldTableData];
-      const representanteIndex = updatedArray.findIndex((item) => {
-        return item.representanteDk === representanteDk;
-      });
+      const representanteIndex = updatedArray.findIndex((item) => item.representanteDk === representanteDk);
 
       const oldPinStatus = updatedArray[representanteIndex].isPinned;
       updatedArray[representanteIndex].isPinned = !oldPinStatus;
@@ -172,7 +171,7 @@ function MainInvestigated() {
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
           <Pagination
             totalPages={totalPages || 0}
-            handlePageClick={(page) => handlePageClick(page)}
+            handlePageClick={(clickedPage) => handlePageClick(clickedPage)}
             currentPage={page}
             />
         </div>

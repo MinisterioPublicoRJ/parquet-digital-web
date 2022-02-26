@@ -12,7 +12,7 @@ const propTypes = {
   type: PropTypes.string.isRequired,
   setOverlay: PropTypes.func.isRequired,
   openDialogBox: PropTypes.func.isRequired,
-  deletedAlertKey: PropTypes.string,
+  deletedAlertKey: PropTypes.string.isRequired,
 };
 
 function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
@@ -59,9 +59,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
       return alert;
     });
     setAlertsList(newList);
-    setVisibleAlertsList((prevValue) => {
-      return newList.slice(0, prevValue.length);
-    });
+    setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
     Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
@@ -73,9 +71,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
       return alert;
     });
     setAlertsList(newList);
-    setVisibleAlertsList((prevValue) => {
-      return newList.slice(0, prevValue.length);
-    });
+    setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
     Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
   }
 
@@ -130,7 +126,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
               isDeleted={isDeleted}
               setOverlay={setOverlay}
               docDk={docDk}
-              type={type}
+              overlayType={type}
               openDialogBox={openDialogBox}
             />
           );
@@ -154,9 +150,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
                   }
             }
             onClick={() => {
-              setVisibleAlertsList((prevValue) => {
-                return alertsList.slice(0, prevValue.length + 30);
-              });
+              setVisibleAlertsList((prevValue) => alertsList.slice(0, prevValue.length + 30));
             }}
             className="show-more-alerts"
           >

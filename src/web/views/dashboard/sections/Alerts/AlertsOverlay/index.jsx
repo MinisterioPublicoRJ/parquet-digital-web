@@ -11,14 +11,14 @@ const propTypes = {
   type: PropTypes.string.isRequired,
   setShowOverlay: PropTypes.func.isRequired,
   children: PropTypes.node,
+  docDk: PropTypes.string,
 };
 
-const defaultProps = { children: null };
+const defaultProps = { children: null, docDk: '' };
 
 function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
   const { buildRequestParams } = useAppContext();
   const [text, setText] = useState();
-
 
   async function getOverlayText(docType) {
     try {
@@ -78,13 +78,17 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
   return (
     <div
       className="overlay-outer"
-      onClick={(e) => setShowOverlay(false)}
-      onKeyDown={(e) => setShowOverlay(false)}
+      onClick={() => setShowOverlay(false)}
+      onKeyDown={() => setShowOverlay(false)}
+      role="button"
+      tabIndex={0}
     >
       <div
         className="alerts-overlay"
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={(e) => handleInnerClick(e)}
+        role="button"
+        tabIndex={0}
       >
         <div>
           {text || <Spinner size="medium" />}

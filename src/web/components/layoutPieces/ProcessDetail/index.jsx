@@ -5,14 +5,21 @@ import { ListCard } from 'mapasteca-web';
 import './styles.css';
 import { useAppContext } from '../../../../core/app/App.context';
 import Api from '../../../api';
-import { Spinner } from '..';
+import Spinner from '../Spinner';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
 import AlertBadge from '../../../views/dashboard/sections/Alerts/AlertBadge';
 import individualAlertFormatter from '../../../views/dashboard/sections/Alerts/utils/individualAlertFormatter';
 
 const propTypes = {
   close: PropTypes.func.isRequired,
+  docuNrMp: PropTypes.string,
+  docuNrExterno: PropTypes.string,
 };
+
+const defaultProps = {
+  docuNrMp: '-',
+  docuNrExterno: '-',
+}
 
 function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [processData, setProcessData] = useState(null);
@@ -95,7 +102,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                   backgroundColor={backgroundColorChild || backgroundColor}
                   message={message}
                   docDk={docuNrMp}
-                  type={type}
+                  overlayType={type}
                   /* Passes empty actions to hide actions */
                   actions={[]}
                 />
@@ -120,6 +127,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
           </div>
           <h3>ASSUNTOS</h3>
           <div className="processDetail-section">
+            {/* eslint-disable-next-line no-shadow */}
             {processData.matters.map(({ matter, detail }) => (
               <div className="processDetail-ListCardWrapper" key={`${matter}-${detail}`}>
                 <ListCard
@@ -204,7 +212,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
           <h2>Detalhes do Procedimento</h2>
           Informações de relevância sobre o procedimento.
           <div>
-            <span>{`Nº MPRJ: ${docuNrMp ? docuNrMp : '-'}`}</span>
+            <span>{`Nº MPRJ: ${ docuNrMp }`}</span>
             <button
               type="button"
               onClick={() => {
@@ -230,4 +238,5 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
 }
 
 ProcessDetail.propTypes = propTypes;
+ProcessDetail.defaultProps = defaultProps;
 export default ProcessDetail;

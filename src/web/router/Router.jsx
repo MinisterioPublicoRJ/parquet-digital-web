@@ -5,7 +5,7 @@ import UnavailablePage from '../views/dashboard/pages/unavailablePage/Unavailabl
 import PrivateRoute from './PrivateRoute';
 
 import { LoadingScreen, Login, Dashboard } from '../views';
-import { Gestao, Entendimento, Celeridade, Atuacao } from '../../web/views/dashboard/pages/welcomePages';
+import { Gestao, Entendimento, Celeridade, Atuacao } from "../views/dashboard/pages/welcomePages";
 
 import { useAppContext } from '../../core/app/App.context';
 

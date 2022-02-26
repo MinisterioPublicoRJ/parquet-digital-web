@@ -39,24 +39,25 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     }
   }, [chartData]);
 
-  function initializeTabDetails(chartData) {
+  function initializeTabDetails(chart) {
     const details = {};
-    const categories = Object.keys(chartData);
+    const categories = Object.keys(chart);
     categories.forEach((cat) => {
       details[cat] = {};
     });
     return details;
   }
   // calculates total pages for each category, returns a dict with each cat as key
-  function calcTotalPagesByTab(chartData) {
-    if (!chartData) return;
-    const totalPagesByTab = {};
-    const categories = Object.keys(chartData);
+  function calcTotalPagesByTab(chart) {
+    if (!chart) return;
+    const totalPages = {};
+    const categories = Object.keys(chart);
     categories.forEach((cat) => {
-      const pages = Math.ceil(chartData[cat] / 20);
-      totalPagesByTab[cat] = pages;
+      const pages = Math.ceil(chart[cat] / 20);
+      totalPages[cat] = pages;
     });
-    return totalPagesByTab;
+    // eslint-disable-next-line consistent-return
+    return totalPages;
   }
   function generateButtons(list) {
     return list.map((alerts) => {
@@ -82,9 +83,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
                 handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno);
               }}
             >
-              {Object.keys(alerts.listAlerts).map((item) => {
-                return <p key={item}>Alerta: {item}</p>;
-              })}
+              {Object.keys(alerts.listAlerts).map((item) => <p key={item}>Alerta: {item}</p>)}
             </button>
           )}
         </div>
@@ -209,9 +208,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     getOpenCasesList(activeTab, 1, searchStr);
   };
 
-  function handleProcessDetail(numeroMprj, numeroExterno) {
-    setNumeroMprj(numeroMprj);
-    setNumeroExterno(numeroExterno);
+  function handleProcessDetail(numMprj, numExterno) {
+    setNumeroMprj(numMprj);
+    setNumeroExterno(numExterno);
     setIsProcessDetailOpen((prevState) => !prevState);
   }
 

@@ -9,11 +9,9 @@ import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
-import { Glossary, Introduction, MapaTron } from '../../sections';
-
-const propTypes = {
-  Today: PropTypes.func.isRequired,
-};
+import Glossary  from "../Glossary/Glossary.view";
+import  Introduction from "../Introduction";
+import MapaTron  from "../MapaTron/Mapatron.view";
 
 function Today() {
   const { user, buildRequestParams, currentOffice, logout } = useAppContext();
@@ -140,13 +138,13 @@ function Today() {
     <article className="today-outer">
       <div className="user-area">
         <MainTitle value={assembleGreeting()} glueToTop />
-        {/*{user.orgaosValidos && user.orgaosValidos.length ? (
+        {/* {user.orgaosValidos && user.orgaosValidos.length ? (
           <button
             type="button"
             className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
             onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
           />
-        ) : null}*/}
+        ) : null} */}
         <button
           type="button"
           className="logout-btn--visible"
@@ -248,5 +246,4 @@ function Today() {
   );
 }
 
-Today.propTypes = propTypes;
 export default Today;

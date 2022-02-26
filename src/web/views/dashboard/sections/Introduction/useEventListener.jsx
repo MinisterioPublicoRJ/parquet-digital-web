@@ -27,6 +27,7 @@ function useEventListener(eventName, handler, element = window) {
       element.addEventListener(eventName, eventListener);
 
       // Remove event listener on cleanup
+      // eslint-disable-next-line consistent-return
       return () => {
         element.removeEventListener(eventName, eventListener);
       };

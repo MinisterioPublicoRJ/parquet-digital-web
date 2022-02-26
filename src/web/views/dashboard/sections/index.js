@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+
 export { default as Today } from './Today/Today.view';
 export { default as Alerts } from './Alerts';
 export { default as ProcessingTime } from './ProcessingTime';

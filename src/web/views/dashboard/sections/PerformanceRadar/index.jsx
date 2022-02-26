@@ -15,7 +15,7 @@ import {
   TUTELA_CATEGORIES,
   PIP_CATEGORIES,
 } from './radarConstants';
-import RadarModal from './RadarModal/'
+import RadarModal from "./RadarModal"
 import { Modal } from '../../../../components';
 
 function PerformanceRadar() {

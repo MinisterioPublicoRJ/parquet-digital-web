@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ListCard } from 'mapasteca-web';
@@ -23,7 +24,7 @@ const defaultProps = {
 
 function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [processData, setProcessData] = useState(null);
-  const [apiError, setApiError] = useState(false);
+  // const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
   const { buildRequestParams } = useAppContext();
   const { cpf, token, orgao } = buildRequestParams();
@@ -40,7 +41,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
       const data = await Api.getProcessDetail({ ...buildRequestParams(), num_doc: docuNrMp });
       setProcessData(data);
     } catch (error) {
-      setApiError(true);
+      // setApiError(true);
     } finally {
       setLoading(false);
     }
@@ -55,18 +56,10 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
       );
     }
     if (processData) {
-      const {
-        situation,
-        phase,
-        currentOwner,
-        loader,
-        secrecy,
-        docClass,
-        matter,
-      } = processData.identification;
+      const { situation, phase, currentOwner, loader, secrecy, docClass, matter } =
+        processData.identification;
       return (
         <div className="processDetail-body processDetail-loadedData">
-          
           <button
             type="button"
             className="process-alerts-btn"
@@ -133,7 +126,11 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                 <ListCard
                   fixedHeight
                   title={matter}
-                  content={<span className="ListCard-content" title={detail}><abbr>{detail}</abbr></span>}
+                  content={
+                    <span className="ListCard-content" title={detail}>
+                      <abbr>{detail}</abbr>
+                    </span>
+                  }
                   detailColor="#F86C72"
                   icon={<ProcessFile width={40} height={40} />}
                 />

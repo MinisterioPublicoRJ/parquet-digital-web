@@ -48,7 +48,9 @@ function MainInvestigated() {
     // give user positivie feedback regardless of request success
     setTableData((oldTableData) => {
       const updatedArray = [...oldTableData];
-      const representanteIndex = updatedArray.findIndex((item) => item.representanteDk === representanteDk);
+      const representanteIndex = updatedArray.findIndex(
+        (item) => item.representanteDk === representanteDk,
+      );
 
       const oldPinStatus = updatedArray[representanteIndex].isPinned;
       updatedArray[representanteIndex].isPinned = !oldPinStatus;
@@ -129,9 +131,9 @@ function MainInvestigated() {
     }
   }
 
-  function onMount() {
-    getMainInvestigated();
-  }
+  // function onMount() {
+  //   getMainInvestigated();
+  // }
 
   function onUpdate() {
     getMainInvestigated();
@@ -151,6 +153,7 @@ function MainInvestigated() {
     }
     setPage(nextPage);
   }
+  
   useEffect(onUpdate, [searchString, page, totalPages]);
 
   function render() {
@@ -173,7 +176,7 @@ function MainInvestigated() {
             totalPages={totalPages || 0}
             handlePageClick={(clickedPage) => handlePageClick(clickedPage)}
             currentPage={page}
-            />
+          />
         </div>
         {
           investigatedProfile && 

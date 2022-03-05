@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Today.css';
@@ -138,7 +139,8 @@ function Today() {
     <article className="today-outer">
       <div className="user-area">
         <MainTitle value={assembleGreeting()} glueToTop />
-        {/* {user.orgaosValidos && user.orgaosValidos.length ? (
+        {/* Botão precisa ter texto dentro! */}
+        {user.orgaosValidos && user.orgaosValidos.length ? (
           <button
             type="button"
             className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}

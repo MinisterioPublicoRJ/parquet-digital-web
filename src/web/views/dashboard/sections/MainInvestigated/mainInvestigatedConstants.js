@@ -4,3 +4,5 @@ export const TABLE_COLUMNS = {
   'Nº DE INQUÉRITOS': 'nrInvestigacoes',
   ' ': 'actions',
 };
+
+export default TABLE_COLUMNS;

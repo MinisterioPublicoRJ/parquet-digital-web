@@ -114,7 +114,7 @@ function RadarModal({ compareData, close }) {
               <button
                 type="button"
                 onClick={() => {
-                  setIsSearching(prevSearch => !prevSearch);
+                  setIsSearching((prevSearch) => !prevSearch);
                   setInputFocus();
                 }}
               >

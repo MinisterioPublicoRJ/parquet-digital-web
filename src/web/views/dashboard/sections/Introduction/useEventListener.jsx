@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { useRef, useEffect } from 'react';
 
 // Hook

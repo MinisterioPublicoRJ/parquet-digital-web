@@ -340,7 +340,7 @@ const Api = (() => {
     return axios.post(link, formData);
   }
 
-  async function getProcessDetail({ orgao,  token, num_doc }) {
+  async function getProcessDetail({ orgao, token, num_doc }) {
     const params = { jwt: token };
     const { data } = await axios.get(PROCESS_DETAIL({ num_doc, orgao }), { params });
     return processDetailTransform(data);

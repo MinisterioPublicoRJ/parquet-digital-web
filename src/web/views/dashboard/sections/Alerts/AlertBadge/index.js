@@ -1,4 +1,4 @@
-/* eslint-disable no-alert */
+/* eslint-disable react/jsx-props-no-spreading, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './AlertActionButtons';
@@ -87,7 +87,7 @@ function AlertBadge(alert) {
     const { actionType } = alertAction;
     switch (actionType) {
       case 'delete':
-        setOverlay('onDel', '')
+        setOverlay('onDel', '');
         return handleDeletion(key);
       case 'download':
         return handleLinks(alertAction);

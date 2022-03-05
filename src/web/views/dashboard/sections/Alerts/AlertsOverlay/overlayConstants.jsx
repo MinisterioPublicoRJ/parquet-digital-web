@@ -169,8 +169,8 @@ export const OVERLAY_TEXTS = {
       <p>
         Para verificar isso, eu procuro no sistema todos os procedimentos que tiveram andamentos de
         TAC realizados. Em seguida, verifico se todos tiveram andamento de Ciência de Decisão do
-        CSMP, ou de Ofício cujo destinatário tenha sido preenchido com "CSMP" ou "Conselho Superior
-        do Ministério Público", posterior ao TAC. Caso algum desses procedimentos não se encontre
+        CSMP, ou de Ofício cujo destinatário tenha sido preenchido com &quot;CSMP&quot; ou &quot;Conselho Superior
+        do Ministério Público&quot;, posterior ao TAC. Caso algum desses procedimentos não se encontre
         dentro desses critérios, eu o aviso desse fato.
       </p>
 
@@ -178,7 +178,7 @@ export const OVERLAY_TEXTS = {
 
       <p>
         Para desativar este alerta, basta realizar um andamento de Ofício neste procedimento,
-        preenchendo o campo destinatário com "CSMP".
+        preenchendo o campo destinatário com &quot;CSMP&quot;.
       </p>
     </div>
   ),
@@ -240,7 +240,7 @@ export const OVERLAY_TEXTS = {
         Somente membros podem descartar definitivamente um alerta. Servidores só podem descartar
         para o seu próprio usuário e somente durante o uso nesta sessão.
       </p>
-      <p>Tem certeza de que deseja continuar esta ação? Caso desista, clique em "Desfazer".</p>
+      <p>Tem certeza de que deseja continuar esta ação? Caso desista, clique em &quot;Desfazer&quot;.</p>
     </div>
   ),
 };
@@ -321,7 +321,6 @@ export function PRCR_TEXTS(type, data) {
           </p>
 
           <p>Para este caso, meus cálculos foram os seguintes:</p>
-          
           {data.map((crime) => (
             <div className="crime-data" key={crime.key}>
               <p>
@@ -382,7 +381,7 @@ export function PRCR_TEXTS(type, data) {
 
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
-          {data.map((crime, index) => (
+          {data.map((crime) => (
             <div className="crime-data" key={crime.key}>
               <p>
                 <b>Personagem:</b>
@@ -438,7 +437,7 @@ export function PRCR_TEXTS(type, data) {
 
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
-          {data.map((crime, index) => (
+          {data.map((crime) => (
             <div className="crime-data" key={crime.key}>
               <p>
                 <b>Personagem:</b>
@@ -482,6 +481,7 @@ export function PRCR_TEXTS(type, data) {
         </>
       );
     default:
+    return '';
   }
 }
 

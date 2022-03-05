@@ -63,7 +63,7 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
       return { ...process, docuPersonagens: investigatedNameBtn, docuNrExterno: processNumberBtn };
     });
   }
-  
+
   useEffect(() => {
     setPage(1);
   }, [searchString]);
@@ -83,7 +83,6 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
       }
     };
     loadData();
-
   }, [page, totalPages, searchString]);
 
   if (loading) {

@@ -83,7 +83,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
                 handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno);
               }}
             >
-              {Object.keys(alerts.listAlerts).map((item) => <p key={item}>Alerta: {item}</p>)}
+               <p>Clique para ver os alertas desse procedimento</p>
             </button>
           )}
         </div>

@@ -84,6 +84,7 @@ button.alert-tag-sigla {
   border: none;
   left: 0;
   top:0;
+  border-radius: .5em;
 } 
 
 button.alert-tag-sigla p{
@@ -93,6 +94,6 @@ button.alert-tag-sigla p{
   opacity: 1;
   transition: opacity .5s;
   position: absolute;
-  width: 51vh;
+  width: 24em;
 
 }

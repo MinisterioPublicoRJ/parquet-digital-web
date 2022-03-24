@@ -146,7 +146,7 @@ function Today() {
             className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
             onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
           />
-        ) : null} */}
+        ) : null}
         <button
           type="button"
           className="logout-btn--visible"

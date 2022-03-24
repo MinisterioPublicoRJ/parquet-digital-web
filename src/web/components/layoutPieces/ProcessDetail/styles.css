@@ -94,7 +94,7 @@ td button.process-detail-btn {
 
 .processDetail-ListCardWrapper {
   width: calc((100% - 4%) / 2);
-  margin-bottom: 2%;
+  margin-bottom: 2%;border-radius: 4px;
 }
 
 .ListCard-content {
@@ -197,9 +197,10 @@ td button.process-detail-btn {
   overflow: scroll;
   align-items: flex-start;
   justify-content: flex-start;
-  opacity: 0;
-  flex: 0 0;
-  transition: all 1s;
+  flex-basis: auto;
+  overflow-y: hidden;
+  min-height: calc(2vh + 75px);
+  margin-bottom: 3%;
 }
 
 .process-alerts-list .alertBadge-outerContainer {
@@ -211,13 +212,6 @@ td button.process-detail-btn {
 
 .process-alerts-list:nth-child(3n +0) {
   margin-right: 0;
-}
-
-.process-alerts-list--visible {
-  opacity: 1;
-  flex-basis: auto;
-  overflow-y: hidden;
-  min-height: calc(2vh + 75px);
 }
 
 .process-alerts-list::-webkit-scrollbar {

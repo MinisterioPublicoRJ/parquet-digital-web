@@ -67,16 +67,10 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
           >
             Este procedimento possui {processData.alerts.length} alerta
             {processData.alerts.length === 1 ? '' : 's'}
-            <div
-              className={`process-alerts-arrow ${
-                isAlertsVisible ? 'process-alerts-arrow--rotated' : ''
-              }`}
-            />
           </button>
 
           <div
-            className={`process-alerts-list ${isAlertsVisible ? 'process-alerts-list--visible' : ''
-              }`}
+            className="process-alerts-list"
           >
             {processData.alerts.map((alert) => {
               const formattedAlert = individualAlertFormatter(

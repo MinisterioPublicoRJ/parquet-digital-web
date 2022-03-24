@@ -11,7 +11,7 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
   const tableTopDivRef = useRef();
-
+  
   // de-> para dos campos pros nomes das colunas
   const tableColumns = {
     'Nº do Processo': 'docuNrExterno',

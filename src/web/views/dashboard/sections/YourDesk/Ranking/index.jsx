@@ -28,7 +28,8 @@ function Ranking({ data, title }) {
               <strong className="ranking-featured">{item.value || '0'}</strong>
               <span className="ranking-label">{item.text}</span>
             </li>
-          ))}
+          ))
+        }
       </ul>
     </div>
   );

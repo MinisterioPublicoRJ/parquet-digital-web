@@ -24,7 +24,7 @@ function RadarModal({ compareData, close }) {
     }
     return [htmlElRef, setBlur];
   };
-
+  
   const [loadedData, setLoadedData] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [isSearching, setIsSearching] = useState(false);

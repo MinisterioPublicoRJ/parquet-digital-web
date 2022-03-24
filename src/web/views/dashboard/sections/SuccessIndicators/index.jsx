@@ -11,7 +11,7 @@ const SuccessIndicators = () => {
   const { buildRequestParams } = useAppContext();
   const [successIndicators, setSuccessIndicators] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);

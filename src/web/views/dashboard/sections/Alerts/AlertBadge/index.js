@@ -48,7 +48,7 @@ function AlertBadge(alert) {
     onDeletion,
     openDialogBox,
     setOverlay,
-    type,
+    overlayType,
     count,
     isOpen,
     isDeleted,
@@ -83,7 +83,7 @@ function AlertBadge(alert) {
     }
   }
 
-  function handleActionPress(alertAction, key, overlayType) {
+  function handleActionPress(alertAction, key ) {
     const { actionType } = alertAction;
     switch (actionType) {
       case 'delete':
@@ -111,7 +111,7 @@ function AlertBadge(alert) {
           {actions.map((alertAction) => (
             <ActionButtons
               key={`${customKey}-${alertAction.actionType}-${alertAction.text}`}
-              clickCallback={() => handleActionPress(alertAction, customKey, type)}
+              clickCallback={() => handleActionPress(alertAction, customKey)}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...alertAction}
             />

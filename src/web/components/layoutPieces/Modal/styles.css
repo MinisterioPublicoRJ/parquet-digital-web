@@ -1,0 +1,25 @@
+/*
+* @Todo toggle when modal is visible in small devices
+*
+*/
+
+.modal-outer {
+  align-items: center;
+  background-color: rgb(0 0 0 / 54%);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  /*opacity: 54%;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* it needs to be this high because of the Performance Radar graph labels :/ */
+  z-index: 100;
+}
+
+.modal-innerWrapper {
+  background-color: white;
+  border: 1px solid #707070;
+  border-radius: 10px;
+}

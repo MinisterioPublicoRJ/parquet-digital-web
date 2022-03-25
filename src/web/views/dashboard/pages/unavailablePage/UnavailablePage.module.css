@@ -1,0 +1,146 @@
+.unavailableWrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: calc(100vh - 2 * var(--bodyVerticalPadding));
+  width: calc(100vw - 2 * var(--bodyHorizontalPadding));
+  /* forces image to respect parent sizing on FF */
+  /* https://support.mozilla.org/en-US/questions/935671 */
+  overflow: hidden;
+}
+.unavailableBannerWrapper {
+  grid-column: 1 / span 1;
+  height: calc(100vh - 2 * var(--bodyVerticalPadding));
+}
+.unavailableBannerImg {
+  height: 100%;
+  width: 100%;
+}
+.unavailableContent {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-column: 2 / 6;
+  padding: var(--unavailableContentPadding);
+}
+.unavailableTitle {
+  display: flex;
+  flex-direction: row;
+  grid-column: 1 / 6;
+  grid-row: 1 / span 5;
+  justify-content: space-between;
+}
+.unavailableTitleBanner {
+  width: 45%;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+.unavailableTitleBanner img {
+  width: auto;
+  height: 90%;
+  position: absolute;
+  z-index: -1;
+  top: 42px;
+}
+.unavailableTitleText {
+  overflow: hidden;
+  text-align: end;
+  max-width: 50%;
+  display: grid;
+  place-items: end;
+  place-content: end;
+}
+
+.unavailableTitleText * {
+  max-width: 32vw;
+}
+.unavailableSugestions {
+  grid-column: 1 / 6;
+  grid-row: 6 / span 4;
+}
+.unavailableSugestions small {
+  font-size: var(--smallFont);
+}
+.unavailableContent .unavailableSugestions > h3 {
+  margin: clamp(2px, 1vh, 16px) 0;
+}
+.unavailableContent h1 {
+  font: normal normal 900 calc(var(--titleFontSize) * 2.5) var(--defaultFont);
+  color: var(--colorMprj);
+  margin: 0;
+}
+.unavailableContent h2 {
+  font: normal normal normal calc(var(--titleFontSize)) var(--defaultFont);
+  color: var(--colorMprj);
+  width: 320px;
+  margin-left: auto;
+}
+.unavailableContent h3 {
+  font: normal normal normal var(--sectionTitleFontSize) var(--defaultFont);
+  color: var(--darkWelcome);
+  margin-bottom: 16px;
+}
+.unavailableContent h4 {
+  font: normal normal normal var(--defaultFontSize) var(--defaultFont);
+  color: var(--darkWelcome);
+}
+.unavailableContent p {
+  font: normal normal normal var(--defaultFontSize) var(--defaultFont);
+}
+.unavailableContent small {
+  color: var(--mediumGray);
+  margin-bottom: var(--smallFont);
+}
+.unavailableOptions {
+  display: flex;
+  column-gap: clamp(12px, 2.5vw, 48px);
+}
+.unavailableOptions > div {
+  flex: 1;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.unavailableOptions img {
+  width: 100%;
+}
+.unavailableTitleText p {
+  color: var(--darkGray);
+  font-size: var(--TitleTextFontSize);
+}
+.unavailableOptions .unavailableOptionHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.unavailableOptionHeader {
+  height: clamp(63px, 3vh, 100px);
+}
+.unavailableOptionHeader h4 {
+  margin: 0 1vh 0 0;
+  font-size: var(--defaultFontSize);
+}
+.unavailableOptionHeader a {
+  flex-basis: content;
+}
+.unavailableOptionHeader button {
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid var(--mediumGray);
+  padding: 5px 16px;
+  color: var(--mediumGray);
+  font-size: var(--defaultFontSize);
+}
+.unavailableOptionHeader button:hover {
+  border: 1px solid var(--colorSuccess);
+  background-color: var(--colorSuccess);
+  color: white;
+}
+.unavailableOptions div small {
+  color: var(--mediumGray);
+  display: inline-block;
+}
+.unavailableOptions button {
+  cursor: pointer;
+}

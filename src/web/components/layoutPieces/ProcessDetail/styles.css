@@ -186,7 +186,6 @@ td button.process-detail-btn {
   font-weight: bold;
   height: min-content;
   padding-left: 0;
-  cursor: pointer;
   display: flex;
   margin-bottom: var(--defaultFontSize);
 }

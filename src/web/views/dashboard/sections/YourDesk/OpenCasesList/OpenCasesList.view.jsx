@@ -83,7 +83,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
                 handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno);
               }}
             >
-               <p>Clique para ver os alertas desse procedimento</p>
+              <p>
+              Clique para ver {` ${alerts.alertsCount === 1 ? 'o alerta' : 'os alertas'}` } deste procedimento.
+              </p>
             </button>
           )}
         </div>

@@ -128,6 +128,7 @@ function picsMetrics({
   variacaoAberturasVista,
 }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAberturasVista));
+  console.log()
   return (
     <p>
       Constatei que
@@ -139,15 +140,20 @@ function picsMetrics({
       neste mês, sendo que
       <strong>{` ${nrInstauradosAtual} `}</strong>
       deles
-      {nrInstauradosAtual === 1 ? ' foi ' : ' foram '}
-      instaurados nesse período.
+      {nrInstauradosAtual === 1 ? ' foi instaurado ' : ' foram instaurados'}
+      {" "}nesse período.
       {nrAberturasVistaAtual === 1
         ? ' Foi 1 abertura '
         : ` Foram ${nrAberturasVistaAtual} aberturas `}
-      de vista, e você aproveitou
-      <strong>{` ${nrAproveitamentosAtual} `}</strong>
-      {nrAproveitamentosAtual === 1 ? ' caso para ' : ` casos para `}
-      <strong>denúncias, cautelares e arquivamentos.</strong>
+      de vista,{" "}
+      {nrAproveitamentosAtual === 0 ? (
+      <span>você não aproveitou nenhum caso para</span>
+      ):(
+      <span>e você aproveitou <strong>{nrAproveitamentosAtual}</strong>
+      {" "} {nrAproveitamentosAtual === 1 ? 'caso para' : `casos para`}
+      </span>
+      )}
+      {" "}<strong>denúncias, cautelares e arquivamentos.</strong>
       {formattedVariation === "0%"  ? (
       <span> Não houve {" "}
         <strong>aumento nem redução</strong> nos últimos 30 dias.

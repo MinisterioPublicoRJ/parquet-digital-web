@@ -119,7 +119,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       totPages[activeTab] = res ? res.pages : null;
       if (res) newCurrentPageState = generateButtons(res.procedures);
       if (error) newCurrentPageState = undefined;
-      if (newCurrentPageState !== tabDetails[activeTab][currentPage]) {
+      if (tabDetails[activeTab] && newCurrentPageState !== tabDetails[activeTab][currentPage]) {
         setTabDetails({
           ...tabDetails,
           [activeTab]: { ...tabDetails[activeTab], [currentPage]: newCurrentPageState },
@@ -144,7 +144,11 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     if (hasItems && tabDetails[activeTab] && !tabDetails[activeTab][currentPage]) {
       getOpenCasesList();
     }
-  }, [activeTab, chartData, currentPage, searchString, tabDetails]);
+  }, [activeTab, chartData, currentPage, tabDetails]);
+
+  useEffect(() => {
+    getOpenCasesList();
+  }, [searchString])
 
   /**
    * [cleanChartData description]
@@ -207,7 +211,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   const onSearch = (searchStr) => {
     setSearchString(searchStr);
-    getOpenCasesList(activeTab, 1, searchStr);
   };
 
   function handleProcessDetail(numMprj, numExterno) {

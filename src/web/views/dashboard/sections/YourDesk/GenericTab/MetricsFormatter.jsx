@@ -127,19 +127,32 @@ function picsMetrics({
   nrAproveitamentosAtual,
   variacaoAberturasVista,
 }) {
+  console.log(nrAproveitamentosAtual)
   const formattedVariation = formatPercentage(Math.abs(variacaoAberturasVista));
   return (
+    <>
     <p>
-      Constatei que
-      <strong>
-        {` ${nrDocumentosDistintosAtual} ${
-          nrDocumentosDistintosAtual === 1 ? 'PIC passou' : 'PICs passaram'
-        } por você `}
+    {nrDocumentosDistintosAtual === 0 ? (
+      <span>Constatei que <strong>nenhum PIC</strong> passou por você </span>
+      ) : (
+        <span> Constatei que 
+        <strong>
+          {` ${nrDocumentosDistintosAtual} ${
+            nrDocumentosDistintosAtual === 1 ? 'PIC passou' : 'PICs passaram'
+          } por você `} 
+        </strong>
+        </span>
+      )}
+      neste mês,{" "}
+      {nrInstauradosAtual === 0 ? (
+        <strong>nenhum foi instaurado</strong>
+      ) : (
+        <strong>
+        {` ${nrInstauradosAtual} ${
+          nrInstauradosAtual === 1 ? 'foi instaurado' : 'foram instaurados'
+        } por você `} 
       </strong>
-      neste mês, sendo que
-      <strong>{` ${nrInstauradosAtual} `}</strong>
-      deles
-      {nrInstauradosAtual === 1 ? ' foi instaurado ' : ' foram instaurados'}
+      )}
       {" "}nesse período.
       {nrAberturasVistaAtual === 1
         ? ' Foi 1 abertura '
@@ -163,7 +176,8 @@ function picsMetrics({
       {" "}nos últimos 30 dias.
       </span>
       )}
-    </p>
+      </p>
+    </>
   );
 }
 

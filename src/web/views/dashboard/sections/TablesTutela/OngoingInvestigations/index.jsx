@@ -41,8 +41,8 @@ function OngoingInvestigations({
       const investigatedNameBtn = representanteDk ? (
         <button
           type="button"
-          onClick={() => {
-            setInvestigatedProfile(representanteDk);
+          onClick={(event) => {
+            setInvestigatedProfile(representanteDk, event);
           }}
           className="investigated-profile-btn"
         >
@@ -54,8 +54,8 @@ function OngoingInvestigations({
       const processDetailBtn = docuNrMp ? (
         <button
           type="button"
-          onClick={() => {
-            setProcessDetail(docuNrMp, docuNrExterno);
+          onClick={(event) => {
+            setProcessDetail(docuNrMp, docuNrExterno, event);
           }}
           className="process-detail-btn"
         >

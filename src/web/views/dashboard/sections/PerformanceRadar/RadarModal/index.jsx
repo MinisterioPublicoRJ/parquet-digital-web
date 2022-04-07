@@ -6,7 +6,7 @@ import RadarGraph from '../RadarGraph';
 import { Search } from '../../../../../assets';
 import { Spinner } from '../../../../../components';
 
-function RadarModal({ compareData, close }) {
+function RadarModal({ compareData }) {
   const useFocus = isSearching => {
     const htmlElRef = useRef(null);
     const setFocus = () => {
@@ -68,7 +68,6 @@ function RadarModal({ compareData, close }) {
   }
 
   return (
-    <>
       <div className="radarModal-outer">
         <div className="radarModal-main">
           <div className="radarModal-mainHeader">
@@ -141,12 +140,6 @@ function RadarModal({ compareData, close }) {
           </div>
         </div>
       </div>
-      <div className="radarModal-close">
-        <button type="button" className="radarModal-close" aria-label="Fechar" onClick={close}>
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </>
   );
 }
 

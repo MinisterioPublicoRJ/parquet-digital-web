@@ -18,6 +18,7 @@ function MainInvestigated() {
   const [page, setPage] = useState(1);
   const [searchString, setSearchString] = useState("");
   const [investigatedProfile, setInvestigatedProfile ] = useState();
+  const [selectedElement, setSelectedElement] = useState({});
   const tableTopDivRef = useRef();
   /**
    * uses representanteDk number to remove an investigated from the list, updates the state
@@ -81,7 +82,8 @@ function MainInvestigated() {
       const investigatedNameBtn = (
         <button
           type="button"
-          onClick={() => {
+          onClick={(event) => {
+            setSelectedElement(event?.target);
             setInvestigatedProfile(representanteDk);
           }}
           className="investigated-profile-btn"
@@ -180,7 +182,7 @@ function MainInvestigated() {
         </div>
         {
           investigatedProfile && 
-          <Modal close={() => setInvestigatedProfile(null)}>
+          <Modal  withExitButton previousElement={selectedElement} close={() => setInvestigatedProfile(null)}>
             <InvestigatedProfile close={() => setInvestigatedProfile(null)} representanteDk={investigatedProfile} organType={currentOffice.tipo} />
           </Modal>
         }

@@ -19,9 +19,9 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-const TabTrap = (e, handleClose, previousElement) => {
+const TabTrap = (e, handleClose) => {
   if (e.key === 'Escape') {
-    handleClose(previousElement);
+    handleClose();
     return;
   }
   if (e.key !== 'Tab') return;
@@ -49,16 +49,16 @@ export default function Modal({ children, close, previousElement, withExitButton
     document.querySelector('.modal-outer').focus();
   }, []);
 
-  function handleClose(element) {
-    if (element) element.focus();
+  function handleClose() {
+    if (previousElement) previousElement.focus();
     close();
   }
 
   return ReactDom.createPortal(
     <div
       className="modal-outer"
-      onClick={() => handleClose(previousElement)}
-      onKeyDown={(e) => TabTrap(e, handleClose, previousElement)}
+      onClick={() => handleClose()}
+      onKeyDown={(e) => TabTrap(e, handleClose)}
       role="button"
       tabIndex="0"
     >
@@ -70,6 +70,11 @@ export default function Modal({ children, close, previousElement, withExitButton
         className="modal-innerWrapper"
       >
         {children}
+        {withExitButton && (
+          <button type="button" className="modal-close" aria-label="Fechar" onClick={handleClose}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        )}
       </div>
     </div>,
     document.querySelector('#portal'),

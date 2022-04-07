@@ -5,18 +5,21 @@ import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
 import { InvestigatedProfile, Modal, ProcessDetail, SectionTitle } from '../../../../components';
 
-const TablesTutela = () => {
+function TablesTutela() {
   const [visibleTab, setVisibleTab] = useState('process');
   const [searchString, setSearchString] = useState(null);
   const [repDk, setRepDk] = useState(null);
   const [extDocNum, setExtDocNum] = useState(null);
   const [mpDocNum, setMpDocNum] = useState(null);
+  const [selectedElement, setSelectedElement] = useState({});
   
-  function setInvestigatedProfile(representanteDk){
+  function setInvestigatedProfile(representanteDk, event){
+    setSelectedElement(event?.target);
     setRepDk(representanteDk);
   }
 
-  function setProcessDetail(docuNrMp, docuNrExterno){
+  function setProcessDetail(docuNrMp, docuNrExterno, event){
+    setSelectedElement(event?.target);
     setExtDocNum(docuNrExterno);
     setMpDocNum(docuNrMp);
   }
@@ -60,20 +63,20 @@ const TablesTutela = () => {
         />
         {
           mpDocNum &&
-          <Modal close={() => setMpDocNum(null)}>
+          <Modal withExitButton previousElement={selectedElement} close={() => setMpDocNum(null)}>
             <ProcessDetail docuNrExterno={extDocNum} docuNrMp={mpDocNum} close={() => setMpDocNum(null)} />
           </Modal>          
         }
 
         {
           repDk &&
-          <Modal close={() => setRepDk(null)}>
+          <Modal withExitButton previousElement={selectedElement} close={() => setRepDk(null)}>
             <InvestigatedProfile representanteDk={repDk} close={() => setRepDk(null)} />
           </Modal>          
         }
       </div>
     </div>
   );
-};
+}
 
 export default TablesTutela;

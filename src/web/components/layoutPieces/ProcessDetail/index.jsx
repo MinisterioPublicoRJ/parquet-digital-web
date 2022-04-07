@@ -217,9 +217,6 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
         </div>
       </div>
       {renderComponentBody()}
-      <button type="button" className="modal-close" aria-label="Fechar" onClick={close}>
-        <span aria-hidden="true">&times;</span>
-      </button>
     </article>
   );
 }

@@ -28,6 +28,8 @@ function PerformanceRadar() {
   const [dataError, setError] = useState(false);
   const [isRadarModalOpen, setIsRadarModalOpen] = useState(false);
   const [radarModalData, setRadarModalData] = useState();
+  const [selectedElement, setSelectedElement] = useState({});
+
 
   useEffect(() => {
     getPerformanceData();
@@ -159,8 +161,9 @@ function PerformanceRadar() {
     setChartLabels(labels);
   }
 
-  function handleCompareButton() {
+  function handleCompareButton(event) {
     getCompareData();
+    setSelectedElement(event.target);
     setIsRadarModalOpen(true);
   }
 
@@ -182,7 +185,7 @@ function PerformanceRadar() {
         <button
           type="button"
           className="radar-subtitles-item"
-          onClick={() => handleCompareButton()}
+          onClick={handleCompareButton}
         >
           <RadarArrow height={15} width={15} />
           Comparativo
@@ -191,8 +194,8 @@ function PerformanceRadar() {
 
       { 
         isRadarModalOpen && 
-        <Modal close={() => setIsRadarModalOpen(false)}>
-          <RadarModal compareData={radarModalData} close={() => setIsRadarModalOpen(false)} />
+        <Modal withExitButton previousElement={selectedElement} close={() => setIsRadarModalOpen(false)}>
+          <RadarModal compareData={radarModalData} />
         </Modal>
 
       }

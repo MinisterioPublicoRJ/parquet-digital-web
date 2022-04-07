@@ -6,6 +6,7 @@ import './styles.css';
 
 const propTypes = {
   children: PropTypes.node,
+  previousElement: PropTypes.node,
 };
 
 // children can be undefined if Modal is not open yet
@@ -18,13 +19,12 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-const TabTrap = (e, close) => {
-
+const TabTrap = (e, handleClose, previousElement) => {
   if (e.key === 'Escape') {
-    close();
+    handleClose(previousElement);
     return;
   }
-  if (e.key !== 'Tab') return
+  if (e.key !== 'Tab') return;
 
   const focusableModalElements = document
     .querySelector('#portal')
@@ -34,28 +34,31 @@ const TabTrap = (e, close) => {
   const lastElement = focusableModalElements[focusableModalElements.length - 1];
 
   if (!e.shiftKey && document.activeElement === lastElement) {
-
     firstElement.focus();
     e.preventDefault();
     return;
   }
   if (e.shiftKey && document.activeElement === firstElement) {
-
     lastElement.focus();
     e.preventDefault();
   }
 };
 
-export default function Modal({ children, close }) {
+export default function Modal({ children, close, previousElement, withExitButton }) {
   useEffect(() => {
     document.querySelector('.modal-outer').focus();
   }, []);
 
+  function handleClose(element) {
+    if (element) element.focus();
+    close();
+  }
+
   return ReactDom.createPortal(
     <div
       className="modal-outer"
-      onClick={() => close()}
-      onKeyDown={(e) => TabTrap(e, close)}
+      onClick={() => handleClose(previousElement)}
+      onKeyDown={(e) => TabTrap(e, handleClose, previousElement)}
       role="button"
       tabIndex="0"
     >
@@ -63,7 +66,7 @@ export default function Modal({ children, close }) {
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
         onClick={(e) => handleInnerClick(e)}
-        onKeyDown={(e) => TabTrap(e, close)}
+        onKeyDown={() => null}
         className="modal-innerWrapper"
       >
         {children}

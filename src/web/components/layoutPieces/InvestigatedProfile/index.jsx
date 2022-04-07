@@ -143,11 +143,9 @@ function InvestigatedProfile({ close, representanteDk }) {
             )}
           </div>
 
-          <div className="profile-close">
-            <button type="button" className="close" aria-label="Fechar" onClick={close}>
+            <button type="button" className="modal-close" aria-label="Fechar" onClick={close}>
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
         </article>
       );
     }

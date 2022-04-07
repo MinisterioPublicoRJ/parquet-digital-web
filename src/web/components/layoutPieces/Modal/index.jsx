@@ -24,6 +24,8 @@ const TabTrap = (e, close) => {
     close();
     return;
   }
+  if (e.key !== 'Tab') return
+
   const focusableModalElements = document
     .querySelector('#portal')
     .querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [role="button"]');

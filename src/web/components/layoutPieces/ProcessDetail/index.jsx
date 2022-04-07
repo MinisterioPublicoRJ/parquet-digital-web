@@ -20,7 +20,7 @@ const propTypes = {
 const defaultProps = {
   docuNrMp: '-',
   docuNrExterno: '-',
-}
+};
 
 function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [processData, setProcessData] = useState(null);
@@ -69,9 +69,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
             {processData.alerts.length === 1 ? '' : 's'}
           </button>
 
-          <div
-            className="process-alerts-list"
-          >
+          <div className="process-alerts-list">
             {processData.alerts.map((alert) => {
               const formattedAlert = individualAlertFormatter(
                 { docNum: docuNrMp, ...alert },
@@ -203,7 +201,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
           <h2>Detalhes do Procedimento</h2>
           Informações de relevância sobre o procedimento.
           <div>
-            <span>{`Nº MPRJ: ${ docuNrMp }`}</span>
+            <span>{`Nº MPRJ: ${docuNrMp}`}</span>
             <button
               type="button"
               onClick={() => {
@@ -219,11 +217,9 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
         </div>
       </div>
       {renderComponentBody()}
-      <div className="modal-close">
-        <button type="button" className="close" aria-label="Fechar" onClick={close}>
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      <button type="button" className="modal-close" aria-label="Fechar" onClick={close}>
+        <span aria-hidden="true">&times;</span>
+      </button>
     </article>
   );
 }

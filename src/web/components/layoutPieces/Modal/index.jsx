@@ -44,7 +44,7 @@ const TabTrap = (e, handleClose) => {
   }
 };
 
-export default function Modal({ children, close, previousElement, withExitButton }) {
+export default function Modal({ children, close, previousElement, withExitButton, inner }) {
   useEffect(() => {
     document.querySelector('.modal-outer').focus();
   }, []);
@@ -54,29 +54,32 @@ export default function Modal({ children, close, previousElement, withExitButton
     close();
   }
 
-  return ReactDom.createPortal(
-    <div
-      className="modal-outer"
-      onClick={() => handleClose()}
-      onKeyDown={(e) => TabTrap(e, handleClose)}
-      role="button"
-      tabIndex="0"
-    >
-      {/* this next div serves only to stop propagating click ( parent outer div closes the modal, but inner div clicks shouldn't) */}
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-      <div
-        onClick={(e) => handleInnerClick(e)}
-        onKeyDown={() => null}
-        className="modal-innerWrapper"
-      >
-        {children}
-        {withExitButton && (
-          <button type="button" className="modal-close" aria-label="Fechar" onClick={handleClose}>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        )}
-      </div>
-    </div>,
+  const modalContent = <div
+  className="modal-outer"
+  onClick={() => handleClose()}
+  onKeyDown={(e) => TabTrap(e, handleClose)}
+  role="button"
+  tabIndex="0"
+>
+  {/* this next div serves only to stop propagating click ( parent outer div closes the modal, but inner div clicks shouldn't) */}
+  {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+  <div
+    onClick={(e) => handleInnerClick(e)}
+    onKeyDown={() => null}
+    className="modal-innerWrapper"
+  >
+    {children}
+    {withExitButton && (
+      <button type="button" className="modal-close" aria-label="Fechar" onClick={handleClose}>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    )}
+  </div>
+</div>;
+
+  if (inner) return modalContent;
+  
+  return ReactDom.createPortal(modalContent,
     document.querySelector('#portal'),
   );
 }

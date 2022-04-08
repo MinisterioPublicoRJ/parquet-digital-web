@@ -149,7 +149,7 @@ function Alerts() {
               <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
             )}
             {modalContent && (
-              <Modal close={() => setModalContent(null)}>
+              <Modal inner close={() => setModalContent(null)}>
                 <DialogBox
                   action={sendEmail}
                   message={dialogBoxMessage}

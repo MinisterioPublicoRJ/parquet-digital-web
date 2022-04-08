@@ -54,6 +54,7 @@
 
 .alerts-body .modal-innerWrapper {
   width: 64%;
+  display: flex;
 }
 
 /* PHONES */

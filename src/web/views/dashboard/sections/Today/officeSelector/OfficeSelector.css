@@ -1,10 +1,15 @@
+.modal-innerWrapper.not-centered {
+  top: calc(-24vh + 2 * var(--bodyVerticalPadding));
+  left: calc(-27.5vw + var(--bodyHorizontalPadding));
+}
+
 .selector-outer {
+/*   top: calc(-24vh + 2 * var(--bodyVerticalPadding));
+  left: calc(-27.5vw + var(--bodyHorizontalPadding)); */
   background-color: rgb(0 0 0 / 14%);
   display: flex;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
+  height: 100%;
+  position: relative;
   width: 100%;
   /* it needs to be this high because of the Performance Radar graph labels :/ */
   z-index: 100;
@@ -14,8 +19,6 @@
 .selector-modal {
   background-color: #bddff0;
   border-radius: 5px;
-  margin-left: var(--bodyHorizontalPadding);
-  margin-top: calc(var(--bodyVerticalPadding) * 3);
   width: calc(50vw - 5vw);
   height: calc(55vh - 2 * var(--bodyVerticalPadding) - 3vh);
   overflow: hidden;

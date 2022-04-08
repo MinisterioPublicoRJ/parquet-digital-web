@@ -99,21 +99,3 @@
 .mapatron-iframe-wrapper iframe {
   overflow: hidden;
 }
-
-.mapatron-close {
-  text-align: center;
-  position: absolute;
-  font-size: 3em;
-  bottom: 0.1vh;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5px;
-}
-
-.mapatron-close button {
-  display: contents;
-  font-size: 2em;
-  color: #ffffff;
-}

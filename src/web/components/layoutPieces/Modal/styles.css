@@ -19,7 +19,26 @@
 }
 
 .modal-innerWrapper {
-  background-color: white;
+  position: relative;
+}
+
+.modal-innerWrapper > * {  
   border: 1px solid #707070;
   border-radius: 10px;
+  background-color: white;
+}
+
+button.modal-close {
+  text-align: center;
+  position: absolute;  
+  color: #ffffff;
+  font-size: 5em;
+  bottom: -1em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  background-color: transparent;
+  border: none;
 }

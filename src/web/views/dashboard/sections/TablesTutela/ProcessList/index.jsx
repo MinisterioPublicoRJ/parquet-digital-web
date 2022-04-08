@@ -37,8 +37,8 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
       const investigatedNameBtn = representanteDk ? (
         <button
           type="button"
-          onClick={() => {
-            setInvestigatedProfile(representanteDk);
+          onClick={(event) => {
+            setInvestigatedProfile(representanteDk, event);
           }}
           className="investigated-profile-btn"
         >
@@ -51,8 +51,8 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
       const processNumberBtn = (
         <button
           type="button"
-          onClick={() => {
-            setProcessDetail(docuNrMp, docuNrExterno);
+          onClick={(event) => {
+            setProcessDetail(docuNrMp, docuNrExterno, event);
           }}
           className="process-detail-btn"
         >

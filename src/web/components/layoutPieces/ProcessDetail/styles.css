@@ -104,24 +104,6 @@ td button.process-detail-btn {
   white-space: nowrap;
 }
 
-.modal-close {
-  text-align: center;
-  position: absolute;
-  font-size: 3em;
-  bottom: -9vh;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5px;
-}
-
-.modal-close button {
-  display: contents;
-  font-size: 2em;
-  color: #ffffff;
-}
-
 .processDetail-idSection {
   margin-bottom: 3%;
 }

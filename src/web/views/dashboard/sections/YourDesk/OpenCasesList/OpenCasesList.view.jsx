@@ -27,6 +27,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [numeroExterno, setNumeroExterno] = useState(null);
   const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
   const [tabDetails, setTabDetails] = useState({});
+  const [selectedElement, setSelectedElement] = useState({});
 
   useEffect(() => {
     if (!chartData) return;
@@ -99,8 +100,8 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       const processNumberBtn = (
         <button
           type="button"
-          onClick={() => {
-            handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno);
+          onClick={(event) => {
+            handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno, event);
           }}
           className="process-detail-btn"
         >
@@ -114,8 +115,8 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             <button
               type="button"
               className="alert-tag-sigla"
-              onClick={() => {
-                handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno);
+              onClick={(event) => {
+                handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno, event);
               }}
             >
               <p>
@@ -251,9 +252,10 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     setSearchString(searchStr);
   };
 
-  function handleProcessDetail(numMprj, numExterno) {
+  function handleProcessDetail(numMprj, numExterno, event) {
     setNumeroMprj(numMprj);
     setNumeroExterno(numExterno);
+    if (event) setSelectedElement(event.target);
     setIsProcessDetailOpen((prevState) => !prevState);
   }
 
@@ -298,7 +300,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           />
         )}
         {isProcessDetailOpen && (
-          <Modal close={handleProcessDetail}>
+          <Modal withExitButton close={handleProcessDetail} previousElement={selectedElement}>
             <ProcessDetail
               docuNrExterno={numeroExterno}
               docuNrMp={numeroMprj}

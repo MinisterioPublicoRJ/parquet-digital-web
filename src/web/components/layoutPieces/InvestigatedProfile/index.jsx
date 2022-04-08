@@ -16,7 +16,7 @@ const propTypes = {
   organType: PropTypes.number.isRequired,
 };
 
-function InvestigatedProfile({ close, representanteDk }) {
+function InvestigatedProfile({ representanteDk }) {
   const [pessDk, setPessDk] = useState(null);
   const { buildRequestParams, currentOffice } = useAppContext();
   const [profileData, setProfileData] = useState(null);
@@ -141,12 +141,6 @@ function InvestigatedProfile({ close, representanteDk }) {
                 showHeader
               />
             )}
-          </div>
-
-          <div className="profile-close">
-            <button type="button" className="close" aria-label="Fechar" onClick={close}>
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
         </article>
       );

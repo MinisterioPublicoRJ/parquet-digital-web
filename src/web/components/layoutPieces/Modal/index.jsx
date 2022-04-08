@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 // children can be undefined if Modal is not open yet
-const defaultProps = { children: undefined };
+const defaultProps = { children: undefined, previousElement: undefined };
 
 /**
  * Prevent close when click in the div.innerWrapper

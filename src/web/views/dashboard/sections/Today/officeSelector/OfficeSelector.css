@@ -68,6 +68,7 @@
   height: 75%;
   overflow-y: auto;
   padding: 1.5vh 1.5vw;
+  cursor: pointer;
 }
 
 .selector-listWrapper ul {

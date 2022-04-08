@@ -9,7 +9,7 @@ import { Modal } from '../../../../../components/layoutPieces';
 import './styles.css';
 
 const propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   buildRequestParams: PropTypes.func.isRequired,
   chartData: PropTypes.shape({
     under20: PropTypes.number,
@@ -18,7 +18,7 @@ const propTypes = {
   }).isRequired,
 };
 
-function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
+function OpenCasesList({ loading, buildRequestParams, chartData }) {
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByTab, setTotalPagesByTab] = useState({});
@@ -28,6 +28,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
+  const [isLoading, setIsLoading] = useState(loading);
 
   useEffect(() => {
     if (!chartData) return;
@@ -80,7 +81,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       slicedStr = str.slice(matchIndex, i);
       result.push(<mark>{slicedStr}</mark>);
       match = matches.next();
-    }    
+    }
     slicedStr = str.slice(i);
     result.push(slicedStr);
     return result;
@@ -144,6 +145,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     let error = false;
     let res;
     try {
+      setIsLoading(true);
       res = await Api.getOpenCasesList(
         buildRequestParams(),
         TAB_MATCHER[activeTab],
@@ -165,6 +167,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
         });
       }
       setTotalPagesByTab(totPages);
+      setIsLoading(false);
     }
   }
 
@@ -266,6 +269,21 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const emptyTab = !chartData[activeTab];
   const tabLoading = !emptyTab && tabDetails[activeTab] && !tabDetails[activeTab][currentPage];
 
+  if (searchString && tabDetails[activeTab] && (!tabDetails[activeTab][currentPage])) {
+    return (
+      <>
+        <div className="openCases-chartsWrapper">{renderCharts(chartData)}</div>
+        <SearchBox onSearch={onSearch} />
+        <div className='openCases-tableWrapper empty-table'>
+          <p className="no-openCases"> Nenhuma vista aberta com os parametros pesquisados</p>
+          <CustomTable
+            data={Array(20).fill({ content: '' })}
+            columns={TABLE_COLUMNS}
+            showHeader
+          />
+        </div>
+      </>)
+  }
   return (
     <>
       <div className="openCases-chartsWrapper">{renderCharts(chartData)}</div>
@@ -299,6 +317,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             currentPage={currentPage}
           />
         )}
+
         {isProcessDetailOpen && (
           <Modal withExitButton close={handleProcessDetail} previousElement={selectedElement}>
             <ProcessDetail

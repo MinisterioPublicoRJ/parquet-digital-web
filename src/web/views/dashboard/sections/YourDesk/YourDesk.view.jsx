@@ -155,7 +155,7 @@ function YourDesk() {
           <OpenCasesList
             buildRequestParams={buildRequestParams}
             chartData={tabDetail.openCases}
-            isLoading={!tabDetail.openCases && loading}
+            loading={!tabDetail.openCases && loading}
           />
         ) : (
           <GenericTab

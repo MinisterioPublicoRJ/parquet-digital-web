@@ -127,7 +127,6 @@ function picsMetrics({
   nrAproveitamentosAtual,
   variacaoAberturasVista,
 }) {
-  console.log(nrAproveitamentosAtual)
   const formattedVariation = formatPercentage(Math.abs(variacaoAberturasVista));
   return (
     <>

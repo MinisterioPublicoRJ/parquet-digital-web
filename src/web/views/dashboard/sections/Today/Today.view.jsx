@@ -211,8 +211,8 @@ function Today() {
           </button>
           {
             modalType === 'mapatron' &&
-            <Modal close={setModalType}>
-              <MapaTron mapatronData={currentOffice.codigo} close={setModalType} />
+            <Modal withExitButton close={setModalType}>
+              <MapaTron mapatronData={currentOffice.codigo} />
             </Modal>
           }
         </>
@@ -227,8 +227,8 @@ function Today() {
         </button>
         {
           modalType === 'glossary' &&
-          <Modal close={setModalType}>
-            <Glossary close={setModalType} />
+          <Modal withExitButton close={setModalType}>
+            <Glossary/>
           </Modal>
         }
         <button type="button" className="today-introBtn"

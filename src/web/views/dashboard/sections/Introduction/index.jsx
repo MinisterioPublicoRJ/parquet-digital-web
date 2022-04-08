@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useEventListener from './useEventListener';
 
@@ -16,6 +16,10 @@ function Introduction({ type, close }) {
   const show = (type === 1 || type === 2);
   const [currentPage, setCurrentPage] = useState(0);
   const pages = type === 1 ? TUTELA_GRID : PIP_GRID;
+
+  useEffect(() => {
+    document.querySelector('.modal-innerWrapper').classList.add('unpositioned');
+  }, []);
 
   function handleNav(movement) {
     if (movement === 'forward') {

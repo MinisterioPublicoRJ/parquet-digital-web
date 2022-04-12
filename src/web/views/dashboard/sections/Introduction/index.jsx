@@ -17,10 +17,6 @@ function Introduction({ type, close }) {
   const [currentPage, setCurrentPage] = useState(0);
   const pages = type === 1 ? TUTELA_GRID : PIP_GRID;
 
-  useEffect(() => {
-    document.querySelector('.modal-innerWrapper').classList.add('unpositioned');
-  }, []);
-
   function handleNav(movement) {
     if (movement === 'forward') {
       if (pages.length > currentPage + 1) {

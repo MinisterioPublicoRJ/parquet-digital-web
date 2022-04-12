@@ -2,9 +2,6 @@
   /* ICONS */
   --introductionArrowSize: 16px;
 }
-.modal-innerWrapper.unpositioned{
-  position: unset;
-}
 
 .intro-outer {
   align-items: center;

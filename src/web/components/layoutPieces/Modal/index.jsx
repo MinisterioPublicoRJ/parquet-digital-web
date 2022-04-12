@@ -7,6 +7,8 @@ import './styles.css';
 const propTypes = {
   children: PropTypes.node,
   previousElement: PropTypes.node,
+  unpositioned: PropTypes.bool,
+  withExitButton: PropTypes.bool,
 };
 
 // children can be undefined if Modal is not open yet
@@ -44,7 +46,7 @@ const TabTrap = (e, handleClose) => {
   }
 };
 
-export default function Modal({ children, close, previousElement, withExitButton, inner }) {
+export default function Modal({ children, close, previousElement, withExitButton, inner, unpositioned }) {
   useEffect(() => {
     document.querySelector('.modal-outer').focus();
   }, []);
@@ -67,7 +69,7 @@ export default function Modal({ children, close, previousElement, withExitButton
       <div
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={() => null}
-        className="modal-innerWrapper"
+        className={`modal-innerWrapper ${unpositioned ? 'unpositioned' : ''}`}
       >
         {children}
         {withExitButton && (

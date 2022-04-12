@@ -238,7 +238,7 @@ function Today() {
         </button>
         {       
           modalType === 'introduction' &&
-          <Modal close={() => setModalType()}>
+          <Modal unpositioned close={() => setModalType()}>
             <Introduction close={() => setModalType()} type={currentOffice.tipo} />
           </Modal>
         }

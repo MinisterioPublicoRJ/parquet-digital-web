@@ -45,8 +45,8 @@ function Introduction({ type, close }) {
 
   if (show) {
     return (
-      <div className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
-        <div style={{ gridArea: pages[currentPage].focus }} className="transparent-div">
+      <div onClick={close} role="button" tabIndex='0' onKeyDown={handleKeyPress} className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
+        <div onClick={(e) => e.stopPropagation()} role="button" tabIndex='0' onKeyDown={handleKeyPress} style={{ gridArea: pages[currentPage].focus }} className="transparent-div">
           <div className={`text-div text-div--${pages[currentPage].focus}`}>
             {pages[currentPage].component}
             <div className="btns-introduction">

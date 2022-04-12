@@ -16,6 +16,7 @@
   width: 100%;
   /* it needs to be this high because of the Performance Radar graph labels :/ */
   z-index: 100;
+  overflow: hidden;
 }
 
 .modal-innerWrapper {

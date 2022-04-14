@@ -9,6 +9,7 @@ const propTypes = {
   previousElement: PropTypes.node,
   unpositioned: PropTypes.bool,
   withExitButton: PropTypes.bool,
+  transparent: PropTypes.bool,
 };
 
 // children can be undefined if Modal is not open yet
@@ -46,7 +47,7 @@ const TabTrap = (e, handleClose) => {
   }
 };
 
-export default function Modal({ children, close, previousElement, withExitButton, inner, unpositioned }) {
+export default function Modal({ children, close, previousElement, withExitButton, inner, unpositioned, transparent }) {
   useEffect(() => {
     document.querySelector('.modal-outer').focus();
   }, []);
@@ -58,7 +59,7 @@ export default function Modal({ children, close, previousElement, withExitButton
 
   const modalContent = (
     <div
-      className="modal-outer"
+      className={`modal-outer ${transparent ? 'transparent' : ''}`}
       onClick={() => handleClose()}
       onKeyDown={(e) => TabTrap(e, handleClose)}
       role="button"

@@ -198,15 +198,13 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   useEffect(() => {
     if (!chartData) return;
     const hasItems = chartData[activeTab];
-    if (
-      hasItems &&
-      tabDetails[activeTab] &&
-      (((!searchString || tabDetails[activeTab].searchString !== searchString) &&
-        !tabDetails[activeTab][currentPage]) ||
-        (tabDetails[activeTab].searchString !== searchString &&
-          tabDetails[activeTab][currentPage].searchString !== searchString))
-    ) {
-      getOpenCasesList();
+    if (hasItems && tabDetails[activeTab]) {
+      const hasntQueriedThisPage =
+        (!searchString || tabDetails[activeTab].searchString !== searchString) &&
+        !tabDetails[activeTab][currentPage];
+      const isSearching = tabDetails[activeTab][currentPage]?.searchString !== searchString;
+      
+      if (hasntQueriedThisPage || isSearching) getOpenCasesList();
     }
   }, [activeTab, chartData, currentPage, tabDetails]);
 

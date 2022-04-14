@@ -163,7 +163,7 @@ function Today() {
         </button>
         {
           modalType === 'officeSelector' &&
-          <Modal close={setModalType}>
+          <Modal unpositioned close={setModalType}>
             <OfficeSelector close={setModalType} />
           </Modal>
         }

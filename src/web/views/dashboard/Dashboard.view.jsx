@@ -33,7 +33,7 @@ const Dashboard = () => {
   return (
     <>
     {isIntroOpen &&     
-      <Modal unpositioned close={() => setIsIntroOpen()}>
+      <Modal transparent unpositioned close={() => setIsIntroOpen()}>
         <Introduction close={() => setIsIntroOpen()} type={currentOffice.tipo} />
       </Modal>
     }

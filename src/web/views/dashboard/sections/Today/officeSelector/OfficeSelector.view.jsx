@@ -16,10 +16,6 @@ function OfficeSelector({ close }) {
     updateOffice(office);
   }
 
-  useEffect(() => {
-    document.querySelector('.modal-innerWrapper').classList.add('not-centered');
-  }, []);
-
   const handleChange = e => {
     const inputValue = e.target.value
       .toLowerCase()

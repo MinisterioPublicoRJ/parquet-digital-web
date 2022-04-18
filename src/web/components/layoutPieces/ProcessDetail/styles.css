@@ -19,7 +19,9 @@
   width: 96%;
   display: flex;
 }
-
+.process-alerts-list-empty{
+  margin-bottom: 15px;
+}
 .processDetail-headerLeft {
   display: flex;
   flex-direction: column;

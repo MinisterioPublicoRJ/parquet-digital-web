@@ -13,7 +13,13 @@ const propTypes = {
 };
 
 // children can be undefined if Modal is not open yet
-const defaultProps = { children: undefined, previousElement: undefined };
+const defaultProps = {
+  children: undefined,
+  previousElement: undefined,
+  unpositioned: undefined,
+  withExitButton: undefined,
+  transparent: undefined,
+};
 
 /**
  * Prevent close when click in the div.innerWrapper
@@ -22,7 +28,7 @@ function handleInnerClick(e) {
   e.stopPropagation();
 }
 
-const TabTrap = (e, handleClose) => {  
+const TabTrap = (e, handleClose) => {
   if (e.key === 'Escape') {
     handleClose();
     return;
@@ -47,7 +53,15 @@ const TabTrap = (e, handleClose) => {
   }
 };
 
-export default function Modal({ children, close, previousElement, withExitButton, inner, unpositioned, transparent }) {
+export default function Modal({
+  children,
+  close,
+  previousElement,
+  withExitButton,
+  inner,
+  unpositioned,
+  transparent,
+}) {
   useEffect(() => {
     document.querySelector('.modal-outer').focus();
   }, []);

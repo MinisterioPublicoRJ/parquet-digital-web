@@ -7,6 +7,8 @@ import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../
 import DeskCasesChart from '../deskCases';
 import { Modal } from '../../../../../components/layoutPieces';
 import './styles.css';
+import { highlightJSX } from '../../../../../utils';
+
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
@@ -62,37 +64,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     return totalPages;
   }
 
-  function highlightJSX(value, find) {
-    if (!value) return value;
-    // sanitize and remove accents
-    const str = value.toString();
-    const normalizedStr = str.normalize('NFD').replace(/\p{M}/gu, '');
-    const regex = new RegExp(
-      find
-        .normalize('NFD')
-        .replace(/\p{M}/gu, '')
-        .replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'),
-      'ig',
-    );
-    const matches = normalizedStr.matchAll(regex);
-    const result = [];
-    let i = 0;
-    let slicedStr = '';
-    let match = matches.next();
-    while (!match.done) {
-      const matchIndex = match.value.index;
-      slicedStr = str.slice(i, matchIndex);
-      result.push(slicedStr);
-      i = matchIndex + find.length;
-      slicedStr = str.slice(matchIndex, i);
-      result.push(<mark>{slicedStr}</mark>);
-      match = matches.next();
-    }
-    slicedStr = str.slice(i);
-    result.push(slicedStr);
-    return result;
-  }
-
+ 
   function generateButtons(list) {
     return list.map((alerts) => {
       let highlightedAlerts = {};

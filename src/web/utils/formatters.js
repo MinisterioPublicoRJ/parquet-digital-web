@@ -1,3 +1,5 @@
+import React from 'react'
+
 /**
  * formats from float to integer percentage
  * @param  {number} float a float smaller than zero (like 0.657)
@@ -65,6 +67,38 @@ export const snakeToCamel = str => {
 };
 
 export const abbrevName = name => name
-    .replace(/\s+/g, ' ')
-    .replace(/promotoria de (justiça de )?investiga[çc][aã]o penal/gi, 'PIP')
-    .replace(/promotoria de justi[çc]a de tutela coletiva/gi, 'PJTC');
+  .replace(/\s+/g, ' ')
+  .replace(/promotoria de (justiça de )?investiga[çc][aã]o penal/gi, 'PIP')
+  .replace(/promotoria de justi[çc]a de tutela coletiva/gi, 'PJTC');
+
+
+export function highlightJSX(value, find) {
+  if (!value) return value;
+  // sanitize and remove accents
+  const str = value.toString();
+  const normalizedStr = str.normalize('NFD').replace(/\p{M}/gu, '');
+  const regex = new RegExp(
+    find
+      .normalize('NFD')
+      .replace(/\p{M}/gu, '')
+      .replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'),
+    'ig',
+  );
+  const matches = normalizedStr.matchAll(regex);
+  const result = [];
+  let i = 0;
+  let slicedStr = '';
+  let match = matches.next();
+  while (!match.done) {
+    const matchIndex = match.value.index;
+    slicedStr = str.slice(i, matchIndex);
+    result.push(slicedStr);
+    i = matchIndex + find.length;
+    slicedStr = str.slice(matchIndex, i);
+    result.push(<mark>{slicedStr}</mark>);
+    match = matches.next();
+  }
+  slicedStr = str.slice(i);
+  result.push(slicedStr);
+  return result;
+}

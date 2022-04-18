@@ -9,7 +9,7 @@ import { Modal } from '../../../../../components/layoutPieces';
 import './styles.css';
 
 const propTypes = {
-  loading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   buildRequestParams: PropTypes.func.isRequired,
   chartData: PropTypes.shape({
     under20: PropTypes.number,
@@ -18,7 +18,7 @@ const propTypes = {
   }).isRequired,
 };
 
-function OpenCasesList({ loading, buildRequestParams, chartData }) {
+function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByTab, setTotalPagesByTab] = useState({});
@@ -28,7 +28,7 @@ function OpenCasesList({ loading, buildRequestParams, chartData }) {
   const [isProcessDetailOpen, setIsProcessDetailOpen] = useState(false);
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
-  const [isLoading, setIsLoading] = useState(loading);
+  const [tabLoading, setTabLoading] = useState(false);
 
   useEffect(() => {
     if (!chartData) return;
@@ -66,8 +66,14 @@ function OpenCasesList({ loading, buildRequestParams, chartData }) {
     if (!value) return value;
     // sanitize and remove accents
     const str = value.toString();
-    const normalizedStr = str.normalize('NFD').replace(/\p{M}/ug, '');
-    const regex = new RegExp(find.normalize('NFD').replace(/\p{M}/ug, '').replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'), 'ig');
+    const normalizedStr = str.normalize('NFD').replace(/\p{M}/gu, '');
+    const regex = new RegExp(
+      find
+        .normalize('NFD')
+        .replace(/\p{M}/gu, '')
+        .replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'),
+      'ig',
+    );
     const matches = normalizedStr.matchAll(regex);
     const result = [];
     let i = 0;
@@ -145,7 +151,7 @@ function OpenCasesList({ loading, buildRequestParams, chartData }) {
     let error = false;
     let res;
     try {
-      setIsLoading(true);
+      setTabLoading(true);
       res = await Api.getOpenCasesList(
         buildRequestParams(),
         TAB_MATCHER[activeTab],
@@ -159,15 +165,24 @@ function OpenCasesList({ loading, buildRequestParams, chartData }) {
       const totPages = totalPagesByTab;
       totPages[activeTab] = res ? res.pages : null;
       if (res) newCurrentPageState = generateButtons(res.procedures);
+      newCurrentPageState.searchString = searchString;
       if (error) newCurrentPageState = undefined;
-      if (tabDetails[activeTab] && newCurrentPageState !== tabDetails[activeTab][currentPage]) {
+      if (
+        tabDetails[activeTab] &&
+        (tabDetails[activeTab].searchString !== searchString ||
+          newCurrentPageState !== tabDetails[activeTab][currentPage])
+      ) {
         setTabDetails({
           ...tabDetails,
-          [activeTab]: { ...tabDetails[activeTab], [currentPage]: newCurrentPageState },
+          [activeTab]: {
+            ...tabDetails[activeTab],
+            [currentPage]: newCurrentPageState,
+            searchString,
+          },
         });
       }
       setTotalPagesByTab(totPages);
-      setIsLoading(false);
+      setTabLoading(false);
     }
   }
 
@@ -183,8 +198,13 @@ function OpenCasesList({ loading, buildRequestParams, chartData }) {
   useEffect(() => {
     if (!chartData) return;
     const hasItems = chartData[activeTab];
-    if (hasItems && tabDetails[activeTab] && !tabDetails[activeTab][currentPage]) {
-      getOpenCasesList();
+    if (hasItems && tabDetails[activeTab]) {
+      const hasntQueriedThisPage =
+        (!searchString || tabDetails[activeTab].searchString !== searchString) &&
+        !tabDetails[activeTab][currentPage];
+      const isSearching = tabDetails[activeTab][currentPage]?.searchString !== searchString;
+      
+      if (hasntQueriedThisPage || isSearching) getOpenCasesList();
     }
   }, [activeTab, chartData, currentPage, tabDetails]);
 
@@ -267,37 +287,39 @@ function OpenCasesList({ loading, buildRequestParams, chartData }) {
   }
 
   const emptyTab = !chartData[activeTab];
-  const tabLoading = !emptyTab && tabDetails[activeTab] && !tabDetails[activeTab][currentPage];
 
-  if (searchString && tabDetails[activeTab] && (!tabDetails[activeTab][currentPage])) {
-    return (
-      <>
-        <div className="openCases-chartsWrapper">{renderCharts(chartData)}</div>
-        <SearchBox onSearch={onSearch} />
-        <div className='openCases-tableWrapper empty-table'>
-          <p className="no-openCases"> Nenhuma vista aberta com os parametros pesquisados</p>
-          <CustomTable
-            data={Array(20).fill({ content: '' })}
-            columns={TABLE_COLUMNS}
-            showHeader
-          />
-        </div>
-      </>)
-  }
   return (
     <>
       <div className="openCases-chartsWrapper">{renderCharts(chartData)}</div>
       <SearchBox onSearch={onSearch} />
       <div className={`openCases-tableWrapper ${emptyTab ? 'empty-table' : ''}`}>
         {tabLoading && <Spinner size="medium" />}
-        {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
-          <CustomTable
-            data={tabDetails[activeTab][currentPage]}
-            columns={TABLE_COLUMNS}
-            showHeader
-            searchString={searchString}
-          />
-        )}
+        {!emptyTab &&
+          !tabLoading &&
+          tabDetails[activeTab] &&
+          tabDetails[activeTab][currentPage] && (
+            <CustomTable
+              data={tabDetails[activeTab][currentPage]}
+              columns={TABLE_COLUMNS}
+              showHeader
+              searchString={searchString}
+            />
+          )}
+
+        {searchString &&
+          !tabLoading &&
+          tabDetails[activeTab] &&
+          !tabDetails[activeTab][currentPage] && (
+            <div className="openCases-tableWrapper empty-table">
+              <p className="no-openCases"> Nenhuma vista aberta com os parametros pesquisados</p>
+              <CustomTable
+                data={Array(20).fill({ content: '' })}
+                columns={TABLE_COLUMNS}
+                showHeader
+              />
+            </div>
+          )}
+
         {emptyTab && (
           // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
           <>

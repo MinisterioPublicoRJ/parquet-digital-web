@@ -161,19 +161,6 @@ td button.process-detail-btn {
   transform: rotate(-180deg) translateY(4px);
 }
 
-.process-alerts-btn {
-  cursor: default;
-  border-radius: 4px;
-  background-color: transparent;
-  border: 0;
-  padding: 2px 4px;
-  font-weight: bold;
-  height: min-content;
-  padding-left: 0;
-  display: flex;
-  margin-bottom: var(--defaultFontSize);
-}
-
 .process-alerts-list {
   width: 100%;
   display: flex;

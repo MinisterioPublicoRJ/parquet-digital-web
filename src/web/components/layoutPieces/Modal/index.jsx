@@ -7,10 +7,19 @@ import './styles.css';
 const propTypes = {
   children: PropTypes.node,
   previousElement: PropTypes.node,
+  unpositioned: PropTypes.bool,
+  withExitButton: PropTypes.bool,
+  transparent: PropTypes.bool,
 };
 
 // children can be undefined if Modal is not open yet
-const defaultProps = { children: undefined, previousElement: undefined };
+const defaultProps = {
+  children: undefined,
+  previousElement: undefined,
+  unpositioned: undefined,
+  withExitButton: undefined,
+  transparent: undefined,
+};
 
 /**
  * Prevent close when click in the div.innerWrapper
@@ -44,7 +53,15 @@ const TabTrap = (e, handleClose) => {
   }
 };
 
-export default function Modal({ children, close, previousElement, withExitButton, inner }) {
+export default function Modal({
+  children,
+  close,
+  previousElement,
+  withExitButton,
+  inner,
+  unpositioned,
+  transparent,
+}) {
   useEffect(() => {
     document.querySelector('.modal-outer').focus();
   }, []);
@@ -54,34 +71,34 @@ export default function Modal({ children, close, previousElement, withExitButton
     close();
   }
 
-  const modalContent = <div
-  className="modal-outer"
-  onClick={() => handleClose()}
-  onKeyDown={(e) => TabTrap(e, handleClose)}
-  role="button"
-  tabIndex="0"
->
-  {/* this next div serves only to stop propagating click ( parent outer div closes the modal, but inner div clicks shouldn't) */}
-  {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-  <div
-    onClick={(e) => handleInnerClick(e)}
-    onKeyDown={() => null}
-    className="modal-innerWrapper"
-  >
-    {children}
-    {withExitButton && (
-      <button type="button" className="modal-close" aria-label="Fechar" onClick={handleClose}>
-        <span aria-hidden="true">&times;</span>
-      </button>
-    )}
-  </div>
-</div>;
+  const modalContent = (
+    <div
+      className={`modal-outer ${transparent ? 'transparent' : ''}`}
+      onClick={() => handleClose()}
+      onKeyDown={(e) => TabTrap(e, handleClose)}
+      role="button"
+      tabIndex="0"
+    >
+      {/* this next div serves only to stop propagating click ( parent outer div closes the modal, but inner div clicks shouldn't) */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+      <div
+        onClick={(e) => handleInnerClick(e)}
+        onKeyDown={() => null}
+        className={`modal-innerWrapper ${unpositioned ? 'unpositioned' : ''}`}
+      >
+        {children}
+        {withExitButton && (
+          <button type="button" className="modal-close" aria-label="Fechar" onClick={handleClose}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        )}
+      </div>
+    </div>
+  );
 
   if (inner) return modalContent;
-  
-  return ReactDom.createPortal(modalContent,
-    document.querySelector('#portal'),
-  );
+
+  return ReactDom.createPortal(modalContent, document.querySelector('#portal'));
 }
 
 Modal.propTypes = propTypes;

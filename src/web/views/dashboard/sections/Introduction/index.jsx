@@ -17,10 +17,6 @@ function Introduction({ type, close }) {
   const [currentPage, setCurrentPage] = useState(0);
   const pages = type === 1 ? TUTELA_GRID : PIP_GRID;
 
-  useEffect(() => {
-    document.querySelector('.modal-innerWrapper').classList.add('unpositioned');
-  }, []);
-
   function handleNav(movement) {
     if (movement === 'forward') {
       if (pages.length > currentPage + 1) {
@@ -45,8 +41,8 @@ function Introduction({ type, close }) {
 
   if (show) {
     return (
-      <div className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
-        <div style={{ gridArea: pages[currentPage].focus }} className="transparent-div">
+      <div onClick={close} role="button" tabIndex='0' onKeyDown={handleKeyPress} className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
+        <div onClick={(e) => e.stopPropagation()} role="button" tabIndex='0' onKeyDown={handleKeyPress} style={{ gridArea: pages[currentPage].focus }} className="transparent-div">
           <div className={`text-div text-div--${pages[currentPage].focus}`}>
             {pages[currentPage].component}
             <div className="btns-introduction">

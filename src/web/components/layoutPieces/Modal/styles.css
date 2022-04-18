@@ -16,10 +16,19 @@
   width: 100%;
   /* it needs to be this high because of the Performance Radar graph labels :/ */
   z-index: 100;
+  overflow: hidden;
+}
+
+.modal-outer.transparent {
+  background-color: transparent;
 }
 
 .modal-innerWrapper {
   position: relative;
+}
+
+.modal-innerWrapper.unpositioned{
+  position: unset;
 }
 
 .modal-innerWrapper > * {  

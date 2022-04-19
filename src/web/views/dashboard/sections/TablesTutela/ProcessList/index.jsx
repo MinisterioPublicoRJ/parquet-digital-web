@@ -35,13 +35,13 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
     return list.map((process) => {
       const { representanteDk, docuPersonagens, docuNrExterno, docuNrMp } = process;
 
-      let highlightedAlerts = {};
+      let highlightedAProcessList = {};
       if (searchString) {
         Object.entries(process).forEach(([key, value]) => {
-          highlightedAlerts[key] = highlightJSX(value, searchString);
+          highlightedAProcessList[key] = highlightJSX(value, searchString);
         });
       } else {
-        highlightedAlerts = process;
+        highlightedAProcessList = process;
       }
 
       const investigatedNameBtn = representanteDk ? (
@@ -66,7 +66,7 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
           }}
           className="process-detail-btn"
         >
-          {highlightedAlerts.docuNrExterno}
+          {highlightedAProcessList.docuNrExterno}
         </button>
       );
 

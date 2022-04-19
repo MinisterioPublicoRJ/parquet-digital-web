@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Api from '../../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
+import { highlightJSX } from '../../../../../utils';
 
 function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searchString}) {
   const { buildRequestParams } = useAppContext();
@@ -34,6 +35,15 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
     return list.map((process) => {
       const { representanteDk, docuPersonagens, docuNrExterno, docuNrMp } = process;
 
+      let highlightedAProcessList = {};
+      if (searchString) {
+        Object.entries(process).forEach(([key, value]) => {
+          highlightedAProcessList[key] = highlightJSX(value, searchString);
+        });
+      } else {
+        highlightedAProcessList = process;
+      }
+
       const investigatedNameBtn = representanteDk ? (
         <button
           type="button"
@@ -56,7 +66,7 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
           }}
           className="process-detail-btn"
         >
-          {docuNrExterno}
+          {highlightedAProcessList.docuNrExterno}
         </button>
       );
 

@@ -60,15 +60,14 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
         processData.identification;
       return (
         <div className="processDetail-body processDetail-loadedData">
-          <button
-            type="button"
-            className="process-alerts-btn"
-            onClick={() => setIsAlertsVisible((prevValue) => !prevValue)}
-          >
+          {processData.alerts.length === 0 ? (
+            <strong className="process-alerts-list-empty">Este procedimento não possui alertas</strong>
+          ) : (
+            <>
+            <strong>
             Este procedimento possui {processData.alerts.length} alerta
             {processData.alerts.length === 1 ? '' : 's'}
-          </button>
-
+            </strong>
           <div className="process-alerts-list">
             {processData.alerts.map((alert) => {
               const formattedAlert = individualAlertFormatter(
@@ -94,7 +93,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
               );
             })}
           </div>
-
+          </>
+          )}
           <h3>PERSONAGENS</h3>
           <div className="processDetail-section">
             {processData.characters.map(({ name, role }) => (

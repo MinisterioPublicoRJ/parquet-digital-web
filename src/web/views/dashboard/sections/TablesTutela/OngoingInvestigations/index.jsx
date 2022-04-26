@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Api from '../../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
+import { highlightJSX } from '../../../../../utils';
 
 function OngoingInvestigations({
   isActive,

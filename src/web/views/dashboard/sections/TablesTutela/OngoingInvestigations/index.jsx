@@ -2,14 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import Api from '../../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
+import { highlightJSX } from '../../../../../utils';
 
-function OngoingInvestigations({
-  isActive,
-  setInvestigatedProfile,
-  setProcessDetail,
-  searchString,
-}) {
-
+function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDetail, searchString,}) {
   const { buildRequestParams } = useAppContext();
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
@@ -38,6 +33,16 @@ function OngoingInvestigations({
   function generateButtons(list) {
     return list.map((investigation) => {
       const { representanteDk, docuPersonagens, docuNrMp, docuNrExterno } = investigation;
+
+      let highlightedOngoingInvestigations = {};
+      if (searchString) {
+        Object.entries(investigation).forEach(([key, value]) => {
+          highlightedOngoingInvestigations[key] = highlightJSX(value, searchString);
+        });
+      } else {
+        highlightedOngoingInvestigations = investigation;
+      }
+
       const investigatedNameBtn = representanteDk ? (
         <button
           type="button"
@@ -59,7 +64,7 @@ function OngoingInvestigations({
           }}
           className="process-detail-btn"
         >
-          {docuNrMp}
+          {highlightedOngoingInvestigations.docuNrMp}
         </button>
       ) : (
         docuNrMp

@@ -8,6 +8,7 @@ import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { CustomTable, Spinner, SectionTitle, Pagination, Modal, InvestigatedProfile } from '../../../../components';
+import { highlightJSX } from '../../../../utils';
 
 function MainInvestigated() {
   const { buildRequestParams, currentOffice } = useAppContext();
@@ -78,7 +79,20 @@ function MainInvestigated() {
    * @return {array}     formatted according to table component props
    */
   function cleanData(raw) {
-    return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => {
+    return raw.map((investigated) => {
+      let highlightedInvestigated = {};
+
+      if (searchString) {
+        Object.entries(investigated).forEach(([key, value]) => {
+          highlightedInvestigated[key] = highlightJSX(value, searchString);
+        });
+      } else {
+        highlightedInvestigated = investigated;
+      }
+
+      const { nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk } = highlightedInvestigated;
+
+
       const investigatedNameBtn = (
         <button
           type="button"
@@ -91,6 +105,7 @@ function MainInvestigated() {
           {nmInvestigado}
         </button>
       );
+
       const rowInfo = {
         key: `${nmInvestigado}-${nrInvestigacoes}`,
         nmInvestigado: investigatedNameBtn,

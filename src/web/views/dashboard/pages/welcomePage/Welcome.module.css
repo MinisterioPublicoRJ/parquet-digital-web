@@ -1,0 +1,75 @@
+.welcomeWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: pre-wrap;
+  min-height: 95vh;
+}
+
+.welcomeWrapper img {
+  width: 40vw;
+}
+
+.welcomeTextAndButtons{
+  width: 40vw;
+  height: 30vh;
+  display: grid;
+  grid-template-rows: 1fr, 2fr, 1fr;
+}
+
+.welcomeTitle{
+  color: #4A4A4A;
+  font-weight: bold;
+  font-size: 4vh;
+  margin-bottom: 0px;
+}
+
+.welcomeDescription{
+  margin-top: 0;
+  color: var(--darkWelcome);
+  font-size: 1vw;
+  min-height: 8vh;
+}
+
+.welcomeButtonsNormal{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 1vw;
+}
+
+.welcomeButtonsNormal button{
+  color: var(--darkWelcome);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration-line: none;
+  height: 2vw;
+  font-size: 1vw;
+  border: none;
+}
+
+.welcomePreviousButton{
+  grid-column: 1;
+  background: #d6d6d6 0% 0% no-repeat padding-box;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.welcomeNextButton{
+  grid-column: 4;
+  background: #d6d6d6 0% 0% no-repeat padding-box;
+  border-radius: 0px 20px 20px 0px;
+}
+
+.welcomeSkipButton{
+  grid-column: 5;
+  background: #EFEFEF 0% 0% no-repeat padding-box;
+  border-radius: 20px;
+}
+
+.welcomeStartButton{
+  grid-column: 3;
+  background: #5FF09D 0% 0% no-repeat padding-box;
+  border-radius: 20px;
+}

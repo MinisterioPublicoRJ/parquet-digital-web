@@ -1,0 +1,155 @@
+.welcomeWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: pre-wrap;
+  min-height: 95vh;
+}
+
+.welcomeWrapper img {
+  width: 40vw;
+}
+
+.welcomeTextAndButtons{
+  width: 40vw;
+  height: 30vh;
+  display: grid;
+  grid-template-rows: 1fr, 2fr, 1fr;
+}
+
+.welcomeTitle{
+  color: #4A4A4A;
+  font-weight: bold;
+  font-size: 4vh;
+  margin-bottom: 0px;
+}
+
+.welcomeDescription{
+  margin-top: 0;
+  color: var(--darkWelcome);
+  font-size: 1vw;
+  min-height: 8vh;
+}
+
+.welcomeButtonsNormal{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 1vw;
+}
+
+.welcomeButtonsNormal button{
+  color: var(--darkWelcome);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration-line: none;
+  height: 2vw;
+  font-size: 1vw;
+  border: none;
+}
+
+.welcomePreviousButton{
+  grid-column: 1;
+  background: #d6d6d6 0% 0% no-repeat padding-box;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.welcomeNextButton{
+  grid-column: 4;
+  background: #d6d6d6 0% 0% no-repeat padding-box;
+  border-radius: 0px 20px 20px 0px;
+}
+
+.welcomeSkipButton{
+  grid-column: 5;
+  background: #EFEFEF 0% 0% no-repeat padding-box;
+  border-radius: 20px;
+}
+
+.welcomeStartButton{
+  grid-column: 3;
+  background: #5FF09D 0% 0% no-repeat padding-box;
+  border-radius: 20px;
+}
+
+@media(max-width: 480px){
+  .welcomeWrapper{
+    white-space: initial;
+  }
+
+  .welcomeWrapper img{
+    width: 90vw;
+  }
+
+  .welcomeTextAndButtons{
+    width: 90vw;
+    grid-template-rows: 1fr, 2fr, 2fr;
+  }
+
+  .welcomeTitle{
+    font-size: 3vh;
+  }
+
+  .welcomeDescription{
+    font-size: 4vw;
+    min-height: 12vh;
+  }
+
+  .welcomeButtonsNormal{
+    min-width: 90vw;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+  }
+
+  .welcomeButtonsNormal button{
+    height: 8vw;
+    font-size: 4vw;
+  }
+
+  .welcomePreviousButton{
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .welcomeNextButton{
+    grid-column: 3;
+    grid-row: 1;
+  }
+  
+  .welcomeSkipButton{
+    grid-column-start: 2;
+    grid-row: 1;
+  }
+  
+  .welcomeStartButton{
+    grid-column-end: 2;
+    grid-row: 1;
+  }
+}
+
+@media(max-width: 1280px){
+  .welcomeWrapper img{
+    margin-top: -20px;
+    width: 60vw;
+  }
+
+  .welcomeTextAndButtons{
+    width: 75vw;
+  }
+
+  .welcomeTitle{
+    font-size: 3vh;
+  }
+
+  .welcomeDescription{
+    font-size: 1.5vw;
+    min-height: 12vh;
+  }
+
+  .welcomeButtonsNormal button{
+    height: 2.5vw;
+    font-size: 1.5vw;
+  }
+}

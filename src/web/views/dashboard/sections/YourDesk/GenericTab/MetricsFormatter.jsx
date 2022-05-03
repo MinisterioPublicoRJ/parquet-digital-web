@@ -27,11 +27,19 @@ function courtCasesMetrics({
   const yearVariation = formatPercentage(Math.abs(variacao12Meses));
   return (
     <div>
+    {nrAcoesUltimos60Dias === 0 ? (
       <span>
-      Você ajuizou
-      <strong>{` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
-      nos últimos 60 dias.{" "}
+      Você não ajuizou {" "}
+      <strong>nenhuma ação nos últimos 60 dias.</strong>{" "}
       </span>
+      ) : (
+      <strong>
+      Você ajuizou
+      <strong>
+        {` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}</strong>
+        nos últimos 60 dias.{" "} 
+      </strong>
+    )}
     <>
     {monthVariation === "0%" ? (
       <span> Não houve aumento nem redução </span>
@@ -42,22 +50,31 @@ function courtCasesMetrics({
     )}
     </>
     {" "}
-    com relação ao mesmo período anterior, quando foram ajuizadas
+    com relação ao mesmo período anterior, quando{" "}
+    {nrAcoes60DiasAnterior === 0 ?(
+      <strong>nenhuma ação foi ajuizada.</strong>
+    ):(
     <strong>
-      <span>{` ${nrAcoes60DiasAnterior} ${nrAcoes60DiasAnterior === 1 ? 'ação' : 'ações'}.`}</span>
+      <span>{` ${nrAcoes60DiasAnterior} ${nrAcoes60DiasAnterior === 1 ? 'ação' : 'ações'}.`} </span>
+      foram ajuizadas
     </strong>
+    )}
     <p>
         No último ano, você ajuizou
         <strong>
-          <span>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`}
-        , com {variacao12Meses >= 0 ? `aumento` :  `redução`} de {yearVariation}
+          <span>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`},{" "}
+          {variacao12Meses === 0 ?(
+          <strong>não houve aumento nem redução</strong>
+          ):(
+            <strong>com {variacao12Meses >= 0 ? `aumento` :  `redução`} de {yearVariation}</strong>
+          )}
          </span>       
         </strong>
         {" "}em comparação com o ano anterior em que
         <strong>
-          <span>{` ${nrAcoes12MesesAnterior} ${nrAcoes12MesesAnterior === 1 ? 'ação' : 'ações'} `}</span>
+          <span>{` ${nrAcoes12MesesAnterior} ${nrAcoes12MesesAnterior === 1 ? 'ação foi ajuizada.' : 'ações foram ajuizadas.'} `}</span>
         </strong>
-        foram ajuizadas.
+        
       </p>
     </div>
   );

@@ -1,8 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import './styles.css';
+import styles from './CustomTable.module.css'
 
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -24,10 +23,10 @@ function generateHeader(headerPropArray) {
   const sections = Object.keys(headerPropArray);
 
   return (
-    <thead>
+    <thead className={styles.tHeadStyle}>
       <tr>
         {sections.map((title) => (
-          <th scope="col" key={title}>
+          <th scope="col" key={title} className={styles.thStyle}>
             {title}
           </th>
         ))}
@@ -65,7 +64,7 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
           )}
           <td
             title={currentTitle}
-            className="capitalizeTitle"
+            className={styles.tdStyle}
             key={dataUnit[columns[key]]}
           >
             {dataUnit[columns[key]]}
@@ -87,9 +86,9 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
 function CustomTable({ data, columns, showHeader }) {
   const isPhone = window.innerWidth <= 480;
   return (
-    <table>
+    <table className={styles.tableStyle}>
       {showHeader && !isPhone && generateHeader(columns)}
-      <tbody>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
+      <tbody className={styles.tBodyStyle}>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
     </table>
   );
 }

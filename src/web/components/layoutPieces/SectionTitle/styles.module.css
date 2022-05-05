@@ -1,19 +1,19 @@
-h2 {
+.sectionTitleText {
   color: var(--darkBlue);
   font-size: var(--sectionTitleFontSize);
   font-family: var(--titleFont);
   font-weight: normal;
 }
 
-.sectionTitle--glued {
+.sectionTitleGlued {
   margin-top: 0;
 }
 
-.sectionTitle--withSubs {
+.sectionTitleWithSubs {
   margin-bottom: 0;
 }
 
-h2 + .sectionTitle-subtitle {
+.sectionTitleSubtitle {
   color: var(--darkBlue);
   font-size: calc(var(--sectionTitleFontSize) * 0.5);
   letter-spacing: 2px;

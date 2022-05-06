@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { tableStyle, tBodyStyle, tHeadStyle, tdStyle } from './CustomTable.module.css';
+import { tableStyle, tBodyStyle, tHeadStyle, tdStyle, thStyle } from './CustomTable.module.css';
 
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -26,7 +26,7 @@ function generateHeader(headerPropArray) {
     <thead className={ tHeadStyle }>
       <tr>
         {sections.map((title) => (
-          <th scope="col" key={title}>
+          <th scope="col" key={title} className={ thStyle}>
             {title}
           </th>
         ))}
@@ -58,7 +58,7 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
       return (
         <React.Fragment key={`${rowN}-Col${i}`}>
           {isPhone && (
-            <th scope="row" key={`${key}-${i}`}>
+            <th scope="row" key={`${key}-${i}`} className={ thStyle }>
               {key}
             </th>
           )}

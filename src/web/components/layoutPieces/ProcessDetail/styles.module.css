@@ -55,7 +55,7 @@
   height: calc(1.5 * var(--defaultFontSize) + 10px);
 }
 
-/********* GLOBAL? */
+/*********** Aonde está a tabela? ***************/
 td button.process-detail-btn {
   color: #8998ac;
   font-size: var(--smallFont);
@@ -101,7 +101,7 @@ td button.process-detail-btn {
   border-radius: 4px;
 }
 
-.ListCardContent {
+.listCardContent {
   height: var(--defaultFontSize);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -149,6 +149,7 @@ td button.process-detail-btn {
   background-color: #bddff0;
 }
 
+/*********** onde está sendo utilizada? ***************/
 .process-alerts-arrow {
   opacity: 1;
   display: inline-block;
@@ -163,6 +164,7 @@ td button.process-detail-btn {
   transition: transform 1s;
 }
 
+/*********** onde está sendo utilizada? ***************/
 .process-alerts-arrow--rotated {
   transform: rotate(-180deg) translateY(4px);
 }
@@ -179,11 +181,15 @@ td button.process-detail-btn {
   margin-bottom: 3%;
 }
 
-.processAlertsList .alertBadge-outerContainer {
+.processAlertsList .alertWrapper {
+  display: flex;
   width: 33%;
   height: calc(100% - 2vh);
-  margin-left: 0;
-  margin-right: 2vh;
+  margin: 0;
+}
+
+.processAlertsList .alertWrapper:first-child {
+  margin-left: -1.2vh;
 }
 
 .processAlertsList:nth-child(3n + 0) {
@@ -206,7 +212,8 @@ td button.process-detail-btn {
   cursor: pointer;
 }
 
+/* estilo não aplicado */
 /* hides dropdown arrow while actions are unavailable on Process Detail */
-.process-alerts-list .alertBadge-smallButtons {
+.processAlertsList .alertBadge-smallButtons {
   display: none;
 }

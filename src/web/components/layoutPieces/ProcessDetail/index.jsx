@@ -13,11 +13,12 @@ import {
   processDetailLoadedData,
   processDetailSection,
   processDetailListCardWrapper,
-  ListCardContent,
+  listCardContent,
   processDetailIdSection,
   processDetailProceedings,
   processAlertsList,
   processDetailHeaderRight,
+  alertWrapper,
 } from './styles.module.css';
 import { useAppContext } from '../../../../core/app/App.context';
 import Api from '../../../api';
@@ -94,17 +95,19 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                   const { backgroundColor, backgroundColorChild, icon, key, message, type } =
                     formattedAlert;
                   return (
-                    <AlertBadge
-                      key={key}
-                      customKey={key}
-                      icon={icon}
-                      backgroundColor={backgroundColorChild || backgroundColor}
-                      message={message}
-                      docDk={docuNrMp}
-                      overlayType={type}
-                      /* Passes empty actions to hide actions */
-                      actions={[]}
-                    />
+                    <div className={alertWrapper}>
+                      <AlertBadge
+                        key={key}
+                        customKey={key}
+                        icon={icon}
+                        backgroundColor={backgroundColorChild || backgroundColor}
+                        message={message}
+                        docDk={docuNrMp}
+                        overlayType={type}
+                        /* Passes empty actions to hide actions */
+                        actions={[]}
+                      />
+                    </div>
                   );
                 })}
               </div>
@@ -133,7 +136,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                   fixedHeight
                   title={matter}
                   content={
-                    <span className={ListCardContent} title={detail}>
+                    <span className={listCardContent} title={detail}>
                       <abbr>{detail}</abbr>
                     </span>
                   }

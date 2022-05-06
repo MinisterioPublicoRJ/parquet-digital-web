@@ -26,7 +26,7 @@ function generateHeader(headerPropArray) {
     <thead className={ tHeadStyle }>
       <tr>
         {sections.map((title) => (
-          <th scope="col" key={title} className={ thStyle}>
+          <th scope="col" key={title} className={ thStyle }>
             {title}
           </th>
         ))}

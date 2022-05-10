@@ -17,27 +17,30 @@ function OfficeSelector({ close }) {
   }
 
   const handleChange = e => {
-    const inputValue = e.target.value
+    const inputValues = e.target.value
       .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, ''); 
+      .replace(/[\u0300-\u036f]/g, '')
+      .split(' '); 
     const filtered = user.orgaosValidos.filter(
       organ =>
+      inputValues.every(word => 
         organ.nomeOrgao
           .toLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
-          .includes(inputValue) ||
+          .includes(word) ||
         organ.abbrevNomeOrgao
           .toLowerCase()
-          .normalize('NFD')
+          .normalize('NFD') 
           .replace(/[\u0300-\u036f]/g, '')
-          .includes(inputValue) ||
+          .includes(word) ||
         organ.nomeUser
           .toLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
-          .includes(inputValue),
+          .includes(word),
+      )
     );
     setFilteredList(filtered);
   };

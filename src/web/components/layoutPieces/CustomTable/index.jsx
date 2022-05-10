@@ -1,8 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import './styles.css';
+import { tableStyle, tBodyStyle, tHeadStyle, tdStyle, thStyle } from './CustomTable.module.css';
 
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -24,10 +23,10 @@ function generateHeader(headerPropArray) {
   const sections = Object.keys(headerPropArray);
 
   return (
-    <thead>
+    <thead className={ tHeadStyle }>
       <tr>
         {sections.map((title) => (
-          <th scope="col" key={title}>
+          <th scope="col" key={title} className={ thStyle }>
             {title}
           </th>
         ))}
@@ -59,13 +58,13 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
       return (
         <React.Fragment key={`${rowN}-Col${i}`}>
           {isPhone && (
-            <th scope="row" key={`${key}-${i}`}>
+            <th scope="row" key={`${key}-${i}`} className={ thStyle }>
               {key}
             </th>
           )}
           <td
             title={currentTitle}
-            className="capitalizeTitle"
+            className={ tdStyle }
             key={dataUnit[columns[key]]}
           >
             {dataUnit[columns[key]]}
@@ -87,9 +86,9 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
 function CustomTable({ data, columns, showHeader }) {
   const isPhone = window.innerWidth <= 480;
   return (
-    <table>
+    <table className={ tableStyle }>
       {showHeader && !isPhone && generateHeader(columns)}
-      <tbody>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
+      <tbody className={ tBodyStyle }>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
     </table>
   );
 }

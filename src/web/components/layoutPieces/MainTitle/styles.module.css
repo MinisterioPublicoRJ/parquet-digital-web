@@ -1,10 +1,10 @@
-h1 {
+.mainTitle {
   color: var(--darkBlue);
   font-family: var(--titleFont);
   font-size: var(--titleFontSize);
   font-weight: bold;
 }
 
-.mainTitle--glued {
+.mainTitleGlued {
   margin-top: 0;
 }

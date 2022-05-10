@@ -1,60 +1,58 @@
-table {
-  color: #8998ac;
+.tableStyle {
+  color: var(--grayPagination);
   font-size: var(--smallFont);
   table-layout: fixed;
   width: 100%;
 }
 
-tbody tr:nth-child(even) {
+.tBodyStyle tr:nth-child(even) {
   background-color: #f8f9fb;
 }
 
-tbody tr:nth-child(odd) {
-  background-color: #ffffff;
+.tBodyStyle tr:nth-child(odd) {
+  background-color: var(--white);
 }
 
-thead tr {
+.tHeadStyle tr {
   background-color: #f8f9fb;
   color: #39475b;
 }
 
-th {
+.thStyle {
   padding: 10px;
   font-weight: 400;
   text-align: center;
 }
 
-td {
+.tdStyle {
   padding: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.capitalizeTitle {
   text-transform: capitalize;
   text-align: center;
 }
- 
+
 /* PHONES */
+
 @media (max-width: 480px) {
-  table {
+  .tableStyle {
     table-layout: fixed;
     width: 100vw;
   }
-  td {
+  .tdStyle {
     width: 100%;
   }
-  tbody tr {
+  .tHeadStyle tr {
     display: flex;
     flex-wrap: wrap;
   }
 
-  tbody td {
+  .tBodyStyle td {
     min-width: 45%;
   }
 
-  tbody th {
+  .tBodyStyle th {
     text-align: left;
     width: 45%;
   }

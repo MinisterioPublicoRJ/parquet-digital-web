@@ -1,8 +1,8 @@
-.mainPagination {
+.paginationMain {
   display: flex;
   justify-content: center;
 }
-.btnPaginationItem {
+.paginationBtnItem {
   display: flex;
   color: var(--grayPagination);
   margin-top: 10px;
@@ -10,7 +10,7 @@
 .paginationItem {
   margin-top: 3px;
 }
-.btnPaginationItem > button {
+.paginationBtnItem > button {
   color: var(--grayPagination);
   border: none;
   cursor: pointer;
@@ -18,7 +18,7 @@
   font-size: 15px;
   opacity: 1;
 }
-.btnPaginationItem > button span::after {
+.paginationBtnItem > button span::after {
   visibility: visible;
   opacity: 1;
   content: '';

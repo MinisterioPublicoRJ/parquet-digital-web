@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
+import {
+  paginationMain,
+  paginationBtnItem,
+  paginationItem,
+} from './styles.module.css';
 
 const propTypes = {
   totalPages: PropTypes.number.isRequired,
@@ -35,15 +39,15 @@ function Pagination({ totalPages, handlePageClick, currentPage }) {
   }
 
   return (
-    <div className="mainPagination">
-      <div className="btnPaginationItem">
+    <div className={paginationMain}>
+      <div className={paginationBtnItem}>
         {currentPage > 1 ? (
           <button type="button" onClick={() => handlePageClick(currentPage - 1)}>
             lista anterior...
           </button>
         ) : null}
 
-        <div className="paginationItem">{renderPageNumberButtons()}</div>
+        <div className={paginationItem}>{renderPageNumberButtons()}</div>
 
         {currentPage < totalPages ? (
           <button type="button" onClick={() => handlePageClick(currentPage + 1)}>

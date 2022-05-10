@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
+import {
+  sectionTitleText,
+  sectionTitleGlued,
+  sectionTitleWithSubs,
+  sectionTitleSubtitle,
+} from './styles.module.css';
 
 const propTypes = {
   value: PropTypes.string.isRequired,
@@ -14,17 +19,20 @@ const defaultProps = {
   glueToTop: false,
 };
 
-const SectionTitle = ({ value, subtitle, glueToTop }) => (
-  <>
-    <h2
-      className={`sectionTitle-text ${glueToTop && 'sectionTitle--glued'} ${subtitle &&
-        'sectionTitle--withSubs'}`}
-    >
-      {value.toLocaleUpperCase()}
-    </h2>
-    {subtitle && <span className="sectionTitle-subtitle">{subtitle}</span>}
-  </>
-);
+function SectionTitle({ value, subtitle, glueToTop }) {
+  return (
+    <>
+      <h2
+        className={`${sectionTitleText} ${glueToTop && sectionTitleGlued} ${
+          subtitle && sectionTitleWithSubs
+        }`}
+      >
+        {value.toLocaleUpperCase()}
+      </h2>
+      {subtitle && <span className={sectionTitleSubtitle}>{subtitle}</span>}
+    </>
+  );
+}
 SectionTitle.propTypes = propTypes;
 SectionTitle.defaultProps = defaultProps;
 export default SectionTitle;

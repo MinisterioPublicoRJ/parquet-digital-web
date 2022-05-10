@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Today.css';
-import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
@@ -15,7 +14,7 @@ import  Introduction from "../Introduction";
 import MapaTron  from "../MapaTron/Mapatron.view";
 
 function Today() {
-  const { user, buildRequestParams, currentOffice, logout } = useAppContext();
+  const { user, buildRequestParams, currentOffice, logout, Api } = useAppContext();
 
   /* STATE */
   const [isLogoutBtnVisible, setIsLogoutBtnVisible] = useState(false);

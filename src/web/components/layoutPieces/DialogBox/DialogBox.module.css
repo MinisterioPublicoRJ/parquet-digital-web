@@ -1,13 +1,13 @@
-.dialog-box {
+.dialogBoxStyle {
   padding: 8px 20px 20px 20px;
   text-align: justify;
 }
 
-.dialog-box p {
+.dialogBoxStyle p {
   font-size: var(--smallFont);
 }
 
-.dialog-box button {
+.dialogBoxStyle button {
   border: 0;
   border-radius: 4px;
   padding: 4px 12px;
@@ -15,12 +15,12 @@
   margin-bottom: 24px;
 }
 
-.dialog-box-yes-btn {
+.dialogBoxYesBtnStyle {
   float: left;
   margin-left: 16px;
 }
 
-.dialog-box-no-btn {
+.dialogBoxNoBtnStyle {
   float: right;
   margin-right: 16px;
 }

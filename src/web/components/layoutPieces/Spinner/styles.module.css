@@ -1,10 +1,10 @@
-.spinner--small {
+.spinner.small {
   display: inline-block;
   width: 40px;
   height: 40px;
 }
-.spinner--small:after {
-  content: " ";
+.spinner.small:after {
+  content: ' ';
   display: block;
   width: 32px;
   height: 32px;
@@ -15,13 +15,13 @@
   animation: lds-dual-ring 1.2s linear infinite;
 }
 
-.spinner--medium {
+.spinner.medium {
   display: inline-block;
   width: 80px;
   height: 80px;
 }
-.spinner--medium:after {
-  content: " ";
+.spinner.medium:after {
+  content: ' ';
   display: block;
   width: 64px;
   height: 64px;
@@ -32,13 +32,13 @@
   animation: lds-dual-ring 1.2s linear infinite;
 }
 
-.spinner--large {
+.spinner.large {
   display: inline-block;
   width: 160px;
   height: 160px;
 }
-.spinner--large:after {
-  content: " ";
+.spinner.large:after {
+  content: ' ';
   display: block;
   width: 128px;
   height: 128px;

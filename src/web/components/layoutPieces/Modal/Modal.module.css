@@ -3,7 +3,7 @@
 *
 */
 
-.modal-outer {
+.modalOuter {
   align-items: center;
   background-color: rgb(0 0 0 / 54%);
   display: flex;
@@ -19,25 +19,25 @@
   overflow: hidden;
 }
 
-.modal-outer.transparent {
+.modalOuterTransparent {
   background-color: transparent;
 }
 
-.modal-innerWrapper {
+.modalInnerWrapper {
   position: relative;
 }
 
-.modal-innerWrapper.unpositioned{
+.modalInnerWrapperUnpositioned{
   position: unset;
 }
 
-.modal-innerWrapper > * {  
+.modalInnerWrapper > * {  
   border: 1px solid #707070;
   border-radius: 10px;
   background-color: white;
 }
 
-button.modal-close {
+button.modalClose {
   text-align: center;
   position: absolute;  
   color: #ffffff;

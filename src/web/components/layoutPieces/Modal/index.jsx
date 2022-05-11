@@ -2,7 +2,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
-import './styles.css';
+import {
+  modalOuter,
+  modalOuterTransparent,
+  modalInnerWrapper,
+  modalInnerWrapperUnpositioned,
+  modalClose,
+} from './Modal.module.css';
 
 const propTypes = {
   children: PropTypes.node,
@@ -73,7 +79,7 @@ export default function Modal({
 
   const modalContent = (
     <div
-      className={`modal-outer ${transparent ? 'transparent' : ''}`}
+      className={transparent ? modalOuterTransparent : modalOuter}
       onClick={() => handleClose()}
       onKeyDown={(e) => TabTrap(e, handleClose)}
       role="button"
@@ -84,11 +90,11 @@ export default function Modal({
       <div
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={() => null}
-        className={`modal-innerWrapper ${unpositioned ? 'unpositioned' : ''}`}
+        className={unpositioned ? modalInnerWrapperUnpositioned : modalInnerWrapper}
       >
         {children}
         {withExitButton && (
-          <button type="button" className="modal-close" aria-label="Fechar" onClick={handleClose}>
+          <button type="button" className={modalClose} aria-label="Fechar" onClick={handleClose}>
             <span aria-hidden="true">&times;</span>
           </button>
         )}

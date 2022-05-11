@@ -5,6 +5,8 @@ import {
   paginationMain,
   paginationBtnItem,
   paginationItem,
+  paginationNumberBtn,
+  paginationNumberBtnActive,
 } from './styles.module.css';
 
 const propTypes = {
@@ -29,7 +31,7 @@ function Pagination({ totalPages, handlePageClick, currentPage }) {
       <button
         key={number}
         type="button"
-        className={`pagination-number-button ${currentPage === number ? 'active' : ''}`}
+        className={currentPage === number ? paginationNumberBtnActive : paginationNumberBtn}
         onClick={() => handlePageClick(number)}
       >
         {number}

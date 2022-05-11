@@ -28,3 +28,14 @@
   border-width: var(--selectorArrowSize);
   margin: 10px;
 }
+.paginationNumberBtn {
+  border: 0;
+  background-color: transparent;
+  color: var(--grayPagination);
+}
+.paginationNumberBtnActive {
+  border: 0;
+  background-color: transparent;
+  color: var(--primary);
+  text-decoration: underline;
+}

@@ -47,6 +47,18 @@
   margin: 0;
   padding: 0;
 }
+.process-detail-btn{
+  color: #8998ac;
+  font-size: var(--smallFont);
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-decoration: underline;
+}
 
 .tablesTutela-header h2 {
   transition: 0.2s linear;

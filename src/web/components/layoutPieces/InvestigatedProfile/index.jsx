@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+import './styles.css';
 import { useAppContext } from '../../../../core/app/App.context';
 import { TABLE_COLUMNS_PIP, TABLE_COLUMNS_TUTELA } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
@@ -7,7 +9,6 @@ import Api from '../../../api';
 import Spinner from '../Spinner';
 import CustomTable from '../CustomTable';
 import { LoginPromotron } from '../../../assets';
-import { investigatedProfileOuterStyle, investigatedProfileHeaderStyle, similarProfilesListStyle, similarProfilesListVisibleStyle, similarProfilesArrowStyle, similarProfilesArrowRotatedStyle, similarProfilesBtnStyle, investigatedProfileTableWrapperStyle } from './InvestigatedProfile.module.css';
 
 const propTypes = {
   close: PropTypes.func.isRequired,
@@ -65,7 +66,7 @@ function InvestigatedProfile({ representanteDk }) {
   function renderComponent() {
     if (apiError) {
       return (
-        <article className={ investigatedProfileOuterStyle }>
+        <article className="investigatedProfile-outer">
           <h2>
             <strong>Perfil do Investigado</strong>
           </h2>
@@ -75,15 +76,15 @@ function InvestigatedProfile({ representanteDk }) {
     }
     if (loading && !profileData) {
       return (
-        <article className={ investigatedProfileOuterStyle }>
+        <article className="investigatedProfile-outer">
           <Spinner size="large" />
         </article>
       );
     }
     if (profileData && profileData.profile) {
       return (
-        <article className={ investigatedProfileOuterStyle }>
-          <div className={ investigatedProfileHeaderStyle }>
+        <article className="investigatedProfile-outer">
+          <div className="investigatedProfile-header">
             <h2>
               <strong>Perfil do Investigado</strong>
             </h2>
@@ -96,22 +97,22 @@ function InvestigatedProfile({ representanteDk }) {
 
           <button
             type="button"
-            className={ similarProfilesBtnStyle }
+            className="similar-profiles-btn"
             onClick={() => setIsSimilarProfilesVisible((prevValue) => !prevValue)}
           >
             Foram encontrados
             {` ${profileData.similars.length} `}
             perfis similares ao solicitado.
             <div
-              className={`${ similarProfilesArrowStyle } ${
-                isSimilarProfilesVisible ? `${ similarProfilesArrowRotatedStyle }` : ''
+              className={`similar-profiles-arrow ${
+                isSimilarProfilesVisible ? 'similar-profiles-arrow--rotated' : ''
               }`}
             />
           </button>
 
           <div
-            className={`${ similarProfilesListStyle } ${
-              isSimilarProfilesVisible ? `${ similarProfilesListVisibleStyle }` : ''
+            className={`similar-profiles-list ${
+              isSimilarProfilesVisible ? 'similar-profiles-list--visible' : ''
             }`}
           >
             {profileData.similars.map((similarProfile) => (
@@ -130,7 +131,7 @@ function InvestigatedProfile({ representanteDk }) {
             ))}
           </div>
 
-          <div className={ investigatedProfileTableWrapperStyle }>
+          <div className="investigatedProfile-tableWrapper">
             {loading ? (
               <Spinner size="medium" />
             ) : (

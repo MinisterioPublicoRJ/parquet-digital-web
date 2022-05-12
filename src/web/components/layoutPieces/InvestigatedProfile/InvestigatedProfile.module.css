@@ -149,3 +149,16 @@ td button.investigatedProfileBtnStyle {
 .investigatedProfileDetailsStyle strong {
   color: var(--darkBlue);
 }
+
+.similarProfilesListStyle button.currentStyle {
+  background-color: var(--lightBlue);
+}
+
+.investigatedProfileDetailsStyle {
+  color: var(--grayPagination);
+}
+
+spinner .investigatedSpinnerStyle {
+  justify-self: center;
+  align-self: center;
+}

@@ -7,7 +7,7 @@ import Api from '../../../api';
 import Spinner from '../Spinner';
 import CustomTable from '../CustomTable';
 import { LoginPromotron } from '../../../assets';
-import { investigatedProfileOuterStyle, investigatedProfileHeaderStyle, similarProfilesListStyle, similarProfilesListVisible, similarProfilesArrowStyle, similarProfilesArrowRotatedStyle, similarProfilesBtnStyle, investigatedProfileTableWrapperStyle } from './InvestigatedProfile.module.css';
+import { investigatedProfileOuterStyle, investigatedProfileHeaderStyle, similarProfilesListStyle, similarProfilesListVisible, similarProfilesArrowStyle, similarProfilesArrowRotatedStyle, similarProfilesBtnStyle, investigatedProfileTableWrapperStyle, currentStyle, investigatedSpinnerStyle } from './InvestigatedProfile.module.css';
 import './styles.css';
 
 const propTypes = {
@@ -122,7 +122,7 @@ function InvestigatedProfile({ representanteDk }) {
                     prevValue === similarProfile.pess_dk ? null : similarProfile.pess_dk,
                   );
                 }}
-                className={similarProfile.pess_dk === pessDk ? 'current' : ''}
+                className={similarProfile.pess_dk === pessDk ? `${ currentStyle }` : ''}
                 type="button"
                 key={`${similarProfile.pess_dk}-button`}
               >
@@ -133,7 +133,7 @@ function InvestigatedProfile({ representanteDk }) {
 
           <div className={ investigatedProfileTableWrapperStyle }>
             {loading ? (
-              <Spinner size="medium" />
+              <Spinner className={ investigatedSpinnerStyle } size="medium" />
             ) : (
               <CustomTable
                 data={tableData}

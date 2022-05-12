@@ -6,9 +6,6 @@
   color: var(--grayPagination);
 }
 
-.similar-profiles-list button.current {
-  background-color: var(--lightBlue);
-}
 
 .investigatedProfile-details span {
   width: 33%;
@@ -18,9 +15,4 @@
 
 .investigatedProfile-details strong {
   color: var(--darkBlue);
-}
-
-.investigatedProfile-tableWrapper .spinner--medium {
-  justify-self: center;
-  align-self: center;
 }

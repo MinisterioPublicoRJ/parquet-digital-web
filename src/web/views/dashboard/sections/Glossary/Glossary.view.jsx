@@ -24,39 +24,16 @@ function Glossary() {
   return (
     <div className="glossary-wrapper">
       <div className="glossary-intro">
-        <h2>Glossário</h2>
+        <h2>Manual de uso Parquet Digital</h2>
         <p>
           Aqui você poderá conferir todos os termos usados para compor o painel bem como o
           significados e como cada índice é calculado.
         </p>
-        <PromotronGlossario height={400} />
       </div>
       <div className="glossary-articles-wrapper">
         <div className="glossary-articles">
-          {GLOSSARIO.filter(item => !item.type || item.type === tipo).map((key, i) => (
-            <article
-              ref={itemRef => {
-                glossaryRef.current[i] = itemRef;
-              }}
-            >
-              <h3>{key.title}</h3>
-              <aside className="glossary-category">{key.section}</aside>
-              <p>{key.definition}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-      <div className="glossary-list-wrapper">
-        <div className="glossary-list">
-          <h3>LISTA DE TERMOS</h3>
-          <dl>
-            {GLOSSARIO.filter(item => !item.type || item.type === tipo).map((key, i) => (
-              <div onClick={() => scrollToRef(i)} className="glossary-list-link">
-                <dt>{key.title.replace('Índice de ', '').toLowerCase()}</dt>
-                <dd className="glossary-category">{key.section}</dd>
-              </div>
-            ))}
-          </dl>
+          <img className={navbarLogo} src={logoMp} alt="logo-Mp" />
+
         </div>
       </div>
     </div>

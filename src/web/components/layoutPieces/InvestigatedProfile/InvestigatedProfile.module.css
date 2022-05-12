@@ -113,3 +113,39 @@
 .investigatedProfileTableWrapperStyle table {
   justify-self: flex-start;
 }
+
+
+td button.investigatedProfileBtnStyle {
+  color: #8998ac;
+  font-size: var(--smallFont);
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-decoration: underline;
+}
+
+.similarProfilesListStyle button.current {
+  background-color: #bddff0;
+}
+
+.investigatedProfileHeaderStyle .investigatedProfileDetailsStyle {
+  flex: 4;
+}
+
+.investigatedProfileDetailsStyle {
+  color: #8998ac;
+}
+
+.investigatedProfileDetailsStyle span {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.investigatedProfileDetailsStyle strong {
+  color: var(--darkBlue);
+}

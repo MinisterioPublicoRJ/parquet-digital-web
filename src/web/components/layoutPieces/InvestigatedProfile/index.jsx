@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
 import { useAppContext } from '../../../../core/app/App.context';
 import { TABLE_COLUMNS_PIP, TABLE_COLUMNS_TUTELA } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';

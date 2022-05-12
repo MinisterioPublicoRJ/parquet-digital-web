@@ -1,0 +1,115 @@
+.investigatedProfileOuterStyle {
+  -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 70vw;
+  height: 70vh;
+  position: relative;
+  padding: 0px 16px;
+}
+
+.investigatedProfileHeaderStyle {
+  width: calc(100% + 32px);
+  background-color: var(--pt-blue);
+  box-sizing: border-box;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  margin: -80px 0px 0px -16px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 8px 0px 0px 16px;
+}
+
+.investigatedProfileHeaderStyle h2 {
+  width: 100%;
+  margin: 0;
+}
+
+.similarProfilesListStyle {
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+  align-items: flex-start;
+  justify-content: flex-start;
+  opacity: 0;
+  flex: 0;
+  transition: all 1s;
+}
+
+.similarProfilesListStyle span {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.similarProfilesListStyle::-webkit-scrollbar {
+  height: 4px;
+}
+
+.similarProfilesListVisible {
+  opacity: 1;
+  flex-basis: auto;
+  overflow-y: hidden;
+}
+
+.similarProfilesListStyle button {
+  font-size: var(--smallFont);
+  min-width: 33%;
+  height: 98%;
+  background-color: #f8f9fb;
+  border: 0;
+  border-radius: 2px;
+  margin: 2px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.similarProfilesArrowStyle {
+  opacity: 1;
+  display: inline-block;
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--darkBlue) transparent transparent transparent;
+  background-color: transparent;
+  position: relative;
+  padding: 0;
+  width: 0;
+  margin: 4px 8px -4px 8px;
+  transition: transform 1s;
+}
+
+.similarProfilesArrowRotatedStyle {
+  transform: rotate(-180deg) translateY(4px);
+}
+
+.similarProfilesBtnStyle {
+  cursor: default;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 0;
+  padding: 2px 4px;
+  font-weight: bold;
+  height: min-content;
+  padding-left: 0;
+  cursor: pointer;
+}
+
+.investigatedProfileTableWrapperStyle {
+  overflow-y: auto;
+  width: 100%;
+  flex: 4;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.investigatedProfileTableWrapperStyle table {
+  justify-self: flex-start;
+}

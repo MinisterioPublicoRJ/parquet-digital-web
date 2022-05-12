@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import './styles.css';
-import MANUALPIP from './glossaryPdfs/manual_pip.pdf';
+import MANUALPIP from './userManualPdfs/manual_pip.pdf';
 import { useAppContext } from '../../../../../core/app/App.context';
 
 function UserManual() {
@@ -19,6 +19,17 @@ function UserManual() {
         </p>
       </div>
       <div className="glossary-articles-wrapper">
+        {tipo === 2 ?(
+          <a 
+          target="_blank"
+          onClick={event => {
+              event.preventDefault();
+              window.open(MANUALPIP);
+            }
+          }
+         >Clique aqui e abra o manual de uso da sua promotoria.
+         </a>    
+        ) : (
         <a 
          target="_blank"
          onClick={event => {
@@ -26,8 +37,9 @@ function UserManual() {
              window.open(MANUALPIP);
            }
          }
-        >Clique aqui e abra o manual de uso da sua promotoria.
-        </a>        
+        >Clique aqui e abra o manual de uso da sua promotoria Tutela.
+        </a>   
+        )}     
       </div>
     </div>
   );

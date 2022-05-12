@@ -8,7 +8,7 @@
   justify-content: center;
   flex-wrap: wrap;
   justify-content: inherit;
-  max-width: 80vw;
+  max-width: 60vw;
   max-height: 90vh;
   background-color: #ffffff;
 }
@@ -18,6 +18,8 @@
   width: 100%;
   background-color: #bddff0;
   flex-wrap: wrap;
+  border-radius: 15px 15px 0 0;
+
 }
 
 .glossary-intro h2 {

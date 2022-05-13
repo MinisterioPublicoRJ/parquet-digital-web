@@ -1,4 +1,4 @@
-.tutela-grid {
+.tutelaGrid {
   grid-template-areas:
     'today today radar alerts'
     'today today radar alerts'
@@ -16,7 +16,7 @@
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
-  .tutela-grid {
+  .tutelaGrid {
     grid-template-areas:
       'today today'
       'desk desk'
@@ -28,7 +28,7 @@
 
 /* PHONES */
 @media (max-width: 480px) {
-  .tutela-grid {
+  .tutelaGrid {
     grid-template-areas:
     "today"
     "desk"

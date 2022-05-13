@@ -1,25 +1,23 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import './styles.css';
 import MANUALPIP from './userManualPdfs/manual_pip.pdf';
 import { useAppContext } from '../../../../../core/app/App.context';
+import {glossaryWrapper, glossaryIntro, glossaryArticlesWrapper} from './userManual.module.css'
 
 function UserManual() {
   const { currentOffice } = useAppContext();
   const { tipo } = currentOffice;
-  console.log(tipo)
 
   return (
-    <div className="glossary-wrapper">
-      <div className="glossary-intro">
+    <div className={glossaryWrapper}>
+      <div className={glossaryIntro}>
         <h2>Manual de uso Parquet Digital</h2>
         <p>
-          Aqui você poderá conferir todos os termos usados para compor o painel bem como o
-          significados e como cada índice é calculado.
+          Este manual visa auxiliar o usuário a potecializar a capacidade da ferramenta em solucionar
+          demandas dentro de sua Promotoria de Justiça
         </p>
       </div>
-      <div className="glossary-articles-wrapper">
-        {tipo === 2 ?(
+      <div className={glossaryArticlesWrapper}>
+        {tipo === 1 ?(
           <a 
           target="_blank"
           onClick={event => {
@@ -27,7 +25,7 @@ function UserManual() {
               window.open(MANUALPIP);
             }
           }
-         >Clique aqui e abra o manual de uso da sua promotoria.
+         >Clique aqui e abra o manual de uso da sua promotoria de tutela.
          </a>    
         ) : (
         <a 
@@ -37,7 +35,7 @@ function UserManual() {
              window.open(MANUALPIP);
            }
          }
-        >Clique aqui e abra o manual de uso da sua promotoria Tutela.
+        >Clique aqui e abra o manual de uso da sua promotoria de pip.
         </a>   
         )}     
       </div>

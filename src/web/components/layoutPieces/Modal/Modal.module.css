@@ -19,7 +19,7 @@
   overflow: hidden;
 }
 
-.modalOuterTransparent {
+.modalOuter.modalTransparent {
   background-color: transparent;
 }
 
@@ -27,7 +27,7 @@
   position: relative;
 }
 
-.modalInnerWrapperUnpositioned{
+.modalInnerWrapper.modalUnpositioned{
   position: unset;
 }
 

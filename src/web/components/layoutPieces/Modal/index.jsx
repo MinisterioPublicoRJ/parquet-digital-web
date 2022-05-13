@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
 import {
   modalOuter,
-  modalOuterTransparent,
+  modalTransparent,
   modalInnerWrapper,
-  modalInnerWrapperUnpositioned,
+  modalUnpositioned,
   modalClose,
 } from './Modal.module.css';
 
@@ -69,7 +69,7 @@ export default function Modal({
   transparent,
 }) {
   useEffect(() => {
-    document.querySelector('.modal-outer').focus();
+    document.querySelector(`.${modalOuter}`).focus();
   }, []);
 
   function handleClose() {
@@ -79,7 +79,7 @@ export default function Modal({
 
   const modalContent = (
     <div
-      className={transparent ? modalOuterTransparent : modalOuter}
+      className={[modalOuter, transparent ? modalTransparent : null].join(' ')}
       onClick={() => handleClose()}
       onKeyDown={(e) => TabTrap(e, handleClose)}
       role="button"
@@ -90,7 +90,7 @@ export default function Modal({
       <div
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={() => null}
-        className={unpositioned ? modalInnerWrapperUnpositioned : modalInnerWrapper}
+        className={[modalInnerWrapper, unpositioned ? modalUnpositioned : null].join(' ')}
       >
         {children}
         {withExitButton && (

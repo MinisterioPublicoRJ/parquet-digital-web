@@ -2,14 +2,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useEventListener from './useEventListener';
-import {introOuter,
-baseGrid,
-textDiv,
-btnsIntroduction,
-transparentDiv,
-btnIntroductionPrevious,
-btnIntroductionNext,
-btnLeave } from './introduction.module.css'
+import {
+  introOuter,
+  textDiv,
+  btnsIntroduction,
+  transparentDiv,
+  btnIntroductionPrevious,
+  btnIntroductionNext,
+  btnLeave
+} from './introduction.module.css';
+import {baseGrid} from '../../pages/PipAndTutela.module.css';
+import {pipGrid} from '../../pages/pip/Pip.module.css';
+import {tutelaGrid} from '../../pages/tutela/Tutela.module.css';
 
 import { PIP_GRID, TUTELA_GRID } from './introductionConstants';
 
@@ -47,9 +51,9 @@ function Introduction({ type, close }) {
 
   if (show) {
     return (
-      <div onClick={close} role="button" tabIndex='0' onKeyDown={handleKeyPress} className={`${introOuter} ${baseGrid} ${type === 1 ? 'tutelaGrid' : 'pipGrid'}`}>
+      <div onClick={close} role="button" tabIndex='0' onKeyDown={handleKeyPress} className={[introOuter, baseGrid, type === 1 ? tutelaGrid : pipGrid]}>
         <div onClick={(e) => e.stopPropagation()} role="button" tabIndex='0' onKeyDown={handleKeyPress} style={{ gridArea: pages[currentPage].focus }} className={transparentDiv}>
-          <div className={`${textDiv} ${textDiv--}${pages[currentPage].focus}`}>
+          <div className={[textDiv, pages[currentPage].class]}>
             {pages[currentPage].component}
             <div className={btnsIntroduction}>
               <button className={btnLeave} type="button" aria-label="Fechar"

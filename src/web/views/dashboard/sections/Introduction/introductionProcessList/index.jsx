@@ -1,5 +1,5 @@
 import React from 'react';
-import introductionWrapper from '../introduction.module.css';
+import {introductionWrapper} from '../introduction.module.css';
 
 function IntroductionProcessList() {
   return (

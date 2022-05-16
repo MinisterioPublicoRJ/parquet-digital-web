@@ -15,7 +15,7 @@
   overflow: hidden;
 }
 
-.modalInnerWrapper .introOuter{
+.modal-innerWrapper .introOuter{
   background-color: transparent;
 }
 
@@ -49,89 +49,89 @@
   overflow: auto;
 }
 
-.textDiv--today {
+.textDivToday {
   top: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--today::after {
+.textDivToday::after {
   border-color: transparent transparent var(--white) transparent;
   top: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--desk {
+.textDivDesk {
   left: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--desk::after {
+.textDivDesk::after {
   border-color: transparent var(--white) transparent transparent;
   left: calc(0% - 2 * var(--introductionArrowSize));
   top: calc(1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--radar {
+.textDivRadar {
   top: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--radar::after {
+.textDivRadar::after {
   border-color: transparent transparent var(--white) transparent;
   top: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--alerts {
+.textDivAlerts {
   right: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--alerts::after {
+.textDivAlerts::after {
   border-color: transparent transparent transparent var(--white);
   right: calc(0% - 2 * var(--introductionArrowSize));
   top: calc(1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--mainInvestigated {
+.textDivMainInvestigated {
   bottom: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--mainInvestigated::after {
+.textDivMainInvestigated::after {
   border-color: var(--white) transparent transparent transparent;
   bottom: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--processes {
+.textDivProcesses {
   bottom: calc(100% + 1.6 * var(--introductionArrowSize));
   right: 50px;
 }
 
-.textDiv--processes::after {
+.textDivProcesses::after {
   border-color: var(--white) transparent transparent transparent;
   bottom: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--indicators {
+.textDivIndicators {
   right: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--indicators::after {
+.textDivIndicators::after {
   border-color: transparent transparent transparent var(--white);
   right: calc(0% - 2 * var(--introductionArrowSize));
   top: calc(1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--processingTime {
+.textDivProcessingTime {
   bottom: calc(100% + 1.6 * var(--introductionArrowSize));
   right: 0;
 }
 
-.textDiv--processingTime::after {
+.textDivProcessingTime::after {
   border-color: var(--white) transparent transparent transparent;
   bottom: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.textDiv--end {
+.textDivEnd {
   bottom: 0;
   right: 0;
 }
@@ -196,7 +196,7 @@
   margin: 10px;
 }
 
-.textDiv--end {
+.textDivEnd {
   position: absolute;
   top: calc(-150px - 50vh);
   left: calc(-130px - 50vw);
@@ -204,6 +204,6 @@
   height: 260px;
 }
 
-.textDiv--end::after {
+.textDivEnd::after {
   border-width: 0;
 }

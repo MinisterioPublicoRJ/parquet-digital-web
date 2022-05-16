@@ -1,15 +1,15 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 
-import './styles.css';
-import '../styles.css';
+import {tutelaGrid} from './Tutela.module.css';
+import {baseGrid} from '../PipAndTutela.module.css';
 
 import {YourDesk, Alerts, ProcessingTime, TablesTutela, Today, PerformanceRadar} from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Tutela() {
   return (
-    <div className="base-grid tutela-grid">
+    <div className={[baseGrid, tutelaGrid].join(' ')}>
         <ErrorBoundary> 
           <Today />
         </ErrorBoundary>

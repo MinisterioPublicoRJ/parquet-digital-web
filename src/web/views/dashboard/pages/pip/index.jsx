@@ -1,15 +1,15 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 
-import './styles.css';
-import '../styles.css';
+import {pipGrid} from './Pip.module.css';
+import {baseGrid} from '../PipAndTutela.module.css';
 
 import { Alerts, ProcessingTime, SuccessIndicators, Today, YourDesk, MainInvestigated, PerformanceRadar  } from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Pip() {
   return (
-    <div className="base-grid pip-grid">
+    <div className={[baseGrid, pipGrid].join(' ')}>
        <ErrorBoundary> 
           <Today />
         </ErrorBoundary>

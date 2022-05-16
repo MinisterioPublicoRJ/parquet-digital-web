@@ -1,4 +1,4 @@
-.base-grid {
+.baseGrid {
   display: grid;
   height: calc(100vh - 2 * var(--bodyVerticalPadding));
   width: calc(100vw - 2 * var(--bodyHorizontalPadding));
@@ -10,7 +10,7 @@
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
-  .base-grid {
+  .baseGrid {
     /* 252 = sum of all rows + 4 grid gaps of 3vh */
     height: calc(252vh + var(--bodyVerticalPadding));
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -20,7 +20,7 @@
 
 /* PHONES */
 @media (max-width: 480px) {
-  .base-grid {
+  .baseGrid {
     height: 400vh;
     grid-template-columns: 100%;
     grid-template-rows: repeat(8, minmax(0, 1fr));

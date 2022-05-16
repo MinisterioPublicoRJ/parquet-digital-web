@@ -7,11 +7,21 @@ import { formatPercentage } from '../../../../../utils';
 function openInvestigationsMetrics({ variacaoAcervo }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
   return (
-    <p>
-      Seu acervo
-      <strong>{` ${variacaoAcervo > 0 ? 'aumentou' : 'diminuiu'} ${formattedVariation} `}</strong>
+    <>
+    {variacaoAcervo === 0 ?(
+      <p>
+      Seu acervo{" "}
+      <strong>não aumentou ou diminuiu</strong>{" "}
       nos últimos 30 dias.
     </p>
+    ) : (
+    <p>
+      Seu acervo
+      <strong>{` ${variacaoAcervo > 0 ? 'aumentou' : 'diminuiu'} ${formattedVariation} `}</strong> 
+      nos últimos 30 dias.
+    </p>
+    )}
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import MANUALPIP from './userManualPdfs/manual_pip.pdf';
 import { useAppContext } from '../../../../../core/app/App.context';
-import {glossaryWrapper, glossaryIntro, glossaryArticlesWrapper} from './userManual.module.css'
+import {glossaryWrapper,glossaryIntroSubtitle, glossaryIntro, glossaryArticlesWrapper} from './userManual.module.css'
 
 function UserManual() {
   const { currentOffice } = useAppContext();
@@ -10,7 +10,10 @@ function UserManual() {
   return (
     <div className={glossaryWrapper}>
       <div className={glossaryIntro}>
-        <h2>Manual de uso Parquet Digital</h2>
+        <div className={glossaryIntroSubtitle}>
+          <p>Manual de uso</p>
+        </div>
+        <h2>Parquet Digital</h2>
         <p>
           Este manual visa auxiliar o usuário a potecializar a capacidade da ferramenta em solucionar
           demandas dentro de sua Promotoria de Justiça
@@ -25,7 +28,7 @@ function UserManual() {
               window.open(MANUALPIP);
             }
           }
-         >Clique aqui e abra o manual de uso da sua promotoria de tutela.
+         ><p>Acessar Manual</p>
          </a>    
         ) : (
         <a 
@@ -35,7 +38,7 @@ function UserManual() {
              window.open(MANUALPIP);
            }
          }
-        >Clique aqui e abra o manual de uso da sua promotoria de pip.
+        ><p>Acessar Manual</p>
         </a>   
         )}     
       </div>

@@ -9,21 +9,12 @@
   flex-wrap: wrap;
   justify-content: inherit;
   max-width: 60vw;
-  max-height: 90vh;
-  background-color: #ffffff;
-}
-
-.glossaryIntro {
-  box-sizing: border-box;
-  width: 100%;
+  max-height: 40vh;
   background-color: #bddff0;
-  flex-wrap: wrap;
-  border-radius: 15px 15px 0 0;
-
 }
 
 .glossaryIntro h2 {
-  font-size: 20px;
+  font-size: 35px;
   font-family: var(--defaultFont);
   font-weight: bold;
   letter-spacing: 0px;
@@ -39,25 +30,54 @@
   color: #3b3b3b;
   padding: 0px 20px 0px 36px;
 }
-
+.glossaryIntroSubtitle p{
+  font-size: 15px;
+  font-family: var(--defaultFont);
+  letter-spacing: 0px;
+  color: #374354;
+  font-weight: bold;
+}
 
 .glossaryArticlesWrapper {
   height: 30vh;
   width: 40vw;
   overflow-y: auto;
   padding: 0px 0px 0px 36px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
-.glossaryArticlesWrapper a:hover {
-  color: var(--danger);
+.glossaryIntroSubtitle p{
+  color: #374354;
+  margin-top: 4px;
+  display: inline-block;
+
+}
+.glossaryIntroSubtitle {
+  background-color: #f8bd6c;
+  font-weight: bold;
+  width: 12vw;
+  height: 25px;
+  margin-left: 30px;
+  border-radius: 1px;
+  margin-top: 15px;
+
 }
 .glossaryArticlesWrapper a {
-  text-align: left;
-  text-decoration:underline;
+  text-align: center;
   cursor: pointer;
-  font-size: 15px;
   font-family: var(--defaultFont);
+  border-radius: 4px;
+  color: var(--white);
+  background-color: #374354;
+  padding: 2px 4px;
+  font-weight: bold;
+  width: 100px;
+  height: 25px;
+  display: inline-block;
 }
+.glossaryArticlesWrapper p {
+  margin-top: 5px;
+}
+
 
 @media (max-width: 1024px) {
   .glossaryArticlesWrapper {

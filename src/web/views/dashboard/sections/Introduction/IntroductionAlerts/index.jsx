@@ -1,10 +1,9 @@
 import React from 'react';
-
-import '../styles.css';
-
+import {introductionWrapper} from '../introduction.module.css';
+ 
 function IntroductionAlerts() {
   return (
-    <div className="introduction-wrapper">
+    <div className={introductionWrapper}>
       <h3>Alertas</h3>
       <p>
         Na área da Central de Alertas eu tento te ajudar a gerenciar seu acervo, indicando quais

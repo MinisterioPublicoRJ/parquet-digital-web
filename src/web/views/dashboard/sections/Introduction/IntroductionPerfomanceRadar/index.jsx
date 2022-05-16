@@ -1,10 +1,9 @@
 import React from 'react';
-
-import '../styles.css';
+import {introductionWrapper} from '../introduction.module.css';
 
 function IntroductionPerfomanceRadar() {
   return (
-    <div className="introduction-wrapper">
+      <div className={introductionWrapper}>
       <h3>Radar De Perfomance</h3>
       <p>
         Neste gráfico eu analiso o que esta Promotoria fez nos últimos 180 dias e te descrevo de

@@ -1,10 +1,9 @@
 import React from 'react';
-
-import '../styles.css';
+import {introductionWrapper} from '../introduction.module.css';
 
 function IntroductionProcessingTime() {
   return (
-    <div className="introduction-wrapper">
+    <div className={introductionWrapper}>
       <h3>Tempo de tramitação</h3>
       <p>
         O tempo de tramitação é um velocímetro colorido mostrando a velocidade de finalização dos

@@ -1,10 +1,9 @@
 import React from 'react';
-
-import '../styles.css';
+import {introductionWrapper} from '../introduction.module.css';
 
 function IntroductionProcessList() {
   return (
-    <div className="introduction-wrapper">
+    <div className={introductionWrapper}>
       <h3>Lista de Processos</h3>
       <p>
         Nesta área o objetivo é te ajudar a lembrar o que aconteceu com os processos que estão no

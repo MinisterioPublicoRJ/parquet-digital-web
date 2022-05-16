@@ -1,10 +1,9 @@
 import React from 'react';
-
-import '../styles.css';
+import {introductionWrapper} from '../introduction.module.css';
 
 function IntroductionSuccessIndicators() {
   return (
-    <div className="introduction-wrapper">
+    <div className={introductionWrapper}>
       <h3>Indicadores de sucesso</h3>
       <p>
         Com a ajuda do meu amigo Farol (CENPE), eu trouxe alguns indicadores que podem lhe apontar o

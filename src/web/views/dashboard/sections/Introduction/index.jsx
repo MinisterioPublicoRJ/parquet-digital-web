@@ -1,9 +1,19 @@
 /* eslint-disable no-param-reassign */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useEventListener from './useEventListener';
-
-import './styles.css';
+import {
+  introOuter,
+  textDiv,
+  btnsIntroduction,
+  transparentDiv,
+  btnIntroductionPrevious,
+  btnIntroductionNext,
+  btnLeave
+} from './introduction.module.css';
+import {baseGrid} from '../../pages/PipAndTutela.module.css';
+import {pipGrid} from '../../pages/pip/Pip.module.css';
+import {tutelaGrid} from '../../pages/tutela/Tutela.module.css';
 
 import { PIP_GRID, TUTELA_GRID } from './introductionConstants';
 
@@ -41,12 +51,12 @@ function Introduction({ type, close }) {
 
   if (show) {
     return (
-      <div onClick={close} role="button" tabIndex='0' onKeyDown={handleKeyPress} className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
-        <div onClick={(e) => e.stopPropagation()} role="button" tabIndex='0' onKeyDown={handleKeyPress} style={{ gridArea: pages[currentPage].focus }} className="transparent-div">
-          <div className={`text-div text-div--${pages[currentPage].focus}`}>
+      <div onClick={close} role="button" tabIndex='0' onKeyDown={handleKeyPress} className={[introOuter, baseGrid, type === 1 ? tutelaGrid : pipGrid].join(' ')}>
+        <div onClick={(e) => e.stopPropagation()} role="button" tabIndex='0' onKeyDown={handleKeyPress} style={{ gridArea: pages[currentPage].focus }} className={transparentDiv}>
+          <div className={[textDiv, pages[currentPage].class].join(' ')}>
             {pages[currentPage].component}
-            <div className="btns-introduction">
-              <button className="btn-leave" type="button" aria-label="Fechar"
+            <div className={btnsIntroduction}>
+              <button className={btnLeave} type="button" aria-label="Fechar"
                onClick={close}
                onKeyDown={close}>
                 Sair
@@ -55,14 +65,14 @@ function Introduction({ type, close }) {
                 <button
                   onClick={() => handleNav('backward')}
                   type="button"
-                  className="btn-introduction-previous"
+                  className={btnIntroductionPrevious}
                 >
                   Anterior
                 </button>
               ) : null}
               <button
                 onClick={() => handleNav('forward')}
-                className="btn-introduction-next"
+                className={btnIntroductionNext}
                 type="button"
               >
                 Próximo

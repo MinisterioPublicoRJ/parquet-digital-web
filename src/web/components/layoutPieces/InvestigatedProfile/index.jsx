@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import './styles.css';
 import { useAppContext } from '../../../../core/app/App.context';
 import { TABLE_COLUMNS_PIP, TABLE_COLUMNS_TUTELA } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
@@ -9,6 +7,8 @@ import Api from '../../../api';
 import Spinner from '../Spinner';
 import CustomTable from '../CustomTable';
 import { LoginPromotron } from '../../../assets';
+import { investigatedProfileOuterStyle, investigatedProfileHeaderStyle, similarProfilesListStyle, similarProfilesListVisible, similarProfilesArrowStyle, similarProfilesArrowRotatedStyle, similarProfilesBtnStyle, investigatedProfileTableWrapperStyle, currentStyle, investigatedSpinnerStyle } from './InvestigatedProfile.module.css';
+import './styles.css';
 
 const propTypes = {
   close: PropTypes.func.isRequired,
@@ -66,7 +66,7 @@ function InvestigatedProfile({ representanteDk }) {
   function renderComponent() {
     if (apiError) {
       return (
-        <article className="investigatedProfile-outer">
+        <article className={ investigatedProfileOuterStyle }>
           <h2>
             <strong>Perfil do Investigado</strong>
           </h2>
@@ -76,15 +76,15 @@ function InvestigatedProfile({ representanteDk }) {
     }
     if (loading && !profileData) {
       return (
-        <article className="investigatedProfile-outer">
+        <article className={ investigatedProfileOuterStyle }>
           <Spinner size="large" />
         </article>
       );
     }
     if (profileData && profileData.profile) {
       return (
-        <article className="investigatedProfile-outer">
-          <div className="investigatedProfile-header">
+        <article className={ investigatedProfileOuterStyle }>
+          <div className={ investigatedProfileHeaderStyle }>
             <h2>
               <strong>Perfil do Investigado</strong>
             </h2>
@@ -97,22 +97,22 @@ function InvestigatedProfile({ representanteDk }) {
 
           <button
             type="button"
-            className="similar-profiles-btn"
+            className={ similarProfilesBtnStyle }
             onClick={() => setIsSimilarProfilesVisible((prevValue) => !prevValue)}
           >
             Foram encontrados
             {` ${profileData.similars.length} `}
             perfis similares ao solicitado.
             <div
-              className={`similar-profiles-arrow ${
-                isSimilarProfilesVisible ? 'similar-profiles-arrow--rotated' : ''
+              className={`${ similarProfilesArrowStyle } ${
+                isSimilarProfilesVisible ? `${ similarProfilesArrowRotatedStyle }` : ''
               }`}
             />
           </button>
 
           <div
-            className={`similar-profiles-list ${
-              isSimilarProfilesVisible ? 'similar-profiles-list--visible' : ''
+            className={`${ similarProfilesListStyle } ${
+              isSimilarProfilesVisible ? `${ similarProfilesListVisible }` : ''
             }`}
           >
             {profileData.similars.map((similarProfile) => (
@@ -122,7 +122,7 @@ function InvestigatedProfile({ representanteDk }) {
                     prevValue === similarProfile.pess_dk ? null : similarProfile.pess_dk,
                   );
                 }}
-                className={similarProfile.pess_dk === pessDk ? 'current' : ''}
+                className={similarProfile.pess_dk === pessDk ? `${ currentStyle }` : ''}
                 type="button"
                 key={`${similarProfile.pess_dk}-button`}
               >
@@ -131,9 +131,9 @@ function InvestigatedProfile({ representanteDk }) {
             ))}
           </div>
 
-          <div className="investigatedProfile-tableWrapper">
+          <div className={ investigatedProfileTableWrapperStyle }>
             {loading ? (
-              <Spinner size="medium" />
+              <Spinner className={ investigatedSpinnerStyle } size="medium" />
             ) : (
               <CustomTable
                 data={tableData}

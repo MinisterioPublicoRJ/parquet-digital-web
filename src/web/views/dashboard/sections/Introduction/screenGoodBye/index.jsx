@@ -1,10 +1,9 @@
 import React from 'react';
-
-import '../styles.css';
+import introductionWrapper from '../introduction.module.css';
 
 function ScreenGoodBye() {
   return (
-    <div className="introduction-wrapper">
+    <div className={introductionWrapper}>
       <div className="introduction-goodbye">
         <h3>Até mais!</h3>
         <p>

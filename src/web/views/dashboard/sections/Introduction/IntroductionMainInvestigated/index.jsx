@@ -1,10 +1,9 @@
 import React from 'react';
-
-import '../styles.css';
+import introductionWrapper from '../introduction.module.css';
 
 function IntroductionMainInvestigated() {
   return (
-    <div className="introduction-wrapper">
+    <div className={introductionWrapper}>
       <h3>Principais investigados</h3>
       <p>
         A lista de principais investigados te traz quais, dentre os seus investigados, têm maior

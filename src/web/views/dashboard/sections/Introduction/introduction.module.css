@@ -3,7 +3,7 @@
   --introductionArrowSize: 16px;
 }
 
-.intro-outer {
+.introOuter {
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -15,11 +15,11 @@
   overflow: hidden;
 }
 
-.modal-innerWrapper .intro-outer{
+.modalInnerWrapper .introOuter{
   background-color: transparent;
 }
 
-.text-div {
+.textDiv {
   background-color: var(--white);
   border-radius: 10px;
   color: var(--dark);
@@ -34,7 +34,7 @@
 }
 
 /* mover a seta de acordo com a posição */
-.text-div::after {
+.textDiv::after {
   visibility: visible;
   opacity: 1;
   content: '';
@@ -44,109 +44,109 @@
   position: absolute;
 }
 
-.introduction-wrapper {
+.introductionWrapper {
   height: 80%;
   overflow: auto;
 }
 
-.text-div--today {
+.textDiv--today {
   top: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.text-div--today::after {
+.textDiv--today::after {
   border-color: transparent transparent var(--white) transparent;
   top: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.text-div--desk {
+.textDiv--desk {
   left: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.text-div--desk::after {
+.textDiv--desk::after {
   border-color: transparent var(--white) transparent transparent;
   left: calc(0% - 2 * var(--introductionArrowSize));
   top: calc(1.6 * var(--introductionArrowSize));
 }
 
-.text-div--radar {
+.textDiv--radar {
   top: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.text-div--radar::after {
+.textDiv--radar::after {
   border-color: transparent transparent var(--white) transparent;
   top: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.text-div--alerts {
+.textDiv--alerts {
   right: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.text-div--alerts::after {
+.textDiv--alerts::after {
   border-color: transparent transparent transparent var(--white);
   right: calc(0% - 2 * var(--introductionArrowSize));
   top: calc(1.6 * var(--introductionArrowSize));
 }
 
-.text-div--mainInvestigated {
+.textDiv--mainInvestigated {
   bottom: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.text-div--mainInvestigated::after {
+.textDiv--mainInvestigated::after {
   border-color: var(--white) transparent transparent transparent;
   bottom: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.text-div--processes {
+.textDiv--processes {
   bottom: calc(100% + 1.6 * var(--introductionArrowSize));
   right: 50px;
 }
 
-.text-div--processes::after {
+.textDiv--processes::after {
   border-color: var(--white) transparent transparent transparent;
   bottom: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.text-div--indicators {
+.textDiv--indicators {
   right: calc(100% + 1.6 * var(--introductionArrowSize));
 }
 
-.text-div--indicators::after {
+.textDiv--indicators::after {
   border-color: transparent transparent transparent var(--white);
   right: calc(0% - 2 * var(--introductionArrowSize));
   top: calc(1.6 * var(--introductionArrowSize));
 }
 
-.text-div--processingTime {
+.textDiv--processingTime {
   bottom: calc(100% + 1.6 * var(--introductionArrowSize));
   right: 0;
 }
 
-.text-div--processingTime::after {
+.textDiv--processingTime::after {
   border-color: var(--white) transparent transparent transparent;
   bottom: calc(0% - 2 * var(--introductionArrowSize));
   left: calc(1.6 * var(--introductionArrowSize));
 }
 
-.text-div--end {
+.textDiv--end {
   bottom: 0;
   right: 0;
 }
 
-.introduction-wrapper h3 {
+.introductionWrapper h3 {
   font-size: 16px;
   font-weight: bold;
 }
 
-.introduction-wrapper p {
+.introductionWrapper p {
   font-size: 12px;
   font-family: 'Segoe UI', Regular;
 }
 
-.transparent-div {
+.transparentDiv {
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 0 0 100vw rgb(0 0 0 / 54%);
@@ -156,7 +156,7 @@
   position: relative;
 }
 
-.btns-introduction {
+.btnsIntroduction {
   display: flex;
   justify-content: flex-end;
   margin-top: 4px;
@@ -165,7 +165,7 @@
   min-height: 48px;
 }
 
-.btn-leave {
+.btnLeave {
   background: #efefef 0% 0% no-repeat padding-box;
   border-radius: 3px;
   opacity: 1;
@@ -176,7 +176,7 @@
   margin-right: 100px;
 }
 
-.btn-introduction-next {
+.btnIntroductionNext {
   background: #d6d6d6 0% 0% no-repeat padding-box;
   border-radius: 3px 20px 20px 3px;
   opacity: 1;
@@ -186,7 +186,7 @@
   margin: 10px;
 }
 
-.btn-introduction-previous {
+.btnIntroductionPrevious {
   background: #d6d6d6 0% 0% no-repeat padding-box;
   border-radius: 20px 3px 3px 20px;
   opacity: 1;
@@ -196,7 +196,7 @@
   margin: 10px;
 }
 
-.text-div--end {
+.textDiv--end {
   position: absolute;
   top: calc(-150px - 50vh);
   left: calc(-130px - 50vw);
@@ -204,6 +204,6 @@
   height: 260px;
 }
 
-.text-div--end::after {
+.textDiv--end::after {
   border-width: 0;
 }

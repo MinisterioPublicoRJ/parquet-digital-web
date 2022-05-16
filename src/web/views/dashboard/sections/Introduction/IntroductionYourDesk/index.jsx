@@ -1,10 +1,9 @@
 import React from 'react';
-
-import '../styles.css';
+import introductionWrapper from '../introduction.module.css';
 
 function IntroductionYourDesk() {
   return (
-    <div className="introduction-wrapper">
+    <div className={introductionWrapper}>
       <h3>Sua mesa</h3>
       <p>
         Aqui você encontra o movimento dos processos da sua Promotoria. Os quadrados brancos são

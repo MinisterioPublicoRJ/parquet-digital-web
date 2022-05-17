@@ -9,8 +9,11 @@
   flex-wrap: wrap;
   justify-content: inherit;
   max-width: 60vw;
-  max-height: 40vh;
+  max-height: 70vh;
   background-color: #bddff0;
+}
+.glossaryIntroSection{
+  display: flex;
 }
 
 .glossaryIntro h2 {
@@ -22,13 +25,13 @@
   padding: 0px 0px 0px 36px;
   margin-bottom: 0px;
 }
-
 .glossaryIntro p {
   font-size: 15px;
   font-family: var(--defaultFont);
   letter-spacing: 0px;
   color: #3b3b3b;
   padding: 0px 20px 0px 36px;
+  max-width: 430px;
 }
 .glossaryIntroSubtitle p{
   font-size: 15px;
@@ -36,6 +39,8 @@
   letter-spacing: 0px;
   color: #374354;
   font-weight: bold;
+  margin-top: 4px;
+  display: inline-block;
 }
 
 .glossaryArticlesWrapper {
@@ -45,21 +50,15 @@
   padding: 0px 0px 0px 36px;
   margin-top: 30px;
 }
-.glossaryIntroSubtitle p{
-  color: #374354;
-  margin-top: 4px;
-  display: inline-block;
 
-}
 .glossaryIntroSubtitle {
   background-color: #f8bd6c;
   font-weight: bold;
-  width: 12vw;
+  width: 13vw;
   height: 25px;
   margin-left: 30px;
   border-radius: 1px;
   margin-top: 15px;
-
 }
 .glossaryArticlesWrapper a {
   text-align: center;
@@ -83,4 +82,9 @@
   .glossaryArticlesWrapper {
     width: 30vw;
   }
+  .glossaryIntroSection{
+    display: flex;
+    flex-direction: column;
+  }
+  
 }

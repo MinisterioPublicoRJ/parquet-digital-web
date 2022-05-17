@@ -1,5 +1,7 @@
 import React from 'react';
 import MANUALPIP from './userManualPdfs/manual_pip.pdf';
+import MANUALPJTC from './userManualPdfs/manual_pjtc.pdf';
+
 import { useAppContext } from '../../../../../core/app/App.context';
 import {glossaryWrapper, glossaryIntroSection, glossaryIntroSubtitle, glossaryIntro, glossaryArticlesWrapper} from './userManual.module.css'
 import PromotronUserManual from '../../../../assets/svg/promotronUserManual.jsx';
@@ -29,7 +31,7 @@ function UserManual() {
           target="_blank"
           onClick={event => {
               event.preventDefault();
-              window.open(MANUALPIP);
+              window.open(MANUALPJTC);
             }
           }
          ><p>Acessar Manual</p>

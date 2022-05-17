@@ -1,6 +1,18 @@
 import React from 'react';
 
-import './styles.css';
+import {
+  altWelcomeOuter,
+  altWelcomeImg,
+  altWelcomeHeaderLogo,
+  altWelcomeHeaderText,
+  altWelcomeTextsFirst,
+  altWelcomeTextsSecond,
+  altWelcomeSuggestions,
+  altWelcomeSuggestionsItemRow,
+  altWelcomeSuggestionsItem,
+  altWelcomeSuggestionsItemImg,
+  altWelcomeSuggestionsItemData,
+} from './styles.module.css';
 
 import BGMP from '../../../../assets/imgs/bgMp.png';
 import { LogoAlternativeWelcome } from '../../../../assets';
@@ -10,14 +22,14 @@ import { ALTERNATIVE_SCREEN_DATA } from './suggestionsData';
 
 function AlternativeWelcome() {
   return (
-    <div className="altWelcome-outer">
-      <div className="altWelcome-img">
+    <div className={altWelcomeOuter}>
+      <div className={altWelcomeImg}>
         <img src={BGMP} alt="logo" />
       </div>
-      <div className="altWelcome-header-logo">
+      <div className={altWelcomeHeaderLogo}>
         <LogoAlternativeWelcome />
       </div>
-      <div className="altWelcome-header-text">
+      <div className={altWelcomeHeaderText}>
         <h1>
           Olá, bem-vindo(a) ao
           <strong> Parquet Digital</strong>
@@ -27,7 +39,7 @@ function AlternativeWelcome() {
           do dia-a-dia com base em evidências e uma análise apurada da sua Promotoria.
         </p>
       </div>
-      <p className="altWelcome-texts--first">
+      <p className={altWelcomeTextsFirst}>
         <h2>Que análise fazemos aqui?</h2>
         <p>
           Análises estatísticas e comparativas entre sua promotoria e o grupo de atribuição similar.
@@ -40,7 +52,7 @@ function AlternativeWelcome() {
           para sua área e atribuição.
         </p>
       </p>
-      <p className="altWelcome-texts--second">
+      <p className={altWelcomeTextsSecond}>
         <h2>Por que não posso acessar?</h2>
         <p>
           Em uma breve verificação, por consulta no banco de dados do MPRJ, percebemos que a
@@ -51,16 +63,16 @@ function AlternativeWelcome() {
           todos (as) podem cumprir parte das funções do Parquet Digital. Confira abaixo!
         </p>
       </p>
-      <div className="altWelcome-suggestions">
+      <div className={altWelcomeSuggestions}>
         <h2>Sugestões de ferramentas</h2>
         <p>Seleção de ferramentas que podem ajudar na sua atuação</p>
-        <div className="altWelcome-suggestions-itemRow">
+        <div className={altWelcomeSuggestionsItemRow}>
           {ALTERNATIVE_SCREEN_DATA.map(({ id, title, text, img, url }) => (
-            <div className="altWelcome-suggestions-item" key={id}>
-              <div className="altWelcome-suggestions-itemImg">
+            <div className={altWelcomeSuggestionsItem} key={id}>
+              <div className={altWelcomeSuggestionsItemImg}>
                 <img src={img} alt={`${title} logo`} />
               </div>
-              <div className="altWelcome-suggestions-itemData">
+              <div className={altWelcomeSuggestionsItemData}>
                 <div>
                   <h3>{title}</h3>
                   <p>{text}</p>

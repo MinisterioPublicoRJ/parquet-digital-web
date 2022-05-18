@@ -10,7 +10,7 @@ import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
-import Glossary  from "../Glossary/Glossary.view";
+import UserManual  from "../UserManual/UserManual.view";
 import  Introduction from "../Introduction";
 import MapaTron  from "../MapaTron/Mapatron.view";
 
@@ -228,7 +228,7 @@ function Today() {
         {
           modalType === 'glossary' &&
           <Modal withExitButton close={setModalType}>
-            <Glossary/>
+            <UserManual/>
           </Modal>
         }
         <button type="button" className="today-introBtn"

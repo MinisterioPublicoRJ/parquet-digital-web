@@ -85,14 +85,9 @@
   }
 
   .ptMainBox {
-    /* font-size: calc(var(--defaultFontSize) * 0.7); */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-  }
-
-  .ptLegendsHighlight {
-    /* font-size: var(--defaultFontSize); */
   }
 
   .ptLegends {
@@ -120,14 +115,9 @@
   }
 
   .ptMainBox {
-    /* font-size: var(--defaultFontSize); */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-  }
-
-  .ptLegendsHighlight {
-    /* font-size: calc(var(--defaultFontSize) * 1.5); */
   }
 
   .ptLegendsIcon {

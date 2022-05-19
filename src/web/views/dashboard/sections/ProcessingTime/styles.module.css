@@ -1,0 +1,140 @@
+.pageTramitacao {
+  grid-area: processingTime;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  grid-auto-rows: 100%;
+  grid-template-areas: 'texts graph mainBoxTime';
+  overflow: hidden;
+}
+
+.ptTexts {
+  grid-area: texts;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.ptTexts h3 {
+  margin: 0;
+}
+
+.ptMainBox {
+  grid-area: mainBoxTime;
+}
+
+.ptGraph {
+  grid-area: graph;
+}
+
+.ptLegends {
+  align-items: center;
+  display: flex;
+  height: 20%;
+}
+
+.ptLegendsIcon {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  justify-content: center;
+  margin-right: 5%;
+}
+
+.ptLegendsText {
+  color: var(--grayTexts);
+  display: flex;
+  flex: 5;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: var(--smallFont);
+}
+
+.ptLegendsHighlight {
+  font-size: var(--defaultFontSize);
+}
+
+.ptLegendsHighlight span:first-child {
+  font-size: var(--featuredNumberFontSize);
+}
+
+.colorTurquoise {
+  color: var(--pt-turquoise);
+}
+
+.colorPink {
+  color: var(--pt-pink);
+}
+
+.colorGreen {
+  color: var(--pt-green);
+}
+
+.colorPurple {
+  color: var(--pt-purple);
+}
+
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+  .pageTramitacao {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 33% 66%;
+    grid-template-areas:
+      'texts texts'
+      'graph mainBoxTime';
+  }
+
+  .ptMainBox {
+    /* font-size: calc(var(--defaultFontSize) * 0.7); */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .ptLegendsHighlight {
+    /* font-size: var(--defaultFontSize); */
+  }
+
+  .ptLegends {
+    height: auto;
+  }
+
+  .ptLegendsIcon {
+    margin-right: 0;
+  }
+
+  .ptTexts p {
+    width: 80%;
+  }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .pageTramitacao {
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 40% 40%;
+    grid-template-areas:
+      'texts'
+      'graph'
+      'mainBoxTime';
+  }
+
+  .ptMainBox {
+    /* font-size: var(--defaultFontSize); */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .ptLegendsHighlight {
+    /* font-size: calc(var(--defaultFontSize) * 1.5); */
+  }
+
+  .ptLegendsIcon {
+    margin-right: 0;
+  }
+
+  .ptTexts {
+    font-size: var(--defaultFontSize);
+  }
+}

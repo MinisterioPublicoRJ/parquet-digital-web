@@ -1,8 +1,6 @@
 import React from 'react';
 import { VictoryLabel } from 'victory';
 
-import './styles.css';
-
 // manually change labels position to make them fit the design in a way Victory wouldn't let me
 // props come from Victory itself
 // https://formidable.com/open-source/victory/docs/victory-label/

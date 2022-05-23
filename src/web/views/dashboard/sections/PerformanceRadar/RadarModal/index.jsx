@@ -1,29 +1,43 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
 
-import './styles.css';
+import {
+  radarModalOuter,
+  radarModalMain,
+  radarModalMenu,
+  radarModalSearching,
+  radarModalMenuHeader,
+  radarModalHeaderSlider,
+  radarModalMenuList,
+  radarModalIconWrapper,
+  radarModalClose,
+  radarModalMainHeader,
+  radarModalMinGraph,
+  radarModalMinSubtitles,
+  radarModalMainSubtitlesItem,
+} from './styles.module.css';
 import RadarGraph from '../RadarGraph';
 import { Search } from '../../../../../assets';
 import { Spinner } from '../../../../../components';
 
 function RadarModal({ compareData }) {
-  const useFocus = isSearching => {
+  function useFocus(isSearching) {
     const htmlElRef = useRef(null);
     const setFocus = () => {
       setTimeout(() => {
         htmlElRef.current && htmlElRef.current.focus();
       }, 800);
     };
-    const setBlur = () => {
+    function setBlur() {
       htmlElRef.current && htmlElRef.current.blur();
       htmlElRef.current.value = '';
       setFilteredList(compareData.otherData);
-    };
+    }
     if (!isSearching) {
       return [htmlElRef, setFocus];
     }
     return [htmlElRef, setBlur];
-  };
+  }
   
   const [loadedData, setLoadedData] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
@@ -68,8 +82,8 @@ function RadarModal({ compareData }) {
   }
 
   return (
-      <div className="radarModal-outer">
-        <div className="radarModal-main">
+      <div className={ radarModalOuter }>
+        <div className={ radarModalMain }>
           <div className="radarModal-mainHeader">
             <h1>Comparativo de Peformance</h1>
             <p>
@@ -104,9 +118,9 @@ function RadarModal({ compareData }) {
             )}
           </div>
         </div>
-        <div className="radarModal-menu">
-          <div className="radarModal-menuHeader">
-            <div className={`radarModal-headerSlider ${isSearching && 'radarModal-searching'}`}>
+        <div className={ radarModalMenu }>
+          <div className={ radarModalMenuHeader }>
+            <div className={`${ radarModalHeaderSlider } ${isSearching && `${ radarModalSearching }`}`}>
               <div>
                 <h3>Lista de Promotorias</h3>
               </div>
@@ -124,7 +138,7 @@ function RadarModal({ compareData }) {
               </div>
             </div>
           </div>
-          <div className="radarModal-menuList">
+          <div className={ radarModalMenuList }>
             <ul>
               {loadingError && <p>Nenhuma promotoria encontrada :(</p>}
               {compareData &&

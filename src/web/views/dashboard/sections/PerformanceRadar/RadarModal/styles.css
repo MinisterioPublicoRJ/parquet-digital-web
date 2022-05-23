@@ -77,6 +77,8 @@
   background-color: white;
   width: 15px;
   height: 15px;
+  color: red;
+  background-color: black;
 }
 
 .radarModal-menuList {

@@ -11,7 +11,7 @@ import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual  from "../UserManual/UserManual.view";
-import  Introduction from "../Introduction";
+import  NewIntroduction from "../Introduction/newIntroduction.jsx";
 import MapaTron  from "../MapaTron/Mapatron.view";
 
 function Today() {
@@ -239,7 +239,7 @@ function Today() {
         {       
           modalType === 'introduction' &&
           <Modal transparent unpositioned close={() => setModalType()}>
-            <Introduction close={() => setModalType()} type={currentOffice.tipo} />
+            <NewIntroduction close={() => setModalType()} type={currentOffice.tipo} />
           </Modal>
         }
         <img height="100%" src={PromotronGif} alt="robô-promoton" />

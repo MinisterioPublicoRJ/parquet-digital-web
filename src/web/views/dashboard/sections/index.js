@@ -16,7 +16,8 @@ export { default as IntroductionProcessingTime } from './Introduction/Introducti
 export { default as IntroductionProcessList } from './Introduction/introductionProcessList';
 export { default as IntroductionAlerts } from './Introduction/IntroductionAlerts';
 export { default as IntroductionSuccessIndicators } from './Introduction/introductionSuccessIndicators';
-export { default as Introduction } from './Introduction';
+// export { default as Introduction } from './Introduction';
 export { default as ScreenGoodBye } from './Introduction/screenGoodBye';
 export { default as UserManual } from './UserManual/UserManual.view';
 export { default as MapaTron } from './MapaTron/Mapatron.view';
+export { default as NewIntroduction } from './Introduction';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
-import { Introduction } from './sections';
+import  NewIntroduction  from './sections/Introduction/newIntroduction.jsx';
 
 
 const Dashboard = () => {
@@ -34,7 +34,7 @@ const Dashboard = () => {
     <>
     {isIntroOpen &&     
       <Modal transparent unpositioned close={() => setIsIntroOpen()}>
-        <Introduction close={() => setIsIntroOpen()} type={currentOffice.tipo} />
+        <NewIntroduction close={() => setIsIntroOpen()} type={currentOffice.tipo} />
       </Modal>
     }
     {renderPage()}

@@ -48,12 +48,12 @@
   transition: left 1s;
 }
 
-.radarModalHeaderSlider:first-child {
+.radarModalHeaderSlider :first-child {
   width: calc(50% + 1px);
   overflow: hidden;
 }
 
-.radarModalHeaderSlider:nth-child(2) {
+.radarModalHeaderSlider :nth-child(2) {
   display: flex;
   justify-content: center;
   width: 30px;
@@ -61,11 +61,11 @@
   border: none;
   background-color: transparent;
 }
-.radarModalHeaderSlider:nth-child(3) {
+.radarModalHeaderSlider :nth-child(3) {
   width: calc(50%);
 }
 
-.radarModalHeaderSlider:nth-child(3) input {
+.radarModalHeaderSlider :nth-child(3) input {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -111,18 +111,6 @@
   background-color: white;
   width: 15px;
   height: 15px;
-}
-
-.radarModalClose {
-  text-align: center;
-  position: absolute;
-  font-size: 3em;
-  /*bottom: 0.1vh;*/
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5px;
 }
 
 .radarModalClose button {

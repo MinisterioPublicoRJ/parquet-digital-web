@@ -9,8 +9,6 @@ import {
   radarModalMenuHeader,
   radarModalHeaderSlider,
   radarModalMenuList,
-  radarModalIconWrapper,
-  radarModalClose,
   radarModalMainHeader,
   radarModalMinGraph,
   radarModalMinSubtitles,

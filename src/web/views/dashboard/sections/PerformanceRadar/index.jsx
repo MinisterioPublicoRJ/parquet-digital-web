@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-import './styles.css';
+import {
+  pageRadarDashboard,
+  radar,
+  radarGraph,
+  radarWrapper,
+  radarSubtitles,
+  radarSubtitlesItem,
+  radarSubtitlesItemYourData,
+  radarSubtitlesItemMPData
+} from './styles.module.css';
 import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
@@ -168,23 +177,23 @@ function PerformanceRadar() {
   }
 
   return (
-    <article className="page-radar-dashboard">
+    <article className={ pageRadarDashboard }>
       <div className="radar-header">
         <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
       </div>
       {loading && !dataError && <Spinner size="large" />}
       {dataError && 'Sem dados para exibir'}
       {!loading && !dataError && (
-        <figure className="radar-wrapper">
+        <figure className={ radarWrapper }>
           <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
         </figure>
       )}
-      <figcaption className="radar-subtitles">
-        <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
-        <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
+      <figcaption className={ radarSubtitles }>
+        <div className={`${ radarSubtitlesItem } ${ radarSubtitlesItemYourData }`}>Sua Promotoria</div>
+        <div className={`${ radarSubtitlesItem } ${ radarSubtitlesItemMPData }`}>Perfil do MP</div>
         <button
           type="button"
-          className="radar-subtitles-item"
+          className={ radarSubtitlesItem }
           onClick={handleCompareButton}
         >
           <RadarArrow height={15} width={15} />

@@ -176,7 +176,7 @@ function PerformanceRadar() {
 
   return (
     <article className={ pageRadarDashboard }>
-      <div className="radar-header">
+      <div>
         <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
       </div>
       {loading && !dataError && <Spinner size="large" />}

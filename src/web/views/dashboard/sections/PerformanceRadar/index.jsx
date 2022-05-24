@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import {
   pageRadarDashboard,
-  radar,
-  radarGraph,
   radarWrapper,
   radarSubtitles,
   radarSubtitlesItem,

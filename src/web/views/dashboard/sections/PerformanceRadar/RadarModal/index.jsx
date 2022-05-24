@@ -84,7 +84,7 @@ function RadarModal({ compareData }) {
   return (
       <div className={ radarModalOuter }>
         <div className={ radarModalMain }>
-          <div className="radarModal-mainHeader">
+          <div className={ radarModalMainHeader }>
             <h1>Comparativo de Peformance</h1>
             <p>
               Análise comparativa dos perfis de performance de promotorias de mesma atuação. Ao
@@ -92,9 +92,9 @@ function RadarModal({ compareData }) {
               os itens dispostos no radar da atuação.
             </p>
           </div>
-          <div className="radarModal-mainGraph">
+          <div className={ radarModalMinGraph }>
             {!compareData && <Spinner size="large" />}
-            {loadingError && <p>Houve um problema carregando os dados :(</p>}
+            {loadingError && <p>Houve um problema carregando os dados :</p>}
             {/*
             the extra div makes VictoryChart centralized on the parent's empty space,
             otherwise the svg tag takes 100% of the height and adds empty space under the graph
@@ -109,10 +109,10 @@ function RadarModal({ compareData }) {
               </div>
             )}
           </div>
-          <div className="radarModal-mainSubtitles">
-            <div className="radarModal-mainSubtitles-item radarModal-item--you">Sua Promotoria</div>
+          <div className={ radarModalMinSubtitles }>
+            <div className={ radarModalMainSubtitlesItem }>Sua Promotoria</div>
             {currentCompared && (
-              <div className="radarModal-mainSubtitles-item radarModal-item--other">
+              <div className={ radarModalMainSubtitlesItem }>
                 {currentCompared.meta.codamp.toLocaleLowerCase()}
               </div>
             )}
@@ -140,7 +140,7 @@ function RadarModal({ compareData }) {
           </div>
           <div className={ radarModalMenuList }>
             <ul>
-              {loadingError && <p>Nenhuma promotoria encontrada :(</p>}
+              {loadingError && <p>Nenhuma promotoria encontrada :</p>}
               {compareData &&
                 filteredList.map(({ meta, graphData }) => (
                   <li key={meta.name}>

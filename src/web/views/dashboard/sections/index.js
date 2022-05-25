@@ -9,6 +9,5 @@ export { default as MainInvestigated } from './MainInvestigated';
 export { default as PerformanceRadar } from './PerformanceRadar';
 export { YourDesk } from './YourDesk';
 export { default as Introduction } from './Introduction';
-export { default as ScreenGoodBye } from './Introduction/screenGoodBye';
 export { default as UserManual } from './UserManual/UserManual.view';
 export { default as MapaTron } from './MapaTron/Mapatron.view';

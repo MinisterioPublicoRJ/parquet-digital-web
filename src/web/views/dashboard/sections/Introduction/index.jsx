@@ -1,48 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PromotronUserManual from '../../../../assets/svg/promotronUserManual.jsx';
 
-import { introOuter } from './introduction.module.css'
+import {
+introOuter,
+introductionSubtitle,
+introductionIntro,
+promotronIcon
+} from './introduction.module.css'
+
 function Introduction() {
   
   return (
-    <div className={glossaryWrapper}>
-    <div className={glossaryIntro}>
-      <div className={glossaryIntroSubtitle}>
+    <div className={introOuter}>
+    <div className={introductionIntro}>
+      <div className={introductionSubtitle}>
         <p>Manual de uso</p>
       </div>
       <h2>PARQUET DIGITAL</h2>
-      <div className={glossaryIntroSection}>
+      <div>
         <p>
           Este manual visa auxiliar o usuário a potencializar a capacidade da ferramenta em
           solucionar demandas dentro de sua Promotoria de Justiça
         </p>
-
-        <div className={glossaryArticlesWrapper}>
-          {tipo === 1 ? (
-            <button
-              type="button"
-              onClick={(event) => {
-                event.preventDefault();
-                window.open(MANUALPJTC);
-              }}
-            >
-              Acessar Manual
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={(event) => {
-                event.preventDefault();
-                window.open(MANUALPIP);
-              }}
-            >
-              Acessar Manual
-            </button>
-          )}
-        </div>
       </div>
-    </div>
-    <div className={promotronIcon}>
+      <div className={promotronIcon}>
       <PromotronUserManual />
+    </div>
     </div>
   </div>
     

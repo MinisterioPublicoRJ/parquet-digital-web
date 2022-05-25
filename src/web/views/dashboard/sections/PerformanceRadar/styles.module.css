@@ -1,31 +1,28 @@
-.page-radar-dashboard {
+.pageRadarDashboard {
   grid-area: radar;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.radar {
-  flex-direction: row;
-  grid-area: radar;
-}
-
-.radar-graph {
-  margin: auto 0;
-}
-
-.radar-wrapper {
+.radarWrapper {
   margin: 0;
   width: 100%;
 }
 
-.radar-subtitles {
+.radarSubtitles {
   margin-top: 2.5vh;
   display: flex;
   justify-content: space-between;
 }
 
-.radar-subtitles-item {
+.radarSubtitles button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.radarSubtitlesItem {
   position: relative;
   padding-top: 1vh;
   font-family: var(--defaultFont);
@@ -35,7 +32,7 @@
   float: left;
 }
 
-div .radar-subtitles-item:before {
+div .radarSubtitlesItem:before {
   content: '';
   position: absolute;
   top: 0;
@@ -44,16 +41,10 @@ div .radar-subtitles-item:before {
   height: 2px;
 }
 
-.radar-subtitles-item-yourData:before {
+.radarSubtitlesItemYourData:before {
   background-color: #009bff;
 }
 
-.radar-subtitles-item-MPData:before {
+.radarSubtitlesItemMPData:before {
   background-color: #c43a31;
-}
-
-.radar-subtitles button {
-  background-color: transparent;
-  border: none;
-  padding: 0;
 }

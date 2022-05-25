@@ -1,20 +1,15 @@
-.mainInvestigated-outer {
+.mainInvestigatedOuter {
   grid-area: mainInvestigated;
   display: flex;
   flex-direction: column;
 }
 
-.mainInvestigated-tableWrapper {
+.mainInvestigatedTableWrapper {
   overflow-y: auto;
   width: 100%;
 }
 
-.mainInvestigated-outer button.main-investigated-search-btn {
-  color:black;
-  margin-left: 16%;
-}
-
-td button.investigated-profile-btn {
+.investigatedProfileBtn {
   color: var(--grayPagination);
   font-size: var(--smallFont);
   width: 100%;

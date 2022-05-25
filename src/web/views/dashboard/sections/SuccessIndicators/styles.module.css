@@ -83,7 +83,7 @@
   right: 50%;
   border-width: 5px;
   border-style: solid;
-  border-color: #f86c72 transparent transparent transparent;
+  border-color: var(--danger) transparent transparent transparent;
 }
 .successIndicatorsItem .successIndicatorsSooltipSecond strong::after {
   content: '';
@@ -92,7 +92,7 @@
   right: 50%;
   border-width: 5px;
   border-style: solid;
-  border-color: #f8bd6c transparent transparent transparent;
+  border-color: var(--warning) transparent transparent transparent;
 }
 .successIndicatorsItem .successIndicatorsTooltipThird strong::after {
   content: '';
@@ -101,20 +101,20 @@
   right: 50%;
   border-width: 5px;
   border-style: solid;
-  border-color: #71d0a4 transparent transparent transparent;
+  border-color: var(--success) transparent transparent transparent;
 }
 
 .successIndicatorsTooltipFirst strong {
-  background-color: #f86c72;
-  border-color: #f86c72 transparent transparent transparent;
+  background-color: var(--danger);
+  border-color: var(--danger) transparent transparent transparent;
 }
 .successIndicatorsSooltipSecond strong {
-  background-color: #f8bd6c;
-  border-color: #f8bd6c transparent transparent transparent;
+  background-color: var(--warning);
+  border-color: var(--warning) transparent transparent transparent;
 }
 .successIndicatorsTooltipThird strong {
-  background-color: #71d0a4;
-  border-color: #71d0a4 transparent transparent transparent;
+  background-color: var(--success);
+  border-color: var(--success) transparent transparent transparent;
 }
 
 /* Css Tooltip percent  */

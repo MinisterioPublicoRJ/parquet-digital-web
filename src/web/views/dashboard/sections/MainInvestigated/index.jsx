@@ -159,10 +159,6 @@ function MainInvestigated() {
     }
   }
 
-  // function onMount() {
-  //   getMainInvestigated();
-  // }
-
   function onUpdate() {
     getMainInvestigated();
   }
@@ -170,7 +166,6 @@ function MainInvestigated() {
   function handleSearch(searchStr) {
     setSearchString(searchStr);
     setPage(1);
-    // getMainInvestigated(searchStr, 1);
   }
 
   function handlePageClick(nextPage) {

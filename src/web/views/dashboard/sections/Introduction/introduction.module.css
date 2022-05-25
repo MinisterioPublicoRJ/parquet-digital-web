@@ -7,7 +7,6 @@
   flex-direction: column;
   justify-content: center;
   flex-wrap: nowrap;
-  height: 74vh;
   width: 75vw;
   background-color: #ffffff;
 
@@ -33,9 +32,9 @@
   
 }
 .introductionTexts {
-  padding: 0px;
-  margin-top: 40px;
-  max-width: 480px;
+  padding: 36px;
+  margin-top: 25px;
+  max-width: 600px;
 }
 
 .introductionTexts span {
@@ -69,9 +68,11 @@
 
 @media (max-width: 1024px) {
   .introOuter{
-    max-height: 100vh;
     display: flex;
     flex-direction: column;
     
   }  
+  .introductionIntro{
+    height: 37vh;
+  }
 }

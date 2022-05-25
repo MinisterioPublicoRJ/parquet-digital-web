@@ -11,7 +11,7 @@ import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual  from "../UserManual/UserManual.view";
-import  NewIntroduction from "../Introduction/newIntroduction.jsx";
+import  NewIntroduction from "../Introduction";
 import MapaTron  from "../MapaTron/Mapatron.view";
 
 function Today() {

@@ -1,209 +1,98 @@
-:root {
-  /* ICONS */
-  --introductionArrowSize: 16px;
-}
-
-.introOuter {
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* it needs to be this high because of the Performance Radar graph labels :/ */
-  z-index: 100;
-  padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
-  overflow: hidden;
-}
-
-.introOuter{
-  background-color: transparent;
-}
-
-.textDiv {
-  background-color: var(--white);
-  border-radius: 10px;
-  color: var(--dark);
-  letter-spacing: 0px;
-  opacity: 1;
-  padding: 20px;
-  position: absolute;
-  z-index: 101;
-  max-height: 35vh;
-  min-height: 130px;
-  height: 100%;
-}
-
-/* mover a seta de acordo com a posição */
-.textDiv::after {
-  visibility: visible;
-  opacity: 1;
-  content: '';
-  border-width: var(--introductionArrowSize);
-  border-style: solid;
-  border-color: var(--white) transparent transparent transparent;
-  position: absolute;
-}
-
-.introductionWrapper {
-  height: 80%;
-  overflow: auto;
-}
-
-.textDivToday {
-  top: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivToday::after {
-  border-color: transparent transparent var(--white) transparent;
-  top: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivDesk {
-  left: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivDesk::after {
-  border-color: transparent var(--white) transparent transparent;
-  left: calc(0% - 2 * var(--introductionArrowSize));
-  top: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivRadar {
-  top: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivRadar::after {
-  border-color: transparent transparent var(--white) transparent;
-  top: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivAlerts {
-  right: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivAlerts::after {
-  border-color: transparent transparent transparent var(--white);
-  right: calc(0% - 2 * var(--introductionArrowSize));
-  top: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivMainInvestigated {
-  bottom: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivMainInvestigated::after {
-  border-color: var(--white) transparent transparent transparent;
-  bottom: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivProcesses {
-  bottom: calc(100% + 1.6 * var(--introductionArrowSize));
-  right: 50px;
-}
-
-.textDivProcesses::after {
-  border-color: var(--white) transparent transparent transparent;
-  bottom: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivIndicators {
-  right: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivIndicators::after {
-  border-color: transparent transparent transparent var(--white);
-  right: calc(0% - 2 * var(--introductionArrowSize));
-  top: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivProcessingTime {
-  bottom: calc(100% + 1.6 * var(--introductionArrowSize));
-  right: 0;
-}
-
-.textDivProcessingTime::after {
-  border-color: var(--white) transparent transparent transparent;
-  bottom: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivEnd {
-  bottom: 0;
-  right: 0;
-}
-
-.introductionWrapper h3 {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.introductionWrapper p {
-  font-size: 12px;
-  font-family: 'Segoe UI', Regular;
-}
-
-.transparentDiv {
-  box-sizing: border-box;
-  border-radius: 10px;
-  box-shadow: 0 0 0 100vw rgb(0 0 0 / 54%);
-  height: 104%;
-  margin-left: -10px;
-  width: 104%;
-  position: relative;
-}
-
-.btnsIntroduction {
+.glossaryWrapper {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 60vw;
+  background-color: #bddff0;
+}
+
+.glossaryIntroSection{
+  display: flex;
+  flex-direction: column;
+}
+
+.glossaryIntro h2 {
+  font-size: 35px;
+  font-family: var(--defaultFont);
+  font-weight: 900;
+  letter-spacing: 0px;
+  color: #374354;
+  padding: 0px 0px 0px 36px;
   margin-top: 4px;
-  color: var(--darkWelcome);
-  border-top: solid 5px #bddff0;
-  min-height: 48px;
+  margin-bottom: 0px;
+}
+.glossaryIntro p {
+  font-size: 15px;
+  font-family: var(--defaultFont);
+  letter-spacing: 0px;
+  color: #3b3b3b;
+  padding: 0px 20px 0px 36px;
+  max-width: 430px;
+}
+.glossaryIntroSubtitle p{
+  font-size: 15px;
+  font-family: var(--defaultFont);
+  letter-spacing: 0px;
+  color: #374354;
+  font-weight: bold;
+  margin-top: 2px;
+  display: inline-block;
+  background-color: #f8bd6c;
+  margin-left: 10px;
+  padding: 4px;
+  border-radius: 4px;
 }
 
-.btnLeave {
-  background: #efefef 0% 0% no-repeat padding-box;
-  border-radius: 3px;
-  opacity: 1;
-  border: none;
-  width: 69px;
-  height: 24px;
-  margin: 10px;
-  margin-right: 100px;
+.glossaryArticlesWrapper {
+
+  overflow-y: auto;
+  padding: 0px 0px 0px 36px;
+  margin-top: 15px;
+  margin-bottom: 30px;
 }
 
-.btnIntroductionNext {
-  background: #d6d6d6 0% 0% no-repeat padding-box;
-  border-radius: 3px 20px 20px 3px;
-  opacity: 1;
-  border: none;
-  width: 69px;
-  height: 24px;
-  margin: 10px;
+.glossaryIntroSubtitle {
+  font-weight: bold;
+  width: 13vw;
+  height: 25px;
+  margin-left: 30px;
+  border-radius: 1px;
+  margin-top: 15px;
+}
+.glossaryArticlesWrapper button {
+  text-align: center;
+  cursor: pointer;
+  font-family: var(--defaultFont);
+  border-radius: 4px;
+  color: var(--white);
+  background-color: #374354;
+  padding: 0.6em 3em;
+  font-weight: bold;
+  border: 0;
+  display: inline-block;
+}
+.glossaryArticlesWrapper p {
+  margin-top: 5px;
+}
+.promotronIcon {
+  align-self: flex-end;
+  margin-bottom: -3px;
 }
 
-.btnIntroductionPrevious {
-  background: #d6d6d6 0% 0% no-repeat padding-box;
-  border-radius: 20px 3px 3px 20px;
-  opacity: 1;
-  border: none;
-  width: 69px;
-  height: 24px;
-  margin: 10px;
-}
-
-.textDivEnd {
-  position: absolute;
-  top: calc(-150px - 50vh);
-  left: calc(-130px - 50vw);
-  width: 300px;
-  height: 260px;
-}
-
-.textDivEnd::after {
-  border-width: 0;
+@media (max-width: 1024px) {
+  .glossaryWrapper{
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .glossaryIntroSubtitle{
+    width: 100%;
+  }
+  
 }

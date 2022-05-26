@@ -9,13 +9,24 @@ import { formatDateObjForBackend } from '../../web/utils/formatters';
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
 
 
-function ApiCreator() {
+function ApiCreator(jwtToken) {
+  
+
   const axiosInstance = axios.create({
-    baseURL: BASE_URL,
+    baseURL: BASE_URL, 
+    params: {jwt: jwtToken}
   });
 
-  function addHeaders(token) {
-    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+// axios bug not allowing params and other configs being changed after creating instance
+  function addHeaders() {
+    //axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    
+  /*  axiosInstance = axios.create({
+      baseURL: BASE_URL, 
+      params: {jwt: token}
+    });
+*/
+   // axiosInstance.defaults.params = {jwt: token};
   }
 
   async function loginWithSCACredentials(username, password) {
@@ -36,6 +47,7 @@ function ApiCreator() {
     formData.set('jwt', token);
 
     const { data } = await axiosInstance.post(TOKEN_LOGIN, formData);
+    axiosInstance.defaults.params = {jwt: token};
 
     return jwtUserTransform(data);
   }
@@ -49,8 +61,7 @@ function ApiCreator() {
    */
 
    async function getTodayOutData({ orgao, token }) {
-
-    const { data } = await axios.get(TODAY_OUT({ orgao }), buildRequestConfig(token));
+    const { data } = await axiosInstance.get(TODAY_OUT({ orgao }));
 
     return todayOutTransform(data);
   }
@@ -63,16 +74,15 @@ function ApiCreator() {
    */
   async function getTodayOutliersData({ orgao, token }, date) {
     const dateFormated = formatDateObjForBackend(date);
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       TODAY_OUTLIERS({ orgao, date: dateFormated }),
-      buildRequestConfig(token),
     );
 
     return todayOutliersTransform(data);
   }
 
   async function getTodayEntriesData({ orgao, cpf, token }) {
-    const { data } = await axios.get(TODAY_ENTRIES({ orgao, cpf }), buildRequestConfig(token));
+    const { data } = await axiosInstance.get(TODAY_ENTRIES({ orgao, cpf }));
 
     return todayEntriesTransform(data);
   }
@@ -81,6 +91,7 @@ function ApiCreator() {
 
 
   return {
+    addHeaders,
     loginWithSCACredentials,
     loginWithJwtCredentials,
     getTodayOutData,

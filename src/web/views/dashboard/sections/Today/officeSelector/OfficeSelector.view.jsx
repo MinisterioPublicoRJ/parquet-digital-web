@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './OfficeSelector.css';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Search } from '../../../../../assets';
 import { abbrevName } from '../../../../../utils';
+import {
+  selectorOuter,
+  selectorModal,
+  inputOrgaoSelect,
+  selectorHeader,
+  selectorListWrapper,
+} from './OfficeSelector.module.css';
 
 function handleInnerClick(e) {
   e.stopPropagation();
@@ -47,28 +53,28 @@ function OfficeSelector({ close }) {
 
     return (
       <div
-        className="selector-outer"
+        className={ selectorOuter }
         role="button"
         tabIndex="0"
         onClick={() => close()}
         onKeyDown={() => close()}
       >
         <div
-          className="selector-modal"
+          className={ selectorModal }
           onClick={e => handleInnerClick(e)}
           onKeyDown={e => handleInnerClick(e)}
         >
-          <div className="selector-header">
+          <div className={ selectorHeader }>
             <h2>Selecione a Promotoria:</h2>
             <input
               placeholder="Pesquisar..."
               type="text"
               onChange={handleChange}
-              className="input-orgaoSelect"
+              className={ inputOrgaoSelect }
             />
             <Search className="search" />
           </div>
-          <div className="selector-listWrapper">
+          <div className={ selectorListWrapper }>
             <ul>
               {filteredList.map(orgao => (
                 <li 

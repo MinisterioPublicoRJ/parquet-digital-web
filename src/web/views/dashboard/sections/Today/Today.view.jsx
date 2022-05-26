@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './Today.css';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
@@ -13,6 +12,19 @@ import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual  from "../UserManual/UserManual.view";
 import  Introduction from "../Introduction";
 import MapaTron  from "../MapaTron/Mapatron.view";
+import {
+  todayOuter,
+  todayContent,
+  todayTextArea,
+  userArea,
+  logoutArrow,
+  logoutArrowRotated,
+  logoutBtnVisible,
+  todayRobotPic,
+  todayGlossaryBtn,
+  todayIntroBtn,
+  todayBtn,
+} from './Today.module.css';
 
 function Today() {
   const { user, buildRequestParams, currentOffice, logout } = useAppContext();
@@ -136,26 +148,26 @@ function Today() {
   const loading = !(apiError === 3) && !(todayPercent || collectionAnalysis || entriesData);
 
   return (
-    <article className="today-outer">
-      <div className="user-area">
+    <article className={ todayOuter }>
+      <div className={ userArea }>
         <MainTitle value={assembleGreeting()} glueToTop />
         {/* Botão precisa ter texto dentro! */}
         {/*{user.orgaosValidos && user.orgaosValidos.length ? (
           <button
             type="button"
-            className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
+            className={`${ logoutArrow } ${isLogoutBtnVisible ? `${ logoutArrowRotated }` : ''}`}
             onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
           />
         ) : null}*/}
         <button
           type="button"
-          className="logout-btn--visible"
+          className={ logoutBtnVisible }
           onClick={logout}
         >
           CLIQUE PARA SAIR
         </button>
       </div>
-      <div className="today-content">
+      <div className={ todayContent }>
         <button type="button" onClick={() => setModalType('officeSelector')} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
@@ -167,7 +179,7 @@ function Today() {
             <OfficeSelector close={setModalType} />
           </Modal>
         }
-        <div className="today-textArea">
+        <div className={ todayTextArea }>
           {apiError === 3 && <p>Sem dados para exibir.</p>}
           {loading && <Spinner size="large" />}
           {todayPercent && !loading ? (
@@ -204,7 +216,7 @@ function Today() {
         <>
           <button
             type="button"
-            className="today-btn"
+            className={ todayBtn }
             onClick={() => setModalType('mapatron')}
           >
             Ver mapa da atuação
@@ -217,10 +229,10 @@ function Today() {
           }
         </>
       ) : null}
-      <div className="today-robotPic">
+      <div className={ todayRobotPic }>
         <button
           type="button"
-          className="today-glossaryBtn"
+          className={ todayGlossaryBtn }
           onClick={() => setModalType('glossary')}
         >
           <GlossaryBook />
@@ -231,7 +243,7 @@ function Today() {
             <UserManual/>
           </Modal>
         }
-        <button type="button" className="today-introBtn"
+        <button type="button" className={ todayIntroBtn }
           onClick={() => setModalType('introduction')}
         >
           <IntroScreenInterrogation />

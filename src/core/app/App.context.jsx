@@ -10,7 +10,7 @@ export const AppProvider = ({ store, children }) => (
 export const useAppContext = () => useContext(AppContext);
 
 export function AppStoreInitializer() {
-  const Api = ApiCreator();
+  const [Api, setApi] = useState(ApiCreator());
   const [user, setUser] = useState(null);
   const [autoLoginFailed, setAutoLoginFailed] = useState(false);
   const [appHasCrashed, setAppHasCrashed] = useState(false);
@@ -23,7 +23,8 @@ export function AppStoreInitializer() {
 
   const loginWithToken = (jwtToken, storedUser, storedOffice) => {
     if (jwtToken) {
-      loginWithJwtToken(jwtToken);
+      setApi(ApiCreator(jwtToken));
+      loginWithJwtToken(jwtToken);      
     } else if (storedUser) {
       //check if user is valid
       loginWithStoredUser(storedUser, storedOffice);
@@ -60,8 +61,10 @@ export function AppStoreInitializer() {
     if (isStoredUserValid(storedUser)) {
       const { userObj } = JSON.parse(storedUser);
       const currOffice = JSON.parse(storedOffice);
+      setApi(ApiCreator(userObj.token));
       setUser(userObj);
       setCurrentOffice(currOffice);
+     // Api.addHeaders(userObj.token);
     } else {
       setUserExpired(true);
       window.localStorage.removeItem('sca_token');

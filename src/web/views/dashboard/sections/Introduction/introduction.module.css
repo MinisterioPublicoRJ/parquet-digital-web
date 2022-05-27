@@ -32,7 +32,6 @@
 .introductionTexts {
   padding: 2.25rem;
   margin-top: 1.563rem;
-  max-width: 600px;
 }
 .introductionTexts span {
   margin-top: 0.125rem;
@@ -65,6 +64,8 @@
   .introOuter{
     display: flex;
     flex-direction: column;
+    height: 100vh;
+
   }  
   .introductionIntro{
     height: 37vh;

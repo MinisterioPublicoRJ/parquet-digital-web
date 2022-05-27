@@ -31,7 +31,7 @@
 }
 .introductionTexts {
   padding: 2.25rem;
-  margin-top: 1.563rem;
+  margin-top: 1rem;
 }
 .introductionTexts span {
   margin-top: 0.125rem;
@@ -47,7 +47,7 @@
   font-weight: 900;
   letter-spacing: 0px;
   color: #374354;
-  margin-top: 0.25rem;
+  margin-top: 0.23rem;
   margin-bottom: 0px;
 }
 .introductionIntro p {
@@ -64,10 +64,10 @@
   .introOuter{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 85vh;
 
   }  
   .introductionIntro{
-    height: 37vh;
+    height: 41vh;
   }
 }

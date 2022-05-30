@@ -1,6 +1,4 @@
 .rankingList {
-  /* color: var(--dark);
-  font-family: var(--defaultFont); */
   font-size: var(--smallFont);
   padding: 0;
 }

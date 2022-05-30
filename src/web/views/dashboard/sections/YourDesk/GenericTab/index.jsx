@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Spinner from '../../../../../components/layoutPieces/Spinner';
+import MetricsFormatter from './MetricsFormatter';
+import Ranking from '../Ranking';
+
 import {
   GenericTabMain,
   GenericTabUpper,
@@ -8,9 +12,6 @@ import {
   GenericTabLowerLeft,
   GenericTabLowerRight,
 } from './styles.module.css';
-import Spinner from '../../../../../components/layoutPieces/Spinner';
-import MetricsFormatter from './MetricsFormatter';
-import Ranking from '../Ranking';
 
 const propTypes = {
   error: PropTypes.bool.isRequired,

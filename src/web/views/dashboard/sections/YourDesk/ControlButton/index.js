@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Spinner } from '../../../../../components';
+
 import {
   controlButtonOuter,
   controlButtonInner,
@@ -10,7 +12,6 @@ import {
   controlButtonBigNumber,
   controlButtonBigNumberActive,
 } from './styles.module.css';
-import { Spinner } from '../../../../../components';
 
 const propTypes = {
   isActive: PropTypes.bool,
@@ -79,6 +80,7 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
 
   return <div className={controlButtonOuter}>{fill}</div>;
 }
+
 ControlButton.propTypes = propTypes;
 ControlButton.defaultProps = defaultProps;
 export default ControlButton;

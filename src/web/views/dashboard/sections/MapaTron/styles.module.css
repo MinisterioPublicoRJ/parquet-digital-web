@@ -1,4 +1,4 @@
-.mapatron-wrapper {
+.mapatronWrapper {
   border-radius: 15px;
   -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
   -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
@@ -14,7 +14,7 @@
   margin-top: -64px;
 }
 
-.mapatron-intro {
+.mapatronIntro {
   border-radius: 10px 0 0 10px;
   align-items: center;
   box-sizing: border-box;
@@ -26,7 +26,7 @@
   overflow: hidden;
 }
 
-.mapatron-intro h2 {
+.mapatronIntro h2 {
   font-size: var(--titleFontSize);
   font-family: var(--defaultFont);
   font-weight: bold;
@@ -36,7 +36,7 @@
   margin-bottom: 0px;
 }
 
-.mapatron-intro p {
+.mapatronIntro p {
   font: Regular 14px/20px Segoe UI;
   font-family: var(--defaultFont);
   letter-spacing: 0px;
@@ -44,7 +44,7 @@
   padding: 0px 20px 0px 36px;
 }
 
-.mapatron-intro svg {
+.mapatronIntro svg {
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
@@ -55,7 +55,7 @@
   max-height: 42vh;
 }
 
-.mapatron-links {
+.mapatronLinks {
   align-items: center;
   box-sizing: border-box;
   display: flex;
@@ -65,7 +65,7 @@
   padding-left: 36px;
 }
 
-.mapatron-btn {
+.mapatronBtn {
   width: 30%;
   margin: 1%;
   height: 32px;
@@ -80,12 +80,12 @@
   line-height: 32px;
 }
 
-.mapatron-btn:hover,
-.mapatron-btn:active {
+.mapatronBtn:hover,
+.mapatronBtn:active {
   background-color: var(--primary);
 }
 
-.mapatron-iframe-wrapper {
+.mapatronIframeWrapper {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -96,6 +96,6 @@
   border-radius: 0 10px 10px 0;
 }
 
-.mapatron-iframe-wrapper iframe {
+.mapatronIframeWrapper iframe {
   overflow: hidden;
 }

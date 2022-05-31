@@ -45,7 +45,7 @@
   border-style: solid;
   border-color: var(--grayTooltip) transparent transparent transparent;
 }
-.successIndicatorsItem :hover span {
+.successIndicatorsItem:hover span {
   visibility: visible;
   opacity: 1;
 }

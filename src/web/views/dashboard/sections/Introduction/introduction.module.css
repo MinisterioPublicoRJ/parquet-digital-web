@@ -8,11 +8,10 @@
   justify-content: center;
   flex-wrap: nowrap;
   width: 75vw;
-  height: 80vh;
   background-color: #ffffff;
 }
 .introductionIntro{
-  height: 31vh;
+  height: 25vh;
   background-color: #bddff0;
   width: 100%;
   border-radius: 15px 15px 0px 0px;
@@ -57,7 +56,11 @@
   color: #3b3b3b;
 }
 .promotronIcon img {
-  height: 31vh;
+  height: 25vh;
+}
+
+.highlighted {
+  background: #AFE0F1;
 }
 
 @media (max-width: 1024px) {

@@ -1,13 +1,15 @@
 import React, { createContext, useContext, useState } from 'react';
 import ApiCreator from '../api/Api';
+import { AlertsContextCreator, AlertsContext } from '../../web/views/dashboard/sections/Alerts/alertsContext';
 
 const AppContext = createContext();
 
-export const AppProvider = ({ store, children }) => (
-  <AppContext.Provider value={store}>{children}</AppContext.Provider>
-);
+export function AppProvider({ store, children }) {
+  return <AlertsContext.Provider> <AppContext.Provider value={store}>{children}</AppContext.Provider></AlertsContext.Provider>
+}
 
 export const useAppContext = () => useContext(AppContext);
+
 
 export function AppStoreInitializer() {
   const Api = ApiCreator();
@@ -18,6 +20,9 @@ export function AppStoreInitializer() {
   const [userExpired, setUserExpired] = useState(false);
   const [isServerDown, setIsServerDown] = useState(false);
   const [currentOffice, setCurrentOffice] = useState(null);
+
+  const alertsStore = AlertsContextCreator();
+
 
 
 
@@ -127,6 +132,6 @@ export function AppStoreInitializer() {
     logout,
     buildRequestParams,
     currentOffice,
-    updateOffice
+    updateOffice, alertsStore
   };
 }

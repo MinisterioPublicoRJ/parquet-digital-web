@@ -2,8 +2,8 @@
 import React, { useEffect } from 'react';
 
 import './styles.css';
+
 import { useAppContext } from '../../../../../core/app/App.context';
-import { AlertsContext, AlertsContextCreator } from './alertsContext';
 
 import Api from '../../../../api';
 import { SectionTitle, Spinner, Modal, DialogBox } from '../../../../components';
@@ -12,8 +12,7 @@ import Overlay from './AlertsOverlay';
 import alertListFormatter from './utils/alertListFormatter';
 
 function Alerts() {
-  const { buildRequestParams } = useAppContext();
-  const alertsStore = AlertsContextCreator();
+  const { buildRequestParams, alertsStore } = useAppContext();
   const {
     alerts,
     setAlerts,
@@ -134,7 +133,6 @@ function Alerts() {
   }
 
   return (
-    <AlertsContext.Provider value={alertsStore}>
       <article className="alerts-wrapper">
         <div className="alerts-header">
           <SectionTitle value="central de alertas" glueToTop />
@@ -174,7 +172,6 @@ function Alerts() {
           </div>
         </div>
       </article>
-    </AlertsContext.Provider>
   );
 }
 

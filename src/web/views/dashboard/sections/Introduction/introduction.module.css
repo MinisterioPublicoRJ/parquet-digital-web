@@ -1,209 +1,76 @@
-:root {
-  /* ICONS */
-  --introductionArrowSize: 16px;
-}
-
 .introOuter {
-  align-items: center;
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* it needs to be this high because of the Performance Radar graph labels :/ */
-  z-index: 100;
-  padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
-  overflow: hidden;
+  flex-wrap: nowrap;
+  width: 75vw;
+  background-color: #ffffff;
 }
-
-.introOuter{
-  background-color: transparent;
+.introductionIntro{
+  height: 25vh;
+  background-color: #bddff0;
+  width: 100%;
+  border-radius: 15px 15px 0px 0px;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
 }
-
-.textDiv {
-  background-color: var(--white);
-  border-radius: 10px;
-  color: var(--dark);
+.introductionInfo{
+  padding: 1.25rem 2.25rem 2.25rem 2.25rem;
+}
+.introductionInfo p{
+  font-size: 1rem;
+  font-family: var(--defaultFont);
   letter-spacing: 0px;
-  opacity: 1;
-  padding: 20px;
-  position: absolute;
-  z-index: 101;
-  max-height: 35vh;
-  min-height: 130px;
-  height: 100%;
+  color: #3b3b3b;
 }
-
-/* mover a seta de acordo com a posição */
-.textDiv::after {
-  visibility: visible;
-  opacity: 1;
-  content: '';
-  border-width: var(--introductionArrowSize);
-  border-style: solid;
-  border-color: var(--white) transparent transparent transparent;
-  position: absolute;
+.introductionTexts {
+  padding: 2.25rem;
+  margin-top: 1rem;
 }
-
-.introductionWrapper {
-  height: 80%;
-  overflow: auto;
-}
-
-.textDivToday {
-  top: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivToday::after {
-  border-color: transparent transparent var(--white) transparent;
-  top: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivDesk {
-  left: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivDesk::after {
-  border-color: transparent var(--white) transparent transparent;
-  left: calc(0% - 2 * var(--introductionArrowSize));
-  top: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivRadar {
-  top: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivRadar::after {
-  border-color: transparent transparent var(--white) transparent;
-  top: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivAlerts {
-  right: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivAlerts::after {
-  border-color: transparent transparent transparent var(--white);
-  right: calc(0% - 2 * var(--introductionArrowSize));
-  top: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivMainInvestigated {
-  bottom: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivMainInvestigated::after {
-  border-color: var(--white) transparent transparent transparent;
-  bottom: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivProcesses {
-  bottom: calc(100% + 1.6 * var(--introductionArrowSize));
-  right: 50px;
-}
-
-.textDivProcesses::after {
-  border-color: var(--white) transparent transparent transparent;
-  bottom: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivIndicators {
-  right: calc(100% + 1.6 * var(--introductionArrowSize));
-}
-
-.textDivIndicators::after {
-  border-color: transparent transparent transparent var(--white);
-  right: calc(0% - 2 * var(--introductionArrowSize));
-  top: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivProcessingTime {
-  bottom: calc(100% + 1.6 * var(--introductionArrowSize));
-  right: 0;
-}
-
-.textDivProcessingTime::after {
-  border-color: var(--white) transparent transparent transparent;
-  bottom: calc(0% - 2 * var(--introductionArrowSize));
-  left: calc(1.6 * var(--introductionArrowSize));
-}
-
-.textDivEnd {
-  bottom: 0;
-  right: 0;
-}
-
-.introductionWrapper h3 {
-  font-size: 16px;
+.introductionTexts span {
+  margin-top: 0.125rem;
+  display: inline-block;
+  background-color: #f8bd6c;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
   font-weight: bold;
 }
-
-.introductionWrapper p {
-  font-size: 12px;
-  font-family: 'Segoe UI', Regular;
+.introductionIntro h2 {
+  font-size: 2.188rem;
+  font-family: var(--defaultFont);
+  font-weight: 900;
+  letter-spacing: 0px;
+  color: #374354;
+  margin-top: 0.23rem;
+  margin-bottom: 0px;
+}
+.introductionIntro p {
+  font-size: 0.938rem;
+  font-family: var(--defaultFont);
+  letter-spacing: 0px;
+  color: #3b3b3b;
+}
+.promotronIcon img {
+  height: 25vh;
 }
 
-.transparentDiv {
-  box-sizing: border-box;
-  border-radius: 10px;
-  box-shadow: 0 0 0 100vw rgb(0 0 0 / 54%);
-  height: 104%;
-  margin-left: -10px;
-  width: 104%;
-  position: relative;
+.highlighted {
+  background: #AFE0F1;
 }
 
-.btnsIntroduction {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 4px;
-  color: var(--darkWelcome);
-  border-top: solid 5px #bddff0;
-  min-height: 48px;
-}
+@media (max-width: 1024px) {
+  .introOuter{
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
 
-.btnLeave {
-  background: #efefef 0% 0% no-repeat padding-box;
-  border-radius: 3px;
-  opacity: 1;
-  border: none;
-  width: 69px;
-  height: 24px;
-  margin: 10px;
-  margin-right: 100px;
-}
-
-.btnIntroductionNext {
-  background: #d6d6d6 0% 0% no-repeat padding-box;
-  border-radius: 3px 20px 20px 3px;
-  opacity: 1;
-  border: none;
-  width: 69px;
-  height: 24px;
-  margin: 10px;
-}
-
-.btnIntroductionPrevious {
-  background: #d6d6d6 0% 0% no-repeat padding-box;
-  border-radius: 20px 3px 3px 20px;
-  opacity: 1;
-  border: none;
-  width: 69px;
-  height: 24px;
-  margin: 10px;
-}
-
-.textDivEnd {
-  position: absolute;
-  top: calc(-150px - 50vh);
-  left: calc(-130px - 50vw);
-  width: 300px;
-  height: 260px;
-}
-
-.textDivEnd::after {
-  border-width: 0;
+  }  
+  .introductionIntro{
+    height: 41vh;
+  }
 }

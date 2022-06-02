@@ -19,10 +19,6 @@
   overflow: hidden;
 }
 
-.modalOuter.modalTransparent {
-  background-color: transparent;
-}
-
 .modalInnerWrapper {
   position: relative;
 }

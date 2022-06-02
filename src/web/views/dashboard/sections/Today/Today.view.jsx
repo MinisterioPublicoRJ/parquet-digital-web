@@ -238,8 +238,8 @@ function Today() {
         </button>
         {       
           modalType === 'introduction' &&
-          <Modal transparent unpositioned close={() => setModalType()}>
-            <Introduction close={() => setModalType()} type={currentOffice.tipo} />
+          <Modal withExitButton close={setModalType}>
+            <Introduction />
           </Modal>
         }
         <img height="100%" src={PromotronGif} alt="robô-promoton" />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pip, Tutela, AlternativeWelcome } from './pages';
 import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
-import { Introduction } from './sections';
+import  Introduction  from './sections/Introduction';
 
 
 const Dashboard = () => {

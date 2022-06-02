@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import './styles.css';
+import { dialogBoxStyle, dialogBoxYesBtnStyle, dialogBoxNoBtnStyle } from './DialogBox.module.css';
 
 const propTypes = {
   action: PropTypes.func.isRequired,
@@ -17,12 +16,12 @@ function DialogBox({ action, message, closeBox }) {
     closeBox();
   }
   return (
-    <div className="dialog-box">
+    <div className={ dialogBoxStyle }>
       {message}
-      <button type="button" className="dialog-box-yes-btn" onClick={() => handleClick('yes')}>        
+      <button type="button" className={ dialogBoxYesBtnStyle } onClick={() => handleClick('yes')}>        
         Sim
       </button>
-      <button type="button" className="dialog-box-no-btn" onClick={() => handleClick()}>
+      <button type="button" className={ dialogBoxNoBtnStyle } onClick={() => handleClick()}>
         Não
       </button>
     </div>

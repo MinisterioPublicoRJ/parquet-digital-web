@@ -1,13 +1,25 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
 
-import './styles.css';
 import { SearchBox } from 'mapasteca-web';
+import {
+  mainInvestigatedOuter,
+  mainInvestigatedTableWrapper,
+  investigatedProfileBtn,
+} from './styles.module.css';
 import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
-import { CustomTable, Spinner, SectionTitle, Pagination, Modal, InvestigatedProfile } from '../../../../components';
+import {
+  CustomTable,
+  Spinner,
+  SectionTitle,
+  Pagination,
+  Modal,
+  InvestigatedProfile,
+} from '../../../../components';
+import { highlightJSX } from '../../../../utils';
 
 function MainInvestigated() {
   const { buildRequestParams, currentOffice } = useAppContext();
@@ -16,8 +28,8 @@ function MainInvestigated() {
   const [apiError, setApiError] = useState(false);
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
-  const [searchString, setSearchString] = useState("");
-  const [investigatedProfile, setInvestigatedProfile ] = useState();
+  const [searchString, setSearchString] = useState('');
+  const [investigatedProfile, setInvestigatedProfile] = useState();
   const [selectedElement, setSelectedElement] = useState({});
   const tableTopDivRef = useRef();
   /**
@@ -78,7 +90,20 @@ function MainInvestigated() {
    * @return {array}     formatted according to table component props
    */
   function cleanData(raw) {
-    return raw.map(({ nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk }) => {
+    return raw.map((investigated) => {
+      let highlightedInvestigated = {};
+
+      if (searchString) {
+        Object.entries(investigated).forEach(([key, value]) => {
+          highlightedInvestigated[key] = highlightJSX(value, searchString);
+        });
+      } else {
+        highlightedInvestigated = investigated;
+      }
+
+      const { nmInvestigado, nrInvestigacoes, isPinned, isRemoved, representanteDk } =
+        highlightedInvestigated;
+
       const investigatedNameBtn = (
         <button
           type="button"
@@ -86,11 +111,12 @@ function MainInvestigated() {
             setSelectedElement(event?.target);
             setInvestigatedProfile(representanteDk);
           }}
-          className="investigated-profile-btn"
+          className={investigatedProfileBtn}
         >
           {nmInvestigado}
         </button>
       );
+
       const rowInfo = {
         key: `${nmInvestigado}-${nrInvestigacoes}`,
         nmInvestigado: investigatedNameBtn,
@@ -133,10 +159,6 @@ function MainInvestigated() {
     }
   }
 
-  // function onMount() {
-  //   getMainInvestigated();
-  // }
-
   function onUpdate() {
     getMainInvestigated();
   }
@@ -144,7 +166,6 @@ function MainInvestigated() {
   function handleSearch(searchStr) {
     setSearchString(searchStr);
     setPage(1);
-    // getMainInvestigated(searchStr, 1);
   }
 
   function handlePageClick(nextPage) {
@@ -155,24 +176,24 @@ function MainInvestigated() {
     }
     setPage(nextPage);
   }
-  
+
   useEffect(onUpdate, [searchString, page, totalPages]);
 
   function render() {
     if (loading || apiError) {
       return (
-        <article className="mainInvestigated-outer">
+        <article className={mainInvestigatedOuter}>
           {loading ? <Spinner size="medium" /> : <p>Nenhum investigado para exibir</p>}
         </article>
       );
     }
 
     return (
-      <article className="mainInvestigated-outer">
+      <article className={mainInvestigatedOuter}>
         <SearchBox onSearch={handleSearch}>
           <SectionTitle value="Principais Investigados" glueToTop />
         </SearchBox>
-        <div className="mainInvestigated-tableWrapper" ref={tableTopDivRef}>
+        <div className={mainInvestigatedTableWrapper} ref={tableTopDivRef}>
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
           <Pagination
             totalPages={totalPages || 0}
@@ -180,12 +201,19 @@ function MainInvestigated() {
             currentPage={page}
           />
         </div>
-        {
-          investigatedProfile && 
-          <Modal  withExitButton previousElement={selectedElement} close={() => setInvestigatedProfile(null)}>
-            <InvestigatedProfile close={() => setInvestigatedProfile(null)} representanteDk={investigatedProfile} organType={currentOffice.tipo} />
+        {investigatedProfile && (
+          <Modal
+            withExitButton
+            previousElement={selectedElement}
+            close={() => setInvestigatedProfile(null)}
+          >
+            <InvestigatedProfile
+              close={() => setInvestigatedProfile(null)}
+              representanteDk={investigatedProfile}
+              organType={currentOffice.tipo}
+            />
           </Modal>
-        }
+        )}
       </article>
     );
   }

@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 5px 0;
 }
 
 .openCases-tableWrapper {
@@ -10,17 +10,6 @@
   flex: 1;
   overflow-y: auto;
   flex-direction: column;
-}
-
-.pagination-number-button {
-  border: 0;
-  background-color: transparent;
-  color: var(--grayPagination);
-}
-
-.pagination-number-button.active {
-  color: var(--primary);
-  text-decoration: underline;
 }
 
 .empty-table {

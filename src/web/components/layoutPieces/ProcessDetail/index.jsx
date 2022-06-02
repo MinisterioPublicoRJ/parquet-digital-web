@@ -3,7 +3,23 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ListCard } from 'mapasteca-web';
 
-import './styles.css';
+import {
+  processDetailOuter,
+  processDetailHeader,
+  processAlertsListEmpty,
+  processDetailHeaderLeft,
+  processDetailBody,
+  processDetailLoadingOrError,
+  processDetailLoadedData,
+  processDetailSection,
+  processDetailListCardWrapper,
+  listCardContent,
+  processDetailIdSection,
+  processDetailProceedings,
+  processAlertsList,
+  processDetailHeaderRight,
+  alertWrapper,
+} from './styles.module.css';
 import { useAppContext } from '../../../../core/app/App.context';
 import Api from '../../../api';
 import Spinner from '../Spinner';
@@ -50,7 +66,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   function renderComponentBody() {
     if (loading) {
       return (
-        <div className="processDetail-body processDetail-loadingOrError">
+        <div className={`${processDetailBody} ${processDetailLoadingOrError}`}>
           <Spinner size="large" />
         </div>
       );
@@ -59,46 +75,48 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
       const { situation, phase, currentOwner, loader, secrecy, docClass, matter } =
         processData.identification;
       return (
-        <div className="processDetail-body processDetail-loadedData">
+        <div className={`${processDetailBody} ${processDetailLoadedData}`}>
           {processData.alerts.length === 0 ? (
-            <strong className="process-alerts-list-empty">Este procedimento não possui alertas</strong>
+            <strong className={processAlertsListEmpty}>Este procedimento não possui alertas</strong>
           ) : (
             <>
-            <strong>
-            Este procedimento possui {processData.alerts.length} alerta
-            {processData.alerts.length === 1 ? '' : 's'}
-            </strong>
-          <div className="process-alerts-list">
-            {processData.alerts.map((alert) => {
-              const formattedAlert = individualAlertFormatter(
-                { docNum: docuNrMp, ...alert },
-                cpf,
-                token,
-                orgao,
-              );
-              const { backgroundColor, backgroundColorChild, icon, key, message, type } =
-                formattedAlert;
-              return (
-                <AlertBadge
-                  key={key}
-                  customKey={key}
-                  icon={icon}
-                  backgroundColor={backgroundColorChild || backgroundColor}
-                  message={message}
-                  docDk={docuNrMp}
-                  overlayType={type}
-                  /* Passes empty actions to hide actions */
-                  actions={[]}
-                />
-              );
-            })}
-          </div>
-          </>
+              <strong>
+                Este procedimento possui {processData.alerts.length} alerta
+                {processData.alerts.length === 1 ? '' : 's'}
+              </strong>
+              <div className={processAlertsList}>
+                {processData.alerts.map((alert) => {
+                  const formattedAlert = individualAlertFormatter(
+                    { docNum: docuNrMp, ...alert },
+                    cpf,
+                    token,
+                    orgao,
+                  );
+                  const { backgroundColor, backgroundColorChild, icon, key, message, type } =
+                    formattedAlert;
+                  return (
+                    <div className={alertWrapper}>
+                      <AlertBadge
+                        key={key}
+                        customKey={key}
+                        icon={icon}
+                        backgroundColor={backgroundColorChild || backgroundColor}
+                        message={message}
+                        docDk={docuNrMp}
+                        overlayType={type}
+                        /* Passes empty actions to hide actions */
+                        actions={[]}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </>
           )}
           <h3>PERSONAGENS</h3>
-          <div className="processDetail-section">
+          <div className={processDetailSection}>
             {processData.characters.map(({ name, role }) => (
-              <div className="processDetail-ListCardWrapper">
+              <div className={processDetailListCardWrapper}>
                 <ListCard
                   fixedHeight
                   title={name}
@@ -111,15 +129,14 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
             ))}
           </div>
           <h3>ASSUNTOS</h3>
-          <div className="processDetail-section">
-            {/* eslint-disable-next-line no-shadow */}
+          <div className={processDetailSection}>
             {processData.matters.map(({ matter, detail }) => (
-              <div className="processDetail-ListCardWrapper" key={`${matter}-${detail}`}>
+              <div className={processDetailListCardWrapper} key={`${matter}-${detail}`}>
                 <ListCard
                   fixedHeight
                   title={matter}
                   content={
-                    <span className="ListCard-content" title={detail}>
+                    <span className={listCardContent} title={detail}>
                       <abbr>{detail}</abbr>
                     </span>
                   }
@@ -130,7 +147,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
             ))}
           </div>
           <h3>IDENTIFICAÇÃO</h3>
-          <div className="processDetail-idSection">
+          <div className={processDetailIdSection}>
             <div>
               <div>
                 <strong>Número Externo</strong>
@@ -171,7 +188,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
             </div>
           </div>
           <h3>ÚLTIMOS ANDAMENTOS</h3>
-          <div className="processDetail-proceedings">
+          <div className={processDetailProceedings}>
             {processData.proceedings.map(({ date, person, motion, motionDetails }) => (
               <div key={`${person}-${date}`}>
                 <div>{date}</div>
@@ -188,16 +205,16 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
       );
     }
     return (
-      <div className="processDetail-body processDetail-loadingOrError">
+      <div className={`${processDetailBody} ${processDetailLoadingOrError}`}>
         <h3>Falha na conexão, tente novamente mais tarde.</h3>
       </div>
     );
   }
 
   return (
-    <article className="process-detail-outer">
-      <div className="process-detail-header">
-        <div className="processDetail-headerLeft">
+    <article className={processDetailOuter}>
+      <div className={processDetailHeader}>
+        <div className={processDetailHeaderLeft}>
           <h2>Detalhes do Procedimento</h2>
           Informações de relevância sobre o procedimento.
           <div>
@@ -212,7 +229,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
             </button>
           </div>
         </div>
-        <div className="processDetail-headerRight">
+        <div className={processDetailHeaderRight}>
           <ProcessDetailRobot height="120%" />
         </div>
       </div>

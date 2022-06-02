@@ -1,0 +1,101 @@
+.mapatronWrapper {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: inherit;
+  min-width: 95vw;
+  height: 90vh;
+  background-color: #ffffff;
+  margin-top: -64px;
+}
+
+.mapatronIntro {
+  border-radius: 10px 0 0 10px;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  width: 18vw;
+  height: 90vh;
+  background-color: #bddff0;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.mapatronIntro h2 {
+  font-size: var(--titleFontSize);
+  font-family: var(--defaultFont);
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #374354;
+  padding: 0px 0px 0px 36px;
+  margin-bottom: 0px;
+}
+
+.mapatronIntro p {
+  font: Regular 14px/20px Segoe UI;
+  font-family: var(--defaultFont);
+  letter-spacing: 0px;
+  color: #3b3b3b;
+  padding: 0px 20px 0px 36px;
+}
+
+.mapatronIntro svg {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  top: 0px;
+  left: 2vw;
+  margin: 3vw 0px 2vw 0px;
+  max-height: 42vh;
+}
+
+.mapatronLinks {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  width: 16vw;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding-left: 36px;
+}
+
+.mapatronBtn {
+  width: 30%;
+  margin: 1%;
+  height: 32px;
+  color: var(--white);
+  background-color: var(--darkBlue);
+  border: 6px var(--darkBlue);
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  line-height: 32px;
+}
+
+.mapatronBtn:hover,
+.mapatronBtn:active {
+  background-color: var(--primary);
+}
+
+.mapatronIframeWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: inherit;
+  height: 100%;
+  width: 80vw;
+  overflow: hidden;
+  border-radius: 0 10px 10px 0;
+}
+
+.mapatronIframeWrapper iframe {
+  overflow: hidden;
+}

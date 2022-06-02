@@ -83,7 +83,7 @@ function AlertBadge(alert) {
     }
   }
 
-  function handleActionPress(alertAction, key ) {
+  function handleActionPress(alertAction, key) {
     const { actionType } = alertAction;
     switch (actionType) {
       case 'delete':
@@ -138,20 +138,18 @@ function AlertBadge(alert) {
       <div className="alertBadge-rightContainer">
         <span>{message}</span>
         <div className="alertBadge-smallButtons">
-          {!showHover && (
+          {!showHover && actions[0] && (
             <>
-              {actions[0] && (
-                <div
-                  onClick={() => {
-                    handleActionPress(actions[0]);
-                  }}
-                  className="alertBadge-downloadNumbers"
-                  style={{ backgroundColor: '#2DE288' }}
-                  type
-                >
-                  {actions[0].text}
-                </div>
-              )}
+              <div
+                onClick={() => {
+                  handleActionPress(actions[0]);
+                }}
+                className="alertBadge-downloadNumbers"
+                style={{ backgroundColor: '#2DE288' }}
+                type
+              >
+                {actions[0].text}
+              </div>
               <div className="alertBadge-countWrapper" style={{ backgroundColor }}>
                 <span className={`alertBadge-arrow ${isOpen && 'alertBadge-arrow--open'}`} />
                 {count}

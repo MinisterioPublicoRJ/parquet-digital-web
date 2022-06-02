@@ -1,0 +1,42 @@
+.tutelaGrid {
+  grid-template-areas:
+    'today today radar alerts'
+    'today today radar alerts'
+    'today today radar alerts'
+    'today today radar alerts'
+    'desk desk radar alerts'
+    'desk desk radar alerts'
+    'desk desk processes processes '
+    'desk desk processes processes '
+    'desk desk processes processes '
+    'desk desk processingTime processingTime'
+    'desk desk processingTime processingTime'
+    'desk desk processingTime processingTime';
+}
+
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+  .tutelaGrid {
+    grid-template-areas:
+      'today today'
+      'desk desk'
+      'radar alerts'
+      'processes processes'
+      'processingTime processingTime';
+  }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .tutelaGrid {
+    grid-template-areas:
+    "today"
+    "desk"
+    "desk"
+    "radar"
+    "alerts"
+    "processes"
+    "processingTime"
+    "processingTime";
+  }
+}

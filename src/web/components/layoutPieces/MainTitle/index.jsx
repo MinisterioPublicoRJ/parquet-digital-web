@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
+import { mainTitle, mainTitleGlued } from './styles.module.css';
 
 const propTypes = {
   value: PropTypes.string.isRequired,
@@ -11,10 +11,9 @@ const propTypes = {
 const defaultProps = {
   glueToTop: false,
 };
-
-const MainTitle = ({ value, glueToTop }) => (
-  <h1 className={glueToTop ? 'mainTitle--glued' : ''}>{value}</h1>
-);
+function MainTitle({ value, glueToTop }) {
+  return <h1 className={`${mainTitle} ${glueToTop ? mainTitleGlued : ''}`}>{value}</h1>;
+}
 
 MainTitle.propTypes = propTypes;
 MainTitle.defaultProps = defaultProps;

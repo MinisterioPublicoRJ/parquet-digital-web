@@ -1,0 +1,97 @@
+.glossaryWrapper {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  box-shadow: inset 0px 0px 0px 0px #cfcfcf;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 60vw;
+  background-color: #bddff0;
+}
+
+.glossaryIntroSection{
+  display: flex;
+  flex-direction: column;
+}
+
+.glossaryIntro h2 {
+  font-size: 35px;
+  font-family: var(--defaultFont);
+  font-weight: 900;
+  letter-spacing: 0px;
+  color: #374354;
+  padding: 0px 0px 0px 36px;
+  margin-top: 4px;
+  margin-bottom: 0px;
+}
+.glossaryIntro p {
+  font-size: 15px;
+  font-family: var(--defaultFont);
+  letter-spacing: 0px;
+  color: #3b3b3b;
+  padding: 0px 20px 0px 36px;
+  max-width: 430px;
+}
+.glossaryIntroSubtitle p{
+  font-size: 15px;
+  font-family: var(--defaultFont);
+  letter-spacing: 0px;
+  color: #374354;
+  font-weight: bold;
+  margin-top: 2px;
+  display: inline-block;
+  background-color: #f8bd6c;
+  margin-left: 10px;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.glossaryArticlesWrapper {
+  overflow-y: auto;
+  padding: 0px 0px 0px 36px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.glossaryIntroSubtitle {
+  font-weight: bold;
+  width: 13vw;
+  height: 25px;
+  margin-left: 30px;
+  border-radius: 1px;
+  margin-top: 15px;
+}
+.glossaryArticlesWrapper button {
+  text-align: center;
+  cursor: pointer;
+  font-family: var(--defaultFont);
+  border-radius: 4px;
+  color: var(--white);
+  background-color: #374354;
+  padding: 0.6em 3em;
+  font-weight: bold;
+  border: 0;
+  display: inline-block;
+}
+.glossaryArticlesWrapper p {
+  margin-top: 5px;
+}
+.promotronIcon {
+  align-self: flex-end;
+  margin-bottom: -3px;
+}
+
+@media (max-width: 1024px) {
+  .glossaryWrapper{
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .glossaryIntroSubtitle{
+    width: 100%;
+  }
+  
+}

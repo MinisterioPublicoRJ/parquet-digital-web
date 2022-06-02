@@ -1,0 +1,50 @@
+.pageRadarDashboard {
+  grid-area: radar;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.radarWrapper {
+  margin: 0;
+  width: 100%;
+}
+
+.radarSubtitles {
+  margin-top: 2.5vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.radarSubtitles button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.radarSubtitlesItem {
+  position: relative;
+  padding-top: 1vh;
+  font-family: var(--defaultFont);
+  font-size: var(--smallFont);
+  line-height: 12px;
+  color: var(--dark);
+  float: left;
+}
+
+div .radarSubtitlesItem:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5vh;
+  height: 2px;
+}
+
+.radarSubtitlesItemYourData:before {
+  background-color: #009bff;
+}
+
+.radarSubtitlesItemMPData:before {
+  background-color: #c43a31;
+}

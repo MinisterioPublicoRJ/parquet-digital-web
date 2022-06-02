@@ -1,81 +1,57 @@
-/* eslint-disable no-param-reassign */
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import useEventListener from './useEventListener';
+import React from 'react';
+import PromotronIntroduction from '../../../../assets/gifs/chat.gif';
 
-import './styles.css';
+import {
+  introOuter,
+  introductionTexts,
+  introductionIntro,
+  promotronIcon,
+  introductionInfo,
+  introductionSubtitle,
+  highlighted
+} from './introduction.module.css';
 
-import { PIP_GRID, TUTELA_GRID } from './introductionConstants';
-
-const propTypes = {
-  close: PropTypes.func.isRequired,
-  type: PropTypes.number.isRequired,
-};
-
-function Introduction({ type, close }) {
-  const show = (type === 1 || type === 2);
-  const [currentPage, setCurrentPage] = useState(0);
-  const pages = type === 1 ? TUTELA_GRID : PIP_GRID;
-
-  function handleNav(movement) {
-    if (movement === 'forward') {
-      if (pages.length > currentPage + 1) {
-        setCurrentPage(prevValue => prevValue + 1);
-      } else {
-        close();
-      }
-    } else if (movement === 'backward') {
-      if (currentPage - 1 >= 0) {
-        setCurrentPage(prevValue => prevValue - 1);
-      }
-    }
-  }
-
-  function handleKeyPress(event) {
-    if (event.key === 'ArrowLeft' || event.keyCode === 37) handleNav('backward');
-    if (event.key === 'ArrowRight' || event.keyCode === 39) handleNav('forward');
-    if (event.key === 'Escape' || event.keyCode === 27) close();
-  }
-
-  useEventListener('keydown', handleKeyPress);
-
-  if (show) {
-    return (
-      <div onClick={close} role="button" tabIndex='0' onKeyDown={handleKeyPress} className={`intro-outer base-grid ${type === 1 ? 'tutela-grid' : 'pip-grid'}`}>
-        <div onClick={(e) => e.stopPropagation()} role="button" tabIndex='0' onKeyDown={handleKeyPress} style={{ gridArea: pages[currentPage].focus }} className="transparent-div">
-          <div className={`text-div text-div--${pages[currentPage].focus}`}>
-            {pages[currentPage].component}
-            <div className="btns-introduction">
-              <button className="btn-leave" type="button" aria-label="Fechar"
-               onClick={close}
-               onKeyDown={close}>
-                Sair
-              </button>
-              {currentPage ? (
-                <button
-                  onClick={() => handleNav('backward')}
-                  type="button"
-                  className="btn-introduction-previous"
-                >
-                  Anterior
-                </button>
-              ) : null}
-              <button
-                onClick={() => handleNav('forward')}
-                className="btn-introduction-next"
-                type="button"
-              >
-                Próximo
-              </button>
-            </div>
-          </div>
+function Introduction() {
+  return (
+    <div className={introOuter}>
+      <div className={introductionIntro}>
+        <div className={introductionTexts}>
+          <span>Informações importantes</span>
+          <h2>PARQUET DIGITAL</h2>
+          <p className={introductionSubtitle}>
+            O que esperar da ferramenta ? O que ela pode entregar que outras ferramentas não
+            entregam ? Algumas das respostas você encontra aqui
+          </p>
+        </div>
+        <div className={promotronIcon}>
+          <img src={PromotronIntroduction} alt="robô-promoton" />
         </div>
       </div>
-    );
-  }
-
-  return null;
+      <div className={introductionInfo}>
+        <p>
+          O Parquet Digital é uma ferramenta que visa proporcionar uma visão ampla do acervo de cada
+          Promotoria de Justiça, bem como informações sobre movimentações, seja do acervo judicial
+          ou extrajudicial, prescrições e outros alertas que ajudam na atividade final do(a)
+          Promotor(a).
+        </p>
+        <p>
+          Importante destacar que <span className={highlighted}>o Parquet Digital traz dados do sistema Módulo Gestão de Processos
+          (MGP), mas não é um espelho integral do sistema, já que contém regras de negócio e modelos
+          estatísticos de contagem que podem se diferenciar dos relatórios emitidos pelo MGP.</span>
+        </p>
+        <p>
+          Tanto no manual de uso, quanto na nota metodológica do Parquet Digital, podem ser
+          consultados os códigos dos documentos e as classificações utilizadas do MGP para a
+          disposição dos números apresentados na ferramenta. Sugerimos, em caso de dúvidas, recorrer
+          ao manual de uso. Caso as dúvidas persistam, elas também podem ser sanadas por meio do
+          email <strong>gadg.atendimento@mprj.mp.br</strong>
+        </p>
+        <p>
+          <strong>Boa navegação!</strong>
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default Introduction;
-Introduction.propTypes = propTypes;

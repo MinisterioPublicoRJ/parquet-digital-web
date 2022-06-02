@@ -1,0 +1,21 @@
+.sectionTitleText {
+  color: var(--darkBlue);
+  font-size: var(--sectionTitleFontSize);
+  font-family: var(--titleFont);
+  font-weight: normal;
+}
+
+.sectionTitleGlued {
+  margin-top: 0;
+}
+
+.sectionTitleWithSubs {
+  margin-bottom: 0;
+}
+
+.sectionTitleSubtitle {
+  color: var(--darkBlue);
+  font-size: calc(var(--sectionTitleFontSize) * 0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}

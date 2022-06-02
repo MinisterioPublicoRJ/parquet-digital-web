@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
+import { actionButton } from './styles.module.css';
 import { Bin, Tack } from '../../../../../assets';
 
 const propTypes = {
@@ -13,10 +13,10 @@ const propTypes = {
 function ActionButtons({ onPin, onDelete, isPinned }) {
   return (
     <>
-      <button type="button" onClick={onPin}>
+      <button className={actionButton} type="button" onClick={onPin}>
         <Tack activated={isPinned} />
       </button>
-      <button type="button" onClick={onDelete}>
+      <button className={actionButton} type="button" onClick={onDelete}>
         <Bin />
       </button>
     </>

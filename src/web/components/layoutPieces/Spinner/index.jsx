@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
+import { spinner, small, medium, large } from './styles.module.css';
 
 const propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
 };
 
 function Spinner({ size }) {
-  return <div className={`spinner--${size}`} />
+  const spinnerSizes = { small, medium, large };
+  return <div className={`${spinner} ${spinnerSizes[size]}`} />;
 }
 
 Spinner.propTypes = propTypes;

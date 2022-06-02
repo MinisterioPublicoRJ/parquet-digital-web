@@ -1,0 +1,61 @@
+.tableStyle {
+  color: var(--grayPagination);
+  font-size: var(--smallFont);
+  table-layout: fixed;
+  width: 100%;
+}
+
+.tBodyStyle tr:nth-child(even) {
+  background-color: #f8f9fb;
+}
+
+.tBodyStyle tr:nth-child(odd) {
+  background-color: var(--white);
+}
+
+.tHeadStyle tr {
+  background-color: #f8f9fb;
+  color: #39475b;
+}
+
+.thStyle {
+  padding: 10px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.tdStyle {
+  padding: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+  text-align: center;
+  
+}
+
+
+/* PHONES */
+
+@media (max-width: 480px) {
+  .tableStyle {
+    table-layout: fixed;
+    width: 100vw;
+  }
+  .tdStyle {
+    width: 100%;
+  }
+  .tHeadStyle tr {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tBodyStyle td {
+    min-width: 45%;
+  }
+
+  .tBodyStyle th {
+    text-align: left;
+    width: 45%;
+  }
+}

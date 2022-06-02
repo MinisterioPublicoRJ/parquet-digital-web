@@ -1,0 +1,10 @@
+.mainTitle {
+  color: var(--darkBlue);
+  font-family: var(--titleFont);
+  font-size: var(--titleFontSize);
+  font-weight: bold;
+}
+
+.mainTitleGlued {
+  margin-top: 0;
+}

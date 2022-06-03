@@ -5,6 +5,19 @@ import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
 import { InvestigatedProfile, Modal, ProcessDetail, SectionTitle } from '../../../../components';
 
+import {
+  processListOuter,
+  processListActive,
+  onGoingInvestigationsOuter,
+  onGoingInvestigationsActive,
+  investigatedProfileBtn,
+  tablesTutelaOuter,
+  tablesTutelaHeader,
+  processDetailBtnStyle,
+  tablesTutelaButtonInactive,
+  tablesTutelaBody
+} from './styles.module.css';
+
 function TablesTutela() {
   const [visibleTab, setVisibleTab] = useState('process');
   const [searchString, setSearchString] = useState(null);

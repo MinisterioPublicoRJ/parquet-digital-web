@@ -1,7 +1,6 @@
 /* eslint-disable no-alert */
 import React, { useEffect } from 'react';
 
-import './styles.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { AlertsContext, AlertsContextCreator } from './alertsContext';
 

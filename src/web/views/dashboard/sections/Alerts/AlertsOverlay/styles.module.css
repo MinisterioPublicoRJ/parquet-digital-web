@@ -1,4 +1,4 @@
-.overlay-outer {
+.overlayOuter {
   display: flex;
   position: absolute;
   align-items: center;
@@ -9,7 +9,7 @@
   z-index: 100;
 }
 
-.alerts-overlay {
+.alertsOverlay {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
   overflow: hidden;
 }
 
-.alerts-overlay button {
+.alertsOverlay button {
   position: relative;
   float: right;
   border-radius: 4px;
@@ -33,29 +33,29 @@
   margin: 4px -6px 12px 0;
 }
 
-.alerts-overlay > div {
+.alertsOverlay > div {
   height: 100%;
   padding: 16px;
   overflow-y: scroll;
 }
 
-.alerts-overlay p {
+.alertsOverlay p {
   font-size: var(--smallFont);
 }
 
-.alerts-overlay h4 {
+.alertsOverlay h4 {
   margin-top: 0;
 }
 
-.alerts-overlay .spinner--medium {
+.alertsOverlay .spinner.medium {
   width: 100%;
   margin: 4vh auto;
 }
 
-.alerts-overlay .spinner--medium:after {
+.alertsOverlay .spinner.medium:after {
   margin: auto;
 }
 
-.crime-data {
+.crimeData {
   margin: 32px 0px;
 }

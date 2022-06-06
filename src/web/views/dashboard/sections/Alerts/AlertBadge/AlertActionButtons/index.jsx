@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
+import {
+  actionButtonOuter,
+} from './styles.module.css';
 
 const propTypes = {
   background: PropTypes.string.isRequired,
@@ -13,7 +15,7 @@ const propTypes = {
 function AlertActionButtons({ icon, background, text, clickCallback }) {
   return (
     <button
-      className="actionButton-outer"
+      className={ actionButtonOuter }
       type="button"
       style={{ background }}
       onClick={clickCallback}

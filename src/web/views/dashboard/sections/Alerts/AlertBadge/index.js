@@ -3,7 +3,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './AlertActionButtons';
 
-import './styles.css';
+import {
+  alertBadgeOuterContainer,
+  alertBadgeHoverContainer,
+  deleteConfirmation,
+  alertBadgeLeftContainer,
+  alertBadgeRightContainer,
+  alertBadgeSmallButtons,
+  alertBadgeArrow,
+  alertBadgeArrowOpen,
+  alertBadgeCountWrapper,
+  alertBadgeDownloadNumbers,
+} from './styles.module.css';
 
 const propTypes = {
   actions: PropTypes.arrayOf(
@@ -105,9 +116,9 @@ function AlertBadge(alert) {
   const showHover = !hideHover && actions[1];
 
   return (
-    <div className="alertBadge-outerContainer">
+    <div className={ alertBadgeOuterContainer }>
       {showHover && !isDeleted && (
-        <div className="alertBadge-hoverContainer">
+        <div className={ alertBadgeHoverContainer }>
           {actions.map((alertAction) => (
             <ActionButtons
               key={`${customKey}-${alertAction.actionType}-${alertAction.text}`}
@@ -119,7 +130,7 @@ function AlertBadge(alert) {
         </div>
       )}
       {!hideHover && isDeleted && (
-        <div className={`delete-confirmation ${isDeleted ? 'isDeleted' : ''}`}>
+        <div className={`${ deleteConfirmation } ${isDeleted ? 'isDeleted' : ''}`}>
           <button type="button" className="delete" onClick={() => handleDeletion(customKey)}>
             x
           </button>
@@ -132,26 +143,26 @@ function AlertBadge(alert) {
           </button>
         </div>
       )}
-      <div className="alertBadge-leftContainer" style={{ backgroundColor }}>
+      <div className={ alertBadgeLeftContainer } style={{ backgroundColor }}>
         {icon}
       </div>
-      <div className="alertBadge-rightContainer">
+      <div className={ alertBadgeRightContainer }>
         <span>{message}</span>
-        <div className="alertBadge-smallButtons">
+        <div className={ alertBadgeSmallButtons }>
           {!showHover && actions[0] && (
             <>
               <div
                 onClick={() => {
                   handleActionPress(actions[0]);
                 }}
-                className="alertBadge-downloadNumbers"
+                className={ alertBadgeDownloadNumbers }
                 style={{ backgroundColor: '#2DE288' }}
                 type
               >
                 {actions[0].text}
               </div>
-              <div className="alertBadge-countWrapper" style={{ backgroundColor }}>
-                <span className={`alertBadge-arrow ${isOpen && 'alertBadge-arrow--open'}`} />
+              <div className={ alertBadgeCountWrapper } style={{ backgroundColor }}>
+                <span className={`${ alertBadgeArrow } ${isOpen && `${ alertBadgeArrowOpen }`}`} />
                 {count}
               </div>
             </>

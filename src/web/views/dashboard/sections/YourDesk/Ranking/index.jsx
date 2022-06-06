@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import './styles.css';
 import TITLEDICT from './titleConstants';
 import { Badge } from '../../../../../assets';
+
+import {
+  rankingTitle,
+  rankingList,
+  rankingItem,
+  rankingFeatured,
+  rankingLabel,
+} from './styles.module.css';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
@@ -17,21 +23,18 @@ const propTypes = {
 
 function Ranking({ data, title }) {
   return (
-    <div className="ranking-outer">
-      <h3>{TITLEDICT[title]}</h3>
-      <ul className="ranking-list">
+    <>
+      <h3 className={rankingTitle}>{TITLEDICT[title]}</h3>
+      <ul className={rankingList}>
         {data.map((item, i) => (
-            <li key={item.text} className="ranking-li">
-              <span className="ranking-icon">
-                <Badge width={25} number={i + 1} />
-              </span>
-              <strong className="ranking-featured">{item.value || '0'}</strong>
-              <span className="ranking-label">{item.text}</span>
-            </li>
-          ))
-        }
+          <li key={item.text} className={rankingItem}>
+            <Badge width={25} number={i + 1} />
+            <strong className={rankingFeatured}>{item.value || '0'}</strong>
+            <span className={rankingLabel}>{item.text}</span>
+          </li>
+        ))}
       </ul>
-    </div>
+    </>
   );
 }
 

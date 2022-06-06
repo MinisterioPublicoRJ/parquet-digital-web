@@ -1,43 +1,39 @@
-.ranking-list {
-  /* color: var(--dark);
-  font-family: var(--defaultFont); */
+.rankingList {
   font-size: var(--smallFont);
   padding: 0;
 }
 
-.ranking-outer h3 {
+.rankingTitle {
   margin-top: 0;
 }
 
-.ranking-li {
+.rankingItem {
   display: flex;
   padding: 10px 0;
 }
 
-.ranking-featured {
+.rankingFeatured {
   font-size: var(--featuredNumberFontSize);
   line-height: var(--featuredNumberFontSize);
   margin-left: 10px;
   margin-top: 10px;
 }
 
-.ranking-label {
+.rankingLabel {
   margin-left: 1vw;
   margin-top: 10px;
-
 }
-
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
-  .ranking-li {
+  .rankingItems {
     flex-wrap: wrap;
   }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-  .ranking-li {
+  .rankingItems {
     flex-wrap: wrap;
   }
 }

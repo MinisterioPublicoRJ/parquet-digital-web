@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { SearchBox } from 'mapasteca-web';
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../../api';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import DeskCasesChart from '../deskCases';
 import { Modal } from '../../../../../components/layoutPieces';
-import './styles.css';
 import { highlightJSX } from '../../../../../utils';
 
+import {
+  openCasesChartsWrapper,
+  openCasesTableWrapper,
+  openCasesEmptyTable,
+  noOpenCases,
+  processDetailBtn,
+  alertTagWrapper,
+  alertTag,
+  alertTagSigla,
+  emptyAlert,
+} from './styles.module.css';
 
 const propTypes = {
   isLoading: PropTypes.bool.isRequired,
@@ -64,7 +75,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     return totalPages;
   }
 
- 
   function generateButtons(list) {
     return list.map((alerts) => {
       let highlightedAlerts = {};
@@ -82,18 +92,19 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           onClick={(event) => {
             handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno, event);
           }}
-          className="process-detail-btn"
+          className={processDetailBtn}
         >
           {highlightedAlerts.numeroMprj}
         </button>
       );
+
       const alertTagButton = (
-        <div className={`alert-tag-wrapper ${alerts.alertsCount > 0 ? '' : 'empty'}`}>
-          <div className="alert-tag">{alerts.alertsCount}</div>
+        <div className={`${alertTagWrapper} ${alerts.alertsCount > 0 ? '' : emptyAlert}`}>
+          <div className={alertTag}>{alerts.alertsCount}</div>
           {alerts.listAlerts && (
             <button
               type="button"
-              className="alert-tag-sigla"
+              className={alertTagSigla}
               onClick={(event) => {
                 handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno, event);
               }}
@@ -175,7 +186,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
         (!searchString || tabDetails[activeTab].searchString !== searchString) &&
         !tabDetails[activeTab][currentPage];
       const isSearching = tabDetails[activeTab][currentPage]?.searchString !== searchString;
-      
+
       if (hasntQueriedThisPage || isSearching) getOpenCasesList();
     }
   }, [activeTab, chartData, currentPage, tabDetails]);
@@ -262,9 +273,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   return (
     <>
-      <div className="openCases-chartsWrapper">{renderCharts(chartData)}</div>
+      <div className={openCasesChartsWrapper}>{renderCharts(chartData)}</div>
       <SearchBox onSearch={onSearch} />
-      <div className={`openCases-tableWrapper ${emptyTab ? 'empty-table' : ''}`}>
+      <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab &&
           !tabLoading &&
@@ -282,8 +293,8 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           !tabLoading &&
           tabDetails[activeTab] &&
           !tabDetails[activeTab][currentPage] && (
-            <div className="openCases-tableWrapper empty-table">
-              <p className="no-openCases"> Nenhuma vista aberta com os parametros pesquisados</p>
+            <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
+              <p className={noOpenCases}> Nenhuma vista aberta com os parametros pesquisados</p>
               <CustomTable
                 data={Array(20).fill({ content: '' })}
                 columns={TABLE_COLUMNS}
@@ -295,7 +306,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
         {emptyTab && (
           // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
           <>
-            <p className="no-openCases"> Nenhuma vista aberta até o momento</p>
+            <p className={noOpenCases}> Nenhuma vista aberta até o momento</p>
             <CustomTable
               data={Array(20).fill({ content: '' })}
               columns={TABLE_COLUMNS}

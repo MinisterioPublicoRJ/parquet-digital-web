@@ -1,4 +1,4 @@
-.deskCasesChart-outer {
+.deskCasesChartOuter {
   background-color: transparent;
   border: 0;
   display: flex;
@@ -7,22 +7,21 @@
   width: 25%;
 }
 
-.deskCasesChart-graph {
+.deskCasesChartGraph {
   width: 50%;
 }
 
-.deskCasesChart-subs {
+.deskCasesChartSubs {
   display: flex;
   flex-direction: column;
   width: 50%;
-  justify-content: space-between;
 }
 
-.deskCasesChart-button--active {
+.deskCasesChartButtonActive {
   position: relative;
 }
 
-.deskCasesChart-button--active::after {
+.deskCasesChartButtonActive::after {
   content: '';
   width: 0;
   height: 0;
@@ -39,35 +38,33 @@
   transform: translate(-5px, 0);
 }
 
-.deskCasesChart-count {
+.deskCasesChartCount {
   font-size: calc(3 * var(--defaultFontSize));
   font-weight: 900;
   line-height: calc(3 * var(--defaultFontSize));
-  /* font-family: var(--spotlightFont); */
 }
 
-.deskCasesChart-days {
-  /* font-size: 0.8vw; */
+.deskCasesChartDays {
   font-family: var(--defaultFont);
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-  .deskCasesChart-graph {
+  .deskCasesChartGraph {
     display: none;
   }
 
-  .deskCasesChart-subs {
+  .deskCasesChartSubs {
     align-items: center;
   }
 
-  .deskCasesChart-count {
+  .deskCasesChartCount {
     font-size: calc(2 * var(--spotlightSize));
     letter-spacing: 0;
     margin-top: 0;
   }
 
-  .deskCasesChart-days {
+  .deskCasesChartDays {
     font-size: 4vw;
     margin-top: 0;
   }

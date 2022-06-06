@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import { VictoryPie } from 'victory';
 import { leftPad } from '../../../../../utils';
 
-import './styles.css';
+import {
+  deskCasesChartOuter,
+  deskCasesChartGraph,
+  deskCasesChartSubs,
+  deskCasesChartButtonActive,
+  deskCasesChartCount,
+  deskCasesChartDays,
+} from './styles.module.css';
 
 const propTypes = {
   active: PropTypes.bool.isRequired,
@@ -50,21 +57,21 @@ function DeskCasesChart({ active, buttonPressed, category, color, data, name }) 
             color: '#E8E8E8',
           }),
         );
-    } 
+    }
   }, [data]);
 
   if (active) {
     document.documentElement.style.setProperty('--triangleColor', color);
   }
-  const activeclass = active ? 'deskCasesChart-button--active' : 'deskCasesChart-button--inactive';
+  const activeclass = active ? deskCasesChartButtonActive : '';
   return (
     <button
       style={{ borderTopColor: color }}
-      className={`deskCasesChart-outer ${activeclass}`}
+      className={`${deskCasesChartOuter} ${activeclass}`}
       type="button"
       onClick={() => buttonPressed(category)}
     >
-      <div className="deskCasesChart-graph">
+      <div className={deskCasesChartGraph}>
         <VictoryPie
           data={buttonChartData}
           animate={{ duration: 2000 }}
@@ -78,11 +85,11 @@ function DeskCasesChart({ active, buttonPressed, category, color, data, name }) 
           }}
         />
       </div>
-      <div className="deskCasesChart-subs">
-        <div className="deskCasesChart-count" style={{ color }}>
+      <div className={deskCasesChartSubs}>
+        <div className={deskCasesChartCount} style={{ color }}>
           {leftPad(data[category].y, 2, 0)}
         </div>
-        <div className="deskCasesChart-days" style={{ color }}>
+        <div className={deskCasesChartDays} style={{ color }}>
           {name}
         </div>
       </div>

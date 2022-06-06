@@ -1,36 +1,36 @@
-
-.desk-outer {
+.deskOuter {
   display: flex;
   flex-direction: column;
   grid-area: desk;
 }
 
-.desk-controlers {
+.deskControlers {
   align-items: flex-end;
   display: flex;
   justify-content: space-between;
 }
 
-.desk-tabs {
+.deskTabs {
   display: flex;
   flex: 1;
   flex-direction: column;
   overflow: hidden;
   padding: 20px 0 0 0;
 }
-.desk-header h2 {
+
+.deskHeader h2 {
   margin: 0;
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-  .desk-header {
+  .deskHeader {
     display: flex;
     height: 25vh;
     flex-direction: column;
   }
 
-  .desk-tabs {
+  .deskTabs {
     display: flex;
     flex-direction: column;
     height: 75vh;

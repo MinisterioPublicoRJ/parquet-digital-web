@@ -14,6 +14,8 @@ import {
   alertBadgeArrowOpen,
   alertBadgeCountWrapper,
   alertBadgeDownloadNumbers,
+  doDelete,
+  undoDelete,
 } from './styles.module.css';
 
 const propTypes = {
@@ -131,12 +133,12 @@ function AlertBadge(alert) {
       )}
       {!hideHover && isDeleted && (
         <div className={`${ deleteConfirmation } ${isDeleted ? 'isDeleted' : ''}`}>
-          <button type="button" className="delete" onClick={() => handleDeletion(customKey)}>
+          <button type="button" className={ doDelete } onClick={() => handleDeletion(customKey)}>
             x
           </button>
           <button
             type="button"
-            className="undo-delete"
+            className={ undoDelete }
             onClick={() => handleDeletion(customKey, true)}
           >
             Desfazer

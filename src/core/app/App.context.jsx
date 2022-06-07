@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import ApiCreator from '../api/Api';
-import { AlertsContextCreator, AlertsContext } from '../../web/views/dashboard/sections/Alerts/alertsContext';
+import { AlertsContextCreator, AlertsContext, useAlertsContext } from '../../web/views/dashboard/sections/Alerts/alertsContext';
 
 const AppContext = createContext();
 
@@ -132,6 +132,8 @@ export function AppStoreInitializer() {
     logout,
     buildRequestParams,
     currentOffice,
-    updateOffice, alertsStore
+    updateOffice, 
+    alertsStore,
+    useAlertsContext
   };
 }

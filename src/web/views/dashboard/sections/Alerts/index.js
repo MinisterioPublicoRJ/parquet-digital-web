@@ -162,7 +162,6 @@ function Alerts() {
               Object.keys(alerts).map((type) => (
                 <Dropdown
                   type={type}
-                  list={alerts[type]}
                   key={type}
                   setOverlay={setOverlay}
                   openDialogBox={openDialogBox}

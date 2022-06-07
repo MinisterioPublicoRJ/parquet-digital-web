@@ -3,13 +3,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.css';
-import Api from '../../../../../api';
 import AlertBadge from '../AlertBadge';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import individualAlertFormatter from '../utils/individualAlertFormatter';
 
 const propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   type: PropTypes.string.isRequired,
   setOverlay: PropTypes.func.isRequired,
   openDialogBox: PropTypes.func.isRequired,
@@ -19,8 +17,8 @@ const propTypes = {
 function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
   const { buildRequestParams } = useAppContext();
   const [isOpen, setIsOpen] = useState(false);
-  const [alertsList, setAlertsList] = useState(list);
-  const [visibleAlertsList, setVisibleAlertsList] = useState(list.slice(0, 30));
+  const [alertsList, setAlertsList] = useState(alerts[type]);
+  const [visibleAlertsList, setVisibleAlertsList] = useState(alertsList.slice(0, 30));
   const [isShowMoreInHover, setIsShowMoreInHover] = useState(false);
   const { orgao, token } = buildRequestParams();
   const headerAlert = individualAlertFormatter(
@@ -38,50 +36,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
     removeAlert(deletedAlertKey);
   }, [deletedAlertKey]);
 
-  function handleAlertAction(alertKey, undo) {
-    if (undo) {
-      restoreAlert(alertKey);
-    } else {
-      const alert = alertsList.filter(({ key }) => key === alertKey)[0];
 
-      if (alert.isDeleted) {
-        removeAlert(alertKey, undo);
-      } else {
-        dismissAlert(alertKey);
-      }
-    }
-  }
-
-  function dismissAlert(alertKey) {
-    const newList = alertsList.map((alert) => {
-      if (alert.key === alertKey) {
-        return { ...alert, isDeleted: true };
-      }
-      return alert;
-    });
-    setAlertsList(newList);
-    setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
-    Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
-  }
-
-  function restoreAlert(alertKey) {
-    const newList = alertsList.map((alert) => {
-      if (alert.key === alertKey) {
-        return { ...alert, isDeleted: false };
-      }
-      return alert;
-    });
-    setAlertsList(newList);
-    setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
-    Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
-  }
-
-  function removeAlert(alertKey) {
-    if (!alertKey) return;
-    const newList = alertsList.filter(({ key }) => key !== alertKey);
-    setAlertsList(newList);
-    setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
-  }
 
   if (!alertsList.length) {
     return null;

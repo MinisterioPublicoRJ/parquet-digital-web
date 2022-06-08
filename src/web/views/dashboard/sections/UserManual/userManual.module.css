@@ -53,6 +53,8 @@
   padding: 0px 0px 0px 36px;
   margin-top: 15px;
   margin-bottom: 30px;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .glossaryIntroSubtitle {
@@ -63,7 +65,7 @@
   border-radius: 1px;
   margin-top: 15px;
 }
-.glossaryArticlesWrapper button {
+.glossaryArticlesWrapper button, a {
   text-align: center;
   cursor: pointer;
   font-family: var(--defaultFont);
@@ -74,6 +76,7 @@
   font-weight: bold;
   border: 0;
   display: inline-block;
+  text-decoration: none;
 }
 .glossaryArticlesWrapper p {
   margin-top: 5px;

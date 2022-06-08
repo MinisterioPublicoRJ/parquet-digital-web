@@ -31,13 +31,6 @@ function UserManual() {
           </p>
 
           <div className={glossaryArticlesWrapper}>
-            <a
-              href="https://www.instagram.com/mprj.oficial/"
-              target="new"
-              rel="noreferrer"
-            >
-            Acesse a nota metodologíca
-            </a>  
             {tipo === 1 ? (
               <button
                 type="button"

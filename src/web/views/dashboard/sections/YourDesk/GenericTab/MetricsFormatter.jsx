@@ -99,9 +99,9 @@ function inquiriesMetrics({
   const formattedVariation = formatPercentage(Math.abs(variacaoAproveitamentos));
   return (
     <>
-    {nrDocumentosDistintosAtual === "0%" ? (
+    {nrDocumentosDistintosAtual === 0 ? (
       <p> Não há
-        <strong>novos inqueritos </strong>.
+        <strong> novos inqueritos</strong>.
       </p>
     ) : (
       <p>

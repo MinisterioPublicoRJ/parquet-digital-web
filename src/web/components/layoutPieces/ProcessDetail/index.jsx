@@ -45,7 +45,17 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [loading, setLoading] = useState(true);
   const { buildRequestParams } = useAppContext();
   const { cpf, token, orgao } = buildRequestParams();
-  const {alerts} = useAlertsContext();
+  const {alerts, setModalContent, removeAlert, handleAlertAction, setShowOverlay, setOverlayType, setDocDk} = useAlertsContext();
+  
+  function openDialogBox(link, key) {
+    setModalContent({ link, key });
+  }
+
+  function setOverlay(type, documentDk) {
+    setOverlayType(type);
+    setDocDk(documentDk);
+    setShowOverlay(true);
+  }
 
   useEffect(() => {
     getProcessData();
@@ -87,7 +97,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
               </strong>
               <div className={processAlertsList}>
                 {processData.alerts.map((alertTag) => {
-                  console.log('alert', alert);
+                  console.log('alertTag', alertTag);
+                  const type = alertTag.alertCode;
                   const alert = alerts[alertTag.alertCode].filter(alert => alert.docNum === docuNrMp)[0];
                   const {
                     actions,
@@ -99,9 +110,10 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                     isDeleted,
                     docDk,
                   } = alert;
+                  console.log('alert', alert);
                   return (
                     <AlertBadge
-                      onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo, setVisibleAlertsList)}
+                      onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
                       removeAlert={removeAlert}
                       key={key}
                       customKey={key}
@@ -112,7 +124,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                       isDeleted={isDeleted}
                       setOverlay={setOverlay}
                       docDk={docDk}
-                      overlayType={type}
+                      overlayType={alertTag.alertCode}
                       openDialogBox={openDialogBox}
                     />
                   );

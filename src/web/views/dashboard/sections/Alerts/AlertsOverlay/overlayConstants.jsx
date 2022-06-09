@@ -185,7 +185,7 @@ export const OVERLAY_TEXTS = {
   DCTJ: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Procedimentos Criminais que saíram para o TJRJ há
+        Neste alerta, eu busco lhe informar sobre Processos Criminais que saíram para o TJRJ há
         mais de 60 e menos de 180 dias e ainda não retornaram a esta promotoria.
       </p>
 
@@ -202,7 +202,7 @@ export const OVERLAY_TEXTS = {
   DCTJ2: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Procedimentos Criminais que saíram para o TJRJ há
+        Neste alerta, eu busco lhe informar sobre Processos Criminais que saíram para o TJRJ há
         mais de 180 dias e ainda não retornaram a esta promotoria. A probabilidade de que ele seja
         um documento com aplicação do art. 366 do CPP é grande.
       </p>

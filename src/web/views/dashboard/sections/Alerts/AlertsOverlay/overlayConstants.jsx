@@ -220,17 +220,17 @@ export const OVERLAY_TEXTS = {
   DNTJ: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre procedimentos não criminais que saíram para o TJRJ
+        Neste alerta, eu busco lhe informar sobre processos cíveis que saíram para o TJRJ
         há mais de 120 dias e ainda não retornaram a esta promotoria.
       </p>
 
       <p />
 
       <p>
-        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
+        Para que o alerta deixe de aparecer, basta que você receba o processo para trabalhar
         novamente, ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento
         caso esteja no Tribunal. Para isso, disponibilizo a opção CSV, que traz a lista de todos os
-        procedimentos nesta condição com o número MPRJ e o número externo (número TJRJ).
+        processos nesta condição com o número MPRJ e o número externo (número TJRJ).
       </p>
     </div>
   ),

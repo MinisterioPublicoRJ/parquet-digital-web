@@ -33,6 +33,7 @@ function UserManual() {
           </p>
 
           <div className={glossaryArticlesWrapper}>
+
               <button
                 type="button"
                 onClick={(event) => {

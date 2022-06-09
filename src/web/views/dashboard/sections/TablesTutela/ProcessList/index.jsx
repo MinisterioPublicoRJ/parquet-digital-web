@@ -7,14 +7,8 @@ import { highlightJSX } from '../../../../../utils';
 import {
   processListOuter,
   processListActive,
-  onGoingInvestigationsOuter,
-  onGoingInvestigationsActive,
   investigatedProfileBtn,
-  tablesTutelaOuter,
-  tablesTutelaHeader,
   processDetailBtnStyle,
-  tablesTutelaButtonInactive,
-  tablesTutelaBody
 } from '../styles.module.css';
 
 function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searchString}) {

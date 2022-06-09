@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import './styles.css';
 import { SearchBox } from 'mapasteca-web';
 import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
 import { InvestigatedProfile, Modal, ProcessDetail, SectionTitle } from '../../../../components';
 
 import {
-  processListOuter,
-  processListActive,
-  onGoingInvestigationsOuter,
-  onGoingInvestigationsActive,
-  investigatedProfileBtn,
   tablesTutelaOuter,
   tablesTutelaHeader,
-  processDetailBtnStyle,
   tablesTutelaButtonInactive,
-  tablesTutelaBody
+  tablesTutelaBody,
+  searchBoxContainer,
 } from './styles.module.css';
 
 function TablesTutela() {
@@ -42,7 +36,7 @@ function TablesTutela() {
   };
 
   return (
-    <div className={ tablesTutelaOuter }>
+    <div className={ `${ tablesTutelaOuter } ${ searchBoxContainer }` }>
       <SearchBox onSearch={onSearch}>
         <div className={ tablesTutelaHeader }>
           <button

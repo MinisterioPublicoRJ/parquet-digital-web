@@ -5,16 +5,10 @@ import { useAppContext } from '../../../../../../core/app/App.context';
 import { highlightJSX } from '../../../../../utils';
 
 import {
-  processListOuter,
-  processListActive,
   onGoingInvestigationsOuter,
   onGoingInvestigationsActive,
   investigatedProfileBtn,
-  tablesTutelaOuter,
-  tablesTutelaHeader,
   processDetailBtnStyle,
-  tablesTutelaButtonInactive,
-  tablesTutelaBody
 } from '../styles.module.css';
 
 function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDetail, searchString,}) {

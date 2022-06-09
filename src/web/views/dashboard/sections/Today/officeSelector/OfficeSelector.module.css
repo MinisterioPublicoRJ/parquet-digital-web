@@ -1,66 +1,64 @@
-.selector-outer {
-   top: calc(-24vh + 2 * var(--bodyVerticalPadding));
+.selectorOuter {
+  top: calc(-24vh + 2 * var(--bodyVerticalPadding));
   left: calc(-27.5vw + var(--bodyHorizontalPadding));
   background-color: rgb(0 0 0 / 14%);
   display: flex;
   height: 100%;
   position: relative;
   width: 100%;
-  /* it needs to be this high because of the Performance Radar graph labels :/ */
+ /* it needs to be this high because of the Performance Radar graph labels :/ */
   z-index: 100;
   overflow: hidden;
 }
 
-.selector-modal {
-  background-color: #bddff0;
+.selectorModal {
+  background-color: var(--lightBlue);
   border-radius: 5px;
   width: calc(50vw - 5vw);
-  height: calc(55vh - 2 * var(--bodyVerticalPadding) - 3vh);
+ height: calc(55vh - 2 * var(--bodyVerticalPadding) - 3vh);
   overflow: hidden;
 }
-.input-orgaoSelect::-webkit-input-placeholder{ /* Chrome, Safari, Opera */
-  color: #3b3b3b;
+.inputOrgaoSelect::-webkit-input-placeholder{ /* Chrome, Safari, Opera */
+  color: var(--dark);
 }
-.input-orgaoSelect::-moz-placeholder { /* Firefox 18- */
-  color: #3b3b3b;
+.inputOrgaoSelect::-moz-placeholder { /* Firefox 18- */
+  color: var(--dark);
 }
 
-.input-orgaoSelect {
+.inputOrgaoSelect {
   width: 26%;
   margin-top: 0px;
   border-top: transparent;
   border-left: transparent;
   border-right: transparent;
-  background-color: #bddff0;
+  background-color: var(--lightBlue);
   box-shadow: 0 0 0 0;
   border: 0 none;
   outline: 0;
-  color: #3b3b3b;
+  color: var(--dark);
   font-size: 15px;
   margin-left: -40px;
   margin-top: 5px;
-
 }
 
-.selector-header > h2 {
-  color: #3b3b3b;
+.selectorHeader > h2 {
+  color: var(--dark);
   font-weight: 900;
   letter-spacing: 0.5px;
   font-size: 25px;
   margin-left: -30px;
 }
 
-.selector-header {
+.selectorHeader {
   align-items: center;
   display: flex;
   height: 20%;
   padding: 0 1.5vw;
   width: 100%;
   justify-content: space-around;
-  
 }
 
-.selector-listWrapper {
+.selectorListWrapper {
   background-color: white;
   height: 75%;
   overflow-y: auto;
@@ -68,17 +66,17 @@
   cursor: pointer;
 }
 
-.selector-listWrapper ul {
+.selectorListWrapper ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.selector-listWrapper li {
+.selectorListWrapper li {
   margin: 10px 0;
 }
 
-.selector-listWrapper li > span {
+.selectorListWrapper li > span {
   color: var(--primary);
   font-size: var(--smallFont);
 }

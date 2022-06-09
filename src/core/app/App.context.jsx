@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
 import ApiCreator from '../api/Api';
-import { AlertsContextCreator, AlertsContext, useAlertsContext } from '../../web/views/dashboard/sections/Alerts/alertsContext';
+// eslint-disable-next-line import/no-cycle
+import { AlertsContext } from '../../web/views/dashboard/sections/Alerts/alertsContext';
 
 const AppContext = createContext();
 
-export function AppProvider({ store, children }) {
-  return <AlertsContext.Provider> <AppContext.Provider value={store}>{children}</AppContext.Provider></AlertsContext.Provider>
+export function AppProvider({ alertsStore, store, children }) {
+  return <AlertsContext.Provider value={alertsStore}> <AppContext.Provider value={store}>{children}</AppContext.Provider></AlertsContext.Provider>
 }
 
 export const useAppContext = () => useContext(AppContext);
@@ -20,11 +21,6 @@ export function AppStoreInitializer() {
   const [userExpired, setUserExpired] = useState(false);
   const [isServerDown, setIsServerDown] = useState(false);
   const [currentOffice, setCurrentOffice] = useState(null);
-
-  const alertsStore = AlertsContextCreator();
-
-
-
 
   const loginWithToken = (jwtToken, storedUser, storedOffice) => {
     if (jwtToken) {
@@ -132,8 +128,6 @@ export function AppStoreInitializer() {
     logout,
     buildRequestParams,
     currentOffice,
-    updateOffice, 
-    alertsStore,
-    useAlertsContext
+    updateOffice
   };
 }

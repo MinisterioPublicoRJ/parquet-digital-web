@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import AlertBadge from '../AlertBadge';
 import { useAppContext } from '../../../../../../core/app/App.context';
+import { useAlertsContext } from '../alertsContext';
 import individualAlertFormatter from '../utils/individualAlertFormatter';
 
 const propTypes = {
@@ -14,10 +15,12 @@ const propTypes = {
   deletedAlertKey: PropTypes.string.isRequired,
 };
 
-function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
+function Dropdown({ type, setOverlay, openDialogBox, deletedAlertKey }) {
+  
+  const { removeAlert, alerts, handleAlertAction } = useAlertsContext();
   const { buildRequestParams } = useAppContext();
   const [isOpen, setIsOpen] = useState(false);
-  const [alertsList, setAlertsList] = useState(alerts[type]);
+  const alertsList = alerts[type];
   const [visibleAlertsList, setVisibleAlertsList] = useState(alertsList.slice(0, 30));
   const [isShowMoreInHover, setIsShowMoreInHover] = useState(false);
   const { orgao, token } = buildRequestParams();
@@ -33,7 +36,9 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
   );
 
   useEffect(() => {
-    removeAlert(deletedAlertKey);
+    const newList = removeAlert(type, deletedAlertKey, setVisibleAlertsList);
+    console.log('removealert');
+    //if (newList) setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
   }, [deletedAlertKey]);
 
 
@@ -71,7 +76,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
           } = alert;
           return (
             <AlertBadge
-              onDeletion={(alertKey, undo) => handleAlertAction(alertKey, undo)}
+              onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo, setVisibleAlertsList)}
               removeAlert={removeAlert}
               key={key}
               customKey={key}

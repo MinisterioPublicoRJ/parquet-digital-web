@@ -86,29 +86,35 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                 {processData.alerts.length === 1 ? '' : 's'}
               </strong>
               <div className={processAlertsList}>
-                {processData.alerts.map((alert) => {
-                  const formattedAlert = individualAlertFormatter(
-                    { docNum: docuNrMp, ...alert },
-                    cpf,
-                    token,
-                    orgao,
-                  );
-                  const { backgroundColor, backgroundColorChild, icon, key, message, type } =
-                    formattedAlert;
+                {processData.alerts.map((alertTag) => {
+                  console.log('alert', alert);
+                  const alert = alerts[alertTag.alertCode].filter(alert => alert.docNum === docuNrMp)[0];
+                  const {
+                    actions,
+                    backgroundColor,
+                    backgroundColorChild,
+                    icon,
+                    key,
+                    message,
+                    isDeleted,
+                    docDk,
+                  } = alert;
                   return (
-                    <div className={alertWrapper}>
-                      <AlertBadge
-                        key={key}
-                        customKey={key}
-                        icon={icon}
-                        backgroundColor={backgroundColorChild || backgroundColor}
-                        message={message}
-                        docDk={docuNrMp}
-                        overlayType={type}
-                        /* Passes empty actions to hide actions */
-                        actions={[]}
-                      />
-                    </div>
+                    <AlertBadge
+                      onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo, setVisibleAlertsList)}
+                      removeAlert={removeAlert}
+                      key={key}
+                      customKey={key}
+                      icon={icon}
+                      backgroundColor={backgroundColorChild || backgroundColor}
+                      message={message}
+                      actions={actions}
+                      isDeleted={isDeleted}
+                      setOverlay={setOverlay}
+                      docDk={docDk}
+                      overlayType={type}
+                      openDialogBox={openDialogBox}
+                    />
                   );
                 })}
               </div>

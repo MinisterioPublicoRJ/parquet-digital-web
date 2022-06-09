@@ -294,7 +294,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           tabDetails[activeTab] &&
           !tabDetails[activeTab][currentPage] && (
             <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
-              <p className={noOpenCases}> Nenhuma vista aberta com os parametros pesquisados</p>
+              <p className={noOpenCases}> Nenhuma vista aberta com os parâmetros pesquisados</p>
               <CustomTable
                 data={Array(20).fill({ content: '' })}
                 columns={TABLE_COLUMNS}

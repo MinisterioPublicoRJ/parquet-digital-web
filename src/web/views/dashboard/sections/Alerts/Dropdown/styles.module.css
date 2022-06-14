@@ -37,11 +37,11 @@
   margin-left: -9px;
 }
 
-.box-btn-dropdown {
+.boxBtnDropdown {
   margin-top: -8px;
 }
 
-.show-more-alerts {
+.showMoreAlerts {
   border-radius: 7px;
   font-weight: 500;
   font-size: 12px;
@@ -58,7 +58,7 @@
   background-color: var(--white);
 }
 
-.show-more-alerts:after {
+.showMoreAlerts:after {
   visibility: visible;
   opacity: 1;
   content: '';

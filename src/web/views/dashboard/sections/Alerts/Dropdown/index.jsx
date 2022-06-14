@@ -2,11 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
 import Api from '../../../../../api';
 import AlertBadge from '../AlertBadge';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import individualAlertFormatter from '../utils/individualAlertFormatter';
+
+import {
+  dropdownBtn,
+  boxBtnDropdown,
+  showMoreAlerts,
+} from './styles.module.css';
 
 const propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -88,9 +93,9 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
   }
 
   return (
-    <div className="box-btn-dropdown">
+    <div className={ boxBtnDropdown }>
       <button
-        className="dropdownBtn"
+        className={ dropdownBtn }
         type="button"
         onClick={() => setIsOpen((prevState) => !prevState)}
       >
@@ -153,7 +158,7 @@ function Dropdown({ list, type, setOverlay, openDialogBox, deletedAlertKey }) {
             onClick={() => {
               setVisibleAlertsList((prevValue) => alertsList.slice(0, prevValue.length + 30));
             }}
-            className="show-more-alerts"
+            className={ showMoreAlerts }
           >
             MOSTRAR +30 ALERTAS
           </button>

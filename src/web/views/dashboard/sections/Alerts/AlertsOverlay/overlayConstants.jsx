@@ -1,6 +1,8 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 
+import { crimeData } from './styles.module.css';
+
 export const OVERLAY_TEXTS = {
   GATE: (
     <div>
@@ -264,7 +266,7 @@ export function PRCR_TEXTS(type, data) {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime) => (
-            <div className="crime-data" key={crime.key}>
+            <div className={ crimeData } key={crime.key}>
               <p>
                 <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
@@ -322,7 +324,7 @@ export function PRCR_TEXTS(type, data) {
 
           <p>Para este caso, meus cálculos foram os seguintes:</p>
           {data.map((crime) => (
-            <div className="crime-data" key={crime.key}>
+            <div className={ crimeData } key={crime.key}>
               <p>
                 <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
@@ -382,7 +384,7 @@ export function PRCR_TEXTS(type, data) {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime) => (
-            <div className="crime-data" key={crime.key}>
+            <div className={ crimeData } key={crime.key}>
               <p>
                 <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
@@ -438,7 +440,7 @@ export function PRCR_TEXTS(type, data) {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime) => (
-            <div className="crime-data" key={crime.key}>
+            <div className={ crimeData } key={crime.key}>
               <p>
                 <b>Personagem:</b>
                 {` ${crime.investigatedName}`}

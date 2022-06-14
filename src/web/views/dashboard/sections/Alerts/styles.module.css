@@ -1,15 +1,15 @@
-.alerts-wrapper {
+.alertsWrapper {
   grid-area: alerts;
   display: flex;
   flex-direction: column;
 }
 
-.alerts-header {
+.alertsHeader {
   display: flex;
   justify-content: space-between;
 }
 
-.alerts-total {
+.alertsTotalStyle {
   align-items: center;
   background-color: var(--danger);
   border-radius: 20px;
@@ -22,18 +22,18 @@
   padding: 1px 5px;
 }
 
-.alerts-total span {
+.alertsTotalStyle span {
   color: var(--white);
   margin-left: 10px;
   font-size: 15px;
 }
 
-.alerts-body-wrapper {
+.alertsBodyWrapper {
   overflow: hidden;
   position: relative;
 }
 
-.alerts-body {
+.alertsBody {
   overflow-y: scroll;
   min-height: 220px;
   height: 100%;
@@ -48,19 +48,19 @@
   border-bottom: 2px solid;
 }
 
-.alerts-body .modal-outer {
+.alertsBody .modal-outer {
   height: 100%;
 }
 
-.alerts-body .modal-innerWrapper {
+.alertsBody .modal-innerWrapper {
   width: 64%;
   display: flex;
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-  .alerts-wrapper {
-    /* overflow-y: scroll;
+  .alertsWrapper {
+    /*overflow-y: scroll;
     width: 100%; */
   }
 }

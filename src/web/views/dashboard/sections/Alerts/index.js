@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './styles.css';
 
@@ -14,6 +14,10 @@ import alertListFormatter from './utils/alertListFormatter';
 
 function Alerts() {
   const { buildRequestParams } = useAppContext();
+  
+  const [modalContent, setModalContent] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false);
+
   const {
     alerts,
     setAlerts,
@@ -21,17 +25,14 @@ function Alerts() {
     setAlertCount,
     alertsError,
     setAlertsError,
-    showOverlay,
-    setShowOverlay,
     overlayType,
     setOverlayType,
     docDk,
     setDocDk,
-    modalContent,
-    setModalContent,
     deletedAlertKey,
     setDeletedAlertKey,
   } = useAlertsContext();
+
 
   const loading = !alerts && !alertsError;
   const dialogBoxMessage = (

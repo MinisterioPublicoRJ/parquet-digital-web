@@ -26,7 +26,7 @@ import Api from '../../../api';
 import Spinner from '../Spinner';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
 import AlertBadge from '../../../views/dashboard/sections/Alerts/AlertBadge';
-import individualAlertFormatter from '../../../views/dashboard/sections/Alerts/utils/individualAlertFormatter';
+import AlertsOverlay from '../../../views/dashboard/sections/Alerts/AlertsOverlay';
 
 const propTypes = {
   close: PropTypes.func.isRequired,
@@ -43,9 +43,13 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [processData, setProcessData] = useState(null);
   // const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [modalContent, setModalContent] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false);
+
+
   const { buildRequestParams } = useAppContext();
   const { cpf, token, orgao } = buildRequestParams();
-  const {alerts, setModalContent, removeAlert, handleAlertAction, setShowOverlay, setOverlayType, setDocDk} = useAlertsContext();
+  const {alerts, removeAlert, handleAlertAction, overlayType, setOverlayType, docDk, setDocDk} = useAlertsContext();
   
   function openDialogBox(link, key) {
     setModalContent({ link, key });
@@ -130,6 +134,10 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                   );
                 })}
               </div>
+
+              {showOverlay && (
+              <AlertsOverlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
+            )}
             </>
           )}
           <h3>PERSONAGENS</h3>

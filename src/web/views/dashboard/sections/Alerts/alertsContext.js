@@ -20,7 +20,6 @@ export const AlertsContextCreator = (buildRequestParams) => {
 
   console.log('alerts:', alerts);
 
-  const [modalContent, setModalContent] = useState(null);
   const [deletedAlertKey, setDeletedAlertKey] = useState(null);
 
   function handleAlertAction(type, alertKey, undo, setVisibleAlerts) {
@@ -87,8 +86,6 @@ export const AlertsContextCreator = (buildRequestParams) => {
     setOverlayType,
     docDk,
     setDocDk,
-    modalContent,
-    setModalContent,
     deletedAlertKey,
     setDeletedAlertKey,
     removeAlert,

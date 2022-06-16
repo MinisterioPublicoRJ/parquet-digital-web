@@ -956,7 +956,7 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
     message = (
       <span>
         Você <strong>celebrou TAC</strong> em <strong>{`${count}`}</strong> {`${single ? 'procedimento ' : 'procedimentos '}`}
-        e ainda <strong>não comunicou ao conselho Superior do
+        e ainda <strong>não comunicou ao Conselho Superior do
         Ministerio Público.</strong>
       </span>
     );

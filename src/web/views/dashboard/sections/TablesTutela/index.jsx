@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import './styles.css';
 import { SearchBox } from 'mapasteca-web';
 import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
 import { InvestigatedProfile, Modal, ProcessDetail, SectionTitle } from '../../../../components';
+
+import {
+  tablesTutelaOuter,
+  tablesTutelaHeader,
+  tablesTutelaButtonInactive,
+  tablesTutelaBody,
+  searchBoxContainer,
+} from './styles.module.css';
 
 function TablesTutela() {
   const [visibleTab, setVisibleTab] = useState('process');
@@ -29,18 +36,18 @@ function TablesTutela() {
   };
 
   return (
-    <div className="tablesTutela-outer">
+    <div className={ `${ tablesTutelaOuter } ${ searchBoxContainer }` }>
       <SearchBox onSearch={onSearch}>
-        <div className="tablesTutela-header">
+        <div className={ tablesTutelaHeader }>
           <button
-            className={visibleTab === 'process' ? '' : 'tablesTutela-button--inactive'}
+            className={visibleTab === 'process' ? '' : `${ tablesTutelaButtonInactive }`}
             type="button"
             onClick={() => setVisibleTab('process')}
           >
             <SectionTitle value="Lista de processos" glueToTop />
           </button>
           <button
-            className={visibleTab === 'investigation' ? '' : 'tablesTutela-button--inactive'}
+            className={visibleTab === 'investigation' ? '' : `${ tablesTutelaButtonInactive }`}
             type="button"
             onClick={() => setVisibleTab('investigation')}
           >
@@ -48,7 +55,7 @@ function TablesTutela() {
           </button>
         </div>
       </SearchBox>
-      <div className="tablesTutela-body">
+      <div className={ tablesTutelaBody }>
         <ProcessList
           setInvestigatedProfile={setInvestigatedProfile}
           setProcessDetail={setProcessDetail}

@@ -4,6 +4,13 @@ import { CustomTable, Spinner, Pagination } from '../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { highlightJSX } from '../../../../../utils';
 
+import {
+  processListOuter,
+  processListActive,
+  investigatedProfileBtn,
+  processDetailBtnStyle,
+} from '../styles.module.css';
+
 function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searchString}) {
   const { buildRequestParams } = useAppContext();
   // eslint-disable-next-line no-shadow
@@ -50,7 +57,7 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
           onClick={(event) => {
             setInvestigatedProfile(representanteDk, event);
           }}
-          className="investigated-profile-btn"
+          className={ investigatedProfileBtn }
         >
           {docuPersonagens}
         </button>
@@ -64,7 +71,7 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
           onClick={(event) => {
             setProcessDetail(docuNrMp, docuNrExterno, event);
           }}
-          className="process-detail-btn"
+          className={ processDetailBtnStyle }
         >
           {highlightedAProcessList.docuNrExterno}
         </button>
@@ -100,7 +107,7 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
   }
 
   return (
-    <div className={`${isActive ? 'processList-outer processList--active' : 'processList-outer'}`}>
+    <div className={`${isActive ? `${ processListOuter } ${ processListActive }` : `${ processListOuter }`}`}>
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (

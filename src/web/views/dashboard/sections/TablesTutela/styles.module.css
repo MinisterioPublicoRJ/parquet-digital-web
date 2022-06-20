@@ -1,4 +1,4 @@
-.processList-outer {
+.processListOuter {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -7,12 +7,12 @@
   transition: opacity 0.3s linear;
 }
 
-.processList--active {
+.processListActive {
   z-index: 1;
   opacity: 1;
 }
 
-.ongoingInvestigations-outer {
+.onGoingInvestigationsOuter {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -21,11 +21,12 @@
   transition: opacity 0.3s linear;
 }
 
-.ongoingInvestigations--active {
+.onGoingInvestigationsActive {
   z-index: 1;
   opacity: 1;
 }
-.investigated-profile-btn{
+
+.investigatedProfileBtn{
   color: #8998ac;
   font-size: var(--smallFont);
   width: 100%;
@@ -37,19 +38,20 @@
   background: transparent;
   text-decoration: underline;
 }
-.tablesTutela-outer {
+
+.tablesTutelaOuter {
   grid-area: processes;
   display: flex;
   flex-direction: column;
 }
 
-.tablesTutela-header {
+.tablesTutelaHeader {
   display: flex;
   flex: 1;
   flex-direction: row;
 }
 
-.tablesTutela-header button {
+.tablesTutelaHeader button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -58,7 +60,12 @@
   margin: 0;
   padding: 0;
 }
-.process-detail-btn{
+
+.tablesTutelaHeader h2 {
+  transition: 0.2s linear;
+}
+
+.processDetailBtnStyle{
   color: #8998ac;
   font-size: var(--smallFont);
   width: 100%;
@@ -71,24 +78,19 @@
   text-decoration: underline;
 }
 
-.tablesTutela-header h2 {
-  transition: 0.2s linear;
-}
-
-.tablesTutela-button--inactive h2 {
+.tablesTutelaButtonInactive h2 {
   color: var(--secondary);
   transform: scale(0.8);
 }
 
-.tablesTutela-body {
+.tablesTutelaBody {
   display: flex;
   flex: 1;
   position: relative;
   overflow-y: auto;
 }
 
-/* THIS IS A TEMPORARY SOLUTION AND SHOULD BE REMOVED AFTER REFACTOR */
-div [class^="SearchBox_SearchBoxChildrenContainer"] {
+.searchBoxContainer [class^="SearchBox_SearchBoxChildrenContainer"] {
   display: flex;
   flex: 1;
 }

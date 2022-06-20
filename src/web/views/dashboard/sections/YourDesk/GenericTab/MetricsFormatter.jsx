@@ -72,13 +72,13 @@ function courtCasesMetrics({
     <p>
         No último ano, você ajuizou
         <strong>
-          <span>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`},{" "}
+        <span>{` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`},{" "}
           {variacao12Meses === 0 ?(
           <strong>não houve aumento nem redução</strong>
           ):(
             <strong>com {variacao12Meses >= 0 ? `aumento` :  `redução`} de {yearVariation}</strong>
           )}
-         </span>       
+        </span>       
         </strong>
         {" "}em comparação com o ano anterior em que
         <strong>
@@ -98,7 +98,13 @@ function inquiriesMetrics({
 }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAproveitamentos));
   return (
-    <p>
+    <>
+    {nrDocumentosDistintosAtual === 0 ? (
+      <p> Não há
+        <strong> novos inqueritos</strong>.
+      </p>
+    ) : (
+      <p>
       Constatei que
       <strong>{` ${nrDocumentosDistintosAtual} ${nrDocumentosDistintosAtual === 1 ? 'inquérito passou' : 'inquéritos passaram'} por você `}</strong>
       neste mês, com
@@ -119,6 +125,8 @@ function inquiriesMetrics({
       </strong>
       nos últimos 30 dias.
     </p>
+    )}
+  </>
   );
 }
 

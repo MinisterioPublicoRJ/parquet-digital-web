@@ -20,10 +20,11 @@ function Dropdown({ type, setOverlay, openDialogBox, deletedAlertKey }) {
   const { removeAlert, alerts, handleAlertAction } = useAlertsContext();
   const { buildRequestParams } = useAppContext();
   const [isOpen, setIsOpen] = useState(false);
-  const alertsList = alerts[type];
-  const [visibleAlertsList, setVisibleAlertsList] = useState(alertsList.slice(0, 30));
   const [isShowMoreInHover, setIsShowMoreInHover] = useState(false);
   const { orgao, token } = buildRequestParams();
+  const alertsList = alerts[type];
+  const [visibleAlerts, setVisibleAlerts] =useState(30);
+  const visibleAlertsList = alertsList.slice(0, visibleAlerts);
   const headerAlert = individualAlertFormatter(
     {
       alertCode: type,
@@ -36,7 +37,7 @@ function Dropdown({ type, setOverlay, openDialogBox, deletedAlertKey }) {
   );
 
   useEffect(() => {
-    const newList = removeAlert(type, deletedAlertKey, setVisibleAlertsList);
+    removeAlert(type, deletedAlertKey);
     console.log('removealert');
     //if (newList) setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
   }, [deletedAlertKey]);
@@ -76,7 +77,7 @@ function Dropdown({ type, setOverlay, openDialogBox, deletedAlertKey }) {
           } = alert;
           return (
             <AlertBadge
-              onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo, setVisibleAlertsList)}
+              onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
               removeAlert={removeAlert}
               key={key}
               customKey={key}
@@ -111,7 +112,7 @@ function Dropdown({ type, setOverlay, openDialogBox, deletedAlertKey }) {
                   }
             }
             onClick={() => {
-              setVisibleAlertsList((prevValue) => alertsList.slice(0, prevValue.length + 30));
+              setVisibleAlerts((prevValue) => prevValue + 30);
             }}
             className="show-more-alerts"
           >

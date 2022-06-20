@@ -22,22 +22,22 @@ export const AlertsContextCreator = (buildRequestParams) => {
 
   const [deletedAlertKey, setDeletedAlertKey] = useState(null);
 
-  function handleAlertAction(type, alertKey, undo, setVisibleAlerts) {
+  function handleAlertAction(type, alertKey, undo) {
     if (undo) {
-      restoreAlert(type, alertKey, setVisibleAlerts);
+      restoreAlert(type, alertKey);
     } else {
       console.log('alerts:', alerts);
       const alert = alerts[type].filter(({ key }) => key === alertKey)[0];
 
       if (alert.isDeleted) {
-        removeAlert(type, alertKey,setVisibleAlerts);
+        removeAlert(type, alertKey);
       } else {
-        dismissAlert(type, alertKey, setVisibleAlerts);
+        dismissAlert(type, alertKey);
       }
     }
   }
 
-  function dismissAlert(type, alertKey, setVisibleAlerts) {
+  function dismissAlert(type, alertKey) {
     const newList = alerts[type].map((alert) => {
       if (alert.key === alertKey) {
         return { ...alert, isDeleted: true };
@@ -46,7 +46,6 @@ export const AlertsContextCreator = (buildRequestParams) => {
     });
     console.log('dismissing');
     setAlerts((prevValue) => ({...prevValue, [type]: newList}));
-    setVisibleAlerts((prevValue) => newList.slice(0, prevValue.length));
     Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
     return newList;
   }
@@ -59,7 +58,6 @@ export const AlertsContextCreator = (buildRequestParams) => {
       return alert;
     });
     setAlerts((prevValue) => ({...prevValue, [type]: newList}));
-    setVisibleAlerts((prevValue) => newList.slice(0, prevValue.length));
     Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
     return newList;
   }
@@ -69,7 +67,6 @@ export const AlertsContextCreator = (buildRequestParams) => {
     if (!alertKey) return null;
     const newList = alerts[type].filter(({ key }) => key !== alertKey);
     setAlerts(prevValue =>( {...prevValue, [type]:newList}));
-    setVisibleAlerts((prevValue) => newList.slice(0, prevValue.length));
     return newList;
   }
 

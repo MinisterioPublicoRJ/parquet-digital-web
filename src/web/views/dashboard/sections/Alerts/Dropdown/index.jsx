@@ -79,7 +79,7 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
               isDeleted={isDeleted}
               setOverlay={setOverlay}
               docDk={docDk}
-              overlayType={type}
+              type={type}
               openDialogBox={openDialogBox}
             />
           );

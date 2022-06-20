@@ -100,6 +100,7 @@ function Alerts() {
 
   async function sendEmail() {
     const { key, link, type } = modalContent;
+    console.log('type, key,', type,' \n', key);
     try {
       // positive feedback after sending to ouvidoria delete the alert
       removeAlert(type, key);

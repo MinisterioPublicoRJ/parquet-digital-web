@@ -48,7 +48,6 @@ function AlertBadge(alert) {
     onDeletion,
     openDialogBox,
     setOverlay,
-    overlayType,
     count,
     isOpen,
     isDeleted,
@@ -94,7 +93,7 @@ function AlertBadge(alert) {
       case 'download':
         return handleLinks(alertAction);
       case 'overlay':
-        return setOverlay(overlayType, docDk);
+        return setOverlay(type, docDk);
       case 'link':
         return handleLinks(alertAction);
       case 'openComplaint':

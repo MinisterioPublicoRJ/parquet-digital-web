@@ -144,7 +144,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                         isDeleted={isDeleted}
                         setOverlay={setOverlay}
                         docDk={docuNrMp}
-                        overlayType={type}
+                        type={type}
                         openDialogBox={openDialogBox}
                       />
                     </div>

@@ -46,11 +46,11 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [modalContent, setModalContent] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
 
-
   const { buildRequestParams } = useAppContext();
   const { cpf, token, orgao } = buildRequestParams();
-  const {alerts, removeAlert, handleAlertAction, overlayType, setOverlayType, docDk, setDocDk} = useAlertsContext();
-  
+  const { alerts, removeAlert, handleAlertAction, overlayType, setOverlayType, docDk, setDocDk } =
+    useAlertsContext();
+
   function openDialogBox(link, key) {
     setModalContent({ link, key });
   }
@@ -103,7 +103,9 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                 {processData.alerts.map((alertTag) => {
                   console.log('alertTag', alertTag);
                   const type = alertTag.alertCode;
-                  const alert = alerts[alertTag.alertCode].filter(alert => alert.docNum === docuNrMp)[0];
+                  const alert = alerts[alertTag.alertCode].filter(
+                    (alert) => alert.docNum === docuNrMp,
+                  )[0];
                   const {
                     actions,
                     backgroundColor,
@@ -116,28 +118,30 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                   } = alert;
                   console.log('alert', alert);
                   return (
-                    <AlertBadge
-                      onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
-                      removeAlert={removeAlert}
-                      key={key}
-                      customKey={key}
-                      icon={icon}
-                      backgroundColor={backgroundColorChild || backgroundColor}
-                      message={message}
-                      actions={actions}
-                      isDeleted={isDeleted}
-                      setOverlay={setOverlay}
-                      docDk={docDk}
-                      overlayType={alertTag.alertCode}
-                      openDialogBox={openDialogBox}
-                    />
+                    <div className={alertWrapper}>
+                      <AlertBadge
+                        onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
+                        removeAlert={removeAlert}
+                        key={key}
+                        customKey={key}
+                        icon={icon}
+                        backgroundColor={backgroundColorChild || backgroundColor}
+                        message={message}
+                        actions={actions}
+                        isDeleted={isDeleted}
+                        setOverlay={setOverlay}
+                        docDk={docDk}
+                        overlayType={alertTag.alertCode}
+                        openDialogBox={openDialogBox}
+                      />
+                    </div>
                   );
                 })}
               </div>
 
               {showOverlay && (
-              <AlertsOverlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
-            )}
+                <AlertsOverlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
+              )}
             </>
           )}
           <h3>PERSONAGENS</h3>

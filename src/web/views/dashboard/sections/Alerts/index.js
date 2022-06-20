@@ -29,8 +29,7 @@ function Alerts() {
     setOverlayType,
     docDk,
     setDocDk,
-    deletedAlertKey,
-    setDeletedAlertKey,
+    removeAlert
   } = useAlertsContext();
 
 
@@ -94,22 +93,22 @@ function Alerts() {
     setAlertsError(apiError);
   }
 
-  function openDialogBox(link, key) {
-    setModalContent({ link, key });
+  function openDialogBox(link, key, type) {
+    console.log('opening dialog box');
+    setModalContent({ link, key, type });
   }
 
   async function sendEmail() {
-    const { key, link } = modalContent;
+    const { key, link, type } = modalContent;
     try {
       // positive feedback after sending to ouvidoria delete the alert
-      setDeletedAlertKey(key);
+      removeAlert(type, key);
       const response = await Api.sendOmbudsmanEmail(link);
       window.alert(response.data.detail);
     } catch (e) {
       window.alert('Houve um erro: '. e);
     } finally {
       setModalContent(null);
-      setDeletedAlertKey(null);
     }
   }
 
@@ -167,7 +166,6 @@ function Alerts() {
                   key={type}
                   setOverlay={setOverlay}
                   openDialogBox={openDialogBox}
-                  deletedAlertKey={deletedAlertKey}
                 />
               ))}
           </div>

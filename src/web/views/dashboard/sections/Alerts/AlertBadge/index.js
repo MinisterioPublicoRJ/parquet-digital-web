@@ -53,6 +53,7 @@ function AlertBadge(alert) {
     isOpen,
     isDeleted,
     docDk,
+    type
   } = alert;
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
@@ -76,7 +77,7 @@ function AlertBadge(alert) {
     const { link, actionType } = alertAction;
     if (link) {
       if (actionType === 'openComplaint') {
-        openDialogBox(link, key);
+        openDialogBox(link, key, type);
       }
     } else {
       window.alert('Em breve! :)');
@@ -85,6 +86,7 @@ function AlertBadge(alert) {
 
   function handleActionPress(alertAction, key) {
     const { actionType } = alertAction;
+    console.log('handling, type: ', actionType);
     switch (actionType) {
       case 'delete':
         setOverlay('onDel', '');

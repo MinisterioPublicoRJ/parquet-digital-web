@@ -12,18 +12,17 @@ const propTypes = {
   type: PropTypes.string.isRequired,
   setOverlay: PropTypes.func.isRequired,
   openDialogBox: PropTypes.func.isRequired,
-  deletedAlertKey: PropTypes.string.isRequired,
 };
 
-function Dropdown({ type, setOverlay, openDialogBox, deletedAlertKey }) {
+function Dropdown({ type, setOverlay, openDialogBox }) {
   
   const { removeAlert, alerts, handleAlertAction } = useAlertsContext();
   const { buildRequestParams } = useAppContext();
+  const { orgao, token } = buildRequestParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isShowMoreInHover, setIsShowMoreInHover] = useState(false);
-  const { orgao, token } = buildRequestParams();
+  const [visibleAlerts, setVisibleAlerts] = useState(30);
   const alertsList = alerts[type];
-  const [visibleAlerts, setVisibleAlerts] =useState(30);
   const visibleAlertsList = alertsList.slice(0, visibleAlerts);
   const headerAlert = individualAlertFormatter(
     {
@@ -35,14 +34,6 @@ function Dropdown({ type, setOverlay, openDialogBox, deletedAlertKey }) {
     token,
     orgao,
   );
-
-  useEffect(() => {
-    removeAlert(type, deletedAlertKey);
-    console.log('removealert');
-    //if (newList) setVisibleAlertsList((prevValue) => newList.slice(0, prevValue.length));
-  }, [deletedAlertKey]);
-
-
 
   if (!alertsList.length) {
     return null;

@@ -50,7 +50,7 @@ export const AlertsContextCreator = (buildRequestParams) => {
     return newList;
   }
 
-  function restoreAlert(type, alertKey, setVisibleAlerts) {
+  function restoreAlert(type, alertKey) {
     const newList = alerts[type].map((alert) => {
       if (alert.key === alertKey) {
         return { ...alert, isDeleted: false };
@@ -62,7 +62,7 @@ export const AlertsContextCreator = (buildRequestParams) => {
     return newList;
   }
 
-  function removeAlert(type, alertKey, setVisibleAlerts) {
+  function removeAlert(type, alertKey) {
     console.log('removing alert');
     if (!alertKey) return null;
     const newList = alerts[type].filter(({ key }) => key !== alertKey);

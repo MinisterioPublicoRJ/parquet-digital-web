@@ -32,15 +32,14 @@ function Introduction() {
           O Parquet Digital é uma ferramenta que visa proporcionar uma visão ampla do acervo de cada Promotoria de Justiça. A ferramenta apresenta informações sobre as vistas abertas, movimentações do acervo judicial ou extrajudicial e outras análises que auxiliem na atividade fim do(a) Promotor(a), como alertas sobre prescrições e outros pontos de atenção.
         </p>
         <p>
-          Importante destacar que o {" "}
-          <span className={highlighted}>Parquet Digital utiliza dados do sistema Módulo 
+          Importante destacar que o <span className={highlighted}>Parquet Digital utiliza dados do sistema Módulo 
           Gestão de Processos (MGP/MPRJ), mas não é um espelho dos relatórios gerados por esse sistema, uma vez que
           contém regras de negócio e modelos estatísticos de contagem que podem se diferenciar dos relatórios extraídos do MGP.
           </span>
         </p>
         <p>
         Em caso de dúvidas, foi disponibilizada na ferramenta um Manual de uso que trata das potencialidades do Parquet Digital; bem como uma Nota Metodológica, na qual podem ser consultados os códigos dos documentos e as principais classificações utilizadas do MGP para a disposição dos números apresentados. Caso as dúvidas persistam, elas também podem ser encaminhadas para a equipe técnica por meio do email
-        <strong>gadg.atendimento@mprj.mp.br</strong>
+        <strong> gadg.atendimento@mprj.mp.br</strong>
         </p>
         <p>
           <strong>Boa navegação!</strong>

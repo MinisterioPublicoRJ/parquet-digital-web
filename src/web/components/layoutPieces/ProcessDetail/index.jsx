@@ -27,6 +27,7 @@ import Spinner from '../Spinner';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
 import AlertBadge from '../../../views/dashboard/sections/Alerts/AlertBadge';
 import AlertsOverlay from '../../../views/dashboard/sections/Alerts/AlertsOverlay';
+import individualAlertFormatter from '../../../views/dashboard/sections/Alerts/utils/individualAlertFormatter';
 
 const propTypes = {
   close: PropTypes.func.isRequired,
@@ -103,9 +104,22 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                 {processData.alerts.map((alertTag) => {
                   console.log('alertTag', alertTag);
                   const type = alertTag.alertCode;
-                  const alert = alerts[alertTag.alertCode].filter(
+                  // searches for alert in alerts saved in context
+                  let alert = alerts[alertTag.alertCode]?.filter(
                     (alert) => alert.docNum === docuNrMp,
                   )[0];
+
+                  if (!alert) {
+                    const formattedAlert = individualAlertFormatter(
+                      { docNum: docuNrMp, ...alertTag },
+                      cpf,
+                      token,
+                      orgao,
+                    );
+                    alert = formattedAlert;
+                    alert.actions = [];
+                    console.log('not alert', alert);
+                  }
                   const {
                     actions,
                     backgroundColor,
@@ -114,7 +128,6 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                     key,
                     message,
                     isDeleted,
-                    docDk,
                   } = alert;
                   console.log('alert', alert);
                   return (
@@ -130,8 +143,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                         actions={actions}
                         isDeleted={isDeleted}
                         setOverlay={setOverlay}
-                        docDk={docDk}
-                        overlayType={alertTag.alertCode}
+                        docDk={docuNrMp}
+                        overlayType={type}
                         openDialogBox={openDialogBox}
                       />
                     </div>

@@ -49,7 +49,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
 
   const { buildRequestParams } = useAppContext();
   const { cpf, token, orgao } = buildRequestParams();
-  const { alerts, removeAlert, handleAlertAction, overlayType, setOverlayType, docDk, setDocDk } =
+  const { alerts, handleAlertAction, overlayType, setOverlayType, docDk, setDocDk } =
     useAlertsContext();
 
   function openDialogBox(link, key) {
@@ -102,12 +102,11 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
               </strong>
               <div className={processAlertsList}>
                 {processData.alerts.map((alertTag) => {
-                  console.log('alertTag', alertTag);
                   const type = alertTag.alertCode;
                   // searches for alert in alerts saved in context
-                  let alert = alerts[alertTag.alertCode]?.filter(
+                  let alert = alerts[alertTag.alertCode]?.find(
                     (alert) => alert.docNum === docuNrMp,
-                  )[0];
+                  );
 
                   if (!alert) {
                     const formattedAlert = individualAlertFormatter(
@@ -117,9 +116,10 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                       orgao,
                     );
                     alert = formattedAlert;
+                    // pass empty actions to hide them
                     alert.actions = [];
-                    console.log('not alert', alert);
                   }
+
                   const {
                     actions,
                     backgroundColor,
@@ -129,12 +129,11 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                     message,
                     isDeleted,
                   } = alert;
-                  console.log('alert', alert);
+
                   return (
-                    <div className={alertWrapper}>
+                    <div className={alertWrapper} key={`${key}`}>
                       <AlertBadge
-                        onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
-                        removeAlert={removeAlert}
+                        handleDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
                         key={key}
                         customKey={key}
                         icon={icon}
@@ -143,7 +142,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                         actions={actions}
                         isDeleted={isDeleted}
                         setOverlay={setOverlay}
-                        docDk={docuNrMp}
+                        docDk={+docuNrMp}
                         type={type}
                         openDialogBox={openDialogBox}
                       />
@@ -153,14 +152,19 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
               </div>
 
               {showOverlay && (
-                <AlertsOverlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
+                <AlertsOverlay
+                  type={overlayType}
+                  docDk={docuNrMp}
+                  setShowOverlay={setShowOverlay}
+                />
               )}
             </>
           )}
+
           <h3>PERSONAGENS</h3>
           <div className={processDetailSection}>
             {processData.characters.map(({ name, role }) => (
-              <div className={processDetailListCardWrapper}>
+              <div className={processDetailListCardWrapper} key={`${name}-${role}`}>
                 <ListCard
                   fixedHeight
                   title={name}

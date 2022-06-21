@@ -16,7 +16,7 @@ const propTypes = {
 
 function Dropdown({ type, setOverlay, openDialogBox }) {
   
-  const { removeAlert, alerts, handleAlertAction } = useAlertsContext();
+  const { alerts, handleAlertAction } = useAlertsContext();
   const { buildRequestParams } = useAppContext();
   const { orgao, token } = buildRequestParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -68,8 +68,7 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
           } = alert;
           return (
             <AlertBadge
-              onDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
-              removeAlert={removeAlert}
+              handleDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
               key={key}
               customKey={key}
               icon={icon}

@@ -45,7 +45,7 @@ function AlertBadge(alert) {
     message,
     customKey,
     hideHover,
-    onDeletion,
+    handleDeletion,
     openDialogBox,
     setOverlay,
     count,
@@ -57,10 +57,6 @@ function AlertBadge(alert) {
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
-  }
-
-  function handleDeletion(key, undo) {
-    onDeletion(key, undo);
   }
 
   function handleLinks(alertAction) {

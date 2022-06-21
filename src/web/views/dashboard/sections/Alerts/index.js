@@ -1,8 +1,6 @@
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 
-import './styles.css';
-
 import { useAppContext } from '../../../../../core/app/App.context';
 import { useAlertsContext } from './alertsContext';
 
@@ -11,6 +9,14 @@ import { SectionTitle, Spinner, Modal, DialogBox } from '../../../../components'
 import Dropdown from './Dropdown';
 import Overlay from './AlertsOverlay';
 import alertListFormatter from './utils/alertListFormatter';
+
+import {
+  alertsWrapper,
+  alertsHeader,
+  alertsTotalStyle,
+  alertsBodyWrapper,
+  alertsBody,
+} from './styles.module.css';
 
 function Alerts() {
   const { buildRequestParams } = useAppContext();
@@ -133,14 +139,14 @@ function Alerts() {
   }
 
   return (
-      <article className="alerts-wrapper">
-        <div className="alerts-header">
+      <article className={ alertsWrapper }>
+        <div className={ alertsHeader }>
           <SectionTitle value="central de alertas" glueToTop />
-          <span className="alerts-total">{alerts ? alertCount : 0}</span>
+          <span className={ alertsTotalStyle }>{alerts ? alertCount : 0}</span>
         </div>
-        <div className="alerts-body-wrapper">
+        <div className={ alertsBodyWrapper }>
           <div
-            className="alerts-body"
+            className={ alertsBody }
             style={showOverlay || loading ? { overflowY: 'hidden' } : {}}
           >
             {showOverlay && (

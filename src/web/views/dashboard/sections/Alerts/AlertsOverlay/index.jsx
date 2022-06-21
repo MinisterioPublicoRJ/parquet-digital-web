@@ -4,8 +4,12 @@ import Api from '../../../../../api';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner } from '../../../../../components';
 
-import './styles.css';
 import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT, PA1A_TEXT } from './overlayConstants';
+
+import {
+  overlayOuter,
+  alertsOverlay,
+} from './styles.module.css';
 
 const propTypes = {
   type: PropTypes.string.isRequired,
@@ -77,14 +81,14 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
 
   return (
     <div
-      className="overlay-outer"
+      className={ overlayOuter }
       onClick={() => setShowOverlay(false)}
       onKeyDown={() => setShowOverlay(false)}
       role="button"
       tabIndex={0}
     >
       <div
-        className="alerts-overlay"
+        className={ alertsOverlay }
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={(e) => handleInnerClick(e)}
         role="button"

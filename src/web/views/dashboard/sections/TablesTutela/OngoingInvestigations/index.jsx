@@ -4,6 +4,13 @@ import { CustomTable, Spinner, Pagination } from '../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { highlightJSX } from '../../../../../utils';
 
+import {
+  onGoingInvestigationsOuter,
+  onGoingInvestigationsActive,
+  investigatedProfileBtn,
+  processDetailBtnStyle,
+} from '../styles.module.css';
+
 function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDetail, searchString,}) {
   const { buildRequestParams } = useAppContext();
   // eslint-disable-next-line no-shadow
@@ -49,7 +56,7 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
           onClick={(event) => {
             setInvestigatedProfile(representanteDk, event);
           }}
-          className="investigated-profile-btn"
+          className={ investigatedProfileBtn }
         >
           {docuPersonagens}
         </button>
@@ -62,7 +69,7 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
           onClick={(event) => {
             setProcessDetail(docuNrMp, docuNrExterno, event);
           }}
-          className="process-detail-btn"
+          className={ processDetailBtnStyle }
         >
           {highlightedOngoingInvestigations.docuNrMp}
         </button>
@@ -105,8 +112,8 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
     <div
       className={`${
         isActive
-          ? 'ongoingInvestigations-outer ongoingInvestigations--active'
-          : 'ongoingInvestigations-outer'
+          ? `${ onGoingInvestigationsOuter } ${ onGoingInvestigationsActive }`
+          : `${ onGoingInvestigationsOuter }`
       }`}
     >
       {!ongoingInvestigationsListData.length ? (

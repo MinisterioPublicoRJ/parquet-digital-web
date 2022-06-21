@@ -1,8 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
 import { Spinner } from '../../../../../components';
+
+import {
+  controlButtonOuter,
+  controlButtonInner,
+  controlButtonInactive,
+  controlButtonActive,
+  controlButtonNotButton,
+  controlButtonBigNumber,
+  controlButtonBigNumberActive,
+} from './styles.module.css';
 
 const propTypes = {
   isActive: PropTypes.bool,
@@ -29,13 +38,13 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
       fill = (
         <button
           type="button"
-          className="controlButton-inner controlButton--active"
+          className={`${controlButtonInner} ${controlButtonActive}`}
           onClick={() => buttonPressed()}
         >
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <span className="controlButton-bigNumber--active">{error ? 0 : number}</span>
+            <span className={controlButtonBigNumberActive}>{error ? 0 : number}</span>
           )}
           {text}
         </button>
@@ -44,13 +53,13 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
       fill = (
         <button
           type="button"
-          className="controlButton-inner controlButton--inactive"
+          className={`${controlButtonInner} ${controlButtonInactive}`}
           onClick={() => buttonPressed()}
         >
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <span className="controlButton-bigNumber">{error ? 0 : number}</span>
+            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
           )}
           {text}
         </button>
@@ -58,19 +67,20 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
     }
   } else {
     fill = (
-      <div className="controlButton-inner controlButton--inactive controlButton-notButton">
+      <div className={`${controlButtonInner} ${controlButtonInactive} ${controlButtonNotButton}`}>
         {loading ? (
           <Spinner size="small" />
         ) : (
-          <span className="controlButton-bigNumber">{error ? 0 : number}</span>
+          <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
         )}
         {text}
       </div>
     );
   }
 
-  return <div className="controlButton-outer">{fill}</div>;
+  return <div className={controlButtonOuter}>{fill}</div>;
 }
+
 ControlButton.propTypes = propTypes;
 ControlButton.defaultProps = defaultProps;
 export default ControlButton;

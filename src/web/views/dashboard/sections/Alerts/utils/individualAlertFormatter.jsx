@@ -250,7 +250,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
           <span>
             Há
             <strong> {`${count}`} </strong>
-            {`${single ? 'procedimento criminal' : 'procedimentos criminais'} no TJRJ há `}
+            {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
             <strong> mais de 60 dias </strong>
             sem retorno.
           </span>
@@ -261,7 +261,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
           <span>
             Há
             <strong> {`${count}`} </strong>
-            {`${single ? 'procedimento criminal' : 'procedimentos criminais'} no TJRJ há `}
+            {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
             <strong> mais de 180 dias </strong>
             sem retorno.
           </span>
@@ -275,7 +275,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
       case 'DCTJ':
         message = (
           <span>
-            O procedimento criminal
+            O processo criminal
             <strong> {`${docNum}`} </strong>
             está há
             <strong> mais de 60 dias </strong>
@@ -286,7 +286,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
       case 'DCTJ2':
         message = (
           <span>
-            O procedimento criminal
+            O processo criminal
             <strong> {`${docNum}`} </strong>
             está há
             <strong> mais de 180 dias </strong>
@@ -320,8 +320,8 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
       <span>
         Há
         <strong>{` ${count} `}</strong>
-        {`${single ? 'procedimento não criminal' : 'procedimentos não criminais'} no TJRJ `}
-        <strong> há mais de 120 dias </strong>
+        {`${single ? 'processo civil' : 'processos cíveis'} no TJRJ `}
+       <strong> há mais de 120 dias </strong>
         sem retorno.
       </span>
     );
@@ -329,9 +329,9 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        O procedimento não-criminal
+        O processo civil{" "}
         <strong>{`${docNum}`}</strong>
-        está há
+        {" "}está há
         <strong> mais de 120 dias </strong>
         no TJRJ sem retorno.
       </span>
@@ -736,7 +736,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
             <strong>{`Há ${count} `}</strong>
             {single ? ' procedimento ' : ' procedimentos '}
             com um crime que
-            <strong> possivelmente prescreverá. </strong>
+            <strong> possivelmente prescreverá </strong>
             em
             <strong> menos de 90 dias. </strong>
           </span>
@@ -971,7 +971,7 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
     message = (
       <span>
         Você <strong>celebrou TAC</strong> em <strong>{`${count}`}</strong> {`${single ? 'procedimento ' : 'procedimentos '}`}
-        e ainda <strong>não comunicou ao conselho Superior do
+        e ainda <strong>não comunicou ao Conselho Superior do
         Ministerio Público.</strong>
       </span>
     );

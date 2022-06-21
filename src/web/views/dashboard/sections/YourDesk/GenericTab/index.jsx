@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
 import Spinner from '../../../../../components/layoutPieces/Spinner';
 import MetricsFormatter from './MetricsFormatter';
 import Ranking from '../Ranking';
+
+import {
+  GenericTabMain,
+  GenericTabUpper,
+  GenericTabLower,
+  GenericTabLowerLeft,
+  GenericTabLowerRight,
+} from './styles.module.css';
 
 const propTypes = {
   error: PropTypes.bool.isRequired,
@@ -33,23 +40,20 @@ const defaultProps = {
 };
 
 function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
-
   const loading = !error && !metrics;
   if (loading) {
     return <Spinner size="large" />;
   }
   if (error) {
-    return <div className="GenericTab-main">Nenhum dado para exibir</div>;
+    return <div className={GenericTabMain}>Nenhum dado para exibir</div>;
   }
-
-
 
   const hasMetrics = Object.keys(metrics).length;
   const hasRank = ranks.length;
   const hasRight = Object.keys(map).length || ranks.length > 1;
   return (
-    <div className="GenericTab-main">
-      <div className="GenericTab-upper">
+    <div className={GenericTabMain}>
+      <div className={GenericTabUpper}>
         {hasMetrics ? (
           <MetricsFormatter metrics={metrics} tab={tab} />
         ) : (
@@ -57,14 +61,14 @@ function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
         )}
       </div>
 
-      <div className="GenericTab-lower">
+      <div className={GenericTabLower}>
         {hasRank ? (
-          <div className="GenericTab-lower-left">
+          <div className={GenericTabLowerLeft}>
             <Ranking data={ranks[0].data} title={ranks[0].name} />
           </div>
         ) : null}
         {hasRight ? (
-          <div className="GenericTab-lower-right">
+          <div className={GenericTabLowerRight}>
             {/* Maps will be added in the future */}
             <Ranking data={ranks[1].data} title={ranks[1].name} />
           </div>

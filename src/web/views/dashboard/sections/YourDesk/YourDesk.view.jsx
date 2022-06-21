@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './styles.css';
+import { deskOuter, deskControlers, deskTabs, deskHeader } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
@@ -40,7 +40,7 @@ function YourDesk() {
     });
   }
 
-  // function to get name of buttons Pip 
+  // function to get name of buttons Pip
   function getPip() {
     const buttons = PIP_BUTTONS;
     setButtonList(buttons);
@@ -51,7 +51,7 @@ function YourDesk() {
 
   /**
    * Loads the quantity of each document type
-   * @param {string} docName 
+   * @param {string} docName
    */
   async function getDocumentQuantity(docName) {
     const dbName = BUTTON_DICT[docName];
@@ -132,10 +132,10 @@ function YourDesk() {
   }
 
   return (
-    <article className="desk-outer">
-      <div className="desk-header">
+    <article className={deskOuter}>
+      <div className={deskHeader}>
         <SectionTitle value="Sua Mesa" glueToTop />
-        <div className="desk-controlers">
+        <div className={deskControlers}>
           {buttonList.map((buttonTitle) => (
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
@@ -150,7 +150,7 @@ function YourDesk() {
           ))}
         </div>
       </div>
-      <div className="desk-tabs">
+      <div className={deskTabs}>
         {activeTab === 'openCases' ? (
           <OpenCasesList
             buildRequestParams={buildRequestParams}

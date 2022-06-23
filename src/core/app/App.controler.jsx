@@ -2,10 +2,15 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'mapasteca-web';
 import { AppProvider, AppStoreInitializer } from './App.context';
+import { AlertsContextCreator } from '../../web/views/dashboard/sections/Alerts/alertsContext';
+
 
 function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: ErrorScreen }) {
   const appStore = AppStoreInitializer();
-  const { appHasCrashed, setAppHasCrashed } = appStore;
+  
+  const { appHasCrashed, setAppHasCrashed, buildRequestParams } = appStore;
+  
+  const alertsStore = AlertsContextCreator(buildRequestParams);
  
   function onMount() {
     const token = window.localStorage.getItem('access_token');
@@ -17,7 +22,7 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
   useEffect(onMount, []);
   
   return (
-    <AppProvider store={appStore}>
+    <AppProvider alertsStore={alertsStore} store={appStore}>
       <ThemeProvider>
         <ErrorBoundary hasError={appHasCrashed} setError={setAppHasCrashed} errorScreen={<ErrorScreen />}>
           { children }

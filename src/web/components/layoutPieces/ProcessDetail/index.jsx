@@ -21,10 +21,12 @@ import {
   alertWrapper,
 } from './styles.module.css';
 import { useAppContext } from '../../../../core/app/App.context';
+import { useAlertsContext } from '../../../views/dashboard/sections/Alerts/alertsContext';
 import Api from '../../../api';
 import Spinner from '../Spinner';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
 import AlertBadge from '../../../views/dashboard/sections/Alerts/AlertBadge';
+import AlertsOverlay from '../../../views/dashboard/sections/Alerts/AlertsOverlay';
 import individualAlertFormatter from '../../../views/dashboard/sections/Alerts/utils/individualAlertFormatter';
 
 const propTypes = {
@@ -42,9 +44,25 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [processData, setProcessData] = useState(null);
   // const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [overlayType, setOverlayType] = useState(null);
+  const [overlayDocDk, setOverlayDocDk] = useState(null);
+  const [modalContent, setModalContent] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false);
+
   const { buildRequestParams } = useAppContext();
   const { cpf, token, orgao } = buildRequestParams();
-  const [isAlertsVisible, setIsAlertsVisible] = useState(false);
+  const { alerts, handleAlertAction } =
+    useAlertsContext();
+
+  function openDialogBox(link, key) {
+    setModalContent({ link, key });
+  }
+
+  function setOverlay(type, documentDk) {
+    setOverlayType(type);
+    setOverlayDocDk(documentDk);
+    setShowOverlay(true);
+  }
 
   useEffect(() => {
     getProcessData();
@@ -85,38 +103,71 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                 {processData.alerts.length === 1 ? '' : 's'}
               </strong>
               <div className={processAlertsList}>
-                {processData.alerts.map((alert) => {
-                  const formattedAlert = individualAlertFormatter(
-                    { docNum: docuNrMp, ...alert },
-                    cpf,
-                    token,
-                    orgao,
-                  );
-                  const { backgroundColor, backgroundColorChild, icon, key, message, type } =
-                    formattedAlert;
+                {processData.alerts.map((alertTag) => {
+                  const type = alertTag.alertCode;
+                  // searches for alert in alerts saved in context
+                  let alert = alerts? alerts[alertTag.alertCode]?.find(
+                    (alert) => alert.docNum === docuNrMp,
+                  ) : null;
+
+                  if (!alert) {
+                    const formattedAlert = individualAlertFormatter(
+                      { docNum: docuNrMp, ...alertTag },
+                      cpf,
+                      token,
+                      orgao,
+                    );
+                    alert = formattedAlert;
+                    // pass empty actions to hide them
+                    alert.actions = [];
+                  }
+
+                  const {
+                    actions,
+                    backgroundColor,
+                    backgroundColorChild,
+                    icon,
+                    key,
+                    message,
+                    isDeleted,
+                    docDk,
+                  } = alert;
+
                   return (
-                    <div className={alertWrapper}>
+                    <div className={alertWrapper} key={`${key}`}>
                       <AlertBadge
+                        handleDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
                         key={key}
                         customKey={key}
                         icon={icon}
                         backgroundColor={backgroundColorChild || backgroundColor}
                         message={message}
-                        docDk={docuNrMp}
-                        overlayType={type}
-                        /* Passes empty actions to hide actions */
-                        actions={[]}
+                        actions={actions}
+                        isDeleted={isDeleted}
+                        setOverlay={setOverlay}
+                        docDk={docDk}
+                        type={type}
+                        openDialogBox={openDialogBox}
                       />
                     </div>
                   );
                 })}
               </div>
+
+              {showOverlay && (
+                <AlertsOverlay
+                  type={overlayType}
+                  docDk={overlayDocDk}
+                  setShowOverlay={setShowOverlay}
+                />
+              )}
             </>
           )}
+
           <h3>PERSONAGENS</h3>
           <div className={processDetailSection}>
             {processData.characters.map(({ name, role }) => (
-              <div className={processDetailListCardWrapper}>
+              <div className={processDetailListCardWrapper} key={`${name}-${role}`}>
                 <ListCard
                   fixedHeight
                   title={name}

@@ -1,6 +1,7 @@
 .dialogBoxStyle {
   padding: 8px 20px 20px 20px;
   text-align: justify;
+  height: 8em;
 }
 
 .dialogBoxStyle p {

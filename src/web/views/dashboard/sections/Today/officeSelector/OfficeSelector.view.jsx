@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Search } from '../../../../../assets';
 import { abbrevName } from '../../../../../utils';
+import { useAlertsContext } from '../../Alerts/alertsContext';
 import {
   selectorOuter,
   selectorModal,
@@ -16,10 +17,12 @@ function handleInnerClick(e) {
 
 function OfficeSelector({ close }) {
   const { user, updateOffice } = useAppContext();
+  const {setAlerts} = useAlertsContext();
   const [filteredList, setFilteredList] = useState(user.orgaosValidos);
 
   function onOfficeClicked(office) {
     updateOffice(office);
+    setAlerts(undefined);
   }
 
   const handleChange = e => {

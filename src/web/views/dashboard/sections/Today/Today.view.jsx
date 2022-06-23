@@ -17,8 +17,6 @@ import {
   todayContent,
   todayTextArea,
   userArea,
-  logoutArrow,
-  logoutArrowRotated,
   logoutBtnVisible,
   todayRobotPic,
   todayGlossaryBtn,
@@ -30,7 +28,6 @@ function Today() {
   const { user, buildRequestParams, currentOffice, logout } = useAppContext();
 
   /* STATE */
-  const [isLogoutBtnVisible, setIsLogoutBtnVisible] = useState(false);
   const [todayPercent, setTodayPercent] = useState(null);
   const [apiError, setApiError] = useState(0);
   const [groupName, setgroupName] = useState('');

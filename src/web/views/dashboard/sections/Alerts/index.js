@@ -1,8 +1,8 @@
 /* eslint-disable no-alert */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useAppContext } from '../../../../../core/app/App.context';
-import { AlertsContext, AlertsContextCreator } from './alertsContext';
+import { useAlertsContext } from './alertsContext';
 
 import Api from '../../../../api';
 import { SectionTitle, Spinner, Modal, DialogBox } from '../../../../components';
@@ -20,7 +20,12 @@ import {
 
 function Alerts() {
   const { buildRequestParams } = useAppContext();
-  const alertsStore = AlertsContextCreator();
+  
+  const [modalContent, setModalContent] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [overlayType, setOverlayType] = useState(null);
+  const [overlayDocDk, setOverlayDocDk] = useState(null);
+
   const {
     alerts,
     setAlerts,
@@ -28,17 +33,9 @@ function Alerts() {
     setAlertCount,
     alertsError,
     setAlertsError,
-    showOverlay,
-    setShowOverlay,
-    overlayType,
-    setOverlayType,
-    docDk,
-    setDocDk,
-    modalContent,
-    setModalContent,
-    deletedAlertKey,
-    setDeletedAlertKey,
-  } = alertsStore;
+    removeAlert
+  } = useAlertsContext();
+
 
   const loading = !alerts && !alertsError;
   const dialogBoxMessage = (
@@ -100,22 +97,21 @@ function Alerts() {
     setAlertsError(apiError);
   }
 
-  function openDialogBox(link, key) {
-    setModalContent({ link, key });
+  function openDialogBox(link, key, type) {
+    setModalContent({ link, key, type });
   }
 
   async function sendEmail() {
-    const { key, link } = modalContent;
+    const { key, link, type } = modalContent;
     try {
       // positive feedback after sending to ouvidoria delete the alert
-      setDeletedAlertKey(key);
+      removeAlert(type, key);
       const response = await Api.sendOmbudsmanEmail(link);
       window.alert(response.data.detail);
     } catch (e) {
       window.alert('Houve um erro: '. e);
     } finally {
       setModalContent(null);
-      setDeletedAlertKey(null);
     }
   }
 
@@ -136,12 +132,11 @@ function Alerts() {
 
   function setOverlay(type, documentDk) {
     setOverlayType(type);
-    setDocDk(documentDk);
+    setOverlayDocDk(documentDk);
     setShowOverlay(true);
   }
 
   return (
-    <AlertsContext.Provider value={alertsStore}>
       <article className={ alertsWrapper }>
         <div className={ alertsHeader }>
           <SectionTitle value="central de alertas" glueToTop />
@@ -153,7 +148,7 @@ function Alerts() {
             style={showOverlay || loading ? { overflowY: 'hidden' } : {}}
           >
             {showOverlay && (
-              <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
+              <Overlay type={overlayType} docDk={overlayDocDk} setShowOverlay={setShowOverlay} />
             )}
             {modalContent && (
               <Modal inner close={() => setModalContent(null)}>
@@ -171,17 +166,14 @@ function Alerts() {
               Object.keys(alerts).map((type) => (
                 <Dropdown
                   type={type}
-                  list={alerts[type]}
                   key={type}
                   setOverlay={setOverlay}
                   openDialogBox={openDialogBox}
-                  deletedAlertKey={deletedAlertKey}
                 />
               ))}
           </div>
         </div>
       </article>
-    </AlertsContext.Provider>
   );
 }
 

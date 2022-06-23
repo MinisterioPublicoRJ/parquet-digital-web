@@ -24,11 +24,11 @@ const propTypes = {
     PropTypes.shape({
       actionType: PropTypes.string.isRequired,
       background: PropTypes.string,
-      icon: PropTypes.node.isRequired,
+      icon: PropTypes.node,
       text: PropTypes.node.isRequired,
       link: PropTypes.string,
     }),
-  ).isRequired,
+  ),
   backgroundColor: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   message: PropTypes.node.isRequired,
@@ -36,19 +36,22 @@ const propTypes = {
   hideHover: PropTypes.bool,
   type: PropTypes.string.isRequired,
   onDeletion: PropTypes.func,
-  openDialogBox: PropTypes.func.isRequired,
+  openDialogBox: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
   isDeleted: PropTypes.bool,
-  docDk: PropTypes.number.isRequired,
+  docDk: PropTypes.number,
 };
 
 const defaultProps = {
+  docDk: null,
   hideHover: false,
-  onDeletion: null,
+  onDeletion: () => null,
   count: null,
   isOpen: false,
   isDeleted: false,
+  openDialogBox: () => null,
+  actions: [],
 };
 
 function AlertBadge(alert) {
@@ -59,22 +62,18 @@ function AlertBadge(alert) {
     message,
     customKey,
     hideHover,
-    onDeletion,
+    handleDeletion,
     openDialogBox,
     setOverlay,
-    overlayType,
     count,
     isOpen,
     isDeleted,
     docDk,
+    type
   } = alert;
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
-  }
-
-  function handleDeletion(key, undo) {
-    onDeletion(key, undo);
   }
 
   function handleLinks(alertAction) {
@@ -90,7 +89,7 @@ function AlertBadge(alert) {
     const { link, actionType } = alertAction;
     if (link) {
       if (actionType === 'openComplaint') {
-        openDialogBox(link, key);
+        openDialogBox(link, key, type);
       }
     } else {
       window.alert('Em breve! :)');
@@ -106,7 +105,7 @@ function AlertBadge(alert) {
       case 'download':
         return handleLinks(alertAction);
       case 'overlay':
-        return setOverlay(overlayType, docDk);
+        return setOverlay(type, String(docDk));
       case 'link':
         return handleLinks(alertAction);
       case 'openComplaint':
@@ -160,7 +159,7 @@ function AlertBadge(alert) {
                 }}
                 className={ alertBadgeDownloadNumbers }
                 style={{ backgroundColor: '#2DE288' }}
-                type
+                type="button"
               >
                 {actions[0].text}
               </div>

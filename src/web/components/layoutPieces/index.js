@@ -7,4 +7,5 @@ export { default as Pagination } from './Pagination';
 export { default as DialogBox } from './DialogBox';
 // export { default as ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
 export { default as InvestigatedProfile } from './InvestigatedProfile';
+// eslint-disable-next-line import/no-cycle
 export { default as ProcessDetail } from './ProcessDetail';

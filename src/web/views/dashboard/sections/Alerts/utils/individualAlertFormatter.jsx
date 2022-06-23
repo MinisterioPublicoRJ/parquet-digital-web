@@ -185,6 +185,7 @@ function compConstructor(alert, orgao, cpf, token) {
   }
 
   return {
+    type: alertCode,
     actions,
     backgroundColor: '#F8BD6C',
     backgroundColorChild: '#D69F53',
@@ -225,6 +226,7 @@ function ispsConstructor(alert, orgao, cpf, token) {
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#71D0A4',
@@ -298,6 +300,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -339,6 +342,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -382,6 +386,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -423,6 +428,7 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#5C6FD9',
@@ -469,6 +475,7 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -513,6 +520,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -554,6 +562,7 @@ function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId },
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -592,6 +601,7 @@ function offpConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -632,6 +642,7 @@ function ouviConstructor(alert, orgao, token) {
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#5C6FD9',
@@ -675,6 +686,7 @@ function vadfConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#28A7E0',
@@ -834,6 +846,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -873,6 +886,7 @@ function gateConstructor(alert, orgao, cpf, token) {
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#374354',
@@ -911,6 +925,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#5C6FD9',
@@ -951,6 +966,7 @@ function roOccurrence(alert, orgao, cpf, token) {
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F8BD6C',
@@ -991,6 +1007,7 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -1034,6 +1051,7 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -1076,6 +1094,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -1098,6 +1117,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, alertId }, orgao, cpf, t
       </span>
     );
     return {
+      type: alertCode,
       docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -1116,6 +1136,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, alertId }, orgao, cpf, t
       </span>
     );
     return {
+      type: alertCode,
       docNum,
     backgroundColor: '#2DE288',
     icon: <Arrow />,
@@ -1149,6 +1170,7 @@ function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy, alertI
     );
   }
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F86C72',
@@ -1181,6 +1203,7 @@ function febtConstructor(alert) {
     );
   }
   return {
+    type: alertCode,
     docNum,
     actions,
     backgroundColor: '#F8BD6C',

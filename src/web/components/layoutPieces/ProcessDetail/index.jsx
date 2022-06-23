@@ -44,12 +44,14 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
   const [processData, setProcessData] = useState(null);
   // const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [overlayType, setOverlayType] = useState(null);
+  const [overlayDocDk, setOverlayDocDk] = useState(null);
   const [modalContent, setModalContent] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
 
   const { buildRequestParams } = useAppContext();
   const { cpf, token, orgao } = buildRequestParams();
-  const { alerts, handleAlertAction, overlayType, setOverlayType, docDk, setDocDk } =
+  const { alerts, handleAlertAction } =
     useAlertsContext();
 
   function openDialogBox(link, key) {
@@ -58,7 +60,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
 
   function setOverlay(type, documentDk) {
     setOverlayType(type);
-    setDocDk(documentDk);
+    setOverlayDocDk(documentDk);
     setShowOverlay(true);
   }
 
@@ -104,9 +106,9 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                 {processData.alerts.map((alertTag) => {
                   const type = alertTag.alertCode;
                   // searches for alert in alerts saved in context
-                  let alert = alerts[alertTag.alertCode]?.find(
+                  let alert = alerts? alerts[alertTag.alertCode]?.find(
                     (alert) => alert.docNum === docuNrMp,
-                  );
+                  ) : null;
 
                   if (!alert) {
                     const formattedAlert = individualAlertFormatter(
@@ -128,6 +130,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                     key,
                     message,
                     isDeleted,
+                    docDk,
                   } = alert;
 
                   return (
@@ -142,7 +145,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                         actions={actions}
                         isDeleted={isDeleted}
                         setOverlay={setOverlay}
-                        docDk={+docuNrMp}
+                        docDk={docDk}
                         type={type}
                         openDialogBox={openDialogBox}
                       />
@@ -154,7 +157,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
               {showOverlay && (
                 <AlertsOverlay
                   type={overlayType}
-                  docDk={docuNrMp}
+                  docDk={overlayDocDk}
                   setShowOverlay={setShowOverlay}
                 />
               )}

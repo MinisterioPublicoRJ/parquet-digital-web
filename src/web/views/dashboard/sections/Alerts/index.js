@@ -23,6 +23,8 @@ function Alerts() {
   
   const [modalContent, setModalContent] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [overlayType, setOverlayType] = useState(null);
+  const [overlayDocDk, setOverlayDocDk] = useState(null);
 
   const {
     alerts,
@@ -31,10 +33,6 @@ function Alerts() {
     setAlertCount,
     alertsError,
     setAlertsError,
-    overlayType,
-    setOverlayType,
-    docDk,
-    setDocDk,
     removeAlert
   } = useAlertsContext();
 
@@ -134,7 +132,7 @@ function Alerts() {
 
   function setOverlay(type, documentDk) {
     setOverlayType(type);
-    setDocDk(documentDk);
+    setOverlayDocDk(documentDk);
     setShowOverlay(true);
   }
 
@@ -150,7 +148,7 @@ function Alerts() {
             style={showOverlay || loading ? { overflowY: 'hidden' } : {}}
           >
             {showOverlay && (
-              <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
+              <Overlay type={overlayType} docDk={overlayDocDk} setShowOverlay={setShowOverlay} />
             )}
             {modalContent && (
               <Modal inner close={() => setModalContent(null)}>

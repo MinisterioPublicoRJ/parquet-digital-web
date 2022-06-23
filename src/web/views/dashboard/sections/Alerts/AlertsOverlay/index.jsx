@@ -26,9 +26,11 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
 
   async function getOverlayText(docType) {
     try {
-      const data = await Api.getAlertOverlayData(docDk, docType, buildRequestParams());
+      let data = await Api.getAlertOverlayData(docDk, docType, buildRequestParams());
+      data = data || [];
       return data;
     } catch (e) {
+      console.log('error');
       return <p>Erro ao carregar os dados</p>;
     }
   }
@@ -51,15 +53,15 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
         case 'PRCR3':
         case 'PRCR4':
           data = await getOverlayText('prescricao', docDk);
-          texts = PRCR_TEXTS(type, data);
+          texts = Array.isArray(data) ? PRCR_TEXTS(type, data) : data;
           break;
         case 'IC1A':
           data = await getOverlayText(type, docDk);
-          texts = IC1A_TEXT(data);
+          texts = Array.isArray(data) ? IC1A_TEXT(data) : data;
           break;
         case 'PA1A':
           data = await getOverlayText(type, docDk);
-          texts = PA1A_TEXT(data);
+          texts = Array.isArray(data) ? PA1A_TEXT(data) : data;
           break;
         default:
           texts = <p>{`Os dados para alertas ${type} ainda não estão disponíveis`}</p>;

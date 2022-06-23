@@ -24,11 +24,11 @@ const propTypes = {
     PropTypes.shape({
       actionType: PropTypes.string.isRequired,
       background: PropTypes.string,
-      icon: PropTypes.node.isRequired,
+      icon: PropTypes.node,
       text: PropTypes.node.isRequired,
       link: PropTypes.string,
     }),
-  ).isRequired,
+  ),
   backgroundColor: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   message: PropTypes.node.isRequired,
@@ -36,19 +36,22 @@ const propTypes = {
   hideHover: PropTypes.bool,
   type: PropTypes.string.isRequired,
   onDeletion: PropTypes.func,
-  openDialogBox: PropTypes.func.isRequired,
+  openDialogBox: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
   isDeleted: PropTypes.bool,
-  docDk: PropTypes.number.isRequired,
+  docDk: PropTypes.number,
 };
 
 const defaultProps = {
+  docDk: null,
   hideHover: false,
-  onDeletion: null,
+  onDeletion: () => null,
   count: null,
   isOpen: false,
   isDeleted: false,
+  openDialogBox: () => null,
+  actions: [],
 };
 
 function AlertBadge(alert) {
@@ -95,7 +98,6 @@ function AlertBadge(alert) {
 
   function handleActionPress(alertAction, key) {
     const { actionType } = alertAction;
-    console.log('handling, type: ', actionType);
     switch (actionType) {
       case 'delete':
         setOverlay('onDel', '');
@@ -103,7 +105,7 @@ function AlertBadge(alert) {
       case 'download':
         return handleLinks(alertAction);
       case 'overlay':
-        return setOverlay(type, docDk);
+        return setOverlay(type, String(docDk));
       case 'link':
         return handleLinks(alertAction);
       case 'openComplaint':
@@ -157,7 +159,7 @@ function AlertBadge(alert) {
                 }}
                 className={ alertBadgeDownloadNumbers }
                 style={{ backgroundColor: '#2DE288' }}
-                type
+                type="button"
               >
                 {actions[0].text}
               </div>

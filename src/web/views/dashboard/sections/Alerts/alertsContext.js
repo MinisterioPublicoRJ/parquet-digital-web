@@ -9,24 +9,16 @@ export const useAlertsContext = () => useContext(AlertsContext);
 export const AlertsContextCreator = (buildRequestParams) => {
   // const { buildRequestParams } = useAuth();
   // const { buildRequestParams } = useAppContext();
-  console.log('CREATING ALERTS CONTEXT');
 
   const [alerts, setAlerts] = useState(undefined);
   const [alertCount, setAlertCount] = useState(undefined);
   const [alertsError, setAlertsError] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [overlayType, setOverlayType] = useState(null);
-  const [docDk, setDocDk] = useState(null);
 
-  console.log('alerts:', alerts);
-
-  const [deletedAlertKey, setDeletedAlertKey] = useState(null);
 
   function handleAlertAction(type, alertKey, undo) {
     if (undo) {
       restoreAlert(type, alertKey);
     } else {
-      console.log('alerts:', alerts);
       const alert = alerts[type].filter(({ key }) => key === alertKey)[0];
 
       if (alert.isDeleted) {
@@ -44,7 +36,6 @@ export const AlertsContextCreator = (buildRequestParams) => {
       }
       return alert;
     });
-    console.log('dismissing');
     setAlerts((prevValue) => ({...prevValue, [type]: newList}));
     Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
     return newList;
@@ -63,10 +54,10 @@ export const AlertsContextCreator = (buildRequestParams) => {
   }
 
   function removeAlert(type, alertKey) {
-    console.log('removing alert');
     if (!alertKey) return null;
     const newList = alerts[type].filter(({ key }) => key !== alertKey);
     setAlerts(prevValue =>( {...prevValue, [type]:newList}));
+    setAlertCount(prevValue => prevValue - 1);
     return newList;
   }
 
@@ -77,14 +68,6 @@ export const AlertsContextCreator = (buildRequestParams) => {
     setAlertCount,
     alertsError,
     setAlertsError,
-    showOverlay,
-    setShowOverlay,
-    overlayType,
-    setOverlayType,
-    docDk,
-    setDocDk,
-    deletedAlertKey,
-    setDeletedAlertKey,
     removeAlert,
     handleAlertAction
   };

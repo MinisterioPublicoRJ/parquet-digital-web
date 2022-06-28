@@ -100,7 +100,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
             <>
               <strong>
                 Este procedimento possui {processData.alerts.length} alerta
-                {processData.alerts.length === 1 ? '' : 's'}
+                {processData.alerts.length === 1 ? '' : 's'}, clique no alerta para ver as ações do mesmo.
               </strong>
               <div className={processAlertsList}>
                 {processData.alerts.map((alertTag) => {

@@ -19,6 +19,7 @@ import {
   processAlertsList,
   processDetailHeaderRight,
   alertWrapper,
+  spanProcessAlertsList,
 } from './styles.module.css';
 import { useAppContext } from '../../../../core/app/App.context';
 import { useAlertsContext } from '../../../views/dashboard/sections/Alerts/alertsContext';
@@ -100,7 +101,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
             <>
               <strong>
                 Este procedimento possui {processData.alerts.length} alerta
-                {processData.alerts.length === 1 ? '' : 's'}, clique no alerta para ver as ações do mesmo.
+                {processData.alerts.length === 1 ? '' : 's'} <span className={spanProcessAlertsList}>(clique no alerta para ver as ações)</span>
               </strong>
               <div className={processAlertsList}>
                 {processData.alerts.map((alertTag) => {

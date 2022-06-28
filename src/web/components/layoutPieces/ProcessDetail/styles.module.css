@@ -10,7 +10,9 @@
   font-size: calc(1.3 * var(--defaultFontSize));
   margin: 0 0 10px 0;
 }
-
+.spanProcessAlertsList{
+  color: red;
+}
 .processDetailHeader {
   background-color: #bddff0;
   border-radius: 10px 10px 0 0;

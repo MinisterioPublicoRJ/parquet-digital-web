@@ -1,0 +1,197 @@
+:root {
+  /* ICONS */
+  --selectorArrowSize: 6px;
+}
+
+.todayOuter {
+  display: flex;
+  flex-direction: column;
+  grid-area: today;
+  position: relative;
+  overflow: hidden;
+}
+
+.todayContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 65%;
+  z-index: 1;
+}
+
+.todayContent p,
+.todayContent h2 {
+  margin: 0;
+  margin-top: 0;
+}
+
+.todayContent > button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: calc(var(--sectionTitleFontSize) * 0.8);
+  font-family: var(--defaultFont);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: left;
+  color: var(--darkBlue);
+  position: relative;
+}
+
+.todayContent > button > h2 {
+  display: inline;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+}
+
+.todayContent > button > span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.todayContent > button > span::after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--darkBlue) transparent transparent transparent;
+  position: absolute;
+  margin: 7px 2px;
+}
+
+.todayTextArea {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.userArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.userArea h1 {
+  margin: 0;
+}
+
+.logoutArrow {
+  opacity: 1;
+  border-width: var(--selectorArrowSize);
+  border-style: solid;
+  border-color: var(--darkBlue) transparent transparent transparent;
+  background-color: transparent;
+  position: relative;
+  padding: 0;
+  margin: 4px 8px 0px 8px;
+  cursor: pointer;
+  transition: transform 1s;
+}
+
+.logoutArrowRotated {
+  transform: rotate(-90deg) translate(2px);
+}
+
+.logoutBtnVisible {
+  opacity: 1;
+  transition: opacity 1s;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--grayTexts);
+  background-color: var(--grayLight);
+  border: 0;
+  font-size: var(--smallFont);
+  padding: 2px 4px;
+  font-weight: bold;
+  margin-left: 20px;
+  height: 20px;
+}
+
+.logoutBtnVisible:hover {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+.todayRobotPic {
+  align-items: flex-end;
+  display: flex;
+  height: 80%;
+  width: 50%;
+  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.todayRobotPic img {
+  margin-right: -3px;
+  border-radius: 0 0 15px 0;
+}
+
+.todayRobotPic button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.todayGlossaryBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.todayIntroBtn {
+  cursor: help;
+  position: absolute;
+  right: 0;
+  top: 36px;
+}
+
+.todayBtn {
+  width: 200px;
+  height: 32px;
+  margin: 4px 0px;
+  color: var(--dark);
+  background-color: var(--pt-blue);
+  border: 6px var(--pt-blue);
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  line-height: 32px;
+  display: none;
+}
+
+.todayBtn:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+  .todayRobotPic {
+    height: 70%;
+  }
+
+  .todayContent {
+    width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .todayRobotPic {
+    height: 40%;
+  }
+  .todayContent {
+    width: 60%;
+  }
+}

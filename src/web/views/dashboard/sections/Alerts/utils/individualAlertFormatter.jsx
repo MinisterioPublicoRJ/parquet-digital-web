@@ -185,6 +185,7 @@ function compConstructor(alert, orgao, cpf, token) {
   }
 
   return {
+    type: alertCode,
     actions,
     backgroundColor: '#F8BD6C',
     backgroundColorChild: '#D69F53',
@@ -195,7 +196,7 @@ function compConstructor(alert, orgao, cpf, token) {
 }
 
 function ispsConstructor(alert, orgao, cpf, token) {
-  const { description, hierarchy, dropdown, alertCode, count, alertId } = alert;
+  const { description, hierarchy, dropdown, alertCode, count, alertId, docNum } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -225,6 +226,8 @@ function ispsConstructor(alert, orgao, cpf, token) {
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#71D0A4',
     backgroundColorChild: '#439A71',
@@ -249,7 +252,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
           <span>
             Há
             <strong> {`${count}`} </strong>
-            {`${single ? 'procedimento criminal' : 'procedimentos criminais'} no TJRJ há `}
+            {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
             <strong> mais de 60 dias </strong>
             sem retorno.
           </span>
@@ -260,7 +263,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
           <span>
             Há
             <strong> {`${count}`} </strong>
-            {`${single ? 'procedimento criminal' : 'procedimentos criminais'} no TJRJ há `}
+            {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
             <strong> mais de 180 dias </strong>
             sem retorno.
           </span>
@@ -274,7 +277,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
       case 'DCTJ':
         message = (
           <span>
-            O procedimento criminal
+            O processo criminal
             <strong> {`${docNum}`} </strong>
             está há
             <strong> mais de 60 dias </strong>
@@ -285,7 +288,7 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
       case 'DCTJ2':
         message = (
           <span>
-            O procedimento criminal
+            O processo criminal
             <strong> {`${docNum}`} </strong>
             está há
             <strong> mais de 180 dias </strong>
@@ -297,6 +300,8 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -318,8 +323,8 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
       <span>
         Há
         <strong>{` ${count} `}</strong>
-        {`${single ? 'procedimento não criminal' : 'procedimentos não criminais'} no TJRJ `}
-        <strong> há mais de 120 dias </strong>
+        {`${single ? 'processo civil' : 'processos cíveis'} no TJRJ `}
+       <strong> há mais de 120 dias </strong>
         sem retorno.
       </span>
     );
@@ -327,9 +332,9 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        O procedimento não-criminal
+        O processo civil{" "}
         <strong>{`${docNum}`}</strong>
-        está há
+        {" "}está há
         <strong> mais de 120 dias </strong>
         no TJRJ sem retorno.
       </span>
@@ -337,6 +342,8 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -379,6 +386,8 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -419,6 +428,8 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#5C6FD9',
     backgroundColorChild: '#7956A7',
@@ -464,6 +475,8 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -507,6 +520,8 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -547,6 +562,8 @@ function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId },
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -584,6 +601,8 @@ function offpConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -623,6 +642,8 @@ function ouviConstructor(alert, orgao, token) {
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#5C6FD9',
     backgroundColorChild: '#7956A7',
@@ -665,6 +686,8 @@ function vadfConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#28A7E0',
     backgroundColorChild: '#1D78A2',
@@ -725,7 +748,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
             <strong>{`Há ${count} `}</strong>
             {single ? ' procedimento ' : ' procedimentos '}
             com um crime que
-            <strong> possivelmente prescreverá. </strong>
+            <strong> possivelmente prescreverá </strong>
             em
             <strong> menos de 90 dias. </strong>
           </span>
@@ -823,6 +846,8 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -861,6 +886,8 @@ function gateConstructor(alert, orgao, cpf, token) {
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#374354',
     backgroundColorChild: '#14181E',
@@ -898,6 +925,8 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#5C6FD9',
     backgroundColorChild: '#7956A7',
@@ -937,6 +966,8 @@ function roOccurrence(alert, orgao, cpf, token) {
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F8BD6C',
     backgroundColorChild: '#D69F53',
@@ -956,7 +987,7 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
     message = (
       <span>
         Você <strong>celebrou TAC</strong> em <strong>{`${count}`}</strong> {`${single ? 'procedimento ' : 'procedimentos '}`}
-        e ainda <strong>não comunicou ao conselho Superior do
+        e ainda <strong>não comunicou ao Conselho Superior do
         Ministerio Público.</strong>
       </span>
     );
@@ -976,6 +1007,8 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -1018,6 +1051,8 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -1059,6 +1094,8 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   }
 
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -1080,6 +1117,8 @@ function abr1Constructor({ dropdown, alertCode, docNum, alertId }, orgao, cpf, t
       </span>
     );
     return {
+      type: alertCode,
+      docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -1097,6 +1136,8 @@ function abr1Constructor({ dropdown, alertCode, docNum, alertId }, orgao, cpf, t
       </span>
     );
     return {
+      type: alertCode,
+      docNum,
     backgroundColor: '#2DE288',
     icon: <Arrow />,
     actions,
@@ -1129,6 +1170,8 @@ function bdpaConstructor({ dropdown, alertCode, count, docNum, hierarchy, alertI
     );
   }
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F86C72',
     backgroundColorChild: '#D94F55',
@@ -1160,6 +1203,8 @@ function febtConstructor(alert) {
     );
   }
   return {
+    type: alertCode,
+    docNum,
     actions,
     backgroundColor: '#F8BD6C',
     backgroundColorChild: '#D69F53',

@@ -4,8 +4,13 @@ import Api from '../../../../../api';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner } from '../../../../../components';
 
-import './styles.css';
 import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT, PA1A_TEXT } from './overlayConstants';
+
+
+import {
+  overlayOuter,
+  alertsOverlay,
+} from './styles.module.css';
 
 const propTypes = {
   type: PropTypes.string.isRequired,
@@ -22,9 +27,11 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
 
   async function getOverlayText(docType) {
     try {
-      const data = await Api.getAlertOverlayData(docDk, docType, buildRequestParams());
+      let data = await Api.getAlertOverlayData(docDk, docType, buildRequestParams());
+      data = data || [];
       return data;
     } catch (e) {
+      console.log('error');
       return <p>Erro ao carregar os dados</p>;
     }
   }
@@ -47,15 +54,15 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
         case 'PRCR3':
         case 'PRCR4':
           data = await getOverlayText('prescricao', docDk);
-          texts = PRCR_TEXTS(type, data);
+          texts = Array.isArray(data) ? PRCR_TEXTS(type, data) : data;
           break;
         case 'IC1A':
           data = await getOverlayText(type, docDk);
-          texts = IC1A_TEXT(data);
+          texts = Array.isArray(data) ? IC1A_TEXT(data) : data;
           break;
         case 'PA1A':
           data = await getOverlayText(type, docDk);
-          texts = PA1A_TEXT(data);
+          texts = Array.isArray(data) ? PA1A_TEXT(data) : data;
           break;
         default:
           texts = <p>{`Os dados para alertas ${type} ainda não estão disponíveis`}</p>;
@@ -77,14 +84,14 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
 
   return (
     <div
-      className="overlay-outer"
+      className={ overlayOuter }
       onClick={() => setShowOverlay(false)}
       onKeyDown={() => setShowOverlay(false)}
       role="button"
       tabIndex={0}
     >
       <div
-        className="alerts-overlay"
+        className={ alertsOverlay }
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={(e) => handleInnerClick(e)}
         role="button"

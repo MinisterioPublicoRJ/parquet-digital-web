@@ -3,18 +3,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './AlertActionButtons';
 
-import './styles.css';
+import {
+  alertBadgeOuterContainer,
+  alertBadgeHoverContainer,
+  deleteConfirmation,
+  alertBadgeLeftContainer,
+  alertBadgeRightContainer,
+  alertBadgeSmallButtons,
+  alertBadgeArrow,
+  alertBadgeArrowOpen,
+  alertBadgeCountWrapper,
+  alertBadgeDownloadNumbers,
+  isDeletedStyle,
+  doDelete,
+  undoDelete,
+} from './styles.module.css';
 
 const propTypes = {
   actions: PropTypes.arrayOf(
     PropTypes.shape({
       actionType: PropTypes.string.isRequired,
       background: PropTypes.string,
-      icon: PropTypes.node.isRequired,
+      icon: PropTypes.node,
       text: PropTypes.node.isRequired,
       link: PropTypes.string,
     }),
-  ).isRequired,
+  ),
   backgroundColor: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   message: PropTypes.node.isRequired,
@@ -22,19 +36,22 @@ const propTypes = {
   hideHover: PropTypes.bool,
   type: PropTypes.string.isRequired,
   onDeletion: PropTypes.func,
-  openDialogBox: PropTypes.func.isRequired,
+  openDialogBox: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
   isDeleted: PropTypes.bool,
-  docDk: PropTypes.number.isRequired,
+  docDk: PropTypes.number,
 };
 
 const defaultProps = {
+  docDk: null,
   hideHover: false,
-  onDeletion: null,
+  onDeletion: () => null,
   count: null,
   isOpen: false,
   isDeleted: false,
+  openDialogBox: () => null,
+  actions: [],
 };
 
 function AlertBadge(alert) {
@@ -45,22 +62,18 @@ function AlertBadge(alert) {
     message,
     customKey,
     hideHover,
-    onDeletion,
+    handleDeletion,
     openDialogBox,
     setOverlay,
-    overlayType,
     count,
     isOpen,
     isDeleted,
     docDk,
+    type
   } = alert;
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
-  }
-
-  function handleDeletion(key, undo) {
-    onDeletion(key, undo);
   }
 
   function handleLinks(alertAction) {
@@ -76,7 +89,7 @@ function AlertBadge(alert) {
     const { link, actionType } = alertAction;
     if (link) {
       if (actionType === 'openComplaint') {
-        openDialogBox(link, key);
+        openDialogBox(link, key, type);
       }
     } else {
       window.alert('Em breve! :)');
@@ -92,7 +105,7 @@ function AlertBadge(alert) {
       case 'download':
         return handleLinks(alertAction);
       case 'overlay':
-        return setOverlay(overlayType, docDk);
+        return setOverlay(type, String(docDk));
       case 'link':
         return handleLinks(alertAction);
       case 'openComplaint':
@@ -105,9 +118,9 @@ function AlertBadge(alert) {
   const showHover = !hideHover && actions[1];
 
   return (
-    <div className="alertBadge-outerContainer">
+    <div className={ alertBadgeOuterContainer }>
       {showHover && !isDeleted && (
-        <div className="alertBadge-hoverContainer">
+        <div className={ alertBadgeHoverContainer }>
           {actions.map((alertAction) => (
             <ActionButtons
               key={`${customKey}-${alertAction.actionType}-${alertAction.text}`}
@@ -119,39 +132,39 @@ function AlertBadge(alert) {
         </div>
       )}
       {!hideHover && isDeleted && (
-        <div className={`delete-confirmation ${isDeleted ? 'isDeleted' : ''}`}>
-          <button type="button" className="delete" onClick={() => handleDeletion(customKey)}>
+        <div className={`${ deleteConfirmation } ${isDeleted ? `${ isDeletedStyle }` : ''}`}>
+          <button type="button" className={ doDelete } onClick={() => handleDeletion(customKey)}>
             x
           </button>
           <button
             type="button"
-            className="undo-delete"
+            className={ undoDelete }
             onClick={() => handleDeletion(customKey, true)}
           >
             Desfazer
           </button>
         </div>
       )}
-      <div className="alertBadge-leftContainer" style={{ backgroundColor }}>
+      <div className={ alertBadgeLeftContainer } style={{ backgroundColor }}>
         {icon}
       </div>
-      <div className="alertBadge-rightContainer">
+      <div className={ alertBadgeRightContainer }>
         <span>{message}</span>
-        <div className="alertBadge-smallButtons">
+        <div className={ alertBadgeSmallButtons }>
           {!showHover && actions[0] && (
             <>
               <div
                 onClick={() => {
                   handleActionPress(actions[0]);
                 }}
-                className="alertBadge-downloadNumbers"
+                className={ alertBadgeDownloadNumbers }
                 style={{ backgroundColor: '#2DE288' }}
-                type
+                type="button"
               >
                 {actions[0].text}
               </div>
-              <div className="alertBadge-countWrapper" style={{ backgroundColor }}>
-                <span className={`alertBadge-arrow ${isOpen && 'alertBadge-arrow--open'}`} />
+              <div className={ alertBadgeCountWrapper } style={{ backgroundColor }}>
+                <span className={`${ alertBadgeArrow } ${isOpen && `${ alertBadgeArrowOpen }`}`} />
                 {count}
               </div>
             </>

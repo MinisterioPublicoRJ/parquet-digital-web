@@ -1,0 +1,38 @@
+.deskOuter {
+  display: flex;
+  flex-direction: column;
+  grid-area: desk;
+}
+
+.deskControlers {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+}
+
+.deskTabs {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 20px 0 0 0;
+}
+
+.deskHeader h2 {
+  margin: 0;
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .deskHeader {
+    display: flex;
+    height: 25vh;
+    flex-direction: column;
+  }
+
+  .deskTabs {
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+  }
+}

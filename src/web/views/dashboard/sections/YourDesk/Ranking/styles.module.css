@@ -1,0 +1,39 @@
+.rankingList {
+  font-size: var(--smallFont);
+  padding: 0;
+}
+
+.rankingTitle {
+  margin-top: 0;
+}
+
+.rankingItem {
+  display: flex;
+  padding: 10px 0;
+}
+
+.rankingFeatured {
+  font-size: var(--featuredNumberFontSize);
+  line-height: var(--featuredNumberFontSize);
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.rankingLabel {
+  margin-left: 1vw;
+  margin-top: 10px;
+}
+
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+  .rankingItems {
+    flex-wrap: wrap;
+  }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .rankingItems {
+    flex-wrap: wrap;
+  }
+}

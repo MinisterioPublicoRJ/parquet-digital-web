@@ -1,0 +1,24 @@
+.GenericTabMain {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.GenericTabUpper {
+  display: flex;
+  padding: 0;
+}
+
+.GenericTabLower {
+  display: flex;
+  flex: 1;
+}
+
+.GenericTabLowerLeft {
+  flex: 1;
+}
+
+.GenericTabLowerRight {
+  flex: 1;
+}

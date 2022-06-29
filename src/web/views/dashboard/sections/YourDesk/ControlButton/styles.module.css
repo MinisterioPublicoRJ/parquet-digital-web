@@ -2,6 +2,8 @@
   --buttonBase: 156;
   --buttonSize: calc(var(--buttonBase) * var(--widthScale));
   --activeButtonSize: calc(var(--buttonSize) * 1.2);
+  color: red;
+  background: black;
 }
 
 .controlButtonOuter {

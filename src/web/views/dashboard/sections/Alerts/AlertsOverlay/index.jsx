@@ -93,22 +93,17 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
         role="button"
         tabIndex={0}
       >
-        <div>
-          {text ? (
-            <div>
-              {text}
-              <button
-              type="button"
-              onClick={() => setShowOverlay(false)}
-              >
-                {type === 'onDel' ? 'Entendi' : 'Sair'}
-              </button>
-            </div>
-          ) : (
-            <Spinner size="medium" />
-          )}
-          {children}
-        </div>
+        {text ? (
+          <div>
+            {text}
+            <button type="button" onClick={() => setShowOverlay(false)}>
+              {type === 'onDel' ? 'Entendi' : 'Sair'}
+            </button>
+          </div>
+        ) : (
+          <Spinner size="medium" />
+        )}
+        {children}
       </div>
     </div>
   );

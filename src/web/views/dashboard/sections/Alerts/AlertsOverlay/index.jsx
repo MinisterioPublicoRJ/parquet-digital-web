@@ -58,7 +58,8 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
           break;
         case 'IC1A':
           data = await getOverlayText(type, docDk);
-          texts = Array.isArray(data) ? IC1A_TEXT(data) : data;
+          texts = typeof data === 'object' ? IC1A_TEXT(data) : data;
+
           break;
         case 'PA1A':
           data = await getOverlayText(type, docDk);

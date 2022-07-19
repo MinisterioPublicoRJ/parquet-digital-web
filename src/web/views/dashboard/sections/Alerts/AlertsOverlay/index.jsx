@@ -6,11 +6,7 @@ import { Spinner } from '../../../../../components';
 
 import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT, PA1A_TEXT } from './overlayConstants';
 
-
-import {
-  overlayOuter,
-  alertsOverlay,
-} from './styles.module.css';
+import { overlayOuter, alertsOverlay } from './styles.module.css';
 
 const propTypes = {
   type: PropTypes.string.isRequired,
@@ -84,24 +80,33 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
 
   return (
     <div
-      className={ overlayOuter }
+      className={overlayOuter}
       onClick={() => setShowOverlay(false)}
       onKeyDown={() => setShowOverlay(false)}
       role="button"
       tabIndex={0}
     >
       <div
-        className={ alertsOverlay }
+        className={alertsOverlay}
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={(e) => handleInnerClick(e)}
         role="button"
         tabIndex={0}
       >
         <div>
-          {text || <Spinner size="medium" />}
-          <button type="button" onClick={() => setShowOverlay(false)}>
-            {type === 'onDel' ? 'Entendi' : 'Sair'}
-          </button>
+          {text ? (
+            <div>
+              {text}
+              <button
+              type="button"
+              onClick={() => setShowOverlay(false)}
+              >
+                {type === 'onDel' ? 'Entendi' : 'Sair'}
+              </button>
+            </div>
+          ) : (
+            <Spinner size="medium" />
+          )}
           {children}
         </div>
       </div>

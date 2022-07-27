@@ -4,8 +4,8 @@ export default function({ width, height }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={width || '33.471'}
-      height={height || '33.341'}
+      width={width || '23.471'}
+      height={height || '23.341'}
       viewBox="0 0 33.471 33.341"
     >
       <g transform="translate(0 0)">

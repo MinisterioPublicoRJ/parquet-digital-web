@@ -4,8 +4,8 @@ export default function() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="34.248"
-      height="36.343"
+      width="23.471"
+      height="23.341"
       viewBox="0 0 34.248 36.343"
     >
       <g fill="#fff" stroke="#707070" transform="translate(5.474 4.963)">

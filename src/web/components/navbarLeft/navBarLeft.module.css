@@ -1,0 +1,10 @@
+.navBarLeftContent{
+    position: fixed;
+    inset: 0px;
+    width: 45px;
+    background-color: #154763;
+}
+.navBarLeftContent button{
+    margin: 5px;
+    margin-top: 15px;
+}

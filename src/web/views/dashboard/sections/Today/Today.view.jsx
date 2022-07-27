@@ -12,6 +12,7 @@ import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual  from "../UserManual/UserManual.view";
 import  Introduction from "../Introduction";
 import MapaTron  from "../MapaTron/Mapatron.view";
+import NavbarLeft from '../../../../components/navbarLeft';
 import {
   todayOuter,
   todayContent,
@@ -146,6 +147,7 @@ function Today() {
 
   return (
     <article className={ todayOuter }>
+      <NavbarLeft/>
       <div className={ userArea }>
         <MainTitle value={assembleGreeting()} glueToTop />
         {/* Botão precisa ter texto dentro! */}
@@ -227,24 +229,12 @@ function Today() {
         </>
       ) : null}
       <div className={ todayRobotPic }>
-        <button
-          type="button"
-          className={ todayGlossaryBtn }
-          onClick={() => setModalType('glossary')}
-        >
-          <GlossaryBook />
-        </button>
         {
           modalType === 'glossary' &&
           <Modal withExitButton close={setModalType}>
             <UserManual/>
           </Modal>
         }
-        <button type="button" className={ todayIntroBtn }
-          onClick={() => setModalType('introduction')}
-        >
-          <IntroScreenInterrogation />
-        </button>
         {       
           modalType === 'introduction' &&
           <Modal withExitButton close={setModalType}>

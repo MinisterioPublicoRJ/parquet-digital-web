@@ -1,6 +1,6 @@
 .selectorOuter {
   top: calc(-24vh + 2 * var(--bodyVerticalPadding));
-  left: calc(-27.5vw + var(--bodyHorizontalPadding));
+  left: calc(-25.5vw + var(--bodyHorizontalPadding));
   background-color: rgb(0 0 0 / 14%);
   display: flex;
   height: 100%;

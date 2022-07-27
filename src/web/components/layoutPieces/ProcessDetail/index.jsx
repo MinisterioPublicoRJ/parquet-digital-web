@@ -20,6 +20,7 @@ import {
   processDetailHeaderRight,
   alertWrapper,
   spanProcessAlertsList,
+  alertWrapperTextEmpty,
 } from './styles.module.css';
 import { useAppContext } from '../../../../core/app/App.context';
 import { useAlertsContext } from '../../../views/dashboard/sections/Alerts/alertsContext';
@@ -52,9 +53,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
 
   const { buildRequestParams } = useAppContext();
   const { cpf, token, orgao } = buildRequestParams();
-  const { alerts, handleAlertAction } =
-    useAlertsContext();
-
+  const { alerts, handleAlertAction } = useAlertsContext();
+  
   function openDialogBox(link, key) {
     setModalContent({ link, key });
   }
@@ -101,7 +101,8 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
             <>
               <strong>
                 Este procedimento possui {processData.alerts.length} alerta
-                {processData.alerts.length === 1 ? '' : 's'} <span className={spanProcessAlertsList}>(clique no alerta para ver as ações)</span>
+                {processData.alerts.length === 1 ? '' : 's'} 
+                <span className={spanProcessAlertsList}>(clique no alerta para ver as ações)</span>
               </strong>
               <div className={processAlertsList}>
                 {processData.alerts.map((alertTag) => {
@@ -122,7 +123,13 @@ function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
                     // pass empty actions to hide them
                     alert.actions = [];
                   }
-
+                  if(!alert){
+                    return (
+                       <div className={alertWrapper}>
+                        <p className={alertWrapperTextEmpty}>Alerta e ações indisponível no momento...</p>
+                       </div>
+                    )
+                  }
                   const {
                     actions,
                     backgroundColor,

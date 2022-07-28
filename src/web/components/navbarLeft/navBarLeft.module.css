@@ -8,3 +8,24 @@
     margin: 5px;
     margin-top: 15px;
 }
+.logoutBtnVisible {
+    opacity: 1;
+    transition: opacity 1s;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--grayTexts);
+    background-color: var(--grayLight);
+    border: 0;
+    font-size: var(--smallFont);
+    padding: 2px 4px;
+    font-weight: bold;
+    height: 20px;
+  }
+  
+  .logoutBtnVisible:hover {
+    background-color: var(--danger);
+    color: var(--white);
+  }
+  .logoutBtnVisibleIntro{
+    margin-top: 450px;
+  }

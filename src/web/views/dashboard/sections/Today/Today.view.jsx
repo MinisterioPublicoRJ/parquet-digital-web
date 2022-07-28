@@ -20,8 +20,6 @@ import {
   userArea,
   logoutBtnVisible,
   todayRobotPic,
-  todayGlossaryBtn,
-  todayIntroBtn,
   todayBtn,
 } from './Today.module.css';
 

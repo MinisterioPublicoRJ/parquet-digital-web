@@ -3,10 +3,12 @@ import UserManual  from "../../views/dashboard/sections/UserManual/UserManual.vi
 import  Introduction from "../../views/dashboard/sections/Introduction";
 import { Modal } from '../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../assets';
-import { navBarLeftContent } from './navBarLeft.module.css'
+import { navBarLeftContent, logoutBtnVisible, logoutBtnVisibleIntro } from './navBarLeft.module.css'
+import { useAppContext } from '../../../core/app/App.context';
 
 function NavbarLeft() {
   const [modalType, setModalType] = useState(false);
+  const { logout } = useAppContext();
 
   return (
   <div className={navBarLeftContent}>
@@ -33,6 +35,15 @@ function NavbarLeft() {
       <Introduction />
     </Modal>
   }
+  <div className={ logoutBtnVisibleIntro }>
+   <button
+    type="button"
+    className={ logoutBtnVisible }
+    onClick={logout}
+    >
+      SAIR
+    </button>
+  </div>
 </div>
   );
 }

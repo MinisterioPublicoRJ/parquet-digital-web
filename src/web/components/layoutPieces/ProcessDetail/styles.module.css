@@ -13,6 +13,9 @@
 .spanProcessAlertsList{
   color: red;
 }
+.alertWrapperTextEmpty{
+  margin-left: 10px;
+}
 .processDetailHeader {
   background-color: #bddff0;
   border-radius: 10px 10px 0 0;

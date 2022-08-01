@@ -148,21 +148,6 @@ function Today() {
       <NavbarLeft/>
       <div className={ userArea }>
         <MainTitle value={assembleGreeting()} glueToTop />
-        {/* Botão precisa ter texto dentro! */}
-        {/*{user.orgaosValidos && user.orgaosValidos.length ? (
-          <button
-            type="button"
-            className={`${ logoutArrow } ${isLogoutBtnVisible ? `${ logoutArrowRotated }` : ''}`}
-            onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
-          />
-        ) : null}*/}
-        <button
-          type="button"
-          className={ logoutBtnVisible }
-          onClick={logout}
-        >
-          CLIQUE PARA SAIR
-        </button>
       </div>
       <div className={ todayContent }>
         <button type="button" onClick={() => setModalType('officeSelector')} disabled={!user.orgaosValidos[0]}>

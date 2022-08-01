@@ -17,7 +17,6 @@
     margin: 0.313rem;
     margin-top: 0.938rem;
     border: none;
-    background-color: transparent;
 }
 .navBarBoxContentTexts{
     display: flex;
@@ -33,7 +32,7 @@
 .navBarBoxContentTexts{
     color: #fff ;
     background: transparent;
-    margin-top: 1.25rem;
+    padding-top: 1.25rem
 }
 .navBarLeftContent .navBarBoxContentTexts:hover{
     color: #fff; 

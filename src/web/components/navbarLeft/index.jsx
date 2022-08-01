@@ -3,9 +3,11 @@ import UserManual  from "../../views/dashboard/sections/UserManual/UserManual.vi
 import  Introduction from "../../views/dashboard/sections/Introduction";
 import { Modal } from '../../components/layoutPieces';
 import { GlossaryBook, IntroScreenInterrogation } from '../../assets';
-import { navBarLeftContent, logoutBtnVisible,
+import { navBarLeftContent,
+  logoutBtnVisible,
   logoutBtnVisibleIntro,
-  navBarBoxContentTexts } from './navBarLeft.module.css'
+  navBarBoxContentTexts
+} from './navBarLeft.module.css'
 import { useAppContext } from '../../../core/app/App.context';
 
 function NavbarLeft() {
@@ -25,7 +27,6 @@ function NavbarLeft() {
     <p>Glossário</p>
     </div>
   {
-
     modalType === 'glossary' &&
     <Modal withExitButton close={setModalType}>
       <div>

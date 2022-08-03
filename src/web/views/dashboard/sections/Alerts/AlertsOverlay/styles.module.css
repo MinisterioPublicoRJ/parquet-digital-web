@@ -24,19 +24,19 @@
   overflow: hidden;
 }
 
-.alertsOverlay button {
+.alertsOverlayDiv {
+  height: 100%;
+  padding: 16px 16px 50px 16px;
+  overflow-y: scroll;
+}
+
+.alertsOverlayButton {
   position: relative;
   float: right;
   border-radius: 4px;
   border: 0;
   padding: 4px 16px;
-  margin: 4px -6px 12px 0;
-}
-
-.alertsOverlay > div {
-  height: 100%;
-  padding: 16px;
-  overflow-y: scroll;
+  margin: 4px -6px 0 0;
 }
 
 .alertsOverlay p {

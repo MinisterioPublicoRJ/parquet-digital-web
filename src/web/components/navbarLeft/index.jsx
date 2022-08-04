@@ -4,11 +4,11 @@ import  Introduction from "../../views/dashboard/sections/Introduction";
 import { Modal } from '../../components/layoutPieces';
 import UserManualIcon from '../../assets/imgs/userManualIcon.png';
 import MethodologicalNoteIcon from '../../assets/imgs/edit_note.png';
+import LogoutIcon from '../../assets/imgs/logout.png';
 import Updates from '../../assets/imgs/updates.png';
 
 import { navBarLeftContent,
   logoutBtnVisible,
-  logoutBtnVisibleIntro,
   navBarBoxContentTexts
 } from './navBarLeft.module.css'
 import { useAppContext } from '../../../core/app/App.context';
@@ -60,16 +60,17 @@ function NavbarLeft() {
       <Introduction />
     </Modal>
   }
-  <div className={ logoutBtnVisibleIntro }>
-   <button
+  <div className={ navBarBoxContentTexts }>
+    <button
     type="button"
     className={ logoutBtnVisible }
     onClick={logout}
     >
-      SAIR
+    <img height="100%" src={LogoutIcon} alt="icone-nota-metodologica" />
     </button>
+    <p>Sair</p>
+    </div>
   </div>
-</div>
   );
 }
 

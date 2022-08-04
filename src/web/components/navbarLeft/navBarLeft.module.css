@@ -17,6 +17,7 @@
     margin: 0.313rem;
     margin-top: 0.938rem;
     border: none;
+    background-color: transparent;
 }
 .navBarBoxContentTexts{
     display: flex;
@@ -26,7 +27,8 @@
     display: block;
     white-space: nowrap;
     text-align: center;
-    margin-top: 1.50rem;
+    margin-top: 1.40rem;
+    margin-left: 0.5rem ;
 }
 
 .navBarBoxContentTexts{

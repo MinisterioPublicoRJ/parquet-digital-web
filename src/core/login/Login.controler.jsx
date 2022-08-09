@@ -5,13 +5,14 @@ import { useAppContext } from '../app/App.context';
 import { LoginProvider, LoginStoreInitializer } from './Login.context';
 
 function LoginControler({ children, errorBoundary: ErrorBoundary, errorScreen: ErrorScreen }) {
-  const { scaLoginFailed, loginWithSCACredentials } = useAppContext();
+  const { scaLoginFailed, setScaLoginFailed, loginWithSCACredentials } = useAppContext();
   const loginStore = LoginStoreInitializer();
   const { loginHasCrashed, setLoginHasCrashed, username, password, isLoading, setLoadingState } = loginStore;
 
   // if view changes state to loading, tries to login
   useEffect(() => {
     if(isLoading) {
+      setScaLoginFailed(false);
       onFormSubmit();
     }
   }, [isLoading]);

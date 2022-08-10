@@ -6,6 +6,8 @@ import UserManualIcon from '../../assets/imgs/userManualIcon.png';
 import MethodologicalNoteIcon from '../../assets/imgs/edit_note.png';
 import LogoutIcon from '../../assets/imgs/logout.png';
 import Updates from '../../assets/imgs/updates.png';
+import UpdatesBlue from '../../assets/imgs/updatesBlue.png';
+
 
 import { navBarLeftContent,
   logoutBtnVisible,
@@ -16,18 +18,23 @@ import { useAppContext } from '../../../core/app/App.context';
 function NavbarLeft() {
   const [modalType, setModalType] = useState(false);
   const { logout } = useAppContext();
+  const [hover, setHOver] = useState(false);
 
+ 
 
   return (
   <div className={navBarLeftContent}>
-    <div className={navBarBoxContentTexts}>
+    <div className={navBarBoxContentTexts}
+      onMouseOver={() => setHOver(true)}
+      onMouseOut={() => setHOver(false)}
+      >
       <button
       type="button"
       onClick={() => setModalType('glossary')}
     >
-      <img height="100%" src={Updates} alt="icone-atualizações" />
+      <img height="100%" src={hover ? UpdatesBlue : Updates} alt="icone-atualizações" />
       </button>
-    <p>Atualizações</p>
+      <p>Atualizações</p>
     </div>
     <div className={navBarBoxContentTexts}>
       <button

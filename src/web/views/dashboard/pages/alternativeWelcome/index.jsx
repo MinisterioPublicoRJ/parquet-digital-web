@@ -14,7 +14,7 @@ import {
   altWelcomeSuggestionsItemData,
 } from './styles.module.css';
 
-import BGMP from '../../../../assets/imgs/bgMp.png';
+import BGMP from '../../../../assets/imgs/unavailableBanner.png';
 import { LogoAlternativeWelcome } from '../../../../assets';
 import { ALTERNATIVE_SCREEN_DATA } from './suggestionsData';
 

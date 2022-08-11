@@ -10,11 +10,7 @@ import UserManualIcon from '../../assets/imgs/userManualIcon.png';
 import UserManualIconBlue from '../../assets/imgs/userManualIconBlue.png';
 import Updates from '../../assets/imgs/updates.png';
 import UpdatesBlue from '../../assets/imgs/updatesBlue.png';
-
-import { navBarLeftContent,
-  navBarBoxContentTexts,
-  logoutBtn
-} from './navBarLeft.module.css'
+import { navBarLeftContent, navBarBoxContentTexts } from './navBarLeft.module.css'
 import { useAppContext } from '../../../core/app/App.context';
 
 function NavbarLeft() {
@@ -23,7 +19,6 @@ function NavbarLeft() {
   const [hoverUserManual, setHoverUserManual] = useState(false);
   const [hoverLogout, setHoverLogout] = useState(false);
   const [hover, setHover] = useState(false);
-
 
   return (
   <div className={navBarLeftContent}>
@@ -57,7 +52,7 @@ function NavbarLeft() {
     >
       <img src={hoverUserManual ? UserManualIconBlue : UserManualIcon} alt="icone-glossario" />
       </button>
-    <p>Glossário</p>
+    <p>Manual de uso</p>
   </div>
   <div className={navBarBoxContentTexts}
     onMouseOver={() => setHover(true)}
@@ -68,7 +63,7 @@ function NavbarLeft() {
     >
     <img src={hover ? EditNoteBlue : EditNote} alt="icone-manual de uso" />
     </button>
-    <p>Manual de uso</p>
+    <p>Glossário</p>
   </div>
   {       
     modalType === 'introduction' &&
@@ -82,7 +77,6 @@ function NavbarLeft() {
   >
     <button
     type="button"
-    className={ logoutBtn }
     onClick={logout}
     >
     <img src={hoverLogout ? LogoutIconBlue : LogoutIcon} alt="icone-logout" />

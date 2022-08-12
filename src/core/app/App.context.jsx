@@ -122,6 +122,7 @@ export function AppStoreInitializer() {
     user,
     userExpired,
     autoLoginFailed,
+    setScaLoginFailed,
     scaLoginFailed,
     loginWithToken,
     loginWithSCACredentials,

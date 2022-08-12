@@ -45,11 +45,10 @@ function NavbarLeft() {
   <div className={navBarBoxContentTexts}
       onMouseOver={() => setHoverUserManual(true)}
       onMouseOut={() => setHoverUserManual(false)}
+      onClick={() => setModalType('glossary')}
       >
       <button
-      type="button"
-      onClick={() => setModalType('glossary')}
-    >
+      type="button">
       <img src={hoverUserManual ? UserManualIconBlue : UserManualIcon} alt="icone-glossario" />
       </button>
     <p>Manual de uso</p>
@@ -57,10 +56,9 @@ function NavbarLeft() {
   <div className={navBarBoxContentTexts}
     onMouseOver={() => setHover(true)}
     onMouseOut={() => setHover(false)}
-  >
-    <button type="button" 
     onClick={() => setModalType('introduction')}
-    >
+  >
+    <button type="button">
     <img src={hover ? EditNoteBlue : EditNote} alt="icone-manual de uso" />
     </button>
     <p>Glossário</p>
@@ -74,11 +72,9 @@ function NavbarLeft() {
   <div className={ navBarBoxContentTexts } style={{ marginTop: "20.0rem" }}
    onMouseOver={() => setHoverLogout(true)}
    onMouseOut={() => setHoverLogout(false)}
+   onClick={logout}
   >
-    <button
-    type="button"
-    onClick={logout}
-    >
+    <button type="button">
     <img src={hoverLogout ? LogoutIconBlue : LogoutIcon} alt="icone-logout" />
     </button>
     <p>Sair</p>

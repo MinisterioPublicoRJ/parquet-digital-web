@@ -23,6 +23,7 @@
     background: transparent;
     margin-top: 3.25rem;
     font-weight: bold;
+    cursor: pointer;
 }
 .navBarBoxContentTexts:hover{
     color: #154763; 

@@ -11,6 +11,7 @@ import {
   alertsOverlay,
   alertsOverlayDiv,
   alertsOverlayButton,
+  spinnerWraper,
 } from './styles.module.css';
 
 const propTypes = {
@@ -111,7 +112,9 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
               </button>
             </div>
           ) : (
+            <div className={spinnerWraper}>
             <Spinner size="medium" />
+            </div>
           )}
           {children}
         </div>

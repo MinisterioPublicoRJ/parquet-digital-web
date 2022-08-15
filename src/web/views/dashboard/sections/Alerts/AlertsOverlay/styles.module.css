@@ -59,3 +59,11 @@
 .crimeData {
   margin: 32px 0px;
 }
+
+.spinnerWraper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

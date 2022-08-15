@@ -2,10 +2,8 @@ import React from 'react';
 //import history from 'history/browser';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
-
 import { LoadingScreen, Login, Dashboard } from '../views';
 import { UnavailablePage, Welcome } from '../views/dashboard/pages';
-
 import { useAppContext } from '../../core/app/App.context';
 
 

@@ -39,6 +39,7 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
   async function getText() {
     let texts;
     let data;
+    console.log('type:', type);
     if (OVERLAY_TEXTS[type]) {
       texts = (
         <>
@@ -54,15 +55,16 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
         case 'PRCR3':
         case 'PRCR4':
           data = await getOverlayText('prescricao', docDk);
-          texts = Array.isArray(data) ? PRCR_TEXTS(type, data) : data;
+          texts = typeof data === 'object' || Array.isArray(data) ? PRCR_TEXTS(type, data) : data;
           break;
         case 'IC1A':
           data = await getOverlayText(type, docDk);
-          texts = Array.isArray(data) ? IC1A_TEXT(data) : data;
+          texts = typeof data === 'object' || Array.isArray(data) ? IC1A_TEXT(data) : data;
+
           break;
         case 'PA1A':
           data = await getOverlayText(type, docDk);
-          texts = Array.isArray(data) ? PA1A_TEXT(data) : data;
+          texts = typeof data === 'object' || Array.isArray(data) ? PA1A_TEXT(data) : data;
           break;
         default:
           texts = <p>{`Os dados para alertas ${type} ainda não estão disponíveis`}</p>;

@@ -7,11 +7,12 @@ import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
-import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
+import { IntroScreenInterrogation } from '../../../../assets';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual  from "../UserManual/UserManual.view";
 import  Introduction from "../Introduction";
 import MapaTron  from "../MapaTron/Mapatron.view";
+import NavbarLeft from '../../../../components/navbarLeft';
 import {
   todayOuter,
   todayContent,
@@ -19,8 +20,6 @@ import {
   userArea,
   logoutBtnVisible,
   todayRobotPic,
-  todayGlossaryBtn,
-  todayIntroBtn,
   todayBtn,
 } from './Today.module.css';
 
@@ -146,23 +145,9 @@ function Today() {
 
   return (
     <article className={ todayOuter }>
+      <NavbarLeft/>
       <div className={ userArea }>
         <MainTitle value={assembleGreeting()} glueToTop />
-        {/* Botão precisa ter texto dentro! */}
-        {/*{user.orgaosValidos && user.orgaosValidos.length ? (
-          <button
-            type="button"
-            className={`${ logoutArrow } ${isLogoutBtnVisible ? `${ logoutArrowRotated }` : ''}`}
-            onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
-          />
-        ) : null}*/}
-        <button
-          type="button"
-          className={ logoutBtnVisible }
-          onClick={logout}
-        >
-          CLIQUE PARA SAIR
-        </button>
       </div>
       <div className={ todayContent }>
         <button type="button" onClick={() => setModalType('officeSelector')} disabled={!user.orgaosValidos[0]}>
@@ -227,24 +212,12 @@ function Today() {
         </>
       ) : null}
       <div className={ todayRobotPic }>
-        <button
-          type="button"
-          className={ todayGlossaryBtn }
-          onClick={() => setModalType('glossary')}
-        >
-          <GlossaryBook />
-        </button>
         {
           modalType === 'glossary' &&
           <Modal withExitButton close={setModalType}>
             <UserManual/>
           </Modal>
         }
-        <button type="button" className={ todayIntroBtn }
-          onClick={() => setModalType('introduction')}
-        >
-          <IntroScreenInterrogation />
-        </button>
         {       
           modalType === 'introduction' &&
           <Modal withExitButton close={setModalType}>

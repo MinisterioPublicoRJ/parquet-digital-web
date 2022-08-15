@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UserManual  from "../../views/dashboard/sections/UserManual/UserManual.view";
 import  Introduction from "../../views/dashboard/sections/Introduction";
-import { Modal } from '../../components/layoutPieces';
+import { Modal } from "../layoutPieces";
 import EditNoteBlue from '../../assets/imgs/edit_note_blue.png';
 import EditNote from '../../assets/imgs/edit_note.png';
 import LogoutIcon from '../../assets/imgs/logout.png';
@@ -44,7 +44,9 @@ function NavbarLeft() {
   }
   <div className={navBarBoxContentTexts}
       onMouseOver={() => setHoverUserManual(true)}
+      onFocus={() => setHoverUserManual(true)}
       onMouseOut={() => setHoverUserManual(false)}
+      onBlur={() => setHoverUserManual(false)}
       onClick={() => setModalType('glossary')}
       >
       <button
@@ -55,7 +57,9 @@ function NavbarLeft() {
   </div>
   <div className={navBarBoxContentTexts}
     onMouseOver={() => setHover(true)}
+    onFocus={() => setHover(true)}
     onMouseOut={() => setHover(false)}
+    onBlur={() => setHover(false)}
     onClick={() => setModalType('introduction')}
   >
     <button type="button">
@@ -71,7 +75,9 @@ function NavbarLeft() {
   }
   <div className={ navBarBoxContentTexts } style={{ marginTop: "20.0rem" }}
    onMouseOver={() => setHoverLogout(true)}
+   onFocus={() => setHoverLogout(true)}
    onMouseOut={() => setHoverLogout(false)}
+   onBlur={() => setHoverLogout(false)}
    onClick={logout}
   >
     <button type="button">

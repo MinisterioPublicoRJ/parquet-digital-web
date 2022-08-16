@@ -6,10 +6,12 @@ import { Spinner } from '../../../../../components';
 
 import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT, PA1A_TEXT } from './overlayConstants';
 
-
 import {
   overlayOuter,
   alertsOverlay,
+  alertsOverlayDiv,
+  alertsOverlayButton,
+  spinnerWraper,
 } from './styles.module.css';
 
 const propTypes = {
@@ -86,24 +88,36 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
 
   return (
     <div
-      className={ overlayOuter }
+      className={overlayOuter}
       onClick={() => setShowOverlay(false)}
       onKeyDown={() => setShowOverlay(false)}
       role="button"
       tabIndex={0}
     >
       <div
-        className={ alertsOverlay }
+        className={alertsOverlay}
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={(e) => handleInnerClick(e)}
         role="button"
         tabIndex={0}
       >
-        <div>
-          {text || <Spinner size="medium" />}
-          <button type="button" onClick={() => setShowOverlay(false)}>
-            {type === 'onDel' ? 'Entendi' : 'Sair'}
-          </button>
+        <div className={alertsOverlayDiv}>
+          {text ? (
+            <div>
+              {text}
+              <button
+                onClick={() => setShowOverlay(false)}
+                className={alertsOverlayButton}
+                type="button"
+              >
+                {type === 'onDel' ? 'Entendi' : 'Sair'}
+              </button>
+            </div>
+          ) : (
+            <div className={spinnerWraper}>
+            <Spinner size="medium" />
+            </div>
+          )}
           {children}
         </div>
       </div>

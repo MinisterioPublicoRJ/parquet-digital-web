@@ -30,8 +30,15 @@
   flex: 1;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 80%;
+  height: 85%;
   justify-content: center;
+}
+
+.loginParquetHeader {
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--loginBlue);
+  font-size: var(--titleFontSize);
 }
 
 .loginInput {
@@ -75,6 +82,7 @@
 }
 
 .greetings {
+  margin-top: 10px;
   color: #8a8a8a;
   font-family: var(--defaultFont);
   font-size: 12px;

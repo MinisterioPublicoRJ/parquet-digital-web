@@ -1,9 +1,8 @@
 import React from 'react';
 import '../../themes/index.css';
-import { loginWrapper, loginInner, loginImageBanner, loginFormArea, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
+import { loginWrapper, loginInner, loginImageBanner, loginFormArea, loginParquetHeader, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
 import { useAppContext } from '../../../core/app/App.context';
 import LoginBanner from '../../assets/imgs/loginPageBanner.png';
-import { LoginPromotron } from '../../assets';
 import { useLoginContext } from '../../../core/login/Login.context';
 
 const Login = () => {
@@ -28,7 +27,7 @@ const Login = () => {
           />
         </div>
         <form className={loginFormArea} onSubmit={onSubmit}>
-          <LoginPromotron height={150} />
+          <h2 className={loginParquetHeader}>Parquet Digital</h2>
           <input
             className={loginInput}
             placeholder="Usuário"
@@ -48,8 +47,9 @@ const Login = () => {
           </button>
           <div className={greetings}>
             {userExpired && <strong>Sua sessão expirou</strong>}
-            {scaLoginFailed && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
-            {scaLoginFailed && <strong>Atenção: deve ser usada a senha do SCA/contracheque!</strong>}
+            {scaLoginFailed && <strong>Verifique se a senha e usuário estão corretos</strong>}
+            {scaLoginFailed && <strong>e se a sua Promotoria está contemplada.</strong>}
+            {scaLoginFailed && <strong>Em caso de dúvidas, leia as orientações ao lado.</strong>}
 {/*         {autoLoginFailed && <strong>Houve algum erro ao tentar acessar com as informações armazenadas no navegador.</strong>} */}
           </div>
         </form>

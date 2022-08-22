@@ -1,8 +1,8 @@
 .navBarLeftContent{
     position: fixed;
     inset: 0px;
-    width: 2.713rem;
-    background-color: #154763;
+    width: 2.700rem;
+    background-color: var(--loginBlue);
     transition: 0.3s;
     display: flex;
     flex-direction: column;
@@ -19,15 +19,15 @@
 }
 .navBarBoxContentTexts{
     display: flex;
-    color: #fff ;
+    color:var(--white) ;
     background: transparent;
     margin-top: 3.25rem;
     font-weight: bold;
     cursor: pointer;
 }
 .navBarBoxContentTexts:hover{
-    color: #154763; 
-    background-color: #BDDFF0;
+    color: var(--loginBlue); 
+    background-color: var(--lightBlue);
     height: 40px;  
     margin-left: -0.5rem;
 

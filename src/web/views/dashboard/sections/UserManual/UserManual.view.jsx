@@ -59,7 +59,7 @@ function UserManual() {
                   window.open(NOTA_METODOLOGICA);
                 }}
               >
-                Acessar nota metodologica
+                Acessar nota metodológica
               </button>
           </div>
         </div>

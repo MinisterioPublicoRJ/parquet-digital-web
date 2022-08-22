@@ -1,5 +1,5 @@
 import React from 'react';
-import NOTA_METODOLOGICA from '../MethodologicalNote/nota_metodologica.pdf';
+import NOTA_METODOLOGICA from './nota_metodologica.pdf';
 import {
   glossaryWrapper,
   glossaryIntroSection,
@@ -20,12 +20,12 @@ function MethodologicalNote() {
         <h2>PARQUET DIGITAL</h2>
         <div className={glossaryIntroSection}>
           <p>
-           Esta nota metodológica foi desenvolvida para auxiliar na compreensão dos dados e estatísticas
-           presentes na ferramenta. Desejamos uma boa leitura!
+          Esta nota metodológica foi desenvolvida para auxiliar na compreensão dos dados e estatísticas
+          presentes na ferramenta. Desejamos uma boa leitura!
           </p>
 
           <div className={glossaryArticlesWrapper}>
-             <button
+            <button
                 type="button"
                 onClick={(event) => {
                   event.preventDefault();

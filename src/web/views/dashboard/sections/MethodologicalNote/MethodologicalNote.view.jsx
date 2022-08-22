@@ -20,8 +20,8 @@ function MethodologicalNote() {
         <h2>PARQUET DIGITAL</h2>
         <div className={glossaryIntroSection}>
           <p>
-            Este manual visa auxiliar o usuário a potencializar a capacidade da ferramenta em
-            solucionar demandas dentro de sua Promotoria de Justiça
+           Esta nota metodológica foi desenvolvida para auxiliar na compreensão dos dados e estatísticas
+           presentes na ferramenta. Desejamos uma boa leitura!
           </p>
 
           <div className={glossaryArticlesWrapper}>

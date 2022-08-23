@@ -9,14 +9,17 @@
     overflow: hidden;
     z-index: 100;
 }
+
 .navBarLeftContent:hover{
     width: 12rem;
 }
+
 .navBarLeftContent button{
     border: none;
     background-color: transparent;
     margin-left: 0.4rem;
 }
+
 .navBarBoxContentTexts{
     display: flex;
     color:var(--white) ;
@@ -28,10 +31,10 @@
 .navBarBoxContentTexts:hover{
     color: var(--loginBlue); 
     background-color: var(--lightBlue);
-    height: 40px;  
     margin-left: -0.5rem;
-
+    transition: 0.3s;
 }
+
 .navBarBoxContentTexts p{
     position: relative;
     display: block;

@@ -4,7 +4,6 @@ import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
 import  Introduction  from './sections/Introduction';
 
-
 const Dashboard = () => {
   const { user, currentOffice } = useAppContext(); 
   const { firstLogin } = user;

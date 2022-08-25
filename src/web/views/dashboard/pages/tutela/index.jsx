@@ -2,7 +2,7 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 
 import {tutelaGrid} from './Tutela.module.css';
-import {baseGrid} from '../PipAndTutela.module.css';
+import {baseGrid} from '../Prosecutors.module.css';
 
 import {YourDesk, Alerts, ProcessingTime, TablesTutela, Today, PerformanceRadar} from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';

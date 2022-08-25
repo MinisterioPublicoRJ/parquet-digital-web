@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pip, Tutela, AlternativeWelcome } from './pages';
+import { Pip, Tutela, AlternativeWelcome, Criminal } from './pages';
 import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
 import  Introduction  from './sections/Introduction';
@@ -23,6 +23,10 @@ const Dashboard = () => {
       case 2:
         return (
           <Pip />
+        );
+      case 3:
+        return (
+          <Criminal />
         );
       default:
         return <AlternativeWelcome />;

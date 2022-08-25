@@ -1,0 +1,46 @@
+.pipGrid {
+    grid-template-areas:
+      'today today radar alerts'
+      'today today radar alerts'
+      'today today radar alerts'
+      'today today radar alerts'
+      'desk desk radar alerts'
+      'desk desk radar alerts'
+      'desk desk mainInvestigated indicators'
+      'desk desk mainInvestigated indicators '
+      'desk desk mainInvestigated indicators '
+      'desk desk processingTime processingTime'
+      'desk desk processingTime processingTime'
+      'desk desk processingTime processingTime';
+  }
+  
+  /* TABLETS */
+  @media (min-width: 481px) and (max-width: 1025px) {
+    .pipGrid {
+      grid-template-areas:
+        'today today'
+        'desk desk'
+        'radar alerts'
+        'mainInvestigated indicators'
+        'processingTime processingTime';
+    }
+  }
+  
+  /* PHONES */
+  @media (max-width: 480px) {
+    .pipGrid {
+      height: 450vh;
+      grid-template-rows: repeat(9, minmax(0, 1fr));
+      grid-template-areas:
+        'today'
+        'desk'
+        'desk'
+        'radar'
+        'alerts'
+        'mainInvestigated'
+        'indicators'
+        'processingTime'
+        'processingTime';
+    }
+  }
+  

@@ -9,7 +9,7 @@ const Dashboard = () => {
   const { firstLogin } = user;
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
-
+  
   if (!user) {
     return <Spinner size="large" />;
   }
@@ -24,7 +24,7 @@ const Dashboard = () => {
         return (
           <Pip />
         );
-      case 3:
+      case 7:
         return (
           <Criminal />
         );
@@ -32,6 +32,7 @@ const Dashboard = () => {
         return <AlternativeWelcome />;
     }
   }
+  console.log(type, currentOffice)
 
   return (
     <>

@@ -17,7 +17,20 @@
   min-width: 730px;
   min-height: 450px;
 }
-
+.loginImagesBanner{
+  display: flex;
+  justify-content: space-between;
+}
+.logoGadgBanner{
+  width: 120px;
+  height: 50px;
+  margin-top: 100px;
+  margin-left: 20px;
+}
+.roboGadgBanner{
+  height: 201px;
+  width: 200px;
+}
 .loginImageBanner {
   display: flex;
   height: 100%;
@@ -35,7 +48,7 @@
   padding: 30px;
 }
 .loginImageBanner span{
-  background-color: #edef00;
+  background-color: #FFCE99;
   color: #154763;
 }
 .loginFormArea {
@@ -118,6 +131,9 @@
   .loginImageBanner{
     border-radius: 15px 15px 0px 0px;
 
+  }
+  .loginImagesBanner{
+    display: none;
   }
 }
 

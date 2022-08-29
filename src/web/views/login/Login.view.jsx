@@ -1,8 +1,10 @@
 import React from 'react';
 import '../../themes/index.css';
-import { loginBanner, loginWrapper, loginInner, loginImageBanner, loginFormArea, loginParquetHeader, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
+import { loginImagesBanner,logoGadgBanner,roboGadgBanner, loginBanner, loginWrapper, loginInner, loginImageBanner, loginFormArea, loginParquetHeader, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
 import { useAppContext } from '../../../core/app/App.context';
 import { useLoginContext } from '../../../core/login/Login.context';
+import LogoBranco from '../../assets/imgs/logo_gadg_branco.png';
+import RoboLogin from '../../assets/imgs/robo_login.png';
 
 const Login = () => {
   const { scaLoginFailed, userExpired } = useAppContext();
@@ -25,6 +27,10 @@ const Login = () => {
          </p>
          <p>Qualquer dúvida ou problema contactar:</p>
          <strong>gadg.atendimento@mprj.mp.br</strong>
+        </div>
+        <div className={loginImagesBanner}>
+        <img className={logoGadgBanner} src={LogoBranco} alt="logo-gadg" />
+        <img className={roboGadgBanner} src={RoboLogin} alt="robô-login" />
         </div>
         </div>
         <form className={loginFormArea} onSubmit={onSubmit}>

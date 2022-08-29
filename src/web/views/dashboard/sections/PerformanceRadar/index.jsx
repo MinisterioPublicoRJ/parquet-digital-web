@@ -6,7 +6,8 @@ import {
   radarSubtitles,
   radarSubtitlesItem,
   radarSubtitlesItemYourData,
-  radarSubtitlesItemMPData
+  radarSubtitlesItemMPData,
+  radarTextAreaCriminal
 } from './styles.module.css';
 import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
@@ -180,7 +181,13 @@ function PerformanceRadar() {
         <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
       </div>
       {loading && !dataError && <Spinner size="large" />}
-      {dataError && 'Sem dados para exibir'}
+      {currentOffice.tipo === 7 ? (
+        <div className={ radarTextAreaCriminal }>
+            <h2>Em breve</h2>
+            <p>Para mais informações consulte o manual de uso no menu lateral.</p>
+        </div>
+      ): null }
+      {dataError && !currentOffice.tipo === 7 && 'Sem dados para exibir'}
       {!loading && !dataError && (
         <figure className={ radarWrapper }>
           <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />

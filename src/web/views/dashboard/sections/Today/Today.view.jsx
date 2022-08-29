@@ -7,7 +7,6 @@ import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
-import { IntroScreenInterrogation } from '../../../../assets';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual  from "../UserManual/UserManual.view";
 import  Introduction from "../Introduction";
@@ -18,13 +17,14 @@ import {
   todayContent,
   todayTextArea,
   userArea,
-  logoutBtnVisible,
   todayRobotPic,
   todayBtn,
+  todayTextAreaCriminal
 } from './Today.module.css';
 
 function Today() {
-  const { user, buildRequestParams, currentOffice, logout } = useAppContext();
+  const { user, buildRequestParams, currentOffice } = useAppContext();
+  console.log(currentOffice)
 
   /* STATE */
   const [todayPercent, setTodayPercent] = useState(null);
@@ -162,8 +162,14 @@ function Today() {
           </Modal>
         }
         <div className={ todayTextArea }>
-          {apiError === 3 && <p>Sem dados para exibir.</p>}
+          {apiError === 3 && !currentOffice.tipo === 7 && <p>Sem dados para exibir.</p>}
           {loading && <Spinner size="large" />}
+          {currentOffice.tipo === 7 ? (
+            <div className={ todayTextAreaCriminal }>
+              <h2>Em breve</h2>
+              <p>Para mais informações consulte o manual de uso no menu lateral.</p>
+            </div>
+          ): null }
           {todayPercent && !loading ? (
             <p>
               Nos últimos seis meses a sua promotoria foi mais resolutiva que

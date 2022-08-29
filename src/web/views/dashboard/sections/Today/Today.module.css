@@ -19,7 +19,19 @@
   width: 65%;
   z-index: 1;
 }
-
+.todayTextAreaCriminal{
+  line-height: 1.5;
+}
+.todayTextAreaCriminal h2{
+  font-size: 15px;
+  background-color: #bddff0;
+  max-width: 70px;
+  color: #374354;
+}
+.todayTextAreaCriminal p{
+  max-width: 250px;
+  color: #A7A0A0;
+}
 .todayContent p,
 .todayContent h2 {
   margin: 0;

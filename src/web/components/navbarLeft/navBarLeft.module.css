@@ -1,7 +1,7 @@
 .navBarLeftContent{
     position: fixed;
     inset: 0px;
-    width: 2.700rem;
+    width: 3.000rem;
     background-color: var(--loginBlue);
     transition: 0.3s;
     display: flex;
@@ -41,5 +41,5 @@
     display: block;
     white-space: nowrap;
     text-align: center;
-    margin-left: 0.5rem ;
+    margin-left: 0.6rem ;
 }

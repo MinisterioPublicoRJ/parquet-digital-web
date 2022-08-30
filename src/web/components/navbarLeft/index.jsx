@@ -12,6 +12,7 @@ import UserManualIconBlue from '../../assets/imgs/userManualIconBlue.png';
 import Updates from '../../assets/imgs/updates.png';
 import UpdatesBlue from '../../assets/imgs/updatesBlue.png';
 import Info from '../../assets/imgs/info.png';
+import Speed from '../../assets/imgs/speed.png';
 import InfoBlue from '../../assets/imgs/info-azul.png';
 import { navBarLeftContent, navBarBoxContentTexts } from './navBarLeft.module.css'
 import { useAppContext } from '../../../core/app/App.context';
@@ -22,6 +23,7 @@ function NavbarLeft() {
   const [hoverUserManual, setHoverUserManual] = useState(false);
   const [hoverNotaMetodologica, setHoverNotaMetodologica] = useState(false);
   const [hoverLogout, setHoverLogout] = useState(false);
+  const [hoverTempoTramitacao, setHoverTempoTramitacao] = useState(false);
   const [hover, setHover] = useState(false);
 
   return (
@@ -91,6 +93,19 @@ function NavbarLeft() {
     <img src={hover ? EditNoteBlue : EditNote} alt="icone-manual de uso" />
     </button>
     <p>Informações</p>
+  </div>
+  <div className={navBarBoxContentTexts}
+      onMouseOver={() => setHoverUserManual(true)}
+      onFocus={() => setHoverUserManual(true)}
+      onMouseOut={() => setHoverUserManual(false)}
+      onBlur={() => setHoverUserManual(false)}
+      onClick={() => setModalType('manual')}
+      >
+      <button
+      type="button">
+      <img src={hoverTempoTramitacao ? Speed : Speed} alt="icone-tempo de tramitação" />
+      </button>
+    <p>Tempo de tramitação</p>
   </div>
   {       
     modalType === 'introduction' &&

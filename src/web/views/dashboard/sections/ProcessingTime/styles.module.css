@@ -1,10 +1,11 @@
 .pageTramitacao {
   grid-area: processingTime;
   display: grid;
-  grid-template-columns: 30% 40% 30%;
   grid-auto-rows: 100%;
   grid-template-areas: 'texts graph mainBoxTime';
   overflow: hidden;
+  width: 700px;
+  padding: 30px;
 }
 
 .ptTexts {

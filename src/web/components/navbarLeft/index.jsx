@@ -16,6 +16,7 @@ import Speed from '../../assets/imgs/speed.png';
 import InfoBlue from '../../assets/imgs/info-azul.png';
 import { navBarLeftContent, navBarBoxContentTexts } from './navBarLeft.module.css'
 import { useAppContext } from '../../../core/app/App.context';
+import ProcessingTime from '../../views/dashboard/sections/ProcessingTime';
 
 function NavbarLeft() {
   const [modalType, setModalType] = useState(false);
@@ -48,14 +49,6 @@ function NavbarLeft() {
       </div>
     </Modal>
   }
-    {
-    modalType === 'notaMetodologica' &&
-    <Modal withExitButton close={setModalType}>
-      <div>
-      <MethodologicalNote/>
-      </div>
-    </Modal>
-  }
   <div className={navBarBoxContentTexts}
       onMouseOver={() => setHoverUserManual(true)}
       onFocus={() => setHoverUserManual(true)}
@@ -69,6 +62,14 @@ function NavbarLeft() {
       </button>
     <p>Manual de uso</p>
   </div>
+  {
+    modalType === 'notaMetodologica' &&
+    <Modal withExitButton close={setModalType}>
+      <div>
+      <MethodologicalNote/>
+      </div>
+    </Modal>
+  }
   <div className={navBarBoxContentTexts}
       onMouseOver={() => setHoverNotaMetodologica(true)}
       onFocus={() => setHoverNotaMetodologica(true)}
@@ -82,6 +83,12 @@ function NavbarLeft() {
       </button>
     <p>Nota Metodológica</p>
   </div>
+  {       
+    modalType === 'introduction' &&
+    <Modal withExitButton close={setModalType}>
+      <Introduction />
+    </Modal>
+  }
   <div className={navBarBoxContentTexts}
     onMouseOver={() => setHover(true)}
     onFocus={() => setHover(true)}
@@ -94,12 +101,18 @@ function NavbarLeft() {
     </button>
     <p>Informações</p>
   </div>
+  {       
+    modalType === 'tramitacao' &&
+    <Modal withExitButton close={setModalType}>
+     <ProcessingTime />
+    </Modal>
+  }
   <div className={navBarBoxContentTexts}
-      onMouseOver={() => setHoverUserManual(true)}
-      onFocus={() => setHoverUserManual(true)}
-      onMouseOut={() => setHoverUserManual(false)}
-      onBlur={() => setHoverUserManual(false)}
-      onClick={() => setModalType('manual')}
+      onMouseOver={() => setHoverTempoTramitacao(true)}
+      onFocus={() => setHoverTempoTramitacao(true)}
+      onMouseOut={() => setHoverTempoTramitacao(false)}
+      onBlur={() => setHoverTempoTramitacao(false)}
+      onClick={() => setModalType('tramitacao')}
       >
       <button
       type="button">
@@ -107,12 +120,6 @@ function NavbarLeft() {
       </button>
     <p>Tempo de tramitação</p>
   </div>
-  {       
-    modalType === 'introduction' &&
-    <Modal withExitButton close={setModalType}>
-      <Introduction />
-    </Modal>
-  }
   <div className={ navBarBoxContentTexts } style={{ marginTop: "18.300rem" }}
    onMouseOver={() => setHoverLogout(true)}
    onFocus={() => setHoverLogout(true)}

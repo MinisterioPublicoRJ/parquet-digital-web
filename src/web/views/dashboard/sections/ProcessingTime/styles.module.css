@@ -4,8 +4,9 @@
   grid-auto-rows: 100%;
   grid-template-areas: 'texts graph mainBoxTime';
   overflow: hidden;
-  width: 700px;
+  width: 730px;
   padding: 30px;
+  gap: 20px;
 }
 
 .ptTexts {

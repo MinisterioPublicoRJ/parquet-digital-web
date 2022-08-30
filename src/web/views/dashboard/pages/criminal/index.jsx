@@ -1,38 +1,32 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 
-import {pipGrid} from './Criminal.module.css';
+import {criminalGrid} from './Criminal.module.css';
 import {baseGrid} from '../Prosecutors.module.css';
 
-import { Alerts, ProcessingTime, SuccessIndicators, Today, YourDesk, MainInvestigated, PerformanceRadar  } from '../../sections';
+import {YourDesk, Alerts, ProcessingTime, Today, PerformanceRadar, ProcessListCriminal} from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Criminal() {
   return (
-    <div className={[baseGrid, pipGrid].join(' ')}>
-       <ErrorBoundary> 
-          <Alerts />
-        </ErrorBoundary>
+    <div className={[baseGrid, criminalGrid].join(' ')}>
        <ErrorBoundary> 
           <Today />
         </ErrorBoundary>
         {/* <ErrorBoundary>
           <YourDesk />
         </ErrorBoundary> */}
-        <ErrorBoundary>
-        <MainInvestigated />
+        <ErrorBoundary> 
+          <Alerts />
         </ErrorBoundary>
-         <ErrorBoundary> 
-         <ProcessingTime />
+        <ErrorBoundary> 
+          <ProcessingTime />
+        </ErrorBoundary>
+        <ErrorBoundary> 
+          <ProcessListCriminal />
         </ErrorBoundary>
         <ErrorBoundary> 
          <PerformanceRadar />
-        </ErrorBoundary>
-        <ErrorBoundary> 
-          <SuccessIndicators />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <ProcessingTime />
         </ErrorBoundary>
     </div>
   );

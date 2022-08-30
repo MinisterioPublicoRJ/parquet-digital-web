@@ -24,7 +24,6 @@ import {
 
 function Today() {
   const { user, buildRequestParams, currentOffice } = useAppContext();
-  console.log(currentOffice)
 
   /* STATE */
   const [todayPercent, setTodayPercent] = useState(null);

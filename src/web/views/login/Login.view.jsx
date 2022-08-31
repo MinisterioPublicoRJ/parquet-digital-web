@@ -1,9 +1,10 @@
 import React from 'react';
 import '../../themes/index.css';
-import { loginWrapper, loginInner, loginImageBanner, loginFormArea, loginParquetHeader, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
+import { loginImagesBanner,logoGadgBanner,roboGadgBanner, loginBanner, loginWrapper, loginInner, loginImageBanner, loginFormArea, loginParquetHeader, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
 import { useAppContext } from '../../../core/app/App.context';
-import LoginBanner from '../../assets/imgs/loginPageBanner.png';
 import { useLoginContext } from '../../../core/login/Login.context';
+import LogoBranco from '../../assets/imgs/logo_gadg_branco.png';
+import RoboLogin from '../../assets/imgs/robo_login.png';
 
 const Login = () => {
   const { scaLoginFailed, userExpired } = useAppContext();
@@ -18,13 +19,19 @@ const Login = () => {
     <div className={loginWrapper}>
       <div className={loginInner}>
         <div className={loginImageBanner}>
-          <img
-            height="100%"
-            width="100%"
-            src={LoginBanner}
-            alt="PARQUET DIGITAL - MPRJ Em Mapas. Painel multitarefas criado para auxiliar a gestão, o entendimento do dia-a-dia com base
-            em evidências e uma análise apurada da sua Promotoria."
-          />
+        <div className={loginBanner}>
+         <p>O Parquet Digital encontra-se disponível apenas
+          para <span>Promotorias de justiça de Tutela Coletiva (PJTC)</span> 
+          {" "}e de <span>Investigação Penal (PIPs)</span>. Os Usuários habilitados 
+          para acessá-lo são <strong>Promotores de justiça</strong> e <strong>Assessores jurídicos</strong>.
+         </p>
+         <p>Qualquer dúvida ou problema contactar:</p>
+         <strong>gadg.atendimento@mprj.mp.br</strong>
+        </div>
+        <div className={loginImagesBanner}>
+        <img className={logoGadgBanner} src={LogoBranco} alt="logo-gadg" />
+        <img className={roboGadgBanner} src={RoboLogin} alt="robô-login" />
+        </div>
         </div>
         <form className={loginFormArea} onSubmit={onSubmit}>
           <h2 className={loginParquetHeader}>Parquet Digital</h2>

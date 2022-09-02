@@ -1,10 +1,10 @@
 import React from 'react';
 import '../../themes/index.css';
-import { loginWrapper, loginInner, loginImageBanner, loginFormArea, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
+import { loginImagesBanner,logoGadgBanner,roboGadgBanner, loginBanner, loginWrapper, loginInner, loginImageBanner, loginFormArea, loginParquetHeader, loginInput, loginSubmitBtn, greetings } from './Login.module.css'
 import { useAppContext } from '../../../core/app/App.context';
-import LoginBanner from '../../assets/imgs/loginPageBanner.png';
-import { LoginPromotron } from '../../assets';
 import { useLoginContext } from '../../../core/login/Login.context';
+import LogoBranco from '../../assets/imgs/logo_gadg_branco.png';
+import RoboLogin from '../../assets/imgs/robo_login.png';
 
 const Login = () => {
   const { scaLoginFailed, userExpired } = useAppContext();
@@ -19,16 +19,22 @@ const Login = () => {
     <div className={loginWrapper}>
       <div className={loginInner}>
         <div className={loginImageBanner}>
-          <img
-            height="100%"
-            width="100%"
-            src={LoginBanner}
-            alt="PARQUET DIGITAL - MPRJ Em Mapas. Painel multitarefas criado para auxiliar a gestão, o entendimento do dia-a-dia com base
-            em evidências e uma análise apurada da sua Promotoria."
-          />
+        <div className={loginBanner}>
+         <p>O Parquet Digital encontra-se disponível apenas
+          para <span>Promotorias de justiça de Tutela Coletiva (PJTC)</span> 
+          {" "}e de <span>Investigação Penal (PIPs)</span>. Os Usuários habilitados 
+          para acessá-lo são <strong>Promotores de justiça</strong> e <strong>Assessores jurídicos</strong>.
+         </p>
+         <p>Qualquer dúvida ou problema contactar:</p>
+         <strong>gadg.atendimento@mprj.mp.br</strong>
+        </div>
+        <div className={loginImagesBanner}>
+        <img className={logoGadgBanner} src={LogoBranco} alt="logo-gadg" />
+        <img className={roboGadgBanner} src={RoboLogin} alt="robô-login" />
+        </div>
         </div>
         <form className={loginFormArea} onSubmit={onSubmit}>
-          <LoginPromotron height={150} />
+          <h2 className={loginParquetHeader}>Parquet Digital</h2>
           <input
             className={loginInput}
             placeholder="Usuário"
@@ -48,8 +54,9 @@ const Login = () => {
           </button>
           <div className={greetings}>
             {userExpired && <strong>Sua sessão expirou</strong>}
-            {scaLoginFailed && <strong>Verifique se a senha ou usuário estão corretos!</strong>}
-            {scaLoginFailed && <strong>Atenção: deve ser usada a senha do SCA/contracheque!</strong>}
+            {scaLoginFailed && <strong>Verifique se a senha e usuário estão corretos</strong>}
+            {scaLoginFailed && <strong>e se a sua Promotoria está contemplada.</strong>}
+            {scaLoginFailed && <strong>Em caso de dúvidas, leia as orientações ao lado.</strong>}
 {/*         {autoLoginFailed && <strong>Houve algum erro ao tentar acessar com as informações armazenadas no navegador.</strong>} */}
           </div>
         </form>

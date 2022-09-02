@@ -55,7 +55,7 @@ export const IT = (alertIdGate) => ({
   icon: <ItActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Baixar IT',
   background: '#71D0A4',
-  link: `https://gateprodata.mprj.mp.br/gate/api/Cidadao/downloadPDF/${alertIdGate}`,
+  link: `https://gateprodata.mprj.mp.br/gate/Cidadao/downloadPDF/${alertIdGate}`,
 });
 
 export const CALCULO = () => ({

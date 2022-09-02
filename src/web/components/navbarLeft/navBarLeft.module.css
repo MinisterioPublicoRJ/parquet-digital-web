@@ -1,37 +1,41 @@
 .navBarLeftContent{
     position: fixed;
     inset: 0px;
-    width: 2.713rem;
-    background-color: #154763;
+    width: 2.700rem;
+    background-color: var(--loginBlue);
     transition: 0.3s;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     z-index: 100;
+    height: 100vh;
 }
+
 .navBarLeftContent:hover{
-    width: 11rem;
+    width: 12rem;
 }
+
 .navBarLeftContent button{
     border: none;
     background-color: transparent;
     margin-left: 0.4rem;
 }
+
 .navBarBoxContentTexts{
     display: flex;
-    color: #fff ;
+    color:var(--white) ;
     background: transparent;
     margin-top: 3.25rem;
     font-weight: bold;
     cursor: pointer;
 }
 .navBarBoxContentTexts:hover{
-    color: #154763; 
-    background-color: #BDDFF0;
-    height: 40px;  
+    color: var(--loginBlue); 
+    background-color: var(--lightBlue);
     margin-left: -0.5rem;
-
+    transition: 0.3s;
 }
+
 .navBarBoxContentTexts p{
     position: relative;
     display: block;

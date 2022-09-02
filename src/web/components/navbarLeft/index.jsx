@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import UserManual  from "../../views/dashboard/sections/UserManual/UserManual.view";
 import  Introduction from "../../views/dashboard/sections/Introduction";
+import  MethodologicalNote from "../../views/dashboard/sections/MethodologicalNote/MethodologicalNote.view";
 import { Modal } from "../layoutPieces";
 import EditNoteBlue from '../../assets/imgs/edit_note_blue.png';
 import EditNote from '../../assets/imgs/edit_note.png';
@@ -10,6 +11,8 @@ import UserManualIcon from '../../assets/imgs/userManualIcon.png';
 import UserManualIconBlue from '../../assets/imgs/userManualIconBlue.png';
 import Updates from '../../assets/imgs/updates.png';
 import UpdatesBlue from '../../assets/imgs/updatesBlue.png';
+import Info from '../../assets/imgs/info.png';
+import InfoBlue from '../../assets/imgs/info-azul.png';
 import { navBarLeftContent, navBarBoxContentTexts } from './navBarLeft.module.css'
 import { useAppContext } from '../../../core/app/App.context';
 
@@ -17,6 +20,7 @@ function NavbarLeft() {
   const [modalType, setModalType] = useState(false);
   const { logout } = useAppContext();
   const [hoverUserManual, setHoverUserManual] = useState(false);
+  const [hoverNotaMetodologica, setHoverNotaMetodologica] = useState(false);
   const [hoverLogout, setHoverLogout] = useState(false);
   const [hover, setHover] = useState(false);
 
@@ -35,10 +39,18 @@ function NavbarLeft() {
       <p>Atualizações</p>
     </div>*/}
   {
-    modalType === 'glossary' &&
+    modalType === 'manual' &&
     <Modal withExitButton close={setModalType}>
       <div>
       <UserManual/>
+      </div>
+    </Modal>
+  }
+    {
+    modalType === 'notaMetodologica' &&
+    <Modal withExitButton close={setModalType}>
+      <div>
+      <MethodologicalNote/>
       </div>
     </Modal>
   }
@@ -47,13 +59,26 @@ function NavbarLeft() {
       onFocus={() => setHoverUserManual(true)}
       onMouseOut={() => setHoverUserManual(false)}
       onBlur={() => setHoverUserManual(false)}
-      onClick={() => setModalType('glossary')}
+      onClick={() => setModalType('manual')}
       >
       <button
       type="button">
       <img src={hoverUserManual ? UserManualIconBlue : UserManualIcon} alt="icone-glossario" />
       </button>
     <p>Manual de uso</p>
+  </div>
+  <div className={navBarBoxContentTexts}
+      onMouseOver={() => setHoverNotaMetodologica(true)}
+      onFocus={() => setHoverNotaMetodologica(true)}
+      onMouseOut={() => setHoverNotaMetodologica(false)}
+      onBlur={() => setHoverNotaMetodologica(false)}
+      onClick={() => setModalType('notaMetodologica')}
+      >
+      <button
+      type="button">
+      <img src={hoverNotaMetodologica ? InfoBlue : Info} alt="icone-nota-metodologica" />
+      </button>
+    <p>Nota Metodológica</p>
   </div>
   <div className={navBarBoxContentTexts}
     onMouseOver={() => setHover(true)}
@@ -65,7 +90,7 @@ function NavbarLeft() {
     <button type="button">
     <img src={hover ? EditNoteBlue : EditNote} alt="icone-manual de uso" />
     </button>
-    <p>Glossário</p>
+    <p>Informações</p>
   </div>
   {       
     modalType === 'introduction' &&
@@ -73,7 +98,7 @@ function NavbarLeft() {
       <Introduction />
     </Modal>
   }
-  <div className={ navBarBoxContentTexts } style={{ marginTop: "20.0rem" }}
+  <div className={ navBarBoxContentTexts } style={{ marginTop: "18.300rem" }}
    onMouseOver={() => setHoverLogout(true)}
    onFocus={() => setHoverLogout(true)}
    onMouseOut={() => setHoverLogout(false)}

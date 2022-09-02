@@ -16,7 +16,7 @@ function Introduction() {
     <div className={introOuter}>
       <div className={introductionIntro}>
         <div className={introductionTexts}>
-          <span>Informações importantes</span>
+          <span>Informações</span>
           <h2>PARQUET DIGITAL</h2>
           <p className={introductionSubtitle}>
             O que esperar da ferramenta ? O que ela pode entregar que outras ferramentas não

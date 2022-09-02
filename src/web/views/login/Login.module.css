@@ -17,21 +17,55 @@
   min-width: 730px;
   min-height: 450px;
 }
-
+.loginImagesBanner{
+  display: flex;
+  justify-content: space-between;
+}
+.logoGadgBanner{
+  width: 120px;
+  height: 50px;
+  margin-top: 100px;
+  margin-left: 20px;
+}
+.roboGadgBanner{
+  height: 201px;
+  width: 200px;
+}
 .loginImageBanner {
   display: flex;
   height: 100%;
   flex: 1;
+  background-color: #154763;
+  color: #FCFCFC;
+  flex-direction: column;
+  font-size: 14px;
+  border-radius: 15px 0px 0px 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
 }
-
+.loginBanner{
+  padding: 30px;
+}
+.loginImageBanner span{
+  background-color: #FFCE99;
+  color: #154763;
+}
 .loginFormArea {
   align-items: center;
   display: flex;
   flex: 1;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 80%;
+  height: 85%;
   justify-content: center;
+}
+
+.loginParquetHeader {
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--loginBlue);
+  font-size: var(--titleFontSize);
 }
 
 .loginInput {
@@ -60,7 +94,6 @@
   height: 40px;
   text-transform: uppercase;
   width: 70%;
-  font-family: Segoe UI Semibold;
   margin-top: 20px;
 }
 
@@ -75,6 +108,7 @@
 }
 
 .greetings {
+  margin-top: 10px;
   color: #8a8a8a;
   font-family: var(--defaultFont);
   font-size: 12px;
@@ -87,14 +121,29 @@
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 1025px) {
-  .loginImageBanner {
+  .loginInner {
+    display: flex;
+    flex-direction: column ;
+  }
+  .loginFormArea{
+    width: 100%;
+  }
+  .loginImageBanner{
+    border-radius: 15px 15px 0px 0px;
+
+  }
+  .loginImagesBanner{
     display: none;
   }
 }
 
 /* PHONES */
 @media (max-width: 480px) {
-  .loginImageBanner {
-    display: none;
+  .loginInner {
+    display: flex;
+    flex-direction: column ;
+  }
+  .loginFormArea{
+    width: 100%;
   }
 }

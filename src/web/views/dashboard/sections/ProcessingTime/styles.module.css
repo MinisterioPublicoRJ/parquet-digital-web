@@ -50,6 +50,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   font-size: var(--smallFont);
+  margin-top: 15px;
 }
 
 .ptLegendsHighlight {

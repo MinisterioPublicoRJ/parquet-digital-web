@@ -13,6 +13,7 @@ import Updates from '../../assets/imgs/updates.png';
 import UpdatesBlue from '../../assets/imgs/updatesBlue.png';
 import Info from '../../assets/imgs/info.png';
 import Speed from '../../assets/imgs/speed.png';
+import SpeedBlue from '../../assets/imgs/speed_azul.png';
 import InfoBlue from '../../assets/imgs/info-azul.png';
 import { navBarLeftContent, navBarBoxContentTexts } from './navBarLeft.module.css'
 import { useAppContext } from '../../../core/app/App.context';
@@ -116,7 +117,7 @@ function NavbarLeft() {
       >
       <button
       type="button">
-      <img src={hoverTempoTramitacao ? Speed : Speed} alt="icone-tempo de tramitação" />
+      <img src={hoverTempoTramitacao ? SpeedBlue : Speed} alt="icone-tempo de tramitação" />
       </button>
     <p>Tempo de tramitação</p>
   </div>

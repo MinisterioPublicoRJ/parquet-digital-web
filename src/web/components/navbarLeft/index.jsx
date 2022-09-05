@@ -121,7 +121,7 @@ function NavbarLeft() {
       </button>
     <p>Tempo de tramitação</p>
   </div>
-  <div className={ navBarBoxContentTexts } style={{ marginTop: "18.300rem" }}
+  <div className={ navBarBoxContentTexts } style={{ marginTop: "12.300rem" }}
    onMouseOver={() => setHoverLogout(true)}
    onFocus={() => setHoverLogout(true)}
    onMouseOut={() => setHoverLogout(false)}

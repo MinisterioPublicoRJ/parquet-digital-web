@@ -96,7 +96,7 @@ function ProcessingTime() {
   if (!chartData || loading) {
     return (
       <article className={pageTramitacao}>
-        <div className={ptTexts}>
+        <div className={ptGraph}>
           {loading ? <Spinner size="large" /> : <p>Nenhum dado para exibir</p>}
         </div>
       </article>

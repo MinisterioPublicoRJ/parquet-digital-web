@@ -7,7 +7,6 @@ import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
-import { IntroScreenInterrogation } from '../../../../assets';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual  from "../UserManual/UserManual.view";
 import  Introduction from "../Introduction";
@@ -18,13 +17,12 @@ import {
   todayContent,
   todayTextArea,
   userArea,
-  logoutBtnVisible,
   todayRobotPic,
   todayBtn,
 } from './Today.module.css';
 
 function Today() {
-  const { user, buildRequestParams, currentOffice, logout } = useAppContext();
+  const { user, buildRequestParams, currentOffice } = useAppContext();
 
   /* STATE */
   const [todayPercent, setTodayPercent] = useState(null);

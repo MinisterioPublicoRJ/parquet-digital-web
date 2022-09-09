@@ -1,10 +1,12 @@
 .pageTramitacao {
   grid-area: processingTime;
   display: grid;
-  grid-template-columns: 30% 40% 30%;
   grid-auto-rows: 100%;
   grid-template-areas: 'texts graph mainBoxTime';
   overflow: hidden;
+  width: 730px;
+  padding: 30px;
+  gap: 20px;
 }
 
 .ptTexts {
@@ -48,6 +50,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   font-size: var(--smallFont);
+  margin-top: 15px;
 }
 
 .ptLegendsHighlight {

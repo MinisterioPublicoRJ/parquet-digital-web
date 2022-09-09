@@ -4,7 +4,7 @@ import React from 'react';
 import {tutelaGrid} from './Tutela.module.css';
 import {baseGrid} from '../Prosecutors.module.css';
 
-import {YourDesk, Alerts, ProcessingTime, TablesTutela, Today, PerformanceRadar} from '../../sections';
+import {YourDesk, Alerts, TablesTutela, Today, PerformanceRadar} from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Tutela() {
@@ -18,9 +18,6 @@ function Tutela() {
         </ErrorBoundary>
         <ErrorBoundary> 
           <Alerts />
-        </ErrorBoundary>
-        <ErrorBoundary> 
-          <ProcessingTime />
         </ErrorBoundary>
         <ErrorBoundary> 
           <TablesTutela />

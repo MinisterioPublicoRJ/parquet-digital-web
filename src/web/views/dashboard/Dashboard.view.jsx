@@ -32,7 +32,6 @@ const Dashboard = () => {
         return <AlternativeWelcome />;
     }
   }
-  console.log(type, currentOffice)
 
   return (
     <>

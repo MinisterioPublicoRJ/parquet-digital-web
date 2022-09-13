@@ -33,7 +33,6 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
       data = data || [];
       return data;
     } catch (e) {
-      console.log('error');
       return <p>Erro ao carregar os dados</p>;
     }
   }
@@ -41,7 +40,6 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
   async function getText() {
     let texts;
     let data;
-    console.log('type:', type);
     if (OVERLAY_TEXTS[type]) {
       texts = (
         <>

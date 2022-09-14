@@ -2,7 +2,7 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 
 import {pipGrid} from './Pip.module.css';
-import {baseGrid} from '../PipAndTutela.module.css';
+import {baseGrid} from '../Prosecutors.module.css';
 
 import { Alerts, SuccessIndicators, Today, YourDesk, MainInvestigated, PerformanceRadar  } from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';

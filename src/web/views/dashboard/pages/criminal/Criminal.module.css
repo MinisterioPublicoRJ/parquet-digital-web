@@ -1,0 +1,42 @@
+.criminalGrid {
+  grid-template-areas:
+    'today today radar alerts'
+    'today today radar alerts'
+    'today today radar alerts'
+    'today today radar alerts'
+    'desk desk radar alerts'
+    'desk desk radar alerts'
+    'desk desk processesCriminal processesCriminal'
+    'desk desk processesCriminal processesCriminal'
+    'desk desk processesCriminal processesCriminal'
+    'desk desk processingTime processingTime'
+    'desk desk processingTime processingTime'
+    'desk desk processingTime processingTime';
+}
+
+/* TABLETS */
+@media (min-width: 481px) and (max-width: 1025px) {
+  .criminalGrid {
+    grid-template-areas:
+      'today today'
+      'desk desk'
+      'radar alerts'
+      'processesCriminal processesCriminal'
+      'processingTime processingTime';
+  }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .criminalGrid {
+    grid-template-areas:
+    "today"
+    "desk"
+    "desk"
+    "radar"
+    "alerts"
+    "processesCriminal"
+    "processingTime"
+    "processingTime";
+  }
+}

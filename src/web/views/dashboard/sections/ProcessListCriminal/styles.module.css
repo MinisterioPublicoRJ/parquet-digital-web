@@ -1,0 +1,36 @@
+.tablesCriminalOuter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+.processListTableWrapper h2{
+  color: var(--darkBlue);
+  font-size: var(--sectionTitleFontSize);
+  font-family: var(--titleFont);
+  font-weight: normal;
+  text-transform: uppercase;
+}
+.todayTextAreaCriminal{
+  line-height: 1.5;
+}
+.todayTextAreaCriminal h2{
+  font-size: 15px;
+  background-color: #bddff0;
+  max-width: 70px;
+  color: #374354;
+}
+.todayTextAreaCriminal p{
+  max-width: 250px;
+  color: #A7A0A0;
+}
+.tableCriminalOuter {
+  grid-area: processesCriminal;
+  display: flex;
+  flex-direction: column;
+}
+  
+  
+ 

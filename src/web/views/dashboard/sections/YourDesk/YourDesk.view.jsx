@@ -6,7 +6,7 @@ import GenericTab from './GenericTab';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
 import Api from '../../../../api';
-import { PIP_BUTTONS, TUTELA_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
+import { PIP_BUTTONS, TUTELA_BUTTONS, CRIMINAL_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
 
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
@@ -18,31 +18,26 @@ function YourDesk() {
 
   useEffect(() => {
     getOpenCasesDetails();
+    getButtons();
+    }, []);
+
+  function getButtons() {
+    let buttons;
     switch (currentOffice.tipo) {
       case 1:
-        getTutela();
+        buttons = TUTELA_BUTTONS;
         break;
       case 2:
         document.documentElement.style.setProperty('--buttonBase', 131);
-        getPip();
+        buttons = PIP_BUTTONS;
+        break;
+      case 7:
+        buttons = CRIMINAL_BUTTONS;
         break;
       default:
         break;
     }
-  }, []);
-
-  // function to get name of buttons Tutela
-  function getTutela() {
-    const buttons = TUTELA_BUTTONS;
-    setButtonList(buttons);
-    buttons.forEach((buttonName) => {
-      getDocumentQuantity(buttonName);
-    });
-  }
-
-  // function to get name of buttons Pip
-  function getPip() {
-    const buttons = PIP_BUTTONS;
+    
     setButtonList(buttons);
     buttons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);

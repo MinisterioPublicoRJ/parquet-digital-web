@@ -1,26 +1,29 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 
-import {tutelaGrid} from './Tutela.module.css';
+import {criminalGrid} from './Criminal.module.css';
 import {baseGrid} from '../Prosecutors.module.css';
 
-import {YourDesk, Alerts, TablesTutela, Today, PerformanceRadar} from '../../sections';
+import {YourDesk, Alerts, ProcessingTime, Today, PerformanceRadar, ProcessListCriminal} from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
-function Tutela() {
+function Criminal() {
   return (
-    <div className={[baseGrid, tutelaGrid].join(' ')}>
-        <ErrorBoundary> 
+    <div className={[baseGrid, criminalGrid].join(' ')}>
+       <ErrorBoundary> 
           <Today />
         </ErrorBoundary>
-        <ErrorBoundary>
+         <ErrorBoundary>
           <YourDesk />
-        </ErrorBoundary>
+        </ErrorBoundary> 
         <ErrorBoundary> 
           <Alerts />
         </ErrorBoundary>
         <ErrorBoundary> 
-          <TablesTutela />
+          <ProcessingTime />
+        </ErrorBoundary>
+        <ErrorBoundary> 
+          <ProcessListCriminal />
         </ErrorBoundary>
         <ErrorBoundary> 
          <PerformanceRadar />
@@ -28,4 +31,4 @@ function Tutela() {
     </div>
   );
 }
-export default Tutela;
+export default Criminal;

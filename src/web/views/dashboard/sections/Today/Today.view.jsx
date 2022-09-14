@@ -19,6 +19,7 @@ import {
   userArea,
   todayRobotPic,
   todayBtn,
+  todayTextAreaCriminal
 } from './Today.module.css';
 
 function Today() {
@@ -160,8 +161,14 @@ function Today() {
           </Modal>
         }
         <div className={ todayTextArea }>
-          {apiError === 3 && <p>Sem dados para exibir.</p>}
+          {apiError === 3 && !currentOffice.tipo === 7 && <p>Sem dados para exibir.</p>}
           {loading && <Spinner size="large" />}
+          {currentOffice.tipo === 7 ? (
+            <div className={ todayTextAreaCriminal }>
+              <h2>Em breve</h2>
+              <p>Para mais informações consulte o manual de uso no menu lateral.</p>
+            </div>
+          ): null }
           {todayPercent && !loading ? (
             <p>
               Nos últimos seis meses a sua promotoria foi mais resolutiva que

@@ -38,5 +38,6 @@ export { default as User } from './user';
 export { default as ProcessDetailRobot } from './ProcessDetailRobot';
 export { default as Copy } from './Copy';
 export { default as ProcessFile } from './processFile';
+export { default as CoinIcon } from './coinIcon';
 
 

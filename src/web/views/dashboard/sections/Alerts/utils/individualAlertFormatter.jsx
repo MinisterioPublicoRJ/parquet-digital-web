@@ -15,6 +15,7 @@ import {
   Arrow,
   LogoSaneamento,
   FebtIcon,
+  CoinIcon,
 } from '../../../../../assets';
 
 import {
@@ -147,9 +148,117 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'FEBT':
       return febtConstructor(alert);
 
+    case 'CAVL':
+
+    case 'CAVL1':
+      return cavlConstructor(alert, orgao, cpf, token);
+
     default:
       return {};
   }
+}
+
+function cavlConstructor(alert, orgao, cpf, token) {
+  const { contrato_iditem, contrato, dropdown, alertCode, count, docNum, alertId } = alert;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
+  let message;
+  let actions = [];
+
+  if (dropdown) {
+    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
+    const single = count === 1;
+
+    switch (alertCode) {
+      case 'CAVL':
+        message = (
+          <span>
+            {single ? 'O valor do contrato ' : 'Os valores do contrato '}
+            <strong>{`${contrato}`} </strong>
+            item
+            <strong> {`${contrato_iditem}`}, </strong>
+            {single ? 'merece ' : 'merecem '}
+            sua atenção.
+          </span>
+        );
+        break;
+      case 'CAVL1':
+        message = (
+          <span>
+            {single ? 'O valor do contrato ' : 'Os valores do contrato '}
+            <strong>{`${contrato}`} </strong>
+            item
+            <strong> {`${contrato_iditem}`}, </strong>
+            {single ? 'merece ' : 'merecem '}
+            sua atenção.
+          </span>
+        );
+        break;
+      default:
+        message = (
+          <span>
+            <strong>Aguardando</strong>
+            {single ? ' texto ' : 'textos '}
+            de exemplo para cada alerta
+            <strong> até lá, Hello World!</strong>
+          </span>
+        );
+    }
+  } else {
+    actions = [DETAIL(), DELETE];
+
+    switch (alertCode) {
+      case 'CAVL':
+        actions = [
+          OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
+          COMPRAS({ compId: contrato_iditem, contrato }),
+          DELETE,
+        ];
+        message = (
+          <span>
+            <strong>Aguardando</strong>
+            {single ? ' texto ' : 'textos '}
+            de exemplo para cada alerta
+            <strong> até lá, Hello World!</strong>
+          </span>
+        );
+        break;
+      case 'CAVL1':
+        message = (
+          <span>
+            <strong>Aguardando</strong>
+            {single ? ' texto ' : 'textos '}
+            de exemplo para cada alerta
+            <strong> até lá, Hello World!</strong>
+          </span>
+        );
+        break;
+      default:
+        actions = [
+          OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
+          COMPRAS({ compId: contrato_iditem, contrato }),
+          DELETE,
+        ];
+        message = (
+          <span>
+            <strong>Aguardando</strong>
+            {single ? ' texto ' : 'textos '}
+            de exemplo para cada alerta
+            <strong> até lá, Hello World!</strong>
+          </span>
+        );
+    }
+  }
+
+  return {
+    type: alertCode,
+    docNum,
+    actions,
+    backgroundColor: '#F8BD6C',
+    backgroundColorChild: '#D69F53',
+    icon: <CoinIcon />,
+    key,
+    message,
+  };
 }
 
 function compConstructor(alert, orgao, cpf, token) {

@@ -111,7 +111,7 @@ function ProcessListCriminal({ isActive, setInvestigatedProfile, setProcessDetai
     <div className={tableCriminalOuter}>
       <div className={processListTableWrapper}>
       <h2>Lista de processos criminais</h2>
-        {/* {!processListData.length && currentOffice.tipo === 7 ? (
+        {!processListData.length && currentOffice.tipo === 7 ? (
           <p>Nenhum processo para exibir</p>
         ) : (
           <>
@@ -123,14 +123,14 @@ function ProcessListCriminal({ isActive, setInvestigatedProfile, setProcessDetai
               currentPage={page}
             />
           </>
-        )} */}
+        )} 
       </div>
-      {currentOffice.tipo === 7  ? (
+      { /* {currentOffice.tipo === 7  ? (
         <div className={todayTextAreaCriminal}>
           <h2>Em breve</h2>
           <p>Para mais informações consulte o manual de uso no menu lateral.</p>
         </div>
-      ) : null}
+      ) : null}       */}
     </div>
   );
 }

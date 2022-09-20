@@ -6,12 +6,12 @@
     'today today radar alerts'
     'desk desk radar alerts'
     'desk desk radar alerts'
-    'desk desk processesCriminal processesCriminal'
-    'desk desk processesCriminal processesCriminal'
-    'desk desk processesCriminal processesCriminal'
-    'desk desk processingTime processingTime'
-    'desk desk processingTime processingTime'
-    'desk desk processingTime processingTime';
+    'desk desk criminalProcesses criminalProcesses'
+    'desk desk criminalProcesses criminalProcesses'
+    'desk desk criminalProcesses criminalProcesses'
+    'desk desk criminalProcesses criminalProcesses'
+    'desk desk criminalProcesses criminalProcesses'
+    'desk desk criminalProcesses criminalProcesses';
 }
 
 /* TABLETS */
@@ -21,8 +21,8 @@
       'today today'
       'desk desk'
       'radar alerts'
-      'processesCriminal processesCriminal'
-      'processingTime processingTime';
+      'criminalProcesses criminalProcesses'
+      'criminalProcesses criminalProcesses';
   }
 }
 
@@ -35,8 +35,8 @@
     "desk"
     "radar"
     "alerts"
-    "processesCriminal"
-    "processingTime"
-    "processingTime";
+    "criminalProcesses"
+    "criminalProcesses"
+    "criminalProcesses";
   }
 }

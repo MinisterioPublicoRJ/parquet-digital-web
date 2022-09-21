@@ -9,7 +9,7 @@ import EditNoteIcon from '../../assets/svg/EditNoteIcon';
 import SpeedIcon from '../../assets/svg/SpeedIcon';
 import LogoutIcon from '../../assets/svg/LogoutIcon';
 import UpdatesIcon from '../../assets/svg/UpdatesIcon';
-import { navBarLeftContent, navBarBoxContentTexts } from './navBarLeft.module.css';
+import { navBarLeftContent, navBarBoxContentTexts,logOutPositionDiv } from './navBarLeft.module.css';
 import { useAppContext } from '../../../core/app/App.context';
 import ProcessingTime from '../../views/dashboard/sections/ProcessingTime';
 
@@ -43,88 +43,92 @@ function NavbarLeft() {
           </div>
         </Modal>
       )}
-      <div
-        className={navBarBoxContentTexts}
-        onMouseOver={() => setHoverUserManual(true)}
-        onFocus={() => setHoverUserManual(true)}
-        onMouseOut={() => setHoverUserManual(false)}
-        onBlur={() => setHoverUserManual(false)}
-        onClick={() => setModalType('manual')}
-      >
-        <button type="button">
-          {hoverUserManual ? <UserManualIcon fill="#154763" /> : <UserManualIcon />}
-        </button>
-        <p>Manual de uso</p>
+      <div>
+        <div
+          className={navBarBoxContentTexts}
+          onMouseOver={() => setHoverUserManual(true)}
+          onFocus={() => setHoverUserManual(true)}
+          onMouseOut={() => setHoverUserManual(false)}
+          onBlur={() => setHoverUserManual(false)}
+          onClick={() => setModalType('manual')}
+        >
+          <button type="button">
+            {hoverUserManual ? <UserManualIcon fill="#154763" /> : <UserManualIcon />}
+          </button>
+          <p>Manual de uso</p>
+        </div>
+        {modalType === 'notaMetodologica' && (
+          <Modal withExitButton close={setModalType}>
+            <div>
+              <MethodologicalNote />
+            </div>
+          </Modal>
+        )}
+        <div
+          className={navBarBoxContentTexts}
+          onMouseOver={() => setHoverNotaMetodologica(true)}
+          onFocus={() => setHoverNotaMetodologica(true)}
+          onMouseOut={() => setHoverNotaMetodologica(false)}
+          onBlur={() => setHoverNotaMetodologica(false)}
+          onClick={() => setModalType('notaMetodologica')}
+        >
+          <button type="button">
+            {hoverNotaMetodologica ? <InfoIcon fill="#154763" /> : <InfoIcon />}
+          </button>
+          <p>Nota Metodológica</p>
+        </div>
+        {modalType === 'introduction' && (
+          <Modal withExitButton close={setModalType}>
+            <Introduction />
+          </Modal>
+        )}
+        <div
+          className={navBarBoxContentTexts}
+          onMouseOver={() => setHover(true)}
+          onFocus={() => setHover(true)}
+          onMouseOut={() => setHover(false)}
+          onBlur={() => setHover(false)}
+          onClick={() => setModalType('introduction')}
+        >
+          <button className="button" type="button">
+            {hover ? <EditNoteIcon fill="#154763" /> : <EditNoteIcon />}
+          </button>
+          <p>Informações</p>
+        </div>
+        {modalType === 'tramitacao' && (
+          <Modal withExitButton close={setModalType}>
+            <ProcessingTime />
+          </Modal>
+        )}
+        <div
+          className={navBarBoxContentTexts}
+          onMouseOver={() => setHoverTempoTramitacao(true)}
+          onFocus={() => setHoverTempoTramitacao(true)}
+          onMouseOut={() => setHoverTempoTramitacao(false)}
+          onBlur={() => setHoverTempoTramitacao(false)}
+          onClick={() => setModalType('tramitacao')}
+        >
+          <button type="button">
+            {hoverTempoTramitacao ? <SpeedIcon fill="#154763" /> : <SpeedIcon />}
+          </button>
+          <p>Tempo de tramitação</p>
+        </div>
       </div>
-      {modalType === 'notaMetodologica' && (
-        <Modal withExitButton close={setModalType}>
-          <div>
-            <MethodologicalNote />
-          </div>
-        </Modal>
-      )}
-      <div
-        className={navBarBoxContentTexts}
-        onMouseOver={() => setHoverNotaMetodologica(true)}
-        onFocus={() => setHoverNotaMetodologica(true)}
-        onMouseOut={() => setHoverNotaMetodologica(false)}
-        onBlur={() => setHoverNotaMetodologica(false)}
-        onClick={() => setModalType('notaMetodologica')}
-      >
-        <button type="button">
-          {hoverNotaMetodologica ? <InfoIcon fill="#154763" /> : <InfoIcon />}
-        </button>
-        <p>Nota Metodológica</p>
-      </div>
-      {modalType === 'introduction' && (
-        <Modal withExitButton close={setModalType}>
-          <Introduction />
-        </Modal>
-      )}
-      <div
-        className={navBarBoxContentTexts}
-        onMouseOver={() => setHover(true)}
-        onFocus={() => setHover(true)}
-        onMouseOut={() => setHover(false)}
-        onBlur={() => setHover(false)}
-        onClick={() => setModalType('introduction')}
-      >
-        <button className="button" type="button">
-          {hover ? <EditNoteIcon fill="#154763" /> : <EditNoteIcon />}
-        </button>
-        <p>Informações</p>
-      </div>
-      {modalType === 'tramitacao' && (
-        <Modal withExitButton close={setModalType}>
-          <ProcessingTime />
-        </Modal>
-      )}
-      <div
-        className={navBarBoxContentTexts}
-        onMouseOver={() => setHoverTempoTramitacao(true)}
-        onFocus={() => setHoverTempoTramitacao(true)}
-        onMouseOut={() => setHoverTempoTramitacao(false)}
-        onBlur={() => setHoverTempoTramitacao(false)}
-        onClick={() => setModalType('tramitacao')}
-      >
-        <button type="button">
-          {hoverTempoTramitacao ? <SpeedIcon fill="#154763" /> : <SpeedIcon />}
-        </button>
-        <p>Tempo de tramitação</p>
-      </div>
-      <div
-        className={navBarBoxContentTexts}
-        style={{ marginTop: '12.300rem' }}
-        onMouseOver={() => setHoverLogout(true)}
-        onFocus={() => setHoverLogout(true)}
-        onMouseOut={() => setHoverLogout(false)}
-        onBlur={() => setHoverLogout(false)}
-        onClick={logout}
-      >
-        <button type="button">
-          {hoverLogout ? <LogoutIcon fill="#154763" /> : <LogoutIcon />}
-        </button>
-        <p>Sair</p>
+      <div className={logOutPositionDiv}>
+        <div
+          className={navBarBoxContentTexts}
+          style={{ marginTop: '12.300rem' }}
+          onMouseOver={() => setHoverLogout(true)}
+          onFocus={() => setHoverLogout(true)}
+          onMouseOut={() => setHoverLogout(false)}
+          onBlur={() => setHoverLogout(false)}
+          onClick={logout}
+        >
+          <button type="button">
+            {hoverLogout ? <LogoutIcon fill="#154763" /> : <LogoutIcon />}
+          </button>
+          <p>Sair</p>
+        </div>
       </div>
     </div>
   );

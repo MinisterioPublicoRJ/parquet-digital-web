@@ -5,6 +5,7 @@
   background-color: var(--loginBlue);
   transition: 0.3s;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   overflow: hidden;
   z-index: 100;
@@ -45,5 +46,9 @@
   display: block;
   white-space: nowrap;
   text-align: center;
-  margin-left: 0.6rem;
+  margin-left: .5rem;
+}
+
+.logOutPositionDiv {
+  margin-bottom: 2.9375rem;
 }

@@ -5,6 +5,7 @@ import {criminalGrid} from './Criminal.module.css';
 import {baseGrid} from '../Prosecutors.module.css';
 
 import {YourDesk, Alerts, ProcessingTime, Today, PerformanceRadar, ProcessListCriminal} from '../../sections';
+import ProcessList from '../../sections/TablesTutela/ProcessList'
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Criminal() {
@@ -18,9 +19,6 @@ function Criminal() {
         </ErrorBoundary> 
         <ErrorBoundary> 
           <Alerts />
-        </ErrorBoundary>
-        <ErrorBoundary> 
-          <ProcessingTime />
         </ErrorBoundary>
         <ErrorBoundary> 
           <ProcessListCriminal />

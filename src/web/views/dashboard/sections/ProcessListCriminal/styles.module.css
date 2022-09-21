@@ -6,13 +6,6 @@
   opacity: 0;
   transition: opacity 0.3s linear;
 }
-.processListTableWrapper h2{
-  color: var(--darkBlue);
-  font-size: var(--sectionTitleFontSize);
-  font-family: var(--titleFont);
-  font-weight: normal;
-  text-transform: uppercase;
-}
 .todayTextAreaCriminal{
   line-height: 1.5;
 }
@@ -27,10 +20,14 @@
   color: #A7A0A0;
 }
 .tableCriminalOuter {
-  grid-area: processesCriminal;
+  grid-area: criminalProcesses;
   display: flex;
   flex-direction: column;
 }
-  
-  
+.tableBody {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+}
  

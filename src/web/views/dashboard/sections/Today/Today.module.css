@@ -19,18 +19,23 @@
   width: 65%;
   z-index: 1;
 }
-.todayTextAreaCriminal{
+.todayTextAreaInDevelopment{
   line-height: 1.5;
+  border: dashed 2px var(--lightGray);
+  width: 72%;
+  height: 72%;
+  padding: 0.7em;
 }
-.todayTextAreaCriminal h2{
-  font-size: 15px;
-  background-color: #bddff0;
-  max-width: 70px;
-  color: #374354;
+.todayTextAreaInDevelopment h2{
+  font-size: 14px;
+  color: var(--darkBlue);
 }
-.todayTextAreaCriminal p{
+.todayTextAreaInDevelopment p{
+  color: var(--dark);
   max-width: 250px;
-  color: #A7A0A0;
+}
+.todayTextAreaInDevelopment mark {
+  background-color: var(--lightBlue);
 }
 .todayContent p,
 .todayContent h2 {
@@ -186,7 +191,7 @@
 
 .todayBtn:hover {
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
 }
 
 /* TABLETS */

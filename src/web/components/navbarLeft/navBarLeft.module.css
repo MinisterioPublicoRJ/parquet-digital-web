@@ -1,45 +1,54 @@
-.navBarLeftContent{
-    position: fixed;
-    inset: 0px;
-    width: 2.700rem;
-    background-color: var(--loginBlue);
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 100;
-    height: 100vh;
+.navBarLeftContent {
+  position: fixed;
+  inset: 0px;
+  width: 2.7rem;
+  background-color: var(--loginBlue);
+  transition: 0.3s;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 100;
+  height: 100vh;
 }
 
-.navBarLeftContent:hover{
-    width: 12rem;
+.navBarLeftContent:hover {
+  width: 12rem;
 }
 
-.navBarLeftContent button{
-    border: none;
-    background-color: transparent;
-    margin-left: 0.4rem;
+.navBarLeftContent button {
+  border: none;
+  background-color: transparent;
 }
 
-.navBarBoxContentTexts{
-    display: flex;
-    color:var(--white) ;
-    background: transparent;
-    margin-top: 3.25rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-.navBarBoxContentTexts:hover{
-    color: var(--loginBlue); 
-    background-color: var(--lightBlue);
-    margin-left: -0.5rem;
-    transition: 0.3s;
+.navBarBoxContentTexts {
+  display: flex;
+  color: var(--white);
+  background: transparent;
+  margin-top: 3.25rem;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.navBarBoxContentTexts p{
-    position: relative;
-    display: block;
-    white-space: nowrap;
-    text-align: center;
-    margin-left: 0.6rem ;
+.navBarBoxContentTexts:hover {
+  color: var(--loginBlue);
+  background-color: var(--lightBlue);
+  transition: all 0.3s;
+}
+
+/* Align the logout button in the center */
+.navBarBoxContentTexts:last-child button {
+  margin-left: 0.2rem;
+}
+
+.navBarBoxContentTexts p {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+  text-align: center;
+  margin-left: .5rem;
+}
+
+.logOutPositionDiv {
+  margin-bottom: 2.9375rem;
 }

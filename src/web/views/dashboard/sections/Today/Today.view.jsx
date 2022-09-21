@@ -165,8 +165,8 @@ function Today() {
           {loading && <Spinner size="large" />}
           {currentOffice.tipo === 7 ? (
             <div className={ todayTextAreaCriminal }>
-              <h2>Em breve</h2>
-              <p>Para mais informações consulte o manual de uso no menu lateral.</p>
+              <h2>Em desenvolvimento</h2>
+              <p>Para mais informações, consulte o manual de uso no menu lateral.</p>
             </div>
           ): null }
           {todayPercent && !loading ? (
@@ -193,9 +193,6 @@ function Today() {
               <span style={{ fontWeight: 'bold' }}>{` ${entriesData.amount} `}</span>
               novos feitos.
             </p>
-          )}
-          {entriesData && entriesData === 'empty' && !loading && (
-            <p>Percebi que ainda não temos vistas abertas para hoje!</p>
           )}
         </div>
       </div>

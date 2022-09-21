@@ -21,16 +21,17 @@
 }
 .todayTextAreaCriminal{
   line-height: 1.5;
+  border: dashed;
 }
 .todayTextAreaCriminal h2{
   font-size: 15px;
-  background-color: #bddff0;
   max-width: 70px;
-  color: #374354;
+  color: var(--darkBlue);
 }
 .todayTextAreaCriminal p{
   max-width: 250px;
   color: #A7A0A0;
+  background-color: var(--lightBlue);
 }
 .todayContent p,
 .todayContent h2 {
@@ -186,7 +187,7 @@
 
 .todayBtn:hover {
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
 }
 
 /* TABLETS */

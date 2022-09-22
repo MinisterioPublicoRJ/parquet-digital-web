@@ -937,8 +937,9 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
 }
 
 function roOccurrence(alert, orgao, cpf, token) {
-  const { dropdown, alertCode, count, daysPassed, alertId, alertIdExtra } = alert;
-  const dpNumber = alertIdExtra;
+  const { dropdown, alertCode, count, daysPassed, alertId, docNum, hierarchy } = alert;
+  const dp = hierarchy;
+  const dpNumber = dp?.replace(/[^0-9]/g,'');  
   const unsentOcurrences = daysPassed;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
@@ -956,11 +957,10 @@ function roOccurrence(alert, orgao, cpf, token) {
   } else {
     actions = [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE];
     const single = unsentOcurrences === 1;
-    action = [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE];
     message = (
       <span>
         <strong>{` ${unsentOcurrences} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${dpNumber}`}ª DP</strong> não chegaram no MPRJ
+        de ocorrência da <strong>{` ${dp}`}</strong> não chegaram no MPRJ
       </span>
     );
   }

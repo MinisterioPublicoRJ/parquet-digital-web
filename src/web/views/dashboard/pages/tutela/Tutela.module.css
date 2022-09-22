@@ -9,9 +9,9 @@
     'desk desk processes processes '
     'desk desk processes processes '
     'desk desk processes processes '
-    'desk desk processingTime processingTime'
-    'desk desk processingTime processingTime'
-    'desk desk processingTime processingTime';
+    'desk desk processes processes'
+    'desk desk processes processes'
+    'desk desk processes processes';
 }
 
 /* TABLETS */
@@ -22,7 +22,7 @@
       'desk desk'
       'radar alerts'
       'processes processes'
-      'processingTime processingTime';
+      'processes processes';
   }
 }
 
@@ -36,7 +36,7 @@
     "radar"
     "alerts"
     "processes"
-    "processingTime"
-    "processingTime";
+    "processes "
+    "processes";
   }
 }

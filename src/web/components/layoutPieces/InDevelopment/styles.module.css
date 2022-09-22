@@ -1,0 +1,18 @@
+.textAreaInDevelopment {
+  line-height: 1.5;
+  border: dashed 2px var(--lightGray);
+  width: 72%;
+  height: 72%;
+  padding: 0.7em;
+}
+.textAreaInDevelopment h2 {
+  font-size: 14px;
+  color: var(--darkBlue);
+}
+.textAreaInDevelopment p {
+  color: var(--dark);
+  max-width: 250px;
+}
+.textAreaInDevelopment mark {
+  background-color: var(--lightBlue);
+}

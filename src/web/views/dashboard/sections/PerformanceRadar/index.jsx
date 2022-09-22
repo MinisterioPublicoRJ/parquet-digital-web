@@ -13,7 +13,7 @@ import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { RadarArrow } from '../../../../assets';
-import { Spinner, SectionTitle } from '../../../../components/layoutPieces';
+import { Spinner, SectionTitle, InDevelopment } from '../../../../components/layoutPieces';
 import {
   NORTH_LABEL_PROPS,
   WEST_LABEL_PROPS,
@@ -181,10 +181,7 @@ function PerformanceRadar() {
       </div>
       {loading && !dataError && <Spinner size="large" />}
       {currentOffice.tipo === 7 ? (
-        <div className={radarTextAreaCriminal}>
-          <h2>Em breve</h2>
-          <p>Para mais informações consulte o manual de uso no menu lateral.</p>
-        </div>
+        <InDevelopment />
       ) : null}
       {dataError && !(currentOffice.tipo === 7) && 'Sem dados para exibir'}
       {!loading && !dataError && (

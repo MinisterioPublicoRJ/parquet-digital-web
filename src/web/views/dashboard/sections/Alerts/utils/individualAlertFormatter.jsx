@@ -938,7 +938,6 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
 
 function roOccurrence(alert, orgao, cpf, token) {
   const { dropdown, alertCode, count, daysPassed, alertId, docNum, hierarchy } = alert;
-  console.log('alert: ', alert);
   const dp = hierarchy;
   const dpNumber = dp?.replace(/[^0-9]/g,'');  
   const unsentOcurrences = daysPassed;

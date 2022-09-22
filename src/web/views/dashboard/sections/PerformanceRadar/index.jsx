@@ -186,13 +186,13 @@ function PerformanceRadar() {
           <p>Para mais informações consulte o manual de uso no menu lateral.</p>
         </div>
       ) : null}
-      {dataError && !currentOffice.tipo === 7 && 'Sem dados para exibir'}
+      {dataError && !(currentOffice.tipo === 7) && 'Sem dados para exibir'}
       {!loading && !dataError && (
         <figure className={radarWrapper}>
           <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
         </figure>
       )}
-      {!currentOffice.tipo === 7 && (
+      {!(currentOffice.tipo === 7) && (
         <figcaption className={radarSubtitles}>
           <div className={`${radarSubtitlesItem} ${radarSubtitlesItemYourData}`}>
             Sua Promotoria

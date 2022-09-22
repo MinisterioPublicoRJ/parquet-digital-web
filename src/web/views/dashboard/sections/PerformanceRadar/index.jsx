@@ -7,7 +7,7 @@ import {
   radarSubtitlesItem,
   radarSubtitlesItemYourData,
   radarSubtitlesItemMPData,
-  radarTextAreaCriminal
+  radarTextAreaCriminal,
 } from './styles.module.css';
 import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
@@ -23,7 +23,7 @@ import {
   TUTELA_CATEGORIES,
   PIP_CATEGORIES,
 } from './radarConstants';
-import RadarModal from "./RadarModal"
+import RadarModal from './RadarModal';
 import { Modal } from '../../../../components';
 
 function PerformanceRadar() {
@@ -37,7 +37,6 @@ function PerformanceRadar() {
   const [isRadarModalOpen, setIsRadarModalOpen] = useState(false);
   const [radarModalData, setRadarModalData] = useState();
   const [selectedElement, setSelectedElement] = useState({});
-
 
   useEffect(() => {
     getPerformanceData();
@@ -103,7 +102,7 @@ function PerformanceRadar() {
   }
 
   function generateUserData(categories, rawData) {
-    return categories.map(cat => ({
+    return categories.map((cat) => ({
       x: cat,
       y: rawData[cat].percentages * 100,
       label: rawData[cat].numbers,
@@ -111,7 +110,7 @@ function PerformanceRadar() {
   }
 
   function generateCompData(categories, rawData) {
-    return categories.map(cat => {
+    return categories.map((cat) => {
       const { averages, maxValues } = rawData[cat];
       return { x: cat, y: 100 * (averages / (maxValues || 1)) };
     });
@@ -119,7 +118,7 @@ function PerformanceRadar() {
 
   function generateLabels(graphData, organType) {
     const categories = organType === 1 ? TUTELA_CATEGORIES : PIP_CATEGORIES;
-    const labels = categories.map(cat => {
+    const labels = categories.map((cat) => {
       let positionProps;
       let label;
       const maxValues = graphData[cat] ? graphData[cat].maxValues : '-';
@@ -176,43 +175,45 @@ function PerformanceRadar() {
   }
 
   return (
-    <article className={ pageRadarDashboard }>
+    <article className={pageRadarDashboard}>
       <div>
         <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
       </div>
       {loading && !dataError && <Spinner size="large" />}
       {currentOffice.tipo === 7 ? (
-        <div className={ radarTextAreaCriminal }>
-            <h2>Em breve</h2>
-            <p>Para mais informações consulte o manual de uso no menu lateral.</p>
+        <div className={radarTextAreaCriminal}>
+          <h2>Em breve</h2>
+          <p>Para mais informações consulte o manual de uso no menu lateral.</p>
         </div>
-      ): null }
+      ) : null}
       {dataError && !currentOffice.tipo === 7 && 'Sem dados para exibir'}
       {!loading && !dataError && (
-        <figure className={ radarWrapper }>
+        <figure className={radarWrapper}>
           <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
         </figure>
       )}
-      <figcaption className={ radarSubtitles }>
-        <div className={`${ radarSubtitlesItem } ${ radarSubtitlesItemYourData }`}>Sua Promotoria</div>
-        <div className={`${ radarSubtitlesItem } ${ radarSubtitlesItemMPData }`}>Perfil do MP</div>
-        <button
-          type="button"
-          className={ radarSubtitlesItem }
-          onClick={handleCompareButton}
-        >
-          <RadarArrow height={15} width={15} />
-          Comparativo
-        </button>
-      </figcaption>
+      {!currentOffice.tipo === 7 && (
+        <figcaption className={radarSubtitles}>
+          <div className={`${radarSubtitlesItem} ${radarSubtitlesItemYourData}`}>
+            Sua Promotoria
+          </div>
+          <div className={`${radarSubtitlesItem} ${radarSubtitlesItemMPData}`}>Perfil do MP</div>
+          <button type="button" className={radarSubtitlesItem} onClick={handleCompareButton}>
+            <RadarArrow height={15} width={15} />
+            Comparativo
+          </button>
+        </figcaption>
+      )}
 
-      { 
-        isRadarModalOpen && 
-        <Modal withExitButton previousElement={selectedElement} close={() => setIsRadarModalOpen(false)}>
+      {isRadarModalOpen && (
+        <Modal
+          withExitButton
+          previousElement={selectedElement}
+          close={() => setIsRadarModalOpen(false)}
+        >
           <RadarModal compareData={radarModalData} />
         </Modal>
-
-      }
+      )}
     </article>
   );
 }

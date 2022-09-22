@@ -6,7 +6,7 @@ import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
-import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
+import { MainTitle, Modal, Spinner, InDevelopment } from '../../../../components/layoutPieces';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual from '../UserManual/UserManual.view';
 import Introduction from '../Introduction';
@@ -19,7 +19,6 @@ import {
   userArea,
   todayRobotPic,
   todayBtn,
-  todayTextAreaInDevelopment,
 } from './Today.module.css';
 
 function Today() {
@@ -143,12 +142,6 @@ function Today() {
   }
 
   const loading = !(apiError === 3) && !(todayPercent || collectionAnalysis || entriesData);
-  const inDevelopment = (
-    <div className={todayTextAreaInDevelopment}>
-      <h2>Em desenvolvimento: </h2>
-      <p><mark>Para mais informações, consulte o manual de uso no menu lateral.</mark></p>
-    </div>
-  );
 
   const todayText = (
     <>
@@ -206,7 +199,7 @@ function Today() {
             <OfficeSelector close={setModalType} />
           </Modal>
         )}
-        <div className={todayTextArea}>{currentOffice.tipo === 7 ? inDevelopment : todayText}</div>
+        <div className={todayTextArea}>{currentOffice.tipo === 7 ? <InDevelopment /> : todayText}</div>
       </div>
       {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (
         <>

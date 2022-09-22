@@ -15,7 +15,7 @@ export const BUTTON_TEXTS = {
   pics: 'PIC',
   inquiries: 'inquéritos',
   aisps: 'Na área de atribuição',
-  newDocs: 'Novos documentos',
+  newDocs: 'Novos documentos dos últimos 30 dias',
 };
 
 export const BUTTON_DICT = {

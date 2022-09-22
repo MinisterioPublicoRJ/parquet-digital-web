@@ -19,24 +19,6 @@
   width: 65%;
   z-index: 1;
 }
-.todayTextAreaInDevelopment{
-  line-height: 1.5;
-  border: dashed 2px var(--lightGray);
-  width: 72%;
-  height: 72%;
-  padding: 0.7em;
-}
-.todayTextAreaInDevelopment h2{
-  font-size: 14px;
-  color: var(--darkBlue);
-}
-.todayTextAreaInDevelopment p{
-  color: var(--dark);
-  max-width: 250px;
-}
-.todayTextAreaInDevelopment mark {
-  background-color: var(--lightBlue);
-}
 .todayContent p,
 .todayContent h2 {
   margin: 0;

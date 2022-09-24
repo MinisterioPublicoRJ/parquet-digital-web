@@ -22,3 +22,7 @@
 .GenericTabLowerRight {
   flex: 1;
 }
+
+.NoData {
+  margin-top: 4.2em;
+}

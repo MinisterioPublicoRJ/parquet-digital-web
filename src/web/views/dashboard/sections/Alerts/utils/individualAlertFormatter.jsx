@@ -10,13 +10,12 @@ import {
   IconVd,
   Va,
   Tjrj,
-  IconContratacoes,
   Ro,
   Arrow,
   LogoSaneamento,
   FebtIcon,
-  CoinIcon,
-  IspsPig,
+  PigCAVL,
+  PainelCOVID,
 } from '../../../../../assets';
 
 import {
@@ -113,6 +112,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'COMP':
       return compConstructor(alert, orgao, cpf, token);
 
+    case 'CAVL':
+      return cavlConstructor(alert, orgao, cpf, token);
+
     //indicadores de saneamento
     case 'ISPS':
       return ispsConstructor(alert, orgao, cpf, token);
@@ -149,116 +151,49 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'FEBT':
       return febtConstructor(alert);
 
-    case 'CAVL':
-
-    case 'CAVL1':
-      return cavlConstructor(alert, orgao, cpf, token);
-
     default:
       return {};
   }
 }
 
 function cavlConstructor(alert, orgao, cpf, token) {
-  const { contrato_iditem, contrato, dropdown, alertCode, count, docNum, alertId } = alert;
+  const { contrato_iditem, contrato, item, iditem, dropdown, alertCode, count, alertId } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
-  const single = count === 1;
 
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
-
-    switch (alertCode) {
-      case 'CAVL':
-        message = (
-          <span>
-            {count}
-            {single ? ' compra com preço atípico foi verificada ' : ' compras com preços atípicos foram verificadas '}
-            <strong>{`${contrato}`} </strong>
-            em contratos públicos.
-          </span>
-        );
-        break;
-      case 'CAVL1':
-        message = (
-          <span>
-            {count}
-            {single ? ' compra com preço atípico foi verificada ' : ' compras com preços atípicos foram verificadas '}
-            <strong>{`${contrato}`} </strong>
-            em contratos públicos.
-          </span>
-        );
-        break;
-      default:
-        message = (
-          <span>
-            {count}
-            {single ? ' compra com preço atípico foi verificada ' : ' compras com preços atípicos foram verificadas '}
-            <strong>{`${contrato}`} </strong>
-            em contratos públicos.
-          </span>
-        );
-    }
+    const single = count === 1;
+    message = (
+      <span>
+        <strong> {`${count}`} </strong>
+        {`${single ? 'compra com preço atípico foi verificada ' : 'compras com preços atípicos foram verificadas '}`}
+        em contratos públicos.
+      </span>
+    );
   } else {
-    actions = [DETAIL(), DELETE];
-
-    switch (alertCode) {
-      case 'CAVL':
-        actions = [
-          OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
-          COMPRAS({ compId: contrato_iditem, contrato }),
-          DELETE,
-        ];
-        message = (
-          <span>
-            {single ? 'O valor do contrato ' : 'Os valores do contrato '}
-            <strong>{`${contrato}`} </strong>
-            item
-            <strong> {`${contrato_iditem}`}, </strong>
-            {single ? 'merece ' : 'merecem '}
-            sua atenção.
-          </span>
-        );
-        break;
-      case 'CAVL1':
-        message = (
-          <span>
-            {single ? 'O valor do contrato ' : 'Os valores do contrato '}
-            <strong>{`${contrato}`} </strong>
-            item
-            <strong> {`${contrato_iditem}`}, </strong>
-            {single ? 'merece ' : 'merecem '}
-            sua atenção.
-          </span>
-        );
-        break;
-      default:
-        actions = [
-          OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
-          COMPRAS({ compId: contrato_iditem, contrato }),
-          DELETE,
-        ];
-        message = (
-          <span>
-            {single ? 'O valor do contrato ' : 'Os valores do contrato '}
-            <strong>{`${contrato}`} </strong>
-            item
-            <strong> {`${contrato_iditem}`}, </strong>
-            {single ? 'merece ' : 'merecem '}
-            sua atenção.
-          </span>
-        );
-    }
+    actions = [
+      OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
+      COMPRAS({ compId: contrato_iditem, contrato }),
+      DELETE,
+    ];
+    message = (
+      <span>
+        Os valores do contrato
+        <strong>{` ${contrato} `}</strong>, item
+        <strong>{` ${item} `}</strong>,
+        apresentaram possíveis sobrepreços.
+      </span>
+    );
   }
 
   return {
     type: alertCode,
-    docNum,
     actions,
     backgroundColor: '#F8BD6C',
     backgroundColorChild: '#D69F53',
-    icon: 'CAVL' ? <CoinIcon /> : <IspsPig />,
+    icon: <PigCAVL />,
     key,
     message,
   };
@@ -275,9 +210,13 @@ function compConstructor(alert, orgao, cpf, token) {
     const single = count === 1;
     message = (
       <span>
-        <strong> {`${count}`} </strong>
-        {`${single ? 'compra' : 'compras'}`} <strong>suspeitas</strong> foram verificadas em
-        contratos públicos
+        {`${single ? 'O valor ' : 'Os valores '}`}
+        do contrato
+        {` ${contrato}, `}
+        item
+        {` ${item}, `}
+        realizado <strong>durante a emergência sanitária de COVID-19 </strong>,
+        apresentam <strong>possíveis sobrepreços</strong>.
       </span>
     );
   } else {
@@ -290,7 +229,7 @@ function compConstructor(alert, orgao, cpf, token) {
       <span>
         Os valores do contrato
         <strong>{` ${contrato} `}</strong>, itens:
-        <strong>{` ${item.substring(0, 40).toLowerCase()}... `}</strong>
+        <strong>{` ${item} `}</strong>
         merecem sua atenção.
       </span>
     );
@@ -301,7 +240,7 @@ function compConstructor(alert, orgao, cpf, token) {
     actions,
     backgroundColor: '#F8BD6C',
     backgroundColorChild: '#D69F53',
-    icon: <IconContratacoes />,
+    icon: <PainelCOVID />,
     key,
     message,
   };
@@ -975,7 +914,7 @@ function gateConstructor(alert, orgao, cpf, token) {
   let actions = [];
 
   if (dropdown) {
-    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({orgao, alertCode, token }))];
+    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
     const single = count === 1;
     message = (
       <span>
@@ -1047,8 +986,9 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
 }
 
 function roOccurrence(alert, orgao, cpf, token) {
-  const { dropdown, alertCode, count, daysPassed, alertId, alertIdExtra } = alert;
-  const dpNumber = alertIdExtra;
+  const { dropdown, alertCode, count, daysPassed, alertId, docNum, hierarchy } = alert;
+  const dp = hierarchy;
+  const dpNumber = dp?.replace(/[^0-9]/g, '');
   const unsentOcurrences = daysPassed;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
@@ -1066,11 +1006,10 @@ function roOccurrence(alert, orgao, cpf, token) {
   } else {
     actions = [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE];
     const single = unsentOcurrences === 1;
-    action = [DOWNLOAD_LIST(UNSENT_OCCURRENCE_LIST({ dpNumber, token })), DETAIL(), DELETE];
     message = (
       <span>
         <strong>{` ${unsentOcurrences} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${dpNumber}`}ª DP</strong> não chegaram no MPRJ
+        de ocorrência da <strong>{` ${dp}`}</strong> não chegaram no MPRJ
       </span>
     );
   }

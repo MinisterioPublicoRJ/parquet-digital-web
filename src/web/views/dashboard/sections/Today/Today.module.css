@@ -19,7 +19,6 @@
   width: 65%;
   z-index: 1;
 }
-
 .todayContent p,
 .todayContent h2 {
   margin: 0;
@@ -174,7 +173,7 @@
 
 .todayBtn:hover {
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
 }
 
 /* TABLETS */

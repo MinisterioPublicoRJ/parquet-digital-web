@@ -4,18 +4,28 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
 .radarWrapper {
   margin: 0;
   width: 100%;
 }
-
+.radarTextAreaCriminal{
+  line-height: 1.5;
+}
+.radarTextAreaCriminal h2{
+  font-size: 15px;
+  background-color: #bddff0;
+  max-width: 70px;
+  color: #374354;
+}
+.radarTextAreaCriminal p{
+  max-width: 250px;
+  color: #A7A0A0;
+}
 .radarSubtitles {
   margin-top: 2.5vh;
   display: flex;
   justify-content: space-between;
 }
-
 .radarSubtitles button {
   background-color: transparent;
   border: none;

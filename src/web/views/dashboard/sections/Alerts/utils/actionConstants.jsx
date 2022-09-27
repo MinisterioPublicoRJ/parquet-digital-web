@@ -106,6 +106,6 @@ export const DOWNLOAD_LIST = (link) => ({
 
 export const GENERATE_CSV = (link) => ({
   actionType: 'download',
-  text: 'CSV',
+  text: 'Excel',
   link,
 });

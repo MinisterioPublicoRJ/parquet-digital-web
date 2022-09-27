@@ -115,8 +115,8 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'ISPS':
     return ispsConstructor(alert, orgao, cpf, token);
 
-    case 'RO':
-    return roOccurrence(alert, orgao, cpf, token);
+    //case 'RO':
+    //return roOccurrence(alert, orgao, cpf, token);
 
     case 'ABR1':
     return abr1Constructor(alert, orgao, cpf, token);

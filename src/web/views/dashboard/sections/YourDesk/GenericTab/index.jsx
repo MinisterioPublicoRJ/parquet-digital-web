@@ -11,6 +11,7 @@ import {
   GenericTabLower,
   GenericTabLowerLeft,
   GenericTabLowerRight,
+  NoData,
 } from './styles.module.css';
 
 const propTypes = {
@@ -30,6 +31,7 @@ const propTypes = {
   ),
   map: PropTypes.shape({}),
   metrics: PropTypes.shape({}),
+  isBeingDeveloped: PropTypes.bool,
 };
 
 // metrics, rank and map will be undefined until the API response comes back
@@ -37,15 +39,33 @@ const defaultProps = {
   metrics: undefined,
   ranks: undefined,
   map: undefined,
+  isBeingDeveloped: true,
 };
 
-function GenericTab({ tab, error, metrics, ranks, map, tabTitle }) {
+function GenericTab({ tab, error, metrics, ranks, map, tabTitle, isBeingDeveloped }) {
   const loading = !error && !metrics;
+  if (isBeingDeveloped) {
+    if (tab === 'criminalCourtCases')
+      return (
+        <div className={`${GenericTabMain} ${NoData}`}>
+          Esta sessão está em construção! Em breve será apresentado o detalhamento do acervo de
+          "Processos em Juízo" desta Promotoria.
+        </div>
+      );
+    if (tab === 'newDocs')
+      return (
+        <div className={`${GenericTabMain} ${NoData}`}>
+          Esta sessão está em construção! Em breve será apresentado o detalhamento dos documentos
+          novos, nos últimos 30 dias, desta Promotoria.
+        </div>
+      );
+    return <div className={`${GenericTabMain} ${NoData}`}>Esta sessão está em construção!</div>;
+  }
   if (loading) {
     return <Spinner size="large" />;
   }
   if (error) {
-    return <div className={GenericTabMain}>Nenhum dado para exibir</div>;
+    return <div className={`${GenericTabMain} ${NoData}`}>Nenhum dado para exibir</div>;
   }
 
   const hasMetrics = Object.keys(metrics).length;

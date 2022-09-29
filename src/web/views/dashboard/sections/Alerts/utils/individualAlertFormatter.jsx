@@ -112,7 +112,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'COMP':
       return compConstructor(alert, orgao, cpf, token);
 
-    case 'CAVL':
+    case 'COMP_PROD':
       return cavlConstructor(alert, orgao, cpf, token);
 
     //indicadores de saneamento
@@ -178,11 +178,13 @@ function cavlConstructor(alert, orgao, cpf, token) {
       COMPRAS({ compId: contrato_iditem, contrato }),
       DELETE,
     ];
+    const single = count === 1;
     message = (
       <span>
         Os valores do contrato
-        <strong>{` ${contrato} `}</strong>, item
-        <strong>{` ${item} `}</strong>,
+        <strong>{` ${contrato} `}</strong>
+        {`${single ? 'item: ' : 'itens: '}`}
+        <strong>{` ${item.substring(0, 40).toLowerCase()}... `}</strong>
         apresentaram possíveis sobrepreços.
       </span>
     );
@@ -206,16 +208,15 @@ function compConstructor(alert, orgao, cpf, token) {
   let actions = [];
 
   if (dropdown) {
-    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
+    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ alertId, alertCode, orgao, token }))];
+    COMPRAS({ compId: contrato_iditem, contrato })
+
     const single = count === 1;
     message = (
       <span>
-        {`${single ? 'O valor ' : 'Os valores '}`}
-        do contrato
-        {` ${contrato}, `}
-        item
-        {` ${item}, `}
-        realizado <strong>durante a emergência sanitária de COVID-19 </strong>,
+        <strong>{`${count}`}</strong>{" "}
+        {`${single ? 'compra com preço atípico foi verificada ' : 'compras com preços atípicos foram verificadas '}`}
+        <strong>durante a emergência sanitária de COVID-19, e </strong>
         apresentam <strong>possíveis sobrepreços</strong>.
       </span>
     );
@@ -225,11 +226,13 @@ function compConstructor(alert, orgao, cpf, token) {
       COMPRAS({ compId: contrato_iditem, contrato }),
       DELETE,
     ];
+    const single = count === 1;
     message = (
       <span>
         Os valores do contrato
-        <strong>{` ${contrato} `}</strong>, itens:
-        <strong>{` ${item} `}</strong>
+        <strong>{` ${contrato} `}</strong>,
+        {`${single ? 'item: ' : 'itens: '}`}
+        <strong>{` ${item.substring(0, 40).toLowerCase()}... `}</strong>
         merecem sua atenção.
       </span>
     );

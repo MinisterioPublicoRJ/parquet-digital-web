@@ -9,7 +9,17 @@ import EditNoteIcon from '../../assets/svg/EditNoteIcon';
 import SpeedIcon from '../../assets/svg/SpeedIcon';
 import LogoutIcon from '../../assets/svg/LogoutIcon';
 import UpdatesIcon from '../../assets/svg/UpdatesIcon';
-import { navBarLeftContent, navBarBoxContentTexts,logOutPositionDiv } from './navBarLeft.module.css';
+import {
+  navBarLeftContent,
+  topButtonDiv,
+  navBarBoxContentTexts,
+  logOutPositionDiv,
+  userManualDiv,
+  notaMetodologicaDiv,
+  infosDiv,
+  tempoTramitacaoDiv,
+  logOutButtonDiv,
+} from './navBarLeft.module.css';
 import { useAppContext } from '../../../core/app/App.context';
 import ProcessingTime from '../../views/dashboard/sections/ProcessingTime';
 
@@ -43,9 +53,9 @@ function NavbarLeft() {
           </div>
         </Modal>
       )}
-      <div>
+      <div className={topButtonDiv}>
         <div
-          className={navBarBoxContentTexts}
+          className={userManualDiv}
           onMouseOver={() => setHoverUserManual(true)}
           onFocus={() => setHoverUserManual(true)}
           onMouseOut={() => setHoverUserManual(false)}
@@ -65,7 +75,7 @@ function NavbarLeft() {
           </Modal>
         )}
         <div
-          className={navBarBoxContentTexts}
+          className={notaMetodologicaDiv}
           onMouseOver={() => setHoverNotaMetodologica(true)}
           onFocus={() => setHoverNotaMetodologica(true)}
           onMouseOut={() => setHoverNotaMetodologica(false)}
@@ -83,7 +93,7 @@ function NavbarLeft() {
           </Modal>
         )}
         <div
-          className={navBarBoxContentTexts}
+          className={infosDiv}
           onMouseOver={() => setHover(true)}
           onFocus={() => setHover(true)}
           onMouseOut={() => setHover(false)}
@@ -101,7 +111,7 @@ function NavbarLeft() {
           </Modal>
         )}
         <div
-          className={navBarBoxContentTexts}
+          className={tempoTramitacaoDiv}
           onMouseOver={() => setHoverTempoTramitacao(true)}
           onFocus={() => setHoverTempoTramitacao(true)}
           onMouseOut={() => setHoverTempoTramitacao(false)}
@@ -116,7 +126,7 @@ function NavbarLeft() {
       </div>
       <div className={logOutPositionDiv}>
         <div
-          className={navBarBoxContentTexts}
+          className={logOutButtonDiv}
           style={{ marginTop: '12.300rem' }}
           onMouseOver={() => setHoverLogout(true)}
           onFocus={() => setHoverLogout(true)}

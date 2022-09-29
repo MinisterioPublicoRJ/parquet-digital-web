@@ -158,6 +158,7 @@ function YourDesk() {
             tab={activeTab}
             tabTitle={[BUTTON_TEXTS[activeTab]]}
             error={!tabDetail[activeTab] && !loading}
+            isBeingDeveloped={currentOffice.tipo === 7}
           />
         )}
       </div>

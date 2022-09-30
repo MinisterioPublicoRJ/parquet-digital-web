@@ -39,6 +39,7 @@ export { default as ProcessDetailRobot } from './ProcessDetailRobot';
 export { default as Copy } from './Copy';
 export { default as ProcessFile } from './processFile';
 export { default as ProcessingTimeHeader } from './ProcessingTimeHeader';
-
+export { default as PigCAVL } from './pigCavlIcon';
+export { default as PainelCOVID } from './painelCovid';
 
 

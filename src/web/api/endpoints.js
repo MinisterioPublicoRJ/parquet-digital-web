@@ -33,6 +33,7 @@ export const RADAR_DATA = t(`${BASE_URL}/radar/\${orgao}`);
 export const ALERTS_LIST = t(`${BASE_URL}/alertas/\${orgao}`);
 export const TOTAL_ALERTS_LIST = t(`${BASE_URL}/alertas/list/\${orgao}`);
 export const HIRES_ALERTS = t(`${BASE_URL}/alertas/compras/\${orgao}`);
+export const CAVL_ALERTS = t(`${BASE_URL}/alertas/compras_produtos/\${orgao}`);
 
 export const PROCESSING_TIME_DATA = t(`${BASE_URL}/tempo-tramitacao/\${orgao}?version=1.1`);
 

@@ -52,7 +52,6 @@ function Alerts() {
     let listError = false;
     try {
       alertList = await Api.getAlerts(buildRequestParams());
-      console.log(alertList)
     } catch (e) {
       // window.newrelic.noticeError(e);
       listError = true;
@@ -65,7 +64,6 @@ function Alerts() {
     let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsCount(buildRequestParams());
-      console.log(alertsTotal)
 
     } catch (e) {
       errorAlertsTotal = true;
@@ -89,7 +87,6 @@ function Alerts() {
     let cavlListError = false;
     try {
       cavlAlertList = await Api.getCavlAlerts(buildRequestParams());
-      console.log(cavlAlertList, "Apareci")
     } catch (e) {
       cavlListError = true;
     }

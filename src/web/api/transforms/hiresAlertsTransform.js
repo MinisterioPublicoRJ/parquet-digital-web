@@ -1,5 +1,4 @@
 export default function hiresAlertsTransform(data) {
-  console.log(data, "Compras");
   return data.map((alert) => ({
     alertCode: alert.sigla,
     contrato: alert.contrato,

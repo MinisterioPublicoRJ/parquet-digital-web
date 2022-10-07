@@ -99,18 +99,19 @@ function ProcessingTime() {
     loadData();
   }, []);
 
-  if (!chartData || loading) {
+  if (!chartData || loading && !currentOffice.tipo === 7) {
     return (
       <article className={pageTramitacao}>
         {loading ? (
           <div className={spinnerWrapper}>
             <Spinner size="large" />
           </div>
-        ) : <p>Nenhum dado para exibir</p>}
+        ) : <p>Gráfico em desenvolvimento para essa promotoria</p>}
       </article>
     );
   }
 
+  
   const typeDisplayableName = processTypeDict[mainCategory];
   const categoryProcessingTime = processingTime[mainCategory];
   const isBetter =
@@ -119,6 +120,7 @@ function ProcessingTime() {
 
   return (
     <article className={pageTramitacao}>
+      {!chartData && <strong>Muito Bom!</strong>}
       <div className={ptHeader}>
         <div className={ptHeaderContent}>
           <SectionTitle value="tempo de tramitação" glueToTop />

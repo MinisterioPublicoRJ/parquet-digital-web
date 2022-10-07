@@ -8,14 +8,14 @@ export const BUTTON_TEXTS = {
   openCases: `vistas\nabertas`,
   closedCasesP: `finalizados últimos 30 dias`,
   closedCasesT: `finalizados últimos 30 dias`,
-  closedCasesC: `finalizados últimos 30 dias`,
+  closedCasesC: `Documentos finalizados últimos 30 dias`,
   openInvestigations: `investigações\nem curso`,
   courtCases: `processos\nem juízo`,
   criminalCourtCases: `processos\nem juízo`,
   pics: 'PIC',
   inquiries: 'inquéritos',
   aisps: 'Na área de atribuição',
-  newDocs: 'Novos documentos dos últimos 30 dias',
+  newDocs: 'Documentos novos últimos 30 dias',
 };
 
 export const BUTTON_DICT = {

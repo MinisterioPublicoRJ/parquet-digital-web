@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Spinner } from '../../../../../components';
+import { useAppContext } from '../../../../../../core/app/App.context';
 
 import {
   controlButtonOuter,
@@ -11,6 +11,8 @@ import {
   controlButtonNotButton,
   controlButtonBigNumber,
   controlButtonBigNumberActive,
+  controlButtonInnerCriminal,
+  controlButtonInnerCriminalWhite,
 } from './styles.module.css';
 
 const propTypes = {
@@ -32,6 +34,8 @@ const defaultProps = {
 };
 
 function ControlButton({ isActive, number, text, isButton, loading, buttonPressed, error }) {
+  const { currentOffice } = useAppContext();
+
   let fill;
   if (isButton) {
     if (isActive) {
@@ -51,7 +55,20 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
       );
     } else {
       fill = (
-        <button
+        <>
+        {currentOffice.tipo === 7 ? (
+        <div
+          className={`${text === "Documentos novos últimos 30 dias" ? `${ controlButtonInnerCriminal }`:`${ controlButtonInnerCriminalWhite }`}`}
+        >
+          {loading ? (
+            <Spinner size="small" />
+          ) : (
+            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
+          )}
+          {text}
+        </div>
+        ) : (
+          <button
           type="button"
           className={`${controlButtonInner} ${controlButtonInactive}`}
           onClick={() => buttonPressed()}
@@ -63,6 +80,8 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           )}
           {text}
         </button>
+        )}
+        </>
       );
     }
   } else {

@@ -1,6 +1,8 @@
 import React from 'react';
 import MANUALPIP from './userManualPdfs/manual_pip.pdf';
 import MANUALPJTC from './userManualPdfs/manual_pjtc.pdf';
+import MANUALCRIMINAL from './userManualPdfs/manual_criminais.pdf';
+
 import { useAppContext } from '../../../../../core/app/App.context';
 import {
   glossaryWrapper,
@@ -30,7 +32,7 @@ function UserManual() {
           </p>
 
           <div className={glossaryArticlesWrapper}>
-            {tipo === 1 ? (
+            {tipo === 1 && (
               <button
                 type="button"
                 onClick={(event) => {
@@ -40,12 +42,24 @@ function UserManual() {
               >
                 Acessar Manual
               </button>
-            ) : (
+            )}
+             {tipo === 2 && (
               <button
                 type="button"
                 onClick={(event) => {
                   event.preventDefault();
                   window.open(MANUALPIP);
+                }}
+              >
+                Acessar Manual
+              </button>
+            )}
+             {tipo === 7 && (
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.preventDefault();
+                  window.open(MANUALCRIMINAL);
                 }}
               >
                 Acessar Manual

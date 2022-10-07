@@ -6,8 +6,9 @@ export default function InDevelopment() {
     <div className={textAreaInDevelopment}>
       <h2>Em desenvolvimento: </h2>
       <p>
-        <mark>Para mais informações, consulte o manual de uso no menu lateral.</mark>
-      </p>
+          Seja bem-vindo ao Parquet Digital, ferramenta de auxílio que proporciona uma visão 
+          ampla do acervo da sua Promotoria de Justiça. Na barra lateral é possível acessar o manual de uso e a nota metodológica. Boa navegação!
+       </p>
     </div>
   );
 }

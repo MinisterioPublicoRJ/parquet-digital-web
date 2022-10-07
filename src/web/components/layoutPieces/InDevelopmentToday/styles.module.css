@@ -1,0 +1,13 @@
+.textAreaInDevelopmentToday {
+    line-height: 1.5;
+  }
+  .textAreaInDevelopmentToday h2 {
+    font-size: 14px;
+    color: var(--darkBlue);
+  }
+  .textAreaInDevelopmentToday p {
+    color: var(--dark);
+    margin-top: 5px;
+  }
+ 
+  

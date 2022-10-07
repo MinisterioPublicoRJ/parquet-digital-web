@@ -12,6 +12,7 @@ import {
   controlButtonBigNumber,
   controlButtonBigNumberActive,
   controlButtonInnerCriminal,
+  controlButtonInnerCriminalWhite,
 } from './styles.module.css';
 
 const propTypes = {
@@ -57,7 +58,7 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
         <>
         {currentOffice.tipo === 7 ? (
         <div
-          className={`${controlButtonInnerCriminal}`}
+          className={`${text === "Documentos novos últimos 30 dias" ? `${ controlButtonInnerCriminal }`:`${ controlButtonInnerCriminalWhite }`}`}
         >
           {loading ? (
             <Spinner size="small" />

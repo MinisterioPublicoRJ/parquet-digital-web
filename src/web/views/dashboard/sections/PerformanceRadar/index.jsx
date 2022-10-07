@@ -12,7 +12,7 @@ import {
 import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
-import { RadarArrow } from '../../../../assets';
+import { RadarArrow, RadarInDevelopment } from '../../../../assets';
 import { Spinner, SectionTitle, InDevelopment } from '../../../../components/layoutPieces';
 import {
   NORTH_LABEL_PROPS,
@@ -173,16 +173,15 @@ function PerformanceRadar() {
     setSelectedElement(event.target);
     setIsRadarModalOpen(true);
   }
-
+  if (currentOffice.tipo === 7) return <RadarInDevelopment />;
+  
   return (
     <article className={pageRadarDashboard}>
       <div>
         <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
       </div>
       {loading && !dataError && <Spinner size="large" />}
-      {currentOffice.tipo === 7 ? (
-        <InDevelopment />
-      ) : null}
+
       {dataError && !(currentOffice.tipo === 7) && 'Sem dados para exibir'}
       {!loading && !dataError && (
         <figure className={radarWrapper}>

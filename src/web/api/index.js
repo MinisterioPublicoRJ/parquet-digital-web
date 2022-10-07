@@ -14,6 +14,7 @@ import {
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
   HIRES_ALERTS,
+  CAVL_ALERTS,
   TOTAL_ALERTS_LIST,
   PROCESSES_LIST,
   SUCCESS_INDICATORS,
@@ -59,6 +60,7 @@ import {
   alertOverlayTransform,
   investigatedProfileTransform,
   processDetailTransform,
+  cavlAlertsTransform,
 } from './transforms';
 
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
@@ -187,6 +189,11 @@ const Api = (() => {
     const { data } = await axios.get(HIRES_ALERTS({ orgao }), buildRequestConfig(token));
 
     return hiresAlertsTransform(data);
+  }
+  async function getCavlAlerts({ orgao, token }) {
+    const { data } = await axios.get(CAVL_ALERTS({ orgao }), buildRequestConfig(token));
+
+    return cavlAlertsTransform(data);
   }
 
   async function getsuccessIndicators({ orgao, token }) {
@@ -376,6 +383,7 @@ const Api = (() => {
     sendOmbudsmanEmail,
     getAlertOverlayData,
     getProcessDetail,
+    getCavlAlerts,
   };
 })();
 

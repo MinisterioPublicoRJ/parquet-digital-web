@@ -20,6 +20,7 @@ import {
   todayRobotPic,
   todayBtn,
 } from './Today.module.css';
+import InDevelopmentToday from '../../../../components/layoutPieces/InDevelopmentToday';
 
 function Today() {
   const { user, buildRequestParams, currentOffice } = useAppContext();
@@ -155,6 +156,13 @@ function Today() {
           {todayPercent > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
         </p>
       ) : null}
+      {currentOffice.tipo === 7 ? (
+        <p>
+          Seja bem-vindo ao Parquet Digital, ferramenta de auxílio que proporciona uma visão 
+          ampla do acervo da sua Promotoria de Justiça. 
+          Na barra lateral é possível acessar o manual de uso e a nota metodológica. Boa navegação!
+        </p>
+      ) : null}
       {collectionAnalysis && !loading && (
         <p>
           Você sabia que seu acervo é
@@ -199,7 +207,7 @@ function Today() {
             <OfficeSelector close={setModalType} />
           </Modal>
         )}
-        <div className={todayTextArea}>{currentOffice.tipo === 7 ? <InDevelopment /> : todayText}</div>
+        <div className={todayTextArea}>{currentOffice.tipo === 7 ? <InDevelopmentToday /> : todayText}</div>
       </div>
       {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (
         <>

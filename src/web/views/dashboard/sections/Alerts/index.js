@@ -64,6 +64,7 @@ function Alerts() {
     let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsCount(buildRequestParams());
+
     } catch (e) {
       errorAlertsTotal = true;
     }
@@ -80,16 +81,29 @@ function Alerts() {
     }
     return [hiresAlertList, hiresListError];
   }
+  
+  async function loadCavlAlerts() {
+    let cavlAlertList = [];
+    let cavlListError = false;
+    try {
+      cavlAlertList = await Api.getCavlAlerts(buildRequestParams());
+    } catch (e) {
+      cavlListError = true;
+    }
+    return [cavlAlertList, cavlListError];
+  }
 
   async function loadComponent() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
+    const [cavlAlertList, errorCavlList] = await loadCavlAlerts();
+
 
     const { cpf, token, orgao } = buildRequestParams();
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
-    const fullList = alertList.concat(hiresAlertList);
+    const fullList = alertList.concat(hiresAlertList, cavlAlertList);
     const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 
     setAlerts(cleanList);

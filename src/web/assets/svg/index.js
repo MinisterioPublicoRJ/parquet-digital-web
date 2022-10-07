@@ -28,6 +28,7 @@ export { default as CalculatorActionIcon } from './calculatorActionIcon';
 export { default as DetailActionIcon } from './detailActionIcon';
 export { default as DocActionIcon } from './docActionIcon';
 export { default as RadarArrow } from './radarArrows';
+export { default as RadarInDevelopment } from './RadarInDevelopment';
 export { default as Ro } from './ro';
 export { default as DeadlineIcon } from './deadlineIcon';
 export { default as Arrow } from './arrow';
@@ -38,5 +39,8 @@ export { default as User } from './user';
 export { default as ProcessDetailRobot } from './ProcessDetailRobot';
 export { default as Copy } from './Copy';
 export { default as ProcessFile } from './processFile';
+export { default as ProcessingTimeHeader } from './ProcessingTimeHeader';
+export { default as PigCAVL } from './pigCavlIcon';
+export { default as PainelCOVID } from './painelCovid';
 
 

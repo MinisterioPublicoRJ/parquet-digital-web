@@ -55,7 +55,7 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
       );
     } else {
       fill = (
-        <>
+        <div>
         {currentOffice.tipo === 7 ? (
         <div
           className={`${text === "Documentos novos últimos 30 dias" ? `${ controlButtonInnerCriminal }`:`${ controlButtonInnerCriminalWhite }`}`}
@@ -81,7 +81,7 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           {text}
         </button>
         )}
-        </>
+        </div>
       );
     }
   } else {

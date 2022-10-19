@@ -29,6 +29,9 @@ export const OPEN_CASES_LIST = t(
 );
 
 export const RADAR_DATA = t(`${BASE_URL}/radar/\${orgao}`);
+export const PIP_RADAR_URL = t(`${BASE_URL}/pip/radar-performance/\${orgao}`);
+export const CRIMINAL_RADAR_URL = t(`${BASE_URL}/pip/radar-criminal-performance//\${orgao}`);
+
 
 export const ALERTS_LIST = t(`${BASE_URL}/alertas/\${orgao}`);
 export const TOTAL_ALERTS_LIST = t(`${BASE_URL}/alertas/list/\${orgao}`);
@@ -46,7 +49,6 @@ export const SUCCESS_INDICATORS = t(`${BASE_URL}/pip/indicadores-sucesso/\${orga
 export const PIP__URL = t(`${BASE_URL}/pip/aproveitamentos/\${orgao}`);
 export const PIP_MONTH_OPPENINGS_URL = t(`${BASE_URL}/pip/aberturas-mensal/\${orgao}/\${cpf}`);
 export const PIP_INVESTIGATIONS_URL = t(`${BASE_URL}/pip/aisp/investigacoes/\${orgao}`);
-export const PIP_RADAR_URL = t(`${BASE_URL}/pip/radar-performance/\${orgao}`);
 
 export const PIP_MAIN_INVESTIGATIONS_URL = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,

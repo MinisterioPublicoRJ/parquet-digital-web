@@ -7,13 +7,12 @@ import {
   radarSubtitlesItem,
   radarSubtitlesItemYourData,
   radarSubtitlesItemMPData,
-  radarTextAreaCriminal,
 } from './styles.module.css';
 import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { RadarArrow, RadarInDevelopment } from '../../../../assets';
-import { Spinner, SectionTitle, InDevelopment } from '../../../../components/layoutPieces';
+import { Spinner, SectionTitle } from '../../../../components/layoutPieces';
 import {
   NORTH_LABEL_PROPS,
   WEST_LABEL_PROPS,
@@ -56,14 +55,20 @@ function PerformanceRadar() {
       // tutela
       if (tipo === 1) {
         res = await Api.getRadarData(buildRequestParams());
-      } else {
+      }
+      if(tipo === 2) {
         // pip
         res = await Api.getPipRadarData(buildRequestParams());
+      }
+      if(tipo === 7){
+        return res = await Api.getRadarDataCriminal(buildRequestParams());   
       }
     } catch (e) {
       setError(true);
     } finally {
       const [uData, oData] = cleanGraphData(res);
+      console.log(uData, oData)
+
       setUserData(uData);
       setOtherData(oData);
       generateLabels(res, tipo);
@@ -173,7 +178,6 @@ function PerformanceRadar() {
     setSelectedElement(event.target);
     setIsRadarModalOpen(true);
   }
-  if (currentOffice.tipo === 7) return <RadarInDevelopment />;
   
   return (
     <article className={pageRadarDashboard}>
@@ -182,13 +186,13 @@ function PerformanceRadar() {
       </div>
       {loading && !dataError && <Spinner size="large" />}
 
-      {dataError && !(currentOffice.tipo === 7) && 'Sem dados para exibir'}
+      {dataError && 'Sem dados para exibir'}
       {!loading && !dataError && (
         <figure className={radarWrapper}>
           <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
         </figure>
       )}
-      {!(currentOffice.tipo === 7) && (
+      {currentOffice.tipo && (
         <figcaption className={radarSubtitles}>
           <div className={`${radarSubtitlesItem} ${radarSubtitlesItemYourData}`}>
             Sua Promotoria

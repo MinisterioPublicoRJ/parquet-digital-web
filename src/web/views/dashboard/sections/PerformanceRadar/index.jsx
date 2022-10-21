@@ -61,6 +61,7 @@ function PerformanceRadar() {
         res = await Api.getPipRadarData(buildRequestParams());
       }
       if(tipo === 7){
+         // criminal
         return res = await Api.getRadarDataCriminal(buildRequestParams());   
       }
     } catch (e) {

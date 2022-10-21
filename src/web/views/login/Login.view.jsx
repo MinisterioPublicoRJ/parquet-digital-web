@@ -22,8 +22,9 @@ const Login = () => {
         <div className={loginBanner}>
          <p>O Parquet Digital encontra-se disponível apenas
           para <span>Promotorias de justiça de Tutela Coletiva (PJTC)</span> 
-          {" "}e de <span>Investigação Penal (PIPs)</span>. Os Usuários habilitados 
-          para acessá-lo são <strong>Promotores de justiça</strong> e <strong>Assessores jurídicos</strong>.
+          {" "} de <span>Investigação Penal (PIPs)</span> e <span> Promotorias que atuam exclusivamente 
+          junto às Varas Criminais. </span> Os Usuários habilitados para acessá-lo são Promotores de justiça
+          e Assessores jurídicos lotados nas Promotorias contempladas.
          </p>
          <p>Qualquer dúvida ou problema contactar:</p>
          <strong>gadg.atendimento@mprj.mp.br</strong>

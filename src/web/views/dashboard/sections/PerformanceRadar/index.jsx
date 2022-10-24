@@ -123,11 +123,14 @@ function PerformanceRadar() {
   }
 
   function generateLabels(graphData, organType) {
-    const categories = organType === 1 ? TUTELA_CATEGORIES : PIP_CATEGORIES;
+    let categories = organType === 1 ? TUTELA_CATEGORIES : PIP_CATEGORIES;
+    categories = Object.keys(graphData);
+    console.log('graphData', graphData);
     const labels = categories.map((cat) => {
       let positionProps;
       let label;
       const maxValues = graphData[cat] ? graphData[cat].maxValues : '-';
+      console.log('\ncat:', cat);
       switch (cat) {
         case 'archives':
           label = ['Arquivamentos', `(máx atribuição ${maxValues})`];
@@ -138,7 +141,7 @@ function PerformanceRadar() {
           positionProps = WEST_LABEL_PROPS;
           break;
         case 'agreements':
-          label = ['Acordos', 'de não', 'Persecução', `(máx atribuição ${maxValues})`];
+          label = ['Celebrações', 'de ANPP', `(máx atribuição ${maxValues})`];
           positionProps = WEST_LABEL_PROPS;
           break;
         case 'instaurations':
@@ -163,6 +166,18 @@ function PerformanceRadar() {
           break;
         case 'complaints':
           label = [`(máx atribuição ${maxValues})`, 'Denúncias'];
+          positionProps = NORTH_LABEL_PROPS;
+          break;
+        case 'hearings':
+          label = [`(máx atribuição ${maxValues})`, 'Audiências'];
+          positionProps = SOUTH_WEST_LABEL_PROPS;
+          break;
+        case 'closingArguments':
+          label = [`(máx atribuição ${maxValues})`, 'Alegações finais'];
+          positionProps = SOUTH_EAST_LABEL_PROPS;
+          break;
+        case 'appeals':
+          label = [`(máx atribuição ${maxValues})`, 'Recursos'];
           positionProps = EAST_LABEL_PROPS;
           break;
         default:

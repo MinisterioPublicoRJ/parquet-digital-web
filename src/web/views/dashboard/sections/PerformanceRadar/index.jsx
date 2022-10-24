@@ -123,14 +123,21 @@ function PerformanceRadar() {
   }
 
   function generateLabels(graphData, organType) {
-    let categories = organType === 1 ? TUTELA_CATEGORIES : PIP_CATEGORIES;
-    categories = Object.keys(graphData);
-    console.log('graphData', graphData);
+    let categories;
+    switch(organType) {
+      case 1:
+        categories = TUTELA_CATEGORIES;
+        break
+      case 2:
+        categories = PIP_CATEGORIES;
+        break
+      default:
+        categories = Object.keys(graphData);
+    }
     const labels = categories.map((cat) => {
       let positionProps;
       let label;
       const maxValues = graphData[cat] ? graphData[cat].maxValues : '-';
-      console.log('\ncat:', cat);
       switch (cat) {
         case 'archives':
           label = ['Arquivamentos', `(máx atribuição ${maxValues})`];

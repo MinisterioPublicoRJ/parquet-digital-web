@@ -68,7 +68,6 @@ function PerformanceRadar() {
       setError(true);
     } finally {
       const [uData, oData] = cleanGraphData(res);
-      console.log(uData, oData)
 
       setUserData(uData);
       setOtherData(oData);

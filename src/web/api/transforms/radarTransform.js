@@ -4,7 +4,6 @@ export default function radarTransform(res) {
   //   id: res.orgao_id,
   //   date: new Date(res.dt_calculo),
   // };
-  console.log('res', res);
   const archives = {
     numbers: res.nr_arquivamentos,
     maxValues: res.max_pacote_arquivamentos,

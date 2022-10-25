@@ -1,5 +1,4 @@
 export default function radarCriminalTransform(res) {
-  //console.log('radardatacriminal', res);
 
   const agreements = {
     numbers: res.nr_acordos_n_persecucao,

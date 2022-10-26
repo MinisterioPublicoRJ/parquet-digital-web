@@ -28,7 +28,7 @@
   margin-left: 20px;
 }
 .roboGadgBanner{
-  height: 201px;
+  height: 170px;
   width: 200px;
 }
 .loginImageBanner {
@@ -45,7 +45,7 @@
   line-height: 1.5;
 }
 .loginBanner{
-  padding: 30px;
+  padding: 25px;
 }
 .loginImageBanner span{
   background-color: #FFCE99;

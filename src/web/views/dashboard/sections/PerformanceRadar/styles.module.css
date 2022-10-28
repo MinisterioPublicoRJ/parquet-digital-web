@@ -11,6 +11,9 @@
 .radarTextAreaCriminal{
   line-height: 1.5;
 }
+.radarSubtitlesItemCriminal{
+  display: none;
+}
 .radarTextAreaCriminal h2{
   font-size: 15px;
   background-color: #bddff0;

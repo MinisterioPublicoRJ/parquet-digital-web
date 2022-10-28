@@ -7,13 +7,13 @@ import {
   radarSubtitlesItem,
   radarSubtitlesItemYourData,
   radarSubtitlesItemMPData,
-  radarTextAreaCriminal,
+  radarSubtitlesItemCriminal,
 } from './styles.module.css';
 import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { RadarArrow, RadarInDevelopment } from '../../../../assets';
-import { Spinner, SectionTitle, InDevelopment } from '../../../../components/layoutPieces';
+import { Spinner, SectionTitle } from '../../../../components/layoutPieces';
 import {
   NORTH_LABEL_PROPS,
   WEST_LABEL_PROPS,
@@ -56,14 +56,20 @@ function PerformanceRadar() {
       // tutela
       if (tipo === 1) {
         res = await Api.getRadarData(buildRequestParams());
-      } else {
+      }
+      if(tipo === 2) {
         // pip
         res = await Api.getPipRadarData(buildRequestParams());
+      }
+      if(tipo === 7){
+         // criminal
+        res = await Api.getRadarDataCriminal(buildRequestParams());   
       }
     } catch (e) {
       setError(true);
     } finally {
       const [uData, oData] = cleanGraphData(res);
+
       setUserData(uData);
       setOtherData(oData);
       generateLabels(res, tipo);
@@ -117,7 +123,17 @@ function PerformanceRadar() {
   }
 
   function generateLabels(graphData, organType) {
-    const categories = organType === 1 ? TUTELA_CATEGORIES : PIP_CATEGORIES;
+    let categories;
+    switch(organType) {
+      case 1:
+        categories = TUTELA_CATEGORIES;
+        break
+      case 2:
+        categories = PIP_CATEGORIES;
+        break
+      default:
+        categories = Object.keys(graphData);
+    }
     const labels = categories.map((cat) => {
       let positionProps;
       let label;
@@ -132,7 +148,7 @@ function PerformanceRadar() {
           positionProps = WEST_LABEL_PROPS;
           break;
         case 'agreements':
-          label = ['Acordos', 'de não', 'Persecução', `(máx atribuição ${maxValues})`];
+          label = ['Celebrações', 'de ANPP', `(máx atribuição ${maxValues})`];
           positionProps = WEST_LABEL_PROPS;
           break;
         case 'instaurations':
@@ -157,6 +173,18 @@ function PerformanceRadar() {
           break;
         case 'complaints':
           label = [`(máx atribuição ${maxValues})`, 'Denúncias'];
+          positionProps = NORTH_LABEL_PROPS;
+          break;
+        case 'hearings':
+          label = [`(máx atribuição ${maxValues})`, 'Audiências'];
+          positionProps = SOUTH_WEST_LABEL_PROPS;
+          break;
+        case 'closingArguments':
+          label = [`(máx atribuição ${maxValues})`, 'Alegações finais'];
+          positionProps = SOUTH_EAST_LABEL_PROPS;
+          break;
+        case 'appeals':
+          label = [`(máx atribuição ${maxValues})`, 'Recursos'];
           positionProps = EAST_LABEL_PROPS;
           break;
         default:
@@ -173,7 +201,6 @@ function PerformanceRadar() {
     setSelectedElement(event.target);
     setIsRadarModalOpen(true);
   }
-  if (currentOffice.tipo === 7) return <RadarInDevelopment />;
   
   return (
     <article className={pageRadarDashboard}>
@@ -182,19 +209,20 @@ function PerformanceRadar() {
       </div>
       {loading && !dataError && <Spinner size="large" />}
 
-      {dataError && !(currentOffice.tipo === 7) && 'Sem dados para exibir'}
+      {dataError && 'Sem dados para exibir'}
       {!loading && !dataError && (
         <figure className={radarWrapper}>
           <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
         </figure>
       )}
-      {!(currentOffice.tipo === 7) && (
+      {currentOffice.tipo && (
         <figcaption className={radarSubtitles}>
           <div className={`${radarSubtitlesItem} ${radarSubtitlesItemYourData}`}>
             Sua Promotoria
           </div>
           <div className={`${radarSubtitlesItem} ${radarSubtitlesItemMPData}`}>Perfil do MP</div>
-          <button type="button" className={radarSubtitlesItem} onClick={handleCompareButton}>
+          <button  type="button" onClick={handleCompareButton} 
+           className={`${currentOffice.tipo === 7 ? `${ radarSubtitlesItemCriminal }` : `${ radarSubtitlesItem } `}`}>
             <RadarArrow height={15} width={15} />
             Comparativo
           </button>

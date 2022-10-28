@@ -9,4 +9,3 @@ export { default as DialogBox } from './DialogBox';
 export { default as InvestigatedProfile } from './InvestigatedProfile';
 // eslint-disable-next-line import/no-cycle
 export { default as ProcessDetail } from './ProcessDetail';
-export { default as InDevelopment } from './InDevelopment';

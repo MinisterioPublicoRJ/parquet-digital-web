@@ -7,6 +7,7 @@ import {
   radarSubtitlesItem,
   radarSubtitlesItemYourData,
   radarSubtitlesItemMPData,
+  radarSubtitlesItemCriminal,
 } from './styles.module.css';
 import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
@@ -220,7 +221,8 @@ function PerformanceRadar() {
             Sua Promotoria
           </div>
           <div className={`${radarSubtitlesItem} ${radarSubtitlesItemMPData}`}>Perfil do MP</div>
-          <button type="button" className={radarSubtitlesItem} onClick={handleCompareButton}>
+          <button  type="button" onClick={handleCompareButton} 
+           className={`${currentOffice.tipo === 7 ? `${ radarSubtitlesItemCriminal }` : `${ radarSubtitlesItem } `}`}>
             <RadarArrow height={15} width={15} />
             Comparativo
           </button>

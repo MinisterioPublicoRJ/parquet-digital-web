@@ -11,6 +11,7 @@ import {
   OPEN_INVESTIGATIONS_DETAILS_URL,
   OPEN_CASES_LIST,
   RADAR_DATA,
+  CRIMINAL_RADAR_URL,
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
   HIRES_ALERTS,
@@ -61,6 +62,7 @@ import {
   investigatedProfileTransform,
   processDetailTransform,
   cavlAlertsTransform,
+  radarCriminalTransform,
 } from './transforms';
 
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
@@ -165,8 +167,14 @@ const Api = (() => {
 
   async function getRadarData({ orgao, token }) {
     const { data } = await axios.get(RADAR_DATA({ orgao }), buildRequestConfig(token));
-
+    
     return radarTransform(data);
+  }
+
+  async function getRadarDataCriminal({ orgao, token }) {
+    const { data } = await axios.get(CRIMINAL_RADAR_URL({ orgao }), buildRequestConfig(token));
+
+    return radarCriminalTransform(data);
   }
 
   async function getProcessingTimeData({ orgao, token }) {
@@ -364,6 +372,7 @@ const Api = (() => {
     getCourtCasesDetails,
     getOpenCasesList,
     getRadarData,
+    getRadarDataCriminal,
     getAlerts,
     getAlertsCount,
     getHiresAlerts,

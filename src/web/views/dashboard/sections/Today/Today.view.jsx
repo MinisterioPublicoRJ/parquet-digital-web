@@ -6,7 +6,7 @@ import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
-import { MainTitle, Modal, Spinner, InDevelopment } from '../../../../components/layoutPieces';
+import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual from '../UserManual/UserManual.view';
 import Introduction from '../Introduction';

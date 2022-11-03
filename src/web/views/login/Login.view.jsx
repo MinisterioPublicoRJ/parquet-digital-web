@@ -6,7 +6,7 @@ import { useLoginContext } from '../../../core/login/Login.context';
 import LogoBranco from '../../assets/imgs/logo_gadg_branco.png';
 import RoboLogin from '../../assets/imgs/robo_login.png';
 
-const Login = () => {
+function Login() {
   const { scaLoginFailed, userExpired } = useAppContext();
   const { isLoading, setLoadingState, setUsername, setPassword } = useLoginContext();
 
@@ -21,10 +21,10 @@ const Login = () => {
         <div className={loginImageBanner}>
         <div className={loginBanner}>
          <p>O Parquet Digital encontra-se disponível apenas
-          para <span>Promotorias de justiça de Tutela Coletiva (PJTC)</span> 
-          {" "} de <span>Investigação Penal (PIPs)</span> e <span> Promotorias que atuam exclusivamente 
-          junto às Varas Criminais. </span> Os Usuários habilitados para acessá-lo são Promotores de justiça
-          e Assessores jurídicos lotados nas Promotorias contempladas.
+          para <span>Promotorias de Justiça de Tutela Coletiva (PJTC),</span> {' '} 
+          <span>Promotorias de Justiça de Investigação Penal (PIP</span> e <span> Promotorias de Justiça 
+          que atuam exclusivamente junto às Varas Criminais.</span> Os Usuários habilitados para acessá-lo 
+          são Promotores de Justiça e Assessores Jurídicos lotados nas Promotorias contempladas.
          </p>
          <p>Qualquer dúvida ou problema contactar:</p>
          <strong>gadg.atendimento@mprj.mp.br</strong>
@@ -64,6 +64,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Login;

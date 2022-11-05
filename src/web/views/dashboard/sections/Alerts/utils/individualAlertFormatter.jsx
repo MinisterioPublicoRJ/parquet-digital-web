@@ -148,6 +148,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'CTAC':
       return ctacConstructor(alert, orgao, cpf, token);
 
+    case 'CTAC':
+      return ctacConstructor(alert, orgao, cpf, token);
+
     case 'FEBT':
       return febtConstructor(alert);
 

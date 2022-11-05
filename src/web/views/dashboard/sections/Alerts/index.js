@@ -93,11 +93,25 @@ function Alerts() {
     return [cavlAlertList, cavlListError];
   }
 
+  async function loadMisconducAlert() {
+    let misconducAlertList = [];
+    let misconducListError = false;
+    try {
+      misconducAlertList = await Api.getMisconductAlert(buildRequestParams());
+      console.log(misconducAlertList, "Sou o alerta de improbidade")
+    } catch (e) {
+      misconducListError = true;
+    }
+    return [misconducAlertList, misconducListError];
+  }
+
   async function loadComponent() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
     const [cavlAlertList, errorCavlList] = await loadCavlAlerts();
+    const [misconducAlertList, misconducListError] = await loadMisconducAlert();
+
 
 
     const { cpf, token, orgao } = buildRequestParams();

@@ -1,5 +1,4 @@
 export default function misconductAlertsTransform(data) {
-  console.log(data);
   return data.map((alert) => ({
     alertCode: alert.alrt_sigla,
     iditem: alert.alrt_orgi_orga_dk,

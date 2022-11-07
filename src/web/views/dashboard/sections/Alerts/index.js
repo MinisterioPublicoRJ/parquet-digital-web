@@ -111,13 +111,15 @@ function Alerts() {
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
     const [cavlAlertList, errorCavlList] = await loadCavlAlerts();
     const [misconducAlertList, misconducListError] = await loadMisconducAlert();
-
-
-
+    //console.log(misconducAlertList, "Sou mais alerta")
     const { cpf, token, orgao } = buildRequestParams();
 
-    const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
-    const fullList = alertList.concat(hiresAlertList, cavlAlertList);
+    const apiError = errorAlertsCount || (errorAlerts && errorHiresList && errorCavlList && misconducListError );
+    const fullList = alertList.concat(cavlAlertList , hiresAlertList );
+    // const allAlerts = fullList.concat(misconducAlertList);
+    console.log(fullList, hiresAlertList, "Sou todos os alertas" );
+    console.log(misconducAlertList, "Sou mais alerta")
+
     const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 
     setAlerts(cleanList);

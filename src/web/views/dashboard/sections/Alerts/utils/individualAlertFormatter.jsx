@@ -66,6 +66,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     // ALERTAS DA TUTELA
     case 'DCTJ':
+
     case 'DCTJ2':
       return dctjConstructor(alert, orgao, cpf, token);
 
@@ -148,8 +149,8 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'CTAC':
       return ctacConstructor(alert, orgao, cpf, token);
 
-    case 'CTAC':
-      return ctacConstructor(alert, orgao, cpf, token);
+    case 'IIMP':
+      return iimpConstructor(alert, orgao, cpf, token);
 
     case 'FEBT':
       return febtConstructor(alert);
@@ -157,6 +158,49 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     default:
       return {};
   }
+}
+function iimpConstructor(alert, orgao, cpf, token) {
+  const { contrato_iditem, dropdown, alertCode, count, alertId } = alert;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
+  let message;
+  let actions = [];
+
+  if (dropdown) {
+    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
+    const single = count === 1;
+    message = (
+      <span>
+        <strong> {`${count}`} </strong>
+        {`${single ? 'uma conta com improbidade ' : 'contas com improbidade '}`}
+      </span>
+    );
+  } else {
+    actions = [
+      OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
+      COMPRAS({ compId: contrato_iditem, contrato }),
+      DELETE,
+    ];
+    const single = count === 1;
+    message = (
+      <span>
+        Os valores do contrato
+        <strong>{` ${count} `}</strong>
+        {`${single ? 'item: ' : 'itens: '}`}
+        <strong>{` ${count.substring(0, 40).toLowerCase()}... `}</strong>
+        apresentaram possíveis sobrepreços.
+      </span>
+    );
+  }
+
+  return {
+    type: alertCode,
+    actions,
+    backgroundColor: '#FF7B01 ',
+    backgroundColorChild: '#D7751A ',
+    icon: <PigCAVL />,
+    key,
+    message,
+  };
 }
 
 function cavlConstructor(alert, orgao, cpf, token) {

@@ -16,6 +16,7 @@ import {
   FebtIcon,
   PigCAVL,
   PainelCOVID,
+  Impropriety
 } from '../../../../../assets';
 
 import {
@@ -196,7 +197,7 @@ function iimpConstructor(alert, orgao, cpf, token) {
     actions,
     backgroundColor: '#FF7B01 ',
     backgroundColorChild: '#D7751A ',
-    icon: <PigCAVL />,
+    icon: <Impropriety />,
     key,
     message,
   };

@@ -42,5 +42,7 @@ export { default as ProcessFile } from './processFile';
 export { default as ProcessingTimeHeader } from './ProcessingTimeHeader';
 export { default as PigCAVL } from './pigCavlIcon';
 export { default as PainelCOVID } from './painelCovid';
+export { default as Impropriety } from './impropriety';
+
 
 

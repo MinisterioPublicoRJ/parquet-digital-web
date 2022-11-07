@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 export default function misconductAlertsTransform(data) {
   return data.map((alert) => ({
     alertCode: alert.alrt_sigla,
@@ -10,7 +11,7 @@ export default function misconductAlertsTransform(data) {
   }));  
 }
   
-/*alrt_orgi_orga_dk: 300962
+/* alrt_orgi_orga_dk: 300962
 ​​
 alrt_sigla: "IIMP"
 ​​
@@ -34,4 +35,4 @@ dt_ultima_prorrogacao: "2022-03-11T00:00:00"
 ​​
 orgi_nm_orgao: "2ª PROMOTORIA DE JUSTIÇA DE TUTELA COLETIVA DE SÃO GONÇALO"
 ​​
-qtde_prorrogacoes*/
+qtde_prorrogacoes */

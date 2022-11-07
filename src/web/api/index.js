@@ -206,11 +206,6 @@ const Api = (() => {
 
     return hiresAlertsTransform(data);
   }
-  async function getHiresAlerts({ orgao, token }) {
-    const { data } = await axios.get(HIRES_ALERTS({ orgao }), buildRequestConfig(token));
-
-    return hiresAlertsTransform(data);
-  }
   async function getCavlAlerts({ orgao, token }) {
     const { data } = await axios.get(CAVL_ALERTS({ orgao }), buildRequestConfig(token));
 

@@ -115,10 +115,8 @@ function Alerts() {
     const { cpf, token, orgao } = buildRequestParams();
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList && errorCavlList && misconducListError );
-    const fullList = alertList.concat(cavlAlertList , hiresAlertList );
+    const fullList = alertList.concat(cavlAlertList, hiresAlertList, misconducAlertList );
     // const allAlerts = fullList.concat(misconducAlertList);
-    console.log(fullList, hiresAlertList, "Sou todos os alertas" );
-    console.log(misconducAlertList, "Sou mais alerta")
 
     const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 

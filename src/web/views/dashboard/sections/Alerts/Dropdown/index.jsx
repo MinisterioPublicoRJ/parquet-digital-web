@@ -27,6 +27,7 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isShowMoreInHover, setIsShowMoreInHover] = useState(false);
   const [visibleAlerts, setVisibleAlerts] = useState(30);
+
   const alertsList = alerts[type];
   const visibleAlertsList = alertsList.slice(0, visibleAlerts);
   const headerAlert = individualAlertFormatter(

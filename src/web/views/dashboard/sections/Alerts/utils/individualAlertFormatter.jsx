@@ -160,7 +160,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
   }
 }
 function iimpConstructor(alert, orgao, cpf, token) {
-  const { contrato_iditem, dropdown, alertCode, count, alertId } = alert;
+  const { dropdown, alertCode, alertId, count } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -177,7 +177,6 @@ function iimpConstructor(alert, orgao, cpf, token) {
   } else {
     actions = [
       OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
-      COMPRAS({ compId: contrato_iditem, contrato }),
       DELETE,
     ];
     const single = count === 1;
@@ -186,7 +185,7 @@ function iimpConstructor(alert, orgao, cpf, token) {
         Os valores do contrato
         <strong>{` ${count} `}</strong>
         {`${single ? 'item: ' : 'itens: '}`}
-        <strong>{` ${count.substring(0, 40).toLowerCase()}... `}</strong>
+        <strong>{` ${count}... `}</strong>
         apresentaram possíveis sobrepreços.
       </span>
     );
@@ -253,6 +252,7 @@ function compConstructor(alert, orgao, cpf, token) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
+  console.log('\n\n\n\n\ncount comp: ', count);
 
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ alertId, alertCode, orgao, token }))];

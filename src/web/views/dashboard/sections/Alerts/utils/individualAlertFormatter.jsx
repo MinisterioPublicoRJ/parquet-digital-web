@@ -161,7 +161,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
   }
 }
 function iimpConstructor(alert, orgao, cpf, token) {
-  const { dropdown, alertCode, alertId, count } = alert;
+  const { dropdown, alertCode, alertId, count, docNum } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -171,23 +171,21 @@ function iimpConstructor(alert, orgao, cpf, token) {
     const single = count === 1;
     message = (
       <span>
-        <strong> {`${count}`} </strong>
-        {`${single ? 'uma conta com improbidade ' : 'contas com improbidade '}`}
+        Há <strong> {`${count}`} </strong>
+        {`${single ? ' inquérito' : 'inquéritos'}`} civis sobre improbidade administrativa que precisam ser prorrogados.
       </span>
     );
   } else {
     actions = [
-      OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
+      DETAIL(),
       DELETE,
     ];
     const single = count === 1;
     message = (
       <span>
-        Os valores do contrato
-        <strong>{` ${count} `}</strong>
-        {`${single ? 'item: ' : 'itens: '}`}
-        <strong>{` ${count}... `}</strong>
-        apresentaram possíveis sobrepreços.
+        De acordo com o enunciado nº 11 da Súmula do CSMP, o inquérito civil
+        <strong>{` ${docNum}... `}</strong>
+        deve ser prorrogado.
       </span>
     );
   }
@@ -253,8 +251,6 @@ function compConstructor(alert, orgao, cpf, token) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
-  console.log('\n\n\n\n\ncount comp: ', count);
-
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ alertId, alertCode, orgao, token }))];
     COMPRAS({ compId: contrato_iditem, contrato })

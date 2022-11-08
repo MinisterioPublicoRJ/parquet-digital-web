@@ -4,6 +4,25 @@ import React from 'react';
 import { crimeData } from './styles.module.css';
 
 export const OVERLAY_TEXTS = {
+  IIMP: (
+    <div>
+      <p>
+      Esse alerta indica os inquéritos civis de improbidade administrativa já em curso na data de 
+      vigência da Lei nº 14.230/2021 e que devem ser prorrogados, considerando a interpretação do art.
+      23, §2o da Lei 8.429/1992 pelo enunciado nº 11 da Súmula do CSMP.
+      </p>
+
+      <p />
+
+      <p>
+      Enunciado 11 da Súmula do CSMP: "O inquérito civil já em curso na data de vigência da 
+      Lei nº 14.230/2021 deverá ser concluído no prazo de 365 dias, a contar da data de vigência 
+      da referida lei, com a possibilidade de prorrogação pelo mesmo período, mediante promoção 
+      fundamentada, a ser encaminhada por cópia ao Conselho Superior do Ministério Público para revisão.
+      " (Aprovada na sessão de 28 de abril de 2022)
+      </p>
+    </div>
+  ),
   GATE: (
     <div>
       <p>

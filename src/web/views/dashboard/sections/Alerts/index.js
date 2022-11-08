@@ -93,17 +93,28 @@ function Alerts() {
     return [cavlAlertList, cavlListError];
   }
 
+  async function loadMisconductAlert() {
+    let misconductAlertList = [];
+    let misconductListError = false;
+    try {
+      misconductAlertList = await Api.getMisconductAlert(buildRequestParams());
+    } catch (e) {
+      misconductListError = true;
+    }
+    return [misconductAlertList, misconductListError];
+  }
+
   async function loadComponent() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
     const [cavlAlertList, errorCavlList] = await loadCavlAlerts();
-
-
+    const [misconductAlertList, misconductListError] = await loadMisconductAlert();
     const { cpf, token, orgao } = buildRequestParams();
 
-    const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
-    const fullList = alertList.concat(hiresAlertList, cavlAlertList);
+    const apiError = errorAlertsCount || (errorAlerts && errorHiresList && errorCavlList && misconductListError );
+    const fullList = alertList.concat(cavlAlertList, hiresAlertList, misconductAlertList );
+
     const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 
     setAlerts(cleanList);

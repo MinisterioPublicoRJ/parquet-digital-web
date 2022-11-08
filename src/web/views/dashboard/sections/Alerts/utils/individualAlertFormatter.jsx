@@ -16,6 +16,7 @@ import {
   FebtIcon,
   PigCAVL,
   PainelCOVID,
+  Impropriety
 } from '../../../../../assets';
 
 import {
@@ -66,6 +67,7 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     // ALERTAS DA TUTELA
     case 'DCTJ':
+
     case 'DCTJ2':
       return dctjConstructor(alert, orgao, cpf, token);
 
@@ -148,12 +150,57 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'CTAC':
       return ctacConstructor(alert, orgao, cpf, token);
 
+    case 'IIMP':
+      return iimpConstructor(alert, orgao, cpf, token);
+
     case 'FEBT':
       return febtConstructor(alert);
 
     default:
       return {};
   }
+}
+function iimpConstructor(alert, orgao, cpf, token) {
+  const { dropdown, alertCode, alertId, count, docNum } = alert;
+  const key = alertId ? alertId : `${alertCode}-dropdown`;
+  let message;
+  let actions = [];
+
+  if (dropdown) {
+    actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
+    const single = count === 1;
+    message = (
+      <span>
+        Há <strong> {`${count}`} </strong>
+        {`${single ? ' inquérito' : 'inquéritos'}`}  {`${single ? ' civil' : 'civis'}`} 
+        {" "}sobre improbidade administrativa que {`${single ? ' precisa' : 'precisam'}`} ser 
+        {" "}{`${single ? ' prorrogado' : 'prorrogados'}`}.
+      </span>
+    );
+  } else {
+    actions = [
+      DETAIL(),
+      DELETE,
+    ];
+    const single = count === 1;
+    message = (
+      <span>
+        De acordo com o enunciado nº 11 da Súmula do CSMP, o inquérito civil
+        <strong>{` ${docNum} `}</strong>
+        deve ser prorrogado.
+      </span>
+    );
+  }
+
+  return {
+    type: alertCode,
+    actions,
+    backgroundColor: '#FF7B01 ',
+    backgroundColorChild: '#D7751A ',
+    icon: <Impropriety />,
+    key,
+    message,
+  };
 }
 
 function cavlConstructor(alert, orgao, cpf, token) {
@@ -206,7 +253,6 @@ function compConstructor(alert, orgao, cpf, token) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
-
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ alertId, alertCode, orgao, token }))];
     COMPRAS({ compId: contrato_iditem, contrato })

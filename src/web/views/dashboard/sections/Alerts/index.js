@@ -98,7 +98,6 @@ function Alerts() {
     let misconducListError = false;
     try {
       misconducAlertList = await Api.getMisconductAlert(buildRequestParams());
-      console.log(misconducAlertList, "Sou o alerta de improbidade")
     } catch (e) {
       misconducListError = true;
     }
@@ -111,12 +110,10 @@ function Alerts() {
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
     const [cavlAlertList, errorCavlList] = await loadCavlAlerts();
     const [misconducAlertList, misconducListError] = await loadMisconducAlert();
-    //console.log(misconducAlertList, "Sou mais alerta")
     const { cpf, token, orgao } = buildRequestParams();
 
     const apiError = errorAlertsCount || (errorAlerts && errorHiresList && errorCavlList && misconducListError );
     const fullList = alertList.concat(cavlAlertList, hiresAlertList, misconducAlertList );
-    // const allAlerts = fullList.concat(misconducAlertList);
 
     const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 

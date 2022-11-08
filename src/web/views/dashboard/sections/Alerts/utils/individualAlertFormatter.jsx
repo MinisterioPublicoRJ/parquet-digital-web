@@ -172,7 +172,9 @@ function iimpConstructor(alert, orgao, cpf, token) {
     message = (
       <span>
         Há <strong> {`${count}`} </strong>
-        {`${single ? ' inquérito' : 'inquéritos'}`} civis sobre improbidade administrativa que precisam ser prorrogados.
+        {`${single ? ' inquérito' : 'inquéritos'}`}  {`${single ? ' civil' : 'civis'}`} 
+        {" "}sobre improbidade administrativa que {`${single ? ' precisa' : 'precisam'}`} ser 
+        {" "}{`${single ? ' prorrogado' : 'prorrogados'}`}.
       </span>
     );
   } else {

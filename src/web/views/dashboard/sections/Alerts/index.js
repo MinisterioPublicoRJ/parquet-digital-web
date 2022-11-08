@@ -93,15 +93,15 @@ function Alerts() {
     return [cavlAlertList, cavlListError];
   }
 
-  async function loadMisconducAlert() {
-    let misconducAlertList = [];
-    let misconducListError = false;
+  async function loadMisconductAlert() {
+    let misconductAlertList = [];
+    let misconductListError = false;
     try {
-      misconducAlertList = await Api.getMisconductAlert(buildRequestParams());
+      misconductAlertList = await Api.getMisconductAlert(buildRequestParams());
     } catch (e) {
-      misconducListError = true;
+      misconductListError = true;
     }
-    return [misconducAlertList, misconducListError];
+    return [misconductAlertList, misconductListError];
   }
 
   async function loadComponent() {
@@ -109,11 +109,11 @@ function Alerts() {
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
     const [cavlAlertList, errorCavlList] = await loadCavlAlerts();
-    const [misconducAlertList, misconducListError] = await loadMisconducAlert();
+    const [misconductAlertList, misconductListError] = await loadMisconductAlert();
     const { cpf, token, orgao } = buildRequestParams();
 
-    const apiError = errorAlertsCount || (errorAlerts && errorHiresList && errorCavlList && misconducListError );
-    const fullList = alertList.concat(cavlAlertList, hiresAlertList, misconducAlertList );
+    const apiError = errorAlertsCount || (errorAlerts && errorHiresList && errorCavlList && misconductListError );
+    const fullList = alertList.concat(cavlAlertList, hiresAlertList, misconductAlertList );
 
     const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 

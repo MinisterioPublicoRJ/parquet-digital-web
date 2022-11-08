@@ -184,7 +184,7 @@ function iimpConstructor(alert, orgao, cpf, token) {
     message = (
       <span>
         De acordo com o enunciado nº 11 da Súmula do CSMP, o inquérito civil
-        <strong>{` ${docNum}... `}</strong>
+        <strong>{` ${docNum} `}</strong>
         deve ser prorrogado.
       </span>
     );

@@ -182,8 +182,8 @@ function iimpConstructor(alert, orgao, cpf, token) {
   } else {
     actions = [
       DETAIL(),
-      DELETE,
       CALCULO_IIMP(),
+      DELETE,
     ];
     const single = count === 1;
     message = (

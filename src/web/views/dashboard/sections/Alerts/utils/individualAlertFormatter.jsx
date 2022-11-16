@@ -49,6 +49,7 @@ import {
   EXTEND_DEADLINE,
   DOWNLOAD_LIST,
   GENERATE_CSV,
+  CALCULO_IIMP,
 } from './actionConstants';
 
 /**
@@ -161,7 +162,8 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
   }
 }
 function iimpConstructor(alert, orgao, cpf, token) {
-  const { dropdown, alertCode, alertId, count, docNum } = alert;
+  console.log('\n\n\nalert form', alert);
+  const { dropdown, alertCode, alertId, count, docNum, docDk, lastProrrogationDate } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -180,8 +182,8 @@ function iimpConstructor(alert, orgao, cpf, token) {
   } else {
     actions = [
       DETAIL(),
-      CALCULO(),
       DELETE,
+      CALCULO_IIMP(),
     ];
     const single = count === 1;
     message = (
@@ -201,6 +203,8 @@ function iimpConstructor(alert, orgao, cpf, token) {
     icon: <Impropriety />,
     key,
     message,
+    docDk,
+    lastProrrogationDate
   };
 }
 

@@ -65,6 +65,13 @@ export const CALCULO = () => ({
   background: '#F8BD6C',
 });
 
+export const CALCULO_IIMP = () => ({
+  actionType: 'overlay_iimp',
+  icon: <CalculatorActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Ver Cálculo',
+  background: '#f6A83C',
+});
+
 export const DETAIL = () => ({
   actionType: 'overlay',
   icon: <DetailActionIcon fillColor="white" width="30px" height="30px" />,

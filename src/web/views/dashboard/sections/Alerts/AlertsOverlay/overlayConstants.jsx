@@ -533,3 +533,10 @@ export function PPFP_TEXT({ registerDate }) {
     </p>
   </div>
 }
+
+export function IIMP_TEXT(lastProrrogationDate){
+  return <div>
+    <p>No dia 25/10/2022 completam-se 365 dias da vigência da Lei 14.230/2021. O presente inquérito, contudo, 
+      já havia sido prorrogado no dia {lastProrrogationDate} com fulcro no artigo 25 da Resolução GPGJ 2.227/2018.</p>
+  </div>
+}

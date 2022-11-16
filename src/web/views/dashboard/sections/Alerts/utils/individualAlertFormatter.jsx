@@ -180,6 +180,7 @@ function iimpConstructor(alert, orgao, cpf, token) {
   } else {
     actions = [
       DETAIL(),
+      CALCULO(),
       DELETE,
     ];
     const single = count === 1;

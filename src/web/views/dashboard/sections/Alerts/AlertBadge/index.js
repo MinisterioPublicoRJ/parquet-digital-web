@@ -104,8 +104,10 @@ function AlertBadge(alert) {
         return handleDeletion(key);
       case 'download':
         return handleLinks(alertAction);
-      case 'overlay':
-        return setOverlay(type, String(docDk));
+        case 'overlay':
+          return setOverlay(type, String(docDk));
+      case 'overlay_iimp':
+        return setOverlay('OVERLAY_IIMP', String(docDk));
       case 'link':
         return handleLinks(alertAction);
       case 'openComplaint':

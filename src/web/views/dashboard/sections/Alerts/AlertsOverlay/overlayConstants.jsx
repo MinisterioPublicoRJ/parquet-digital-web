@@ -8,8 +8,8 @@ export const OVERLAY_TEXTS = {
     <div>
       <p>
       Esse alerta indica os inquéritos civis de improbidade administrativa já em curso na data de 
-      vigência da Lei nº 14.230/2021 e que devem ser prorrogados, considerando a interpretação do art.
-      23, §2o da Lei 8.429/1992 pelo enunciado nº 11 da Súmula do CSMP.
+      vigência da Lei nº 14.230/2021 e que devem ser prorrogados, considerando a interpretação do art. 23, 
+      §2º da Lei 8.429/1992 pelo enunciado nº 11 da Súmula do CSMP.
       </p>
 
       <p>
@@ -531,5 +531,12 @@ export function PPFP_TEXT({ registerDate }) {
       Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
       utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
     </p>
+  </div>
+}
+
+export function IIMP_TEXT(lastProrrogationDate){
+  return <div>
+    <p>No dia 25/10/2022 completam-se 365 dias da vigência da Lei 14.230/2021. O presente inquérito, contudo, 
+      já havia sido prorrogado no dia {lastProrrogationDate} com fulcro no artigo 25 da Resolução GPGJ 2.227/2018.</p>
   </div>
 }

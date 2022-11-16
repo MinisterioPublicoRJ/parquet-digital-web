@@ -6,8 +6,8 @@ export default function misconductAlertsTransform(data) {
     alertId: alert.alrt_key,
     docNum: alert.docu_nr_mp,
     docDk: alert.docu_dk,
-    inicialDate: alert.ano_inicial ? new Date(alert.ano_inicial) : undefined,
-    endDateProlongation: alert.dt_ultima_prorrogacao ? new Date(alert.dt_ultima_prorrogacao) : undefined,
+    initialDate: alert.ano_inicial ? new Date(alert.ano_inicial) : undefined,
+    lastProrrogationDate: alert.dt_ultima_prorrogacao ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(new Date(alert.dt_ultima_prorrogacao)) : undefined,
   }));  
 }
   

@@ -162,7 +162,6 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
   }
 }
 function iimpConstructor(alert, orgao, cpf, token) {
-  console.log('\n\n\nalert form', alert);
   const { dropdown, alertCode, alertId, count, docNum, docDk, lastProrrogationDate } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;

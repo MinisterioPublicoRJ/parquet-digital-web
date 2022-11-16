@@ -27,10 +27,8 @@ const defaultProps = { children: null, docDk: '' };
 function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
   const { buildRequestParams } = useAppContext();
   const {alerts} = useAlertsContext();
-  console.log('alerts:', alerts);
   const [text, setText] = useState();
 
-  console.log('docDk: ', docDk);
 
   async function getOverlayText(docType) {
     try {

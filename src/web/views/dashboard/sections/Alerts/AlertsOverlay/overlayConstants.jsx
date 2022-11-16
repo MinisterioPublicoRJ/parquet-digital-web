@@ -8,8 +8,8 @@ export const OVERLAY_TEXTS = {
     <div>
       <p>
       Esse alerta indica os inquéritos civis de improbidade administrativa já em curso na data de 
-      vigência da Lei nº 14.230/2021 e que devem ser prorrogados, considerando a interpretação do art.
-      23, §2o da Lei 8.429/1992 pelo enunciado nº 11 da Súmula do CSMP.
+      vigência da Lei nº 14.230/2021 e que devem ser prorrogados, considerando a interpretação do art. 23, 
+      §2º da Lei 8.429/1992 pelo enunciado nº 11 da Súmula do CSMP.
       </p>
 
       <p>

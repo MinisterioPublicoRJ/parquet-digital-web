@@ -16,6 +16,8 @@ const propTypes = {
   unpositioned: PropTypes.bool,
   withExitButton: PropTypes.bool,
   transparent: PropTypes.bool,
+  close: PropTypes.func.isRequired,
+  inner: PropTypes.bool,
 };
 
 // children can be undefined if Modal is not open yet
@@ -25,6 +27,7 @@ const defaultProps = {
   unpositioned: undefined,
   withExitButton: undefined,
   transparent: undefined,
+  inner: true,
 };
 
 /**

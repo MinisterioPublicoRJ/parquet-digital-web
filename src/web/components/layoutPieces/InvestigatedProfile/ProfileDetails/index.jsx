@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 import { investigatedProfileDetailsStyle } from '../InvestigatedProfile.module.css';
 
 const propTypes = {
-  perfil: PropTypes.shape({}).isRequired,
+  perfil: PropTypes.shape({
+    dt_nasc: PropTypes.string,
+    nm_investigado: PropTypes.string,
+    rg: PropTypes.string,
+    cpf: PropTypes.string,
+    nm_mae: PropTypes.string,
+    nm_pesj: PropTypes.string,
+    cnpj: PropTypes.string
+  }).isRequired,
 };
 
 function ProfileDetails({ perfil }) {
@@ -43,7 +51,6 @@ function ProfileDetails({ perfil }) {
       </>
     );
   } else if (Object.prototype.hasOwnProperty.call(perfil, 'cnpj')) {
-
     details = (
       <>
         <p>
@@ -60,7 +67,7 @@ function ProfileDetails({ perfil }) {
     );
   }
 
-  return <div className={ investigatedProfileDetailsStyle }>{details}</div>;
+  return <div className={investigatedProfileDetailsStyle}>{details}</div>;
 }
 
 ProfileDetails.propTypes = propTypes;

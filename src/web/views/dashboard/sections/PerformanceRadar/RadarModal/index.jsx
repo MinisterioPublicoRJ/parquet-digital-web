@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+
 
 import {
   radarModalOuter,
@@ -17,6 +19,14 @@ import {
 import RadarGraph from '../RadarGraph';
 import { Search } from '../../../../../assets';
 import { Spinner } from '../../../../../components';
+
+const propTypes = {
+  compareData: PropTypes.shape({
+      userData: PropTypes.arrayOf(),
+      otherData: PropTypes.arrayOf(),
+      chartLabels: PropTypes.arrayOf(),
+    }).isRequired,
+};
 
 function RadarModal({ compareData }) {
   function useFocus(isSearching) {
@@ -155,4 +165,5 @@ function RadarModal({ compareData }) {
   );
 }
 
+RadarModal.propTypes = propTypes;
 export default RadarModal;

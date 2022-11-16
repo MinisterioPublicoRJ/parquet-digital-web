@@ -38,6 +38,7 @@ import {
 import {
   DELETE,
   COMPRAS,
+  COMPRAS_COVID,
   OUVIDORIA_ISPS,
   SANEAMENTO,
   OUVIDORIA_COMPRAS,
@@ -255,7 +256,7 @@ function compConstructor(alert, orgao, cpf, token) {
   let actions = [];
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ alertId, alertCode, orgao, token }))];
-    COMPRAS({ compId: contrato_iditem, contrato })
+    COMPRAS_COVID({ compId: contrato_iditem, contrato })
 
     const single = count === 1;
     message = (
@@ -269,7 +270,7 @@ function compConstructor(alert, orgao, cpf, token) {
   } else {
     actions = [
       OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
-      COMPRAS({ compId: contrato_iditem, contrato }),
+      COMPRAS_COVID({ compId: contrato_iditem, contrato }),
       DELETE,
     ];
     const single = count === 1;

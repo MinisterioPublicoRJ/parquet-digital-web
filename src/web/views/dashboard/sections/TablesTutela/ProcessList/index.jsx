@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import Api from '../../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
@@ -10,6 +11,18 @@ import {
   investigatedProfileBtn,
   processDetailBtnStyle,
 } from '../styles.module.css';
+
+const propTypes = {
+  isActive: PropTypes.bool,
+  setInvestigatedProfile: PropTypes.func.isRequired,
+  setProcessDetail: PropTypes.func.isRequired,
+  searchString: PropTypes.string,
+};
+
+const defaultProps = {
+  isActive: false,
+  searchString: '',
+}
 
 function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searchString}) {
   const { buildRequestParams } = useAppContext();
@@ -124,5 +137,8 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
     </div>
   );
 }
+
+ProcessList.propTypes = propTypes;
+ProcessList.defaultProps = defaultProps;
 
 export default ProcessList;

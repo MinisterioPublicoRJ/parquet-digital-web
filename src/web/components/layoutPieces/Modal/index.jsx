@@ -27,7 +27,7 @@ const defaultProps = {
   unpositioned: undefined,
   withExitButton: undefined,
   transparent: undefined,
-  inner: true,
+  inner: false,
 };
 
 /**

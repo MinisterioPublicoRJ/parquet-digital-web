@@ -42,7 +42,7 @@ const defaultProps = {
   docuNrExterno: '-',
 };
 
-function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
+function ProcessDetail({ docuNrMp, docuNrExterno }) {
   const [processData, setProcessData] = useState(null);
   // const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);

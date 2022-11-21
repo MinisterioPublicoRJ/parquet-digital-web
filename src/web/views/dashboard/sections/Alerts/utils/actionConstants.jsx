@@ -23,6 +23,15 @@ export const COMPRAS = ({ compId, contrato }) => ({
   icon: <IconCompras fillColor="white" width="30px" height="30px" />,
   text: 'Painel de Compras',
   background: '#F8BD6C',
+  link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/ANLISEDECOMPRAS-GERAL/Compras?%3Aembed=y&%3Aembed=y&%3Aiid=8&%3AisGuestRedirectFromVizportal=y&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
+});
+
+
+export const COMPRAS_COVID = ({ compId, contrato }) => ({
+  actionType: 'link',
+  icon: <IconCompras fillColor="white" width="30px" height="30px" />,
+  text: 'Painel de Compras',
+  background: '#F8BD6C',
   link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/TESTE-COVID-19GATE/CONUnidadeGestora?:isGuestRedirectFromVizportal=y&:embed=y&:linktarget=_self&:tabs=no&:tollbar=yes&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
 });
 
@@ -63,6 +72,13 @@ export const CALCULO = () => ({
   icon: <CalculatorActionIcon fillColor="white" width="30px" height="30px" />,
   text: 'Ver Cálculo',
   background: '#F8BD6C',
+});
+
+export const CALCULO_IIMP = () => ({
+  actionType: 'overlay_iimp',
+  icon: <CalculatorActionIcon fillColor="white" width="30px" height="30px" />,
+  text: 'Ver Cálculo',
+  background: '#71D0A4',
 });
 
 export const DETAIL = () => ({

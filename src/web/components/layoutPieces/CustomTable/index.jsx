@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { tableStyle, tBodyStyle, tHeadStyle, tdStyle, thStyle } from './CustomTable.module.css';
@@ -23,10 +22,10 @@ function generateHeader(headerPropArray) {
   const sections = Object.keys(headerPropArray);
 
   return (
-    <thead className={ tHeadStyle }>
+    <thead className={tHeadStyle}>
       <tr>
         {sections.map((title) => (
-          <th scope="col" key={title} className={ thStyle }>
+          <th scope="col" key={title} className={thStyle}>
             {title}
           </th>
         ))}
@@ -45,32 +44,36 @@ function generateHeader(headerPropArray) {
  */
 function generateRow(dataUnit, columns, isPhone, rowN) {
   const sections = Object.keys(columns);
+
   return (
     <tr key={`table-row-${rowN}`}>
-      {sections.map((key, i) => {
-      
-      let currentTitle = dataUnit[columns[key]];
-      while (currentTitle?.props && currentTitle.props.children && typeof(currentTitle.props.children) === 'object') {
-        // eslint-disable-next-line prefer-destructuring
-        currentTitle = currentTitle.props.children[0];        
+      {sections.map((key) => {
+        let currentTitle = dataUnit[columns[key]];
+
+        while (currentTitle?.props && currentTitle.props.children && typeof (currentTitle.props.children) === 'object') {
+          const [title] = currentTitle.props.children;
+          currentTitle = title;
+        }
+
+        if (typeof (currentTitle?.props?.children) !== 'undefined') currentTitle = currentTitle.props.children;
+
+        return (
+          <React.Fragment key={`row${rowN}-${columns[key]}`}>
+            {isPhone && (
+              <th scope="row" key={`${columns[key]}-${rowN}`} className={thStyle}>
+                {key}
+              </th>
+            )}
+            <td
+              title={currentTitle}
+              className={tdStyle}
+              key={columns[key]}
+            >
+              {dataUnit[columns[key]]}
+            </td>
+          </React.Fragment>
+        )
       }
-      if (typeof(currentTitle?.props?.children) !== 'undefined') currentTitle = currentTitle.props.children;
-      return (
-        <React.Fragment key={`${rowN}-Col${i}`}>
-          {isPhone && (
-            <th scope="row" key={`${key}-${i}`} className={ thStyle }>
-              {key}
-            </th>
-          )}
-          <td
-            title={currentTitle}
-            className={ tdStyle }
-            key={dataUnit[columns[key]]}
-          >
-            {dataUnit[columns[key]]}
-          </td>
-        </React.Fragment>
-      )}
       )}
     </tr>
   );
@@ -86,9 +89,9 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
 function CustomTable({ data, columns, showHeader }) {
   const isPhone = window.innerWidth <= 480;
   return (
-    <table className={ tableStyle }>
+    <table className={tableStyle}>
       {showHeader && !isPhone && generateHeader(columns)}
-      <tbody className={ tBodyStyle }>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
+      <tbody className={tBodyStyle}>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
     </table>
   );
 }

@@ -4,7 +4,7 @@ import Api from '../../../../../api';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner } from '../../../../../components';
 
-import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT, PA1A_TEXT } from './overlayConstants';
+import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT, PA1A_TEXT, IIMP_TEXT } from './overlayConstants';
 
 import {
   overlayOuter,
@@ -13,6 +13,7 @@ import {
   alertsOverlayButton,
   spinnerWraper,
 } from './styles.module.css';
+import { useAlertsContext } from '../alertsContext';
 
 const propTypes = {
   type: PropTypes.string.isRequired,
@@ -25,7 +26,9 @@ const defaultProps = { children: null, docDk: '' };
 
 function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
   const { buildRequestParams } = useAppContext();
+  const {alerts} = useAlertsContext();
   const [text, setText] = useState();
+
 
   async function getOverlayText(docType) {
     try {
@@ -60,11 +63,14 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
         case 'IC1A':
           data = await getOverlayText(type, docDk);
           texts = typeof data === 'object' || Array.isArray(data) ? IC1A_TEXT(data) : data;
-
           break;
         case 'PA1A':
           data = await getOverlayText(type, docDk);
           texts = typeof data === 'object' || Array.isArray(data) ? PA1A_TEXT(data) : data;
+          break;
+        case 'OVERLAY_IIMP':
+          console.log(alerts?.IIMP?.find((alert) => Number(alert?.docDk) === Number(docDk))?.lastProrrogationDate);
+          texts = IIMP_TEXT(alerts?.IIMP?.find((alert) => Number(alert?.docDk) === Number(docDk))?.lastProrrogationDate);
           break;
         default:
           texts = <p>{`Os dados para alertas ${type} ainda não estão disponíveis`}</p>;

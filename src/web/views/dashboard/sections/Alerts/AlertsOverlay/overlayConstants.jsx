@@ -4,14 +4,29 @@ import React from 'react';
 import { crimeData } from './styles.module.css';
 
 export const OVERLAY_TEXTS = {
+  IIMP: (
+    <div>
+      <p>
+      Esse alerta indica os inquéritos civis de improbidade administrativa já em curso na data de 
+      vigência da Lei nº 14.230/2021 e que devem ser prorrogados, considerando a interpretação do art. 23, 
+      §2º da Lei 8.429/1992 pelo enunciado nº 11 da Súmula do CSMP.
+      </p>
+
+      <p>
+      Enunciado 11 da Súmula do CSMP: "O inquérito civil já em curso na data de vigência da 
+      Lei nº 14.230/2021 deverá ser concluído no prazo de 365 dias, a contar da data de vigência 
+      da referida lei, com a possibilidade de prorrogação pelo mesmo período, mediante promoção 
+      fundamentada, a ser encaminhada por cópia ao Conselho Superior do Ministério Público para revisão.
+      " (Aprovada na sessão de 28 de abril de 2022)
+      </p>
+    </div>
+  ),
   GATE: (
     <div>
       <p>
         Neste alerta, eu busco lhe informar sobre Instruções Técnicas do GATE que foram elaboradas
         entre a última vez que você viu este procedimento e a data de hoje.
       </p>
-
-      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
@@ -28,8 +43,6 @@ export const OVERLAY_TEXTS = {
         entre a última vez que você viu este procedimento e a data de hoje.
       </p>
 
-      <p />
-
       <p>
         Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
         novamente, ou que você aperte o botão dispensar. Enquanto ele está disponível, você pode
@@ -45,8 +58,6 @@ export const OVERLAY_TEXTS = {
         vez em documentos que versam sobre violência doméstica.
       </p>
 
-      <p />
-
       <p>
         O alerta só aparece se o documento passou por aqui nos últimos 30 dias, mas você também
         poderá dispensar sempre que quiser.
@@ -59,8 +70,6 @@ export const OVERLAY_TEXTS = {
         Neste alerta, eu busco lhe avisar que um expediente de ouvidoria não foi recebido nesta
         Promotoria de Justiça, apesar de ter guia de enviado para cá.
       </p>
-
-      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta receber a guia e promover o lançamento da data de
@@ -75,8 +84,6 @@ export const OVERLAY_TEXTS = {
         não teve uma destinação dada.
       </p>
 
-      <p />
-
       <p>
         Para que o alerta deixe de aparecer, basta indeferir de plano ou instaurar procedimento e
         registrar no sistema.
@@ -89,8 +96,6 @@ export const OVERLAY_TEXTS = {
         Neste alerta, eu busco lhe avisar que uma notícia de fato foi autuada há mais de 120 dias e
         não teve uma destinação dada.
       </p>
-
-      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta indeferir de plano ou instaurar procedimento e
@@ -105,8 +110,6 @@ export const OVERLAY_TEXTS = {
         vista aberta em sua mesa. Neste caso, o documento provavelmente não deveria estar ali, ou
         está com registro muito errado no banco.
       </p>
-
-      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta fechar a vista, retornar o procedimento ao
@@ -123,8 +126,6 @@ export const OVERLAY_TEXTS = {
         seu trabalho.
       </p>
 
-      <p />
-
       <p>
         O alerta só fica disponível para visualização por uma semana, então não se preocupe, pois
         ele irá sumir sozinho. De todo modo, caso não queira mais vê-lo, pode clicar na opção
@@ -138,8 +139,6 @@ export const OVERLAY_TEXTS = {
         Esta é uma listagem de todos R.O.s da referida Delegacia que não foram encaminhados ao
         Ministério Público.
       </p>
-
-      <p />
 
       <p>
         Sua elaboração considera o número mais alto de registro enviado ao MP e o fato de se tratar
@@ -166,8 +165,6 @@ export const OVERLAY_TEXTS = {
         devida comunicação ao Conselho Superior do Ministério Público.
       </p>
 
-      <p />
-
       <p>
         Para verificar isso, eu procuro no sistema todos os procedimentos que tiveram andamentos de
         TAC realizados. Em seguida, verifico se todos tiveram andamento de Ciência de Decisão do
@@ -175,8 +172,6 @@ export const OVERLAY_TEXTS = {
         do Ministério Público&quot;, posterior ao TAC. Caso algum desses procedimentos não se encontre
         dentro desses critérios, eu o aviso desse fato.
       </p>
-
-      <p />
 
       <p>
         Para desativar este alerta, basta realizar um andamento de Ofício neste procedimento,
@@ -190,8 +185,6 @@ export const OVERLAY_TEXTS = {
         Neste alerta, eu busco lhe informar sobre Processos Criminais que saíram para o TJRJ há
         mais de 60 e menos de 180 dias e ainda não retornaram a esta promotoria.
       </p>
-
-      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
@@ -209,8 +202,6 @@ export const OVERLAY_TEXTS = {
         um documento com aplicação do art. 366 do CPP é grande.
       </p>
 
-      <p />
-
       <p>
         Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
         novamente, ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento
@@ -225,8 +216,6 @@ export const OVERLAY_TEXTS = {
         Neste alerta, eu busco lhe informar sobre processos cíveis que saíram para o TJRJ
         há mais de 120 dias e ainda não retornaram a esta promotoria.
       </p>
-
-      <p />
 
       <p>
         Para que o alerta deixe de aparecer, basta que você receba o processo para trabalhar
@@ -472,8 +461,6 @@ export function PRCR_TEXTS(type, data) {
             medidas que podem ser tomadas.
           </p>
 
-          <p />
-
           <p>
             Caso você acredite que não há o que fazer e é o caso de prescrição inevitável, assim que
             ocorrer a data de prescrição deste crime, este alerta deixará de existir para se tornar
@@ -494,14 +481,10 @@ export function IC1A_TEXT({ movement, movementDate, deadline }) {
       prorrogação.
     </p>
 
-    <p />
-
     <p>
       {`Neste caso, ele fez um ano sem prorrogação no dia ${deadline}, após ter ocorrido a
       ${movement} no dia ${movementDate}.`}
     </p>
-
-    <p />
 
     <p>
       Caso você concorde com meus cálculos, você pode utilizar o botão de gerar peça e eu lhe
@@ -517,14 +500,10 @@ export function PA1A_TEXT({ deadline, registerDate }) {
       um ano.
     </p>
 
-    <p />
-
     <p>
       {`Neste caso, ele fez um ano no dia ${deadline}, após ter sido cadastrado no nosso sistema
       no dia ${registerDate}.`}
     </p>
-
-    <p />
 
     <p>
       Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
@@ -537,26 +516,27 @@ export function PPFP_TEXT({ registerDate }) {
   return <div>
     <p>Neste alerta, eu busco lhe informar se um Procedimento Preparatório está fora do prazo.</p>
 
-    <p />
-
     <p>
       Neste caso, o alerta aparece se o Procedimento Preparatório foi criado no sistema e se
       passaram mais de 30 dias sem prorrogação, ou se, mesmo após a prorrogação, já se passaram mais
       de 180 dias de sua criação.
     </p>
 
-    <p />
-
     <p>
       {`Este procedimento foi cadastrado no nosso sistema no dia ${registerDate} e agora ele se
       encontra fora do prazo.`}
     </p>
 
-    <p />
-
     <p>
       Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
       utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
     </p>
+  </div>
+}
+
+export function IIMP_TEXT(lastProrrogationDate){
+  return <div>
+    <p>No dia 25/10/2022 completam-se 365 dias da vigência da Lei 14.230/2021. O presente inquérito, contudo, 
+      já havia sido prorrogado no dia {lastProrrogationDate} com fulcro no artigo 25 da Resolução GPGJ 2.227/2018.</p>
   </div>
 }

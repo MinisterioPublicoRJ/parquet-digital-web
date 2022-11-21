@@ -32,6 +32,7 @@ import {
   ONGOING_INVESTIGATIONS_LIST,
   ALERT_OVERLAY_DATA,
   PROCESS_DETAIL,
+  MISCONDUCT_ALERT,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -63,6 +64,7 @@ import {
   processDetailTransform,
   cavlAlertsTransform,
   radarCriminalTransform,
+  misconductAlertsTransform,
 } from './transforms';
 
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
@@ -177,6 +179,12 @@ const Api = (() => {
     return radarCriminalTransform(data);
   }
 
+  
+  async function getMisconductAlert({ orgao, token }) {
+    const { data } = await axios.get(MISCONDUCT_ALERT({ orgao }), buildRequestConfig(token));
+
+    return misconductAlertsTransform(data);
+  }
   async function getProcessingTimeData({ orgao, token }) {
     const { data } = await axios.get(PROCESSING_TIME_DATA({ orgao }), buildRequestConfig(token));
 
@@ -393,6 +401,7 @@ const Api = (() => {
     getAlertOverlayData,
     getProcessDetail,
     getCavlAlerts,
+    getMisconductAlert,
   };
 })();
 

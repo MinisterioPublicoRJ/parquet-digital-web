@@ -7,17 +7,17 @@ export const OVERLAY_TEXTS = {
   IIMP: (
     <div>
       <p>
-      Esse alerta indica os inquéritos civis de improbidade administrativa já em curso na data de 
-      vigência da Lei nº 14.230/2021 e que devem ser prorrogados, considerando a interpretação do art. 23, 
-      §2º da Lei 8.429/1992 pelo enunciado nº 11 da Súmula do CSMP.
+        Esse alerta indica os inquéritos civis de improbidade administrativa já em curso na data de
+        vigência da Lei nº 14.230/2021 e que devem ser prorrogados, considerando a interpretação do
+        art. 23, §2º da Lei 8.429/1992 pelo enunciado nº 11 da Súmula do CSMP.
       </p>
 
       <p>
-      Enunciado 11 da Súmula do CSMP: "O inquérito civil já em curso na data de vigência da 
-      Lei nº 14.230/2021 deverá ser concluído no prazo de 365 dias, a contar da data de vigência 
-      da referida lei, com a possibilidade de prorrogação pelo mesmo período, mediante promoção 
-      fundamentada, a ser encaminhada por cópia ao Conselho Superior do Ministério Público para revisão.
-      " (Aprovada na sessão de 28 de abril de 2022)
+        Enunciado 11 da Súmula do CSMP: "O inquérito civil já em curso na data de vigência da Lei nº
+        14.230/2021 deverá ser concluído no prazo de 365 dias, a contar da data de vigência da
+        referida lei, com a possibilidade de prorrogação pelo mesmo período, mediante promoção
+        fundamentada, a ser encaminhada por cópia ao Conselho Superior do Ministério Público para
+        revisão. " (Aprovada na sessão de 28 de abril de 2022)
       </p>
     </div>
   ),
@@ -168,9 +168,9 @@ export const OVERLAY_TEXTS = {
       <p>
         Para verificar isso, eu procuro no sistema todos os procedimentos que tiveram andamentos de
         TAC realizados. Em seguida, verifico se todos tiveram andamento de Ciência de Decisão do
-        CSMP, ou de Ofício cujo destinatário tenha sido preenchido com &quot;CSMP&quot; ou &quot;Conselho Superior
-        do Ministério Público&quot;, posterior ao TAC. Caso algum desses procedimentos não se encontre
-        dentro desses critérios, eu o aviso desse fato.
+        CSMP, ou de Ofício cujo destinatário tenha sido preenchido com &quot;CSMP&quot; ou
+        &quot;Conselho Superior do Ministério Público&quot;, posterior ao TAC. Caso algum desses
+        procedimentos não se encontre dentro desses critérios, eu o aviso desse fato.
       </p>
 
       <p>
@@ -182,8 +182,8 @@ export const OVERLAY_TEXTS = {
   DCTJ: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Processos Criminais que saíram para o TJRJ há
-        mais de 60 e menos de 180 dias e ainda não retornaram a esta promotoria.
+        Neste alerta, eu busco lhe informar sobre Processos Criminais que saíram para o TJRJ há mais
+        de 60 e menos de 180 dias e ainda não retornaram a esta promotoria.
       </p>
 
       <p>
@@ -197,9 +197,9 @@ export const OVERLAY_TEXTS = {
   DCTJ2: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Processos Criminais que saíram para o TJRJ há
-        mais de 180 dias e ainda não retornaram a esta promotoria. A probabilidade de que ele seja
-        um documento com aplicação do art. 366 do CPP é grande.
+        Neste alerta, eu busco lhe informar sobre Processos Criminais que saíram para o TJRJ há mais
+        de 180 dias e ainda não retornaram a esta promotoria. A probabilidade de que ele seja um
+        documento com aplicação do art. 366 do CPP é grande.
       </p>
 
       <p>
@@ -213,8 +213,8 @@ export const OVERLAY_TEXTS = {
   DNTJ: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre processos cíveis que saíram para o TJRJ
-        há mais de 120 dias e ainda não retornaram a esta promotoria.
+        Neste alerta, eu busco lhe informar sobre processos cíveis que saíram para o TJRJ há mais de
+        120 dias e ainda não retornaram a esta promotoria.
       </p>
 
       <p>
@@ -231,7 +231,9 @@ export const OVERLAY_TEXTS = {
         Somente membros podem descartar definitivamente um alerta. Servidores só podem descartar
         para o seu próprio usuário e somente durante o uso nesta sessão.
       </p>
-      <p>Tem certeza de que deseja continuar esta ação? Caso desista, clique em &quot;Desfazer&quot;.</p>
+      <p>
+        Tem certeza de que deseja continuar esta ação? Caso desista, clique em &quot;Desfazer&quot;.
+      </p>
     </div>
   ),
 };
@@ -255,7 +257,7 @@ export function PRCR_TEXTS(type, data) {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime) => (
-            <div className={ crimeData } key={crime.key}>
+            <div className={crimeData} key={crime.key}>
               <p>
                 <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
@@ -313,7 +315,7 @@ export function PRCR_TEXTS(type, data) {
 
           <p>Para este caso, meus cálculos foram os seguintes:</p>
           {data.map((crime) => (
-            <div className={ crimeData } key={crime.key}>
+            <div className={crimeData} key={crime.key}>
               <p>
                 <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
@@ -373,7 +375,7 @@ export function PRCR_TEXTS(type, data) {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime) => (
-            <div className={ crimeData } key={crime.key}>
+            <div className={crimeData} key={crime.key}>
               <p>
                 <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
@@ -429,7 +431,7 @@ export function PRCR_TEXTS(type, data) {
           <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime) => (
-            <div className={ crimeData } key={crime.key}>
+            <div className={crimeData} key={crime.key}>
               <p>
                 <b>Personagem:</b>
                 {` ${crime.investigatedName}`}
@@ -470,73 +472,84 @@ export function PRCR_TEXTS(type, data) {
         </>
       );
     default:
-    return '';
+      return '';
   }
 }
 
 export function IC1A_TEXT({ movement, movementDate, deadline }) {
-  return <div>
-    <p>
-      Neste alerta, eu busco lhe informar se um Inquérito Civil está há mais de um ano sem
-      prorrogação.
-    </p>
+  return (
+    <div>
+      <p>
+        Neste alerta, eu busco lhe informar se um Inquérito Civil está há mais de um ano sem
+        prorrogação.
+      </p>
 
-    <p>
-      {`Neste caso, ele fez um ano sem prorrogação no dia ${deadline}, após ter ocorrido a
+      <p>
+        {`Neste caso, ele fez um ano sem prorrogação no dia ${deadline}, após ter ocorrido a
       ${movement} no dia ${movementDate}.`}
-    </p>
+      </p>
 
-    <p>
-      Caso você concorde com meus cálculos, você pode utilizar o botão de gerar peça e eu lhe
-      entrego um modelo de sugestão.
-    </p>
-  </div>
+      <p>
+        Caso você concorde com meus cálculos, você pode utilizar o botão de gerar peça e eu lhe
+        entrego um modelo de sugestão.
+      </p>
+    </div>
+  );
 }
 
 export function PA1A_TEXT({ deadline, registerDate }) {
-  return <div>
-    <p>
-      Neste alerta, eu busco lhe informar se um Procedimento Administrativo está aberto há mais de
-      um ano.
-    </p>
+  return (
+    <div>
+      <p>
+        Neste alerta, eu busco lhe informar se um Procedimento Administrativo está aberto há mais de
+        um ano.
+      </p>
 
-    <p>
-      {`Neste caso, ele fez um ano no dia ${deadline}, após ter sido cadastrado no nosso sistema
+      <p>
+        {`Neste caso, ele fez um ano no dia ${deadline}, após ter sido cadastrado no nosso sistema
       no dia ${registerDate}.`}
-    </p>
+      </p>
 
-    <p>
-      Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
-      utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
-    </p>
-  </div>
+      <p>
+        Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
+        utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
+      </p>
+    </div>
+  );
 }
 
 export function PPFP_TEXT({ registerDate }) {
-  return <div>
-    <p>Neste alerta, eu busco lhe informar se um Procedimento Preparatório está fora do prazo.</p>
+  return (
+    <div>
+      <p>Neste alerta, eu busco lhe informar se um Procedimento Preparatório está fora do prazo.</p>
 
-    <p>
-      Neste caso, o alerta aparece se o Procedimento Preparatório foi criado no sistema e se
-      passaram mais de 30 dias sem prorrogação, ou se, mesmo após a prorrogação, já se passaram mais
-      de 180 dias de sua criação.
-    </p>
+      <p>
+        Neste caso, o alerta aparece se o Procedimento Preparatório foi criado no sistema e se
+        passaram mais de 30 dias sem prorrogação, ou se, mesmo após a prorrogação, já se passaram
+        mais de 180 dias de sua criação.
+      </p>
 
-    <p>
-      {`Este procedimento foi cadastrado no nosso sistema no dia ${registerDate} e agora ele se
+      <p>
+        {`Este procedimento foi cadastrado no nosso sistema no dia ${registerDate} e agora ele se
       encontra fora do prazo.`}
-    </p>
+      </p>
 
-    <p>
-      Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
-      utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
-    </p>
-  </div>
+      <p>
+        Caso você concorde com meus cálculos e queira convertê-lo em Inquérito Civil, você pode
+        utilizar o botão de gerar peça e eu lhe entrego um modelo de sugestão.
+      </p>
+    </div>
+  );
 }
 
-export function IIMP_TEXT(lastProrrogationDate){
-  return <div>
-    <p>No dia 25/10/2022 completam-se 365 dias da vigência da Lei 14.230/2021. O presente inquérito, contudo, 
-      já havia sido prorrogado no dia {lastProrrogationDate} com fulcro no artigo 25 da Resolução GPGJ 2.227/2018.</p>
-  </div>
+export function IIMP_TEXT(lastProrrogationDate) {
+  const prorrogationText = lastProrrogationDate
+    ? `O presente inquérito, contudo, já havia sido prorrogado no dia ${lastProrrogationDate} 
+    com fulcro no artigo 25 da Resolução GPGJ 2.227/2018.`
+    : 'Não houve prorrogações no presente inquérito';
+  return (
+    <div>
+      <p>No dia 25/10/2022 completam-se 365 dias da vigência da Lei 14.230/2021. {prorrogationText}</p>
+    </div>
+  );
 }

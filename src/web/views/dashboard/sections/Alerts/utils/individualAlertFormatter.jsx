@@ -116,8 +116,8 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'COMP':
       return compConstructor(alert, orgao, cpf, token);
 
-    case 'COMP_PROD':
-      return cavlConstructor(alert, orgao, cpf, token);
+    //case 'COMP_PROD':
+      //return cavlConstructor(alert, orgao, cpf, token);
 
     //indicadores de saneamento
     case 'ISPS':

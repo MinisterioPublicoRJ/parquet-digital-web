@@ -10,6 +10,7 @@ import {
 } from './styles.module.css';
 
 const propTypes = {
+  mapatronData: PropTypes.string.isRequired,
 };
 
 function MapaTron({ mapatronData }) {

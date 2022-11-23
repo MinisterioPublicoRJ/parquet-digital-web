@@ -72,8 +72,16 @@
   padding: 0;
 }
 
+.selectorListWrapper button {
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  text-align: left;
+}
+
 .selectorListWrapper li {
-  margin: 10px 0;
+  margin: 10px 0px 2px 0;
 }
 
 .selectorListWrapper li > span {

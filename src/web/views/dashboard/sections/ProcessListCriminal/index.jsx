@@ -1,22 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Api from '../../../../api';
-import { CustomTable, Spinner, Pagination, SectionTitle, Modal, ProcessDetail, InvestigatedProfile } from '../../../../components';
-import { useAppContext } from '../../../../../core/app/App.context';
-import { highlightJSX } from '../../../../utils';
+import React, { useState } from 'react';
+import { SearchBox } from 'mapasteca-web';
+import { SectionTitle, Modal, ProcessDetail, InvestigatedProfile } from '../../../../components';
 
 import {
   tableCriminalOuter,
-  investigatedProfileBtn,
-  processDetailBtnStyle,
-  todayTextAreaCriminal,
-  processListTableWrapper,
   tableBody
 } from './styles.module.css';
 import ProcessList from '../TablesTutela/ProcessList';
-import { SearchBox } from 'mapasteca-web';
 
 function ProcessListCriminal() {
-  const { buildRequestParams, currentOffice } = useAppContext();
   // eslint-disable-next-line no-shadow
   const [searchString, setSearchString] = useState('');
   const [repDk, setRepDk] = useState(null);

@@ -32,7 +32,6 @@ import AlertsOverlay from '../../../views/dashboard/sections/Alerts/AlertsOverla
 import individualAlertFormatter from '../../../views/dashboard/sections/Alerts/utils/individualAlertFormatter';
 
 const propTypes = {
-  close: PropTypes.func.isRequired,
   docuNrMp: PropTypes.string,
   docuNrExterno: PropTypes.string,
 };

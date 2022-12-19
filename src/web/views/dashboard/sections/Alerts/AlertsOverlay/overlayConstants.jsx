@@ -24,204 +24,139 @@ export const OVERLAY_TEXTS = {
   GATE: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Instruções Técnicas do GATE que foram elaboradas
-        entre a última vez que você viu este procedimento e a data de hoje.
-      </p>
-
-      <p>
-        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
-        novamente, ou que aperte o botão dispensar. Enquanto ele está disponível, você pode pedir
-        para baixar IT e eu busco ela no GATE, deixando disponível tanto para leitura quanto para
-        download em nova aba do navegador.
+        O alerta indica que foi disponibilizada IT do GATE depois da última vista aberta no
+        documento. É possível solicitar abertura de vista do documento para trabalhar nele
+        novamente. Outra opção é realizar o download ou a leitura da IT.
       </p>
     </div>
   ),
   MCSI: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Instruções Técnicas da CSI que foram elaboradas
-        entre a última vez que você viu este procedimento e a data de hoje.
+        O alerta indica que foi disponibilizada IT da CSI depois da última vista aberta no
+        documento.
       </p>
 
       <p>
-        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
-        novamente, ou que você aperte o botão dispensar. Enquanto ele está disponível, você pode
-        pedir para baixar IT e eu busco ela na CSI para você, deixando disponível tanto para leitura
-        quanto para download em nova aba do navegador.
+        É possível solicitar abertura de vista do documento para trabalhar nele novamente. Outra
+        opção é realizar o download ou a leitura da IT.
       </p>
     </div>
   ),
   MVVD: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre vítimas que reconheci que apareceram mais de uma
-        vez em documentos que versam sobre violência doméstica.
-      </p>
-
-      <p>
-        O alerta só aparece se o documento passou por aqui nos últimos 30 dias, mas você também
-        poderá dispensar sempre que quiser.
+        O alerta indica que foi cadastrado um novo documento da matéria "Violência Doméstica e
+        Familiar contra a Mulher" nos últimos 30 dias e a vítima (autor e/ou vítima) já figura em
+        outro documento da mesma matéria.
       </p>
     </div>
   ),
   OUVI: (
     <div>
       <p>
-        Neste alerta, eu busco lhe avisar que um expediente de ouvidoria não foi recebido nesta
-        Promotoria de Justiça, apesar de ter guia de enviado para cá.
-      </p>
-
-      <p>
-        Para que o alerta deixe de aparecer, basta receber a guia e promover o lançamento da data de
-        recebimento no MGP.
+        O alerta indica que foi remetido um expediente de Ouvidoria com guia de envio para esta
+        promotoria de justiça, mas não foi registrado seu recebimento. É possível receber a guia e
+        promover o lançamento da data de recebimento no MGP.
       </p>
     </div>
   ),
   NF30: (
     <div>
       <p>
-        Neste alerta, eu busco lhe avisar que uma notícia de fato foi autuada há mais de 30 dias e
-        não teve uma destinação dada.
-      </p>
-
-      <p>
-        Para que o alerta deixe de aparecer, basta indeferir de plano ou instaurar procedimento e
-        registrar no sistema.
+        O alerta indica as Notícias de Fato que estão há mais de 30 dias sem movimentos de
+        finalização, autuação ou prorrogação. É possível baixar uma planilha Excel com as Notícias
+        de Fato que demandam sua atenção.
       </p>
     </div>
   ),
   NF120: (
     <div>
       <p>
-        Neste alerta, eu busco lhe avisar que uma notícia de fato foi autuada há mais de 120 dias e
-        não teve uma destinação dada.
-      </p>
-
-      <p>
-        Para que o alerta deixe de aparecer, basta indeferir de plano ou instaurar procedimento e
-        registrar no sistema.
+        O alerta indica as Notícias de Fato que estão há mais de 120 dias sem movimentos de
+        finalização, autuação ou prorrogação. É possível baixar uma planilha Excel com as Notícias
+        de Fato que demandam sua atenção.
       </p>
     </div>
   ),
   VADF: (
     <div>
       <p>
-        Neste alerta, eu busco lhe avisar que um documento que está registrado como fechado está com
-        vista aberta em sua mesa. Neste caso, o documento provavelmente não deveria estar ali, ou
-        está com registro muito errado no banco.
+        O alerta indica que um documento em fase “Finalizado” está com vista aberta para o promotor.
       </p>
 
       <p>
-        Para que o alerta deixe de aparecer, basta fechar a vista, retornar o procedimento ao
-        arquivo, ou, caso seja hipótese de erro de registro, pedir a retificação no MGP.
+        É recomendável verificar a fase do documento e eventualmente, se necessário, promover
+        retificações no MGP
       </p>
     </div>
   ),
   DT2I: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar que este procedimento no qual você trabalhou teve um
-        movimento processual na segunda instância. Isso pode te permitir acompanhar o andamento do
-        que você fez na instância superior, finalmente obtendo o conhecimento do resultado final de
-        seu trabalho.
-      </p>
-
-      <p>
-        O alerta só fica disponível para visualização por uma semana, então não se preocupe, pois
-        ele irá sumir sozinho. De todo modo, caso não queira mais vê-lo, pode clicar na opção
-        dispensar.
+        O alerta indica que houve um movimento processual na segunda instância em um processo que já
+        foi trabalhado nesta promotoria de justiça.
       </p>
     </div>
   ),
   RO: (
     <div>
       <p>
-        Esta é uma listagem de todos R.O.s da referida Delegacia que não foram encaminhados ao
-        Ministério Público.
-      </p>
-
-      <p>
-        Sua elaboração considera o número mais alto de registro enviado ao MP e o fato de se tratar
-        de uma numeração contínua, indicando que todos os anteriores são existentes. A partir disso
-        são excluídos os números de registro que já passaram no MPRJ e elaborada a lista final com
-        os demais números.
+        O alerta apresenta uma listagem de todos ROs da referida Delegacia que não foram enviados ao
+        MPRJ.
       </p>
     </div>
   ),
   FEBT: (
     <p>
-      Neste alerta eu tento lhe sinalizar quando a delegacia parou de enviar ROs novos, mais
-      recentes. Para fazer isso, eu procuro na lista (numérica e crescente) de ROs, por delegacia,
-      qual foi o último número a entrar no MPRJ. Assim que eu encontro, vejo qual foi a data de sua
-      entrada e identifico se há mais de um mês não houve entrada de um número de RO mais recente.
-      Se isso ocorre, eu lhe aviso que a delegacia parou de mandar novos ROs para lhe ajudar no seu
-      trabalho de controle externo da polícia.
+      O alerta indica que não foram identificados no MGP novos ROs da referida delegacia nos últimos
+      30 dias.
     </p>
   ),
   CTAC: (
     <div>
-      <p>
-        Neste alerta, eu busco lhe informar de procedimentos que tiveram TACs celebrados, sem a
-        devida comunicação ao Conselho Superior do Ministério Público.
-      </p>
-
-      <p>
-        Para verificar isso, eu procuro no sistema todos os procedimentos que tiveram andamentos de
-        TAC realizados. Em seguida, verifico se todos tiveram andamento de Ciência de Decisão do
-        CSMP, ou de Ofício cujo destinatário tenha sido preenchido com &quot;CSMP&quot; ou
-        &quot;Conselho Superior do Ministério Público&quot;, posterior ao TAC. Caso algum desses
-        procedimentos não se encontre dentro desses critérios, eu o aviso desse fato.
-      </p>
-
-      <p>
-        Para desativar este alerta, basta realizar um andamento de Ofício neste procedimento,
-        preenchendo o campo destinatário com &quot;CSMP&quot;.
-      </p>
+      <p>O alerta indica que houve celebração de TAC, mas ainda não foi comunicado ao CSMP.</p>
     </div>
   ),
   DCTJ: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Processos Criminais que saíram para o TJRJ há mais
-        de 60 e menos de 180 dias e ainda não retornaram a esta promotoria.
+        O alerta indica os Processos Criminais que foram remetidos ao TJRJ há mais de 60 dias e
+        menos de 180 dias e ainda não retornaram à promotoria de justiça
       </p>
 
       <p>
-        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
-        novamente, ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento
-        caso esteja no Tribunal. Para isso, disponibilizo a opção CSV, que traz a lista de todos os
-        procedimentos nesta condição com o número MPRJ e o número externo (número TJRJ).
+        Sugere-se receber o processo no sistema, caso tenha remessa ao MPRJ, ou requerer abertura de
+        vista do documento, caso esteja com carga no Tribunal. A lista de todos os documentos nestas
+        condições está disponível para download em formato de planilha Excel
       </p>
     </div>
   ),
   DCTJ2: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre Processos Criminais que saíram para o TJRJ há mais
-        de 180 dias e ainda não retornaram a esta promotoria. A probabilidade de que ele seja um
-        documento com aplicação do art. 366 do CPP é grande.
+        O alerta indica os Processos Criminais que foram remetidos ao TJRJ há mais de 180 dias e
+        ainda não retornaram à promotoria de justiça
       </p>
 
       <p>
-        Para que o alerta deixe de aparecer, basta que você receba o procedimento para trabalhar
-        novamente, ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento
-        caso esteja no Tribunal. Para isso, disponibilizo a opção CSV, que traz a lista de todos os
-        procedimentos nesta condição com o número MPRJ e o número externo (número TJRJ).
+        Sugere-se receber o processo no sistema, caso tenha remessa ao MPRJ, ou requerer abertura de
+        vista do documento, caso esteja com carga no Tribunal. A lista de todos os documentos nestas
+        condições está disponível para download em formato de planilha Excel
       </p>
     </div>
   ),
   DNTJ: (
     <div>
       <p>
-        Neste alerta, eu busco lhe informar sobre processos cíveis que saíram para o TJRJ há mais de
-        120 dias e ainda não retornaram a esta promotoria.
+        O alerta indica os processos não criminais que foram enviados ao TJRJ há mais de 120 dias e
+        ainda não retornaram para a Promotoria de Justiça.
       </p>
 
       <p>
-        Para que o alerta deixe de aparecer, basta que você receba o processo para trabalhar
-        novamente, ou que aperte o botão dispensar. É sempre uma opção requerer vista do documento
-        caso esteja no Tribunal. Para isso, disponibilizo a opção CSV, que traz a lista de todos os
-        processos nesta condição com o número MPRJ e o número externo (número TJRJ).
+        Sugere-se receber o processo no sistema, caso tenha remessa ao MPRJ, ou requerer abertura de
+        vista do documento, caso esteja com carga no Tribunal. A lista de todos os documentos nestas
+        condições está disponível para download em formato de planilha Excel.
       </p>
     </div>
   ),
@@ -549,7 +484,9 @@ export function IIMP_TEXT(lastProrrogationDate) {
     : 'Não houve prorrogações no presente inquérito';
   return (
     <div>
-      <p>No dia 25/10/2022 completam-se 365 dias da vigência da Lei 14.230/2021. {prorrogationText}</p>
+      <p>
+        No dia 25/10/2022 completam-se 365 dias da vigência da Lei 14.230/2021. {prorrogationText}
+      </p>
     </div>
   );
 }

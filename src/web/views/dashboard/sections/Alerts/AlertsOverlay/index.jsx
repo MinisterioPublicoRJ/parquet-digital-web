@@ -69,7 +69,6 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
           texts = typeof data === 'object' || Array.isArray(data) ? PA1A_TEXT(data) : data;
           break;
         case 'OVERLAY_IIMP':
-          console.log(alerts?.IIMP?.find((alert) => Number(alert?.docDk) === Number(docDk))?.lastProrrogationDate);
           texts = IIMP_TEXT(alerts?.IIMP?.find((alert) => Number(alert?.docDk) === Number(docDk))?.lastProrrogationDate);
           break;
         default:

@@ -25,9 +25,9 @@ function Pip() {
         <ErrorBoundary> 
          <PerformanceRadar />
         </ErrorBoundary>
-        <ErrorBoundary> 
+        {/*<ErrorBoundary> 
           <SuccessIndicators />
-        </ErrorBoundary>
+        </ErrorBoundary>*/}
     </div>
   );
 }

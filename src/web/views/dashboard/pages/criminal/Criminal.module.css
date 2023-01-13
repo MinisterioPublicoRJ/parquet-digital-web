@@ -1,17 +1,17 @@
 .criminalGrid {
   grid-template-areas:
-    'today today radar alerts'
-    'today today radar alerts'
-    'today today radar alerts'
-    'today today radar alerts'
-    'desk desk radar alerts'
-    'desk desk radar alerts'
-    'desk desk criminalProcesses alerts'
-    'desk desk criminalProcesses alerts'
-    'desk desk criminalProcesses alerts'
-    'desk desk criminalProcesses alerts'
-    'desk desk criminalProcesses alerts'
-    'desk desk criminalProcesses alerts';
+    'today today today alerts alerts'
+    'today today today alerts alerts'
+    'today today today alerts alerts'
+    'today today today alerts alerts'
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts '
+    'desk desk desk alerts alerts '
+    'desk desk desk alerts alerts '
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts';
 }
 
 /* TABLETS */
@@ -30,13 +30,13 @@
 @media (max-width: 480px) {
   .criminalGrid {
     grid-template-areas:
-    "today"
-    "desk"
-    "desk"
-    "radar"
-    "alerts"
-    "criminalProcesses"
-    "criminalProcesses"
-    "criminalProcesses";
+      'today'
+      'desk'
+      'desk'
+      'radar'
+      'alerts'
+      'criminalProcesses'
+      'criminalProcesses'
+      'criminalProcesses';
   }
 }

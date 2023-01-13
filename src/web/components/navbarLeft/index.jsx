@@ -8,7 +8,6 @@ import InfoIcon from '../../assets/svg/InfoIcon';
 import EditNoteIcon from '../../assets/svg/EditNoteIcon';
 import SpeedIcon from '../../assets/svg/SpeedIcon';
 import LogoutIcon from '../../assets/svg/LogoutIcon';
-import UpdatesIcon from '../../assets/svg/UpdatesIcon';
 import {
   navBarLeftContent,
   topButtonDiv,
@@ -22,6 +21,8 @@ import {
 } from './navBarLeft.module.css';
 import { useAppContext } from '../../../core/app/App.context';
 import ProcessingTime from '../../views/dashboard/sections/ProcessingTime';
+import PerformanceRadar from '../../views/dashboard/sections/PerformanceRadar';
+
 
 function NavbarLeft() {
   const [modalType, setModalType] = useState(false);
@@ -30,22 +31,11 @@ function NavbarLeft() {
   const [hoverNotaMetodologica, setHoverNotaMetodologica] = useState(false);
   const [hoverLogout, setHoverLogout] = useState(false);
   const [hoverTempoTramitacao, setHoverTempoTramitacao] = useState(false);
+  const [hoverRadar, setHoverRadar] = useState(false);
   const [hover, setHover] = useState(false);
 
   return (
     <div className={navBarLeftContent}>
-      {/* <div className={navBarBoxContentTexts}
-      onMouseOver={() => setHOver(true)}
-      onMouseOut={() => setHOver(false)}
-      >
-      <button
-      type="button"
-      onClick={() => setModalType('glossary')}
-    >
-      <img height="100%" src={hover ? UpdatesBlue : Updates} alt="icone-atualizações" />
-      </button>
-      <p>Atualizações</p>
-    </div> */}
       {modalType === 'manual' && (
         <Modal withExitButton close={setModalType}>
           <div>
@@ -54,6 +44,26 @@ function NavbarLeft() {
         </Modal>
       )}
       <div className={topButtonDiv}>
+      <div
+          className={notaMetodologicaDiv}
+          onMouseOver={() => setHoverRadar(true)}
+          onFocus={() => setHoverRadar(true)}
+          onMouseOut={() => setHoverRadar(false)}
+          onBlur={() => setHoverRadar(false)}
+          onClick={() => setModalType('radar')}
+        >
+          <button type="button">
+            {hoverRadar ? <UserManualIcon fill="#154763" /> : <UserManualIcon />}
+          </button>
+          <p>Radar de Perfomance</p>
+        </div>
+        {modalType === 'radar' && (
+        <Modal withExitButton close={setModalType}>
+          <div>
+            <PerformanceRadar />
+          </div>
+        </Modal>
+      )}
         <div
           className={userManualDiv}
           onMouseOver={() => setHoverUserManual(true)}

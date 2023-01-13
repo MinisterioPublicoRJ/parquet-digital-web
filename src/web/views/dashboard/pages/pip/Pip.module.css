@@ -1,17 +1,17 @@
 .pipGrid {
   grid-template-areas:
-    'today today radar alerts'
-    'today today radar alerts'
-    'today today radar alerts'
-    'today today radar alerts'
-    'desk desk radar alerts'
-    'desk desk radar alerts'
-    'desk desk mainInvestigated alerts'
-    'desk desk mainInvestigated alerts '
-    'desk desk mainInvestigated alerts '
-    'desk desk mainInvestigated alerts'
-    'desk desk mainInvestigated alerts'
-    'desk desk mainInvestigated alerts';
+    'today today today alerts alerts '
+    'today today today alerts alerts '
+    'today today today alerts alerts '
+    'today today today alerts alerts '
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts'
 }
 
 /* TABLETS */

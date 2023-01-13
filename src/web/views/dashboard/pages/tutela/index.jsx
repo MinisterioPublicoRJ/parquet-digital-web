@@ -19,9 +19,9 @@ function Tutela() {
         <ErrorBoundary> 
           <Alerts />
         </ErrorBoundary>
-        <ErrorBoundary> 
+        {/*<ErrorBoundary> 
           <TablesTutela />
-        </ErrorBoundary>
+        </ErrorBoundary>*/}
     </div>
   );
 }

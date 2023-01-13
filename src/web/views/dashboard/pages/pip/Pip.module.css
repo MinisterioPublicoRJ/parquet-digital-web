@@ -11,7 +11,7 @@
     'desk desk desk alerts alerts'
     'desk desk desk alerts alerts'
     'desk desk desk alerts alerts'
-    'desk desk desk alerts alerts'
+    'desk desk desk alerts alerts';
 }
 
 /* TABLETS */
@@ -20,9 +20,9 @@
     grid-template-areas:
       'today today'
       'desk desk'
-      'radar alerts'
-      'mainInvestigated indicators'
-      'processingTime processingTime';
+      'desk desk'
+      'alerts alerts'
+      'alerts alerts';
   }
 }
 
@@ -35,11 +35,11 @@
       'today'
       'desk'
       'desk'
-      'radar'
+      'desk'
       'alerts'
-      'mainInvestigated'
-      'indicators'
-      'processingTime'
-      'processingTime';
+      'alerts'
+      'alerts'
+      'alerts'
+      'alerts';
   }
 }

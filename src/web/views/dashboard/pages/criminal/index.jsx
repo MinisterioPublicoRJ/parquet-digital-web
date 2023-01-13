@@ -20,9 +20,9 @@ function Criminal() {
         <ErrorBoundary> 
           <Alerts />
         </ErrorBoundary>
-        <ErrorBoundary> 
+        {/*<ErrorBoundary> 
           <ProcessListCriminal />
-        </ErrorBoundary>
+        </ErrorBoundary>*/}
     </div>
   );
 }

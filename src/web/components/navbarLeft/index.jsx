@@ -45,7 +45,7 @@ function NavbarLeft() {
       )}
       <div className={topButtonDiv}>
       <div
-          className={notaMetodologicaDiv}
+          className={tempoTramitacaoDiv}
           onMouseOver={() => setHoverRadar(true)}
           onFocus={() => setHoverRadar(true)}
           onMouseOut={() => setHoverRadar(false)}

@@ -22,9 +22,6 @@ function Tutela() {
         <ErrorBoundary> 
           <TablesTutela />
         </ErrorBoundary>
-        <ErrorBoundary> 
-         <PerformanceRadar />
-        </ErrorBoundary>
     </div>
   );
 }

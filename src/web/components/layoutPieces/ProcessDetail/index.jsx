@@ -32,7 +32,6 @@ import AlertsOverlay from '../../../views/dashboard/sections/Alerts/AlertsOverla
 import individualAlertFormatter from '../../../views/dashboard/sections/Alerts/utils/individualAlertFormatter';
 
 const propTypes = {
-  close: PropTypes.func.isRequired,
   docuNrMp: PropTypes.string,
   docuNrExterno: PropTypes.string,
 };
@@ -42,7 +41,7 @@ const defaultProps = {
   docuNrExterno: '-',
 };
 
-function ProcessDetail({ docuNrMp, docuNrExterno, close }) {
+function ProcessDetail({ docuNrMp, docuNrExterno }) {
   const [processData, setProcessData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [overlayType, setOverlayType] = useState(null);

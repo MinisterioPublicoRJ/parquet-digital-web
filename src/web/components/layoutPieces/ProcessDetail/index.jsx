@@ -44,7 +44,6 @@ const defaultProps = {
 
 function ProcessDetail({ docuNrMp, docuNrExterno }) {
   const [processData, setProcessData] = useState(null);
-  // const [apiError, setApiError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [overlayType, setOverlayType] = useState(null);
   const [overlayDocDk, setOverlayDocDk] = useState(null);

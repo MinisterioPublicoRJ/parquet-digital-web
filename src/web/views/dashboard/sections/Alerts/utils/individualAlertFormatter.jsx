@@ -16,7 +16,7 @@ import {
   FebtIcon,
   PigCAVL,
   PainelCOVID,
-  Impropriety
+  Impropriety,
 } from '../../../../../assets';
 
 import {
@@ -66,7 +66,6 @@ import {
  */
 export default function individualAlertFormatter(alert, cpf, token, orgao) {
   switch (alert.alertCode) {
-
     // ALERTAS DA TUTELA
     case 'DCTJ':
 
@@ -174,23 +173,18 @@ function iimpConstructor(alert, orgao, cpf, token) {
     message = (
       <span>
         Há <strong> {`${count}`} </strong>
-        {`${single ? ' inquérito' : 'inquéritos'}`}  {`${single ? ' civil' : 'civis'}`} 
-        {" "}sobre improbidade administrativa que {`${single ? ' precisa' : 'precisam'}`} ser 
-        {" "}{`${single ? ' prorrogado' : 'prorrogados'}`}.
+        {`${single ? ' inquérito' : 'inquéritos'}`} {`${single ? ' civil' : 'civis'}`} sobre
+        improbidade administrativa que {`${single ? ' precisa' : 'precisam'}`} de tratamento.
       </span>
     );
   } else {
-    actions = [
-      DETAIL(),
-      CALCULO_IIMP(),
-      DELETE,
-    ];
+    actions = [DETAIL(), CALCULO_IIMP(), DELETE];
     const single = count === 1;
     message = (
       <span>
-        De acordo com o enunciado nº 11 da Súmula do CSMP, o inquérito civil
+        O Inquérito Civil
         <strong>{` ${docNum} `}</strong>
-        deve ser prorrogado.
+        sobre improbidade administrativa precisa de tratamento.
       </span>
     );
   }
@@ -204,7 +198,7 @@ function iimpConstructor(alert, orgao, cpf, token) {
     key,
     message,
     docDk,
-    lastProrrogationDate
+    lastProrrogationDate,
   };
 }
 
@@ -220,7 +214,11 @@ function cavlConstructor(alert, orgao, cpf, token) {
     message = (
       <span>
         <strong> {`${count}`} </strong>
-        {`${single ? 'compra com preço atípico foi verificada ' : 'compras com preços atípicos foram verificadas '}`}
+        {`${
+          single
+            ? 'compra com preço atípico foi verificada '
+            : 'compras com preços atípicos foram verificadas '
+        }`}
         em contratos públicos.
       </span>
     );
@@ -260,13 +258,17 @@ function compConstructor(alert, orgao, cpf, token) {
   let actions = [];
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ alertId, alertCode, orgao, token }))];
-    COMPRAS_COVID({ compId: contrato_iditem, contrato })
+    COMPRAS_COVID({ compId: contrato_iditem, contrato });
 
     const single = count === 1;
     message = (
       <span>
-        <strong>{`${count}`}</strong>{" "}
-        {`${single ? 'compra com preço atípico foi verificada ' : 'compras com preços atípicos foram verificadas '}`}
+        <strong>{`${count}`}</strong>{' '}
+        {`${
+          single
+            ? 'compra com preço atípico foi verificada '
+            : 'compras com preços atípicos foram verificadas '
+        }`}
         <strong>durante a emergência sanitária de COVID-19, e </strong>
         apresentam <strong>possíveis sobrepreços</strong>.
       </span>
@@ -281,10 +283,9 @@ function compConstructor(alert, orgao, cpf, token) {
     message = (
       <span>
         Os valores do contrato
-        <strong>{` ${contrato} `}</strong>,
-        {`${single ? 'item: ' : 'itens: '}`}
+        <strong>{` ${contrato} `}</strong>,{`${single ? 'item: ' : 'itens: '}`}
         <strong>{` ${item.substring(0, 40).toLowerCase()}... `}</strong>
-        merecem sua atenção.
+        possivelmente ensejam a atenção do MPRJ.
       </span>
     );
   }
@@ -311,9 +312,10 @@ function ispsConstructor(alert, orgao, cpf, token) {
     const single = count === 1;
     message = (
       <span>
+        Há
         <strong> {`${count}`} </strong>
-        {`${single ? 'indicador' : 'indicadores'}`} de saneamento estão em
-        <strong> vermelho </strong> nesta cidade
+        {`${single ? 'indicador' : 'indicadores'}`} de cobertura de Saneamento Básico em
+        <strong> vermelho </strong> na sua região
       </span>
     );
   } else {
@@ -324,8 +326,9 @@ function ispsConstructor(alert, orgao, cpf, token) {
     ];
     message = (
       <span>
-        Os valores do indicador <strong>{` ${description} `}</strong> na comarca de <strong>{` ${hierarchy} `}</strong>
-        merecem sua atenção.
+        O indicador <strong>{` ${description} `}</strong> de Saneamento Básico na comarca{' '}
+        <strong>{` ${hierarchy} `}</strong>
+        está em vermelho.
       </span>
     );
   }
@@ -356,9 +359,8 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
         message = (
           <span>
             Há
-            <strong> {`${count}`} </strong>
-            {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
-            <strong> mais de 60 dias </strong>
+            {single ? ' um processo criminal ' : ` ${count} processos criminais `}
+            no TJRJ há <strong> mais de 60 dias </strong>
             sem retorno.
           </span>
         );
@@ -367,9 +369,8 @@ function dctjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
         message = (
           <span>
             Há
-            <strong> {`${count}`} </strong>
-            {`${single ? 'processo criminal' : 'processos criminais'} no TJRJ há `}
-            <strong> mais de 180 dias </strong>
+            {single ? ' um processo criminal ' : ` ${count} processos criminais `}
+            no TJRJ há <strong> mais de 180 dias </strong>
             sem retorno.
           </span>
         );
@@ -427,19 +428,15 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
     message = (
       <span>
         Há
-        <strong>{` ${count} `}</strong>
-        {`${single ? 'processo civil' : 'processos cíveis'} no TJRJ `}
-        <strong> há mais de 120 dias </strong>
-        sem retorno.
+        {single ? ' um processo civil ' : ` ${count} processos cíveis  `}
+        no TJRJ <strong> há mais de 120 dias </strong>.
       </span>
     );
   } else {
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        O processo civil{" "}
-        <strong>{`${docNum}`}</strong>
-        {" "}está há
+        O processo civil <strong>{`${docNum}`}</strong> está há
         <strong> mais de 120 dias </strong>
         no TJRJ sem retorno.
       </span>
@@ -469,21 +466,21 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
     message = (
       <span>
         Há
-        <strong>{` ${count} ${single ? 'procedimento' : 'procedimentos'} `}</strong>
-        com
-        <strong> vitimas recorrentes </strong>
+        <strong>{`${single ? 'um novo documento' : `${count} novos documentos`} `}</strong>
+        com pelo menos uma
+        <strong> vitima recorrente </strong>
         de
-        <strong> violência domestica.</strong>
+        <strong> VDFM.</strong>
       </span>
     );
   } else {
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        O procedimento {``}
+        O documento {``}
         <strong>{`${docNum}`}</strong> {``}
-        possui
-        <strong> vitimas recorrentes </strong>
+        possui pelo menos uma
+        <strong> vítima recorrente </strong>
         de
         <strong> violência domestica.</strong>
       </span>
@@ -502,7 +499,12 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   };
 }
 
-function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId }, orgao, cpf, token) {
+function pa1aConstructor(
+  { dropdown, alertCode, count, docNum, docDk, alertId },
+  orgao,
+  cpf,
+  token,
+) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -514,13 +516,18 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
       <span>
         Há
         <strong>{` ${count} `}</strong>
-        <strong>{`${single ? 'procedimento administrativo aberto' : 'procedimentos administrativos abertos'
-          } há mais de 1 ano`}</strong>
+        <strong>{`${
+          single ? 'procedimento administrativo aberto' : 'procedimentos administrativos abertos'
+        } há mais de 1 ano`}</strong>
         .
       </span>
     );
   } else {
-    actions = [GENERATE_DOC(PA1A_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })), CALCULO(), DELETE];
+    actions = [
+      GENERATE_DOC(PA1A_ACTION_GENERATE_DOC({ orgao, cpf, docDk, token })),
+      CALCULO(),
+      DELETE,
+    ];
     message = (
       <span>
         O procedimento administrativo {``}
@@ -544,7 +551,12 @@ function pa1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   };
 }
 
-function ic1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId }, orgao, cpf, token) {
+function ic1aConstructor(
+  { dropdown, alertCode, count, docNum, docDk, alertId },
+  orgao,
+  cpf,
+  token,
+) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -555,9 +567,10 @@ function ic1aConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
     message = (
       <span>
         Há
-        <strong>{` ${count} ${single ? 'inquérito civil' : 'inquéritos civis'} `}</strong>
-        {single ? 'ativo ' : 'ativos '}
-        <strong> sem prorrogação </strong>
+        <strong>
+          {single ? 'um inquérito civil' : `${count} inquéritos civis`}
+          sem prorrogação{' '}
+        </strong>
         há
         <strong> mais de 1 ano</strong>.
       </span>
@@ -602,23 +615,17 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
     message = (
       <span>
         Há
-        <strong>{` ${count} `}</strong>
-        {single ? 'notícia de fato autuada há mais de' : 'notícias de fato autuadas há mais de'}
-        <strong> 30 dias </strong>
-        que ainda
-        <strong>
-          {single ? 'não foi tratada ou prorrogada.' : 'não foram tratadas ou prorrogadas.'}
-        </strong>
+        {single ? 'uma notícia de fato há mais de ' : `${count} notícias de fato há mais de `}
+        <strong>30 dias sem finalização, autuação ou prorrogação</strong>
       </span>
     );
   } else {
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        A notícia de fato autuada há mais de 30 dias
-        <strong>{` ${docNum} `}</strong>
-        ainda está
-        <strong> sem tratamento</strong>.
+        A notícia de fato <strong>{` ${docNum} `}</strong>
+        está há mais de 30 dias
+        <strong> sem finalização, autuação ou prorrogação.</strong>.
       </span>
     );
   }
@@ -635,7 +642,12 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
   };
 }
 
-function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId }, orgao, cpf, token) {
+function nf120Constructor(
+  { dropdown, alertCode, count, docNum, date, alertId },
+  orgao,
+  cpf,
+  token,
+) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -646,21 +658,17 @@ function nf120Constructor({ dropdown, alertCode, count, docNum, date, alertId },
     message = (
       <span>
         Há
-        <strong>{` ${count} `}</strong>
-        {single ? 'notícia de fato autuada há mais de' : 'notícias de fato autuadas há mais de'}
-        <strong> 120 dias </strong>
-        {single ? 'que ainda está' : 'que ainda estão'}
-        <strong> sem tratamento</strong>.
+        {single ? 'uma notícia de fato há mais de ' : `${count} notícias de fato há mais de `}
+        <strong>120 dias sem finalização, autuação ou prorrogação</strong>
       </span>
     );
   } else {
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        A notícia de fato autuada há mais de 120 dias
-        <strong>{` ${docNum} `}</strong>
-        ainda está
-        <strong> sem tratamento</strong>.
+        A notícia de fato <strong>{` ${docNum} `}</strong>
+        está há mais de 120 dias
+        <strong> sem finalização, autuação ou prorrogação.</strong>.
       </span>
     );
   }
@@ -728,19 +736,18 @@ function ouviConstructor(alert, orgao, token) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
     message = (
       <span>
-        <strong>{`Há ${count} ${single ? 'expediente' : 'expedientes'} de Ouvidoria `}</strong>
-        {single ? 'enviado porém' : 'enviados porém'}
-        <strong>{` não ${single ? 'recebido' : 'recebidos'}`}</strong>.
+        <strong>{`Há ${single ? 'um expediente' : `${count} expedientes`}`}</strong>
+        <strong>{` de Ouvidoria pendente de recebimento`}</strong>.
       </span>
     );
   } else {
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        A ouvidoria
+        O expediente de Ouvidoria
         <strong>{` ${docNum} `}</strong>
-        foi enviada porém
-        <strong> não foi recebida</strong>.
+        foi remetido para esse orgão, mas
+        <strong> não foi registrado seu recebimento</strong>.
       </span>
     );
   }
@@ -762,28 +769,27 @@ function vadfConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   let message;
   let actions = [];
 
-
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
     const single = count === 1;
     message = (
       <span>
-        Você tem
-        <strong>{` ${count} ${single ? 'vista aberta' : 'vistas abertas'} `}</strong>
-        em
-        <strong>{` ${single ? 'documento' : 'documentos'} sinalizados como ${single ? 'fechado' : 'fechados'
-          }.`}</strong>
+        Há
+        <strong>
+          {single
+            ? ' uma vista aberta em um documento finalizado.'
+            : ` ${count} vistas abertas em documentos finalizados.`}
+        </strong>
       </span>
     );
   } else {
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        Você possui
-        <strong> vista aberta </strong>
-        para o documento
+        O documento
         <strong>{` ${docNum} `}</strong>
-        <strong> sinalizado como fechado</strong>.
+        possui <strong> vista aberta, </strong>
+        mas está <strong> registrado como fechado</strong>.
       </span>
     );
   }
@@ -800,8 +806,12 @@ function vadfConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
   };
 }
 
-function prcrConstructor({ dropdown, alertCode, count, docNum, docDk, alertId }, orgao, cpf, token) {
-
+function prcrConstructor(
+  { dropdown, alertCode, count, docNum, docDk, alertId },
+  orgao,
+  cpf,
+  token,
+) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -814,8 +824,8 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
       case 'PRCR1':
         message = (
           <span>
-            <strong>{`Há ${count} `}</strong>
-            {single ? ' procedimento ' : ' procedimentos '}
+            <strong>Há</strong>
+            {single ? ' um procedimento ' : ` ${count}  procedimentos `}
             com todos os seus
             <strong> crimes </strong>
             possivelmente
@@ -826,21 +836,19 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
       case 'PRCR2':
         message = (
           <span>
-            <strong>{`Há ${count} `}</strong>
-            {single ? ' procedimento ' : ' procedimentos '}
-            em que todos os crimes
-            <strong> prescreverão </strong>
-            em menos de
-            <strong> 90 dias </strong>
+            <strong>Há</strong>
+            {single ? ' um procedimento ' : ` ${count}  procedimentos `}
+            em que possivelmente todos os crimes
+            <strong> prescreverão em menos de 90 dias </strong>
           </span>
         );
         break;
       case 'PRCR3':
         message = (
           <span>
-            <strong>{`Há ${count} `}</strong>
-            {single ? ' procedimento ' : ' procedimentos '}
-            com ao menos um crime
+            <strong>Há</strong>
+            {single ? ' um procedimento ' : ` ${count}  procedimentos `}
+            com pelo menos um crime
             <strong> possivelmente prescrito. </strong>
           </span>
         );
@@ -848,12 +856,10 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
       case 'PRCR4':
         message = (
           <span>
-            <strong>{`Há ${count} `}</strong>
-            {single ? ' procedimento ' : ' procedimentos '}
+            <strong>Há</strong>
+            {single ? ' um procedimento ' : ` ${count}  procedimentos `}
             com um crime que
-            <strong> possivelmente prescreverá </strong>
-            em
-            <strong> menos de 90 dias. </strong>
+            <strong> possivelmente prescreverá em menos de 90 dias </strong>
           </span>
         );
         break;
@@ -920,7 +926,7 @@ function prcrConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
             {' '}
             O procedimento
             <strong>{` ${docNum} `}</strong>
-            tem um
+            tem pelo menos um
             <strong> crime </strong>
             que possivelmente
             <strong> prescreverá em </strong>
@@ -972,8 +978,9 @@ function gateConstructor(alert, orgao, cpf, token) {
     const single = count === 1;
     message = (
       <span>
-        O<strong> GATE </strong> finalizou <strong>{`${count} ${single ? 'IT' : 'ITs'} `}</strong>
-        em procedimentos desta promotoria de justiça.
+        Há{' '}
+        <strong>{single ? 'um documento com nova IT' : `${count} documentos com novas ITs`}</strong>
+        do <strong> GATE </strong>.
       </span>
     );
   } else {
@@ -982,7 +989,7 @@ function gateConstructor(alert, orgao, cpf, token) {
       <span>
         O<strong> GATE </strong>
         finalizou a<strong> IT </strong>
-        solicitada no procedimento
+        solicitada no documento
         <strong>{` ${docNum}`}</strong>.
       </span>
     );
@@ -1010,19 +1017,19 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
     const single = count === 1;
     message = (
       <span>
-        <strong>{`Há ${count} ${single ? 'movimentação' : 'movimentações'} `}</strong>
-        em procedimento desta promotoria na
-        <strong> segunda instância.</strong>
+        Há movimentações na <strong> segunda instância</strong> em
+        <strong>{single ? ' um processo ' : ` ${count} processos `}</strong>
+        desta promotoria.
       </span>
     );
   } else {
     actions = [DETAIL(), DELETE];
     message = (
       <span>
-        O procedimento
-        <strong>{` ${docNum}`}</strong> {``}
-        possui {``}
-        <strong> movimentações em segunda instância</strong>.
+        O processo
+        <strong>{` ${docNum}`}</strong>
+        possui
+        <strong> movimentações na segunda instância</strong>.
       </span>
     );
   }
@@ -1042,7 +1049,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
 function roOccurrence(alert, orgao, cpf, token) {
   const { dropdown, alertCode, count, daysPassed, alertId, docNum, hierarchy } = alert;
   const dp = hierarchy;
-  const dpNumber = dp?.replace(/[^0-9]/g, ''); 
+  const dpNumber = dp?.replace(/[^0-9]/g, '');
   const unsentOcurrences = daysPassed;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
@@ -1053,8 +1060,8 @@ function roOccurrence(alert, orgao, cpf, token) {
     const single = count === 1;
     message = (
       <span>
-        Há <strong>{` ${count} ${single ? 'DP' : 'DPs'} `}</strong>
-        da sua região com registros de ocorrência que não chegaram no MPRJ
+        Há <strong>{single ? ' uma DP ' : ` ${count} DPs`}</strong>
+        da sua região ROs que não foram encaminhados ao MPRJ.
       </span>
     );
   } else {
@@ -1062,8 +1069,8 @@ function roOccurrence(alert, orgao, cpf, token) {
     const single = unsentOcurrences === 1;
     message = (
       <span>
-        <strong>{` ${unsentOcurrences} ${single ? 'registro' : 'registros'} `}</strong>
-        de ocorrência da <strong>{` ${dp}`}</strong> não chegaram no MPRJ
+        Há <strong>{` ${unsentOcurrences} ${single ? ' RO ' : ' ROs '} `}</strong>
+        da delegacia <strong>{` ${dp}`}</strong> ainda não foram remetidos ao MPRJ.
       </span>
     );
   }
@@ -1080,7 +1087,12 @@ function roOccurrence(alert, orgao, cpf, token) {
   };
 }
 
-function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId }, orgao, cpf, token) {
+function ctacConstructor(
+  { dropdown, alertCode, count, docNum, docDk, alertId },
+  orgao,
+  cpf,
+  token,
+) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -1089,9 +1101,8 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
     const single = count === 1;
     message = (
       <span>
-        Você <strong>celebrou TAC</strong> em <strong>{`${count}`}</strong> {`${single ? 'procedimento ' : 'procedimentos '}`}
-        e ainda <strong>não comunicou ao Conselho Superior do
-          Ministerio Público.</strong>
+        Há <strong></strong> {single ? ' um TAC ' : ` ${count} TACs `}
+        <strong>sem ofício ao CSMP.</strong>
       </span>
     );
   } else {
@@ -1102,9 +1113,8 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
     ];
     message = (
       <span>
-        Você <strong>celebrou um TAC </strong>
-        no procedimento <strong>{`${docNum}`}</strong> e ainda <strong>não comunicou ao conselho Superior do
-          Ministerio Público.</strong>
+        No documento <strong>{`${docNum}`}</strong> houve
+        <strong>celebração de TAC que ainda não foi comunicado ao CSMP.</strong>
       </span>
     );
   }
@@ -1121,7 +1131,12 @@ function ctacConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
   };
 }
 
-function pppvConstructor({ dropdown, alertCode, count, docNum, docDk, alertId }, orgao, cpf, token) {
+function pppvConstructor(
+  { dropdown, alertCode, count, docNum, docDk, alertId },
+  orgao,
+  cpf,
+  token,
+) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -1131,8 +1146,9 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
     message = (
       <span>
         Há
-        <strong>{` ${count} ${single ? 'procedimento preparatório' : 'procedimentos preparatórios'
-          } `}</strong>
+        <strong>{` ${count} ${
+          single ? 'procedimento preparatório' : 'procedimentos preparatórios'
+        } `}</strong>
         com
         <strong> prazo próximo de vencer.</strong>
       </span>
@@ -1163,7 +1179,12 @@ function pppvConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
     message,
   };
 }
-function ppfpConstructor({ dropdown, alertCode, count, docNum, docDk, alertId }, orgao, cpf, token) {
+function ppfpConstructor(
+  { dropdown, alertCode, count, docNum, docDk, alertId },
+  orgao,
+  cpf,
+  token,
+) {
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -1173,10 +1194,10 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
     message = (
       <span>
         Há
-        <strong>{` ${count} ${single ? 'procedimento preparatório' : 'procedimentos preparatórios'
-          } `}</strong>
-        com
-        <strong> prazo de tratamento esgotado.</strong>
+        <strong>
+          {` ${count} ${single ? 'procedimento preparatório' : 'procedimentos preparatórios'} `}
+          fora do prazo.
+        </strong>
       </span>
     );
   } else {
@@ -1189,7 +1210,7 @@ function ppfpConstructor({ dropdown, alertCode, count, docNum, docDk, alertId },
       <span>
         O procedimento preparatório
         <strong>{` ${docNum} `}</strong>
-        está com o<strong> prazo de tratamento esgotado</strong>.
+        está <strong> fora do prazo</strong>.
       </span>
     );
   }
@@ -1226,14 +1247,13 @@ function abr1Constructor({ dropdown, alertCode, docNum, alertId }, orgao, cpf, t
       icon: <ClockIcon />,
       key,
       message,
-    }
+    };
   } else {
-    actions = [
-      DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, cpf })), DELETE,
-    ];
+    actions = [DOWNLOAD_LIST(ABR1_ALERT_ACTION({ orgao, token, cpf })), DELETE];
     message = (
       <span>
-        Clique aqui para baixar uma listagem desses procedimentos. Lembre-se de adequa-la às exigências do CSMP.
+        Clique aqui para baixar uma listagem desses procedimentos. Lembre-se de adequa-la às
+        exigências do CSMP.
       </span>
     );
     return {
@@ -1244,7 +1264,7 @@ function abr1Constructor({ dropdown, alertCode, docNum, alertId }, orgao, cpf, t
       actions,
       key,
       message,
-    }
+    };
   }
 }
 
@@ -1292,16 +1312,13 @@ function febtConstructor(alert) {
     const single = count === 1;
     message = (
       <span>
-        Há {single ? ` uma DP ` : ` ${count} DPs `} da sua região que não {single ? ` enviou ` : ` enviaram `} novos registros de ocorrência ao MPRJ há mais de 30 dias.
+        Há {single ? ` uma DP ` : ` ${count} DPs `} da sua região que não
+        {single ? ` remeteu ` : ` remeteram `} novos ROs.
       </span>
     );
   } else {
     actions = [DETAIL(), DELETE];
-    message = (
-      <span>
-        Estamos há mais de 30 dias sem receber novos registros de ocorrência da {hierarchy}.
-      </span>
-    );
+    message = <span>A Delegacia {hierarchy} não encaminha novos ROs há 30 dias.</span>;
   }
   return {
     type: alertCode,

@@ -69,7 +69,8 @@ function AlertBadge(alert) {
     isOpen,
     isDeleted,
     docDk,
-    type
+    type, 
+    docNum
   } = alert;
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
@@ -105,7 +106,7 @@ function AlertBadge(alert) {
       case 'download':
         return handleLinks(alertAction);
         case 'overlay':
-          return setOverlay(type, String(docDk));
+          return setOverlay(type, String(docDk), docNum);
       case 'overlay_iimp':
         return setOverlay('OVERLAY_IIMP', String(docDk));
       case 'link':

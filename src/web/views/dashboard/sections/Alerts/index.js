@@ -25,6 +25,7 @@ function Alerts() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [overlayType, setOverlayType] = useState(null);
   const [overlayDocDk, setOverlayDocDk] = useState(null);
+  const [overlayDocNum, setOverlayDocNum] = useState(null);
 
   const {
     alerts,
@@ -155,9 +156,10 @@ function Alerts() {
     loadComponent();
   }, []);
 
-  function setOverlay(type, documentDk) {
+  function setOverlay(type, documentDk, docNum) {
     setOverlayType(type);
     setOverlayDocDk(documentDk);
+    setOverlayDocNum(docNum);
     setShowOverlay(true);
   }
 
@@ -173,7 +175,7 @@ function Alerts() {
             style={showOverlay || loading ? { overflowY: 'hidden' } : {}}
           >
             {showOverlay && (
-              <Overlay type={overlayType} docDk={overlayDocDk} setShowOverlay={setShowOverlay} />
+              <Overlay type={overlayType} docDk={overlayDocDk} docNum={overlayDocNum} setShowOverlay={setShowOverlay} />
             )}
             {modalContent && (
               <Modal inner close={() => setModalContent(null)}>

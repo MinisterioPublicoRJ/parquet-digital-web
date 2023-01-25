@@ -311,7 +311,8 @@ function ispsConstructor(alert, orgao, cpf, token) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ orgao, alertCode, token }))];
     const single = count === 1;
     message = (
-      <span>Há 
+      <span>
+        Há
         <strong> {`${count}`} </strong>
         {`${single ? 'indicador' : 'indicadores'}`} de cobertura de Saneamento Básico em
         <strong> vermelho </strong> na sua região
@@ -838,7 +839,7 @@ function prcrConstructor(
             <strong>Há</strong>
             {single ? ' um procedimento ' : ` ${count}  procedimentos `}
             em que possivelmente todos os crimes
-            <strong> prescreverão em breve </strong>
+            <strong> prescreverão em menos de 90 dias </strong>
           </span>
         );
         break;
@@ -858,7 +859,7 @@ function prcrConstructor(
             <strong>Há</strong>
             {single ? ' um procedimento ' : ` ${count}  procedimentos `}
             com um crime que
-            <strong> possivelmente prescreverá em breve </strong>
+            <strong> possivelmente prescreverá em menos de 90 dias </strong>
           </span>
         );
         break;

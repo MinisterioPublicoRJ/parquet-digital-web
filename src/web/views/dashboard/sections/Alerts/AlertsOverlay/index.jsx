@@ -20,11 +20,12 @@ const propTypes = {
   setShowOverlay: PropTypes.func.isRequired,
   children: PropTypes.node,
   docDk: PropTypes.string,
+  docNum: PropTypes.string,
 };
 
-const defaultProps = { children: null, docDk: '' };
+const defaultProps = { children: null, docDk: '', docNum: '' };
 
-function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
+function AlertsOverlay({ type, setShowOverlay, children, docDk, docNum }) {
   const { buildRequestParams } = useAppContext();
   const {alerts} = useAlertsContext();
   const [text, setText] = useState();
@@ -58,7 +59,7 @@ function AlertsOverlay({ type, setShowOverlay, children, docDk }) {
         case 'PRCR3':
         case 'PRCR4':
           data = await getOverlayText('prescricao', docDk);
-          texts = typeof data === 'object' || Array.isArray(data) ? PRCR_TEXTS(type, data) : data;
+          texts = typeof data === 'object' || Array.isArray(data) ? PRCR_TEXTS(type, data, docNum) : data;
           break;
         case 'IC1A':
           data = await getOverlayText(type, docDk);

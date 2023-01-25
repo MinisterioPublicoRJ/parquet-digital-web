@@ -71,6 +71,7 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
             message,
             isDeleted,
             docDk,
+            docNum
           } = alert;
           return (
             <AlertBadge
@@ -84,6 +85,7 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
               isDeleted={isDeleted}
               setOverlay={setOverlay}
               docDk={docDk}
+              docNum={docNum}
               type={type}
               openDialogBox={openDialogBox}
             />

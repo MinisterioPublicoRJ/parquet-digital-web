@@ -138,6 +138,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno }) {
                     message,
                     isDeleted,
                     docDk,
+                    docNum
                   } = alert;
 
                   return (
@@ -153,6 +154,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno }) {
                         isDeleted={isDeleted}
                         setOverlay={setOverlay}
                         docDk={docDk}
+                        docNum={docNum}
                         type={type}
                         openDialogBox={openDialogBox}
                       />

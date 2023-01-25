@@ -173,23 +173,16 @@ export const OVERLAY_TEXTS = {
   ),
 };
 
-export function PRCR_TEXTS(type, data) {
+export function PRCR_TEXTS(type, data, docNum) {
   switch (type) {
     case 'PRCR1':
       return (
         <>
           <p>
-            Neste alerta, eu busco lhe informar sobre quais procedimentos possivelmente contêm todos
-            os seus crimes já prescritos na data de hoje.
+            O procedimento {docNum} tem, possivelmente, todos os seus crimes prescritos. Os alertas
+            de prescrição ocorrem em consonância com o art. 109 do Código. Para este caso, os
+            cálculos realizados foram os seguintes:
           </p>
-
-          <p>
-            Meus cálculos são feitos com base nas regras gerais do Código Penal e se houver algum
-            erro ou falta de registro nos bancos de dados, eles podem não ser perfeitos. Caso isso
-            seja corrigido, minha precisão melhora bastante!
-          </p>
-
-          <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime) => (
             <div className={crimeData} key={crime.key}>
@@ -233,22 +226,10 @@ export function PRCR_TEXTS(type, data) {
       return (
         <>
           <p>
-            Neste alerta, eu busco lhe informar sobre quais procedimentos possivelmente têm todos os
-            seus crimes prescrevendo em breve, permitindo que você tome alguma ação emergencial para
-            evitar isso. Isso ocorre quando todos os crimes estão próximos de prescrever, mesmo que
-            não haja algum prescrito, mas também quando algum ou alguns já prescreveram e aqueles
-            que restaram no procedimento estão próximos de prescrever. O foco deste alerta é
-            auxiliar a identificar o problema antes e não deixar ocorrer a prescrição no
-            procedimento como um todo.
+            Todos os crimes do procedimento {docNum} possivelmente prescreverão em menos de 90 dias.
+            Os alertas de prescrição ocorrem em consonância com o art. 109 do Código. Para este
+            caso, os cálculos realizados foram os seguintes:
           </p>
-
-          <p>
-            Meus cálculos são feitos com base nas regras gerais do Código Penal e se houver algum
-            erro ou falta de registro nos bancos de dados, eles podem não ser perfeitos. Caso isso
-            seja corrigido, minha precisão melhora bastante!
-          </p>
-
-          <p>Para este caso, meus cálculos foram os seguintes:</p>
           {data.map((crime) => (
             <div className={crimeData} key={crime.key}>
               <p>
@@ -277,37 +258,16 @@ export function PRCR_TEXTS(type, data) {
               </p>
             </div>
           ))}
-          <p>
-            Como a data de prescrição ocorrerá em menos de 90 dias, eu lhe alertei para ajudar nas
-            medidas que podem ser tomadas.
-          </p>
-
-          <p />
-
-          <p>
-            Caso você acredite que não há o que fazer e é o caso de prescrição inevitável, assim que
-            ocorrer a data de prescrição de todos os crimes, este alerta deixará de existir para se
-            tornar um alerta de todos os crimes prescritos, permitindo que eu elabore uma minuta de
-            arquivamento do procedimento caso você peça.
-          </p>
         </>
       );
     case 'PRCR3':
       return (
         <>
           <p>
-            Neste alerta, eu busco lhe informar sobre quais procedimentos possivelmente têm um de
-            seus crimes já prescrito na data de hoje, mas ainda possuem algum outro crime
-            investigado que não prescreveu, nem está perto de prescrever.
+            Todos os crimes do procedimento {docNum} possivelmente prescreverão em menos de 90 dias.
+            Os alertas de prescrição ocorrem em consonância com o art. 109 do Código. Para este
+            caso, os cálculos realizados foram os seguintes:
           </p>
-
-          <p>
-            Meus cálculos são feitos com base nas regras gerais do Código Penal e se houver algum
-            erro ou falta de registro nos bancos de dados, eles podem não ser perfeitos. Caso isso
-            seja corrigido, minha precisão melhora bastante!
-          </p>
-
-          <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime) => (
             <div className={crimeData} key={crime.key}>
@@ -337,33 +297,16 @@ export function PRCR_TEXTS(type, data) {
               </p>
             </div>
           ))}
-
-          <p>
-            Como a data de prescrição está no passado, reconheço que há a prescrição que eu lhe
-            alertei. Todavia, há ainda outros crimes neste procedimento que não reconheci prescrição
-            ou sua proximidade, razão pela qual somente dei este alerta.
-          </p>
         </>
       );
     case 'PRCR4':
       return (
         <>
           <p>
-            Neste alerta, eu busco lhe informar sobre quais procedimentos possivelmente têm algum de
-            seus crimes prescrevendo em breve, permitindo que você tome alguma ação emergencial para
-            evitar isso. Neste caso, não há nenhum crime prescrito no procedimento ainda e mesmo que
-            este crime prescreva, outros delitos podem ainda ser perseguidos e processados. O alerta
-            é bastante pontual para o que está próximo de vencer, permitindo que você tome alguma
-            medida emergencial.
+            O procedimento (DOC_NUM) tem, possivelmente, pelo menos um crime que prescreverá em
+            menos de 90 dias. Os alertas de prescrição ocorrem em consonância com o art. 109 do
+            Código. Para este caso, os cálculos realizados foram os seguintes:
           </p>
-
-          <p>
-            Meus cálculos são feitos com base nas regras gerais do Código Penal e se houver algum
-            erro ou falta de registro nos bancos de dados, eles podem não ser perfeitos. Caso isso
-            seja corrigido, minha precisão melhora bastante!
-          </p>
-
-          <p>Para este caso, meus cálculos foram os seguintes:</p>
 
           {data.map((crime) => (
             <div className={crimeData} key={crime.key}>
@@ -393,17 +336,6 @@ export function PRCR_TEXTS(type, data) {
               </p>
             </div>
           ))}
-          <p>
-            Como a data de prescrição ocorrerá em menos de 90 dias, eu lhe alertei para ajudar nas
-            medidas que podem ser tomadas.
-          </p>
-
-          <p>
-            Caso você acredite que não há o que fazer e é o caso de prescrição inevitável, assim que
-            ocorrer a data de prescrição deste crime, este alerta deixará de existir para se tornar
-            um alerta de que algum crime deste procedimento prescreveu, mas não todos, indicando que
-            ainda há o que possa ser trabalhado, apesar da prescrição ocorrida.
-          </p>
         </>
       );
     default:

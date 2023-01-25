@@ -35,6 +35,7 @@
 
 .alertsBody {
   overflow-y: scroll;
+  overflow-x: hidden;
   min-height: 220px;
   height: 100%;
 }

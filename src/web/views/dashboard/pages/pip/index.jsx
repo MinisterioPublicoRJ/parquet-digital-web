@@ -16,15 +16,15 @@ function Pip() {
         <ErrorBoundary>
           <YourDesk />
         </ErrorBoundary>
-        <ErrorBoundary>
-        <MainInvestigated />
-        </ErrorBoundary>
+        {/*<ErrorBoundary>
+          <MainInvestigated />
+        </ErrorBoundary>*/}
         <ErrorBoundary> 
           <Alerts />
         </ErrorBoundary>
-        <ErrorBoundary> 
+        {/*<ErrorBoundary> 
           <SuccessIndicators />
-        </ErrorBoundary>
+        </ErrorBoundary>*/}
     </div>
   );
 }

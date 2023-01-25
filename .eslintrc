@@ -38,7 +38,8 @@
     "react/no-unescaped-entities": "warn",
     "import/order": "warn",
     "import/extensions": "warn",
-    "spaced-comment": "warn"
+    "spaced-comment": "warn",
+    "import/no-cycle": "warn"
   },
   "env": {
     "browser": true

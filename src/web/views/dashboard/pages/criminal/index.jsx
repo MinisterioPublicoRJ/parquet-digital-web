@@ -23,9 +23,6 @@ function Criminal() {
         <ErrorBoundary> 
           <ProcessListCriminal />
         </ErrorBoundary>
-        <ErrorBoundary> 
-         <PerformanceRadar />
-        </ErrorBoundary>
     </div>
   );
 }

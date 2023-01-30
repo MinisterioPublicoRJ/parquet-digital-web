@@ -1,48 +1,61 @@
 .pageRadarDashboard {
-  grid-area: radar;
+  width: 100%;
+}
+
+.radarHeader {
+  background-color: var(--lightBlue);
+  padding: 1rem;
+  border-radius: 15px 15px 0 0;
+}
+
+.radarHeader h2 {
+  font-size: calc(var(--titleFontSize) * 0.8);
+  font-weight: 900;
+  color: var(--loginBlue);
+}
+
+.radarHeader span {
+  font-size: var(--defaultFontSize);
+}
+
+.radarGraph {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
 }
+
 .radarWrapper {
   margin: 0;
   width: 100%;
 }
-.radarTextAreaCriminal{
-  line-height: 1.5;
-}
-.radarSubtitlesItemCriminal{
-  display: none;
-}
-.radarTextAreaCriminal h2{
-  font-size: 15px;
-  background-color: #bddff0;
-  max-width: 70px;
-  color: #374354;
-}
-.radarTextAreaCriminal p{
-  max-width: 250px;
-  color: #A7A0A0;
-}
+
 .radarSubtitles {
   margin-top: 2.5vh;
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
 }
+
 .radarSubtitles button {
   background-color: transparent;
   border: none;
   padding: 0;
 }
 
+.radarSubtitles button svg {
+  margin-right: 0.8rem;
+}
+
 .radarSubtitlesItem {
   position: relative;
-  padding-top: 1vh;
+  padding-top: 1.5vh;
   font-family: var(--defaultFont);
-  font-size: var(--smallFont);
+  font-size: var(--defaultFontSize);
   line-height: 12px;
   color: var(--dark);
-  float: left;
 }
 
 div .radarSubtitlesItem:before {
@@ -51,7 +64,7 @@ div .radarSubtitlesItem:before {
   top: 0;
   left: 0;
   width: 5vh;
-  height: 2px;
+  height: 4px;
 }
 
 .radarSubtitlesItemYourData:before {
@@ -60,4 +73,24 @@ div .radarSubtitlesItem:before {
 
 .radarSubtitlesItemMPData:before {
   background-color: #c43a31;
+}
+
+.radarTextAreaCriminal {
+  line-height: 1.5;
+}
+
+.radarSubtitlesItemCriminal {
+  display: none;
+}
+
+.radarTextAreaCriminal h2 {
+  font-size: 15px;
+  background-color: #bddff0;
+  max-width: 70px;
+  color: #374354;
+}
+
+.radarTextAreaCriminal p {
+  max-width: 250px;
+  color: #a7a0a0;
 }

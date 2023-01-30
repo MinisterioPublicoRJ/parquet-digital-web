@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import {
   pageRadarDashboard,
+  radarGraph,
+  radarHeader,
   radarWrapper,
   radarSubtitles,
   radarSubtitlesItem,
@@ -57,13 +59,13 @@ function PerformanceRadar() {
       if (tipo === 1) {
         res = await Api.getRadarData(buildRequestParams());
       }
-      if(tipo === 2) {
+      if (tipo === 2) {
         // pip
         res = await Api.getPipRadarData(buildRequestParams());
       }
-      if(tipo === 7){
-         // criminal
-        res = await Api.getRadarDataCriminal(buildRequestParams());   
+      if (tipo === 7) {
+        // criminal
+        res = await Api.getRadarDataCriminal(buildRequestParams());
       }
     } catch (e) {
       setError(true);
@@ -124,7 +126,7 @@ function PerformanceRadar() {
 
   function generateLabels(graphData, organType) {
     let categories;
-    switch(organType) {
+    switch (organType) {
       case 1:
         categories = TUTELA_CATEGORIES;
         break
@@ -201,43 +203,49 @@ function PerformanceRadar() {
     setSelectedElement(event.target);
     setIsRadarModalOpen(true);
   }
-  
+
+  if (isRadarModalOpen) {
+    return (
+      <Modal
+        withExitButton
+        previousElement={selectedElement}
+        close={() => setIsRadarModalOpen(false)}
+      >
+        <RadarModal compareData={radarModalData} />
+      </Modal>
+    )
+  }
+
   return (
     <article className={pageRadarDashboard}>
-      <div>
+      <div className={radarHeader}>
         <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
       </div>
-      {loading && !dataError && <Spinner size="large" />}
+      <div className={radarGraph}>
+        {loading && !dataError && <Spinner size="large" />}
 
-      {dataError && 'Sem dados para exibir'}
-      {!loading && !dataError && (
-        <figure className={radarWrapper}>
-          <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
-        </figure>
-      )}
-      {currentOffice.tipo && (
-        <figcaption className={radarSubtitles}>
-          <div className={`${radarSubtitlesItem} ${radarSubtitlesItemYourData}`}>
-            Sua Promotoria
-          </div>
-          <div className={`${radarSubtitlesItem} ${radarSubtitlesItemMPData}`}>Perfil do MP</div>
-          <button  type="button" onClick={handleCompareButton} 
-           className={`${currentOffice.tipo === 7 ? `${ radarSubtitlesItemCriminal }` : `${ radarSubtitlesItem } `}`}>
-            <RadarArrow height={15} width={15} />
-            Comparativo
-          </button>
-        </figcaption>
-      )}
+        {dataError && 'Sem dados para exibir'}
 
-      {isRadarModalOpen && (
-        <Modal
-          withExitButton
-          previousElement={selectedElement}
-          close={() => setIsRadarModalOpen(false)}
-        >
-          <RadarModal compareData={radarModalData} />
-        </Modal>
-      )}
+        {!loading && !dataError && (
+          <figure className={radarWrapper}>
+            <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
+          </figure>
+        )}
+
+        {currentOffice.tipo && (
+          <figcaption className={radarSubtitles}>
+            <div className={`${radarSubtitlesItem} ${radarSubtitlesItemYourData}`}>
+              Sua Promotoria
+            </div>
+            <div className={`${radarSubtitlesItem} ${radarSubtitlesItemMPData}`}>Perfil do MP</div>
+            <button type="button" onClick={handleCompareButton}
+              className={`${currentOffice.tipo === 7 ? `${radarSubtitlesItemCriminal}` : `${radarSubtitlesItem} `}`}>
+              <RadarArrow height={20} width={20} />
+              Comparativo
+            </button>
+          </figcaption>
+        )}
+      </div>
     </article>
   );
 }

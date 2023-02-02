@@ -10,8 +10,6 @@
 
 .radarHeader h2 {
   font-size: calc(var(--titleFontSize) * 0.8);
-  font-weight: 900;
-  color: var(--loginBlue);
 }
 
 .radarHeader span {

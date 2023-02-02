@@ -22,7 +22,7 @@ import {
 import { useAppContext } from '../../../core/app/App.context';
 import ProcessingTime from '../../views/dashboard/sections/ProcessingTime';
 import PerformanceRadar from '../../views/dashboard/sections/PerformanceRadar';
-
+import SuccessIndicators from '../../views/dashboard/sections/SuccessIndicators';
 
 function NavbarLeft() {
   const [modalType, setModalType] = useState(false);
@@ -36,15 +36,16 @@ function NavbarLeft() {
 
   return (
     <div className={navBarLeftContent}>
-      {modalType === 'manual' && (
-        <Modal withExitButton close={setModalType}>
-          <div>
-            <UserManual />
-          </div>
-        </Modal>
-      )}
       <div className={topButtonDiv}>
-      <div
+
+        {modalType === 'radar' && (
+          <Modal withExitButton close={setModalType}>
+            <div>
+              <PerformanceRadar />
+            </div>
+          </Modal>
+        )}
+        <div
           className={tempoTramitacaoDiv}
           onMouseOver={() => setHoverRadar(true)}
           onFocus={() => setHoverRadar(true)}
@@ -57,13 +58,37 @@ function NavbarLeft() {
           </button>
           <p>Radar de Perfomance</p>
         </div>
-        {modalType === 'radar' && (
-        <Modal withExitButton close={setModalType}>
-          <div>
-            <PerformanceRadar />
-          </div>
-        </Modal>
-      )}
+
+        
+        {modalType === 'indicators' && (
+          <Modal withExitButton close={setModalType}>
+            <div>
+              <SuccessIndicators />
+            </div>
+          </Modal>
+        )}
+        <div
+          className={tempoTramitacaoDiv}
+          onMouseOver={() => setHoverRadar(true)}
+          onFocus={() => setHoverRadar(true)}
+          onMouseOut={() => setHoverRadar(false)}
+          onBlur={() => setHoverRadar(false)}
+          onClick={() => setModalType('indicators')}
+        >
+          <button type="button">
+            {hoverRadar ? <UserManualIcon fill="#154763" /> : <UserManualIcon />}
+          </button>
+          <p>Indicadores de Sucesso</p>
+        </div>
+
+
+        {modalType === 'manual' && (
+          <Modal withExitButton close={setModalType}>
+            <div>
+              <UserManual />
+            </div>
+          </Modal>
+        )}
         <div
           className={userManualDiv}
           onMouseOver={() => setHoverUserManual(true)}
@@ -97,6 +122,7 @@ function NavbarLeft() {
           </button>
           <p>Nota Metodológica</p>
         </div>
+
         {modalType === 'introduction' && (
           <Modal withExitButton close={setModalType}>
             <Introduction />
@@ -115,6 +141,7 @@ function NavbarLeft() {
           </button>
           <p>Informações</p>
         </div>
+
         {modalType === 'tramitacao' && (
           <Modal withExitButton close={setModalType}>
             <ProcessingTime />
@@ -134,6 +161,7 @@ function NavbarLeft() {
           <p>Tempo de tramitação</p>
         </div>
       </div>
+      
       <div className={logOutPositionDiv}>
         <div
           className={logOutButtonDiv}

@@ -24,9 +24,7 @@
 }
 
 .ptHeaderContent h2 {
-  font-weight: 900;
   font-size: calc(var(--titleFontSize) * 0.8);
-  color: var(--loginBlue);
   text-transform: uppercase;
   margin: 0;
 }

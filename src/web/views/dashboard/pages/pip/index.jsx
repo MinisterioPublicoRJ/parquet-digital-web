@@ -1,39 +1,30 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 
-import './styles.css';
-import '../styles.css';
+import {pipGrid} from './Pip.module.css';
+import {baseGrid} from '../Prosecutors.module.css';
 
-import { Alerts, ProcessingTime, SuccessIndicators, Today, YourDesk, MainInvestigated, PerformanceRadar  } from '../../sections';
+import { Alerts, SuccessIndicators, Today, YourDesk, MainInvestigated, PerformanceRadar  } from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 
 function Pip() {
   return (
-    <div className="base-grid pip-grid">
+    <div className={[baseGrid, pipGrid].join(' ')}>
        <ErrorBoundary> 
           <Today />
         </ErrorBoundary>
         <ErrorBoundary>
           <YourDesk />
         </ErrorBoundary>
-        <ErrorBoundary>
-        <MainInvestigated />
-        </ErrorBoundary>
+        {/*<ErrorBoundary>
+          <MainInvestigated />
+        </ErrorBoundary>*/}
         <ErrorBoundary> 
           <Alerts />
         </ErrorBoundary>
-         <ErrorBoundary> 
-         <ProcessingTime />
-        </ErrorBoundary>
-        <ErrorBoundary> 
-         <PerformanceRadar />
-        </ErrorBoundary>
-        <ErrorBoundary> 
+        {/*<ErrorBoundary> 
           <SuccessIndicators />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <ProcessingTime />
-        </ErrorBoundary>
+        </ErrorBoundary>*/}
     </div>
   );
 }

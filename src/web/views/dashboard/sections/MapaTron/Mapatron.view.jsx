@@ -1,15 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.css';
 import { PromotronGlossario } from '../../../../assets';
+import {
+  mapatronWrapper,
+  mapatronIntro,
+  mapatronLinks,
+  mapatronBtn,
+  mapatronIframeWrapper,
+} from './styles.module.css';
 
 const propTypes = {
+  mapatronData: PropTypes.string.isRequired,
 };
 
 function MapaTron({ mapatronData }) {
   return (
-    <div className="mapatron-wrapper">
-      <div className="mapatron-intro">
+    <div className={ mapatronWrapper }>
+      <div className={ mapatronIntro }>
         <h2>Mapa da Atuação</h2>
         <p>Certifique-se de estar com login ativo no ArcGIS para poder visualizar. </p>
         <p>
@@ -22,10 +29,10 @@ function MapaTron({ mapatronData }) {
         <p>
           É possível trocar as visualizações apenas clicando na base de dados desejada abaixo:
         </p>
-        <div className="mapatron-links">
+        <div className={ mapatronLinks }>
           {/*
             <a
-              className="mapatron-btn"
+              className={ mapatronBtn }
               href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/9062e8f6462349978f249fb63c5f68a5?pip=${currentOffice.codigo}&dp=${currentOffice.dps}`}
               target="ArcGIS"
             >
@@ -33,21 +40,21 @@ function MapaTron({ mapatronData }) {
             </a>
             */}
           <a
-            className="mapatron-btn"
+            className={ mapatronBtn }
             href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/dbed4fab28454c2883f878e8eb75039f?pip=${mapatronData}`}
             target="ArcGIS"
           >
             RO
           </a>
           <a
-            className="mapatron-btn"
+            className={ mapatronBtn }
             href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/22d0c308f62648ed9d3eba20cc3b91b6?pip=${mapatronData}`}
             target="ArcGIS"
           >
             ISP
           </a>
           <a
-            className="mapatron-btn"
+            className={ mapatronBtn }
             href={`https://geo.mprj.mp.br/portal/apps/opsdashboard/index.html#/33db824355854d459e98d77735df7ac2?pip=${mapatronData}`}
             target="ArcGIS"
           >
@@ -56,7 +63,7 @@ function MapaTron({ mapatronData }) {
         </div>
         <PromotronGlossario height={400} />
       </div>
-      <div className="mapatron-iframe-wrapper">
+      <div className={ mapatronIframeWrapper }>
         <iframe
           title="Mapa de Atuação - ArcGIS"
           name="ArcGIS"

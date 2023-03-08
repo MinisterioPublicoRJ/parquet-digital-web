@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Pip, Tutela, AlternativeWelcome } from './pages';
+import { Pip, Tutela, AlternativeWelcome, Criminal } from './pages';
 import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
-import { Introduction } from './sections';
-
+import  Introduction  from './sections/Introduction';
 
 const Dashboard = () => {
   const { user, currentOffice } = useAppContext(); 
   const { firstLogin } = user;
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
-
+  
   if (!user) {
     return <Spinner size="large" />;
   }
@@ -24,6 +23,10 @@ const Dashboard = () => {
       case 2:
         return (
           <Pip />
+        );
+      case 7:
+        return (
+          <Criminal />
         );
       default:
         return <AlternativeWelcome />;

@@ -2,22 +2,31 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Today.css';
+import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
-import { GlossaryBook, IntroScreenInterrogation } from '../../../../assets';
 import OfficeSelector from './officeSelector/OfficeSelector.view';
-import Glossary  from "../Glossary/Glossary.view";
-import  Introduction from "../Introduction";
-import MapaTron  from "../MapaTron/Mapatron.view";
+import UserManual from '../UserManual/UserManual.view';
+import Introduction from '../Introduction';
+import MapaTron from '../MapaTron/Mapatron.view';
+import NavbarLeft from '../../../../components/navbarLeft';
+import {
+  todayOuter,
+  todayContent,
+  todayTextArea,
+  userArea,
+  todayRobotPic,
+  todayBtn,
+} from './Today.module.css';
+import InDevelopmentToday from '../../../../components/layoutPieces/InDevelopmentToday';
 
 function Today() {
   const { user, buildRequestParams, currentOffice, logout, Api } = useAppContext();
 
   /* STATE */
-  const [isLogoutBtnVisible, setIsLogoutBtnVisible] = useState(false);
   const [todayPercent, setTodayPercent] = useState(null);
   const [apiError, setApiError] = useState(0);
   const [groupName, setgroupName] = useState('');
@@ -119,9 +128,11 @@ function Today() {
    */
   async function loadEntriesInfo() {
     try {
-      const { hout, lout, numEntries: amount } = await Api.getTodayEntriesData(
-        buildRequestParams(),
-      );
+      const {
+        hout,
+        lout,
+        numEntries: amount,
+      } = await Api.getTodayEntriesData(buildRequestParams());
       setEntriesData(
         amount
           ? { dayType: amount < lout || amount > hout ? ' atípico ' : 'típico', amount }
@@ -134,113 +145,94 @@ function Today() {
 
   const loading = !(apiError === 3) && !(todayPercent || collectionAnalysis || entriesData);
 
+  const todayText = (
+    <>
+      {apiError === 3 && !currentOffice.tipo === 7 && <p>Sem dados para exibir.</p>}
+      {loading && <Spinner size="large" />}
+      {todayPercent && !loading ? (
+        <p>
+          Nos últimos seis meses a sua promotoria foi mais resolutiva que
+          <span style={{ fontWeight: 'bold' }}>{` ${todayPercent} `}</span>
+          da casa entre aquelas de mesma atribuição.
+          {todayPercent > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
+        </p>
+      ) : null}
+      {currentOffice.tipo === 7 ? (
+        <p>
+          Seja bem-vindo ao Parquet Digital, ferramenta de auxílio que proporciona uma visão 
+          ampla do acervo da sua Promotoria de Justiça. 
+          Na barra lateral é possível acessar o manual de uso e a nota metodológica. Boa navegação!
+        </p>
+      ) : null}
+      {collectionAnalysis && !loading && (
+        <p>
+          Você sabia que seu acervo é
+          <span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
+          dos seus colegas das
+          <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span>
+        </p>
+      )}
+      {entriesData && entriesData.dayType && !loading && (
+        <p>
+          Hoje temos um dia
+          <span style={{ fontWeight: 'bold' }}>{` ${entriesData.dayType} `}</span>
+          com a entrada de
+          <span style={{ fontWeight: 'bold' }}>{` ${entriesData.amount} `}</span>
+          novos feitos.
+        </p>
+      )}
+      {entriesData && entriesData === 'empty' && !loading && (
+        <p>Percebi que ainda não temos vistas abertas para hoje!</p>
+      )}
+    </>
+  );
+
   return (
-    <article className="today-outer">
-      <div className="user-area">
+    <article className={todayOuter}>
+      <NavbarLeft />
+      <div className={userArea}>
         <MainTitle value={assembleGreeting()} glueToTop />
-        {/* Botão precisa ter texto dentro! */}
-        {/*{user.orgaosValidos && user.orgaosValidos.length ? (
-          <button
-            type="button"
-            className={`logout-arrow ${isLogoutBtnVisible ? 'logout-arrow--rotated' : ''}`}
-            onClick={() => setIsLogoutBtnVisible((prevValue) => !prevValue)}
-          />
-        ) : null}*/}
+      </div>
+      <div className={todayContent}>
         <button
           type="button"
-          className="logout-btn--visible"
-          onClick={logout}
+          onClick={() => setModalType('officeSelector')}
+          disabled={!user.orgaosValidos[0]}
         >
-          CLIQUE PARA SAIR
-        </button>
-      </div>
-      <div className="today-content">
-        <button type="button" onClick={() => setModalType('officeSelector')} disabled={!user.orgaosValidos[0]}>
           <h2>Resumo do dia </h2>
           {currentOffice.nomeOrgao && ' na '}
           {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
-        {
-          modalType === 'officeSelector' &&
+        {modalType === 'officeSelector' && (
           <Modal unpositioned close={setModalType}>
             <OfficeSelector close={setModalType} />
           </Modal>
-        }
-        <div className="today-textArea">
-          {apiError === 3 && <p>Sem dados para exibir.</p>}
-          {loading && <Spinner size="large" />}
-          {todayPercent && !loading ? (
-            <p>
-              Nos últimos seis meses a sua promotoria foi mais resolutiva que
-              <span style={{ fontWeight: 'bold' }}>{` ${todayPercent} `}</span>
-              da casa entre aquelas de mesma atribuição.
-              {todayPercent > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
-            </p>
-          ) : null}
-          {collectionAnalysis && !loading && (
-            <p>
-              Você sabia que seu acervo é
-              <span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
-              dos seus colegas das
-              <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span>
-            </p>
-          )}
-          {entriesData && entriesData.dayType && !loading && (
-            <p>
-              Hoje temos um dia
-              <span style={{ fontWeight: 'bold' }}>{` ${entriesData.dayType} `}</span>
-              com a entrada de
-              <span style={{ fontWeight: 'bold' }}>{` ${entriesData.amount} `}</span>
-              novos feitos.
-            </p>
-          )}
-          {entriesData && entriesData === 'empty' && !loading && (
-            <p>Percebi que ainda não temos vistas abertas para hoje!</p>
-          )}
-        </div>
+        )}
+        <div className={todayTextArea}>{currentOffice.tipo === 7 ? <InDevelopmentToday /> : todayText}</div>
       </div>
       {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (
         <>
-          <button
-            type="button"
-            className="today-btn"
-            onClick={() => setModalType('mapatron')}
-          >
+          <button type="button" className={todayBtn} onClick={() => setModalType('mapatron')}>
             Ver mapa da atuação
           </button>
-          {
-            modalType === 'mapatron' &&
+          {modalType === 'mapatron' && (
             <Modal withExitButton close={setModalType}>
               <MapaTron mapatronData={currentOffice.codigo} />
             </Modal>
-          }
+          )}
         </>
       ) : null}
-      <div className="today-robotPic">
-        <button
-          type="button"
-          className="today-glossaryBtn"
-          onClick={() => setModalType('glossary')}
-        >
-          <GlossaryBook />
-        </button>
-        {
-          modalType === 'glossary' &&
+      <div className={todayRobotPic}>
+        {modalType === 'glossary' && (
           <Modal withExitButton close={setModalType}>
-            <Glossary/>
+            <UserManual />
           </Modal>
-        }
-        <button type="button" className="today-introBtn"
-          onClick={() => setModalType('introduction')}
-        >
-          <IntroScreenInterrogation />
-        </button>
-        {       
-          modalType === 'introduction' &&
-          <Modal transparent unpositioned close={() => setModalType()}>
-            <Introduction close={() => setModalType()} type={currentOffice.tipo} />
+        )}
+        {modalType === 'introduction' && (
+          <Modal withExitButton close={setModalType}>
+            <Introduction />
           </Modal>
-        }
+        )}
         <img height="100%" src={PromotronGif} alt="robô-promoton" />
       </div>
     </article>

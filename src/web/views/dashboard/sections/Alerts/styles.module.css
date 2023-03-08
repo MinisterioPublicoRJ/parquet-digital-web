@@ -1,0 +1,67 @@
+.alertsWrapper {
+  grid-area: alerts;
+  display: flex;
+  flex-direction: column;
+}
+
+.alertsHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.alertsTotalStyle {
+  align-items: center;
+  background-color: var(--danger);
+  border-radius: 20px;
+  color: var(--white);
+  display: flex;
+  font-weight: bold;
+  height: var(--sectionTitleFontSize);
+  justify-content: center;
+  min-width: calc(2 * var(--defaultFontSize));
+  padding: 1px 5px;
+}
+
+.alertsTotalStyle span {
+  color: var(--white);
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.alertsBodyWrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.alertsBody {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-height: 220px;
+  height: 100%;
+}
+
+.alerts-decision--positive {
+  color: var(--primary);
+  border-bottom: 2px solid;
+}
+.alerts-decision--negative {
+  color: var(--warning);
+  border-bottom: 2px solid;
+}
+
+.alertsBody .modal-outer {
+  height: 100%;
+}
+
+.alertsBody .modal-innerWrapper {
+  width: 64%;
+  display: flex;
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+  .alertsWrapper {
+    /*overflow-y: scroll;
+    width: 100%; */
+  }
+}

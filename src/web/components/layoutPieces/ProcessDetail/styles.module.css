@@ -1,0 +1,173 @@
+.processDetailOuter {
+  /* accounts for size of close button */
+  height: calc(92vh - 6em);
+  position: relative;
+  width: 60vw;
+}
+
+.processDetailOuter h3 {
+  text-transform: uppercase;
+  font-size: calc(1.3 * var(--defaultFontSize));
+  margin: 0 0 10px 0;
+}
+.spanProcessAlertsList{
+  color: red;
+}
+.alertWrapperTextEmpty{
+  margin-left: 10px;
+}
+.processDetailHeader {
+  background-color: #bddff0;
+  border-radius: 10px 10px 0 0;
+  height: 13%;
+  padding: 3% 2%;
+  width: 96%;
+  display: flex;
+}
+.processAlertsListEmpty {
+  margin-bottom: 15px;
+}
+.processDetailHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-size: var(--smallFont);
+}
+
+.processDetailHeaderLeft h2 {
+  font-weight: bold;
+  margin: 0;
+  padding-bottom: calc(var(--smallFont) / 2);
+}
+.processDetailHeaderLeft > div {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+}
+
+.processDetailHeaderLeft > div > span {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  font-size: calc(1.5 * var(--defaultFontSize));
+  font-weight: bold;
+  padding: 5px 20px;
+  margin-right: 10px;
+}
+
+.processDetailHeaderLeft > div > button {
+  border: none;
+  background-color: transparent;
+  height: calc(1.5 * var(--defaultFontSize) + 10px);
+}
+
+.processDetailBody {
+  display: flex;
+  flex-direction: column;
+  height: 73%;
+  margin: 3% 2%;
+  position: relative;
+}
+
+.processDetailLoadingOrError {
+  align-items: center;
+  justify-content: center;
+}
+.processDetailLoadedData {
+  overflow-y: auto;
+}
+
+.processDetailSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 3%;
+}
+
+.processDetailSection :nth-last-child(-n + 2) {
+  margin-bottom: 0;
+}
+
+.processDetailListCardWrapper {
+  width: calc((100% - 4%) / 2);
+  margin-bottom: 2%;
+  border-radius: 4px;
+}
+
+.listCardContent {
+  height: var(--defaultFontSize);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.processDetailIdSection {
+  margin-bottom: 3%;
+}
+
+.processDetailIdSection > div,
+.processDetailProceedings > div {
+  display: flex;
+}
+
+.processDetailIdSection > div:nth-child(even),
+.processDetailProceedings > div:nth-child(odd) {
+  background-color: #f8f9fb;
+}
+
+.processDetailIdSection > div:nth-child(odd),
+.processDetailProceedings > div:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.processDetailIdSection > div > div,
+.processDetailProceedings > div > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px;
+  max-width: calc(33% - 40px);
+}
+
+.processDetailProceedings > div > div:nth-child(even) {
+  max-width: calc(80% - 40px);
+}
+
+.processDetailProceedings > div > div:first-child {
+  max-width: calc(20% - 40px);
+  justify-content: center;
+}
+
+.processAlertsList button.current {
+  background-color: #bddff0;
+}
+
+.processAlertsList {
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-basis: auto;
+  overflow-y: hidden;
+  min-height: calc(2vh + 75px);
+  margin-bottom: 3%;
+}
+
+.processAlertsList .alertWrapper {
+  display: flex;
+  width: 33%;
+  height: calc(100% - 2vh);
+  margin: 0;
+}
+
+.processAlertsList .alertWrapper:first-child {
+  margin-left: -1.2vh;
+}
+
+.processAlertsList:nth-child(3n + 0) {
+  margin-right: 0;
+}
+
+.processAlertsList::-webkit-scrollbar {
+  height: 4px;
+}

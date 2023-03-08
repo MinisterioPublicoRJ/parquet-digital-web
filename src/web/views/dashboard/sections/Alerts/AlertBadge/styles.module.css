@@ -1,0 +1,150 @@
+.alertBadgeOuterContainer {
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0px 3px 8px #00000029;
+  color: var(--dark);
+  display: flex;
+  font-family: var(--defaultFont);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 1vh;
+  min-height: 75px;
+  overflow: hidden;
+  position: relative;
+  margin-left: 1.2vh;
+}
+
+.alertBadgeHoverContainer {
+  background-color: var(--danger);
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  left: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  transition: 0.5s ease;
+  width: 0;
+}
+
+.alertBadgeHoverContainer :first-child {
+  z-index: 1;
+  margin-left: 0;
+}
+
+.alertBadgeOuterContainer:hover .alertBadgeHoverContainer {
+  width: 100%;
+  left: 0;
+}
+
+.deleteConfirmation {
+  background-color: rgb(0 0 0 / 42%);
+  opacity: 0;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  transition: 0.8s ease -0.1s;
+  visibility: hidden;
+}
+
+.deleteConfirmation.isDeletedStyle {
+  opacity: 1;
+  visibility: visible;
+}
+
+.deleteConfirmation > button {
+  padding: 0;
+  width: min-content;
+  height: min-content;
+  border: 0;
+  position: absolute;
+  right: 8px;
+}
+
+.deleteConfirmation .doDelete {
+  top: 4px;
+  background-color: transparent;
+  color: var(--white);
+}
+
+.deleteConfirmation .undoDelete {
+  bottom: 8px;
+  background-color: var(--grayLight);
+  color: var(--darkBlue);
+  border-radius: 3px;
+  padding: 4px 12px;
+  font-size: var(--smallFont);
+}
+
+.alertBadgeLeftContainer {
+  align-items: center;
+  background-color: gray;
+  border-radius: 7px 0 0 7px;
+  display: flex;
+  justify-content: center;
+  width: 61px;
+}
+
+.alertBadgeRightContainer {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.alertBadgeRightContainer > span {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.alertBadgeSmallButtons {
+  display: flex;
+  align-self: flex-end;
+}
+
+.alertBadgeCountWrapper, .alertBadgeDownloadNumbers {
+  align-self: flex-end;
+  align-items: center;
+  border-radius: 4px;
+  color: var(--white);
+  display: flex;
+  font-weight: bold;
+  font-size: var(--smallFont);
+  height: calc(1.2 * var(--smallFont));
+  justify-content: center;
+  padding: 2px 5px;
+  margin-left: 5px;
+}
+
+.alertBadgeArrow {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: calc(0.5 * var(--smallFont)) solid transparent;
+  border-right: calc(0.5 * var(--smallFont)) solid transparent;
+  border-top-width: calc(0.5 * var(--smallFont));
+  border-top-style: solid;
+  border-top-color: white;
+  margin-right: 5px;
+  transition: transform 0.5s;
+  margin-bottom: 1px;
+}
+
+.alertBadgeArrowOpen {
+  transform: rotate(180deg);
+}

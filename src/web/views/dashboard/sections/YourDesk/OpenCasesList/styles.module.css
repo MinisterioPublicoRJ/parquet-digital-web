@@ -1,0 +1,105 @@
+.openCasesChartsWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.openCasesTableWrapper {
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+  flex-direction: column;
+}
+
+.openCasesEmptyTable {
+  overflow: hidden;
+  position: relative;
+}
+
+.noOpenCases {
+  position: absolute;
+  width: 240px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.processDetailBtn {
+  color: #8998ac;
+  font-size: var(--smallFont);
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-decoration: underline;
+}
+
+/* makes alert tag header smaller */
+.openCasesTableWrapper td:first-child,
+.openCasesTableWrapper th:first-child {
+  width: 3vw;
+  overflow: visible;
+  /* this is the expected overflow behaviour, but chrome seems to bug with it, will
+    use a different rule until a permanent bug fix is found   
+  overflow-x: visible;
+  overflow-y: hidden; */
+}
+
+.alertTagWrapper {
+  position: relative;
+  height: calc(1.5 * var(--smallFont));
+  /* height 100% doesn't have expected behavior, known "bug" (?) */
+  width: 100%;
+}
+
+.emptyAlert .alertTag {
+  background-color: var(--pt-green);
+}
+
+.alertTag {
+  align-items: center;
+  background-color: var(--danger);
+  border-radius: 20px;
+  color: var(--white);
+  font-weight: bold;
+  height: var(--sectionTitleFontSize);
+  justify-content: center;
+  border: none;
+  width: calc(2 * var(--defaultFontSize));
+  display: flex;
+  margin-left: 10px;
+}
+
+.alertTagSigla {
+  opacity: 0;
+  position: relative;
+  /*parent + td padding top and bottom */
+  height: calc(100% + 10px);
+  color: var(--white);
+  z-index: 1;
+  background-color: var(--danger);
+  font-weight: bold;
+  text-align: left;
+  font-size: 10px;
+  border: none;
+  left: 0;
+  top: 0;
+  border-radius: 0.5em;
+}
+
+.alertTagSigla p {
+  margin: 0 auto;
+}
+
+.alertTagWrapper:hover .alertTagSigla,
+.alertTagSigla:focus {
+  opacity: 1;
+  transition: opacity 0.5s;
+  position: absolute;
+  width: 24em;
+}

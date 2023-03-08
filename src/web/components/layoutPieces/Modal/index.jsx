@@ -2,7 +2,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
-import './styles.css';
+import {
+  modalOuter,
+  modalTransparent,
+  modalInnerWrapper,
+  modalUnpositioned,
+  modalClose,
+} from './Modal.module.css';
 
 const propTypes = {
   children: PropTypes.node,
@@ -10,6 +16,8 @@ const propTypes = {
   unpositioned: PropTypes.bool,
   withExitButton: PropTypes.bool,
   transparent: PropTypes.bool,
+  close: PropTypes.func.isRequired,
+  inner: PropTypes.bool,
 };
 
 // children can be undefined if Modal is not open yet
@@ -19,6 +27,7 @@ const defaultProps = {
   unpositioned: undefined,
   withExitButton: undefined,
   transparent: undefined,
+  inner: false,
 };
 
 /**
@@ -63,7 +72,7 @@ export default function Modal({
   transparent,
 }) {
   useEffect(() => {
-    document.querySelector('.modal-outer').focus();
+    document.querySelector(`.${modalOuter}`).focus();
   }, []);
 
   function handleClose() {
@@ -73,7 +82,7 @@ export default function Modal({
 
   const modalContent = (
     <div
-      className={`modal-outer ${transparent ? 'transparent' : ''}`}
+      className={[modalOuter, transparent ? modalTransparent : null].join(' ')}
       onClick={() => handleClose()}
       onKeyDown={(e) => TabTrap(e, handleClose)}
       role="button"
@@ -84,11 +93,11 @@ export default function Modal({
       <div
         onClick={(e) => handleInnerClick(e)}
         onKeyDown={() => null}
-        className={`modal-innerWrapper ${unpositioned ? 'unpositioned' : ''}`}
+        className={[modalInnerWrapper, unpositioned ? modalUnpositioned : null].join(' ')}
       >
         {children}
         {withExitButton && (
-          <button type="button" className="modal-close" aria-label="Fechar" onClick={handleClose}>
+          <button type="button" className={modalClose} aria-label="Fechar" onClick={handleClose}>
             <span aria-hidden="true">&times;</span>
           </button>
         )}

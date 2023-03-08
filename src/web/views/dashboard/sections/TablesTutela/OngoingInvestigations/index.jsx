@@ -1,8 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import Api from '../../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { highlightJSX } from '../../../../../utils';
+
+import {
+  onGoingInvestigationsOuter,
+  onGoingInvestigationsActive,
+  investigatedProfileBtn,
+  processDetailBtnStyle,
+} from '../styles.module.css';
+
+const propTypes = {
+  isActive: PropTypes.bool,
+  setInvestigatedProfile: PropTypes.func.isRequired,
+  setProcessDetail: PropTypes.func.isRequired,
+  searchString: PropTypes.string,
+};
+
+const defaultProps = {
+  isActive: false,
+  searchString: '',
+}
 
 function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDetail, searchString,}) {
   const { buildRequestParams } = useAppContext();
@@ -49,7 +69,7 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
           onClick={(event) => {
             setInvestigatedProfile(representanteDk, event);
           }}
-          className="investigated-profile-btn"
+          className={ investigatedProfileBtn }
         >
           {docuPersonagens}
         </button>
@@ -62,7 +82,7 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
           onClick={(event) => {
             setProcessDetail(docuNrMp, docuNrExterno, event);
           }}
-          className="process-detail-btn"
+          className={ processDetailBtnStyle }
         >
           {highlightedOngoingInvestigations.docuNrMp}
         </button>
@@ -105,8 +125,8 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
     <div
       className={`${
         isActive
-          ? 'ongoingInvestigations-outer ongoingInvestigations--active'
-          : 'ongoingInvestigations-outer'
+          ? `${ onGoingInvestigationsOuter } ${ onGoingInvestigationsActive }`
+          : `${ onGoingInvestigationsOuter }`
       }`}
     >
       {!ongoingInvestigationsListData.length ? (
@@ -125,5 +145,8 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
     </div>
   );
 }
+
+OngoingInvestigations.propTypes = propTypes;
+OngoingInvestigations.defaultProps = defaultProps;
 
 export default OngoingInvestigations;

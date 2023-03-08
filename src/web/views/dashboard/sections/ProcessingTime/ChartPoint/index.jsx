@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { MarkMind, Markfaster, MarkSlower } from '../../../../../assets/svg';
-// import ProcessingTimeArrow from '../../../assets/svg/processingTimeArrow';
 
 // This props are supplied by Victory itself
 // https://formidable.com/open-source/victory/docs/common-props/#labelcomponent
@@ -18,19 +17,19 @@ const ChartPoints = ({ x, y, datum }) => {
 
   switch (type) {
     case 'min':
-      point = <Markfaster x={x} y={y} />;
+      point = <Markfaster width="20" height="20" x={x + 5} y={y} />;
       break;
     case 'average':
-      point = <MarkMind x={x} y={y} />;
+      point = <MarkMind width="20" height="20" x={x} y={y} />;
       break;
     case 'max':
-      point = <MarkSlower x={x} y={y} />;
+      point = <MarkSlower width="20" height="20" x={x} y={y} />;
       break;
     default:
       point = null;
       break;
   }
-  
+
   return point;
 };
 

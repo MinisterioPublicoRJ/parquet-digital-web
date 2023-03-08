@@ -1,9 +1,8 @@
 /* eslint-disable no-alert */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import './styles.css';
 import { useAppContext } from '../../../../../core/app/App.context';
-import { AlertsContext, AlertsContextCreator } from './alertsContext';
+import { useAlertsContext } from './alertsContext';
 
 import Api from '../../../../api';
 import { SectionTitle, Spinner, Modal, DialogBox } from '../../../../components';
@@ -11,9 +10,23 @@ import Dropdown from './Dropdown';
 import Overlay from './AlertsOverlay';
 import alertListFormatter from './utils/alertListFormatter';
 
+import {
+  alertsWrapper,
+  alertsHeader,
+  alertsTotalStyle,
+  alertsBodyWrapper,
+  alertsBody,
+} from './styles.module.css';
+
 function Alerts() {
   const { buildRequestParams } = useAppContext();
-  const alertsStore = AlertsContextCreator();
+  
+  const [modalContent, setModalContent] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [overlayType, setOverlayType] = useState(null);
+  const [overlayDocDk, setOverlayDocDk] = useState(null);
+  const [overlayDocNum, setOverlayDocNum] = useState(null);
+
   const {
     alerts,
     setAlerts,
@@ -21,17 +34,9 @@ function Alerts() {
     setAlertCount,
     alertsError,
     setAlertsError,
-    showOverlay,
-    setShowOverlay,
-    overlayType,
-    setOverlayType,
-    docDk,
-    setDocDk,
-    modalContent,
-    setModalContent,
-    deletedAlertKey,
-    setDeletedAlertKey,
-  } = alertsStore;
+    removeAlert
+  } = useAlertsContext();
+
 
   const loading = !alerts && !alertsError;
   const dialogBoxMessage = (
@@ -60,6 +65,7 @@ function Alerts() {
     let errorAlertsTotal = false;
     try {
       alertsTotal = await Api.getAlertsCount(buildRequestParams());
+
     } catch (e) {
       errorAlertsTotal = true;
     }
@@ -76,16 +82,40 @@ function Alerts() {
     }
     return [hiresAlertList, hiresListError];
   }
+  
+  async function loadCavlAlerts() {
+    let cavlAlertList = [];
+    let cavlListError = false;
+    try {
+      cavlAlertList = await Api.getCavlAlerts(buildRequestParams());
+    } catch (e) {
+      cavlListError = true;
+    }
+    return [cavlAlertList, cavlListError];
+  }
+
+  async function loadMisconductAlert() {
+    let misconductAlertList = [];
+    let misconductListError = false;
+    try {
+      misconductAlertList = await Api.getMisconductAlert(buildRequestParams());
+    } catch (e) {
+      misconductListError = true;
+    }
+    return [misconductAlertList, misconductListError];
+  }
 
   async function loadComponent() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
     const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
-
+    const [cavlAlertList, errorCavlList] = await loadCavlAlerts();
+    const [misconductAlertList, misconductListError] = await loadMisconductAlert();
     const { cpf, token, orgao } = buildRequestParams();
 
-    const apiError = errorAlertsCount || (errorAlerts && errorHiresList);
-    const fullList = alertList.concat(hiresAlertList);
+    const apiError = errorAlertsCount || (errorAlerts && errorHiresList && errorCavlList && misconductListError );
+    const fullList = alertList.concat(cavlAlertList, hiresAlertList, misconductAlertList );
+
     const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 
     setAlerts(cleanList);
@@ -93,22 +123,21 @@ function Alerts() {
     setAlertsError(apiError);
   }
 
-  function openDialogBox(link, key) {
-    setModalContent({ link, key });
+  function openDialogBox(link, key, type) {
+    setModalContent({ link, key, type });
   }
 
   async function sendEmail() {
-    const { key, link } = modalContent;
+    const { key, link, type } = modalContent;
     try {
       // positive feedback after sending to ouvidoria delete the alert
-      setDeletedAlertKey(key);
+      removeAlert(type, key);
       const response = await Api.sendOmbudsmanEmail(link);
       window.alert(response.data.detail);
     } catch (e) {
       window.alert('Houve um erro: '. e);
     } finally {
       setModalContent(null);
-      setDeletedAlertKey(null);
     }
   }
 
@@ -127,26 +156,26 @@ function Alerts() {
     loadComponent();
   }, []);
 
-  function setOverlay(type, documentDk) {
+  function setOverlay(type, documentDk, docNum) {
     setOverlayType(type);
-    setDocDk(documentDk);
+    setOverlayDocDk(documentDk);
+    setOverlayDocNum(docNum);
     setShowOverlay(true);
   }
 
   return (
-    <AlertsContext.Provider value={alertsStore}>
-      <article className="alerts-wrapper">
-        <div className="alerts-header">
+      <article className={ alertsWrapper }>
+        <div className={ alertsHeader }>
           <SectionTitle value="central de alertas" glueToTop />
-          <span className="alerts-total">{alerts ? alertCount : 0}</span>
+          <span className={ alertsTotalStyle }>{alerts ? alertCount : 0}</span>
         </div>
-        <div className="alerts-body-wrapper">
+        <div className={ alertsBodyWrapper }>
           <div
-            className="alerts-body"
+            className={ alertsBody }
             style={showOverlay || loading ? { overflowY: 'hidden' } : {}}
           >
             {showOverlay && (
-              <Overlay type={overlayType} docDk={docDk} setShowOverlay={setShowOverlay} />
+              <Overlay type={overlayType} docDk={overlayDocDk} docNum={overlayDocNum} setShowOverlay={setShowOverlay} />
             )}
             {modalContent && (
               <Modal inner close={() => setModalContent(null)}>
@@ -164,17 +193,14 @@ function Alerts() {
               Object.keys(alerts).map((type) => (
                 <Dropdown
                   type={type}
-                  list={alerts[type]}
                   key={type}
                   setOverlay={setOverlay}
                   openDialogBox={openDialogBox}
-                  deletedAlertKey={deletedAlertKey}
                 />
               ))}
           </div>
         </div>
       </article>
-    </AlertsContext.Provider>
   );
 }
 

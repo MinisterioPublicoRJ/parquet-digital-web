@@ -1,0 +1,41 @@
+.paginationMain {
+  display: flex;
+  justify-content: center;
+}
+.paginationBtnItem {
+  display: flex;
+  color: var(--grayPagination);
+  margin-top: 10px;
+}
+.paginationItem {
+  margin-top: 3px;
+}
+.paginationBtnItem > button {
+  color: var(--grayPagination);
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 15px;
+  opacity: 1;
+}
+.paginationBtnItem > button span::after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  border-style: solid;
+  border-color: var(--grayPagination);
+  background-color: var(--grayPagination);
+  border-width: var(--selectorArrowSize);
+  margin: 10px;
+}
+.paginationNumberBtn {
+  border: 0;
+  background-color: transparent;
+  color: var(--grayPagination);
+}
+.paginationNumberBtnActive {
+  border: 0;
+  background-color: transparent;
+  color: var(--primary);
+  text-decoration: underline;
+}

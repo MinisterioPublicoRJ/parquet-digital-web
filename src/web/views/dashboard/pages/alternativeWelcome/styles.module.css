@@ -1,0 +1,143 @@
+.altWelcomeOuter {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  grid-column-gap: 3vw;
+  overflow: hidden;
+  padding-right: 3vw;
+  width: 97vw;
+  /* This is a quick fix for the <body> padding that is used by every other screen */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* end of quickfix */
+}
+
+.altWelcomeOuter h2 {
+  color: black;
+}
+
+.altWelcomeImg {
+  grid-row: 1 / span 3;
+  grid-column: 1 / span 1;
+  overflow: hidden;
+}
+
+.altWelcomeImg img {
+  height: 100%;
+}
+
+.altWelcomeHeaderLogo {
+  display: flex;
+  align-items: center;
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+}
+
+.altWelcomeHeaderText {
+  display: flex;
+  flex-direction: column;
+  grid-row: 1 / span 1;
+  grid-column: 3 / span 2;
+  justify-content: center;
+}
+
+.altWelcomeHeaderText h1 {
+  font-weight: normal;
+  text-align: center;
+  font-size: 2.2vw;
+  margin-bottom: 0;
+}
+
+.altWelcomeHeaderText p {
+  text-align: justify;
+}
+
+.altWelcomeTextsFirst {
+  text-align: justify;
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 2;
+}
+
+.altWelcomeTextsSecond {
+  text-align: justify;
+  grid-row: 2 / span 1;
+  grid-column: 4 / span 2;
+}
+
+.altWelcomeSuggestions {
+  display: flex;
+  flex-direction: column;
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 4;
+}
+
+.altWelcomeSuggestions h2 {
+  margin-bottom: 0;
+}
+
+.altWelcomeSuggestions p {
+  color: var(--grayAlternative);
+}
+
+.altWelcomeSuggestionsItemRow {
+  display: flex;
+  flex-direction: row;
+  height: 70%;
+  justify-content: space-between;
+}
+
+.altWelcomeSuggestionsItemRow div:last-child {
+  margin-right: 0;
+}
+
+.altWelcomeSuggestionsItem {
+  width: 250px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.altWelcomeSuggestionsItemImg {
+  height: 50%;
+}
+
+.altWelcomeSuggestionsItemImg img {
+  height: 100%;
+  width: 100%;
+}
+
+.altWelcomeSuggestionsItemData {
+  height: 50%;
+  display: flex;
+  font-size: var(--smallFont);
+}
+
+.altWelcomeSuggestionsItemData h3 {
+  text-transform: none;
+  margin-top: 5px;
+}
+
+.altWelcomeSuggestionsItemData a {
+  background-color: transparent;
+  border: 1px solid var(--grayAlternative);
+  border-radius: 10px;
+  color: var(--grayAlternative);
+  font-size: var(--smallFont);
+  height: calc(var(--smallFont) + 14px);
+  line-height: calc(var(--smallFont) + 14px);
+  margin: 5px 0 0 0;
+  padding: 0 7px;
+  text-decoration: none;
+}
+
+.altWelcomeSuggestionsItemData div:first-of-type {
+  flex: 2;
+}
+
+.altWelcomeSuggestionsItemData div:last-of-type {
+  flex: 1;
+  justify-content: flex-end;
+  display: flex;
+}

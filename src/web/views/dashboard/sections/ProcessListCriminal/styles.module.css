@@ -1,0 +1,33 @@
+.tablesCriminalOuter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+.todayTextAreaCriminal{
+  line-height: 1.5;
+}
+.todayTextAreaCriminal h2{
+  font-size: 15px;
+  background-color: #bddff0;
+  max-width: 70px;
+  color: #374354;
+}
+.todayTextAreaCriminal p{
+  max-width: 250px;
+  color: #A7A0A0;
+}
+.tableCriminalOuter {
+  grid-area: criminalProcesses;
+  display: flex;
+  flex-direction: column;
+}
+.tableBody {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+}
+ 

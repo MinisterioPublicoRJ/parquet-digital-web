@@ -11,9 +11,11 @@ import {
   OPEN_INVESTIGATIONS_DETAILS_URL,
   OPEN_CASES_LIST,
   RADAR_DATA,
+  CRIMINAL_RADAR_URL,
   PROCESSING_TIME_DATA,
   ALERTS_LIST,
   HIRES_ALERTS,
+  CAVL_ALERTS,
   TOTAL_ALERTS_LIST,
   PROCESSES_LIST,
   SUCCESS_INDICATORS,
@@ -30,6 +32,7 @@ import {
   ONGOING_INVESTIGATIONS_LIST,
   ALERT_OVERLAY_DATA,
   PROCESS_DETAIL,
+  MISCONDUCT_ALERT,
 } from './endpoints';
 
 import { formatDateObjForBackend } from '../utils/formatters';
@@ -59,6 +62,9 @@ import {
   alertOverlayTransform,
   investigatedProfileTransform,
   processDetailTransform,
+  cavlAlertsTransform,
+  radarCriminalTransform,
+  misconductAlertsTransform,
 } from './transforms';
 
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
@@ -163,10 +169,22 @@ const Api = (() => {
 
   async function getRadarData({ orgao, token }) {
     const { data } = await axios.get(RADAR_DATA({ orgao }), buildRequestConfig(token));
-
+    
     return radarTransform(data);
   }
 
+  async function getRadarDataCriminal({ orgao, token }) {
+    const { data } = await axios.get(CRIMINAL_RADAR_URL({ orgao }), buildRequestConfig(token));
+
+    return radarCriminalTransform(data);
+  }
+
+  
+  async function getMisconductAlert({ orgao, token }) {
+    const { data } = await axios.get(MISCONDUCT_ALERT({ orgao }), buildRequestConfig(token));
+
+    return misconductAlertsTransform(data);
+  }
   async function getProcessingTimeData({ orgao, token }) {
     const { data } = await axios.get(PROCESSING_TIME_DATA({ orgao }), buildRequestConfig(token));
 
@@ -187,6 +205,11 @@ const Api = (() => {
     const { data } = await axios.get(HIRES_ALERTS({ orgao }), buildRequestConfig(token));
 
     return hiresAlertsTransform(data);
+  }
+  async function getCavlAlerts({ orgao, token }) {
+    const { data } = await axios.get(CAVL_ALERTS({ orgao }), buildRequestConfig(token));
+
+    return cavlAlertsTransform(data);
   }
 
   async function getsuccessIndicators({ orgao, token }) {
@@ -357,6 +380,7 @@ const Api = (() => {
     getCourtCasesDetails,
     getOpenCasesList,
     getRadarData,
+    getRadarDataCriminal,
     getAlerts,
     getAlertsCount,
     getHiresAlerts,
@@ -376,6 +400,8 @@ const Api = (() => {
     sendOmbudsmanEmail,
     getAlertOverlayData,
     getProcessDetail,
+    getCavlAlerts,
+    getMisconductAlert,
   };
 })();
 

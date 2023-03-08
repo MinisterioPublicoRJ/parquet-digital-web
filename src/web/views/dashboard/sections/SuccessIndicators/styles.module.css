@@ -1,0 +1,123 @@
+.successIndicatorsOuter {
+  grid-area: indicators;
+  color: var(--darkBlue);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+.successIndicatorsOuter h4 {
+  margin: 5px;
+  font-weight: bold;
+}
+
+/* Css Tooltip Phrase  */
+
+.successIndicatorsItem {
+  position: relative;
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+.successIndicatorsItem span {
+  visibility: hidden;
+  width: 250px;
+  background-color: var(--grayTooltip);
+  color: var(--white);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 30%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.successIndicatorsItem span::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--grayTooltip) transparent transparent transparent;
+}
+.successIndicatorsItem:hover span {
+  visibility: visible;
+  opacity: 1;
+}
+
+.successIndicatorsMain {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Css Tooltip Phrase  */
+
+/* Css Tooltip percent  */
+
+.successIndicatorsItem strong {
+  width: 60px;
+  color: var(--white);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 45%;
+  right: 0%;
+  margin-left: -60px;
+  transition: opacity 0.3s;
+}
+.successIndicatorsItem .successIndicatorsTooltipFirst strong::after {
+  visibility: visible;
+  opacity: 1;
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--danger) transparent transparent transparent;
+}
+.successIndicatorsItem .successIndicatorsSooltipSecond strong::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--warning) transparent transparent transparent;
+}
+.successIndicatorsItem .successIndicatorsTooltipThird strong::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--success) transparent transparent transparent;
+}
+
+.successIndicatorsTooltipFirst strong {
+  background-color: var(--danger);
+  border-color: var(--danger) transparent transparent transparent;
+}
+.successIndicatorsSooltipSecond strong {
+  background-color: var(--warning);
+  border-color: var(--warning) transparent transparent transparent;
+}
+.successIndicatorsTooltipThird strong {
+  background-color: var(--success);
+  border-color: var(--success) transparent transparent transparent;
+}
+
+/* Css Tooltip percent  */

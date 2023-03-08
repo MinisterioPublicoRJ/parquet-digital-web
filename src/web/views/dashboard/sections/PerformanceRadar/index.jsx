@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import './styles.css';
+import {
+  pageRadarDashboard,
+  radarGraph,
+  radarHeader,
+  radarWrapper,
+  radarSubtitles,
+  radarSubtitlesItem,
+  radarSubtitlesItemYourData,
+  radarSubtitlesItemMPData,
+  radarSubtitlesItemCriminal,
+} from './styles.module.css';
 import RadarGraph from './RadarGraph';
 import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
@@ -15,7 +25,7 @@ import {
   TUTELA_CATEGORIES,
   PIP_CATEGORIES,
 } from './radarConstants';
-import RadarModal from "./RadarModal"
+import RadarModal from './RadarModal';
 import { Modal } from '../../../../components';
 
 function PerformanceRadar() {
@@ -29,7 +39,6 @@ function PerformanceRadar() {
   const [isRadarModalOpen, setIsRadarModalOpen] = useState(false);
   const [radarModalData, setRadarModalData] = useState();
   const [selectedElement, setSelectedElement] = useState({});
-
 
   useEffect(() => {
     getPerformanceData();
@@ -49,14 +58,20 @@ function PerformanceRadar() {
       // tutela
       if (tipo === 1) {
         res = await Api.getRadarData(buildRequestParams());
-      } else {
+      }
+      if (tipo === 2) {
         // pip
         res = await Api.getPipRadarData(buildRequestParams());
+      }
+      if (tipo === 7) {
+        // criminal
+        res = await Api.getRadarDataCriminal(buildRequestParams());
       }
     } catch (e) {
       setError(true);
     } finally {
       const [uData, oData] = cleanGraphData(res);
+
       setUserData(uData);
       setOtherData(oData);
       generateLabels(res, tipo);
@@ -95,7 +110,7 @@ function PerformanceRadar() {
   }
 
   function generateUserData(categories, rawData) {
-    return categories.map(cat => ({
+    return categories.map((cat) => ({
       x: cat,
       y: rawData[cat].percentages * 100,
       label: rawData[cat].numbers,
@@ -103,15 +118,25 @@ function PerformanceRadar() {
   }
 
   function generateCompData(categories, rawData) {
-    return categories.map(cat => {
+    return categories.map((cat) => {
       const { averages, maxValues } = rawData[cat];
       return { x: cat, y: 100 * (averages / (maxValues || 1)) };
     });
   }
 
   function generateLabels(graphData, organType) {
-    const categories = organType === 1 ? TUTELA_CATEGORIES : PIP_CATEGORIES;
-    const labels = categories.map(cat => {
+    let categories;
+    switch (organType) {
+      case 1:
+        categories = TUTELA_CATEGORIES;
+        break
+      case 2:
+        categories = PIP_CATEGORIES;
+        break
+      default:
+        categories = Object.keys(graphData);
+    }
+    const labels = categories.map((cat) => {
       let positionProps;
       let label;
       const maxValues = graphData[cat] ? graphData[cat].maxValues : '-';
@@ -125,7 +150,7 @@ function PerformanceRadar() {
           positionProps = WEST_LABEL_PROPS;
           break;
         case 'agreements':
-          label = ['Acordos', 'de não', 'Persecução', `(máx atribuição ${maxValues})`];
+          label = ['Celebrações', 'de ANPP', `(máx atribuição ${maxValues})`];
           positionProps = WEST_LABEL_PROPS;
           break;
         case 'instaurations':
@@ -150,6 +175,18 @@ function PerformanceRadar() {
           break;
         case 'complaints':
           label = [`(máx atribuição ${maxValues})`, 'Denúncias'];
+          positionProps = NORTH_LABEL_PROPS;
+          break;
+        case 'hearings':
+          label = [`(máx atribuição ${maxValues})`, 'Audiências'];
+          positionProps = SOUTH_WEST_LABEL_PROPS;
+          break;
+        case 'closingArguments':
+          label = [`(máx atribuição ${maxValues})`, 'Alegações finais'];
+          positionProps = SOUTH_EAST_LABEL_PROPS;
+          break;
+        case 'appeals':
+          label = [`(máx atribuição ${maxValues})`, 'Recursos'];
           positionProps = EAST_LABEL_PROPS;
           break;
         default:
@@ -167,38 +204,48 @@ function PerformanceRadar() {
     setIsRadarModalOpen(true);
   }
 
+  if (isRadarModalOpen) {
+    return (
+      <Modal
+        withExitButton
+        previousElement={selectedElement}
+        close={() => setIsRadarModalOpen(false)}
+      >
+        <RadarModal compareData={radarModalData} />
+      </Modal>
+    )
+  }
+
   return (
-    <article className="page-radar-dashboard">
-      <div className="radar-header">
+    <article className={pageRadarDashboard}>
+      <div className={radarHeader}>
         <SectionTitle value="Radar de Performance" subtitle="(últimos 180 dias)" glueToTop />
       </div>
-      {loading && !dataError && <Spinner size="large" />}
-      {dataError && 'Sem dados para exibir'}
-      {!loading && !dataError && (
-        <figure className="radar-wrapper">
-          <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
-        </figure>
-      )}
-      <figcaption className="radar-subtitles">
-        <div className="radar-subtitles-item radar-subtitles-item-yourData">Sua Promotoria</div>
-        <div className="radar-subtitles-item radar-subtitles-item-MPData">Perfil do MP</div>
-        <button
-          type="button"
-          className="radar-subtitles-item"
-          onClick={handleCompareButton}
-        >
-          <RadarArrow height={15} width={15} />
-          Comparativo
-        </button>
-      </figcaption>
+      <div className={radarGraph}>
+        {loading && !dataError && <Spinner size="large" />}
 
-      { 
-        isRadarModalOpen && 
-        <Modal withExitButton previousElement={selectedElement} close={() => setIsRadarModalOpen(false)}>
-          <RadarModal compareData={radarModalData} />
-        </Modal>
+        {dataError && 'Sem dados para exibir'}
 
-      }
+        {!loading && !dataError && (
+          <figure className={radarWrapper}>
+            <RadarGraph xAxis={chartLabels} userGraph={userData} comparisionGraph={otherData} />
+          </figure>
+        )}
+
+        {currentOffice.tipo && (
+          <figcaption className={radarSubtitles}>
+            <div className={`${radarSubtitlesItem} ${radarSubtitlesItemYourData}`}>
+              Sua Promotoria
+            </div>
+            <div className={`${radarSubtitlesItem} ${radarSubtitlesItemMPData}`}>Perfil do MP</div>
+            <button type="button" onClick={handleCompareButton}
+              className={`${currentOffice.tipo === 7 ? `${radarSubtitlesItemCriminal}` : `${radarSubtitlesItem} `}`}>
+              <RadarArrow height={20} width={20} />
+              Comparativo
+            </button>
+          </figcaption>
+        )}
+      </div>
     </article>
   );
 }

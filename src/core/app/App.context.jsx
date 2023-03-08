@@ -1,13 +1,16 @@
 import React, { createContext, useContext, useState } from 'react';
 import ApiCreator from '../api/Api';
+// eslint-disable-next-line import/no-cycle
+import { AlertsContext } from '../../web/views/dashboard/sections/Alerts/alertsContext';
 
 const AppContext = createContext();
 
-export const AppProvider = ({ store, children }) => (
-  <AppContext.Provider value={store}>{children}</AppContext.Provider>
-);
+export function AppProvider({ alertsStore, store, children }) {
+  return <AlertsContext.Provider value={alertsStore}> <AppContext.Provider value={store}>{children}</AppContext.Provider></AlertsContext.Provider>
+}
 
 export const useAppContext = () => useContext(AppContext);
+
 
 export function AppStoreInitializer() {
   const [Api, setApi] = useState(ApiCreator());
@@ -18,8 +21,6 @@ export function AppStoreInitializer() {
   const [userExpired, setUserExpired] = useState(false);
   const [isServerDown, setIsServerDown] = useState(false);
   const [currentOffice, setCurrentOffice] = useState(null);
-
-
 
   const loginWithToken = (jwtToken, storedUser, storedOffice) => {
     if (jwtToken) {
@@ -124,6 +125,7 @@ export function AppStoreInitializer() {
     user,
     userExpired,
     autoLoginFailed,
+    setScaLoginFailed,
     scaLoginFailed,
     loginWithToken,
     loginWithSCACredentials,

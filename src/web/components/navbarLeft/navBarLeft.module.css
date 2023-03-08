@@ -1,0 +1,76 @@
+.navBarLeftContent {
+  position: fixed;
+  inset: 0px;
+  width: 2.8125rem;
+  background-color: var(--loginBlue);
+  transition: 0.3s;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  z-index: 100;
+  height: 100vh;
+}
+
+.navBarLeftContent:hover {
+  width: 12.5rem;
+}
+
+.navBarLeftContent button {
+  border: none;
+  background-color: transparent;
+}
+
+.topButtonDiv {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3.25rem;
+  width: 100vw;
+}
+
+.logOutPositionDiv {
+  width: 100vw;
+  margin: 0 0 2.9375rem 0.2rem;
+}
+
+.userManualDiv {
+  display: flex;
+  color: var(--white);
+  background: transparent;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.notaMetodologicaDiv,
+.infosDiv,
+.tempoTramitacaoDiv,
+.logOutButtonDiv {
+  display: flex;
+  color: var(--white);
+  background: transparent;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.userManualDiv p,
+.notaMetodologicaDiv p,
+.infosDiv p,
+.tempoTramitacaoDiv p,
+.logOutButtonDiv p {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+  text-align: center;
+  margin-left: 0.7rem;
+}
+
+.userManualDiv:hover,
+.notaMetodologicaDiv:hover,
+.infosDiv:hover,
+.tempoTramitacaoDiv:hover,
+.logOutButtonDiv:hover {
+  color: var(--loginBlue);
+  background-color: var(--lightBlue);
+  transition: all 0.3s;
+}

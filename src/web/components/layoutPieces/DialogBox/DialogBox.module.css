@@ -1,0 +1,27 @@
+.dialogBoxStyle {
+  padding: 8px 20px 20px 20px;
+  text-align: justify;
+  height: 8em;
+}
+
+.dialogBoxStyle p {
+  font-size: var(--smallFont);
+}
+
+.dialogBoxStyle button {
+  border: 0;
+  border-radius: 4px;
+  padding: 4px 12px;
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+.dialogBoxYesBtnStyle {
+  float: left;
+  margin-left: 16px;
+}
+
+.dialogBoxNoBtnStyle {
+  float: right;
+  margin-right: 16px;
+}

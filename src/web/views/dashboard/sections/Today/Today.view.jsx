@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './Today.css';
-import Api from '../../../../api';
+//import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';

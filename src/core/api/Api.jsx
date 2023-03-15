@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { BASE_URL, SCA_LOGIN, TOKEN_LOGIN, TODAY_OUT, TODAY_OUTLIERS, TODAY_ENTRIES } from './endpoints';
-import {scaUserTransform, jwtUserTransform, todayOutTransform, todayOutliersTransform, todayEntriesTransform} from './transforms'
+import { BASE_URL, SCA_LOGIN, TOKEN_LOGIN, TODAY_OUT, TODAY_OUTLIERS, TODAY_ENTRIES, OPEN_CASES_DETAILS_URL } from './endpoints';
+import {scaUserTransform, jwtUserTransform, todayOutTransform, todayOutliersTransform, todayEntriesTransform, openCasesDetailsTransform } from './transforms'
 
 import { formatDateObjForBackend } from '../../web/utils/formatters';
 
@@ -60,7 +60,7 @@ function ApiCreator(jwtToken) {
    * @return {number}    [description]
    */
 
-   async function getTodayOutData({ orgao, token }) {
+   async function getTodayOutData({ orgao }) {
     const { data } = await axiosInstance.get(TODAY_OUT({ orgao }));
 
     return todayOutTransform(data);
@@ -72,7 +72,7 @@ function ApiCreator(jwtToken) {
    * @param  {date} date day you want tinfo from
    * @return {json}      { acervoQtd: Number, primQ: Number, mediana, terQ: Number, cod: number }
    */
-  async function getTodayOutliersData({ orgao, token }, date) {
+  async function getTodayOutliersData({ orgao }, date) {
     const dateFormated = formatDateObjForBackend(date);
     const { data } = await axiosInstance.get(
       TODAY_OUTLIERS({ orgao, date: dateFormated }),
@@ -81,12 +81,19 @@ function ApiCreator(jwtToken) {
     return todayOutliersTransform(data);
   }
 
-  async function getTodayEntriesData({ orgao, cpf, token }) {
+  async function getTodayEntriesData({ orgao, cpf }) {
     const { data } = await axiosInstance.get(TODAY_ENTRIES({ orgao, cpf }));
 
     return todayEntriesTransform(data);
   }
 
+  async function getOpenCasesDetails({ orgao, cpf }) {
+    const { data } = await axiosInstance.get(
+      OPEN_CASES_DETAILS_URL({ orgao, cpf })
+    );
+
+    return openCasesDetailsTransform(data);
+  }
 
 
 
@@ -96,7 +103,8 @@ function ApiCreator(jwtToken) {
     loginWithJwtCredentials,
     getTodayOutData,
     getTodayOutliersData,
-    getTodayEntriesData
+    getTodayEntriesData,
+    getOpenCasesDetails
   };
 }
 

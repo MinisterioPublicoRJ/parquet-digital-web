@@ -5,11 +5,10 @@ import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
-import Api from '../../../../api';
 import { PIP_BUTTONS, TUTELA_BUTTONS, CRIMINAL_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
 
 function YourDesk() {
-  const { currentOffice, buildRequestParams } = useAppContext();
+  const { currentOffice, buildRequestParams, Api } = useAppContext();
   const [docsQuantity, setDocsQuantity] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buttonList, setButtonList] = useState(false);

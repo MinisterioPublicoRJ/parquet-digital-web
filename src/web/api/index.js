@@ -70,7 +70,7 @@ import {
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
 
 const Api = (() => {
-  async function login(token) {
+ /*  async function login(token) {
     const formData = new FormData();
     formData.set('jwt', token);
 
@@ -86,7 +86,7 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN, formData);
     return scaUserTranform(data);
-  }
+  } */
 
   /**
    * fetches percentage info for the Today page from the backend
@@ -122,7 +122,7 @@ const Api = (() => {
     return todayEntriesTransform(data);
   }
 
-  async function getOpenCasesDetails({ orgao, cpf, token }) {
+ /*  async function getOpenCasesDetails({ orgao, cpf, token }) {
     const { data } = await axios.get(
       OPEN_CASES_DETAILS_URL({ orgao, cpf }),
       buildRequestConfig(token),
@@ -130,7 +130,7 @@ const Api = (() => {
 
     return openCasesDetailsTransform(data);
   }
-
+ */
   async function getOpenInvestigationsDetails({ orgao, token }) {
     const { data } = await axios.get(
       OPEN_INVESTIGATIONS_DETAILS_URL({ orgao }),
@@ -370,12 +370,12 @@ const Api = (() => {
   }
 
   return {
-    login,
+   /*  login,
     scaLogin,
+    getOpenCasesDetails, */
     getTodayOutData,
     getTodayOutliersData,
     getTodayEntriesData,
-    getOpenCasesDetails,
     getOpenInvestigationsDetails,
     getCourtCasesDetails,
     getOpenCasesList,

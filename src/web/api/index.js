@@ -20,7 +20,6 @@ import {
   PROCESSES_LIST,
   SUCCESS_INDICATORS,
   PIP_RADAR_URL,
-  DESK_INTEGRATED,
   DESK_DETAIL_INTEGRATED,
   PIP_MAIN_INVESTIGATIONS_URL,
   PIP_MAIN_INVESTIGATIONS_URL_ACTION,
@@ -247,24 +246,6 @@ const Api = (() => {
     return pipRadarTransform(data);
   }
 
-  async function getIntegratedDeskDocs({ orgao, token, cpf, docType }) {
-    const { data } = await axios.get(
-      DESK_INTEGRATED({ orgao, cpf, docType }),
-      buildRequestConfig(token),
-    );
-
-    return deskIntegratedTransform(data);
-  }
-
-  async function getIntegratedDeskDetails({ orgao, token, cpf, docType, type }) {
-    const { data } = await axios.get(
-      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType, type }),
-      buildRequestConfig(token),
-    );
-
-    return deskTabTransform(data);
-  }
-
   async function getMainInvestigated({ orgao, cpf, token }, searchString, page) {
     const params = { jwt: token };
 
@@ -388,8 +369,6 @@ const Api = (() => {
     getProcessList,
     getsuccessIndicators,
     getPipRadarData,
-    getIntegratedDeskDocs,
-    getIntegratedDeskDetails,
     getMainInvestigated,
     actionMainInvestigated,
     removeAlert,

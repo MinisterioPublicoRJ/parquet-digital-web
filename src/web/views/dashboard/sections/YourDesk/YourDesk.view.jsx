@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { deskOuter, deskControlers, deskTabs, deskHeader } from './styles.module.css';
+import {deskButtonsHeader, deskOuter, deskControlers, deskTabs, deskHeader } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
@@ -129,8 +129,12 @@ function YourDesk() {
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
-        <SectionTitle value="Sua Mesa" glueToTop />
-        <div className={deskControlers}>
+        <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
+        <div className={deskButtonsHeader}>
+          <button>Sua mesa</button>
+          <button>Seu acervo</button>
+        </div>
+        {/*<div className={deskControlers}>
           {buttonList.map((buttonTitle) => (
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
@@ -143,7 +147,7 @@ function YourDesk() {
               loading={!docsQuantity[buttonTitle] && loading}
             />
           ))}
-        </div>
+        </div>*/}
       </div>
       <div className={deskTabs}>
         {activeTab === 'openCases' ? (

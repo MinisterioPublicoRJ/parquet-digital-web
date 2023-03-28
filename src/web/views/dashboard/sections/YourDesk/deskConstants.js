@@ -5,11 +5,11 @@ export const TUTELA_BUTTONS = ['openCases', 'openInvestigations', 'courtCases', 
 export const CRIMINAL_BUTTONS = ['openCases', 'criminalCourtCases', 'newDocs', 'closedCasesC'];
 
 export const BUTTON_TEXTS = {
-  openCases: `vistas\nabertas`,
+  openCases: `Sua mesa`,
   closedCasesP: `finalizados últimos 30 dias`,
   closedCasesT: `finalizados últimos 30 dias`,
   closedCasesC: `Documentos finalizados últimos 30 dias`,
-  openInvestigations: `investigações\nem curso`,
+  openInvestigations: `Seu acervo`,
   courtCases: `processos\nem juízo`,
   criminalCourtCases: `processos\nem juízo`,
   pics: 'PIC',

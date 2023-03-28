@@ -10,7 +10,14 @@
   display: flex;
   justify-content: space-between;
 }
-
+.deskButtonsHeader button{
+  border: 2px solid #BDDFF0;
+  margin: 5px;
+  background-color: transparent;
+  color:#BDDFF0 ;
+  width: 120px;
+  height: 30px;
+}
 .deskTabs {
   display: flex;
   flex: 1;

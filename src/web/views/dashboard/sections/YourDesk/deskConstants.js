@@ -13,7 +13,7 @@ export const BUTTON_TEXTS = {
   courtCases: `processos\nem juízo`,
   criminalCourtCases: `processos\nem juízo`,
   pics: 'PIC',
-  inquiries: 'inquéritos',
+  inquiries: 'Seu acervo',
   aisps: 'Na área de atribuição',
   newDocs: 'Documentos novos últimos 30 dias',
 };

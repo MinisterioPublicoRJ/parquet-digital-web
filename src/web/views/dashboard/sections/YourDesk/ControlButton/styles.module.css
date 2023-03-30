@@ -11,7 +11,16 @@
   justify-content: center;
   width: var(--activeButtonSize);
 }
+.controlButtonOuter:nth-child(2){
+  display: none;
+}
 
+.controlButtonOuter:nth-child(4){
+  display: none;
+}
+.controlButtonOuter:nth-child(5){
+  display: none;
+}
 .controlButtonOuter:last-child {
   width: var(--buttonSize);
 }
@@ -78,9 +87,9 @@
 }
 
 .controlButtonActive {
-  background-color: transparent;
+  background-color: var(--primary);
   border-bottom: 5px solid var(--primary);
-  color: var(--primary);
+  color: var(--white);
   flex-direction: column;
   height: var(--activeButtonSize);
   justify-content: space-around;
@@ -101,11 +110,13 @@
 .controlButtonBigNumber {
   font-size: var(--spotlightSize);
   font-weight: 900;
+  display: none;
 }
 
 .controlButtonBigNumberActive {
   font-size: calc(var(--spotlightSize) * 1.5);
   font-weight: 900;
+  display: none;
 }
 
 /* PHONES */

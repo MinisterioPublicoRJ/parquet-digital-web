@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {deskButtonsHeader, deskOuter, deskControlers, deskTabs, deskHeader } from './styles.module.css';
+import {deskButtonsHeader, deskOuter, deskButtonsTextsHeader, deskControlers, deskTabs, deskHeader } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
@@ -15,6 +15,7 @@ function YourDesk() {
   const [buttonList, setButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('openCases');
   const [tabDetail, setTabDetail] = useState({});
+  console.log(buttonList, docsQuantity)
 
   useEffect(() => {
     getOpenCasesDetails();
@@ -130,11 +131,15 @@ function YourDesk() {
     <article className={deskOuter}>
       <div className={deskHeader}>
         <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
-        <div className={deskButtonsHeader}>
+        {/*<div className={deskButtonsHeader}>
           <button>Sua mesa</button>
-          <button>Seu acervo</button>
-        </div>
-        {/*<div className={deskControlers}>
+            <button>Seu acervo</button>
+            <div className={deskButtonsTextsHeader}>
+            <p>{docsQuantity.openCases}</p>
+            <strong>Total de vistas abertas</strong>
+          </div>
+        </div>*/}
+        <div className={deskControlers}>
           {buttonList.map((buttonTitle) => (
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
@@ -143,11 +148,11 @@ function YourDesk() {
               buttonPressed={() => handleChangeActiveTab(buttonTitle)}
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
-              number={docsQuantity[buttonTitle]}
+              //number={docsQuantity[buttonTitle]}
               loading={!docsQuantity[buttonTitle] && loading}
             />
           ))}
-        </div>*/}
+        </div>
       </div>
       <div className={deskTabs}>
         {activeTab === 'openCases' ? (

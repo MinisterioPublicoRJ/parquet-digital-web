@@ -6,8 +6,9 @@ import GenericTab from './GenericTab';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
 import Api from '../../../../api';
+import TablesTutela from '../TablesTutela';
+import MainInvestigated from '../MainInvestigated'
 import { PIP_BUTTONS, TUTELA_BUTTONS, CRIMINAL_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
-
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
   const [docsQuantity, setDocsQuantity] = useState([]);
@@ -157,13 +158,13 @@ function YourDesk() {
             isLoading={!tabDetail.openCases && loading}
           />
         ) : (
-          <GenericTab
-            {...tabDetail[activeTab]}
-            tab={activeTab}
-            tabTitle={[BUTTON_TEXTS[activeTab]]}
-            error={!tabDetail[activeTab] && !loading}
-            isBeingDeveloped={currentOffice.tipo === 7}
-          />
+          <>
+          {currentOffice.tipo === 1 ?(
+            <TablesTutela/>
+          ):(
+            <MainInvestigated/>
+          )}
+          </>
         )}
       </div>
     </article>

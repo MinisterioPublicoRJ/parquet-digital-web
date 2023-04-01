@@ -17,7 +17,7 @@
   width: 120px;
   height: 30px;
 }
-.deskButtonsHeader p{
+.deskButtonsTextsHeader p{
   color: #154763;
   font-weight: 900;
   font-size: 50px;
@@ -33,7 +33,7 @@
   font-size: 15px;
   font-weight: 200;
   margin: 15px;
-  max-width: 140px;
+  max-width: 120px;
   text-transform: uppercase;
 }
 .deskTabs {

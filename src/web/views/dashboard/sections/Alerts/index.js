@@ -133,9 +133,9 @@ function Alerts() {
       // positive feedback after sending to ouvidoria delete the alert
       removeAlert(type, key);
       const response = await Api.sendOmbudsmanEmail(link);
-      window.alert(response.data.detail);
+      window.alert(response.data.detail || 'Houve um erro ao enviar o email. Tente novamente mais tarde');
     } catch (e) {
-      window.alert('Houve um erro: '. e);
+      window.alert('Houve um erro ao enviar o email. Ele pode já ter sido enviado. Caso contrário, tente novamente mais tarde', e);
     } finally {
       setModalContent(null);
     }

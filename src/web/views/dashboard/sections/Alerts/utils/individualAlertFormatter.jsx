@@ -120,8 +120,8 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
       //return cavlConstructor(alert, orgao, cpf, token);
 
     //indicadores de saneamento
-    case 'ISPS':
-      return ispsConstructor(alert, orgao, cpf, token);
+    //case 'ISPS':
+      //return ispsConstructor(alert, orgao, cpf, token);
 
     //case 'RO':
     //return roOccurrence(alert, orgao, cpf, token);

@@ -27,6 +27,7 @@ import { useAlertsContext } from '../../../views/dashboard/sections/Alerts/alert
 import Api from '../../../api';
 import Spinner from '../Spinner';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
+
 import AlertBadge from '../../../views/dashboard/sections/Alerts/AlertBadge';
 import AlertsOverlay from '../../../views/dashboard/sections/Alerts/AlertsOverlay';
 import individualAlertFormatter from '../../../views/dashboard/sections/Alerts/utils/individualAlertFormatter';

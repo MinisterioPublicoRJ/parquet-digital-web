@@ -24,8 +24,6 @@ import {
 
 import { formatDateObjForBackend } from '../../web/utils/formatters';
 
-const buildRequestConfig = (jwt) => ({ params: { jwt } });
-
 function ApiCreator(jwtToken) {
   const axiosInstance = axios.create({
     baseURL: BASE_URL,
@@ -102,19 +100,17 @@ function ApiCreator(jwtToken) {
     return openCasesDetailsTransform(data);
   }
 
-  async function getIntegratedDeskDocs({ orgao, token, cpf, docType }) {
-    const { data } = await axios.get(
-      DESK_INTEGRATED({ orgao, cpf, docType }),
-      buildRequestConfig(token),
+  async function getIntegratedDeskDocs({ orgao, cpf, docType }) {
+    const { data } = await axiosInstance.get(
+      DESK_INTEGRATED({ orgao, cpf, docType })
     );
 
     return deskIntegratedTransform(data);
   }
 
-  async function getIntegratedDeskDetails({ orgao, token, cpf, docType, type }) {
-    const { data } = await axios.get(
-      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType, type }),
-      buildRequestConfig(token),
+  async function getIntegratedDeskDetails({ orgao, cpf, docType, type }) {
+    const { data } = await axiosInstance.get(
+      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType, type })
     );
 
     return deskTabTransform(data);

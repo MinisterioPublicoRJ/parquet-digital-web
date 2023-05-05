@@ -4,9 +4,6 @@
   --activeButtonSize: calc(var(--buttonSize) * 1.2);
 }
 
-.controlButtonOuter:nth-child(2){
-  display: none;
-}
 .controlButtonOuter{
   margin: 3px 1px;
 }

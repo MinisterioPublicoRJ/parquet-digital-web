@@ -1,5 +1,12 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
-import {deskOuter, deskButtonsTextsHeader, deskControlers, deskTabs, deskHeader } from './styles.module.css';
+import {
+  deskOuter,
+  deskButtonsTextsHeader,
+  deskControlers,
+  deskTabs,
+  deskHeader,
+} from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
@@ -7,20 +14,50 @@ import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
 import Api from '../../../../api';
 import TablesTutela from '../TablesTutela';
-import MainInvestigated from '../MainInvestigated'
-import { PIP_BUTTONS, TUTELA_BUTTONS, CRIMINAL_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
+import MainInvestigated from '../MainInvestigated';
+import ProcessListCriminal from '../ProcessListCriminal';
+import {
+  PIP_BUTTONS,
+  TUTELA_BUTTONS,
+  CRIMINAL_BUTTONS,
+  BUTTON_TEXTS,
+  BUTTON_DICT,
+} from './deskConstants';
+
+function CollectionTable({currentOffice}) {
+  console.log('ctable current office: ', currentOffice);
+  
+  switch (currentOffice.tipo) {
+    case 1:
+      return <TablesTutela />;
+      break;
+    case 2:
+      return <MainInvestigated />;
+      break;
+    case 7:
+      return <ProcessListCriminal />;
+      break;
+    default:
+      return 0;
+  }
+
+}
+
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
   const [docsQuantity, setDocsQuantity] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buttonList, setButtonList] = useState(false);
-  const [activeTab, setActiveTab] = useState('openCases');
+  const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
+  //const [collectionTable, setCollectionTable] = useState();
+  //const collectionTable = getTable();
 
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
-    }, []);
+    console.log('effect desk');
+  }, []);
 
   function getButtons() {
     let buttons;
@@ -38,11 +75,12 @@ function YourDesk() {
       default:
         break;
     }
-    
+
     setButtonList(buttons);
-    buttons.forEach((buttonName) => {
+    // old design
+    /*     buttons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
-    });
+    }); */
   }
 
   /**
@@ -67,6 +105,8 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
+    console.log('gettin tab details');
+
     const dbName = BUTTON_DICT[tabName];
     let tabData;
     const updatedState = {};
@@ -94,9 +134,11 @@ function YourDesk() {
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
       updatedState.openCases = casesDetails;
+      console.log('opencasesd', casesDetails);
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState.openCases = false;
+      console.log('failed');
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } finally {
       setLoading(false);
@@ -113,8 +155,10 @@ function YourDesk() {
     setActiveTab(tabName);
     if (!tabDetail[tabName]) {
       switch (tabName) {
-        case 'openCases':
+        case 'openCases' || 'desk':
           getOpenCasesDetails();
+          break;
+        case 'collection':
           break;
         default:
           getTabDetails(tabName);
@@ -125,6 +169,23 @@ function YourDesk() {
 
   if (loading && !buttonList) {
     return <Spinner size="large" />;
+  }
+
+  function getTable() {
+    console.log('office tipo', currentOffice);
+    switch (currentOffice.tipo) {
+      case 1:
+        return <TablesTutela />;
+        break;
+      case 2:
+        return <MainInvestigated />;
+        break;
+      case 7:
+        return <ProcessListCriminal />;
+        break;
+      default:
+        return 0;
+    }
   }
 
   return (
@@ -141,7 +202,6 @@ function YourDesk() {
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
               //number={docsQuantity[buttonTitle]}
-              loading={!docsQuantity[buttonTitle] && loading}
             />
           ))}
         </div>
@@ -151,20 +211,14 @@ function YourDesk() {
         </div>
       </div>
       <div className={deskTabs}>
-        {activeTab === 'openCases' ? (
+        {activeTab === 'openCases' || activeTab === 'desk' ? (
           <OpenCasesList
             buildRequestParams={buildRequestParams}
             chartData={tabDetail.openCases}
             isLoading={!tabDetail.openCases && loading}
           />
         ) : (
-          <>
-          {currentOffice.tipo === 1 ?(
-            <TablesTutela/>
-          ):(
-            <MainInvestigated/>
-          )}
-          </>
+          <CollectionTable currentOffice={currentOffice}/>
         )}
       </div>
     </article>

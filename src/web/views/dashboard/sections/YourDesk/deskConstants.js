@@ -1,21 +1,29 @@
-export const PIP_BUTTONS = ['openCases', 'pics', 'inquiries', 'aisps', 'closedCasesP'];
+/* export const PIP_BUTTONS = ['openCases', 'pics', 'inquiries', 'aisps', 'closedCasesP'];
 
 export const TUTELA_BUTTONS = ['openCases', 'openInvestigations', 'courtCases', 'closedCasesT'];
 
-export const CRIMINAL_BUTTONS = ['openCases', 'criminalCourtCases', 'newDocs', 'closedCasesC'];
+export const CRIMINAL_BUTTONS = ['openCases', 'criminalCourtCases', 'newDocs', 'closedCasesC']; */
+
+export const PIP_BUTTONS = ['desk', 'collection'];
+
+export const TUTELA_BUTTONS = ['desk', 'collection'];
+
+export const CRIMINAL_BUTTONS = ['desk', 'collection'];
 
 export const BUTTON_TEXTS = {
-  openCases: `Sua mesa`,
+  openCases: `vistas\nabertas`,
   closedCasesP: `finalizados últimos 30 dias`,
   closedCasesT: `finalizados últimos 30 dias`,
   closedCasesC: `Documentos finalizados últimos 30 dias`,
-  openInvestigations: `Seu acervo`,
-  courtCases: `Seu acervo`,
-  criminalCourtCases: `Seu acervo`,
+  openInvestigations: `investigações\nem curso`,
+  courtCases: `processos\nem juízo`,
+  criminalCourtCases: `processos\nem juízo`,
   pics: 'PIC',
-  inquiries: 'Seu acervo',
+  inquiries: 'inquéritos',
   aisps: 'Na área de atribuição',
   newDocs: 'Documentos novos últimos 30 dias',
+  desk: 'Sua mesa',
+  collection: 'Seu acervo'
 };
 
 export const BUTTON_DICT = {

@@ -20,7 +20,7 @@ const propTypes = {
   number: PropTypes.number,
   text: PropTypes.string.isRequired,
   isButton: PropTypes.bool,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   buttonPressed: PropTypes.func,
   error: PropTypes.bool,
 };
@@ -31,6 +31,7 @@ const defaultProps = {
   buttonPressed: null,
   error: false,
   number: 0,
+  loading: false,
 };
 
 function ControlButton({ isActive, number, text, isButton, loading, buttonPressed, error }) {

@@ -31,7 +31,8 @@ function MainInvestigated() {
   const [searchString, setSearchString] = useState('');
   const [investigatedProfile, setInvestigatedProfile] = useState();
   const [selectedElement, setSelectedElement] = useState({});
-  const tableTopDivRef = useRef();
+  const tableTopDivRef = useRef() ;
+  console.log('restarting mainiv');
   /**
    * uses representanteDk number to remove an investigated from the list, updates the state
    * @param  {number} representanteDk investigated "id"
@@ -146,13 +147,17 @@ function MainInvestigated() {
    * @return {void}
    */
   async function getMainInvestigated() {
+
     let response;
     setLoading(true);
+    console.log('getting main investigated');
     try {
       response = await Api.getMainInvestigated(buildRequestParams(), searchString, page);
       setTableData(cleanData(response.investigated));
       setTotalPages(response.pages);
     } catch (e) {
+      
+    console.log('ERROR!\n\n\n');
       setApiError(true);
     } finally {
       setLoading(false);
@@ -181,6 +186,7 @@ function MainInvestigated() {
 
   function render() {
     if (loading || apiError) {
+
       return (
         <article className={mainInvestigatedOuter}>
           {loading ? <Spinner size="medium" /> : <p>Nenhum investigado para exibir</p>}

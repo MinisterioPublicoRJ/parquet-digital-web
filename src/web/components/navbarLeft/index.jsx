@@ -67,7 +67,7 @@ function NavbarLeft() {
           </button>
           <p>Manual de uso</p>
         </div>
-        {modalType === 'notaMetodologica' && (
+        {/*{modalType === 'notaMetodologica' && (
           <Modal withExitButton close={setModalType}>
             <div>
               <MethodologicalNote />
@@ -86,7 +86,7 @@ function NavbarLeft() {
             {hoverNotaMetodologica ? <InfoIcon fill="#154763" /> : <InfoIcon />}
           </button>
           <p>Nota Metodológica</p>
-        </div>
+        </div>*/}
         {modalType === 'introduction' && (
           <Modal withExitButton close={setModalType}>
             <Introduction />

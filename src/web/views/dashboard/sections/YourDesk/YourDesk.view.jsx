@@ -6,6 +6,7 @@ import {
   deskControlers,
   deskTabs,
   deskHeader,
+  hide
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -24,24 +25,6 @@ import {
   BUTTON_DICT,
 } from './deskConstants';
 
-function CollectionTable({currentOffice}) {
-  console.log('ctable current office: ', currentOffice);
-  
-  switch (currentOffice.tipo) {
-    case 1:
-      return <TablesTutela />;
-      break;
-    case 2:
-      return <MainInvestigated />;
-      break;
-    case 7:
-      return <ProcessListCriminal />;
-      break;
-    default:
-      return 0;
-  }
-
-}
 
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
@@ -50,13 +33,13 @@ function YourDesk() {
   const [buttonList, setButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
-  //const [collectionTable, setCollectionTable] = useState();
+  const [collectionTable, setCollectionTable] = useState();
   //const collectionTable = getTable();
 
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
-    console.log('effect desk');
+    getCollectionTable()
   }, []);
 
   function getButtons() {
@@ -145,6 +128,26 @@ function YourDesk() {
     }
   }
 
+  
+  function getCollectionTable() {
+    console.log('office tipo', currentOffice);
+    const updatedState = {};
+
+    switch (currentOffice.tipo) {
+      case 1:
+        setCollectionTable( <TablesTutela />);
+        break;
+      case 2:
+        setCollectionTable(<MainInvestigated />);
+        break;
+      case 7:
+        setCollectionTable(<ProcessListCriminal />);
+        break;
+      default:
+        return 0;
+    }
+  }
+
   /**
    * Triggered by buttonPress, updates the state
    * @param  {string} tabName the name of the next active tab,
@@ -159,6 +162,7 @@ function YourDesk() {
           getOpenCasesDetails();
           break;
         case 'collection':
+          //getCollectionTable();
           break;
         default:
           getTabDetails(tabName);
@@ -171,22 +175,6 @@ function YourDesk() {
     return <Spinner size="large" />;
   }
 
-  function getTable() {
-    console.log('office tipo', currentOffice);
-    switch (currentOffice.tipo) {
-      case 1:
-        return <TablesTutela />;
-        break;
-      case 2:
-        return <MainInvestigated />;
-        break;
-      case 7:
-        return <ProcessListCriminal />;
-        break;
-      default:
-        return 0;
-    }
-  }
 
   return (
     <article className={deskOuter}>
@@ -211,15 +199,18 @@ function YourDesk() {
         </div>
       </div>
       <div className={deskTabs}>
-        {activeTab === 'openCases' || activeTab === 'desk' ? (
+        <div className={activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}>
+          
           <OpenCasesList
             buildRequestParams={buildRequestParams}
             chartData={tabDetail.openCases}
             isLoading={!tabDetail.openCases && loading}
           />
-        ) : (
-          <CollectionTable currentOffice={currentOffice}/>
-        )}
+
+        </div>
+        <div className={activeTab === 'collection' ? ' ' : hide}>
+          {collectionTable}
+        </div>
       </div>
     </article>
   );

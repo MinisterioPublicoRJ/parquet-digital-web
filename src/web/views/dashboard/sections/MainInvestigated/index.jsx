@@ -32,7 +32,6 @@ function MainInvestigated() {
   const [investigatedProfile, setInvestigatedProfile] = useState();
   const [selectedElement, setSelectedElement] = useState({});
   const tableTopDivRef = useRef() ;
-  console.log('restarting mainiv');
   /**
    * uses representanteDk number to remove an investigated from the list, updates the state
    * @param  {number} representanteDk investigated "id"
@@ -150,14 +149,11 @@ function MainInvestigated() {
 
     let response;
     setLoading(true);
-    console.log('getting main investigated');
     try {
       response = await Api.getMainInvestigated(buildRequestParams(), searchString, page);
       setTableData(cleanData(response.investigated));
       setTotalPages(response.pages);
     } catch (e) {
-      
-    console.log('ERROR!\n\n\n');
       setApiError(true);
     } finally {
       setLoading(false);

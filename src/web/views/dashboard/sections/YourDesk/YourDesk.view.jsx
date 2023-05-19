@@ -33,13 +33,12 @@ function YourDesk() {
   const [buttonList, setButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
-  const [collectionTable, setCollectionTable] = useState();
-  //const collectionTable = getTable();
+  //const [collectionTable, setCollectionTable] = useState();
+  const collectionTable = getCollectionTable();
 
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
-    getCollectionTable()
   }, []);
 
   function getButtons() {
@@ -88,7 +87,6 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
-    console.log('gettin tab details');
 
     const dbName = BUTTON_DICT[tabName];
     let tabData;
@@ -117,11 +115,9 @@ function YourDesk() {
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
       updatedState.openCases = casesDetails;
-      console.log('opencasesd', casesDetails);
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState.openCases = false;
-      console.log('failed');
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } finally {
       setLoading(false);
@@ -130,18 +126,17 @@ function YourDesk() {
 
   
   function getCollectionTable() {
-    console.log('office tipo', currentOffice);
     const updatedState = {};
 
     switch (currentOffice.tipo) {
       case 1:
-        setCollectionTable( <TablesTutela />);
+        return <TablesTutela />;
         break;
       case 2:
-        setCollectionTable(<MainInvestigated />);
+        return <MainInvestigated />;
         break;
       case 7:
-        setCollectionTable(<ProcessListCriminal />);
+        return <ProcessListCriminal />;
         break;
       default:
         return 0;

@@ -89,7 +89,7 @@ function NavbarLeft() {
             </div>
           </Modal>
         )}
-        <div
+        {/* <div
           className={userManualDiv}
           onMouseOver={() => setHoverUserManual(true)}
           onFocus={() => setHoverUserManual(true)}
@@ -121,8 +121,7 @@ function NavbarLeft() {
             {hoverNotaMetodologica ? <InfoIcon fill="#154763" /> : <InfoIcon />}
           </button>
           <p>Nota Metodológica</p>
-        </div>
-
+        </div> */}
         {modalType === 'introduction' && (
           <Modal withExitButton close={setModalType}>
             <Introduction />

@@ -162,14 +162,14 @@ function Today() {
           Na barra lateral é possível acessar o manual de uso e a nota metodológica. Boa navegação!
         </p>
       ) : null}
-      {collectionAnalysis && !loading && (
+      {/*{collectionAnalysis && !loading && (
         <p>
           Você sabia que seu acervo é
           <span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
           dos seus colegas das
           <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span>
         </p>
-      )}
+      )}*/}
       {entriesData && entriesData.dayType && !loading && (
         <p>
           Hoje temos um dia

@@ -56,10 +56,9 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
       );
     } else {
       fill = (
-        <div>
-        {currentOffice.tipo === 7 ? (
+        /* {currentOffice.tipo === 7 ? (
         <div
-          className={`${text === "Documentos novos últimos 30 dias" ? `${ controlButtonInnerCriminal }`:`${ controlButtonInnerCriminalWhite }`}`}
+          className={`${text === "Documentos novos últimos 30 dias" ? `${ controlButtonInnerCriminal }`:`${ controlButtonInner }`}`}
         >
           {loading ? (
             <Spinner size="small" />
@@ -81,8 +80,19 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           )}
           {text}
         </button>
-        )}
-        </div>
+        )} */
+        <button
+          type="button"
+          className={`${controlButtonInner} ${controlButtonInactive}`}
+          onClick={() => buttonPressed()}
+        >
+          {loading ? (
+            <Spinner size="small" />
+          ) : (
+            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
+          )}
+          {text}
+        </button>
       );
     }
   } else {

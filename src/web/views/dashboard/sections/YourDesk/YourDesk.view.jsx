@@ -6,7 +6,8 @@ import {
   deskControlers,
   deskTabs,
   deskHeader,
-  hide
+  hide, 
+  componentWrapper
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -194,7 +195,7 @@ function YourDesk() {
         </div>
       </div>
       <div className={deskTabs}>
-        <div className={activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}>
+      <div className={`${componentWrapper} ${activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}`}>
           
           <OpenCasesList
             buildRequestParams={buildRequestParams}
@@ -203,7 +204,7 @@ function YourDesk() {
           />
 
         </div>
-        <div className={activeTab === 'collection' ? ' ' : hide}>
+        <div className={`${componentWrapper} ${activeTab === 'collection' ? '' : hide}`}>
           {collectionTable}
         </div>
       </div>

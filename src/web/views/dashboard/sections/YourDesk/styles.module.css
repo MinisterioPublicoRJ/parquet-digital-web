@@ -48,6 +48,12 @@
   margin-top: -10px;
 }
 
+.componentWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .hide {
   display: none;
 }

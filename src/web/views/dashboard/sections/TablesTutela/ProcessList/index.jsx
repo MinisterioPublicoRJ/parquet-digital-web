@@ -42,6 +42,8 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
     'Rótulo Andamento': 'ultimoAndamento',
   };
 
+  console.log('processList data', processListData);
+
   function handlePageClick(nextPage) {
     if (nextPage < 1 || nextPage > totalPages) return;
 
@@ -104,6 +106,7 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
       try {
         const response = await Api.getProcessList(buildRequestParams(), page, searchString);
         const buttonList = generateButtons(response.data);
+        console.log('process response: ', response.data);
         setProcessListData(buttonList);
         setTotalPages(response.pages);
       } catch (e) {

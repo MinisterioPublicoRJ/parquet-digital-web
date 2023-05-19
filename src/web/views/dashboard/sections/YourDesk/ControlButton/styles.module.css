@@ -81,8 +81,8 @@
 }
 
 .controlButtonActive {
-  background-color: #BDDFF0;
-  color: #374354;
+  background-color: #154763;
+  color: #FFFFFF;
   flex-direction: column;
   justify-content: space-around;
   border: 2px solid #BDDFF0;

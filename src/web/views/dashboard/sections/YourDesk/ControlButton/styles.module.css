@@ -7,12 +7,10 @@
 .controlButtonOuter{
   margin: 3px 1px;
 }
-.controlButtonOuter:nth-child(4){
+.controlButtonOuter:nth-child(3){
   display: none;
 }
-.controlButtonOuter:nth-child(5){
-  display: none;
-}
+
 .controlButtonOuter:last-child {
   width: var(--buttonSize);
 }

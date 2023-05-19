@@ -36,6 +36,7 @@ function YourDesk() {
   const [tabDetail, setTabDetail] = useState({});
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
+  console.log(docsQuantity)
 
   useEffect(() => {
     getOpenCasesDetails();
@@ -61,9 +62,9 @@ function YourDesk() {
 
     setButtonList(buttons);
     // old design
-    /*     buttons.forEach((buttonName) => {
+      buttons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
-    }); */
+    }); 
   }
 
   /**
@@ -158,7 +159,7 @@ function YourDesk() {
           getOpenCasesDetails();
           break;
         case 'collection':
-          //getCollectionTable();
+          getCollectionTable();
           break;
         default:
           getTabDetails(tabName);
@@ -190,8 +191,8 @@ function YourDesk() {
           ))}
         </div>
         <div className={deskButtonsTextsHeader}>
-          <p>{docsQuantity.openCases}</p>
           <strong>Total de vistas abertas</strong>
+          <p>{docsQuantity.openCases}</p>
         </div>
       </div>
       <div className={deskTabs}>

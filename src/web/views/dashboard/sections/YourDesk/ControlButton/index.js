@@ -8,8 +8,6 @@ import {
   controlButtonInner,
   controlButtonInactive,
   controlButtonActive,
-  controlButtonBigNumber,
-  controlButtonBigNumberActive,
 } from './styles.module.css';
 
 const propTypes = {
@@ -27,11 +25,11 @@ const defaultProps = {
   isButton: false,
   buttonPressed: null,
   error: false,
-  number: 0,
+  number: "",
   loading: false,
 };
 
-function ControlButton({ isActive, number, text, isButton, loading, buttonPressed, error }) {
+function ControlButton({ isActive, text, isButton, loading, buttonPressed, error }) {
   const { currentOffice } = useAppContext();
 
   let fill;
@@ -46,38 +44,12 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <span className={controlButtonBigNumberActive}>{error ? 0 : number}</span>
+            <>{text}</>
           )}
-          {text}
         </button>
       );
     } else {
       fill = (
-        /* {currentOffice.tipo === 7 ? (
-        <div
-          className={`${text === "Documentos novos últimos 30 dias" ? `${ controlButtonInnerCriminal }`:`${ controlButtonInner }`}`}
-        >
-          {loading ? (
-            <Spinner size="small" />
-          ) : (
-            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
-          )}
-          {text}
-        </div>
-        ) : (
-          <button
-          type="button"
-          className={`${controlButtonInner} ${controlButtonInactive}`}
-          onClick={() => buttonPressed()}
-        >
-          {loading ? (
-            <Spinner size="small" />
-          ) : (
-            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
-          )}
-          {text}
-        </button>
-        )} */
         <button
           type="button"
           className={`${controlButtonInner} ${controlButtonInactive}`}
@@ -86,9 +58,8 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
+            <>{text}</>
           )}
-          {text}
         </button>
       );
     }
@@ -98,9 +69,8 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
         {loading ? (
           <Spinner size="small" />
         ) : (
-          <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
+          <>{text}</>
         )}
-        {text}
       </div>
     );
   }

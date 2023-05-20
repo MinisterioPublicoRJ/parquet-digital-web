@@ -1,14 +1,11 @@
-//export const PIP_BUTTONS = ['desk', 'collection','openCases', 'pics', 'inquiries', 'aisps', 'closedCasesP'];
+export const PIP_BUTTONS = ['openCases', 'pics', 'inquiries', 'aisps', 'closedCasesP'];
 
-//export const TUTELA_BUTTONS = ['desk', 'collection','openCases', 'openInvestigations', 'courtCases', 'closedCasesT'];
+export const TUTELA_BUTTONS = ['openCases', 'openInvestigations', 'courtCases', 'closedCasesT'];
 
-//export const CRIMINAL_BUTTONS = ['desk', 'collection','openCases', 'criminalCourtCases', 'newDocs', 'closedCasesC']; 
+export const CRIMINAL_BUTTONS = ['openCases', 'criminalCourtCases', 'newDocs', 'closedCasesC']; 
 
-export const PIP_BUTTONS = ['desk', 'collection','openCases', ];
+export const CONTROL_BUTTONS = ['desk', 'collection', ];
 
-export const TUTELA_BUTTONS = ['desk', 'collection','openCases',];
-
-export const CRIMINAL_BUTTONS = ['desk', 'collection','openCases',]; 
 
 export const BUTTON_TEXTS = {
   openCases: `vistas\nabertas`,

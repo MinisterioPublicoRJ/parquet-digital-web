@@ -24,6 +24,7 @@ import {
   CRIMINAL_BUTTONS,
   BUTTON_TEXTS,
   BUTTON_DICT,
+  CONTROL_BUTTONS,
 } from './deskConstants';
 
 
@@ -31,18 +32,31 @@ function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
   const [docsQuantity, setDocsQuantity] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [buttonListControl, setButtonListControl] = useState(false);
   const [buttonList, setButtonList] = useState(false);
+
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
-  console.log(docsQuantity)
 
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
+    getButtonsControl()
   }, []);
 
+  function getButtonsControl(){
+    let buttonControl
+    if(currentOffice.tipo){
+      buttonControl =  CONTROL_BUTTONS;
+    }
+    setButtonListControl(buttonControl);
+    buttonControl.forEach((buttonName) => {
+    getDocumentQuantity(buttonName);
+  }); 
+  }
+ 
   function getButtons() {
     let buttons;
     switch (currentOffice.tipo) {
@@ -54,14 +68,13 @@ function YourDesk() {
         buttons = PIP_BUTTONS;
         break;
       case 7:
-        buttons = CRIMINAL_BUTTONS;
+        buttons = CRIMINAL_BUTTONS ;
         break;
-      default:
+      default: 
         break;
     }
 
     setButtonList(buttons);
-    // old design
       buttons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
     }); 
@@ -168,7 +181,7 @@ function YourDesk() {
     }
   }
 
-  if (loading && !buttonList) {
+  if (loading && !buttonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
 
@@ -178,7 +191,7 @@ function YourDesk() {
       <div className={deskHeader}>
         <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
         <div className={deskControlers}>
-          {buttonList.map((buttonTitle) => (
+          {buttonListControl.map((buttonTitle) => (
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}
@@ -186,13 +199,19 @@ function YourDesk() {
               buttonPressed={() => handleChangeActiveTab(buttonTitle)}
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
-              //number={docsQuantity[buttonTitle]}
             />
           ))}
         </div>
         <div className={deskButtonsTextsHeader}>
-          <strong>Total de vistas abertas</strong>
-          <p>{docsQuantity.openCases}</p>
+        {buttonList.map((buttonTitle) => (
+            <ControlButton
+              key={BUTTON_TEXTS[buttonTitle]}
+              isButton={!buttonTitle.includes('closedCases')}
+              isActive={activeTab === buttonTitle}
+              text={BUTTON_TEXTS[buttonTitle]}
+              number={docsQuantity[buttonTitle]}
+            />
+          ))}
         </div>
       </div>
       <div className={deskTabs}>

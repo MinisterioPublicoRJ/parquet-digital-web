@@ -34,11 +34,11 @@ function YourDesk() {
   const [loading, setLoading] = useState(true);
   const [buttonListControl, setButtonListControl] = useState(false);
   const [buttonList, setButtonList] = useState(false);
-
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
+  console.log(docsQuantity)
 
   useEffect(() => {
     getOpenCasesDetails();
@@ -195,7 +195,6 @@ function YourDesk() {
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}
-              error={!docsQuantity[buttonTitle] && !loading}
               buttonPressed={() => handleChangeActiveTab(buttonTitle)}
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
@@ -210,6 +209,7 @@ function YourDesk() {
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
               number={docsQuantity[buttonTitle]}
+              error={!docsQuantity[buttonTitle] && !loading}
             />
           ))}
         </div>

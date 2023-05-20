@@ -12,6 +12,7 @@ import {
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
+import MainButtons from './MainButtonsYourdesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
 import Api from '../../../../api';
@@ -38,7 +39,6 @@ function YourDesk() {
   const [tabDetail, setTabDetail] = useState({});
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
-  console.log(docsQuantity)
 
   useEffect(() => {
     getOpenCasesDetails();
@@ -64,7 +64,6 @@ function YourDesk() {
         buttons = TUTELA_BUTTONS;
         break;
       case 2:
-        document.documentElement.style.setProperty('--buttonBase', 131);
         buttons = PIP_BUTTONS;
         break;
       case 7:
@@ -203,7 +202,7 @@ function YourDesk() {
         </div>
         <div className={deskButtonsTextsHeader}>
         {buttonList.map((buttonTitle) => (
-            <ControlButton
+            <MainButtons
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}
               isActive={activeTab === buttonTitle}

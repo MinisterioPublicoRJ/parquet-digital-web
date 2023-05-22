@@ -8,25 +8,24 @@
     margin: 3px 1px;
   }
   
-  
   .controlButtonOuter:last-child {
     width: var(--buttonSize);
-  }
-  .controlButtonOuter:last-child span {
-   display: none;
   }
   
   .controlButtonInner {
     align-items: center;
-    border: 0;
+    border-radius: 8px;
     cursor: pointer;
     display: flex;
     height: var(--buttonSize);
     letter-spacing: 0px;
     text-transform: uppercase;
     text-align: center;
+    cursor: default;
   }
-  
+  .controlButtonOuter:nth-child(2){
+    display: none;
+  }
   .controlButtonInactive:hover {
     border: solid var(--primary) 1px;
   }
@@ -64,14 +63,7 @@
     font-weight: 900;
   }
    
-  .controlButtonBigNumberActive {
-    font-size: calc(var(--spotlightSize) * 1.5);
-    font-weight: 900;
-    display: none;
-  }
-  
-  
-  
+    
   /* PHONES */
   @media (max-width: 998px) {
     .controlButtonActive {

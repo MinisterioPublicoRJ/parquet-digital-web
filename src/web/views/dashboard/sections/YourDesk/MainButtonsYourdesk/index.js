@@ -31,17 +31,15 @@ const defaultProps = {
   loading: false,
 };
 
-function ControlButton({ isActive, number, text, isButton, loading, buttonPressed, error }) {
+function MainButton({ isActive, number, text, isButton, loading, buttonPressed, error }) {
   const { currentOffice } = useAppContext();
 
   let fill;
   if (isButton) {
     if (isActive) {
       fill = (
-        <button
-          type="button"
+        <div
           className={`${controlButtonInner} ${controlButtonActive}`}
-          onClick={() => buttonPressed()}
         >
           {loading ? (
             <Spinner size="small" />
@@ -49,14 +47,12 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
             <span className={controlButtonBigNumberActive}>{error ? 0 : number}</span>
           )}
           {text}
-        </button>
+        </div>
       );
     } else {
       fill = (
-        /* {currentOffice.tipo === 7 ? (
         <div
-          className={`${text === "Documentos novos últimos 30 dias" ? `${ controlButtonInnerCriminal }`:`${ controlButtonInner }`}`}
-        >
+          className={`${controlButtonInner} ${controlButtonInactive}`}        >
           {loading ? (
             <Spinner size="small" />
           ) : (
@@ -64,32 +60,6 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           )}
           {text}
         </div>
-        ) : (
-          <button
-          type="button"
-          className={`${controlButtonInner} ${controlButtonInactive}`}
-          onClick={() => buttonPressed()}
-        >
-          {loading ? (
-            <Spinner size="small" />
-          ) : (
-            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
-          )}
-          {text}
-        </button>
-        )} */
-        <button
-          type="button"
-          className={`${controlButtonInner} ${controlButtonInactive}`}
-          onClick={() => buttonPressed()}
-        >
-          {loading ? (
-            <Spinner size="small" />
-          ) : (
-            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
-          )}
-          {text}
-        </button>
       );
     }
   } else {
@@ -108,6 +78,6 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
   return <div className={controlButtonOuter}>{fill}</div>;
 }
 
-ControlButton.propTypes = propTypes;
-ControlButton.defaultProps = defaultProps;
-export default ControlButton;
+MainButton.propTypes = propTypes;
+MainButton.defaultProps = defaultProps;
+export default MainButton;

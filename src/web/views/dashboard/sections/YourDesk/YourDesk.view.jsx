@@ -204,8 +204,6 @@ function YourDesk() {
         {buttonList.map((buttonTitle) => (
             <MainButtons
               key={BUTTON_TEXTS[buttonTitle]}
-              isButton={!buttonTitle.includes('closedCases')}
-              isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
               number={docsQuantity[buttonTitle]}
               error={!docsQuantity[buttonTitle] && !loading}

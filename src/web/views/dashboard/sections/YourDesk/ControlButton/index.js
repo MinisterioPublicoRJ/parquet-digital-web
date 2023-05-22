@@ -16,20 +16,17 @@ const propTypes = {
   text: PropTypes.string.isRequired,
   isButton: PropTypes.bool,
   loading: PropTypes.bool,
-  buttonPressed: PropTypes.func,
-  error: PropTypes.bool,
 };
 
 const defaultProps = {
   isActive: false,
   isButton: false,
-  buttonPressed: null,
   error: false,
   number: "",
   loading: false,
 };
 
-function ControlButton({ isActive, text, isButton, loading, buttonPressed, error }) {
+function ControlButton({ isActive, text, isButton, loading, buttonPressed }) {
   const { currentOffice } = useAppContext();
 
   let fill;
@@ -63,17 +60,7 @@ function ControlButton({ isActive, text, isButton, loading, buttonPressed, error
         </button>
       );
     }
-  } else {
-    fill = (
-      <div className={`${controlButtonInner} ${controlButtonInactive}`}>
-        {loading ? (
-          <Spinner size="small" />
-        ) : (
-          <>{text}</>
-        )}
-      </div>
-    );
-  }
+  } 
 
   return <div className={controlButtonOuter}>{fill}</div>;
 }

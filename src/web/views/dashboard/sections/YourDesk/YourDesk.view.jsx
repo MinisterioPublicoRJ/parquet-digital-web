@@ -20,9 +20,12 @@ import TablesTutela from '../TablesTutela';
 import MainInvestigated from '../MainInvestigated';
 import ProcessListCriminal from '../ProcessListCriminal';
 import {
-  PIP_BUTTONS,
-  TUTELA_BUTTONS,
-  CRIMINAL_BUTTONS,
+  PIP_DESK_BUTTONS,
+  PIP_COLLECTION_BUTTONS,
+  TUTELA_DESK_BUTTONS,
+  TUTELA_COLLECTION_BUTTONS,
+  CRIMINAL_DESK_BUTTONS,
+  CRIMINAL_COLLECTION_BUTTONS,
   BUTTON_TEXTS,
   BUTTON_DICT,
   CONTROL_BUTTONS,
@@ -34,7 +37,8 @@ function YourDesk() {
   const [docsQuantity, setDocsQuantity] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buttonListControl, setButtonListControl] = useState(false);
-  const [buttonList, setButtonList] = useState(false);
+  const [deskButtonList, setDeskButtonList] = useState(false);
+  const [collectionButtonList, setCollectionButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
   //const [collectionTable, setCollectionTable] = useState();
@@ -47,7 +51,7 @@ function YourDesk() {
   }, []);
 
   function getButtonsControl(){
-    let buttonControl
+    let buttonControl;
     if(currentOffice.tipo){
       buttonControl =  CONTROL_BUTTONS;
     }
@@ -58,23 +62,30 @@ function YourDesk() {
   }
  
   function getButtons() {
-    let buttons;
+    let buttons, deskButtons, collectionButtons;
     switch (currentOffice.tipo) {
       case 1:
-        buttons = TUTELA_BUTTONS;
+        deskButtons = TUTELA_DESK_BUTTONS;
+        collectionButtons = TUTELA_COLLECTION_BUTTONS;
         break;
       case 2:
-        buttons = PIP_BUTTONS;
+        deskButtons = PIP_DESK_BUTTONS;
+        collectionButtons = PIP_COLLECTION_BUTTONS;
         break;
       case 7:
-        buttons = CRIMINAL_BUTTONS ;
+        deskButtons = CRIMINAL_DESK_BUTTONS;
+        collectionButtons = CRIMINAL_COLLECTION_BUTTONS;
         break;
       default: 
         break;
     }
 
-    setButtonList(buttons);
-      buttons.forEach((buttonName) => {
+    setDeskButtonList(deskButtons);
+    setCollectionButtonList(collectionButtons);
+    deskButtons.forEach((buttonName) => {
+      getDocumentQuantity(buttonName);
+    });       
+    collectionButtons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
     }); 
   }
@@ -180,7 +191,7 @@ function YourDesk() {
     }
   }
 
-  if (loading && !buttonList && !buttonListControl) {
+  if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
 
@@ -200,8 +211,12 @@ function YourDesk() {
             />
           ))}
         </div>
+
+      </div>
+      <div className={deskTabs}>
+      <div className={`${componentWrapper} ${activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}`}>
         <div className={deskButtonsTextsHeader}>
-        {buttonList.map((buttonTitle) => (
+        {deskButtonList.map((buttonTitle) => (
             <MainButtons
               key={BUTTON_TEXTS[buttonTitle]}
               text={BUTTON_TEXTS[buttonTitle]}
@@ -210,9 +225,6 @@ function YourDesk() {
             />
           ))}
         </div>
-      </div>
-      <div className={deskTabs}>
-      <div className={`${componentWrapper} ${activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}`}>
           
           <OpenCasesList
             buildRequestParams={buildRequestParams}
@@ -222,6 +234,16 @@ function YourDesk() {
 
         </div>
         <div className={`${componentWrapper} ${activeTab === 'collection' ? '' : hide}`}>
+        <div className={deskButtonsTextsHeader}>
+        {collectionButtonList.map((buttonTitle) => (
+            <MainButtons
+              key={BUTTON_TEXTS[buttonTitle]}
+              text={BUTTON_TEXTS[buttonTitle]}
+              number={docsQuantity[buttonTitle]}
+              error={!docsQuantity[buttonTitle] && !loading}
+            />
+          ))}
+        </div>
           {collectionTable}
         </div>
       </div>

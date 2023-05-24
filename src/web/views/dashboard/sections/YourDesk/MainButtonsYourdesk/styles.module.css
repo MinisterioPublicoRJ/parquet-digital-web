@@ -23,9 +23,6 @@
     text-align: center;
     cursor: default;
   }
-  .controlButtonOuter:nth-child(2){
-    display: none;
-  }
   .controlButtonInactive:hover {
     border: solid var(--primary) 1px;
   }

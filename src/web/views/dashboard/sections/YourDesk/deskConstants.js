@@ -1,8 +1,14 @@
-export const PIP_BUTTONS = ['openCases', 'pics', 'inquiries', 'aisps', 'closedCasesP'];
+export const PIP_DESK_BUTTONS = ['openCases', 'closedCasesP'];
 
-export const TUTELA_BUTTONS = ['openCases', 'openInvestigations', 'courtCases', 'closedCasesT'];
+export const PIP_COLLECTION_BUTTONS = ['pics', 'inquiries', 'aisps'];
 
-export const CRIMINAL_BUTTONS = ['openCases', 'criminalCourtCases', 'newDocs', 'closedCasesC']; 
+export const TUTELA_DESK_BUTTONS = ['openCases', 'closedCasesT'];
+
+export const TUTELA_COLLECTION_BUTTONS = ['openInvestigations', 'courtCases',];
+
+export const CRIMINAL_DESK_BUTTONS = ['openCases', 'closedCasesC']; 
+
+export const CRIMINAL_COLLECTION_BUTTONS = ['criminalCourtCases', 'newDocs']; 
 
 export const CONTROL_BUTTONS = ['desk', 'collection', ];
 

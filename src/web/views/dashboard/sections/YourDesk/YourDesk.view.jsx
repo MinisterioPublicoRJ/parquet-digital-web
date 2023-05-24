@@ -12,7 +12,7 @@ import {
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
-import MainButtons from './MainButtonsYourdesk';
+import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
 import Api from '../../../../api';
@@ -217,7 +217,7 @@ function YourDesk() {
       <div className={`${componentWrapper} ${activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}`}>
         <div className={deskButtonsTextsHeader}>
         {deskButtonList.map((buttonTitle) => (
-            <MainButtons
+            <InfoBoxYourDesk
               key={BUTTON_TEXTS[buttonTitle]}
               text={BUTTON_TEXTS[buttonTitle]}
               number={docsQuantity[buttonTitle]}
@@ -236,7 +236,7 @@ function YourDesk() {
         <div className={`${componentWrapper} ${activeTab === 'collection' ? '' : hide}`}>
         <div className={deskButtonsTextsHeader}>
         {collectionButtonList.map((buttonTitle) => (
-            <MainButtons
+            <InfoBoxYourDesk
               key={BUTTON_TEXTS[buttonTitle]}
               text={BUTTON_TEXTS[buttonTitle]}
               number={docsQuantity[buttonTitle]}

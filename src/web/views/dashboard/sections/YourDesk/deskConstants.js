@@ -6,9 +6,9 @@ export const TUTELA_DESK_BUTTONS = ['openCases', 'closedCasesT'];
 
 export const TUTELA_COLLECTION_BUTTONS = ['openInvestigations', 'courtCases',];
 
-export const CRIMINAL_DESK_BUTTONS = ['openCases', 'closedCasesC']; 
+export const CRIMINAL_DESK_BUTTONS = ['openCases','newDocs', 'closedCasesC']; 
 
-export const CRIMINAL_COLLECTION_BUTTONS = ['criminalCourtCases', 'newDocs']; 
+export const CRIMINAL_COLLECTION_BUTTONS = ['criminalCourtCases', ]; 
 
 export const CONTROL_BUTTONS = ['desk', 'collection', ];
 

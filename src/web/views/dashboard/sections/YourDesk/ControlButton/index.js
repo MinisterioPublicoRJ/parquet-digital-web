@@ -12,7 +12,6 @@ import {
 
 const propTypes = {
   isActive: PropTypes.bool,
-  //number: PropTypes.number,
   text: PropTypes.string.isRequired,
   isButton: PropTypes.bool,
   loading: PropTypes.bool,
@@ -21,8 +20,6 @@ const propTypes = {
 const defaultProps = {
   isActive: false,
   isButton: false,
-  //error: false,
-  //number: "",
   loading: false,
 };
 

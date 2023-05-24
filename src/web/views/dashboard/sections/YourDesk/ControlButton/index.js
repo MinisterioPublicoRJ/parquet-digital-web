@@ -12,7 +12,7 @@ import {
 
 const propTypes = {
   isActive: PropTypes.bool,
-  number: PropTypes.number,
+  //number: PropTypes.number,
   text: PropTypes.string.isRequired,
   isButton: PropTypes.bool,
   loading: PropTypes.bool,
@@ -21,8 +21,8 @@ const propTypes = {
 const defaultProps = {
   isActive: false,
   isButton: false,
-  error: false,
-  number: "",
+  //error: false,
+  //number: "",
   loading: false,
 };
 
@@ -41,7 +41,7 @@ function ControlButton({ isActive, text, isButton, loading, buttonPressed }) {
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <>{text}</>
+            text
           )}
         </button>
       );
@@ -55,7 +55,7 @@ function ControlButton({ isActive, text, isButton, loading, buttonPressed }) {
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <>{text}</>
+          text
           )}
         </button>
       );

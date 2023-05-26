@@ -192,9 +192,7 @@ function MainInvestigated() {
 
     return (
       <article className={mainInvestigatedOuter}>
-        <SearchBox onSearch={handleSearch}>
-          <SectionTitle value="Principais Investigados" glueToTop />
-        </SearchBox>
+        <SearchBox onSearch={handleSearch}/>
         <div className={mainInvestigatedTableWrapper} ref={tableTopDivRef}>
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
           <Pagination

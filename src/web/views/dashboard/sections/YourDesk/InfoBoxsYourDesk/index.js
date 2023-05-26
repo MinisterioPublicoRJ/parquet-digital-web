@@ -46,22 +46,9 @@ function MainButton({ isActive, number, text, isButton, loading, buttonPressed, 
           ) : (
             <span className={controlButtonBigNumberActive}>{error ? 0 : number}</span>
           )}
-          {text}
         </div>
       );
-    } else {
-      fill = (
-        <div
-          className={`${controlButtonInner} ${controlButtonInactive}`}        >
-          {loading ? (
-            <Spinner size="small" />
-          ) : (
-            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
-          )}
-          {text}
-        </div>
-      );
-    }
+    } 
   } else {
     fill = (
       <div className={`${controlButtonInner} ${controlButtonInactive}`}>

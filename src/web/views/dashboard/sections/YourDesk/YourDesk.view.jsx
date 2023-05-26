@@ -225,7 +225,6 @@ function YourDesk() {
             />
           ))}
         </div>
-          
           <OpenCasesList
             buildRequestParams={buildRequestParams}
             chartData={tabDetail.openCases}

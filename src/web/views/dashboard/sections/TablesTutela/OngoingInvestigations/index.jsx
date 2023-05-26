@@ -100,7 +100,9 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
+      
       try {
+        
         const response = await Api.getOngoingInvestigationsList(
           buildRequestParams(),
           page,

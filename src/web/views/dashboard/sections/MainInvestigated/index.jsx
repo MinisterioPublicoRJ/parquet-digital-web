@@ -31,7 +31,7 @@ function MainInvestigated() {
   const [searchString, setSearchString] = useState('');
   const [investigatedProfile, setInvestigatedProfile] = useState();
   const [selectedElement, setSelectedElement] = useState({});
-  const tableTopDivRef = useRef();
+  const tableTopDivRef = useRef() ;
   /**
    * uses representanteDk number to remove an investigated from the list, updates the state
    * @param  {number} representanteDk investigated "id"
@@ -146,6 +146,7 @@ function MainInvestigated() {
    * @return {void}
    */
   async function getMainInvestigated() {
+
     let response;
     setLoading(true);
     try {
@@ -181,6 +182,7 @@ function MainInvestigated() {
 
   function render() {
     if (loading || apiError) {
+
       return (
         <article className={mainInvestigatedOuter}>
           {loading ? <Spinner size="medium" /> : <p>Nenhum investigado para exibir</p>}
@@ -190,9 +192,7 @@ function MainInvestigated() {
 
     return (
       <article className={mainInvestigatedOuter}>
-        <SearchBox onSearch={handleSearch}>
-          <SectionTitle value="Principais Investigados" glueToTop />
-        </SearchBox>
+        <SearchBox onSearch={handleSearch}/>
         <div className={mainInvestigatedTableWrapper} ref={tableTopDivRef}>
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
           <Pagination

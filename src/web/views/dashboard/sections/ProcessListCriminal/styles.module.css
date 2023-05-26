@@ -23,11 +23,13 @@
   grid-area: criminalProcesses;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .tableBody {
   display: flex;
-  flex: 1;
+  flex: 1 1 auto;
   position: relative;
   overflow-y: auto;
+  /* overflow is problematic for height */
 }
  

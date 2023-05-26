@@ -614,7 +614,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
     const single = count === 1;
     message = (
       <span>
-        Há
+        Há{" "}
         {single ? 'uma notícia de fato há mais de ' : `${count} notícias de fato há mais de `}
         <strong>30 dias sem finalização, autuação ou prorrogação</strong>
       </span>
@@ -657,7 +657,7 @@ function nf120Constructor(
     const single = count === 1;
     message = (
       <span>
-        Há
+        Há{" "}
         {single ? 'uma notícia de fato há mais de ' : `${count} notícias de fato há mais de `}
         <strong>120 dias sem finalização, autuação ou prorrogação</strong>
       </span>

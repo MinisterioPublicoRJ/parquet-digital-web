@@ -1,47 +1,93 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
-import { deskOuter, deskControlers, deskTabs, deskHeader } from './styles.module.css';
+import {
+  deskOuter,
+  deskButtonsTextsHeader,
+  deskControlers,
+  deskTabs,
+  deskHeader,
+  hide, 
+  componentWrapper
+} from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import GenericTab from './GenericTab';
+import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
 import Api from '../../../../api';
-import { PIP_BUTTONS, TUTELA_BUTTONS, CRIMINAL_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
+import TablesTutela from '../TablesTutela';
+import MainInvestigated from '../MainInvestigated';
+import ProcessListCriminal from '../ProcessListCriminal';
+import {
+  PIP_DESK_BUTTONS,
+  PIP_COLLECTION_BUTTONS,
+  TUTELA_DESK_BUTTONS,
+  TUTELA_COLLECTION_BUTTONS,
+  CRIMINAL_DESK_BUTTONS,
+  CRIMINAL_COLLECTION_BUTTONS,
+  BUTTON_TEXTS,
+  BUTTON_DICT,
+  CONTROL_BUTTONS,
+} from './deskConstants';
+
 
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
   const [docsQuantity, setDocsQuantity] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [buttonList, setButtonList] = useState(false);
-  const [activeTab, setActiveTab] = useState('openCases');
+  const [buttonListControl, setButtonListControl] = useState(false);
+  const [deskButtonList, setDeskButtonList] = useState(false);
+  const [collectionButtonList, setCollectionButtonList] = useState(false);
+  const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
+  //const [collectionTable, setCollectionTable] = useState();
+  const collectionTable = getCollectionTable();
 
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
-    }, []);
+    getButtonsControl()
+  }, []);
 
+  function getButtonsControl(){
+    let buttonControl;
+    if(currentOffice.tipo){
+      buttonControl =  CONTROL_BUTTONS;
+    }
+    setButtonListControl(buttonControl);
+    buttonControl.forEach((buttonName) => {
+    getDocumentQuantity(buttonName);
+  }); 
+  }
+ 
   function getButtons() {
-    let buttons;
+    let buttons, deskButtons, collectionButtons;
     switch (currentOffice.tipo) {
       case 1:
-        buttons = TUTELA_BUTTONS;
+        deskButtons = TUTELA_DESK_BUTTONS;
+        collectionButtons = TUTELA_COLLECTION_BUTTONS;
         break;
       case 2:
-        document.documentElement.style.setProperty('--buttonBase', 131);
-        buttons = PIP_BUTTONS;
+        deskButtons = PIP_DESK_BUTTONS;
+        collectionButtons = PIP_COLLECTION_BUTTONS;
         break;
       case 7:
-        buttons = CRIMINAL_BUTTONS;
+        deskButtons = CRIMINAL_DESK_BUTTONS;
+        collectionButtons = CRIMINAL_COLLECTION_BUTTONS;
         break;
-      default:
+      default: 
         break;
     }
-    
-    setButtonList(buttons);
-    buttons.forEach((buttonName) => {
+
+    setDeskButtonList(deskButtons);
+    setCollectionButtonList(collectionButtons);
+    deskButtons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
-    });
+    });       
+    collectionButtons.forEach((buttonName) => {
+      getDocumentQuantity(buttonName);
+    }); 
   }
 
   /**
@@ -66,6 +112,7 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
+
     const dbName = BUTTON_DICT[tabName];
     let tabData;
     const updatedState = {};
@@ -102,6 +149,25 @@ function YourDesk() {
     }
   }
 
+  
+  function getCollectionTable() {
+    const updatedState = {};
+
+    switch (currentOffice.tipo) {
+      case 1:
+        return <TablesTutela />;
+        break;
+      case 2:
+        return <MainInvestigated />;
+        break;
+      case 7:
+        return <ProcessListCriminal />;
+        break;
+      default:
+        return 0;
+    }
+  }
+
   /**
    * Triggered by buttonPress, updates the state
    * @param  {string} tabName the name of the next active tab,
@@ -112,8 +178,11 @@ function YourDesk() {
     setActiveTab(tabName);
     if (!tabDetail[tabName]) {
       switch (tabName) {
-        case 'openCases':
+        case 'openCases' || 'desk':
           getOpenCasesDetails();
+          break;
+        case 'collection':
+          getCollectionTable();
           break;
         default:
           getTabDetails(tabName);
@@ -122,45 +191,60 @@ function YourDesk() {
     }
   }
 
-  if (loading && !buttonList) {
+  if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
+
 
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
-        <SectionTitle value="Sua Mesa" glueToTop />
+        <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
         <div className={deskControlers}>
-          {buttonList.map((buttonTitle) => (
+          {buttonListControl.map((buttonTitle) => (
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}
-              error={!docsQuantity[buttonTitle] && !loading}
               buttonPressed={() => handleChangeActiveTab(buttonTitle)}
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
-              number={docsQuantity[buttonTitle]}
-              loading={!docsQuantity[buttonTitle] && loading}
             />
           ))}
         </div>
+
       </div>
       <div className={deskTabs}>
-        {activeTab === 'openCases' ? (
+      <div className={`${componentWrapper} ${activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}`}>
+        <div className={deskButtonsTextsHeader}>
+        {deskButtonList.map((buttonTitle) => (
+            <InfoBoxYourDesk
+              key={BUTTON_TEXTS[buttonTitle]}
+              text={BUTTON_TEXTS[buttonTitle]}
+              number={docsQuantity[buttonTitle]}
+              error={!docsQuantity[buttonTitle] && !loading}
+            />
+          ))}
+        </div>
           <OpenCasesList
             buildRequestParams={buildRequestParams}
             chartData={tabDetail.openCases}
             isLoading={!tabDetail.openCases && loading}
           />
-        ) : (
-          <GenericTab
-            {...tabDetail[activeTab]}
-            tab={activeTab}
-            tabTitle={[BUTTON_TEXTS[activeTab]]}
-            error={!tabDetail[activeTab] && !loading}
-            isBeingDeveloped={currentOffice.tipo === 7}
-          />
-        )}
+
+        </div>
+        <div className={`${componentWrapper} ${activeTab === 'collection' ? '' : hide}`}>
+        <div className={deskButtonsTextsHeader}>
+        {collectionButtonList.map((buttonTitle) => (
+            <InfoBoxYourDesk
+              key={BUTTON_TEXTS[buttonTitle]}
+              text={BUTTON_TEXTS[buttonTitle]}
+              number={docsQuantity[buttonTitle]}
+              error={!docsQuantity[buttonTitle] && !loading}
+            />
+          ))}
+        </div>
+          {collectionTable}
+        </div>
       </div>
     </article>
   );

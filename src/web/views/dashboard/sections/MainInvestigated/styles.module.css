@@ -2,6 +2,7 @@
   grid-area: mainInvestigated;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 .mainInvestigatedTableWrapper {

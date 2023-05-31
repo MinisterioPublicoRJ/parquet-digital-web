@@ -186,8 +186,8 @@ function AlertBadge(alert) {
       </div>
       {iframe && 
       <Modal withExitButton close={setIframe}>
-        <div>
-          <iframe title='tableau' width="1200" height="720" src={iframe}/>
+        <div style={{height: '88vh', width: '88vw'}}>
+          <iframe title='tableau' width="108%" height='108%' style={{transform:'scale(0.92)', transformOrigin: '0 0', border:'none'}}  src={iframe}/>
         </div>
       </Modal>}
     </div>

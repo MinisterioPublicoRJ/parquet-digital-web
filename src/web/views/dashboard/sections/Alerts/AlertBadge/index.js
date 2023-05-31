@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './AlertActionButtons';
+import { Modal } from '../../../../../components';
 
 import {
   alertBadgeOuterContainer,
@@ -71,9 +72,17 @@ function AlertBadge(alert) {
     docDk,
     type
   } = alert;
+
+  const [iframe, setIframe] = useState(false);
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
+  }
+
+  function handleModal(alertAction){
+    const {link} = alertAction;
+    console.log('link: ', link);
+    setIframe(link);    
   }
 
   function handleLinks(alertAction) {
@@ -112,6 +121,8 @@ function AlertBadge(alert) {
         return handleLinks(alertAction);
       case 'openComplaint':
         return handleActionLinks(alertAction, key);
+      case 'openModal':
+        return handleModal(alertAction);
       default:
         return window.alert('Em breve! :)');
     }
@@ -173,6 +184,12 @@ function AlertBadge(alert) {
           )}
         </div>
       </div>
+      {iframe && 
+      <Modal withExitButton close={setIframe}>
+        <div>
+          <iframe title='tableau' width="1200" height="720" src={iframe}/>
+        </div>
+      </Modal>}
     </div>
   );
 }

@@ -17,9 +17,18 @@ export const DELETE = {
   text: 'dispensar',
   background: 'transparent',
 };
+/* 
+export const COMPRAS = ({ compId, contrato }) => ({
+  actionType: 'openModal',
+  icon: <IconCompras fillColor="white" width="30px" height="30px" />,
+  text: 'Painel de Compras',
+  background: '#F8BD6C',
+  link: <div className='tableauPlaceholder' style={{width: '1700px', height: '927px'}}><object className='tableauViz' width='1700' height='927' style={{display:'none'}}><param name='host_url' value='https%3A%2f%2ftableau2020.mprj.mp.br%2f' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;MPMAPAS' /><param name='name' value='ANLISEDECOMPRAS-GERAL&#47;CAPA' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /></object></div> ,
+}); */
+
 
 export const COMPRAS = ({ compId, contrato }) => ({
-  actionType: 'link',
+  actionType: 'openModal',
   icon: <IconCompras fillColor="white" width="30px" height="30px" />,
   text: 'Painel de Compras',
   background: '#F8BD6C',

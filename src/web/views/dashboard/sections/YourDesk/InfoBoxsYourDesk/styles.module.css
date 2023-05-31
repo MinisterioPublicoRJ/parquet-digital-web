@@ -5,62 +5,48 @@
   }
   
   .controlButtonOuter{
-    margin: 3px 1px;
+    margin: 4px;
+    width: 105px;
+    height: 90px;
   }
-  
-  .controlButtonOuter:last-child {
-    width: var(--buttonSize);
-  }
-  
   .controlButtonInner {
     align-items: center;
-    border-radius: 8px;
     cursor: pointer;
     display: flex;
-    height: var(--buttonSize);
-    letter-spacing: 0px;
     text-transform: uppercase;
     text-align: center;
     cursor: default;
-  }
-  .controlButtonInactive:hover {
-    border: solid var(--primary) 1px;
-  }
-  
-  .controlButtonInactive {
-    align-items: center;
-    background-color: var(--white);
-    box-shadow: 0 3px 8px var(--shadowColor);
-    color: var(--secondary);
+    margin: 0 auto;
     flex-direction: column;
-    justify-content: center;
-    width: 100px;
-    height: 80px;
-    border: 2px solid #BDDFF0;
-    margin-left: 5px;
   }
-  
-  .controlButtonActive {
-    background-color: #154763;
-    color: #FFFFFF;
-    flex-direction: column;
-    justify-content: space-around;
-    border: 2px solid #BDDFF0;
-    letter-spacing: 1px;
-    height: 40px;
-    width: 120px;
-  }
-  
-  .controlButtonNotButton:hover {
-    border: none;
-  }
-  
-  .controlButtonBigNumber {
+  .controlButtonInner span {
+    margin-top: 8px ;
     font-size: var(--spotlightSize);
     font-weight: 900;
-  }
-   
     
+  }
+  .controlButtonOuter:nth-child(2){
+    background-color: #71A2D0;
+    color: var(--white);
+ }
+ .controlButtonOuter:nth-child(1){
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    color: #154763;
+    flex-direction: column;
+    justify-content: center;
+    width: 134px;
+    height: 90px;
+    text-align: center;
+    border: 0.5px #EEEEEE solid;
+    flex-direction: column;
+ }
+ .controlButtonOuter:nth-child(3){
+    background-color: #71D0A4;
+    color: var(--white);
+  }
+  
   /* PHONES */
   @media (max-width: 998px) {
     .controlButtonActive {

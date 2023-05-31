@@ -125,9 +125,9 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
 
     //case 'RO':
     //return roOccurrence(alert, orgao, cpf, token);
-
+/* 
     case 'ABR1':
-      return abr1Constructor(alert, orgao, cpf, token);
+      return abr1Constructor(alert, orgao, cpf, token); */
 
     // ALERTAS DE PRESCRIÇÃO
     case 'PRCR':

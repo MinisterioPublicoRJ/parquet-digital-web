@@ -1,5 +1,4 @@
 export * from './loginTransform';
-
 export { default as todayEntriesTransform } from './todayEntriesTransform';
 export { default as todayOutliersTransform } from './todayOutliersTransform';
 export { default as openCasesDetailsTransform } from './openCasesDetailsTransform';
@@ -22,7 +21,9 @@ export { default as successIndicatorsTransform } from './succesIndicatorsTransfo
 export { default as investigatedProfileTransform } from './investigatedProfileTransform';
 export { default as radarCompareTransform } from './radarCompareTransform';
 export { default as snakeToCamelTransform } from './snakeToCamelTransform';
-
+export { default as prescribedCrimeTransform } from './prescribedCrimeTransform';
+export { default as alertOverlayTransform } from './alertOverlayTransform';
+export { default as processDetailTransform } from './processDetailTransform';
+/* eslint-disable camelcase */
 export const todayOutTransform = ({ percent_rank }) => percent_rank;
-
 export const deskIntegratedTransform = ({ nr_documentos }) => nr_documentos;

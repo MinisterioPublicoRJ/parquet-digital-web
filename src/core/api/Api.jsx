@@ -35,6 +35,21 @@ import {
   INVESTIGATED_PROFILE_URL,
   RADAR_COMPARE_TUTELA,
   RADAR_COMPARE_PIP,
+  PRCR_ACTION_GENERATE_DOC, 
+  COMPRAS_ACTION_OUVIDORIA,
+  LINK_ACTION_OUVIDORIA, 
+  ABR1_ALERT_ACTION, 
+  ALERT_OVERLAY_DATA,
+  CTAC_ACTION_GENERATE_DOC, 
+  IC1A_ACTION_GENERATE_DOC, 
+  PA1A_ACTION_GENERATE_DOC, 
+  PPFP_ACTION_EXTEND, 
+  PPFP_ACTION_CONVERT, 
+  PPPV_ACTION_EXTEND, 
+  PPPV_ACTION_CONVERT, 
+  UNSENT_OCCURRENCE_LIST, 
+  PROCESSES_LIST_GENERATE_DOC, 
+  PROCESS_DETAIL,
 } from './endpoints';
 
 import {
@@ -64,6 +79,9 @@ import {
   investigatedProfileTransform,
   radarCompareTransform,
   snakeToCamelTransform,
+  alertOverlayTransform,
+  prescribedCrimeTransform,
+  processDetailTransform
 } from './transforms';
 
 import { formatDateObjForBackend } from '../../web/utils/formatters';
@@ -349,6 +367,23 @@ function ApiCreator(jwtToken) {
     return radarCompareTransform(data);
   }
 
+  async function getAlertOverlayData(docDk, type) {
+    const params = { tipo: type.toLocaleLowerCase() };
+
+    const { data } = await axiosInstance.get(ALERT_OVERLAY_DATA({ docDk }), { params });
+    return alertOverlayTransform(type, data);
+  }
+
+  async function getProcessDetail({ orgao, num_doc }) {
+    const { data } = await axiosInstance.get(PROCESS_DETAIL({ num_doc, orgao }));
+    return processDetailTransform(data);
+  }
+
+  async function sendOmbudsmanEmail(link) {
+    const formData = new FormData();
+    return axios.post(link, formData);
+  }
+
   return {
     addHeaders,
     loginWithSCACredentials,
@@ -380,6 +415,9 @@ function ApiCreator(jwtToken) {
     undoRemoveAlert,
     getInvestigatedProfile,
     getRadarCompareData,
+    getAlertOverlayData,
+    getProcessDetail,
+    sendOmbudsmanEmail
   };
 }
 

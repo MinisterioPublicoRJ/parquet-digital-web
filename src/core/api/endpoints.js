@@ -63,3 +63,45 @@ export const INVESTIGATED_PROFILE_URL = t(
 
 export const RADAR_COMPARE_TUTELA = t(`${BASE_URL}/comparador-radares/\${orgao}`);
 export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}`);
+
+export const PRCR_ACTION_GENERATE_DOC = t(
+  `${BASE_URL}/documentos/minuta-prescricao/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const COMPRAS_ACTION_OUVIDORIA = t(
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}/\${alertId}?jwt=\${token}`,
+);
+export const LINK_ACTION_OUVIDORIA = t(
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}/\${alertId}?jwt=\${token}`,
+);
+export const ABR1_ALERT_ACTION = t(
+  `${BASE_URL}/documentos/procedimentos-csmp/\${orgao}/\${cpf}?jwt=\${token}`,
+);
+export const ALERT_OVERLAY_DATA = t(`${BASE_URL}/alertas/overlay/\${docDk}`);
+export const CTAC_ACTION_GENERATE_DOC = t(
+  `${BASE_URL}/documentos/comunicacao-tac/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const IC1A_ACTION_GENERATE_DOC = t(
+  `${BASE_URL}/documentos/prorrogacao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PA1A_ACTION_GENERATE_DOC = t(
+  `${BASE_URL}/documentos/prorrogacao-pa/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPFP_ACTION_EXTEND = t(
+  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPFP_ACTION_CONVERT = t(
+  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPPV_ACTION_EXTEND = t(
+  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const PPPV_ACTION_CONVERT = t(
+  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+);
+export const UNSENT_OCCURRENCE_LIST = t(
+  `${BASE_URL}/documentos/ros-ausentes/\${dpNumber}?jwt=\${token}`,
+);
+export const PROCESSES_LIST_GENERATE_DOC = t(
+  `${BASE_URL}/alertas/baixar/\${orgao}?tipo_alerta=\${alertCode}&jwt=\${token}`,
+);
+export const PROCESS_DETAIL = t(`${BASE_URL}/painel-doc/\${orgao}/\${num_doc}`);

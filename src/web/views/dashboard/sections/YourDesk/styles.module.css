@@ -6,19 +6,33 @@
 }
 
 .deskControlers {
-  align-items: flex-end;
   display: flex;
 }
-
+.deskButtonsInactive{
+  display: flex;
+}
 .deskButtonsTextsHeader{
   display: flex;
+}
+.deskButtonsActive{
+  display: flex;
+  justify-content: space-between;
+  margin-left: -3px;
+
+}
+.deskButtonsTextsHeaderText{
+  margin-top: -6px;
+  text-align: right;
+  max-width: 240px;
+  color: #374354;
+  font-weight: 600;
 }
 .deskTabs {
   display: flex;
   flex: 1;
   flex-direction: column;
   overflow: hidden;
-  padding: 10px 0 0 0;
+  padding: 0 0 0 0;
 }
 
 .componentWrapper {
@@ -30,7 +44,18 @@
 .hide {
   display: none;
 }
-
+.yourCollectionButtons div  {
+  color: #ACACAC;
+  background-color: #EEEEEE;
+  width: 105px;
+  height: 90px;
+  border-radius: 3px;
+  display: flex;
+}
+.yourCollectionButtons div:nth-child(1){
+  width: 110px;
+  margin-left: 0px;
+}
 /* PHONES */
 @media (max-width: 480px) {
   .deskHeader {

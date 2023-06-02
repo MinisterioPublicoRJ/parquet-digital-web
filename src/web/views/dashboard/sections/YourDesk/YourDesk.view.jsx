@@ -6,8 +6,13 @@ import {
   deskControlers,
   deskTabs,
   deskHeader,
-  hide, 
-  componentWrapper
+  hide,
+  componentWrapper,
+  yourCollectionButtons,
+  desk,
+  deskButtonsTextsHeaderText,
+  deskButtonsInactive,
+  deskButtonsActive
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -50,17 +55,17 @@ function YourDesk() {
     getButtonsControl()
   }, []);
 
-  function getButtonsControl(){
+  function getButtonsControl() {
     let buttonControl;
-    if(currentOffice.tipo){
-      buttonControl =  CONTROL_BUTTONS;
+    if (currentOffice.tipo) {
+      buttonControl = CONTROL_BUTTONS;
     }
     setButtonListControl(buttonControl);
     buttonControl.forEach((buttonName) => {
-    getDocumentQuantity(buttonName);
-  }); 
+      getDocumentQuantity(buttonName);
+    });
   }
- 
+
   function getButtons() {
     let buttons, deskButtons, collectionButtons;
     switch (currentOffice.tipo) {
@@ -76,7 +81,7 @@ function YourDesk() {
         deskButtons = CRIMINAL_DESK_BUTTONS;
         collectionButtons = CRIMINAL_COLLECTION_BUTTONS;
         break;
-      default: 
+      default:
         break;
     }
 
@@ -84,10 +89,10 @@ function YourDesk() {
     setCollectionButtonList(collectionButtons);
     deskButtons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
-    });       
+    });
     collectionButtons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
-    }); 
+    });
   }
 
   /**
@@ -149,7 +154,7 @@ function YourDesk() {
     }
   }
 
-  
+
   function getCollectionTable() {
     const updatedState = {};
 
@@ -214,17 +219,23 @@ function YourDesk() {
 
       </div>
       <div className={deskTabs}>
-      <div className={`${componentWrapper} ${activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}`}>
-        <div className={deskButtonsTextsHeader}>
-        {deskButtonList.map((buttonTitle) => (
-            <InfoBoxYourDesk
-              key={BUTTON_TEXTS[buttonTitle]}
-              text={BUTTON_TEXTS[buttonTitle]}
-              number={docsQuantity[buttonTitle]}
-              error={!docsQuantity[buttonTitle] && !loading}
-            />
-          ))}
-        </div>
+        <div className={`${componentWrapper} ${activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}`}>
+          <div className={`${deskButtonsTextsHeader} ${activeTab === 'collection' ? deskButtonsInactive : deskButtonsActive}`} >
+            <div className={deskButtonsInactive}>
+              {deskButtonList.map((buttonTitle) => (
+                <InfoBoxYourDesk
+                  key={BUTTON_TEXTS[buttonTitle]}
+                  text={BUTTON_TEXTS[buttonTitle]}
+                  number={docsQuantity[buttonTitle]}
+                  error={!docsQuantity[buttonTitle] && !loading}
+                />
+              ))}
+            </div>
+            <div className={deskButtonsTextsHeaderText}>
+              <p>Há 2427 procedimentos com todos os seus
+                crimes possivelmente prescritos.</p>
+            </div>
+          </div>
           <OpenCasesList
             buildRequestParams={buildRequestParams}
             chartData={tabDetail.openCases}
@@ -232,17 +243,17 @@ function YourDesk() {
           />
 
         </div>
-        <div className={`${componentWrapper} ${activeTab === 'collection' ? '' : hide}`}>
-        <div className={deskButtonsTextsHeader}>
-        {collectionButtonList.map((buttonTitle) => (
-            <InfoBoxYourDesk
-              key={BUTTON_TEXTS[buttonTitle]}
-              text={BUTTON_TEXTS[buttonTitle]}
-              number={docsQuantity[buttonTitle]}
-              error={!docsQuantity[buttonTitle] && !loading}
-            />
-          ))}
-        </div>
+        <div className={`${componentWrapper} ${activeTab === 'collection' ? " " : hide}`}>
+          <div className={`${deskButtonsTextsHeader} ${activeTab === 'collection' ? yourCollectionButtons : desk}`} >
+            {collectionButtonList.map((buttonTitle) => (
+              <InfoBoxYourDesk
+                key={BUTTON_TEXTS[buttonTitle]}
+                text={BUTTON_TEXTS[buttonTitle]}
+                number={docsQuantity[buttonTitle]}
+                error={!docsQuantity[buttonTitle] && !loading}
+              />
+            ))}          
+          </div>
           {collectionTable}
         </div>
       </div>

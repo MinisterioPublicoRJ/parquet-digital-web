@@ -81,7 +81,6 @@ function AlertBadge(alert) {
 
   function handleModal(alertAction){
     const {link} = alertAction;
-    console.log('link: ', link);
     setIframe(link);    
   }
 

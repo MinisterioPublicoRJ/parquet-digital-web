@@ -8,6 +8,7 @@ import InfoIcon from '../../assets/svg/InfoIcon';
 import EditNoteIcon from '../../assets/svg/EditNoteIcon';
 import SpeedIcon from '../../assets/svg/SpeedIcon';
 import LogoutIcon from '../../assets/svg/LogoutIcon';
+import RadarDePerfomanceIcon from '../../assets/svg/radarDePerformance'
 import {
   navBarLeftContent,
   topButtonDiv,
@@ -32,6 +33,7 @@ function NavbarLeft() {
   const [hoverLogout, setHoverLogout] = useState(false);
   const [hoverTempoTramitacao, setHoverTempoTramitacao] = useState(false);
   const [hoverRadar, setHoverRadar] = useState(false);
+  const [hoverIndicadores, setHoverIndicadores] = useState(false);
   const [hover, setHover] = useState(false);
 
   return (
@@ -54,7 +56,7 @@ function NavbarLeft() {
           onClick={() => setModalType('radar')}
         >
           <button type="button">
-            {hoverRadar ? <UserManualIcon fill="#154763" /> : <UserManualIcon />}
+            {hoverRadar ? <RadarDePerfomanceIcon fill="#154763" /> : <RadarDePerfomanceIcon />}
           </button>
           <p>Radar de Perfomance</p>
         </div>
@@ -69,14 +71,14 @@ function NavbarLeft() {
         )}
         <div
           className={tempoTramitacaoDiv}
-          onMouseOver={() => setHoverRadar(true)}
-          onFocus={() => setHoverRadar(true)}
-          onMouseOut={() => setHoverRadar(false)}
-          onBlur={() => setHoverRadar(false)}
+          onMouseOver={() => setHoverIndicadores(true)}
+          onFocus={() => setHoverIndicadores(true)}
+          onMouseOut={() => setHoverIndicadores(false)}
+          onBlur={() => setHoverIndicadores(false)}
           onClick={() => setModalType('indicators')}
         >
           <button type="button">
-            {hoverRadar ? <UserManualIcon fill="#154763" /> : <UserManualIcon />}
+            {hoverIndicadores ? <UserManualIcon fill="#154763" /> : <UserManualIcon />}
           </button>
           <p>Indicadores de Sucesso</p>
         </div>
@@ -89,7 +91,7 @@ function NavbarLeft() {
             </div>
           </Modal>
         )}
-        {/* <div
+        <div
           className={userManualDiv}
           onMouseOver={() => setHoverUserManual(true)}
           onFocus={() => setHoverUserManual(true)}
@@ -121,7 +123,7 @@ function NavbarLeft() {
             {hoverNotaMetodologica ? <InfoIcon fill="#154763" /> : <InfoIcon />}
           </button>
           <p>Nota Metodológica</p>
-        </div> */}
+        </div> 
         {modalType === 'introduction' && (
           <Modal withExitButton close={setModalType}>
             <Introduction />

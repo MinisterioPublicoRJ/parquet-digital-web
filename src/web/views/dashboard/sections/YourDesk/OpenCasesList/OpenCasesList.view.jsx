@@ -5,7 +5,7 @@ import { SearchBox } from 'mapasteca-web';
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../../api';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
-import DeskCasesChart from '../deskCases';
+import DeskGraph from '../DeskGraph/DeskGraph.view.jsx';
 import { Modal } from '../../../../../components/layoutPieces';
 import { highlightJSX } from '../../../../../utils';
 
@@ -208,14 +208,10 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     // for each category I make and object with the data from all categories and the right colors to use
     // then I push all 3 objects to an array
     categories.forEach((cat) => {
-      const categoryChart = {};
-      categories.forEach((item) => {
-        categoryChart[item] = {
-          x: item,
-          y: data[item],
-          color: item === cat ? MAIN_DATA[cat][0] : '#E8E8E8',
-        };
-      });
+      const categoryChart = {
+          x: cat,
+          y: data[cat],
+          color:  MAIN_DATA[cat][0]};
       cleanData[cat] = categoryChart;
     });
     return cleanData;
@@ -238,20 +234,14 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
    * @return {Array}      JSX for PieChart buttons
    */
   function renderCharts(data) {
+    console.log('rendercharts data: ', data);
+
     const cleanData = cleanChartData(data);
     const categories = Object.keys(data);
 
-    return categories.map((cat) => (
-      <DeskCasesChart
-        key={cat}
-        active={activeTab === cat}
-        buttonPressed={(tab) => handleChangeActiveTab(tab)}
-        category={cat}
-        color={MAIN_DATA[cat][0]}
-        data={cleanData[cat]}
-        name={MAIN_DATA[cat][1]}
-      />
-    ));
+    return <DeskGraph
+        data={cleanData}
+      />;
   }
 
   const onSearch = (searchStr) => {

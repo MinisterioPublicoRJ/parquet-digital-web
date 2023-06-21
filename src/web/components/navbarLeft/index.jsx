@@ -9,6 +9,8 @@ import EditNoteIcon from '../../assets/svg/EditNoteIcon';
 import SpeedIcon from '../../assets/svg/SpeedIcon';
 import LogoutIcon from '../../assets/svg/LogoutIcon';
 import RadarDePerfomanceIcon from '../../assets/svg/radarDePerformance'
+import IndicadoresDeSucessoIcon from '../../assets/svg/indicadoresDeSucesso'
+
 import {
   navBarLeftContent,
   topButtonDiv,
@@ -78,7 +80,7 @@ function NavbarLeft() {
           onClick={() => setModalType('indicators')}
         >
           <button type="button">
-            {hoverIndicadores ? <UserManualIcon fill="#154763" /> : <UserManualIcon />}
+            {hoverIndicadores ? <IndicadoresDeSucessoIcon fill="#154763" /> : <IndicadoresDeSucessoIcon />}
           </button>
           <p>Indicadores de Sucesso</p>
         </div>

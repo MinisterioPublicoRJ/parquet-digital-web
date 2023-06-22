@@ -19,11 +19,11 @@ export const DELETE = {
 };
 
 export const COMPRAS = ({ compId, contrato }) => ({
-  actionType: 'openModal',
+  actionType: 'link',
   icon: <IconCompras fillColor="white" width="30px" height="30px" />,
   text: 'Painel de Compras',
   background: '#F8BD6C',
-  link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/ANLISEDECOMPRAS-GERAL/Compras?%3Aembed=y&%3Aembed=y&%3Aiid=8&%3AisGuestRedirectFromVizportal=y&contrato_iditem=${compId}&CONTRATACAO=${contrato}&:embed=yes&:toolbar=no `,
+  link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/AnlisedeComprasv2_0-Alertas/Fornecedor?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link:embed=yes&:toolbar=no&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
 });
 
 

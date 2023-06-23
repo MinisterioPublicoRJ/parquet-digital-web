@@ -5,12 +5,10 @@ import { SearchBox } from 'mapasteca-web';
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../../api';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
-import DeskGraph from '../DeskGraph/DeskGraph.view.jsx';
 import { Modal } from '../../../../../components/layoutPieces';
 import { highlightJSX } from '../../../../../utils';
 
 import {
-  openCasesChartsWrapper,
   openCasesTableWrapper,
   openCasesEmptyTable,
   noOpenCases,
@@ -239,9 +237,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     const cleanData = cleanChartData(data);
     const categories = Object.keys(data);
 
-    return <DeskGraph
-        data={cleanData}
-      />;
   }
 
   const onSearch = (searchStr) => {
@@ -263,7 +258,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   return (
     <>
-      <div className={openCasesChartsWrapper}>{renderCharts(chartData)}</div>
       <SearchBox onSearch={onSearch} />
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}

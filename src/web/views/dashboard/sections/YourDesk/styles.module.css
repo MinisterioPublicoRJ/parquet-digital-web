@@ -55,6 +55,14 @@
   width: 110px;
   margin-left: 0px;
 }
+
+.openCasesChartsWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
 /* PHONES */
 @media (max-width: 480px) {
   .deskHeader {

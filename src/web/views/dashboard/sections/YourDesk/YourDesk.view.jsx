@@ -54,6 +54,8 @@ function YourDesk() {
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
 
+  const sumValues = obj => Object.values(obj).reduce((a, b) => a + b, 0);
+
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
@@ -189,9 +191,10 @@ function YourDesk() {
 
     const cleanData = cleanChartData(data);
     const categories = Object.keys(data);
-
+    const sum = Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0
     return <DeskGraph
         data={cleanData}
+        totalSum={sum}
       />;
   }
 
@@ -244,6 +247,7 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
+  console.log('tabdetails opencases: ', tabDetail.openCases);
 
 
   return (
@@ -277,9 +281,9 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsTextsHeaderText}>
-              <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
-              <p>Há 2427 procedimentos com todos os seus
+              <p>Há {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} procedimentos com todos os seus
                 crimes possivelmente prescritos.</p>
+                <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>
           </div>
           <OpenCasesList

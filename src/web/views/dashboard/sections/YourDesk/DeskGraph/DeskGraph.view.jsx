@@ -1,7 +1,8 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { VictoryBar, VictoryStack } from 'victory';
+import { VictoryBar, VictoryLabel, VictoryStack } from 'victory';
 import { leftPad } from '../../../../../utils';
 
 import { deskCasesChartOuter, deskCasesChartGraph } from './DeskGraph.module.css';
@@ -18,7 +19,6 @@ const propTypes = {
     }),
     over30: PropTypes.shape({ x: PropTypes.string, y: PropTypes.number, color: PropTypes.string }),
   }).isRequired,
-  name: PropTypes.string.isRequired,
 };
 
 const fillerData = [
@@ -27,7 +27,18 @@ const fillerData = [
   { y: 100, color: 'transparent' },
 ];
 
-function DeskGraph({ category, color, data, name }) {
+const LABELS = ['Até 20 dias', '20 a 30 dias', '+30 dias'];
+
+function MyLabel(props) {
+    const x = props.scale.x(props.x);
+    const y = props.scale.y(props.y)
+
+    console.log('x, y', x, y);
+    return <VictoryLabel {...props} x={x} y={y}/>
+  }
+
+
+function DeskGraph({ category, color, data, totalSum }) {
   const [buttonChartData, setButtonChartData] = useState(fillerData);
   const [colors, setColors] = useState(buttonChartData.map((item) => item.color));
   // anti prop, but it's the only way to force VictoryPie to animate
@@ -45,22 +56,52 @@ function DeskGraph({ category, color, data, name }) {
     setColors(c);
     console.log('buttonchart data in colors: ', buttonChartData);
   }, [buttonChartData]);
+  let sum = 0;
+  const total = Object.values(buttonChartData).reduce((a, b) => a + b, 0);
+
+  console.log('total: ', total);
+
 
   return (
     <div style={{ borderTopColor: color }} className={deskCasesChartOuter}>
       <div className={deskCasesChartGraph}>
-        <VictoryStack horizontal colorScale={colors} width={220} height={100} padding={0}>
+        <VictoryStack
+          horizontal
+          colorScale={colors}
+          height={42}
+          padding={0}
+          disableInlineStyles
+        >
           {/*             <VictoryBar horizontal data={buttonChartData} /> */}
 
           {buttonChartData.map((chartData, i) => {
             console.log('chartData, i: ', chartData, i);
+            sum += chartData.y;
+            console.log('sum', sum );
             return (
               <VictoryBar
                 horizontal
                 data={[{ y: chartData.y }]}
                 animate={{ duration: 2000 }}
-                barRatio={1}
                 barWidth={50}
+                labels={LABELS[i]}
+                labelComponent={
+                  <VictoryLabel
+                    inline
+                    labelPlacement="perpendicular"
+                    verticalAnchor="start"
+                    textAnchor="start"
+                    y={0}
+                    dy={0}
+                    //x={(sum - chartData.y) *  (220 / totalSum) }
+                    x={`${33 * i}%`}
+                    dx={0}
+                    padding={0}
+                    style={[
+                        { fill: chartData.color, fontSize: 12 }
+                      ]}
+                  />
+                }
               />
             );
           })}

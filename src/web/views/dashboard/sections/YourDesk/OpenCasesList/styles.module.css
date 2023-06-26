@@ -96,3 +96,27 @@
   position: absolute;
   width: 24em;
 }
+.allBoxFilters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--grayPagination)
+}
+.boxFilters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  border-radius: 3pxpx;
+  background-color: #f8f9fb;
+}
+.boxFilters button{
+  border: none;
+  background: transparent;
+  border-right: 1px solid #154763;
+  color: var(--grayPagination)
+}
+.boxFilters button:hover{
+  color: #154763;
+}

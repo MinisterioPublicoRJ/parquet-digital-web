@@ -17,6 +17,8 @@ import {
   alertTag,
   alertTagSigla,
   emptyAlert,
+  allBoxFilters,
+  boxFilters,
 } from './styles.module.css';
 
 const propTypes = {
@@ -258,7 +260,16 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   return (
     <>
-      <SearchBox onSearch={onSearch} />
+    <div className={allBoxFilters}>
+      <SearchBox onSearch={onSearch}  />
+      <div className={boxFilters}>
+        <p>Filtrar Tabela:</p>
+        <button type='button'>Todas as vistas</button>
+        <button type='button'>Até 20 dias</button>
+        <button type='button'>20 a 30 dias</button>
+        <button type='button'>+ de 30 dias</button>
+      </div>
+    </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab &&

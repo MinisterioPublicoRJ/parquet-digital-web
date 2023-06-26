@@ -33,7 +33,6 @@ function MyLabel(props) {
     const x = props.scale.x(props.x);
     const y = props.scale.y(props.y)
 
-    console.log('x, y', x, y);
     return <VictoryLabel {...props} x={x} y={y}/>
   }
 
@@ -45,21 +44,17 @@ function DeskGraph({ category, color, data, totalSum }) {
   useEffect(() => {
     if (buttonChartData === fillerData) {
       setButtonChartData(Object.values(data));
-      console.log('data: ', data);
-      console.log('values: ', Object.values(data));
     }
   }, [data]);
 
   useEffect(() => {
     const c = buttonChartData.map((item) => item.color);
-    console.log('colors c: ', c);
     setColors(c);
-    console.log('buttonchart data in colors: ', buttonChartData);
   }, [buttonChartData]);
   let sum = 0;
   const total = Object.values(buttonChartData).reduce((a, b) => a + b, 0);
 
-  console.log('total: ', total);
+  const POSITION_LABEL =['start', 'middle', 'end']
 
 
   return (
@@ -90,7 +85,7 @@ function DeskGraph({ category, color, data, totalSum }) {
                     inline
                     labelPlacement="perpendicular"
                     verticalAnchor="start"
-                    textAnchor="start"
+                    textAnchor={POSITION_LABEL[i]}
                     y={0}
                     dy={0}
                     //x={(sum - chartData.y) *  (220 / totalSum) }

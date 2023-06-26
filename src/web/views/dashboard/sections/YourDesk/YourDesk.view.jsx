@@ -186,7 +186,6 @@ function YourDesk() {
    * @return {Array}      JSX for Bar Chart
    */
   function renderCharts(data) {
-    console.log('rendercharts data: ', data);
     if (!data) return
 
     const cleanData = cleanChartData(data);

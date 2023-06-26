@@ -1,5 +1,5 @@
 import React from 'react';
-// import NOTA_METODOLOGICA from './nota_metodologica.pdf';
+import NOTA_METODOLOGICA from './nota_metodologica.pdf';
 import {
   glossaryWrapper,
   glossaryIntroSection,
@@ -29,7 +29,7 @@ function MethodologicalNote() {
                 type="button"
                 onClick={(event) => {
                   event.preventDefault();
-                  // window.open(NOTA_METODOLOGICA);
+                  window.open(NOTA_METODOLOGICA);
                 }}
               >
                 Acessar nota metodológica

@@ -23,7 +23,6 @@
 .deskButtonsTextsHeaderText{
   margin-top: -6px;
   text-align: right;
-  max-width: 240px;
   color: #374354;
   font-weight: 600;
 }
@@ -56,6 +55,14 @@
   width: 110px;
   margin-left: 0px;
 }
+
+.openCasesChartsWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
 /* PHONES */
 @media (max-width: 480px) {
   .deskHeader {

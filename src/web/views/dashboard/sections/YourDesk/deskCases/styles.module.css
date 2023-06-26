@@ -51,7 +51,6 @@
 /* PHONES */
 @media (max-width: 480px) {
   .deskCasesChartGraph {
-    display: none;
   }
 
   .deskCasesChartSubs {

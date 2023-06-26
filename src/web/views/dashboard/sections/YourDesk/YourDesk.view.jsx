@@ -12,7 +12,8 @@ import {
   desk,
   deskButtonsTextsHeaderText,
   deskButtonsInactive,
-  deskButtonsActive
+  deskButtonsActive,
+  openCasesChartsWrapper
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -24,6 +25,8 @@ import Api from '../../../../api';
 import TablesTutela from '../TablesTutela';
 import MainInvestigated from '../MainInvestigated';
 import ProcessListCriminal from '../ProcessListCriminal';
+import DeskGraph from './DeskGraph/DeskGraph.view';
+
 import {
   PIP_DESK_BUTTONS,
   PIP_COLLECTION_BUTTONS,
@@ -35,7 +38,9 @@ import {
   BUTTON_DICT,
   CONTROL_BUTTONS,
 } from './deskConstants';
-
+import {
+  MAIN_DATA
+} from './OpenCasesList/openCasesConstants'
 
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
@@ -48,6 +53,8 @@ function YourDesk() {
   const [tabDetail, setTabDetail] = useState({});
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
+
+  const sumValues = obj => Object.values(obj).reduce((a, b) => a + b, 0);
 
   useEffect(() => {
     getOpenCasesDetails();
@@ -172,6 +179,46 @@ function YourDesk() {
         return 0;
     }
   }
+  
+  /**
+   * Cleans chartData prop data, then draws Bar Chart
+   * @param  {[type]} data chartData prop
+   * @return {Array}      JSX for Bar Chart
+   */
+  function renderCharts(data) {
+    if (!data) return
+
+    const cleanData = cleanChartData(data);
+    const categories = Object.keys(data);
+    const sum = Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0
+    return <DeskGraph
+        data={cleanData}
+        totalSum={sum}
+      />;
+  }
+
+  
+  /**
+   * [cleanChartData description]
+   * @param  {json} data the chartData prop
+   * @return {json}      same keys as chartData, each key has again same keys as
+   *                     chartData and point to an object with x/y/color values
+   */
+  function cleanChartData(data) {
+    const categories = Object.keys(data);
+    const cleanData = {};
+
+    // for each category I make and object with the data from all categories and the right colors to use
+    // then I push all 3 objects to an array
+    categories.forEach((cat) => {
+      const categoryChart = {
+          x: cat,
+          y: data[cat],
+          color:  MAIN_DATA[cat][0]};
+      cleanData[cat] = categoryChart;
+    });
+    return cleanData;
+  }
 
   /**
    * Triggered by buttonPress, updates the state
@@ -199,6 +246,7 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
+  console.log('tabdetails opencases: ', tabDetail.openCases);
 
 
   return (
@@ -232,8 +280,9 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsTextsHeaderText}>
-              <p>Há 2427 procedimentos com todos os seus
+              <p>Há {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} procedimentos com todos os seus
                 crimes possivelmente prescritos.</p>
+                <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>
           </div>
           <OpenCasesList

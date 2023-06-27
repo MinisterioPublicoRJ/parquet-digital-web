@@ -96,3 +96,39 @@
   position: absolute;
   width: 24em;
 }
+.allBoxFilters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--grayPagination)
+}
+.boxFilters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: #f8f9fb;
+  padding: 5px;
+  height: 2rem;
+}
+.boxFilters p{
+  margin-top: 8px;
+}
+.boxFilters button{
+  border: none;
+  background: transparent;
+  border-right: 1px solid var(--grayPagination);
+  color: var(--grayPagination)
+}
+.boxFilters button:nth-child(5){
+  border-right: none;
+}
+.boxFilters button:hover:nth-child(5){
+  border-right: none;
+}
+.boxFilters button:hover{
+  color: #154763;
+  border-right: 1px solid #154763;
+}

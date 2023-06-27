@@ -246,8 +246,6 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
-  console.log('tabdetails opencases: ', tabDetail.openCases);
-
 
   return (
     <article className={deskOuter}>

@@ -17,6 +17,8 @@ import {
   alertTag,
   alertTagSigla,
   emptyAlert,
+  allBoxFilters,
+  boxFilters,
 } from './styles.module.css';
 
 const propTypes = {
@@ -40,6 +42,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  console.log(selectedProducts)
 
   useEffect(() => {
     if (!chartData) return;
@@ -162,8 +167,10 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           },
         });
       }
+     
       setTotalPagesByTab(totPages);
       setTabLoading(false);
+      setSelectedProducts(res)
     }
   }
 
@@ -232,11 +239,8 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
    * @return {Array}      JSX for PieChart buttons
    */
   function renderCharts(data) {
-    console.log('rendercharts data: ', data);
-
     const cleanData = cleanChartData(data);
     const categories = Object.keys(data);
-
   }
 
   const onSearch = (searchStr) => {
@@ -255,10 +259,34 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
 
   const emptyTab = !chartData[activeTab];
+  const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
+  console.log(tabDetails);
+  const categories = Object.keys(chartData);
 
   return (
     <>
-      <SearchBox onSearch={onSearch} />
+    <div className={allBoxFilters}>
+      <SearchBox onSearch={onSearch}  />
+      <div className={boxFilters}>
+      <p>Filtrar Tabela:</p>
+        {LABELS.map((text, i) => (
+        <button onClick={() => handleChangeActiveTab(categories[i-1])} type='button'>{text}</button>
+        ))}
+         {searchString &&
+          !tabLoading &&
+          tabDetails[activeTab] &&
+          !tabDetails[activeTab][currentPage] && (
+            <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
+              <p className={noOpenCases}> Nenhuma vista aberta com os parâmetros pesquisados</p>
+              <CustomTable
+                data={Array(20).fill({ content: '' })}
+                columns={TABLE_COLUMNS}
+                showHeader
+              />
+            </div>
+          )}
+      </div>
+    </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab &&

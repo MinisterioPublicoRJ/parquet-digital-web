@@ -238,10 +238,13 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
     const cleanData = cleanChartData(data);
     const categories = Object.keys(data);
-
   }
 
   const onSearch = (searchStr) => {
+    setSearchString(searchStr);
+  };
+
+  const onFiltertabelas = (searchStr) => {
     setSearchString(searchStr);
   };
 
@@ -257,17 +260,17 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
 
   const emptyTab = !chartData[activeTab];
+  const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
 
   return (
     <>
     <div className={allBoxFilters}>
       <SearchBox onSearch={onSearch}  />
       <div className={boxFilters}>
-        <p>Filtrar Tabela:</p>
-        <button type='button'>Todas as vistas</button>
-        <button type='button'>Até 20 dias</button>
-        <button type='button'>20 a 30 dias</button>
-        <button type='button'>+ de 30 dias</button>
+      <p>Filtrar Tabela:</p>
+        {LABELS.map((text) => (
+        <button type='button'>{text}</button>
+        ))}
       </div>
     </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>

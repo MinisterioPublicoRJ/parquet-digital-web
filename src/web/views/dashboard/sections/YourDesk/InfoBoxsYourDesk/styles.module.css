@@ -46,7 +46,12 @@
     background-color: #71D0A4;
     color: var(--white);
   }
-  
+  @media (min-width: 1780px) {
+    .controlButtonOuter{
+      width: 130px;
+      height: 120px;
+    }
+  }
   /* PHONES */
   @media (max-width: 998px) {
     .controlButtonActive {

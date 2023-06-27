@@ -42,6 +42,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  console.log(selectedProducts)
 
   useEffect(() => {
     if (!chartData) return;
@@ -164,8 +167,10 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           },
         });
       }
+     
       setTotalPagesByTab(totPages);
       setTabLoading(false);
+      setSelectedProducts(res)
     }
   }
 
@@ -234,17 +239,11 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
    * @return {Array}      JSX for PieChart buttons
    */
   function renderCharts(data) {
-    console.log('rendercharts data: ', data);
-
     const cleanData = cleanChartData(data);
     const categories = Object.keys(data);
   }
 
   const onSearch = (searchStr) => {
-    setSearchString(searchStr);
-  };
-
-  const onFiltertabelas = (searchStr) => {
     setSearchString(searchStr);
   };
 
@@ -261,7 +260,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   const emptyTab = !chartData[activeTab];
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
-
+  console.log(tabDetails)
   return (
     <>
     <div className={allBoxFilters}>
@@ -269,8 +268,21 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       <div className={boxFilters}>
       <p>Filtrar Tabela:</p>
         {LABELS.map((text) => (
-        <button type='button'>{text}</button>
+        <button onClick={handleChangeActiveTab} type='button'>{text}</button>
         ))}
+         {searchString &&
+          !tabLoading &&
+          tabDetails[activeTab] &&
+          !tabDetails[activeTab][currentPage] && (
+            <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
+              <p className={noOpenCases}> Nenhuma vista aberta com os parâmetros pesquisados</p>
+              <CustomTable
+                data={Array(20).fill({ content: '' })}
+                columns={TABLE_COLUMNS}
+                showHeader
+              />
+            </div>
+          )}
       </div>
     </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>

@@ -18,6 +18,7 @@
   width: 70%;
   z-index: 1;
 }
+
 .todayContent p,
 .todayContent h2 {
   margin: 0;
@@ -43,11 +44,13 @@
   font-size: inherit;
   font-weight: inherit;
   font-family: inherit;
+  color: #154763 ;
 }
 
 .todayContent > button > span {
   text-decoration: underline;
   cursor: pointer;
+  color: #154763;
 }
 
 .todayContent > button > span::after {

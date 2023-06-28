@@ -270,7 +270,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       <div className={boxFilters}>
       <p>Filtrar Tabela:</p>
         {LABELS.map((text, i) => (
-        <button onClick={() => handleChangeActiveTab(categories[i-1])} type='button'>{text}</button>
+        <button onClick={() => handleChangeActiveTab(categories[i-1])} type='button'>
+          <p>{text}</p>
+        </button>
         ))}
          {searchString &&
           !tabLoading &&

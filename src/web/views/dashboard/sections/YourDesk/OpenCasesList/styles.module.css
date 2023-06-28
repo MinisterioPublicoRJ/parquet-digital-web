@@ -112,15 +112,21 @@
   background-color: #f8f9fb;
   padding: 5px;
   height: 2rem;
+  width: 65%;
+  border: 0.5px #EEEEEE solid;
+  margin-top: 20px;
+  
 }
 .boxFilters p{
   margin-top: 8px;
+  margin-right: 20px;
 }
 .boxFilters button{
   border: none;
   background: transparent;
   border-right: 1px solid var(--grayPagination);
-  color: var(--grayPagination)
+  color: var(--grayPagination);
+  padding-left: 10px;
 }
 .boxFilters button:nth-child(5){
   border-right: none;

@@ -13,6 +13,7 @@
 }
 .deskButtonsTextsHeader{
   display: flex;
+  height: 100px;
 }
 .deskButtonsActive{
   display: flex;
@@ -21,11 +22,15 @@
 
 }
 .deskButtonsTextsHeaderText{
-  margin-top: -6px;
-  text-align: right;
   color: #374354;
   font-weight: 600;
 }
+.deskButtonsTextsHeaderText p{
+  text-align: right;
+  max-width: 250px;
+  margin-left: 198px;
+}
+
 .deskTabs {
   display: flex;
   flex: 1;
@@ -47,8 +52,8 @@
   color: #ACACAC;
   background-color: #EEEEEE;
   width: 105px;
-  height: 90px;
-  border-radius: 3px;
+  height: 100px;
+  border-radius: 5px;
   display: flex;
 }
 .yourCollectionButtons div:nth-child(1){

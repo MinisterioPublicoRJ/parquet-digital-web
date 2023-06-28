@@ -6,8 +6,9 @@
   
   .controlButtonOuter{
     margin: 4px;
-    width: 105px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
   }
   .controlButtonInner {
     align-items: center;
@@ -18,6 +19,7 @@
     cursor: default;
     margin: 0 auto;
     flex-direction: column;
+    font-size: 11px;
   }
   .controlButtonInner span {
     margin-top: 8px ;
@@ -25,6 +27,7 @@
     font-weight: 900;
     
   }
+ 
   .controlButtonOuter:nth-child(2){
     background-color: #71A2D0;
     color: var(--white);
@@ -36,8 +39,8 @@
     color: #154763;
     flex-direction: column;
     justify-content: center;
-    width: 134px;
-    height: 90px;
+    width: 219px;
+    height: 100px;
     text-align: center;
     border: 0.5px #EEEEEE solid;
     flex-direction: column;

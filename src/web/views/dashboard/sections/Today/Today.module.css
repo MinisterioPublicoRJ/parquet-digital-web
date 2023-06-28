@@ -119,18 +119,14 @@
 .todayRobotPic {
   align-items: flex-end;
   display: flex;
-  height: 90%;
-  width: 50%;
+  height: 105%;
   justify-content: flex-end;
   position: absolute;
   right: 0;
   z-index: 0;
 }
 
-.todayRobotPic img {
-  margin-right: -3px;
-  border-radius: 0 0 15px 0;
-}
+
 
 .todayRobotPic button {
   background-color: transparent;

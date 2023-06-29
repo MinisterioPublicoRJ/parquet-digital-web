@@ -10,6 +10,7 @@
   position: relative;
   overflow: hidden;
   margin-left: 28px;
+  height: 30vh;
 }
 
 .todayContent {
@@ -119,7 +120,6 @@
 .todayRobotPic {
   align-items: flex-end;
   display: flex;
-  height: 100%;
   width: 50%;
   justify-content: flex-end;
   position: absolute;

@@ -1,12 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import { Spinner } from '../../../../../components';
-import { useAppContext } from '../../../../../../core/app/App.context';
-import {
-  controlButtonOuter,
-  controlButtonInner,
-  controlButtonBigNumber,
-} from './styles.module.css';
+import { controlButtonOuter, controlButtonInner, deskButtonsVistas, deskTextParagrap } from './styles.module.css';
 
 const propTypes = {
   number: PropTypes.number,
@@ -21,20 +16,27 @@ const defaultProps = {
   loading: false,
 };
 
-function MainButton({  number, text, loading, error }) {
-  const { currentOffice } = useAppContext();
+function MainButton({ number, text, loading, error }) {
+  //console.log ((typeof (text?.props?.children) !== 'undefined') (text = text.props.children));
+  //console.log(typeof(text))
 
-  return <div className={controlButtonOuter}>
-    <div className={`${controlButtonInner}` }
-    >
+
+  return (
+    <div className={controlButtonOuter}>
       {loading ? (
         <Spinner size="small" />
       ) : (
-        <span>{error ? 0 : number}</span>
+        <div className={`${controlButtonInner}`}>
+          {text === 'Total de vistas abertas' ? (
+            <span className={`${deskTextParagrap}`}>{error ? 0 : number}</span>
+          ):(
+            <span className={`${deskButtonsVistas}`}>{error ? 0 : number}</span>
+          )}
+        </div>
       )}
-      {text}
+      <p>{text}</p>
     </div>
-  </div>;
+  );
 }
 
 MainButton.propTypes = propTypes;

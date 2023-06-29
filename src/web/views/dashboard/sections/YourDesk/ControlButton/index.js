@@ -24,7 +24,6 @@ const defaultProps = {
 };
 
 function ControlButton({ isActive, text, isButton, loading, buttonPressed }) {
-  const { currentOffice } = useAppContext();
 
   let fill;
   if (isButton) {

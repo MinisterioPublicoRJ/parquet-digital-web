@@ -76,8 +76,8 @@ function DeskGraph({ category, color, data, totalSum }) {
                 horizontal
                 data={[{ y: chartData.y }]}
                 animate={{ duration: 2000 }}
-                barWidth={50}
-                labels={LABELS[i]}
+                barWidth={80}
+                //labels={LABELS[i]}
                 labelComponent={
                   <VictoryLabel
                     inline

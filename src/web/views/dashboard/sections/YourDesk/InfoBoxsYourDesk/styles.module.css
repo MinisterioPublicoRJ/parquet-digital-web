@@ -7,7 +7,7 @@
   .controlButtonOuter{
     margin: 4px;
     width: 140px;
-    height: 100px;
+    height: 105px;
     border-radius: 5px; 
     display: flex;
     text-transform: uppercase;
@@ -39,7 +39,7 @@
     flex-direction: column;
     justify-content: center;
     width: 219px;
-    height: 100px;
+    height: 104px;
     text-align: center;
     border: 0.5px #EEEEEE solid;
     flex-direction: column;

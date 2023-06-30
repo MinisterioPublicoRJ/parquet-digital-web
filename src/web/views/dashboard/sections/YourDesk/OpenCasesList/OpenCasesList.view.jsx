@@ -42,9 +42,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState([]);
-
-  console.log(selectedProducts)
 
   useEffect(() => {
     if (!chartData) return;
@@ -170,7 +167,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
      
       setTotalPagesByTab(totPages);
       setTabLoading(false);
-      setSelectedProducts(res)
     }
   }
 
@@ -260,7 +256,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   const emptyTab = !chartData[activeTab];
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
-  console.log(tabDetails);
   const categories = Object.keys(chartData);
 
   return (

@@ -24,6 +24,7 @@ function handleSearchButtonClick() {
           type="text"
           className={SearchBoxInput}
           onClick={handleSearchButtonClick}
+          onChange={handleSearchButtonClick}
           placeholder="Pesquisar na lista"
           ref={searchInput}
 

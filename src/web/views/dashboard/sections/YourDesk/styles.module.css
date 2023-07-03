@@ -28,6 +28,7 @@
   align-items: flex-end;
   display: flex;
   flex-direction: column  ;
+  margin-top: 5px;
 }
 .deskButtonsTextsHeaderText p{
   max-width: 250px;

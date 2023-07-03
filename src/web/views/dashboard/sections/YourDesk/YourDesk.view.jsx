@@ -13,7 +13,8 @@ import {
   deskButtonsTextsHeaderText,
   deskButtonsInactive,
   deskButtonsActive,
-  openCasesChartsWrapper
+  openCasesChartsWrapper,
+  openCasesChartsWrapperLabel,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -38,9 +39,7 @@ import {
   BUTTON_DICT,
   CONTROL_BUTTONS,
 } from './deskConstants';
-import {
-  MAIN_DATA
-} from './OpenCasesList/openCasesConstants'
+import { MAIN_DATA } from './OpenCasesList/openCasesConstants';
 
 function YourDesk() {
   const { currentOffice, buildRequestParams } = useAppContext();
@@ -54,12 +53,12 @@ function YourDesk() {
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
 
-  const sumValues = obj => Object.values(obj).reduce((a, b) => a + b, 0);
+  const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
 
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
-    getButtonsControl()
+    getButtonsControl();
   }, []);
 
   function getButtonsControl() {
@@ -124,7 +123,6 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
-
     const dbName = BUTTON_DICT[tabName];
     let tabData;
     const updatedState = {};
@@ -161,7 +159,6 @@ function YourDesk() {
     }
   }
 
-
   function getCollectionTable() {
     const updatedState = {};
 
@@ -179,25 +176,21 @@ function YourDesk() {
         return 0;
     }
   }
-  
+
   /**
    * Cleans chartData prop data, then draws Bar Chart
    * @param  {[type]} data chartData prop
    * @return {Array}      JSX for Bar Chart
    */
   function renderCharts(data) {
-    if (!data) return
+    if (!data) return;
 
     const cleanData = cleanChartData(data);
     const categories = Object.keys(data);
-    const sum = Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0
-    return <DeskGraph
-        data={cleanData}
-        totalSum={sum}
-      />;
+    const sum = Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0;
+    return <DeskGraph data={cleanData} totalSum={sum} />;
   }
 
-  
   /**
    * [cleanChartData description]
    * @param  {json} data the chartData prop
@@ -212,9 +205,10 @@ function YourDesk() {
     // then I push all 3 objects to an array
     categories.forEach((cat) => {
       const categoryChart = {
-          x: cat,
-          y: data[cat],
-          color:  MAIN_DATA[cat][0]};
+        x: cat,
+        y: data[cat],
+        color: MAIN_DATA[cat][0],
+      };
       cleanData[cat] = categoryChart;
     });
     return cleanData;
@@ -262,11 +256,18 @@ function YourDesk() {
             />
           ))}
         </div>
-
       </div>
       <div className={deskTabs}>
-        <div className={`${componentWrapper} ${activeTab === 'openCases' || activeTab === 'desk' ? '' : hide}`}>
-          <div className={`${deskButtonsTextsHeader} ${activeTab === 'collection' ? deskButtonsInactive : deskButtonsActive}`} >
+        <div
+          className={`${componentWrapper} ${
+            activeTab === 'openCases' || activeTab === 'desk' ? '' : hide
+          }`}
+        >
+          <div
+            className={`${deskButtonsTextsHeader} ${
+              activeTab === 'collection' ? deskButtonsInactive : deskButtonsActive
+            }`}
+          >
             <div className={deskButtonsInactive}>
               {deskButtonList.map((buttonTitle) => (
                 <InfoBoxYourDesk
@@ -278,9 +279,19 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsTextsHeaderText}>
-              <p>Há {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} procedimentos com todos os seus
-                crimes possivelmente prescritos.</p>
-                <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
+              <p>
+                Há {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} procedimentos
+                com todos os seus crimes possivelmente prescritos.
+              </p>
+              <div className={openCasesChartsWrapperLabel}>
+                <div />
+                  <div>Até 20 dias</div>
+                <div />
+                  <div>20 a 30 dias</div>
+                <div />
+                <div>+ 30 dias</div>
+              </div>
+              <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>
           </div>
           <OpenCasesList
@@ -288,10 +299,13 @@ function YourDesk() {
             chartData={tabDetail.openCases}
             isLoading={!tabDetail.openCases && loading}
           />
-
         </div>
-        <div className={`${componentWrapper} ${activeTab === 'collection' ? " " : hide}`}>
-          <div className={`${deskButtonsTextsHeader} ${activeTab === 'collection' ? yourCollectionButtons : desk}`} >
+        <div className={`${componentWrapper} ${activeTab === 'collection' ? ' ' : hide}`}>
+          <div
+            className={`${deskButtonsTextsHeader} ${
+              activeTab === 'collection' ? yourCollectionButtons : desk
+            }`}
+          >
             {collectionButtonList.map((buttonTitle) => (
               <InfoBoxYourDesk
                 key={BUTTON_TEXTS[buttonTitle]}
@@ -299,7 +313,7 @@ function YourDesk() {
                 number={docsQuantity[buttonTitle]}
                 error={!docsQuantity[buttonTitle] && !loading}
               />
-            ))}          
+            ))}
           </div>
           {collectionTable}
         </div>

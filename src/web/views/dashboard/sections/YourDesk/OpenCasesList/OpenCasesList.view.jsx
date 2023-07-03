@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { SearchBox } from 'mapasteca-web';
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import Api from '../../../../../api';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
-import { Modal } from '../../../../../components/layoutPieces';
+import { Modal, SearchBox } from '../../../../../components/layoutPieces';
 import { highlightJSX } from '../../../../../utils';
 
 import {
@@ -42,9 +41,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState([]);
-
-  console.log(selectedProducts)
 
   useEffect(() => {
     if (!chartData) return;
@@ -170,7 +166,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
      
       setTotalPagesByTab(totPages);
       setTabLoading(false);
-      setSelectedProducts(res)
     }
   }
 
@@ -260,7 +255,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   const emptyTab = !chartData[activeTab];
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
-  console.log(tabDetails);
   const categories = Object.keys(chartData);
 
   return (
@@ -270,7 +264,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       <div className={boxFilters}>
       <p>Filtrar Tabela:</p>
         {LABELS.map((text, i) => (
-        <button onClick={() => handleChangeActiveTab(categories[i-1])} type='button'>{text}</button>
+        <button onClick={() => handleChangeActiveTab(categories[i-1])} type='button'>
+          <p>{text}</p>
+        </button>
         ))}
          {searchString &&
           !tabLoading &&

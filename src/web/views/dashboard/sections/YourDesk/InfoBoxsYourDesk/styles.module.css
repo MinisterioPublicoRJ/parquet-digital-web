@@ -6,24 +6,26 @@
   
   .controlButtonOuter{
     margin: 4px;
-    width: 105px;
-    height: 90px;
-  }
-  .controlButtonInner {
-    align-items: center;
-    cursor: pointer;
+    width: 140px;
+    height: 105px;
+    border-radius: 5px; 
     display: flex;
     text-transform: uppercase;
     text-align: center;
     cursor: default;
-    margin: 0 auto;
     flex-direction: column;
   }
-  .controlButtonInner span {
-    margin-top: 8px ;
-    font-size: var(--spotlightSize);
+  span .deskButtonsVistas{
+    font-size: 40px;
+  }
+  .controlButtonInner {
+    margin-top: 15px ;
     font-weight: 900;
-    
+    font-size: var(--spotlightSize);
+  }
+ .controlButtonOuter p{
+   margin-top: 3px;
+   font-size: 12px;
   }
   .controlButtonOuter:nth-child(2){
     background-color: #71A2D0;
@@ -36,11 +38,12 @@
     color: #154763;
     flex-direction: column;
     justify-content: center;
-    width: 134px;
-    height: 90px;
+    width: 219px;
+    height: 104px;
     text-align: center;
     border: 0.5px #EEEEEE solid;
     flex-direction: column;
+    
  }
  .controlButtonOuter:nth-child(3){
     background-color: #71D0A4;

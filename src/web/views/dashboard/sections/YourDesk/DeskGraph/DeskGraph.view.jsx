@@ -67,19 +67,17 @@ function DeskGraph({ category, color, data, totalSum }) {
           padding={0}
           disableInlineStyles
         >
-          {/*             <VictoryBar horizontal data={buttonChartData} /> */}
+          {/*<VictoryBar horizontal data={buttonChartData} /> */}
 
           {buttonChartData.map((chartData, i) => {
-            console.log('chartData, i: ', chartData, i);
             sum += chartData.y;
-            console.log('sum', sum );
             return (
               <VictoryBar
                 horizontal
                 data={[{ y: chartData.y }]}
                 animate={{ duration: 2000 }}
-                barWidth={50}
-                labels={LABELS[i]}
+                barWidth={80}
+                //labels={LABELS[i]}
                 labelComponent={
                   <VictoryLabel
                     inline

@@ -2,7 +2,7 @@
   color: var(--darkBlue);
   font-family: var(--titleFont);
   font-size: var(--titleFontSize);
-  font-weight: bold;
+  font-weight: 200;
 }
 
 .mainTitleGlued {

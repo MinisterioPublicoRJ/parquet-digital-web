@@ -19,6 +19,7 @@
   width: 70%;
   z-index: 1;
 }
+
 .todayContent p,
 .todayContent h2 {
   margin: 0;
@@ -44,11 +45,13 @@
   font-size: inherit;
   font-weight: inherit;
   font-family: inherit;
+  color: #154763 ;
 }
 
 .todayContent > button > span {
   text-decoration: underline;
   cursor: pointer;
+  color: #154763;
 }
 
 .todayContent > button > span::after {
@@ -121,16 +124,14 @@
   align-items: flex-end;
   display: flex;
   width: 50%;
+  height: 105%;
   justify-content: flex-end;
   position: absolute;
   right: 0;
   z-index: 0;
 }
 
-.todayRobotPic img {
-  margin-right: -3px;
-  border-radius: 0 0 15px 0;
-}
+
 
 .todayRobotPic button {
   background-color: transparent;

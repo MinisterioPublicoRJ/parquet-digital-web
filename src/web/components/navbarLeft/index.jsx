@@ -14,7 +14,6 @@ import IndicadoresDeSucessoIcon from '../../assets/svg/indicadoresDeSucesso';
 import {
   navBarLeftContent,
   topButtonDiv,
-  navBarBoxContentTexts,
   logOutPositionDiv,
   userManualDiv,
   notaMetodologicaDiv,
@@ -29,6 +28,8 @@ import SuccessIndicators from '../../views/dashboard/sections/SuccessIndicators'
 
 function NavbarLeft() {
   const [modalType, setModalType] = useState(false);
+  const { currentOffice } = useAppContext();
+  console.log(currentOffice)
   const { logout } = useAppContext();
   const [hoverUserManual, setHoverUserManual] = useState(false);
   const [hoverNotaMetodologica, setHoverNotaMetodologica] = useState(false);
@@ -118,6 +119,7 @@ function NavbarLeft() {
             </div>
           </Modal>
         )}
+        
         <div
           className={tempoTramitacaoDiv}
           onMouseOver={() => setHoverRadar(true)}
@@ -137,6 +139,7 @@ function NavbarLeft() {
             <ProcessingTime />
           </Modal>
         )}
+        {currentOffice.tipo !== 7 ? (
         <div
           className={tempoTramitacaoDiv}
           onMouseOver={() => setHoverTempoTramitacao(true)}
@@ -150,6 +153,8 @@ function NavbarLeft() {
           </button>
           <p>Tempo de tramitação</p>
         </div>
+        ): null }
+        {currentOffice.tipo === 2 ? (
         <div
           className={tempoTramitacaoDiv}
           onMouseOver={() => setHoverIndicadores(true)}
@@ -158,6 +163,7 @@ function NavbarLeft() {
           onBlur={() => setHoverIndicadores(false)}
           onClick={() => setModalType('indicators')}
         >
+  
           <button type="button">
             {hoverIndicadores ? (
               <IndicadoresDeSucessoIcon fill="#154763" />
@@ -167,6 +173,7 @@ function NavbarLeft() {
           </button>
           <p>Indicadores de Sucesso</p>
         </div>
+        ) : null}
       </div>
 
       <div className={logOutPositionDiv}>

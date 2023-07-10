@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
+import { SearchBox } from '../../../../components/layoutPieces';
 
-import { SearchBox } from 'mapasteca-web';
 import {
   mainInvestigatedOuter,
   mainInvestigatedTableWrapper,
   investigatedProfileBtn,
+  mainInvestigatedOuterBoxSearch,
 } from './styles.module.css';
 import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
@@ -164,7 +165,7 @@ function MainInvestigated() {
     getMainInvestigated();
   }
 
-  function handleSearch(searchStr) {
+  const onSearch = (searchStr) => {
     setSearchString(searchStr);
     setPage(1);
   }
@@ -192,7 +193,10 @@ function MainInvestigated() {
 
     return (
       <article className={mainInvestigatedOuter}>
-        <SearchBox onSearch={handleSearch}/>
+        <div className={mainInvestigatedOuterBoxSearch}>
+          <SearchBox onSearch={onSearch}/>
+          <SectionTitle value="Principais Investigados" />
+        </div>
         <div className={mainInvestigatedTableWrapper} ref={tableTopDivRef}>
           <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
           <Pagination

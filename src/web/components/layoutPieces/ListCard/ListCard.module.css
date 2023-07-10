@@ -1,0 +1,35 @@
+.listCardMain {
+  border-radius: 7px;
+  box-shadow: 0px 3px 8px #00000029;
+  display: flex;
+  font-weight: 500;
+  overflow: hidden;
+  color: var(--primaryFontColor);
+  font-family: var(--mainFontFamily);
+  font-size: var(--smallFontSize);
+}
+
+.listCardRight {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 75%;
+}
+
+.listCardLeft {
+  width: 15%;
+}
+
+.listCardRight abbr {
+  text-decoration: none;
+}
+
+.listCardTitle {
+  padding-bottom: calc( 0.5 * var(--smallFontSize));
+}
+
+.listCardLink {
+  color: var(--primaryLinkColor);
+  font-size: var(--smallFontSize);
+  padding-top: calc( 0.5 * var(--smallFontSize));
+}

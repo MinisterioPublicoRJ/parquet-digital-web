@@ -2,7 +2,8 @@
 // eslint-disable import/no-cycle
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ListCard } from 'mapasteca-web';
+// import { ListCard } from 'mapasteca-web';
+import ListCard from '../ListCard/ListCard';
 
 import {
   processDetailOuter,

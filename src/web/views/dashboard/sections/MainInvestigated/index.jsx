@@ -29,7 +29,7 @@ function MainInvestigated() {
   const [apiError, setApiError] = useState(false);
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = useState(null);
   const [investigatedProfile, setInvestigatedProfile] = useState();
   const [selectedElement, setSelectedElement] = useState({});
   const tableTopDivRef = useRef() ;
@@ -167,7 +167,6 @@ function MainInvestigated() {
 
   const onSearch = (searchStr) => {
     setSearchString(searchStr);
-    setPage(1);
   }
 
   function handlePageClick(nextPage) {
@@ -194,11 +193,16 @@ function MainInvestigated() {
     return (
       <article className={mainInvestigatedOuter}>
         <div className={mainInvestigatedOuterBoxSearch}>
-          <SearchBox onSearch={onSearch}/>
           <SectionTitle value="Principais Investigados" />
+          <SearchBox onSearch={onSearch}/>
         </div>
         <div className={mainInvestigatedTableWrapper} ref={tableTopDivRef}>
-          <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
+          <CustomTable 
+            data={tableData} 
+            columns={TABLE_COLUMNS} 
+            showHeader      
+            searchString={searchString}
+          />
           <Pagination
             totalPages={totalPages || 0}
             handlePageClick={(clickedPage) => handlePageClick(clickedPage)}

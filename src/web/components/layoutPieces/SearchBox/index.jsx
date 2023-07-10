@@ -12,10 +12,10 @@ function SearchBox({ onSearch }) {
   const searchInput = useRef(null);
 
 
-function handleSearchButtonClick() {
+function handleSearchButtonClick(e) {
+    e.preventDefault();
     onSearch(searchInput.current.value);
   }
-
 
   return (
     <div className={SearchBoxOuter}>
@@ -24,10 +24,8 @@ function handleSearchButtonClick() {
           type="text"
           className={SearchBoxInput}
           onClick={handleSearchButtonClick}
-          onChange={handleSearchButtonClick}
           placeholder="Pesquisar na lista"
           ref={searchInput}
-
         />
     </div>
   );

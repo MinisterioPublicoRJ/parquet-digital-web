@@ -34,8 +34,7 @@ function ProcessListCriminal() {
 
   return (
     <div className={tableCriminalOuter}>
-     
-      <div className={mainCriminalOuterBoxSearch}>
+        <div className={mainCriminalOuterBoxSearch}>
           <SectionTitle value="Lista de processos criminais" glueToTop />
           <SearchBox onSearch={onSearch}/>
         </div>

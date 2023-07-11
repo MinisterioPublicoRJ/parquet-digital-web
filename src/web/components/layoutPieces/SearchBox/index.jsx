@@ -1,18 +1,15 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
-import  SearchIcon from '../../../assets/svg/searchIcon';
+import SearchIcon from '../../../assets/svg/searchIcon';
 
-const {
-  SearchBoxOuter,
-  SearchBoxInput,
-} = styles;
+const { SearchBoxOuter, SearchBoxInput } = styles;
 
 function SearchBox({ onSearch }) {
   const searchInput = useRef(null);
 
-
-function handleSearchButtonClick(e) {
+  function handleSearchButtonClick(e) {
     e.preventDefault();
     onSearch(searchInput.current.value);
   }
@@ -21,12 +18,13 @@ function handleSearchButtonClick(e) {
     <div className={SearchBoxOuter}>
       <SearchIcon />
       <input
-          type="text"
-          className={SearchBoxInput}
-          onClick={handleSearchButtonClick}
-          placeholder="Pesquisar na lista"
-          ref={searchInput}
-        />
+        type="text"
+        className={SearchBoxInput}
+        onClick={handleSearchButtonClick}
+        onKeyUp={handleSearchButtonClick}
+        placeholder="Pesquisar na lista"
+        ref={searchInput}
+      />
     </div>
   );
 }

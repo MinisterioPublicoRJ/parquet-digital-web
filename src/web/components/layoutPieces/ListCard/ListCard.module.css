@@ -4,9 +4,9 @@
   display: flex;
   font-weight: 500;
   overflow: hidden;
-  color: var(--primaryFontColor);
-  font-family: var(--mainFontFamily);
-  font-size: var(--smallFontSize);
+  color: var(--dark);
+  font-family: var(--defaultfont);
+  font-size: var(--smallFont);
 }
 
 .listCardRight {
@@ -25,11 +25,11 @@
 }
 
 .listCardTitle {
-  padding-bottom: calc( 0.5 * var(--smallFontSize));
+  padding-bottom: calc(0.5 * var(--smallFont));
 }
 
 .listCardLink {
-  color: var(--primaryLinkColor);
-  font-size: var(--smallFontSize);
-  padding-top: calc( 0.5 * var(--smallFontSize));
+  color: var(--primary);
+  font-size: var(--smallFont);
+  padding-top: calc(0.5 * var(--smallFont));
 }

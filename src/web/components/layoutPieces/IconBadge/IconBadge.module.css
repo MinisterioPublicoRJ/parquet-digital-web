@@ -7,9 +7,9 @@
   justify-content: center;
   text-transform: uppercase;
   width: 100%;
-  font-family: var(--mainFontFamily);
-  font-size: var(--smallFontSize);
-  color: var(--secondaryFontColor);
+  font-family: var(--defaultFont);
+  font-size: var(--smallFont);
+  color: var(--white);
 }
 
 .iconBadgeMain::after {

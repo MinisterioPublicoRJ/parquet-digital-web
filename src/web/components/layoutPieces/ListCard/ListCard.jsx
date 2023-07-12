@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconBadge from '../IconBadge/IconBadge';
-import styles from './ListCard.module.css';
-
-const { listCardMain, listCardRight, listCardLeft, listCardTitle, listCardLink } = styles;
+import {
+  listCardMain,
+  listCardRight,
+  listCardLeft,
+  listCardTitle,
+  listCardLink,
+} from './ListCard.module.css';
 
 function ListCard({
   title,
@@ -15,7 +19,7 @@ function ListCard({
   detailColor,
   fixedHeight,
 }) {
-  const lineHeight = `calc(1.3 * var(--smallFontSize))`;
+  const lineHeight = `calc(1.3 * var(--smallFont))`;
   const outerStyles = {
     backgroundColor: fillColor,
     lineHeight,

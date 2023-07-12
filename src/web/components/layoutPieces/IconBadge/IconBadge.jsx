@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './IconBadge.module.css';
-
-const { iconBadgeMain } = styles;
+import { iconBadgeMain } from './IconBadge.module.css';
 
 function IconBadge({ backgroundColor, text, icon }) {
   const outerStyles = {

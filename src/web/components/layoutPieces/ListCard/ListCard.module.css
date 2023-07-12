@@ -5,7 +5,7 @@
   font-weight: 500;
   overflow: hidden;
   color: var(--dark);
-  font-family: var(--defaultfont);
+  font-family: var(--defaultFont);
   font-size: var(--smallFont);
 }
 

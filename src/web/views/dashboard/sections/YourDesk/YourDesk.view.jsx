@@ -15,6 +15,7 @@ import {
   deskButtonsActive,
   openCasesChartsWrapper,
   openCasesChartsWrapperLabel,
+  deskButtonsCollectionPhrase,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -314,6 +315,13 @@ function YourDesk() {
                 error={!docsQuantity[buttonTitle] && !loading}
               />
             ))}
+            <div className={deskButtonsCollectionPhrase} >
+              <p>Constatei que nenhum PIC passou por você neste mês, 
+              nenhum foi instaurado nesse período. Foram 0 aberturas 
+              de vista, você não aproveitou nenhum caso para denúncias,
+              cautelares e arquivamentos. Não houve aumento nem redução
+              nos últimos 30 dias.</p>
+            </div>
           </div>
           {collectionTable}
         </div>

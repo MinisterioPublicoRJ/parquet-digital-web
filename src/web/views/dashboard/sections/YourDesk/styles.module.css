@@ -14,10 +14,10 @@
 .deskButtonsTextsHeader{
   display: flex;
   height: 100px;
+  justify-content: space-between;
 }
 .deskButtonsActive{
   display: flex;
-  justify-content: space-between;
   margin-left: -3px;
 
 }
@@ -45,7 +45,11 @@
   overflow: hidden;
   padding: 0 0 0 0;
 }
-
+.deskButtonsCollectionPhrase{
+  text-align: right;
+  color: #374354;
+  max-width: 420px;
+}
 .componentWrapper {
   height: 100%;
   display: flex;

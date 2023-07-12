@@ -12,7 +12,6 @@
   box-shadow: inset 0px 0px 0px 0px var(--lightGray);
   border: 1px solid var(--lightGray);
   display: flex;
-  height: 50%;
   width: 50%;
   min-width: 730px;
   min-height: 450px;

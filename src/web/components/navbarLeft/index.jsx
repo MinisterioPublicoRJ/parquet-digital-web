@@ -29,7 +29,6 @@ import SuccessIndicators from '../../views/dashboard/sections/SuccessIndicators'
 function NavbarLeft() {
   const [modalType, setModalType] = useState(false);
   const { currentOffice } = useAppContext();
-  console.log(currentOffice)
   const { logout } = useAppContext();
   const [hoverUserManual, setHoverUserManual] = useState(false);
   const [hoverNotaMetodologica, setHoverNotaMetodologica] = useState(false);

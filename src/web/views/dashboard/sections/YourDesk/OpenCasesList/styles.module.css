@@ -106,35 +106,41 @@
 .boxFilters{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 20px;
   border-radius: 5px;
-  background-color: #f8f9fb;
-  padding: 5px;
   height: 1.8rem;
-  width: 58%;
-  border: 0.5px #EEEEEE solid;
   margin-top: 20px;
   
-}
-.boxFilters p{
-  margin-top: 8px;
-  margin-right: 20px;
 }
 .boxFilters button{
   border: none;
   background: transparent;
-  border-right: 1px solid var(--grayPagination);
   color: var(--grayPagination);
-  padding-left: 10px;
+  border-radius: 5px;
+  margin-left: 3px;
+  height: 2.5rem;
+  width: 110px;
+}
+.boxFilters button:nth-child(2){
+  border: 0.5px #EEEEEE solid;
+}
+.boxFilters button:nth-child(3){
+  background-color: #28A7E0;
+  color: var(--white);
+}
+.boxFilters button:nth-child(4){
+  background: rgb(248, 189, 108);
+  color: var(--white);
 }
 .boxFilters button:nth-child(5){
-  border-right: none;
-}
-.boxFilters button:hover:nth-child(5){
-  border-right: none;
+  background : rgb(248, 108, 114);
+  color: var(--white);
 }
 .boxFilters button:hover{
-  color: #154763;
-  border-right: 1px solid #154763;
+  color: var(--white);
+  opacity: 0.8;
+}
+.boxFilters button:nth-child(2){
+  color: var(--grayPagination);
 }

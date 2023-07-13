@@ -465,7 +465,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
     const single = count === 1;
     message = (
       <span>
-        Há
+        Há {""}
         <strong>{`${single ? 'um novo documento' : `${count} novos documentos`} `}</strong>
         com pelo menos uma
         <strong> vitima recorrente </strong>
@@ -566,10 +566,10 @@ function ic1aConstructor(
     const single = count === 1;
     message = (
       <span>
-        Há
+        Há{" "}
         <strong>
           {single ? 'um inquérito civil' : `${count} inquéritos civis`}
-          sem prorrogação{' '}
+          {" "}sem prorrogação{' '}
         </strong>
         há
         <strong> mais de 1 ano</strong>.

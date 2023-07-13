@@ -23,7 +23,7 @@ export const COMPRAS = ({ compId, contrato }) => ({
   icon: <IconCompras fillColor="white" width="30px" height="30px" />,
   text: 'Painel de Compras',
   background: '#F8BD6C',
-  link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/AlertasProttipo/Fornecedor?%3Aembed=y&%3AisGuestRedirectFromVizportal=y&contrato_iditem=${compId}&CONTRATACAO=${contrato}`,
+  link: `https://tableau2020.mprj.mp.br/t/MPMAPAS/views/AnlisedeComprasv3_0Alertas_16892604802300/Fornecedor?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link:embed=yes&:toolbar=no&contratoiditem=${compId}&contratacao=${contrato}`,
 });
 
 

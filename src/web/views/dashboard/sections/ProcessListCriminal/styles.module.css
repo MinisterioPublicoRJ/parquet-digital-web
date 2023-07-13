@@ -24,7 +24,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin-top: 20px;
 }
 .tableBody {
   display: flex;
@@ -34,3 +33,11 @@
   /* overflow is problematic for height */
 }
  
+.mainCriminalOuterBoxSearch{
+  display: flex;
+  justify-content: space-between;
+ 
+}
+.mainCriminalOuterBoxSearch h2{
+  margin-top: 30px;
+}

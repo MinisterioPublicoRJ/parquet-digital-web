@@ -23,3 +23,11 @@
   background: transparent;
   text-decoration: underline;
 }
+.mainInvestigatedOuterBoxSearch{
+  display: flex;
+  justify-content: space-between;
+ 
+}
+.mainInvestigatedOuterBoxSearch h2{
+  margin-top: 30px;
+}

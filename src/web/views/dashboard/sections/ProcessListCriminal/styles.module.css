@@ -34,3 +34,11 @@
   /* overflow is problematic for height */
 }
  
+.mainCriminalOuterBoxSearch{
+  display: flex;
+  justify-content: space-between;
+ 
+}
+.mainCriminalOuterBoxSearch h2{
+  margin-top: 30px;
+}

@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
+import { SearchBox } from '../../../../components/layoutPieces';
 
-import { SearchBox } from 'mapasteca-web';
 import {
   mainInvestigatedOuter,
   mainInvestigatedTableWrapper,
   investigatedProfileBtn,
+  mainInvestigatedOuterBoxSearch,
 } from './styles.module.css';
 import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
@@ -28,7 +29,7 @@ function MainInvestigated() {
   const [apiError, setApiError] = useState(false);
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = useState(null);
   const [investigatedProfile, setInvestigatedProfile] = useState();
   const [selectedElement, setSelectedElement] = useState({});
   const tableTopDivRef = useRef() ;
@@ -164,9 +165,8 @@ function MainInvestigated() {
     getMainInvestigated();
   }
 
-  function handleSearch(searchStr) {
+  const onSearch = (searchStr) => {
     setSearchString(searchStr);
-    setPage(1);
   }
 
   function handlePageClick(nextPage) {
@@ -192,9 +192,17 @@ function MainInvestigated() {
 
     return (
       <article className={mainInvestigatedOuter}>
-        <SearchBox onSearch={handleSearch}/>
+        <div className={mainInvestigatedOuterBoxSearch}>
+          <SectionTitle value="Principais Investigados" />
+          <SearchBox onSearch={onSearch}/>
+        </div>
         <div className={mainInvestigatedTableWrapper} ref={tableTopDivRef}>
-          <CustomTable data={tableData} columns={TABLE_COLUMNS} showHeader />
+          <CustomTable 
+            data={tableData} 
+            columns={TABLE_COLUMNS} 
+            showHeader      
+            searchString={searchString}
+          />
           <Pagination
             totalPages={totalPages || 0}
             handlePageClick={(clickedPage) => handlePageClick(clickedPage)}

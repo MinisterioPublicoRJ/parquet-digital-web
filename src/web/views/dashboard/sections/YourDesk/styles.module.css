@@ -93,11 +93,13 @@
   color:rgb(248, 108, 114);
 
 }
+
 .yourCollectionButtons div:nth-child(1){
   width: 140px;
   height: 100px;
   background-color: #EEEEEE;
   color: #ACACAC;
+  margin-left: 0px;
 }
 .yourCollectionButtons div:nth-child(2){
   width: 140px;

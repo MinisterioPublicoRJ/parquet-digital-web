@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SearchBox } from 'mapasteca-web';
+import { SearchBox } from '../../../../components/layoutPieces';
 import ProcessList from './ProcessList';
 import OngoingInvestigations from './OngoingInvestigations';
 import { InvestigatedProfile, Modal, ProcessDetail, SectionTitle } from '../../../../components';
@@ -10,6 +10,7 @@ import {
   tablesTutelaButtonInactive,
   tablesTutelaBody,
   searchBoxContainer,
+  mainTableTutelasOuterBoxSearch,
 } from './styles.module.css';
 
 function TablesTutela() {
@@ -19,13 +20,13 @@ function TablesTutela() {
   const [extDocNum, setExtDocNum] = useState(null);
   const [mpDocNum, setMpDocNum] = useState(null);
   const [selectedElement, setSelectedElement] = useState({});
-  
-  function setInvestigatedProfile(representanteDk, event){
+
+  function setInvestigatedProfile(representanteDk, event) {
     setSelectedElement(event?.target);
     setRepDk(representanteDk);
   }
 
-  function setProcessDetail(docuNrMp, docuNrExterno, event){
+  function setProcessDetail(docuNrMp, docuNrExterno, event) {
     setSelectedElement(event?.target);
     setExtDocNum(docuNrExterno);
     setMpDocNum(docuNrMp);
@@ -36,26 +37,27 @@ function TablesTutela() {
   };
 
   return (
-    <div className={ `${ tablesTutelaOuter } ${ searchBoxContainer }` }>
-      <SearchBox onSearch={onSearch}>
-        <div className={ tablesTutelaHeader }>
+    <div className={`${tablesTutelaOuter} ${searchBoxContainer}`}>
+      <div className={mainTableTutelasOuterBoxSearch}>
+        <div className={tablesTutelaHeader}>
           <button
-            className={visibleTab === 'process' ? '' : `${ tablesTutelaButtonInactive }`}
+            className={visibleTab === 'process' ? '' : `${tablesTutelaButtonInactive}`}
             type="button"
             onClick={() => setVisibleTab('process')}
           >
             <SectionTitle value="Lista de processos" glueToTop />
           </button>
           <button
-            className={visibleTab === 'investigation' ? '' : `${ tablesTutelaButtonInactive }`}
+            className={visibleTab === 'investigation' ? '' : `${tablesTutelaButtonInactive}`}
             type="button"
             onClick={() => setVisibleTab('investigation')}
           >
             <SectionTitle value="Lista de Investigações" glueToTop />
           </button>
         </div>
-      </SearchBox>
-      <div className={ tablesTutelaBody }>
+        <SearchBox onSearch={onSearch} />
+      </div>
+      <div className={tablesTutelaBody}>
         <ProcessList
           setInvestigatedProfile={setInvestigatedProfile}
           setProcessDetail={setProcessDetail}
@@ -68,19 +70,21 @@ function TablesTutela() {
           isActive={visibleTab === 'investigation'}
           searchString={searchString}
         />
-        {
-          mpDocNum &&
+        {mpDocNum && (
           <Modal withExitButton previousElement={selectedElement} close={() => setMpDocNum(null)}>
-            <ProcessDetail docuNrExterno={extDocNum} docuNrMp={mpDocNum} close={() => setMpDocNum(null)} />
-          </Modal>          
-        }
+            <ProcessDetail
+              docuNrExterno={extDocNum}
+              docuNrMp={mpDocNum}
+              close={() => setMpDocNum(null)}
+            />
+          </Modal>
+        )}
 
-        {
-          repDk &&
+        {repDk && (
           <Modal withExitButton previousElement={selectedElement} close={() => setRepDk(null)}>
             <InvestigatedProfile representanteDk={repDk} close={() => setRepDk(null)} />
-          </Modal>          
-        }
+          </Modal>
+        )}
       </div>
     </div>
   );

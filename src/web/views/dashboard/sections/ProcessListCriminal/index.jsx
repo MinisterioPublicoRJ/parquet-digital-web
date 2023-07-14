@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { SearchBox } from 'mapasteca-web';
+import { SearchBox } from '../../../../components/layoutPieces';
 import { SectionTitle, Modal, ProcessDetail, InvestigatedProfile } from '../../../../components';
 
 import {
   tableCriminalOuter,
-  tableBody
+  tableBody,
+  mainCriminalOuterBoxSearch,
 } from './styles.module.css';
 import ProcessList from '../TablesTutela/ProcessList';
 
@@ -33,9 +34,10 @@ function ProcessListCriminal() {
 
   return (
     <div className={tableCriminalOuter}>
-      <SearchBox onSearch={onSearch}>
-        <SectionTitle value="Lista de processos criminais" glueToTop />
-      </SearchBox>
+        <div className={mainCriminalOuterBoxSearch}>
+          <SectionTitle value="Lista de processos criminais" glueToTop />
+          <SearchBox onSearch={onSearch}/>
+        </div>
         <div className={tableBody}>
           <ProcessList 
           setInvestigatedProfile={setInvestigatedProfile}

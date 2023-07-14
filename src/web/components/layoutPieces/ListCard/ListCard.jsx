@@ -7,6 +7,7 @@ import {
   listCardLeft,
   listCardTitle,
   listCardLink,
+  fixedHeightStyle
 } from './ListCard.module.css';
 
 function ListCard({
@@ -19,36 +20,9 @@ function ListCard({
   detailColor,
   fixedHeight,
 }) {
-  const lineHeight = `calc(1.3 * var(--smallFont))`;
+  
   const outerStyles = {
-    backgroundColor: fillColor,
-    lineHeight,
-  };
-
-  const sharedSectionStyles = {
-    padding: lineHeight,
-  };
-
-  const titleStyles = {
-    ...(fixedHeight
-      ? {
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-          height: lineHeight,
-          whiteSpace: 'nowrap',
-        }
-      : {}),
-  };
-
-  const linkStyles = {
-    ...(fixedHeight
-      ? {
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-          height: lineHeight,
-          whiteSpace: 'nowrap',
-        }
-      : {}),
+    backgroundColor: fillColor
   };
 
   return (
@@ -58,16 +32,16 @@ function ListCard({
           <IconBadge backgroundColor={detailColor} icon={icon} />
         </div>
       )}
-      <div className={listCardRight} style={sharedSectionStyles}>
+      <div className={listCardRight}>
         {/* This will be improved to an accessible solution in the future */}
         {title && (
-          <strong className={listCardTitle} style={titleStyles}>
+          <strong className={`${listCardTitle} ${fixedHeight && fixedHeightStyle}`}>
             <abbr title={title}>{title}</abbr>
           </strong>
         )}
         {content}
         {actionText && (
-          <a className={listCardLink} style={linkStyles} href={actionLink}>
+          <a className={`${listCardLink} ${fixedHeight && fixedHeightStyle}`} href={actionLink}>
             {actionText}
           </a>
         )}

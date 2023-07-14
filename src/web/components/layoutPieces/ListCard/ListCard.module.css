@@ -7,6 +7,7 @@
   color: var(--dark);
   font-family: var(--defaultFont);
   font-size: var(--smallFont);
+  line-height: calc(1.3 * var(--smallFont));
 }
 
 .listCardRight {
@@ -14,14 +15,15 @@
   flex-direction: column;
   flex: 1;
   max-width: 75%;
-}
-
-.listCardLeft {
-  width: 15%;
+  padding: calc(1.3 * var(--smallFont));
 }
 
 .listCardRight abbr {
   text-decoration: none;
+}
+
+.listCardLeft {
+  width: 15%;
 }
 
 .listCardTitle {
@@ -32,4 +34,11 @@
   color: var(--primary);
   font-size: var(--smallFont);
   padding-top: calc(0.5 * var(--smallFont));
+}
+
+.fixedHeightStyle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: calc(1.3 * var(--smallFont));
+  white-space: nowrap;
 }

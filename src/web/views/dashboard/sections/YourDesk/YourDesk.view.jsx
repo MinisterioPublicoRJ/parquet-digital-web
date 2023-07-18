@@ -20,7 +20,7 @@ import {
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
-//import MetricsProsecutions from './MetricsProsecutions';
+import MetricsProsecutions from './MetricsProsecutions';
 //import GenericTab from './GenericTab';
 import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
@@ -243,6 +243,7 @@ function YourDesk() {
     return <Spinner size="large" />;
   }
 
+  console.log('tabDetail', tabDetail,'activeTab', activeTab);
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>

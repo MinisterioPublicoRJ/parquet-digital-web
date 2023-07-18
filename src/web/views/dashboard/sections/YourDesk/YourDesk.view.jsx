@@ -125,13 +125,48 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
-    const dbName = BUTTON_DICT[tabName];
+    console.log('gettin tab details, tabName', tabName);
+    let dbNames = [];
+
+    if (tabName==='collection'){
+      console.log('inside if');
+      if (currentOffice.tipo === 2){
+        console.log('inside office if');
+        dbNames.push('pip_pics');
+        dbNames.push('pip_inqueritos');
+      } 
+
+    }
+    
+    console.log('dbNames: ', dbNames);
+    //const dbName = BUTTON_DICT[tabName];
     let tabData;
-    const updatedState = {};
+    let updatedState = {};
     setLoading(true);
+    
     try {
-      tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
-      updatedState[tabName] = tabData;
+      for (const dbName of dbNames){  
+        console.log('dbName loop:', dbName); 
+        tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
+        console.log('tab data: ', tabData);
+        
+        let temp1;
+        if (updatedState[tabName]){
+          temp1 = updatedState[tabName]?.metrics;
+        }
+        updatedState[tabName] = tabData;
+
+        if (!temp1) temp1 = updatedState[tabName]?.metrics;
+        
+        console.log('upstate:', updatedState[tabName].metrics);
+        let temp2 =  updatedState[tabName]?.metrics;
+        updatedState[tabName].metrics = tabDetail[tabName]?.metrics ? tabDetail[tabName].metrics : [];
+        console.log('temp1', temp1, 'temp2', temp2);
+        if (temp1) updatedState[tabName].metrics.push(temp1);
+        if (temp2) updatedState[tabName].metrics.push(temp2);
+        console.log('upstate refresh:', updatedState[tabName].metrics);
+      }
+
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState[tabName] = undefined;
@@ -223,8 +258,11 @@ function YourDesk() {
    * @return {void}
    */
   function handleChangeActiveTab(tabName) {
+    console.log('changing active tab');
     setActiveTab(tabName);
     if (!tabDetail[tabName]) {
+      
+      getTabDetails(tabName);
       switch (tabName) {
         case 'openCases' || 'desk':
           getOpenCasesDetails();
@@ -243,8 +281,8 @@ function YourDesk() {
     return <Spinner size="large" />;
   }
 
-  console.log('tabDetail', tabDetail,'activeTab', activeTab);
-  return (
+/*   console.log('tabDetail', tabDetail,'activeTab', activeTab);
+ */  return (
     <article className={deskOuter}>
       <div className={deskHeader}>
         <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />

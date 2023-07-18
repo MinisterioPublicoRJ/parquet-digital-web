@@ -41,4 +41,5 @@ export const BUTTON_DICT = {
   closedCasesC: 'criminal_finalizados',
   closedCasesP: 'pip_finalizados',
   closedCasesT: 'tutela_finalizados',
+  collection: 'pip_pics'
 };

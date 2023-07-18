@@ -1,6 +1,10 @@
 /* eslint-disable */
 import React from 'react';
 import { formatPercentage } from '../../../../../utils';
+import { useAppContext } from '../../../../../../core/app/App.context';
+
+const { currentOffice } = useAppContext();
+const type = currentOffice ? currentOffice.tipo : undefined;
 
 function openInvestigationsMetrics({ variacaoAcervo }) {
   const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
@@ -35,7 +39,7 @@ function courtCasesMetrics({
   const yearVariation = formatPercentage(Math.abs(variacao12Meses));
   return (
     <div>
-    {nrAcoesUltimos60Dias === 0 ? (
+    {nrAcoesUltimos60Dias === 0  ? (
       <span>
       Você não ajuizou {" "}
       <strong>nenhuma ação nos últimos 60 dias.</strong>{" "}
@@ -128,31 +132,6 @@ function inquiriesMetrics({
   );
 }
 
-function aispsMetrics({ variacaoAcervo }) {
-  const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
-
-  return (
-    <>
-    {formattedVariation === "0%" ? (
-      <p> Não houve {" "}
-        <strong>aumento nem redução no número de procedimentos das suas AISPs </strong>nos últimos 30 dias.
-      </p>
-    ) : (
-      <p>
-      Houve
-      {variacaoAcervo > 0 ? ' um ' : ' uma '}
-      <strong>
-        {` ${
-          variacaoAcervo > 0 ? 'aumento' : 'redução'
-        } de ${formattedVariation} no número de procedimentos das suas AISPs `}
-      </strong>
-      nos últimos 30 dias.
-    </p>
-    )}
-  </>
-  );
-}
-
 function picsMetrics({
   nrDocumentosDistintosAtual,
   nrInstauradosAtual,
@@ -213,17 +192,15 @@ function picsMetrics({
   );
 }
 
-export default function MetricsFormatter({ metrics, tab }) {
-  switch (tab) {
-    case 'openInvestigations':
+export default function MetricsProsecutions({ metrics }) {
+  switch (type) {
+    case 2:
       return openInvestigationsMetrics(metrics);
-    case 'courtCases':
+    case 2:
       return courtCasesMetrics(metrics);
-    case 'inquiries':
+    case 1:
       return inquiriesMetrics(metrics);
-    case 'aisps':
-      return aispsMetrics(metrics);
-    case 'pics':
+    case 1:
       return picsMetrics(metrics);
     default:
       return null;

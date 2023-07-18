@@ -16,10 +16,12 @@ import {
   openCasesChartsWrapper,
   openCasesChartsWrapperLabel,
   deskButtonsCollectionPhrase,
+  deskButtonsCollections,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
-import GenericTab from './GenericTab';
+//import MetricsProsecutions from './MetricsProsecutions';
+//import GenericTab from './GenericTab';
 import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
@@ -53,9 +55,8 @@ function YourDesk() {
   const [tabDetail, setTabDetail] = useState({});
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
-
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
-
+  
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
@@ -286,9 +287,9 @@ function YourDesk() {
               </p>
               <div className={openCasesChartsWrapperLabel}>
                 <div />
-                  <div>Até 20 dias</div>
+                <div>Até 20 dias</div>
                 <div />
-                  <div>20 a 30 dias</div>
+                <div>20 a 30 dias</div>
                 <div />
                 <div>+ 30 dias</div>
               </div>
@@ -307,20 +308,25 @@ function YourDesk() {
               activeTab === 'collection' ? yourCollectionButtons : desk
             }`}
           >
-            {collectionButtonList.map((buttonTitle) => (
-              <InfoBoxYourDesk
-                key={BUTTON_TEXTS[buttonTitle]}
-                text={BUTTON_TEXTS[buttonTitle]}
-                number={docsQuantity[buttonTitle]}
-                error={!docsQuantity[buttonTitle] && !loading}
+            <div className={deskButtonsCollections}>
+              {collectionButtonList.map((buttonTitle) => (
+                <InfoBoxYourDesk
+                  key={BUTTON_TEXTS[buttonTitle]}
+                  text={BUTTON_TEXTS[buttonTitle]}
+                  number={docsQuantity[buttonTitle]}
+                  error={!docsQuantity[buttonTitle] && !loading}
+                />
+              ))}
+            </div>
+            <div className={deskButtonsCollectionPhrase}>
+              <MetricsProsecutions 
+              {...tabDetail[activeTab]}
+              tab={activeTab}
+              tabTitle={[BUTTON_TEXTS[activeTab]]}
+              error={!tabDetail[activeTab] && !loading}
+              isBeingDeveloped={currentOffice.tipo === 7}
               />
-            ))}
-            <div className={deskButtonsCollectionPhrase} >
-              <p>Constatei que nenhum PIC passou por você neste mês, 
-              nenhum foi instaurado nesse período. Foram 0 aberturas 
-              de vista, você não aproveitou nenhum caso para denúncias,
-              cautelares e arquivamentos. Não houve aumento nem redução
-              nos últimos 30 dias.</p>
+
             </div>
           </div>
           {collectionTable}

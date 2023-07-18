@@ -17,6 +17,10 @@
   }
   span .deskButtonsVistas{
     font-size: 40px;
+    width: 140px;
+    height: 100px;
+    background-color: #EEEEEE;
+    color: #ACACAC;
   }
   .controlButtonInner {
     margin-top: 15px ;
@@ -30,7 +34,7 @@
   .controlButtonOuter:nth-child(2){
     background-color: #71A2D0;
     color: var(--white);
- }
+  }
  .controlButtonOuter:nth-child(1){
     display: flex;
     align-items: center;

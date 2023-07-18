@@ -4,7 +4,6 @@
   grid-area: desk;
   margin-left: 28px;
 }
-
 .deskControlers {
   display: flex;
 }
@@ -21,6 +20,10 @@
   margin-left: -3px;
 
 }
+.deskButtonsCollections{
+  display: flex;
+  justify-content: space-between;
+}
 .deskButtonsTextsHeaderText{
   text-align: justify;
   color: #374354;
@@ -34,7 +37,6 @@
   max-width: 250px;
   margin-top: 0px;
 }
-
 .deskButtonsTextsHeaderText:nth-child(1) {
   text-align: right;
 }
@@ -45,11 +47,7 @@
   overflow: hidden;
   padding: 0 0 0 0;
 }
-.deskButtonsCollectionPhrase{
-  text-align: right;
-  color: #374354;
-  max-width: 420px;
-}
+
 .componentWrapper {
   height: 100%;
   display: flex;
@@ -97,25 +95,31 @@
   color:rgb(248, 108, 114);
 
 }
+div .deskButtonsCollectionPhrase{
+  text-align: right;
+  color: #374354;
+  max-width: 400px;
+}
 
 .yourCollectionButtons div:nth-child(1){
   width: 140px;
   height: 100px;
-  background-color: #EEEEEE;
+  background-color: #FAFAFA;
   color: #ACACAC;
   margin-left: 0px;
 }
 .yourCollectionButtons div:nth-child(2){
   width: 140px;
   height: 100px;
-  background-color: #EEEEEE;
+  background-color: #FAFAFA;
   color: #ACACAC;
 }
+
 .yourCollectionButtons div:nth-child(3){
   width: 140px;
   height: 100px;
   margin-left: 0px;
-  background-color: #EEEEEE;
+  background-color: #FAFAFA;
   color: #ACACAC;
 }
 .openCasesChartsWrapper {
@@ -124,7 +128,17 @@
   justify-content: space-between;
   padding: 0;
 }
-
+.deskButtonsTextsHeader{
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+}
+@media (max-width: 1200px) {
+  .deskButtonsTextsHeader{
+    display: flex;
+    flex-direction: column;
+  }
+}
 /* PHONES */
 @media (max-width: 480px) {
   .deskHeader {

@@ -130,6 +130,8 @@ function YourDesk() {
 
     if (tabName==='collection'){
       console.log('inside if');
+      
+      
       if (currentOffice.tipo === 2){
         console.log('inside office if');
         dbNames.push('pip_pics');
@@ -150,20 +152,32 @@ function YourDesk() {
         tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
         console.log('tab data: ', tabData);
         
-        let temp1;
+        let temp1, temp2;
         if (updatedState[tabName]){
           temp1 = updatedState[tabName]?.metrics;
         }
+        if (tabDetail[tabName]){
+          temp2 = tabDetail[tabName];
+        }
         updatedState[tabName] = tabData;
 
-        if (!temp1) temp1 = updatedState[tabName]?.metrics;
-        
+        console.log('updatedState in dbnames for loop', updatedState[tabName]);
+        if (!temp1){
+          temp1 = updatedState[tabName]?.metrics;
+        }
+
+        if (temp2){
+          updatedState[tabName].metrics = temp2;
+        } 
+        else {
+          updatedState[tabName].metrics = [temp1];
+
+        }
         console.log('upstate:', updatedState[tabName].metrics);
-        let temp2 =  updatedState[tabName]?.metrics;
-        updatedState[tabName].metrics = tabDetail[tabName]?.metrics ? tabDetail[tabName].metrics : [];
+        //let temp2 =  updatedState[tabName]?.metrics;
         console.log('temp1', temp1, 'temp2', temp2);
         if (temp1) updatedState[tabName].metrics.push(temp1);
-        if (temp2) updatedState[tabName].metrics.push(temp2);
+        if (temp2 && temp1 != temp2) updatedState[tabName].metrics.push(temp2);
         console.log('upstate refresh:', updatedState[tabName].metrics);
       }
 

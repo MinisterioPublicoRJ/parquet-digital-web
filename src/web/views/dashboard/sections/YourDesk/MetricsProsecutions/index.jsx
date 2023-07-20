@@ -220,7 +220,6 @@ function picsMetrics({
 export default function MetricsProsecutions({ metrics }) {
   const { currentOffice } = useAppContext();
   const type = currentOffice ? currentOffice.tipo : undefined;
-  console.log('metrics: ', metrics);
 
   if (!metrics) return null
   switch (type) {

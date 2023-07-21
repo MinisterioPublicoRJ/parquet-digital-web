@@ -109,7 +109,6 @@ div .deskButtonsCollectionPhrase{
   margin-left: 0px;
 }
 .yourCollectionButtons div:nth-child(2){
-  width: 140px;
   height: 100px;
   background-color: #FAFAFA;
   color: #ACACAC;
@@ -125,10 +124,6 @@ div .deskButtonsCollectionPhrase{
 
 .componentWrapper .deskButtonsTextsHeader .deskButtonsCollectionPhrase {
   width: 96%;
-}
-
-.deskButtonsCollectionPhrase p {
-  width: 50em;
 }
 
 .openCasesChartsWrapper {

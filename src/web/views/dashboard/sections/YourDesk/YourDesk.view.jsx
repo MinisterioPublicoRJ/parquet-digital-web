@@ -20,7 +20,7 @@ import {
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
-import MetricsProsecutions from './MetricsProsecutions';
+import MetricsProsecutions from './MetricsProsecutions/MetricsProsecutions.view';
 //import GenericTab from './GenericTab';
 import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
@@ -54,6 +54,8 @@ function YourDesk() {
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
   const [metricsArray, setMetrics] = useState([]);
+
+  const [dbNames, setDBNames] = useState([]);
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
@@ -126,15 +128,22 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
-    console.log('gettin tab details, tabName', tabName);
-    let dbNames = [];
+    let tempDBNames =[];
 
     if (tabName === 'collection') {
-      if (currentOffice.tipo === 2) {
-        console.log('inside office if');
-        dbNames.push('pip_pics');
-        dbNames.push('pip_inqueritos');
+      if (currentOffice.tipo === 1) {
+        tempDBNames.push('tutela_investigacoes');
+        tempDBNames.push('tutela_processos');
       }
+      if (currentOffice.tipo === 2) {
+        tempDBNames.push('pip_pics');
+        tempDBNames.push('pip_inqueritos');
+      }
+      if (currentOffice.tipo === 7) {
+        //tempDBNames.push('pip_pics');
+        //tempDBNames.push('pip_inqueritos');
+      }
+      setDBNames(tempDBNames);
     }
 
     //const dbName = BUTTON_DICT[tabName];
@@ -143,8 +152,7 @@ function YourDesk() {
     setLoading(true);
 
     try {
-      for (const dbName of dbNames) {
-        console.log('dbName loop:', dbName);
+      for (const dbName of tempDBNames) {
         tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
         metricsArray.push(tabData.metrics);
       }
@@ -240,7 +248,6 @@ function YourDesk() {
    * @return {void}
    */
   function handleChangeActiveTab(tabName) {
-    console.log('changing active tab');
     setActiveTab(tabName);
     if (!tabDetail[tabName]) {
       getTabDetails(tabName);
@@ -262,7 +269,6 @@ function YourDesk() {
     return <Spinner size="large" />;
   }
 
-  console.log('metrics in render', metricsArray);
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -339,17 +345,15 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics) => (
-
-                <MetricsProsecutions
-                  metrics={metrics}
-                  dbName={metrics.tipoDetalhe}
-                  tab={activeTab}
-                  tabTitle={[BUTTON_TEXTS[activeTab]]}
-                  error={!tabDetail[activeTab] && !loading}
-                  isBeingDeveloped={currentOffice.tipo === 7}
-                />
-              ))}
+              {metricsArray.map((metrics, index) =>  (<MetricsProsecutions
+                    metrics={metrics}
+                    dbName={dbNames[index]}
+                    tab={activeTab}
+                    tabTitle={[BUTTON_TEXTS[activeTab]]}
+                    error={!tabDetail[activeTab] && !loading}
+                    isBeingDeveloped={currentOffice.tipo === 7}
+                  />)
+              )}
             </div>
           </div>
           {collectionTable}

@@ -4,7 +4,6 @@ import { formatPercentage } from '../../../../../utils';
 import { useAppContext } from '../../../../../../core/app/App.context';
 
 function openInvestigationsMetrics({ variacaoAcervo }) {
-  console.log('variacao acervo, ', variacaoAcervo);
   const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
   return (
     <>
@@ -33,6 +32,7 @@ function courtCasesMetrics({
   variacao12Meses,
   nrAcoes12MesesAnterior,
 }) {
+
   const monthVariation = formatPercentage(Math.abs(variacao60Dias));
   const yearVariation = formatPercentage(Math.abs(variacao12Meses));
   return (
@@ -223,10 +223,14 @@ export default function MetricsProsecutions({ metrics, dbName }) {
 
   if (!metrics) return null
   switch (dbName) {
-    case 'vistas':
+    case 'tutela_investigacoes':
       return openInvestigationsMetrics(metrics);
     case 'tutela_processos':
       return courtCasesMetrics(metrics);
+    case 'pip_inqueritos':
+      return inquiriesMetrics(metrics);
+    case 'pip_pics':
+      return picsMetrics(metrics);      
     case 'pip_inqueritos':
       return inquiriesMetrics(metrics);
     case 'pip_pics':

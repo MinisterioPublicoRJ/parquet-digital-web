@@ -201,7 +201,6 @@ function picsMetrics({
         <strong>denúncias, cautelares e arquivamentos.</strong>
         {formattedVariation === '0%' ? (
           <span>
-            {' '}
             Não houve <strong>aumento nem redução</strong> nos últimos 30 dias.
           </span>
         ) : (

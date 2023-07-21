@@ -53,6 +53,7 @@ function YourDesk() {
   const [collectionButtonList, setCollectionButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
+  const [metrics, setMetrics] = useState([]);
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
@@ -151,16 +152,7 @@ function YourDesk() {
         console.log('dbName loop:', dbName); 
         tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
         console.log('tab data: ', tabData);
-        
-        let temp1, temp2;
-        if (updatedState[tabName]){
-          temp1 = updatedState[tabName]?.metrics;
-        }
-        if (tabDetail[tabName]){
-          temp2 = tabDetail[tabName];
-        }
-        updatedState[tabName] = tabData;
-
+        metrics.push(tabData.metrics);
         console.log('updatedState in dbnames for loop', updatedState[tabName]);
         if (!temp1){
           temp1 = updatedState[tabName]?.metrics;

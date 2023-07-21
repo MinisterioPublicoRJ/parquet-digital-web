@@ -340,8 +340,10 @@ function YourDesk() {
             </div>
             <div className={deskButtonsCollectionPhrase}>
               {metricsArray.map((metrics) => (
+
                 <MetricsProsecutions
                   metrics={metrics}
+                  dbName={metrics.tipoDetalhe}
                   tab={activeTab}
                   tabTitle={[BUTTON_TEXTS[activeTab]]}
                   error={!tabDetail[activeTab] && !loading}

@@ -96,9 +96,9 @@
 
 }
 div .deskButtonsCollectionPhrase{
-  text-align: right;
   color: #374354;
-  max-width: 400px;
+  max-width: 58%;
+  font-size: var(--smallFont);
 }
 
 .yourCollectionButtons div:nth-child(1){
@@ -122,6 +122,15 @@ div .deskButtonsCollectionPhrase{
   background-color: #FAFAFA;
   color: #ACACAC;
 }
+
+.componentWrapper .deskButtonsTextsHeader .deskButtonsCollectionPhrase {
+  width: 96%;
+}
+
+.deskButtonsCollectionPhrase p {
+  width: 50em;
+}
+
 .openCasesChartsWrapper {
   align-items: center;
   display: flex;

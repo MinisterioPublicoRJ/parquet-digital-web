@@ -1,7 +1,5 @@
 /* eslint-disable */
-
 import React from 'react';
-
 import { formatPercentage } from '../../../../../utils';
 
 function openInvestigationsMetrics({ variacaoAcervo }) {

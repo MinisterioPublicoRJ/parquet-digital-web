@@ -15,10 +15,13 @@ import {
   deskButtonsActive,
   openCasesChartsWrapper,
   openCasesChartsWrapperLabel,
+  deskButtonsCollectionPhrase,
+  deskButtonsCollections,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
-import GenericTab from './GenericTab';
+import MetricsProsecutions from './MetricsProsecutions/MetricsProsecutions.view';
+//import GenericTab from './GenericTab';
 import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
@@ -50,9 +53,11 @@ function YourDesk() {
   const [collectionButtonList, setCollectionButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
+  const [metricsArray, setMetrics] = useState([]);
+
+  const [dbNames, setDBNames] = useState([]);
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
-
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
 
   useEffect(() => {
@@ -123,13 +128,35 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
-    const dbName = BUTTON_DICT[tabName];
+    let tempDBNames =[];
+
+    if (tabName === 'collection') {
+      if (currentOffice.tipo === 1) {
+        tempDBNames.push('tutela_investigacoes');
+        tempDBNames.push('tutela_processos');
+      }
+      if (currentOffice.tipo === 2) {
+        tempDBNames.push('pip_pics');
+        tempDBNames.push('pip_inqueritos');
+      }
+      if (currentOffice.tipo === 7) {
+        //tempDBNames.push('pip_pics');
+        //tempDBNames.push('pip_inqueritos');
+      }
+      setDBNames(tempDBNames);
+    }
+
+    //const dbName = BUTTON_DICT[tabName];
     let tabData;
-    const updatedState = {};
+    let updatedState = {};
     setLoading(true);
+
     try {
-      tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
-      updatedState[tabName] = tabData;
+      for (const dbName of tempDBNames) {
+        tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
+        metricsArray.push(tabData.metrics);
+      }
+
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState[tabName] = undefined;
@@ -223,6 +250,7 @@ function YourDesk() {
   function handleChangeActiveTab(tabName) {
     setActiveTab(tabName);
     if (!tabDetail[tabName]) {
+      getTabDetails(tabName);
       switch (tabName) {
         case 'openCases' || 'desk':
           getOpenCasesDetails();
@@ -285,9 +313,9 @@ function YourDesk() {
               </p>
               <div className={openCasesChartsWrapperLabel}>
                 <div />
-                  <div>Até 20 dias</div>
+                <div>Até 20 dias</div>
                 <div />
-                  <div>20 a 30 dias</div>
+                <div>20 a 30 dias</div>
                 <div />
                 <div>+ 30 dias</div>
               </div>
@@ -306,14 +334,27 @@ function YourDesk() {
               activeTab === 'collection' ? yourCollectionButtons : desk
             }`}
           >
-            {collectionButtonList.map((buttonTitle) => (
-              <InfoBoxYourDesk
-                key={BUTTON_TEXTS[buttonTitle]}
-                text={BUTTON_TEXTS[buttonTitle]}
-                number={docsQuantity[buttonTitle]}
-                error={!docsQuantity[buttonTitle] && !loading}
-              />
-            ))}
+            <div className={deskButtonsCollections}>
+              {collectionButtonList.map((buttonTitle) => (
+                <InfoBoxYourDesk
+                  key={BUTTON_TEXTS[buttonTitle]}
+                  text={BUTTON_TEXTS[buttonTitle]}
+                  number={docsQuantity[buttonTitle]}
+                  error={!docsQuantity[buttonTitle] && !loading}
+                />
+              ))}
+            </div>
+            <div className={deskButtonsCollectionPhrase}>
+              {metricsArray.map((metrics, index) =>  (<MetricsProsecutions
+                    metrics={metrics}
+                    dbName={dbNames[index]}
+                    tab={activeTab}
+                    tabTitle={[BUTTON_TEXTS[activeTab]]}
+                    error={!tabDetail[activeTab] && !loading}
+                    isBeingDeveloped={currentOffice.tipo === 7}
+                  />)
+              )}
+            </div>
           </div>
           {collectionTable}
         </div>

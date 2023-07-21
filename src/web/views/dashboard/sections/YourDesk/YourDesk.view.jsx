@@ -53,11 +53,11 @@ function YourDesk() {
   const [collectionButtonList, setCollectionButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
-  const [metrics, setMetrics] = useState([]);
+  const [metricsArray, setMetrics] = useState([]);
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
-  
+
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
@@ -129,48 +129,24 @@ function YourDesk() {
     console.log('gettin tab details, tabName', tabName);
     let dbNames = [];
 
-    if (tabName==='collection'){
-      console.log('inside if');
-      
-      
-      if (currentOffice.tipo === 2){
+    if (tabName === 'collection') {
+      if (currentOffice.tipo === 2) {
         console.log('inside office if');
         dbNames.push('pip_pics');
         dbNames.push('pip_inqueritos');
-      } 
-
+      }
     }
-    
-    console.log('dbNames: ', dbNames);
+
     //const dbName = BUTTON_DICT[tabName];
     let tabData;
     let updatedState = {};
     setLoading(true);
-    
+
     try {
-      for (const dbName of dbNames){  
-        console.log('dbName loop:', dbName); 
+      for (const dbName of dbNames) {
+        console.log('dbName loop:', dbName);
         tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
-        console.log('tab data: ', tabData);
-        metrics.push(tabData.metrics);
-        console.log('updatedState in dbnames for loop', updatedState[tabName]);
-        if (!temp1){
-          temp1 = updatedState[tabName]?.metrics;
-        }
-
-        if (temp2){
-          updatedState[tabName].metrics = temp2;
-        } 
-        else {
-          updatedState[tabName].metrics = [temp1];
-
-        }
-        console.log('upstate:', updatedState[tabName].metrics);
-        //let temp2 =  updatedState[tabName]?.metrics;
-        console.log('temp1', temp1, 'temp2', temp2);
-        if (temp1) updatedState[tabName].metrics.push(temp1);
-        if (temp2 && temp1 != temp2) updatedState[tabName].metrics.push(temp2);
-        console.log('upstate refresh:', updatedState[tabName].metrics);
+        metricsArray.push(tabData.metrics);
       }
 
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
@@ -267,7 +243,6 @@ function YourDesk() {
     console.log('changing active tab');
     setActiveTab(tabName);
     if (!tabDetail[tabName]) {
-      
       getTabDetails(tabName);
       switch (tabName) {
         case 'openCases' || 'desk':
@@ -287,8 +262,8 @@ function YourDesk() {
     return <Spinner size="large" />;
   }
 
-/*   console.log('tabDetail', tabDetail,'activeTab', activeTab);
- */  return (
+  console.log('metrics in render', metricsArray);
+  return (
     <article className={deskOuter}>
       <div className={deskHeader}>
         <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
@@ -364,14 +339,15 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              <MetricsProsecutions 
-              {...tabDetail[activeTab]}
-              tab={activeTab}
-              tabTitle={[BUTTON_TEXTS[activeTab]]}
-              error={!tabDetail[activeTab] && !loading}
-              isBeingDeveloped={currentOffice.tipo === 7}
-              />
-
+              {metricsArray.map((metrics) => (
+                <MetricsProsecutions
+                  metrics={metrics}
+                  tab={activeTab}
+                  tabTitle={[BUTTON_TEXTS[activeTab]]}
+                  error={!tabDetail[activeTab] && !loading}
+                  isBeingDeveloped={currentOffice.tipo === 7}
+                />
+              ))}
             </div>
           </div>
           {collectionTable}

@@ -4,13 +4,14 @@ import { formatPercentage } from '../../../../../utils';
 import { useAppContext } from '../../../../../../core/app/App.context';
 
 function openInvestigationsMetrics({ variacaoAcervo }) {
+  console.log('variacao acervo, ', variacaoAcervo);
   const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
   return (
     <>
       {variacaoAcervo === 0 ? (
         <p>
           Seu acervo <strong>não aumentou ou diminuiu</strong> nos últimos 30 dias.
-        </p>
+        </p>  
       ) : (
         <p>
           Seu acervo

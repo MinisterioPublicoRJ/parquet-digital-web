@@ -26,13 +26,11 @@ export default function deskTabTransform(raw) {
   const metrics = metricsTransform(raw.metrics);
   const ranks = rankingsTransform(raw.rankings);
 
-  console.log('metrics ', metrics);
   const result = {
     map,
     metrics,
     ranks,
   };
 
-  console.log('result: ', result);
   return result;
 }

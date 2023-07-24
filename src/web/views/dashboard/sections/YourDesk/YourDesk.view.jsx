@@ -345,7 +345,9 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics, index) =>  (<MetricsProsecutions
+              {metricsArray.map((metrics, index) =>  (
+                  <MetricsProsecutions
+                    key={`metric-${index}`}
                     metrics={metrics}
                     dbName={dbNames[index]}
                     tab={activeTab}

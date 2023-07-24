@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { useEffect } from 'react';
 import {
   BASE_URL,
   SCA_LOGIN,
@@ -87,28 +88,31 @@ import {
 import { formatDateObjForBackend } from '../../web/utils/formatters';
 
 function ApiCreator(jwtToken) {
-  const axiosInstance = axios.create({
+  let axiosInstance = axios.create({
     baseURL: BASE_URL,
     params: { jwt: jwtToken },
   });
 
   // axios bug not allowing params and other configs being changed after creating instance
   function addHeaders() {
-    //axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    /*  axiosInstance = axios.create({
+    axiosInstance.defaults.headers.common.Authorization = `Bearer ${jwtToken}`;
+
+    axiosInstance = axios.create({
       baseURL: BASE_URL, 
-      params: {jwt: token}
+      params: {jwt: jwtToken}
     });
-*/
-    // axiosInstance.defaults.params = {jwt: token};
+
+    axiosInstance.defaults.params = {jwt: jwtToken};
   }
 
   async function loginWithSCACredentials(username, password) {
     const formData = new FormData();
     formData.set('username', username);
     formData.set('password', password);
-
+    
+    console.log('axiosInstance', axiosInstance.defaults.params);
     const { data } = await axiosInstance.post(SCA_LOGIN, formData);
+    
     const { token, cpf, orgao_selecionado } = data;
     axiosInstance.defaults.params = { jwt: token };
 
@@ -157,7 +161,11 @@ function ApiCreator(jwtToken) {
   }
 
   async function getOpenCasesDetails({ orgao, cpf }) {
-    const { data } = await axiosInstance.get(OPEN_CASES_DETAILS_URL({ orgao, cpf }));
+    const { data } = await axiosInstance.get(OPEN_CASES_DETAILS_URL({ orgao, cpf }), {
+      headers: {
+        'Authorization': `Bearer ${jwtToken}`,
+      }
+    });
 
     return openCasesDetailsTransform(data);
   }

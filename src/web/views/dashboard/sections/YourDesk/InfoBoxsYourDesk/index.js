@@ -17,9 +17,6 @@ const defaultProps = {
 };
 
 function MainButton({ number, text, loading, error }) {
-  //console.log ((typeof (text?.props?.children) !== 'undefined') (text = text.props.children));
-  //console.log(typeof(text))
-
 
   return (
     <div className={controlButtonOuter}>

@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { useEffect } from 'react';
 import {
   BASE_URL,
   SCA_LOGIN,
@@ -26,9 +25,6 @@ import {
   PROCESSES_LIST,
   ONGOING_INVESTIGATIONS_LIST,
   SUCCESS_INDICATORS,
-  PIP__URL,
-  PIP_MONTH_OPPENINGS_URL,
-  PIP_INVESTIGATIONS_URL,
   PIP_MAIN_INVESTIGATIONS_URL,
   PIP_MAIN_INVESTIGATIONS_URL_ACTION,
   DELETE_ALERT,
@@ -36,20 +32,7 @@ import {
   INVESTIGATED_PROFILE_URL,
   RADAR_COMPARE_TUTELA,
   RADAR_COMPARE_PIP,
-  PRCR_ACTION_GENERATE_DOC, 
-  COMPRAS_ACTION_OUVIDORIA,
-  LINK_ACTION_OUVIDORIA, 
-  ABR1_ALERT_ACTION, 
-  ALERT_OVERLAY_DATA,
-  CTAC_ACTION_GENERATE_DOC, 
-  IC1A_ACTION_GENERATE_DOC, 
-  PA1A_ACTION_GENERATE_DOC, 
-  PPFP_ACTION_EXTEND, 
-  PPFP_ACTION_CONVERT, 
-  PPPV_ACTION_EXTEND, 
-  PPPV_ACTION_CONVERT, 
-  UNSENT_OCCURRENCE_LIST, 
-  PROCESSES_LIST_GENERATE_DOC, 
+  ALERT_OVERLAY_DATA, 
   PROCESS_DETAIL,
 } from './endpoints';
 
@@ -81,40 +64,50 @@ import {
   radarCompareTransform,
   snakeToCamelTransform,
   alertOverlayTransform,
-  prescribedCrimeTransform,
   processDetailTransform
 } from './transforms';
 
 import { formatDateObjForBackend } from '../../web/utils/formatters';
 
 function ApiCreator(jwtToken) {
-  let axiosInstance = axios.create({
+  const axiosInstance = axios.create({
     baseURL: BASE_URL,
-    params: { jwt: jwtToken },
+    params: { 
+      jwt: jwtToken
+    },
   });
 
-  // axios bug not allowing params and other configs being changed after creating instance
-  function addHeaders() {
-    axiosInstance.defaults.headers.common.Authorization = `Bearer ${jwtToken}`;
-
-    axiosInstance = axios.create({
-      baseURL: BASE_URL, 
-      params: {jwt: jwtToken}
-    });
-
-    axiosInstance.defaults.params = {jwt: jwtToken};
+  const addHeaders = (config) => {
+    if (jwtToken) {
+      // eslint-disable-next-line no-param-reassign
+      config.headers.common.Authorization = `Bearer ${jwtToken}`;
+    }
+    return config;
   }
+
+  axiosInstance.interceptors.request.use(addHeaders, (error) => Promise.reject(error));
+
+  // axios bug not allowing params and other configs being changed after creating instance
+  // function addHeaders() {
+  //   axiosInstance.defaults.headers.common.Authorization = `Bearer ${jwtToken}`;
+
+  //   axiosInstance = axios.create({
+  //     baseURL: BASE_URL, 
+  //     params: {jwt: jwtToken}
+  //   });
+
+  //   axiosInstance.defaults.params = {jwt: jwtToken};
+  // }
 
   async function loginWithSCACredentials(username, password) {
     const formData = new FormData();
     formData.set('username', username);
     formData.set('password', password);
-    
-    console.log('axiosInstance', axiosInstance.defaults.params);
+  
     const { data } = await axiosInstance.post(SCA_LOGIN, formData);
     
-    const { token, cpf, orgao_selecionado } = data;
-    axiosInstance.defaults.params = { jwt: token };
+    // const { token, cpf, orgao_selecionado } = data;
+    // axiosInstance.defaults.params = { jwt: token };
 
     return scaUserTransform(data);
   }
@@ -124,7 +117,7 @@ function ApiCreator(jwtToken) {
     formData.set('jwt', token);
 
     const { data } = await axiosInstance.post(TOKEN_LOGIN, formData);
-    axiosInstance.defaults.params = { jwt: token };
+    // axiosInstance.defaults.params = { jwt: token };
 
     return jwtUserTransform(data);
   }
@@ -161,11 +154,7 @@ function ApiCreator(jwtToken) {
   }
 
   async function getOpenCasesDetails({ orgao, cpf }) {
-    const { data } = await axiosInstance.get(OPEN_CASES_DETAILS_URL({ orgao, cpf }), {
-      headers: {
-        'Authorization': `Bearer ${jwtToken}`,
-      }
-    });
+    const { data } = await axiosInstance.get(OPEN_CASES_DETAILS_URL({ orgao, cpf }));
 
     return openCasesDetailsTransform(data);
   }
@@ -287,7 +276,7 @@ function ApiCreator(jwtToken) {
     return ongoingInvestigationsListTransform(data);
   }
 
-  async function getsuccessIndicators({ orgao }) {
+  async function getSuccessIndicators({ orgao }) {
     const { data } = await axiosInstance.get(SUCCESS_INDICATORS({ orgao }));
 
     return successIndicatorsTransform(data);
@@ -382,8 +371,8 @@ function ApiCreator(jwtToken) {
     return alertOverlayTransform(type, data);
   }
 
-  async function getProcessDetail({ orgao, num_doc }) {
-    const { data } = await axiosInstance.get(PROCESS_DETAIL({ num_doc, orgao }));
+  async function getProcessDetail({ orgao, numDoc }) {
+    const { data } = await axiosInstance.get(PROCESS_DETAIL({ num_doc: numDoc, orgao }));
     return processDetailTransform(data);
   }
 
@@ -416,7 +405,7 @@ function ApiCreator(jwtToken) {
     getProcessingTimeData,
     getProcessList,
     getOngoingInvestigationsList,
-    getsuccessIndicators,
+    getSuccessIndicators,
     getMainInvestigated,
     actionMainInvestigated,
     removeAlert,

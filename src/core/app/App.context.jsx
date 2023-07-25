@@ -49,6 +49,7 @@ export function AppStoreInitializer() {
       const {loggedUser, orgaoSelecionado} = await Api.loginWithJwtCredentials(token);
       setUser(loggedUser);
       setCurrentOffice(orgaoSelecionado);
+      setApi(ApiCreator(loggedUser.token));
     } catch (e) {
       if (!e.response) {
         setIsServerDown(true);

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import { SearchBox } from 'mapasteca-web';
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
-import Api from '../../../../../api';
+// import Api from '../../../../../api';
+import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import DeskCasesChart from '../deskCases';
 import { Modal } from '../../../../../components/layoutPieces';
@@ -32,6 +33,7 @@ const propTypes = {
 };
 
 function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
+  const { Api } = useAppContext();
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByTab, setTotalPagesByTab] = useState({});

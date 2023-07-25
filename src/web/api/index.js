@@ -211,7 +211,7 @@ const Api = (() => {
     return cavlAlertsTransform(data);
   }
 
-  async function getsuccessIndicators({ orgao, token }) {
+  async function getSuccessIndicators({ orgao, token }) {
     const { data } = await axios.get(SUCCESS_INDICATORS({ orgao }), buildRequestConfig(token));
 
     return successIndicatorsTransform(data);
@@ -344,9 +344,9 @@ const Api = (() => {
     return axios.post(link, formData);
   }
 
-  async function getProcessDetail({ orgao, token, num_doc }) {
+  async function getProcessDetail({ orgao, token, numDoc }) {
     const params = { jwt: token };
-    const { data } = await axios.get(PROCESS_DETAIL({ num_doc, orgao }), { params });
+    const { data } = await axios.get(PROCESS_DETAIL({ num_doc: numDoc, orgao }), { params });
     return processDetailTransform(data);
   }
 
@@ -367,7 +367,7 @@ const Api = (() => {
     getHiresAlerts,
     getProcessingTimeData,
     getProcessList,
-    getsuccessIndicators,
+    getSuccessIndicators,
     getPipRadarData,
     getMainInvestigated,
     actionMainInvestigated,

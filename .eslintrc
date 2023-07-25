@@ -40,7 +40,7 @@
     "import/extensions": "warn",
     "spaced-comment": "warn", 
     "import/no-cycle": "warn",
-    "react/jsx-curly-brace-presence": "warn",
+    "react/jsx-curly-brace-presence": "warn"
   },
   "env": {
     "browser": true

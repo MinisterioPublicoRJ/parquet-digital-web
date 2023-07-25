@@ -1,0 +1,25 @@
+.SearchBoxOuter {
+    background-color: #f8f9fb;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f8f9fb;
+    padding: 5px;
+    height: 1.8rem;
+    width: 39%;
+    border: 0.5px #EEEEEE solid;
+    margin-top: 20px;
+}
+.SearchBoxOuter input{
+    border: 0;
+    margin-left: 5px;
+    width: 100%;
+    background-color: #f8f9fb;
+}
+
+.SearchBoxOuter input:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 

@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { SearchBox } from 'mapasteca-web';
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 // import Api from '../../../../../api';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
-import DeskCasesChart from '../deskCases';
-import { Modal } from '../../../../../components/layoutPieces';
+import { Modal, SearchBox } from '../../../../../components/layoutPieces';
 import { highlightJSX } from '../../../../../utils';
 
 import {
-  openCasesChartsWrapper,
   openCasesTableWrapper,
   openCasesEmptyTable,
   noOpenCases,
@@ -20,6 +17,8 @@ import {
   alertTag,
   alertTagSigla,
   emptyAlert,
+  allBoxFilters,
+  boxFilters,
 } from './styles.module.css';
 
 const propTypes = {
@@ -166,6 +165,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           },
         });
       }
+     
       setTotalPagesByTab(totPages);
       setTabLoading(false);
     }
@@ -210,14 +210,10 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     // for each category I make and object with the data from all categories and the right colors to use
     // then I push all 3 objects to an array
     categories.forEach((cat) => {
-      const categoryChart = {};
-      categories.forEach((item) => {
-        categoryChart[item] = {
-          x: item,
-          y: data[item],
-          color: item === cat ? MAIN_DATA[cat][0] : '#E8E8E8',
-        };
-      });
+      const categoryChart = {
+          x: cat,
+          y: data[cat],
+          color:  MAIN_DATA[cat][0]};
       cleanData[cat] = categoryChart;
     });
     return cleanData;
@@ -242,18 +238,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   function renderCharts(data) {
     const cleanData = cleanChartData(data);
     const categories = Object.keys(data);
-
-    return categories.map((cat) => (
-      <DeskCasesChart
-        key={cat}
-        active={activeTab === cat}
-        buttonPressed={(tab) => handleChangeActiveTab(tab)}
-        category={cat}
-        color={MAIN_DATA[cat][0]}
-        data={cleanData[cat]}
-        name={MAIN_DATA[cat][1]}
-      />
-    ));
   }
 
   const onSearch = (searchStr) => {
@@ -272,11 +256,35 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
 
   const emptyTab = !chartData[activeTab];
+  const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
+  const categories = Object.keys(chartData);
 
   return (
     <>
-      <div className={openCasesChartsWrapper}>{renderCharts(chartData)}</div>
-      <SearchBox onSearch={onSearch} />
+    <div className={allBoxFilters}>
+      <SearchBox onSearch={onSearch}  />
+      <div className={boxFilters}>
+      <p>Filtrar Tabela:</p>
+        {LABELS.map((text, i) => (
+        <button onClick={() => handleChangeActiveTab(categories[i-1])} type='button'>
+          <p>{text}</p>
+        </button>
+        ))}
+         {searchString &&
+          !tabLoading &&
+          tabDetails[activeTab] &&
+          !tabDetails[activeTab][currentPage] && (
+            <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
+              <p className={noOpenCases}> Nenhuma vista aberta com os parâmetros pesquisados</p>
+              <CustomTable
+                data={Array(20).fill({ content: '' })}
+                columns={TABLE_COLUMNS}
+                showHeader
+              />
+            </div>
+          )}
+      </div>
+    </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab &&

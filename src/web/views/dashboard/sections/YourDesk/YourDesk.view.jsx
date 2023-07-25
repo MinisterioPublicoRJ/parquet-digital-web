@@ -1,44 +1,106 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
-import { deskOuter, deskControlers, deskTabs, deskHeader } from './styles.module.css';
+import {
+  deskOuter,
+  deskButtonsTextsHeader,
+  deskControlers,
+  deskTabs,
+  deskHeader,
+  hide,
+  componentWrapper,
+  yourCollectionButtons,
+  desk,
+  deskButtonsTextsHeaderText,
+  deskButtonsInactive,
+  deskButtonsActive,
+  openCasesChartsWrapper,
+  openCasesChartsWrapperLabel,
+  deskButtonsCollectionPhrase,
+  deskButtonsCollections,
+} from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
-import GenericTab from './GenericTab';
+import MetricsProsecutions from './MetricsProsecutions/MetricsProsecutions.view';
+//import GenericTab from './GenericTab';
+import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
-import { PIP_BUTTONS, TUTELA_BUTTONS, CRIMINAL_BUTTONS, BUTTON_TEXTS, BUTTON_DICT } from './deskConstants';
+import TablesTutela from '../TablesTutela';
+import MainInvestigated from '../MainInvestigated';
+import ProcessListCriminal from '../ProcessListCriminal';
+import DeskGraph from './DeskGraph/DeskGraph.view';
+
+import {
+  PIP_DESK_BUTTONS,
+  PIP_COLLECTION_BUTTONS,
+  TUTELA_DESK_BUTTONS,
+  TUTELA_COLLECTION_BUTTONS,
+  CRIMINAL_DESK_BUTTONS,
+  CRIMINAL_COLLECTION_BUTTONS,
+  BUTTON_TEXTS,
+  BUTTON_DICT,
+  CONTROL_BUTTONS,
+} from './deskConstants';
+import { MAIN_DATA } from './OpenCasesList/openCasesConstants';
 
 function YourDesk() {
   const { currentOffice, buildRequestParams, Api } = useAppContext();
   const [docsQuantity, setDocsQuantity] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [buttonList, setButtonList] = useState(false);
-  const [activeTab, setActiveTab] = useState('openCases');
+  const [buttonListControl, setButtonListControl] = useState(false);
+  const [deskButtonList, setDeskButtonList] = useState(false);
+  const [collectionButtonList, setCollectionButtonList] = useState(false);
+  const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
+  const [metricsArray, setMetrics] = useState([]);
+
+  const [dbNames, setDBNames] = useState([]);
+  //const [collectionTable, setCollectionTable] = useState();
+  const collectionTable = getCollectionTable();
+  const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
 
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
-    }, []);
+    getButtonsControl();
+  }, []);
+
+  function getButtonsControl() {
+    let buttonControl;
+    if (currentOffice.tipo) {
+      buttonControl = CONTROL_BUTTONS;
+    }
+    setButtonListControl(buttonControl);
+    buttonControl.forEach((buttonName) => {
+      getDocumentQuantity(buttonName);
+    });
+  }
 
   function getButtons() {
-    let buttons;
+    let buttons, deskButtons, collectionButtons;
     switch (currentOffice.tipo) {
       case 1:
-        buttons = TUTELA_BUTTONS;
+        deskButtons = TUTELA_DESK_BUTTONS;
+        collectionButtons = TUTELA_COLLECTION_BUTTONS;
         break;
       case 2:
-        document.documentElement.style.setProperty('--buttonBase', 131);
-        buttons = PIP_BUTTONS;
+        deskButtons = PIP_DESK_BUTTONS;
+        collectionButtons = PIP_COLLECTION_BUTTONS;
         break;
       case 7:
-        buttons = CRIMINAL_BUTTONS;
+        deskButtons = CRIMINAL_DESK_BUTTONS;
+        collectionButtons = CRIMINAL_COLLECTION_BUTTONS;
         break;
       default:
         break;
     }
-    
-    setButtonList(buttons);
-    buttons.forEach((buttonName) => {
+
+    setDeskButtonList(deskButtons);
+    setCollectionButtonList(collectionButtons);
+    deskButtons.forEach((buttonName) => {
+      getDocumentQuantity(buttonName);
+    });
+    collectionButtons.forEach((buttonName) => {
       getDocumentQuantity(buttonName);
     });
   }
@@ -65,13 +127,35 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
-    const dbName = BUTTON_DICT[tabName];
+    let tempDBNames =[];
+
+    if (tabName === 'collection') {
+      if (currentOffice.tipo === 1) {
+        tempDBNames.push('tutela_investigacoes');
+        tempDBNames.push('tutela_processos');
+      }
+      if (currentOffice.tipo === 2) {
+        tempDBNames.push('pip_pics');
+        tempDBNames.push('pip_inqueritos');
+      }
+      if (currentOffice.tipo === 7) {
+        //tempDBNames.push('pip_pics');
+        //tempDBNames.push('pip_inqueritos');
+      }
+      setDBNames(tempDBNames);
+    }
+
+    //const dbName = BUTTON_DICT[tabName];
     let tabData;
-    const updatedState = {};
+    let updatedState = {};
     setLoading(true);
+
     try {
-      tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
-      updatedState[tabName] = tabData;
+      for (const dbName of tempDBNames) {
+        tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
+        metricsArray.push(tabData.metrics);
+      }
+
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState[tabName] = undefined;
@@ -101,6 +185,61 @@ function YourDesk() {
     }
   }
 
+  function getCollectionTable() {
+    const updatedState = {};
+
+    switch (currentOffice.tipo) {
+      case 1:
+        return <TablesTutela />;
+        break;
+      case 2:
+        return <MainInvestigated />;
+        break;
+      case 7:
+        return <ProcessListCriminal />;
+        break;
+      default:
+        return 0;
+    }
+  }
+
+  /**
+   * Cleans chartData prop data, then draws Bar Chart
+   * @param  {[type]} data chartData prop
+   * @return {Array}      JSX for Bar Chart
+   */
+  function renderCharts(data) {
+    if (!data) return;
+
+    const cleanData = cleanChartData(data);
+    const categories = Object.keys(data);
+    const sum = Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0;
+    return <DeskGraph data={cleanData} totalSum={sum} />;
+  }
+
+  /**
+   * [cleanChartData description]
+   * @param  {json} data the chartData prop
+   * @return {json}      same keys as chartData, each key has again same keys as
+   *                     chartData and point to an object with x/y/color values
+   */
+  function cleanChartData(data) {
+    const categories = Object.keys(data);
+    const cleanData = {};
+
+    // for each category I make and object with the data from all categories and the right colors to use
+    // then I push all 3 objects to an array
+    categories.forEach((cat) => {
+      const categoryChart = {
+        x: cat,
+        y: data[cat],
+        color: MAIN_DATA[cat][0],
+      };
+      cleanData[cat] = categoryChart;
+    });
+    return cleanData;
+  }
+
   /**
    * Triggered by buttonPress, updates the state
    * @param  {string} tabName the name of the next active tab,
@@ -110,9 +249,13 @@ function YourDesk() {
   function handleChangeActiveTab(tabName) {
     setActiveTab(tabName);
     if (!tabDetail[tabName]) {
+      getTabDetails(tabName);
       switch (tabName) {
-        case 'openCases':
+        case 'openCases' || 'desk':
           getOpenCasesDetails();
+          break;
+        case 'collection':
+          getCollectionTable();
           break;
         default:
           getTabDetails(tabName);
@@ -121,45 +264,99 @@ function YourDesk() {
     }
   }
 
-  if (loading && !buttonList) {
+  if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
 
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
-        <SectionTitle value="Sua Mesa" glueToTop />
+        <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
         <div className={deskControlers}>
-          {buttonList.map((buttonTitle) => (
+          {buttonListControl.map((buttonTitle) => (
             <ControlButton
               key={BUTTON_TEXTS[buttonTitle]}
               isButton={!buttonTitle.includes('closedCases')}
-              error={!docsQuantity[buttonTitle] && !loading}
               buttonPressed={() => handleChangeActiveTab(buttonTitle)}
               isActive={activeTab === buttonTitle}
               text={BUTTON_TEXTS[buttonTitle]}
-              number={docsQuantity[buttonTitle]}
-              loading={!docsQuantity[buttonTitle] && loading}
             />
           ))}
         </div>
       </div>
       <div className={deskTabs}>
-        {activeTab === 'openCases' ? (
+        <div
+          className={`${componentWrapper} ${
+            activeTab === 'openCases' || activeTab === 'desk' ? '' : hide
+          }`}
+        >
+          <div
+            className={`${deskButtonsTextsHeader} ${
+              activeTab === 'collection' ? deskButtonsInactive : deskButtonsActive
+            }`}
+          >
+            <div className={deskButtonsInactive}>
+              {deskButtonList.map((buttonTitle) => (
+                <InfoBoxYourDesk
+                  key={BUTTON_TEXTS[buttonTitle]}
+                  text={BUTTON_TEXTS[buttonTitle]}
+                  number={docsQuantity[buttonTitle]}
+                  error={!docsQuantity[buttonTitle] && !loading}
+                />
+              ))}
+            </div>
+            <div className={deskButtonsTextsHeaderText}>
+              <p>
+                Há {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} procedimentos
+                com todos os seus crimes possivelmente prescritos.
+              </p>
+              <div className={openCasesChartsWrapperLabel}>
+                <div />
+                <div>Até 20 dias</div>
+                <div />
+                <div>20 a 30 dias</div>
+                <div />
+                <div>+ 30 dias</div>
+              </div>
+              <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
+            </div>
+          </div>
           <OpenCasesList
             buildRequestParams={buildRequestParams}
             chartData={tabDetail.openCases}
             isLoading={!tabDetail.openCases && loading}
           />
-        ) : (
-          <GenericTab
-            {...tabDetail[activeTab]}
-            tab={activeTab}
-            tabTitle={[BUTTON_TEXTS[activeTab]]}
-            error={!tabDetail[activeTab] && !loading}
-            isBeingDeveloped={currentOffice.tipo === 7}
-          />
-        )}
+        </div>
+        <div className={`${componentWrapper} ${activeTab === 'collection' ? ' ' : hide}`}>
+          <div
+            className={`${deskButtonsTextsHeader} ${
+              activeTab === 'collection' ? yourCollectionButtons : desk
+            }`}
+          >
+            <div className={deskButtonsCollections}>
+              {collectionButtonList.map((buttonTitle) => (
+                <InfoBoxYourDesk
+                  key={BUTTON_TEXTS[buttonTitle]}
+                  text={BUTTON_TEXTS[buttonTitle]}
+                  number={docsQuantity[buttonTitle]}
+                  error={!docsQuantity[buttonTitle] && !loading}
+                />
+              ))}
+            </div>
+            <div className={deskButtonsCollectionPhrase}>
+              {metricsArray.map((metrics, index) =>  (<MetricsProsecutions
+                    metrics={metrics}
+                    dbName={dbNames[index]}
+                    tab={activeTab}
+                    tabTitle={[BUTTON_TEXTS[activeTab]]}
+                    error={!tabDetail[activeTab] && !loading}
+                    isBeingDeveloped={currentOffice.tipo === 7}
+                  />)
+              )}
+            </div>
+          </div>
+          {collectionTable}
+        </div>
       </div>
     </article>
   );

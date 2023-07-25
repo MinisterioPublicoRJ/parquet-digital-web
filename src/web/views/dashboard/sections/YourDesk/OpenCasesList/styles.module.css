@@ -1,10 +1,3 @@
-.openCasesChartsWrapper {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 0;
-}
-
 .openCasesTableWrapper {
   display: flex;
   flex: 1;
@@ -102,4 +95,52 @@
   transition: opacity 0.5s;
   position: absolute;
   width: 24em;
+}
+.allBoxFilters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--grayPagination)
+}
+.boxFilters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  height: 1.8rem;
+  margin-top: 20px;
+  
+}
+.boxFilters button{
+  border: none;
+  background: transparent;
+  color: var(--grayPagination);
+  border-radius: 5px;
+  margin-left: 3px;
+  height: 2.5rem;
+  width: 110px;
+}
+.boxFilters button:nth-child(2){
+  border: 0.5px #EEEEEE solid;
+}
+.boxFilters button:nth-child(3){
+  background-color: #28A7E0;
+  color: var(--white);
+}
+.boxFilters button:nth-child(4){
+  background: rgb(248, 189, 108);
+  color: var(--white);
+}
+.boxFilters button:nth-child(5){
+  background : rgb(248, 108, 114);
+  color: var(--white);
+}
+.boxFilters button:hover{
+  color: var(--white);
+  opacity: 0.8;
+}
+.boxFilters button:nth-child(2){
+  color: var(--grayPagination);
 }

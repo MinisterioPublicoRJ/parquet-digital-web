@@ -2,7 +2,7 @@
 // eslint-disable import/no-cycle
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ListCard } from 'mapasteca-web';
+import ListCard from '../ListCard/ListCard';
 
 import {
   processDetailOuter,
@@ -28,6 +28,7 @@ import { useAlertsContext } from '../../../views/dashboard/sections/Alerts/alert
 import Api from '../../../api';
 import Spinner from '../Spinner';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
+
 import AlertBadge from '../../../views/dashboard/sections/Alerts/AlertBadge';
 import AlertsOverlay from '../../../views/dashboard/sections/Alerts/AlertsOverlay';
 import individualAlertFormatter from '../../../views/dashboard/sections/Alerts/utils/individualAlertFormatter';

@@ -119,8 +119,8 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
       return cavlConstructor(alert, orgao, cpf, token);
 
     //indicadores de saneamento
-    case 'ISPS':
-      return ispsConstructor(alert, orgao, cpf, token);
+    //case 'ISPS':
+      //return ispsConstructor(alert, orgao, cpf, token);
 
     //case 'RO':
     //return roOccurrence(alert, orgao, cpf, token);
@@ -465,7 +465,7 @@ function mvvdConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
     const single = count === 1;
     message = (
       <span>
-        Há
+        Há {""}
         <strong>{`${single ? 'um novo documento' : `${count} novos documentos`} `}</strong>
         com pelo menos uma
         <strong> vitima recorrente </strong>
@@ -566,10 +566,10 @@ function ic1aConstructor(
     const single = count === 1;
     message = (
       <span>
-        Há
+        Há{" "}
         <strong>
           {single ? 'um inquérito civil' : `${count} inquéritos civis`}
-          sem prorrogação{' '}
+          {" "}sem prorrogação{' '}
         </strong>
         há
         <strong> mais de 1 ano</strong>.
@@ -614,7 +614,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
     const single = count === 1;
     message = (
       <span>
-        Há
+        Há{" "}
         {single ? 'uma notícia de fato há mais de ' : `${count} notícias de fato há mais de `}
         <strong>30 dias sem finalização, autuação ou prorrogação</strong>
       </span>
@@ -657,7 +657,7 @@ function nf120Constructor(
     const single = count === 1;
     message = (
       <span>
-        Há
+        Há{" "}
         {single ? 'uma notícia de fato há mais de ' : `${count} notícias de fato há mais de `}
         <strong>120 dias sem finalização, autuação ou prorrogação</strong>
       </span>

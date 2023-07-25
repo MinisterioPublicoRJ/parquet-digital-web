@@ -232,7 +232,7 @@ function Today() {
             <Introduction />
           </Modal>
         )}
-        <img height="100%" src={PromotronGif} alt="robô-promoton" />
+        <img height="110%" width='300px' src={PromotronGif} alt="robô-promoton" />
       </div>
     </article>
   );

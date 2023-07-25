@@ -38,8 +38,9 @@
     "react/no-unescaped-entities": "warn",
     "import/order": "warn",
     "import/extensions": "warn",
-    "spaced-comment": "warn",
-    "import/no-cycle": "warn"
+    "spaced-comment": "warn", 
+    "import/no-cycle": "warn",
+    "react/jsx-curly-brace-presence": "warn"
   },
   "env": {
     "browser": true

@@ -8,33 +8,22 @@ import {
   controlButtonInner,
   controlButtonInactive,
   controlButtonActive,
-  controlButtonNotButton,
-  controlButtonBigNumber,
-  controlButtonBigNumberActive,
-  controlButtonInnerCriminal,
-  controlButtonInnerCriminalWhite,
 } from './styles.module.css';
 
 const propTypes = {
   isActive: PropTypes.bool,
-  number: PropTypes.number,
   text: PropTypes.string.isRequired,
   isButton: PropTypes.bool,
-  loading: PropTypes.bool.isRequired,
-  buttonPressed: PropTypes.func,
-  error: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 const defaultProps = {
   isActive: false,
   isButton: false,
-  buttonPressed: null,
-  error: false,
-  number: 0,
+  loading: false,
 };
 
-function ControlButton({ isActive, number, text, isButton, loading, buttonPressed, error }) {
-  const { currentOffice } = useAppContext();
+function ControlButton({ isActive, text, isButton, loading, buttonPressed }) {
 
   let fill;
   if (isButton) {
@@ -48,27 +37,13 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <span className={controlButtonBigNumberActive}>{error ? 0 : number}</span>
+            text
           )}
-          {text}
         </button>
       );
     } else {
       fill = (
-        <div>
-        {currentOffice.tipo === 7 ? (
-        <div
-          className={`${text === "Documentos novos últimos 30 dias" ? `${ controlButtonInnerCriminal }`:`${ controlButtonInnerCriminalWhite }`}`}
-        >
-          {loading ? (
-            <Spinner size="small" />
-          ) : (
-            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
-          )}
-          {text}
-        </div>
-        ) : (
-          <button
+        <button
           type="button"
           className={`${controlButtonInner} ${controlButtonInactive}`}
           onClick={() => buttonPressed()}
@@ -76,26 +51,12 @@ function ControlButton({ isActive, number, text, isButton, loading, buttonPresse
           {loading ? (
             <Spinner size="small" />
           ) : (
-            <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
+          text
           )}
-          {text}
         </button>
-        )}
-        </div>
       );
     }
-  } else {
-    fill = (
-      <div className={`${controlButtonInner} ${controlButtonInactive} ${controlButtonNotButton}`}>
-        {loading ? (
-          <Spinner size="small" />
-        ) : (
-          <span className={controlButtonBigNumber}>{error ? 0 : number}</span>
-        )}
-        {text}
-      </div>
-    );
-  }
+  } 
 
   return <div className={controlButtonOuter}>{fill}</div>;
 }

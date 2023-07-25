@@ -20,7 +20,6 @@ import {
   PROCESSES_LIST,
   SUCCESS_INDICATORS,
   PIP_RADAR_URL,
-  DESK_INTEGRATED,
   DESK_DETAIL_INTEGRATED,
   PIP_MAIN_INVESTIGATIONS_URL,
   PIP_MAIN_INVESTIGATIONS_URL_ACTION,
@@ -70,7 +69,7 @@ import {
 const buildRequestConfig = (jwt) => ({ params: { jwt } });
 
 const Api = (() => {
-  async function login(token) {
+ /*  async function login(token) {
     const formData = new FormData();
     formData.set('jwt', token);
 
@@ -86,7 +85,7 @@ const Api = (() => {
 
     const { data } = await axios.post(LOGIN, formData);
     return scaUserTranform(data);
-  }
+  } */
 
   /**
    * fetches percentage info for the Today page from the backend
@@ -122,7 +121,7 @@ const Api = (() => {
     return todayEntriesTransform(data);
   }
 
-  async function getOpenCasesDetails({ orgao, cpf, token }) {
+ /*  async function getOpenCasesDetails({ orgao, cpf, token }) {
     const { data } = await axios.get(
       OPEN_CASES_DETAILS_URL({ orgao, cpf }),
       buildRequestConfig(token),
@@ -130,7 +129,7 @@ const Api = (() => {
 
     return openCasesDetailsTransform(data);
   }
-
+ */
   async function getOpenInvestigationsDetails({ orgao, token }) {
     const { data } = await axios.get(
       OPEN_INVESTIGATIONS_DETAILS_URL({ orgao }),
@@ -212,7 +211,7 @@ const Api = (() => {
     return cavlAlertsTransform(data);
   }
 
-  async function getsuccessIndicators({ orgao, token }) {
+  async function getSuccessIndicators({ orgao, token }) {
     const { data } = await axios.get(SUCCESS_INDICATORS({ orgao }), buildRequestConfig(token));
 
     return successIndicatorsTransform(data);
@@ -245,24 +244,6 @@ const Api = (() => {
   async function getPipRadarData({ orgao, token }) {
     const { data } = await axios.get(PIP_RADAR_URL({ orgao }), buildRequestConfig(token));
     return pipRadarTransform(data);
-  }
-
-  async function getIntegratedDeskDocs({ orgao, token, cpf, docType }) {
-    const { data } = await axios.get(
-      DESK_INTEGRATED({ orgao, cpf, docType }),
-      buildRequestConfig(token),
-    );
-
-    return deskIntegratedTransform(data);
-  }
-
-  async function getIntegratedDeskDetails({ orgao, token, cpf, docType, type }) {
-    const { data } = await axios.get(
-      DESK_DETAIL_INTEGRATED({ orgao, cpf, docType, type }),
-      buildRequestConfig(token),
-    );
-
-    return deskTabTransform(data);
   }
 
   async function getMainInvestigated({ orgao, cpf, token }, searchString, page) {
@@ -363,19 +344,19 @@ const Api = (() => {
     return axios.post(link, formData);
   }
 
-  async function getProcessDetail({ orgao, token, num_doc }) {
+  async function getProcessDetail({ orgao, token, numDoc }) {
     const params = { jwt: token };
-    const { data } = await axios.get(PROCESS_DETAIL({ num_doc, orgao }), { params });
+    const { data } = await axios.get(PROCESS_DETAIL({ num_doc: numDoc, orgao }), { params });
     return processDetailTransform(data);
   }
 
   return {
-    login,
+   /*  login,
     scaLogin,
+    getOpenCasesDetails, */
     getTodayOutData,
     getTodayOutliersData,
     getTodayEntriesData,
-    getOpenCasesDetails,
     getOpenInvestigationsDetails,
     getCourtCasesDetails,
     getOpenCasesList,
@@ -386,10 +367,8 @@ const Api = (() => {
     getHiresAlerts,
     getProcessingTimeData,
     getProcessList,
-    getsuccessIndicators,
+    getSuccessIndicators,
     getPipRadarData,
-    getIntegratedDeskDocs,
-    getIntegratedDeskDetails,
     getMainInvestigated,
     actionMainInvestigated,
     removeAlert,

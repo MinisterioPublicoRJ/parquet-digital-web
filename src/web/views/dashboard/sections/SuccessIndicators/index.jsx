@@ -23,7 +23,7 @@ function SuccessIndicators() {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await Api.getsuccessIndicators(buildRequestParams());
+        const response = await Api.getSuccessIndicators(buildRequestParams());
         setSuccessIndicators(response);
       } catch (e) {
         setLoading(true);

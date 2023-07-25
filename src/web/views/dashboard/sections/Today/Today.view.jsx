@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
-import Api from '../../../../api';
+import PropTypes from 'prop-types';
+//import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
@@ -22,7 +23,7 @@ import {
 import InDevelopmentToday from '../../../../components/layoutPieces/InDevelopmentToday';
 
 function Today() {
-  const { user, buildRequestParams, currentOffice } = useAppContext();
+  const { user, buildRequestParams, currentOffice, logout, Api } = useAppContext();
 
   /* STATE */
   const [todayPercent, setTodayPercent] = useState(null);

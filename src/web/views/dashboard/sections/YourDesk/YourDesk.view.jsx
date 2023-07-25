@@ -25,7 +25,6 @@ import MetricsProsecutions from './MetricsProsecutions/MetricsProsecutions.view'
 import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
-import Api from '../../../../api';
 import TablesTutela from '../TablesTutela';
 import MainInvestigated from '../MainInvestigated';
 import ProcessListCriminal from '../ProcessListCriminal';
@@ -45,7 +44,7 @@ import {
 import { MAIN_DATA } from './OpenCasesList/openCasesConstants';
 
 function YourDesk() {
-  const { currentOffice, buildRequestParams } = useAppContext();
+  const { currentOffice, buildRequestParams, Api } = useAppContext();
   const [docsQuantity, setDocsQuantity] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buttonListControl, setButtonListControl] = useState(false);

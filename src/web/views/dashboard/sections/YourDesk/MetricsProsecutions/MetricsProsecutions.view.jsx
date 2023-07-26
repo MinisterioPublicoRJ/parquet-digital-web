@@ -51,7 +51,7 @@ function courtCasesMetrics({
         </span>
       )}
       <>
-        {monthVariation === '0%' ? (
+        {!monthVariation || monthVariation === '0%' ? (
           <span> Não houve aumento nem redução </span>
         ) : (
           <strong>
@@ -124,7 +124,7 @@ function inquiriesMetrics({
             {` ${nrAproveitamentosAtual} ${
               nrAproveitamentosAtual === 1 ? 'caso' : 'casos'
             } para denúncias, cautelares e arquivamentos. `}
-            {formattedVariation === '0%' ? (
+            {!formattedVariation || formattedVariation === '0%' ? (
               <span>
                 {' '}
                 Não houve <strong>aumento nem redução</strong>{' '}
@@ -200,7 +200,7 @@ function picsMetrics({
           <span>você não aproveitou nenhum caso para</span>
         )}{' '}
         <strong>denúncias, cautelares e arquivamentos.</strong>
-        {formattedVariation === '0%' ? (
+        {!formattedVariation || formattedVariation === '0%' ? (
           <span>
             Não houve <strong>aumento nem redução</strong> nos últimos 30 dias.
           </span>

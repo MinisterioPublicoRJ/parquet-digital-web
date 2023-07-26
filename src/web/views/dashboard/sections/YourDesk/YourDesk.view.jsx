@@ -310,15 +310,7 @@ function YourDesk() {
               <p>
                 Há {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} procedimentos
                 com todos os seus crimes possivelmente prescritos.
-              </p>
-              <div className={openCasesChartsWrapperLabel}>
-                <div />
-                <div>Até 20 dias</div>
-                <div />
-                <div>20 a 30 dias</div>
-                <div />
-                <div>+ 30 dias</div>
-              </div>
+              </p>  
               <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>
           </div>

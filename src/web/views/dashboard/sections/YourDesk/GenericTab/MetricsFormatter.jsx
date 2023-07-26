@@ -51,7 +51,7 @@ function courtCasesMetrics({
       </span>
     )}
     <>
-    {monthVariation === "0%" ? (
+    {!monthVariation || monthVariation === "0%" ? (
       <span> Não houve aumento nem redução </span>
     ) : (
     <strong>
@@ -107,7 +107,7 @@ function inquiriesMetrics({
       <strong>{` ${nrAberturasVistaAtual} ${nrAberturasVistaAtual === 1 ? 'abertura' : 'aberturas'} de vista`}</strong>
       . Você aproveitou
       <strong>{` ${nrAproveitamentosAtual} ${nrAproveitamentosAtual === 1 ? 'caso' : 'casos'} para denúncias, cautelares e arquivamentos. `}
-      {formattedVariation === "0%" ? (
+      {!formattedVariation || formattedVariation === "0%" ? (
       <span> Não houve {" "}
         <strong>aumento nem redução</strong>{" "}
       </span>
@@ -135,7 +135,7 @@ function aispsMetrics({ variacaoAcervo }) {
 
   return (
     <>
-    {formattedVariation === "0%" ? (
+    {!formattedVariation || formattedVariation === "0%" ? (
       <p> Não houve {" "}
         <strong>aumento nem redução no número de procedimentos das suas AISPs </strong>nos últimos 30 dias.
       </p>
@@ -200,7 +200,7 @@ function picsMetrics({
         <span>você não aproveitou nenhum caso para</span>
       )}
       {" "}<strong>denúncias, cautelares e arquivamentos.</strong>
-      {formattedVariation === "0%"  ? (
+      {!formattedVariation || formattedVariation === "0%"  ? (
       <span> Não houve {" "}
         <strong>aumento nem redução</strong> nos últimos 30 dias.
       </span>

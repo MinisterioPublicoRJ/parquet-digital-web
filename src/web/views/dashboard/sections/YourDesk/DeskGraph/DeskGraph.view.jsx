@@ -62,11 +62,26 @@ function DeskGraph({ category, color, data }) {
           padding={0}
         > */}
           <VictoryBar horizontal data={buttonChartData} 
+          height={80}
+          padding={{ top: 8, bottom: 20, left: 92, right: 10 }}
+          labelComponent={<VictoryLabel x={0} dx={10} />}
+          barRatio={1.5}
           style={{
             data: {
               fill: ({ datum }) => datum.color,
+              textAlign: 'right'
+            },
+            labels: {
+              fill: ({ datum }) => datum.color,
+              textAlign: 'left', 
+              fontWeight: 700,
+              fontSize: '16px',
+              fontFamily: 'Roboto'
             }
-          }}/>
+          }}
+          
+          labels={({ datum }) => `${datum.y} vistas`}
+          />
 
           {/* </div>{buttonChartData.map((chartData, i) => {
             sum += chartData.y;

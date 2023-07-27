@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { VictoryBar, VictoryLabel, VictoryStack } from 'victory';
-import { leftPad } from '../../../../../utils';
 
 import { deskCasesChartOuter, deskCasesChartGraph } from './DeskGraph.module.css';
 
@@ -27,7 +26,7 @@ const fillerData = [
   { y: 100, color: 'transparent' },
 ];
 
-const LABELS = ['Até 20 dias', '20 a 30 dias', '+30 dias'];
+//const LABELS = ['Até 20 dias', '20 a 30 dias', '+30 dias'];
 
 function MyLabel(props) {
     const x = props.scale.x(props.x);
@@ -37,7 +36,7 @@ function MyLabel(props) {
   }
 
 
-function DeskGraph({ category, color, data, totalSum }) {
+function DeskGraph({ category, color, data }) {
   const [buttonChartData, setButtonChartData] = useState(fillerData);
   const [colors, setColors] = useState(buttonChartData.map((item) => item.color));
   // anti prop, but it's the only way to force VictoryPie to animate
@@ -51,25 +50,40 @@ function DeskGraph({ category, color, data, totalSum }) {
     const c = buttonChartData.map((item) => item.color);
     setColors(c);
   }, [buttonChartData]);
-  let sum = 0;
-  const total = Object.values(buttonChartData).reduce((a, b) => a + b, 0);
-
-  const POSITION_LABEL =['start', 'middle', 'end']
 
 
   return (
     <div style={{ borderTopColor: color }} className={deskCasesChartOuter}>
       <div className={deskCasesChartGraph}>
-        <VictoryStack
-          horizontal
+       {/*  <VictoryStack
+          vertical
           colorScale={colors}
           height={42}
           padding={0}
-          disableInlineStyles
-        >
-          {/*<VictoryBar horizontal data={buttonChartData} /> */}
+        > */}
+          <VictoryBar horizontal data={buttonChartData} 
+          height={80}
+          padding={{ top: 8, bottom: 20, left: 92, right: 10 }}
+          labelComponent={<VictoryLabel x={0} dx={10} />}
+          barRatio={1.5}
+          style={{
+            data: {
+              fill: ({ datum }) => datum.color,
+              textAlign: 'right'
+            },
+            labels: {
+              fill: ({ datum }) => datum.color,
+              textAlign: 'left', 
+              fontWeight: 700,
+              fontSize: '16px',
+              fontFamily: 'Roboto'
+            }
+          }}
+          
+          labels={({ datum }) => `${datum.y} vistas`}
+          />
 
-          {buttonChartData.map((chartData, i) => {
+          {/* </div>{buttonChartData.map((chartData, i) => {
             sum += chartData.y;
             return (
               <VictoryBar
@@ -77,31 +91,16 @@ function DeskGraph({ category, color, data, totalSum }) {
                 data={[{ y: chartData.y }]}
                 animate={{ duration: 2000 }}
                 barWidth={80}
-                //labels={LABELS[i]}
-                labelComponent={
-                  <VictoryLabel
-                    inline
-                    labelPlacement="perpendicular"
-                    verticalAnchor="start"
-                    textAnchor={POSITION_LABEL[i]}
-                    y={0}
-                    dy={0}
-                    //x={(sum - chartData.y) *  (220 / totalSum) }
-                    x={`${33 * i}%`}
-                    dx={0}
-                    padding={0}
-                    style={[
-                        { fill: chartData.color, fontSize: 12 }
-                      ]}
-                  />
-                }
+                style={{
+                  data: { fill: "#c43a31" }
+                }} 
               />
             );
-          })}
+          })} */}
           {/*   <VictoryBar horizontal data={[{y: 20}]} />
           <VictoryBar horizontal data={[{y: 50}]} />
           <VictoryBar horizontal data={[{y: 55}]} /> */}
-        </VictoryStack>
+        {/* </VictoryStack> */}
       </div>
     </div>
   );

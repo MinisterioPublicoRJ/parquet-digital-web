@@ -128,7 +128,7 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
-    let tempDBNames =[];
+    let tempDBNames = [];
 
     if (tabName === 'collection') {
       if (currentOffice.tipo === 1) {
@@ -308,17 +308,11 @@ function YourDesk() {
             </div>
             <div className={deskButtonsTextsHeaderText}>
               <p>
-                Há {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} procedimentos
-                com todos os seus crimes possivelmente prescritos.
+                Sua promotoria possui {' '}
+                <strong>
+                   {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
+                </strong> abertas.
               </p>
-              <div className={openCasesChartsWrapperLabel}>
-                <div />
-                <div>Até 20 dias</div>
-                <div />
-                <div>20 a 30 dias</div>
-                <div />
-                <div>+ 30 dias</div>
-              </div>
               <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>
           </div>
@@ -345,15 +339,16 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics, index) =>  (<MetricsProsecutions
-                    metrics={metrics}
-                    dbName={dbNames[index]}
-                    tab={activeTab}
-                    tabTitle={[BUTTON_TEXTS[activeTab]]}
-                    error={!tabDetail[activeTab] && !loading}
-                    isBeingDeveloped={currentOffice.tipo === 7}
-                  />)
-              )}
+              {metricsArray.map((metrics, index) => (
+                <MetricsProsecutions
+                  metrics={metrics}
+                  dbName={dbNames[index]}
+                  tab={activeTab}
+                  tabTitle={[BUTTON_TEXTS[activeTab]]}
+                  error={!tabDetail[activeTab] && !loading}
+                  isBeingDeveloped={currentOffice.tipo === 7}
+                />
+              ))}
             </div>
           </div>
           {collectionTable}

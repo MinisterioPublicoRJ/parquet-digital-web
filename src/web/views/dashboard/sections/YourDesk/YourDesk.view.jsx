@@ -339,16 +339,17 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics, index) => (
-                <MetricsProsecutions
-                  metrics={metrics}
-                  dbName={dbNames[index]}
-                  tab={activeTab}
-                  tabTitle={[BUTTON_TEXTS[activeTab]]}
-                  error={!tabDetail[activeTab] && !loading}
-                  isBeingDeveloped={currentOffice.tipo === 7}
-                />
-              ))}
+              {metricsArray.map((metrics, index) =>  (
+                  <MetricsProsecutions
+                    key={`metric-${index}`}
+                    metrics={metrics}
+                    dbName={dbNames[index]}
+                    tab={activeTab}
+                    tabTitle={[BUTTON_TEXTS[activeTab]]}
+                    error={!tabDetail[activeTab] && !loading}
+                    isBeingDeveloped={currentOffice.tipo === 7}
+                  />)
+              )}
             </div>
           </div>
           {collectionTable}

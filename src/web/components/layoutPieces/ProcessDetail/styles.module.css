@@ -149,7 +149,7 @@
   justify-content: flex-start;
   flex-basis: auto;
   overflow-y: hidden;
-  min-height: calc(2vh + 75px);
+  min-height: calc(2vh + 90px);
   margin-bottom: 3%;
 }
 

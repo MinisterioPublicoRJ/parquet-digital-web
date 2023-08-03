@@ -37,6 +37,7 @@
 .deskButtonsTextsHeaderText p{
   max-width: 420px;
   margin-top: 0px;
+  
 }
 .deskButtonsTextsHeaderText:nth-child(1) {
   text-align: right;

@@ -104,27 +104,29 @@ div .deskButtonsCollectionPhrase{
 
 .yourCollectionButtons div:nth-child(1){
   width: 140px;
-  height: 100px;
+  height: 105px;
   background-color: #FAFAFA;
   color: #ACACAC;
   margin-left: 0px;
 }
 .yourCollectionButtons div:nth-child(2){
-  height: 100px;
   background-color: #FAFAFA;
   color: #ACACAC;
+
 }
 
 .yourCollectionButtons div:nth-child(3){
   width: 140px;
-  height: 100px;
+  height: 109px;
   margin-left: 0px;
   background-color: #FAFAFA;
   color: #ACACAC;
 }
 
 .componentWrapper .deskButtonsTextsHeader .deskButtonsCollectionPhrase {
-  width: 96%;
+  width: 55%;
+  margin-top: 5px;
+  height: 109px;
 }
 
 .openCasesChartsWrapper {

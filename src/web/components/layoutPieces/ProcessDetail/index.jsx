@@ -55,11 +55,11 @@ function ProcessDetail({ docuNrMp, docuNrExterno }) {
   const { cpf, token, orgao } = buildRequestParams();
   const { alerts, handleAlertAction } = useAlertsContext();
   
-  function openDialogBox(link, key) {
+  const openDialogBox = (link, key) => {
     setModalContent({ link, key });
   }
 
-  function setOverlay(type, documentDk) {
+  const setOverlay = (type, documentDk) => {
     setOverlayType(type);
     setOverlayDocDk(documentDk);
     setShowOverlay(true);

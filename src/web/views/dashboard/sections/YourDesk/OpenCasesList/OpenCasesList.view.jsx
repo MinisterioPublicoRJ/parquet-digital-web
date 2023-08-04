@@ -242,7 +242,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     setSearchString(searchStr);
   };
 
-  function handleProcessDetail(numMprj, numExterno, event) {
+  const handleProcessDetail = (numMprj, numExterno, event) => {
     setNumeroMprj(numMprj);
     setNumeroExterno(numExterno);
     if (event) setSelectedElement(event.target);

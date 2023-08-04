@@ -23,11 +23,11 @@ function MainButton({ number, text, loading, error }) {
       {loading ? (
         <Spinner size="small" />
       ) : (
-        <div className={`${controlButtonInner}`}>
+        <div className={controlButtonInner}>
           {text === 'Total de vistas abertas' ? (
-            <span className={`${deskTextParagrap}`}>{error ? 0 : number}</span>
+            <span className={deskTextParagrap}>{error ? 0 : number}</span>
           ):(
-            <span className={`${deskButtonsVistas}`}>{error ? 0 : number}</span>
+            <span className={deskButtonsVistas}>{error ? 0 : number}</span>
           )}
         </div>
       )}

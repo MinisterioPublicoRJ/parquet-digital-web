@@ -143,7 +143,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno }) {
                   } = alert;
 
                   return (
-                    <div className={alertWrapper} key={`${key}`}>
+                    <div className={alertWrapper} key={key}>
                       <AlertBadge
                         handleDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
                         key={key}

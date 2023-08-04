@@ -1,5 +1,5 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import {criminalGrid} from './Criminal.module.css';
 import {baseGrid} from '../Prosecutors.module.css';
@@ -20,9 +20,9 @@ function Criminal() {
         <ErrorBoundary> 
           <Alerts />
         </ErrorBoundary>
-        {/*<ErrorBoundary> 
+        {/* <ErrorBoundary> 
           <ProcessListCriminal />
-        </ErrorBoundary>*/}
+        </ErrorBoundary> */}
     </div>
   );
 }

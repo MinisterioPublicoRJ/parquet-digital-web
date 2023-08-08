@@ -44,7 +44,7 @@
   --titleFont: Roboto;
   --defaultWelcomeBold: 'Avenir Black', sans-serif;
   --defaultWelcome: 'Avenir Black', sans-serif;
-  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.1);
+  --smallTitleFontSize: calc(var(--defaultFontSize) * 1.1);
 
   --smallFont: clamp(12px, 1.2vh, 16px);
   --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);

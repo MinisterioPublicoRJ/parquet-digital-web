@@ -127,7 +127,7 @@ function YourDesk() {
   }
 
   async function getTabDetails(tabName) {
-    let tempDBNames =[];
+    let tempDBNames = [];
 
     if (tabName === 'collection') {
       if (currentOffice.tipo === 1) {
@@ -306,18 +306,12 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsTextsHeaderText}>
-              <p>
-                Há {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} procedimentos
-                com todos os seus crimes possivelmente prescritos.
-              </p>
-              <div className={openCasesChartsWrapperLabel}>
-                <div />
-                <div>Até 20 dias</div>
-                <div />
-                <div>20 a 30 dias</div>
-                <div />
-                <div>+ 30 dias</div>
-              </div>
+              {/*<p>
+                Sua promotoria possui {' '}
+                <strong>
+                   {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
+                </strong> abertas.
+              </p>*/}
               <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>
           </div>
@@ -344,7 +338,9 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics, index) =>  (<MetricsProsecutions
+              {metricsArray.map((metrics, index) =>  (
+                  <MetricsProsecutions
+                    key={`metric-${index}`}
                     metrics={metrics}
                     dbName={dbNames[index]}
                     tab={activeTab}

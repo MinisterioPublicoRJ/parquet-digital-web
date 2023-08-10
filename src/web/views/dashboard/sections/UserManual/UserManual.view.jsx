@@ -12,7 +12,7 @@ import {
   glossaryArticlesWrapper,
   promotronIcon
 } from './userManual.module.css';
-import PromotronUserManual from '../../../../assets/svg/promotronUserManual.jsx';
+import PromotronUserManual from '../../../../assets/svg/promotronUserManual';
 
 function UserManual() {
   const { currentOffice } = useAppContext();

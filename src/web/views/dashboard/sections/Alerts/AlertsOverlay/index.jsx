@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Api from '../../../../../api';
 import { useAppContext } from '../../../../../../core/app/App.context';
-import { Spinner } from '../../../../../components';
+import Spinner from '../../../../../components/layoutPieces/Spinner';
 
 import { OVERLAY_TEXTS, PRCR_TEXTS, IC1A_TEXT, PA1A_TEXT, IIMP_TEXT } from './overlayConstants';
 

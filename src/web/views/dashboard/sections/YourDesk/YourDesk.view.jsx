@@ -14,7 +14,7 @@ import {
   deskButtonsInactive,
   deskButtonsActive,
   openCasesChartsWrapper,
-  openCasesChartsWrapperLabel,
+  componentWrapperCollections,
   deskButtonsCollectionPhrase,
   deskButtonsCollections,
 } from './styles.module.css';
@@ -308,11 +308,11 @@ function YourDesk() {
             </div>
             <div className={deskButtonsTextsHeaderText}>
               <p>
-                As {' '}
+                As{' '}
                 <strong>
-                   {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
-                </strong> 
-                {' '} abertas, <br /> estão distribuídas da seguinte forma:
+                  {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
+                </strong>{' '}
+                abertas, <br /> estão distribuídas da seguinte forma:
               </p>
               <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>
@@ -324,35 +324,38 @@ function YourDesk() {
           />
         </div>
         <div className={`${componentWrapper} ${activeTab === 'collection' ? ' ' : hide}`}>
-          <div
-            className={`${deskButtonsTextsHeader} ${
-              activeTab === 'collection' ? yourCollectionButtons : desk
-            }`}
-          >
-            <div className={deskButtonsCollections}>
-              {collectionButtonList.map((buttonTitle) => (
-                <InfoBoxYourDesk
-                  key={BUTTON_TEXTS[buttonTitle]}
-                  text={BUTTON_TEXTS[buttonTitle]}
-                  number={docsQuantity[buttonTitle]}
-                  error={!docsQuantity[buttonTitle] && !loading}
+          <div className={componentWrapperCollections}>
+            <div
+              className={`${deskButtonsTextsHeader} ${
+                activeTab === 'collection' ? yourCollectionButtons : desk
+              }`}
+            >
+              <div className={deskButtonsCollections}>
+                {collectionButtonList.map((buttonTitle) => (
+                  <InfoBoxYourDesk
+                    key={BUTTON_TEXTS[buttonTitle]}
+                    text={BUTTON_TEXTS[buttonTitle]}
+                    number={docsQuantity[buttonTitle]}
+                    error={!docsQuantity[buttonTitle] && !loading}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className={deskButtonsCollectionPhrase}>
+              {metricsArray.map((metrics, index) => (
+                <MetricsProsecutions
+                  key={`metric-${index}`}
+                  metrics={metrics}
+                  dbName={dbNames[index]}
+                  tab={activeTab}
+                  tabTitle={[BUTTON_TEXTS[activeTab]]}
+                  error={!tabDetail[activeTab] && !loading}
+                  isBeingDeveloped={currentOffice.tipo === 7}
                 />
               ))}
             </div>
-            <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics, index) =>  (
-                  <MetricsProsecutions
-                    key={`metric-${index}`}
-                    metrics={metrics}
-                    dbName={dbNames[index]}
-                    tab={activeTab}
-                    tabTitle={[BUTTON_TEXTS[activeTab]]}
-                    error={!tabDetail[activeTab] && !loading}
-                    isBeingDeveloped={currentOffice.tipo === 7}
-                  />)
-              )}
-            </div>
           </div>
+
           {collectionTable}
         </div>
       </div>

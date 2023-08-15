@@ -112,11 +112,13 @@ div .deskButtonsCollectionPhrase{
 }
 .yourCollectionButtons div:nth-child(2){
   background-color: #FAFAFA;
-  color: #374354;
-  line-height: 13px;
+  color: #ACACAC;
 
 }
-
+.componentWrapperCollections{
+  display: flex;
+  justify-content: space-between;
+}
 .yourCollectionButtons div:nth-child(3){
   width: 130px;
   height: 102px;

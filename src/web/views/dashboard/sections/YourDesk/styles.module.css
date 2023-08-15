@@ -25,17 +25,17 @@
   justify-content: space-between;
 }
 .deskButtonsTextsHeaderText{
-  text-align: justify;
+  text-align: right;
   color: #374354;
-  font-weight: 600;
+  font-weight: 400;
   align-items: flex-end;
   display: flex;
   flex-direction: column  ;
-  margin-top: 5px;
-  font-size: var(--featuredNumberFontSize);
+  margin-top: -1px;
+  font-size: 0.875rem;
 }
 .deskButtonsTextsHeaderText p{
-  max-width: 420px;
+  max-width: 300px;
   margin-top: 0px;
   
 }

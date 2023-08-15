@@ -115,7 +115,10 @@ div .deskButtonsCollectionPhrase{
   color: #ACACAC;
 
 }
-
+.componentWrapperCollections{
+  display: flex;
+  justify-content: space-between;
+}
 .yourCollectionButtons div:nth-child(3){
   width: 130px;
   height: 102px;
@@ -126,7 +129,6 @@ div .deskButtonsCollectionPhrase{
 
 .componentWrapper .deskButtonsTextsHeader .deskButtonsCollectionPhrase {
   width: 55%;
-  margin-top: 5px;
   height: 109px;
 }
 

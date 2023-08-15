@@ -8,7 +8,7 @@ import {
   glossaryArticlesWrapper,
   promotronIcon
 } from '../UserManual/userManual.module.css';
-import PromotronUserManual from '../../../../assets/svg/promotronUserManual.jsx';
+import PromotronUserManual from '../../../../assets/svg/promotronUserManual';
 
 function MethodologicalNote() {
   return (

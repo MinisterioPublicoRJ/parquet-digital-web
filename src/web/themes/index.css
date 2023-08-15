@@ -47,7 +47,7 @@
   --smallTitleFontSize: calc(var(--defaultFontSize) * 1.1);
 
   --smallFont: clamp(0.75rem, 1.2vh, 1rem);
-  --sectionTitleFontSize:  clamp(1rem, 1.2vh, 1rem);
+  --sectionTitleFontSize:  clamp(0.938rem, 1.2vh, 1rem);
   --featuredNumberFontSize: calc(var(--defaultFontSize) * 1.2);
   --spotlightSize: calc(var(--defaultFontSize) * 2);
 

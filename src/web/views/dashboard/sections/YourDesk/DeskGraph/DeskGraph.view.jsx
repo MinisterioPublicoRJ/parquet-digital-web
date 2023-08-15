@@ -2,7 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { VictoryBar, VictoryLabel, VictoryStack } from 'victory';
+import {
+  VictoryAxis,
+  VictoryBar,
+  VictoryChart,
+  VictoryLabel
+} from 'victory';
 
 import { deskCasesChartOuter, deskCasesChartGraph } from './DeskGraph.module.css';
 
@@ -35,7 +40,6 @@ const fillerData = [
 //     return <VictoryLabel {...props} x={x} y={y}/>
 //  }
 
-
 function DeskGraph({ category, color, data }) {
   const [buttonChartData, setButtonChartData] = useState(fillerData);
   const [colors, setColors] = useState(buttonChartData.map((item) => item.color));
@@ -51,56 +55,39 @@ function DeskGraph({ category, color, data }) {
     setColors(c);
   }, [buttonChartData]);
 
-
   return (
     <div style={{ borderTopColor: color }} className={deskCasesChartOuter}>
       <div className={deskCasesChartGraph}>
-       {/*  <VictoryStack
-          vertical
-          colorScale={colors}
-          height={42}
-          padding={0}
-        > */}
-          <VictoryBar horizontal data={buttonChartData} 
-          height={80}
-          padding={{ top: 8, bottom: 20, left: 92, right: 10 }}
-          labelComponent={<VictoryLabel x={0} dx={10} />}
-          barRatio={1.5}
-          style={{
-            data: {
-              fill: ({ datum }) => datum.color,
-              textAlign: 'right'
-            },
-            labels: {
-              fill: ({ datum }) => datum.color,
-              textAlign: 'left', 
-              fontWeight: 700,
-              fontSize: '16px',
-              fontFamily: 'Roboto'
-            }
-          }}
-          
-          labels={({ datum }) => `${datum.y} vistas`}
+        <VictoryChart height={100} padding={{ top: 8, bottom: 35, left: 100, right: 0 }}>
+          <VictoryAxis
+            dependentAxis
+            invertAxis
+            tickFormat={() => null}
+            style={{
+              axis: { stroke: 'none' },
+            }}
           />
-
-          {/* </div>{buttonChartData.map((chartData, i) => {
-            sum += chartData.y;
-            return (
-              <VictoryBar
-                horizontal
-                data={[{ y: chartData.y }]}
-                animate={{ duration: 2000 }}
-                barWidth={80}
-                style={{
-                  data: { fill: "#c43a31" }
-                }} 
-              />
-            );
-          })} */}
-          {/*   <VictoryBar horizontal data={[{y: 20}]} />
-          <VictoryBar horizontal data={[{y: 50}]} />
-          <VictoryBar horizontal data={[{y: 55}]} /> */}
-        {/* </VictoryStack> */}
+          <VictoryBar
+            horizontal
+            data={buttonChartData}
+            labelComponent={<VictoryLabel x={0} dx={10} />}
+            barRatio={1.5}
+            style={{
+              data: {
+                fill: ({ datum }) => datum.color,
+                textAlign: 'right',
+              },
+              labels: {
+                fill: ({ datum }) => datum.color,
+                textAlign: 'left',
+                fontWeight: 700,
+                fontSize: '16px',
+                fontFamily: 'Roboto',
+              },
+            }}
+            labels={({ datum }) => `${datum.y} vistas`}
+          />
+        </VictoryChart>
       </div>
     </div>
   );

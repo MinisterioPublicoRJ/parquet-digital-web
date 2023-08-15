@@ -230,7 +230,7 @@ function YourDesk() {
 
     // for each category I make and object with the data from all categories and the right colors to use
     // then I push all 3 objects to an array
-    categories.forEach((cat) => {
+    categories.reverse().forEach((cat) => {
       const categoryChart = {
         x: cat,
         y: data[cat],

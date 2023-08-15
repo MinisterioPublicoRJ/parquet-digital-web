@@ -1,7 +1,7 @@
 import React from 'react';
 
-const IconCompras = ({ width, height }) => (
-  <svg
+function IconCompras({ width, height }) {
+  return <svg
     xmlns="http://www.w3.org/2000/svg"
     width={width || '27.171'}
     height={height || '27.171'}
@@ -45,6 +45,6 @@ const IconCompras = ({ width, height }) => (
       />
     </g>
   </svg>
-);
+}
 
 export default IconCompras;

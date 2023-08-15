@@ -1,5 +1,5 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import {tutelaGrid} from './Tutela.module.css';
 import {baseGrid} from '../Prosecutors.module.css';
@@ -19,9 +19,9 @@ function Tutela() {
         <ErrorBoundary> 
           <Alerts />
         </ErrorBoundary>
-        {/*<ErrorBoundary> 
+        {/* <ErrorBoundary> 
           <TablesTutela />
-        </ErrorBoundary>*/}
+        </ErrorBoundary> */}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import {pipGrid} from './Pip.module.css';
 import {baseGrid} from '../Prosecutors.module.css';
@@ -16,15 +16,15 @@ function Pip() {
         <ErrorBoundary>
           <YourDesk />
         </ErrorBoundary>
-        {/*<ErrorBoundary>
+        {/* <ErrorBoundary>
           <MainInvestigated />
-        </ErrorBoundary>*/}
+        </ErrorBoundary> */}
         <ErrorBoundary> 
           <Alerts />
         </ErrorBoundary>
-        {/*<ErrorBoundary> 
+        {/* <ErrorBoundary> 
           <SuccessIndicators />
-        </ErrorBoundary>*/}
+        </ErrorBoundary> */}
     </div>
   );
 }

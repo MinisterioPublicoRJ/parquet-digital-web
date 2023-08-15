@@ -26,14 +26,14 @@ const fillerData = [
   { y: 100, color: 'transparent' },
 ];
 
-//const LABELS = ['Até 20 dias', '20 a 30 dias', '+30 dias'];
+// const LABELS = ['Até 20 dias', '20 a 30 dias', '+30 dias'];
 
-function MyLabel(props) {
-    const x = props.scale.x(props.x);
-    const y = props.scale.y(props.y)
+// function MyLabel(props) {
+//     const x = props.scale.x(props.x);
+//     const y = props.scale.y(props.y)
 
-    return <VictoryLabel {...props} x={x} y={y}/>
-  }
+//     return <VictoryLabel {...props} x={x} y={y}/>
+//  }
 
 
 function DeskGraph({ category, color, data }) {

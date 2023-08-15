@@ -13,11 +13,11 @@ export const OVERLAY_TEXTS = {
       </p>
 
       <p>
-        Enunciado 11 da Súmula do CSMP: "O inquérito civil já em curso na data de vigência da Lei nº
+        Enunciado 11 da Súmula do CSMP: {`"O inquérito civil já em curso na data de vigência da Lei nº
         14.230/2021 deverá ser concluído no prazo de 365 dias, a contar da data de vigência da
         referida lei, com a possibilidade de prorrogação pelo mesmo período, mediante promoção
         fundamentada, a ser encaminhada por cópia ao Conselho Superior do Ministério Público para
-        revisão. " (Aprovada na sessão de 28 de abril de 2022)
+        revisão. "`} (Aprovada na sessão de 28 de abril de 2022)
       </p>
     </div>
   ),
@@ -46,8 +46,8 @@ export const OVERLAY_TEXTS = {
   MVVD: (
     <div>
       <p>
-        O alerta indica que foi cadastrado um novo documento da matéria "Violência Doméstica e
-        Familiar contra a Mulher" nos últimos 30 dias e a vítima (autor e/ou vítima) já figura em
+        O alerta indica que foi cadastrado um novo documento da matéria {`"Violência Doméstica e
+        Familiar contra a Mulher"`} nos últimos 30 dias e a vítima (autor e/ou vítima) já figura em
         outro documento da mesma matéria.
       </p>
     </div>

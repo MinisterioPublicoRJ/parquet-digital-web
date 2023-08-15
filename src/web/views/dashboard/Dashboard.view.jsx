@@ -4,7 +4,7 @@ import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
 import  Introduction  from './sections/Introduction';
 
-const Dashboard = () => {
+function Dashboard() {
   const { user, currentOffice } = useAppContext(); 
   const { firstLogin } = user;
   const type = currentOffice ? currentOffice.tipo : undefined;
@@ -43,7 +43,7 @@ const Dashboard = () => {
     {renderPage()}
     </>
   ); 
-};
+}
 
 
 export default Dashboard;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DashboardView from './Dashboard.view.jsx';
+import DashboardView from './Dashboard.view';
 import AppErrorView from '../app/AppError.view';
 import DashboardControler from '../../../core/dashboard/Dashboard.controler';
 import ErrorBoundary from '../../errorBoundary/ErrorBoundary';

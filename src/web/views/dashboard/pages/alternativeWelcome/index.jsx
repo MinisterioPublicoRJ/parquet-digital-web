@@ -39,7 +39,7 @@ function AlternativeWelcome() {
           do dia-a-dia com base em evidências e uma análise apurada da sua Promotoria.
         </p>
       </div>
-      <p className={altWelcomeTextsFirst}>
+      <div className={altWelcomeTextsFirst}>
         <h2>Que análise fazemos aqui?</h2>
         <p>
           Análises estatísticas e comparativas entre sua promotoria e o grupo de atribuição similar.
@@ -51,8 +51,8 @@ function AlternativeWelcome() {
           apontamento de problemas no acervo e em indicadores de problemas sociais de relevância
           para sua área e atribuição.
         </p>
-      </p>
-      <p className={altWelcomeTextsSecond}>
+      </div>
+      <div className={altWelcomeTextsSecond}>
         <h2>Por que não posso acessar?</h2>
         <p>
           Em uma breve verificação, por consulta no banco de dados do MPRJ, percebemos que a
@@ -62,7 +62,7 @@ function AlternativeWelcome() {
           de Investigação Penal. No entanto, algumas ferramentas já existentes e disponíveis para
           todos (as) podem cumprir parte das funções do Parquet Digital. Confira abaixo!
         </p>
-      </p>
+      </div>
       <div className={altWelcomeSuggestions}>
         <h2>Sugestões de ferramentas</h2>
         <p>Seleção de ferramentas que podem ajudar na sua atuação</p>

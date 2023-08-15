@@ -48,6 +48,9 @@ function NavbarLeft() {
           onMouseOut={() => setHover(false)}
           onBlur={() => setHover(false)}
           onClick={() => setModalType('introduction')}
+          onKeyUp={() => setHover(true)}
+          role="button"
+          tabIndex={-1}
         >
           <button type="button">
             {hover ? <InfoIcon fill="#154763" /> : <InfoIcon />}
@@ -69,6 +72,9 @@ function NavbarLeft() {
           onMouseOut={() => setHoverUserManual(false)}
           onBlur={() => setHoverUserManual(false)}
           onClick={() => setModalType('manual')}
+          onKeyUp={() => setHoverUserManual(true)}
+          role="button"
+          tabIndex={-1}
         >
           <button type="button">
             {hoverUserManual ? <UserManualIcon fill="#154763" /> : <UserManualIcon />}
@@ -98,6 +104,9 @@ function NavbarLeft() {
           onMouseOut={() => setHoverNotaMetodologica(false)}
           onBlur={() => setHoverNotaMetodologica(false)}
           onClick={() => setModalType('notaMetodologica')}
+          onKeyUp={() => setHoverNotaMetodologica(true)}
+          role="button"
+          tabIndex={-1}
         >
           <button className="button" type="button">
             {hoverNotaMetodologica ? <EditNoteIcon fill="#154763" /> : <EditNoteIcon />}
@@ -126,6 +135,9 @@ function NavbarLeft() {
           onMouseOut={() => setHoverRadar(false)}
           onBlur={() => setHoverRadar(false)}
           onClick={() => setModalType('radar')}
+          onKeyUp={() => setHoverRadar(true)}
+          role="button"
+          tabIndex={-1}
         >
           <button type="button">
             {hoverRadar ? <RadarDePerfomanceIcon fill="#154763" /> : <RadarDePerfomanceIcon />}
@@ -146,6 +158,9 @@ function NavbarLeft() {
           onMouseOut={() => setHoverTempoTramitacao(false)}
           onBlur={() => setHoverTempoTramitacao(false)}
           onClick={() => setModalType('tramitacao')}
+          onKeyUp={() => setHoverTempoTramitacao(true)}
+          role="button"
+          tabIndex={-1}
         >
           <button type="button">
             {hoverTempoTramitacao ? <SpeedIcon fill="#154763" /> : <SpeedIcon />}
@@ -161,6 +176,9 @@ function NavbarLeft() {
           onMouseOut={() => setHoverIndicadores(false)}
           onBlur={() => setHoverIndicadores(false)}
           onClick={() => setModalType('indicators')}
+          onKeyUp={() => setHoverIndicadores(true)}
+          role="button"
+          tabIndex={-1}
         >
   
           <button type="button">
@@ -184,6 +202,9 @@ function NavbarLeft() {
           onMouseOut={() => setHoverLogout(false)}
           onBlur={() => setHoverLogout(false)}
           onClick={logout}
+          onKeyUp={() => setHoverLogout(true)}
+          role="button"
+          tabIndex={-1}
         >
           <button type="button">
             {hoverLogout ? <LogoutIcon fill="#154763" /> : <LogoutIcon />}

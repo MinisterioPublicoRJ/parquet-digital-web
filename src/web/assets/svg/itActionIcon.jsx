@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function() {
+export default function ItActionIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="26.933" height="30.6" viewBox="0 0 26.933 30.6">
       <g transform="translate(-137 -1162)">

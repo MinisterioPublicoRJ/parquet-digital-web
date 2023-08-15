@@ -123,11 +123,11 @@ function Alerts() {
     setAlertsError(apiError);
   }
 
-  function openDialogBox(link, key, type) {
+  const openDialogBox = (link, key, type) => {
     setModalContent({ link, key, type });
   }
 
-  async function sendEmail() {
+  const sendEmail = async () => {
     const { key, link, type } = modalContent;
     try {
       // positive feedback after sending to ouvidoria delete the alert
@@ -156,7 +156,7 @@ function Alerts() {
     loadComponent();
   }, []);
 
-  function setOverlay(type, documentDk, docNum) {
+  const setOverlay = (type, documentDk, docNum) => {
     setOverlayType(type);
     setOverlayDocDk(documentDk);
     setOverlayDocNum(docNum);

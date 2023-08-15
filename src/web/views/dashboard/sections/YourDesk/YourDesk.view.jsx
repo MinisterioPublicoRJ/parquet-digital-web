@@ -319,7 +319,7 @@ function YourDesk() {
                 <strong>
                   {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
                 </strong>{' '}
-                abertas, <br /> estão distribuídas da seguinte forma:
+                abertas<br /> estão distribuídas da seguinte forma:
               </p>
               <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>

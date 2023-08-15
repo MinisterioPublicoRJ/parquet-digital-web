@@ -58,7 +58,7 @@ function DeskGraph({ category, color, data }) {
   return (
     <div style={{ borderTopColor: color }} className={deskCasesChartOuter}>
       <div className={deskCasesChartGraph}>
-        <VictoryChart height={100} padding={{ top: 8, bottom: 35, left: 100, right: 0 }}>
+        <VictoryChart height={90} padding={{ top: 8, bottom: 35, left: 100, right: 0 }}>
           <VictoryAxis
             dependentAxis
             invertAxis

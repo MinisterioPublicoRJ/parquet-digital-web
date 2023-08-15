@@ -307,12 +307,13 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsTextsHeaderText}>
-              {/*<p>
-                Sua promotoria possui {' '}
+              <p>
+                As {' '}
                 <strong>
                    {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
-                </strong> abertas.
-              </p>*/}
+                </strong> 
+                {' '} abertas, <br /> estão distribuídas da seguinte forma:
+              </p>
               <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>
           </div>

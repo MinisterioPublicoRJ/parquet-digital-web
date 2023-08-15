@@ -70,7 +70,7 @@ function DeskGraph({ category, color, data }) {
           <VictoryBar
             horizontal
             data={buttonChartData}
-            labelComponent={<VictoryLabel x={0} dx={10} />}
+            labelComponent={<VictoryLabel textAnchor="end" dx={-10}  />}
             barRatio={1.5}
             style={{
               data: {

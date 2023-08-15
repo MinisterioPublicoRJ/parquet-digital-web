@@ -268,7 +268,14 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
-
+  /*if (loading && !tabDetail[activeTab]) {
+    return (
+      <div className={deskButtonsCollections}>
+        <Spinner size="small" />
+      </div>
+  )}*/
+    
+    
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -355,7 +362,6 @@ function YourDesk() {
               ))}
             </div>
           </div>
-
           {collectionTable}
         </div>
       </div>

@@ -11,7 +11,7 @@
   background-color: #ffffff;
 }
 .introductionIntro{
-  height: 30vh;
+  height: 27vh;
   background-color: #bddff0;
   width: 100%;
   border-radius: 15px 15px 0px 0px;
@@ -20,7 +20,7 @@
   margin: 0 auto;
 }
 .introductionInfo{
-  padding: 1.25rem 2.25rem 2.25rem 2.25rem;
+  padding: 1.25rem 1rem 1rem 2.0rem;
 }
 .introductionInfo p{
   font-size: 1rem;
@@ -29,11 +29,11 @@
   color: #3b3b3b;
 }
 .introductionTexts {
-  padding: 2.25rem;
-  margin-top: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem
 }
 .introductionTexts span {
-  margin-top: 0.125rem;
   display: inline-block;
   background-color: #f8bd6c;
   border-radius: 0.25rem;
@@ -41,13 +41,12 @@
   font-weight: bold;
 }
 .introductionIntro h2 {
-  font-size: 2.188rem;
+  font-size: 2rem;
   font-family: var(--defaultFont);
   font-weight: 900;
   letter-spacing: 0px;
   color: #374354;
-  margin-top: 0.23rem;
-  margin-bottom: 0px;
+  margin-top: 0px;
 }
 .introductionIntro p {
   font-size: 0.938rem;
@@ -56,7 +55,7 @@
   color: #3b3b3b;
 }
 .promotronIcon img {
-  height: 25vh;
+  height: 27vh;
 }
 
 .highlighted {

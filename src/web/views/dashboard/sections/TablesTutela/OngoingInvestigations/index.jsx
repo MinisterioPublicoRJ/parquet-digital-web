@@ -124,11 +124,9 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
   }
   return (
     <div
-      className={`${
-        isActive
+      className={isActive
           ? `${ onGoingInvestigationsOuter } ${ onGoingInvestigationsActive }`
-          : `${ onGoingInvestigationsOuter }`
-      }`}
+          : `${ onGoingInvestigationsOuter }`}
     >
       {!ongoingInvestigationsListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>

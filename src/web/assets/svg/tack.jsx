@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Tack = ({ activated }) => (
-  <svg
+function Tack({ activated }) {
+  return <svg
     xmlns="http://www.w3.org/2000/svg"
     width="19.655"
     height="19.655"
@@ -58,6 +58,6 @@ const Tack = ({ activated }) => (
       />
     </g>
   </svg>
-);
+}
 
 export default Tack;

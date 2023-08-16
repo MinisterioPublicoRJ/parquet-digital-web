@@ -93,8 +93,8 @@ const numbers = {
 
 const getNumber = number => numbers[number] || null;
 
-const badge = ({ height, width, number }) => (
-  <svg
+function badge({ height, width, number }) {
+  return <svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 25.8 32.2"
@@ -160,7 +160,7 @@ const badge = ({ height, width, number }) => (
     </g>
     {getNumber(number)}
   </svg>
-);
+}
 
 badge.defaultProps = defaultProps;
 badge.propTypes = propTypes;

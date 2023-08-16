@@ -111,7 +111,6 @@ function inquiriesMetrics({
     <>
       {nrDocumentosDistintosAtual ? (
         <p>
-          Constatei que
           <strong>{` ${nrDocumentosDistintosAtual} ${
             nrDocumentosDistintosAtual === 1 ? 'inquérito passou' : 'inquéritos passaram'
           } por você `}</strong>
@@ -173,7 +172,7 @@ function picsMetrics({
           </span>
         ) : (
           <span>
-            Constatei que <strong>nenhum PIC</strong> passou por você{' '}
+            <strong>Nenhum PIC</strong> passou por você{' '}
           </span>
         )}
         neste mês,{' '}

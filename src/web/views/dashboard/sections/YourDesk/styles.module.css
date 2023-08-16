@@ -25,17 +25,17 @@
   justify-content: space-between;
 }
 .deskButtonsTextsHeaderText{
-  text-align: justify;
+  text-align: right;
   color: #374354;
-  font-weight: 600;
+  font-weight: 400;
   align-items: flex-end;
   display: flex;
   flex-direction: column  ;
-  margin-top: 5px;
-  font-size: var(--featuredNumberFontSize);
+  margin-top: -1px;
+  font-size: 0.875rem;
 }
 .deskButtonsTextsHeaderText p{
-  max-width: 420px;
+  max-width: 300px;
   margin-top: 0px;
   
 }
@@ -99,13 +99,13 @@
 }
 div .deskButtonsCollectionPhrase{
   color: #374354;
-  max-width: 58%;
+  max-width: 48%;
   font-size: var(--smallFont);
 }
 
 .yourCollectionButtons div:nth-child(1){
-  width: 140px;
-  height: 105px;
+  width: 130px;
+  height: 100px;
   background-color: #FAFAFA;
   color: #ACACAC;
   margin-left: 0px;
@@ -115,10 +115,13 @@ div .deskButtonsCollectionPhrase{
   color: #ACACAC;
 
 }
-
+.componentWrapperCollections{
+  display: flex;
+  justify-content: space-between;
+}
 .yourCollectionButtons div:nth-child(3){
-  width: 140px;
-  height: 109px;
+  width: 130px;
+  height: 102px;
   margin-left: 0px;
   background-color: #FAFAFA;
   color: #ACACAC;
@@ -126,7 +129,6 @@ div .deskButtonsCollectionPhrase{
 
 .componentWrapper .deskButtonsTextsHeader .deskButtonsCollectionPhrase {
   width: 55%;
-  margin-top: 5px;
   height: 109px;
 }
 
@@ -145,6 +147,10 @@ div .deskButtonsCollectionPhrase{
   .deskButtonsTextsHeader{
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    justify-content: center;
   }
 }
 /* PHONES */

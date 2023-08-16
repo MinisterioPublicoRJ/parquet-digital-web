@@ -14,7 +14,7 @@ import {
   deskButtonsInactive,
   deskButtonsActive,
   openCasesChartsWrapper,
-  openCasesChartsWrapperLabel,
+  componentWrapperCollections,
   deskButtonsCollectionPhrase,
   deskButtonsCollections,
 } from './styles.module.css';
@@ -229,7 +229,7 @@ function YourDesk() {
 
     // for each category I make and object with the data from all categories and the right colors to use
     // then I push all 3 objects to an array
-    categories.forEach((cat) => {
+    categories.reverse().forEach((cat) => {
       const categoryChart = {
         x: cat,
         y: data[cat],
@@ -267,7 +267,14 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
-
+  /*if (loading && !tabDetail[activeTab]) {
+    return (
+      <div className={deskButtonsCollections}>
+        <Spinner size="small" />
+      </div>
+  )}*/
+    
+    
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -306,12 +313,13 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsTextsHeaderText}>
-              {/*<p>
-                Sua promotoria possui {' '}
+              <p>
+                As{' '}
                 <strong>
-                   {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
-                </strong> abertas.
-              </p>*/}
+                  {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
+                </strong>{' '}
+                abertas<br /> estão distribuídas da seguinte forma:
+              </p>
               <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
             </div>
           </div>
@@ -322,33 +330,35 @@ function YourDesk() {
           />
         </div>
         <div className={`${componentWrapper} ${activeTab === 'collection' ? ' ' : hide}`}>
-          <div
-            className={`${deskButtonsTextsHeader} ${
-              activeTab === 'collection' ? yourCollectionButtons : desk
-            }`}
-          >
-            <div className={deskButtonsCollections}>
-              {collectionButtonList.map((buttonTitle) => (
-                <InfoBoxYourDesk
-                  key={BUTTON_TEXTS[buttonTitle]}
-                  text={BUTTON_TEXTS[buttonTitle]}
-                  number={docsQuantity[buttonTitle]}
-                  error={!docsQuantity[buttonTitle] && !loading}
-                />
-              ))}
+          <div className={componentWrapperCollections}>
+            <div
+              className={`${deskButtonsTextsHeader} ${
+                activeTab === 'collection' ? yourCollectionButtons : desk
+              }`}
+            >
+              <div className={deskButtonsCollections}>
+                {collectionButtonList.map((buttonTitle) => (
+                  <InfoBoxYourDesk
+                    key={BUTTON_TEXTS[buttonTitle]}
+                    text={BUTTON_TEXTS[buttonTitle]}
+                    number={docsQuantity[buttonTitle]}
+                    error={!docsQuantity[buttonTitle] && !loading}
+                  />
+                ))}
+              </div>
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics, index) =>  (
-                  <MetricsProsecutions
-                    key={`metric-${index}`}
-                    metrics={metrics}
-                    dbName={dbNames[index]}
-                    tab={activeTab}
-                    tabTitle={[BUTTON_TEXTS[activeTab]]}
-                    error={!tabDetail[activeTab] && !loading}
-                    isBeingDeveloped={currentOffice.tipo === 7}
-                  />)
-              )}
+              {metricsArray.map((metrics, index) => (
+                <MetricsProsecutions
+                  key={`metric-${index}`}
+                  metrics={metrics}
+                  dbName={dbNames[index]}
+                  tab={activeTab}
+                  tabTitle={[BUTTON_TEXTS[activeTab]]}
+                  error={!tabDetail[activeTab] && !loading}
+                  isBeingDeveloped={currentOffice.tipo === 7}
+                />
+              ))}
             </div>
           </div>
           {collectionTable}

@@ -159,7 +159,7 @@ function ProcessingTime() {
             </div>
             <div className={ptLegendsText}>
               <span className={`${ptLegendsHighlight} ${colorTurquoise}`}>
-                <span>{`${categoryProcessingTime.orgaoData.min.toFixed(0)}`}</span>
+                <span>{categoryProcessingTime.orgaoData.min.toFixed(0)}</span>
                 <span>{` dias`}</span>
               </span>
               trânsito mais rápido da sua promotoria
@@ -171,7 +171,7 @@ function ProcessingTime() {
             </div>
             <div className={ptLegendsText}>
               <span className={`${ptLegendsHighlight} ${colorPink}`}>
-                <span>{`${categoryProcessingTime.orgaoData.max.toFixed(0)}`}</span>
+                <span>{categoryProcessingTime.orgaoData.max.toFixed(0)}</span>
                 <span>{` dias`}</span>
               </span>
               trânsito mais lento da sua promotoria
@@ -183,7 +183,7 @@ function ProcessingTime() {
             </div>
             <div className={ptLegendsText}>
               <span className={`${ptLegendsHighlight} ${colorGreen}`}>
-                <span>{`${categoryProcessingTime.pacoteData.min.toFixed(0)}`}</span>
+                <span>{categoryProcessingTime.pacoteData.min.toFixed(0)}</span>
                 <span>{` dias`}</span>
               </span>
               trânsito mais rápido do grupo
@@ -195,7 +195,7 @@ function ProcessingTime() {
             </div>
             <div className={ptLegendsText}>
               <span className={`${ptLegendsHighlight} ${colorPurple}`}>
-                <span>{`${categoryProcessingTime.pacoteData.average.toFixed(0)}`}</span>
+                <span>{categoryProcessingTime.pacoteData.average.toFixed(0)}</span>
                 <span>{` dias`}</span>
               </span>
               trânsito médio do seu grupo
@@ -207,7 +207,7 @@ function ProcessingTime() {
             </div>
             <div className={ptLegendsText}>
               <span className={`${ptLegendsHighlight} ${colorPink}`}>
-                <span>{`${categoryProcessingTime.pacoteData.max.toFixed(0)}`}</span>
+                <span>{categoryProcessingTime.pacoteData.max.toFixed(0)}</span>
                 <span>{` dias`}</span>
               </span>
               trânsito mais lento do seu grupo

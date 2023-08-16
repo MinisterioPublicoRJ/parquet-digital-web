@@ -17,12 +17,12 @@ function ProcessListCriminal() {
   const [mpDocNum, setMpDocNum] = useState(null);
   const [selectedElement, setSelectedElement] = useState({});
 
-  function setInvestigatedProfile(representanteDk, event){
+  const setInvestigatedProfile = (representanteDk, event) => {
     setSelectedElement(event?.target);
     setRepDk(representanteDk);
   }
 
-  function setProcessDetail(docuNrMp, docuNrExterno, event){
+  const setProcessDetail = (docuNrMp, docuNrExterno, event) => {
     setSelectedElement(event?.target);
     setExtDocNum(docuNrExterno);
     setMpDocNum(docuNrMp);

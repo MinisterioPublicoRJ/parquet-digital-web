@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-// eslint-disable import/no-cycle
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ListCard from '../ListCard/ListCard';
@@ -54,11 +53,11 @@ function ProcessDetail({ docuNrMp, docuNrExterno }) {
   const { cpf, token, orgao } = buildRequestParams();
   const { alerts, handleAlertAction } = useAlertsContext();
   
-  function openDialogBox(link, key) {
+  const openDialogBox = (link, key) => {
     setModalContent({ link, key });
   }
 
-  function setOverlay(type, documentDk) {
+  const setOverlay = (type, documentDk) => {
     setOverlayType(type);
     setOverlayDocDk(documentDk);
     setShowOverlay(true);
@@ -142,7 +141,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno }) {
                   } = alert;
 
                   return (
-                    <div className={alertWrapper} key={`${key}`}>
+                    <div className={alertWrapper} key={key}>
                       <AlertBadge
                         handleDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
                         key={key}

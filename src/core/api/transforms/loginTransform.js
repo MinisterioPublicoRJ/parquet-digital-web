@@ -63,7 +63,7 @@ export function jwtUserTransform(user) {
     cpf,
     matricula,
     token,
-    orgao: orgao,
+    orgao,
     orgaosValidos: []
   },
     orgaoSelecionado: {

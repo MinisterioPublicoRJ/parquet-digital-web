@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useAppContext } from '../../../../core/app/App.context';
 import { TABLE_COLUMNS_PIP, TABLE_COLUMNS_TUTELA } from './investigatedProfileConstants';
 import ProfileDetails from './ProfileDetails';
-import Api from '../../../api';
 import Spinner from '../Spinner';
 import CustomTable from '../CustomTable';
 import { LoginPromotron } from '../../../assets';
@@ -18,7 +17,7 @@ const propTypes = {
 
 function InvestigatedProfile({ representanteDk }) {
   const [pessDk, setPessDk] = useState(null);
-  const { buildRequestParams, currentOffice } = useAppContext();
+  const { buildRequestParams, currentOffice, Api } = useAppContext();
   const [profileData, setProfileData] = useState(null);
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);

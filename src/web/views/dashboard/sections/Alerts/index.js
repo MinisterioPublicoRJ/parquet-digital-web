@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { useAlertsContext } from './alertsContext';
 
-// import Api from '../../../../api';
 import { SectionTitle, Spinner, Modal, DialogBox } from '../../../../components';
 import Dropdown from './Dropdown';
 import Overlay from './AlertsOverlay';

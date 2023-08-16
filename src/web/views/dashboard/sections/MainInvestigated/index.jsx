@@ -10,7 +10,6 @@ import {
 } from './styles.module.css';
 import ActionButtons from './ActionButtons';
 import { TABLE_COLUMNS } from './mainInvestigatedConstants';
-import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import {
   CustomTable,
@@ -23,7 +22,7 @@ import {
 import { highlightJSX } from '../../../../utils';
 
 function MainInvestigated() {
-  const { buildRequestParams, currentOffice } = useAppContext();
+  const { buildRequestParams, currentOffice, Api } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [apiError, setApiError] = useState(false);

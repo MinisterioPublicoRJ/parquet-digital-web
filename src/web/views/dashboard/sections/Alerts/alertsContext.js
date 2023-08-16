@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import Api from '../../../../api';
+import Api from '../../../../../core/api/Api';
 
 export const AlertsContext = createContext();
 

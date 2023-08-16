@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Api from '../../../../../api';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner } from '../../../../../components';
 
@@ -26,7 +25,7 @@ const propTypes = {
 const defaultProps = { children: null, docDk: '', docNum: '' };
 
 function AlertsOverlay({ type, setShowOverlay, children, docDk, docNum }) {
-  const { buildRequestParams } = useAppContext();
+  const { buildRequestParams, Api } = useAppContext();
   const {alerts} = useAlertsContext();
   const [text, setText] = useState();
 

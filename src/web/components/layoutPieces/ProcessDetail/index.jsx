@@ -25,7 +25,6 @@ import {
 } from './styles.module.css';
 import { useAppContext } from '../../../../core/app/App.context';
 import { useAlertsContext } from '../../../views/dashboard/sections/Alerts/alertsContext';
-import Api from '../../../api';
 import Spinner from '../Spinner';
 import { ProcessDetailRobot, User, Copy, ProcessFile } from '../../../assets';
 
@@ -51,7 +50,7 @@ function ProcessDetail({ docuNrMp, docuNrExterno }) {
   const [modalContent, setModalContent] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
 
-  const { buildRequestParams } = useAppContext();
+  const { buildRequestParams, Api } = useAppContext();
   const { cpf, token, orgao } = buildRequestParams();
   const { alerts, handleAlertAction } = useAlertsContext();
   

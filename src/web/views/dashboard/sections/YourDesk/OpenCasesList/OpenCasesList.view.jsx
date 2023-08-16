@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
-// import Api from '../../../../../api';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import { Modal, SearchBox } from '../../../../../components/layoutPieces';

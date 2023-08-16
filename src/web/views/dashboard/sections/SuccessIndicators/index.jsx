@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import SuccessIndicatorsChart from './SuccessIndicatorsChart';
-import Api from '../../../../api';
 import { formatPercent } from '../../../../utils';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -15,7 +14,7 @@ import {
 } from './styles.module.css';
 
 function SuccessIndicators() {
-  const { buildRequestParams } = useAppContext();
+  const { buildRequestParams, Api } = useAppContext();
   const [successIndicators, setSuccessIndicators] = useState([]);
   const [loading, setLoading] = useState(true);
 

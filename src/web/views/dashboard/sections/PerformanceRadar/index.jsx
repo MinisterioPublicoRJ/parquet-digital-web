@@ -12,7 +12,6 @@ import {
   radarSubtitlesItemCriminal,
 } from './styles.module.css';
 import RadarGraph from './RadarGraph';
-import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { RadarArrow } from '../../../../assets';
 import { Spinner, SectionTitle } from '../../../../components/layoutPieces';
@@ -29,7 +28,7 @@ import RadarModal from './RadarModal';
 import { Modal } from '../../../../components';
 
 function PerformanceRadar() {
-  const { currentOffice, buildRequestParams } = useAppContext();
+  const { currentOffice, buildRequestParams, Api } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState([]);
   const [otherData, setOtherData] = useState([]);

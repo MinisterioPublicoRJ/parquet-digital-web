@@ -30,8 +30,7 @@
   font-weight: 400;
   align-items: flex-end;
   display: flex;
-  flex-direction: column  ;
-  margin-top: -1px;
+  flex-direction: column;
   font-size: 0.875rem;
 }
 .deskButtonsTextsHeaderText p{

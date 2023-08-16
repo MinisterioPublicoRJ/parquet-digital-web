@@ -14,7 +14,7 @@
     text-align: center;
     cursor: default;
     flex-direction: column;
-    border:0.5px #EEEEEE solid
+    border: 0.5px #EEEEEE solid;
   }
   span .deskButtonsVistas{
     font-size: 40px;

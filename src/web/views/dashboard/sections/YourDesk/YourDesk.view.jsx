@@ -213,9 +213,7 @@ function YourDesk() {
     if (!data) return;
 
     const cleanData = cleanChartData(data);
-    const categories = Object.keys(data);
-    const sum = Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0;
-    return <DeskGraph data={cleanData} totalSum={sum} />;
+    return <DeskGraph data={cleanData} />;
   }
 
   /**
@@ -226,18 +224,11 @@ function YourDesk() {
    */
   function cleanChartData(data) {
     const categories = Object.keys(data);
-    const cleanData = {};
-
-    // for each category I make and object with the data from all categories and the right colors to use
-    // then I push all 3 objects to an array
-    categories.reverse().forEach((cat) => {
-      const categoryChart = {
-        x: cat,
-        y: data[cat],
-        color: MAIN_DATA[cat][0],
-      };
-      cleanData[cat] = categoryChart;
-    });
+    const cleanData = categories.map((cat) => ({
+      x: cat,
+      y: data[cat],
+      color: MAIN_DATA[cat][0],
+    }));
     return cleanData;
   }
 

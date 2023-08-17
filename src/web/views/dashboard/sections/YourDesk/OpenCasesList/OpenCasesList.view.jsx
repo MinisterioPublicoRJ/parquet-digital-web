@@ -93,6 +93,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno, event);
           }}
           className={processDetailBtn}
+          key={alerts.numeroMprj}
         >
           {highlightedAlerts.numeroMprj}
         </button>
@@ -108,6 +109,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
               onClick={(event) => {
                 handleProcessDetail(alerts.numeroMprj, alerts.numeroExterno, event);
               }}
+              key={alerts.numeroExterno}
             >
               <p>
                 Clique para ver {` ${alerts.alertsCount === 1 ? 'o alerta' : 'os alertas'}`} deste
@@ -243,7 +245,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     setSearchString(searchStr);
   };
 
-  function handleProcessDetail(numMprj, numExterno, event) {
+  const handleProcessDetail = (numMprj, numExterno, event) => {
     setNumeroMprj(numMprj);
     setNumeroExterno(numExterno);
     if (event) setSelectedElement(event.target);
@@ -265,7 +267,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       <div className={boxFilters}>
       <p>Filtrar Tabela:</p>
         {LABELS.map((text, i) => (
-        <button onClick={() => handleChangeActiveTab(categories[i-1])} type='button'>
+        <button onClick={() => handleChangeActiveTab(categories[i-1])} type='button' key={text}>
           <p>{text}</p>
         </button>
         ))}

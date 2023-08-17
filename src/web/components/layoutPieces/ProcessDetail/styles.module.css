@@ -1,6 +1,6 @@
 .processDetailOuter {
   /* accounts for size of close button */
-  height: calc(92vh - 6em);
+  height: calc(92vh - 2rem);
   position: relative;
   width: 60vw;
 }

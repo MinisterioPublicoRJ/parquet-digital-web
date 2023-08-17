@@ -165,7 +165,7 @@ function picsMetrics({
     <>
     <p>
     {nrDocumentosDistintosAtual === 0 ? (
-      <span>Constatei que <strong>nenhum PIC</strong> passou por você </span>
+      <span><strong>Nenhum PIC</strong> passou por você </span>
       ) : (
         <span> Constatei que 
         <strong>

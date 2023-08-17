@@ -1,7 +1,7 @@
 import React from 'react';
 
-const IconSaneamento = ({ width, height }) => (
-  <svg
+function IconSaneamento({ width, height }) {
+  return <svg
     xmlns="http://www.w3.org/2000/svg"
     width={width || '25.942'}
     height={height || '26.836'}
@@ -60,6 +60,6 @@ const IconSaneamento = ({ width, height }) => (
       </g>
     </g>
   </svg>
-);
+}
 
 export default IconSaneamento;

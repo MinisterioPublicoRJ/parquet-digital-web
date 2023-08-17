@@ -119,7 +119,7 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
   }
 
   return (
-    <div className={`${isActive ? `${ processListOuter } ${ processListActive }` : `${ processListOuter }`}`}>
+    <div className={isActive ? `${ processListOuter } ${ processListActive }` : `${ processListOuter }`}>
       {!processListData.length ? (
         <p className="paragraphWrapper"> Nenhum processo para exibir</p>
       ) : (

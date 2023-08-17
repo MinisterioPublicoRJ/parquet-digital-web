@@ -33,7 +33,7 @@ import {
   ABR1_ALERT_ACTION,
   LINK_ACTION_OUVIDORIA,
   PROCESSES_LIST_GENERATE_DOC,
-} from '../../../../../api/endpoints';
+} from '../../../../../../core/api/endpoints';
 
 import {
   DELETE,

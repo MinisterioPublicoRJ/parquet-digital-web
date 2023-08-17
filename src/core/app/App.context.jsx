@@ -27,7 +27,7 @@ export function AppStoreInitializer() {
       setApi(ApiCreator(jwtToken));
       loginWithJwtToken(jwtToken);      
     } else if (storedUser) {
-      //check if user is valid
+      // check if user is valid
       loginWithStoredUser(storedUser, storedOffice);
     } else {
       // no token was available
@@ -54,7 +54,7 @@ export function AppStoreInitializer() {
       if (!e.response) {
         setIsServerDown(true);
       } else {
-        //setUserError(true);
+        // setUserError(true);
       }
     }
   };

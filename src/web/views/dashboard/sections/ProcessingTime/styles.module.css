@@ -19,7 +19,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 200px;
-  padding: 24px 14px 14px 24px;
+  padding: 24px 6px 6px 24px;
   background-color: var(--lightBlue);
 }
 
@@ -42,7 +42,7 @@
 
 .ptGraphWrapper {
   width: 65%;
-  height: 380px;
+  height: 340px;
 }
 
 .ptGraphLabels {

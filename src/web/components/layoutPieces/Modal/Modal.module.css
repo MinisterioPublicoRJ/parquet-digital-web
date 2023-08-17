@@ -38,7 +38,7 @@ button.modalClose {
   position: absolute;  
   color: #ffffff;
   font-size: 5em;
-  bottom: -1em;
+  bottom: -0.9em;
   left: 0;
   right: 0;
   margin-left: auto;

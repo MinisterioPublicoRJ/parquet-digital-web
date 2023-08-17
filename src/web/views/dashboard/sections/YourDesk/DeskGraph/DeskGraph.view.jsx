@@ -21,7 +21,10 @@ function DeskGraph({ data }) {
   return (
     <div className={deskCasesChartOuter}>
       <div className={deskCasesChartGraph}>
-        <VictoryChart height={90} padding={{ top: 8, bottom: 35, left: 100, right: 0 }}>
+        <VictoryChart 
+          height={70} 
+          padding={{ top: 10, bottom: 10, left: 100, right: 0 }}
+        >
           <VictoryAxis
             dependentAxis
             invertAxis
@@ -34,7 +37,7 @@ function DeskGraph({ data }) {
           <VictoryBar
             horizontal
             data={data}
-            barWidth={15}
+            barWidth={18}
             style={{
               data: {
                 fill: ({ datum }) => datum.color,

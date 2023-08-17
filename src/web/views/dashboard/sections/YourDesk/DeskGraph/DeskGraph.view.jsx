@@ -15,14 +15,20 @@ const propTypes = {
   ).isRequired,
 };
 
-const CATEGORIES = ['over30', 'between20And30', 'under20'];
 
 function DeskGraph({ data }) {
+  /* 
+    Remove os dados do gráfico onde y = 0 e usa o método reverse para colocar 
+    as categorias em modo crescente de dias de vistas abertas.
+  */
+  const datahWithoutZeros = data.filter(({y}) => y > 0).reverse();
+
+
   return (
     <div className={deskCasesChartOuter}>
       <div className={deskCasesChartGraph}>
         <VictoryChart 
-          height={70} 
+          height={datahWithoutZeros.length === 2 ? 50 : 70} 
           padding={{ top: 10, bottom: 10, left: 100, right: 0 }}
         >
           <VictoryAxis
@@ -36,7 +42,7 @@ function DeskGraph({ data }) {
 
           <VictoryBar
             horizontal
-            data={data}
+            data={datahWithoutZeros}
             barWidth={18}
             style={{
               data: {
@@ -51,7 +57,6 @@ function DeskGraph({ data }) {
             }}
             labelComponent={<VictoryLabel textAnchor="end" dx={-10} />}
             labels={({ datum }) => `${datum.y} vistas`}
-            categories={{ x: CATEGORIES }}
           />
         </VictoryChart>
       </div>

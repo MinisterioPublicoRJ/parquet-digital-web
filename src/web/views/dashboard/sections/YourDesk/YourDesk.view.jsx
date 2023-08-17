@@ -265,8 +265,8 @@ function YourDesk() {
         <Spinner size="small" />
       </div>
   )}*/
-    
-    
+
+  
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -305,14 +305,22 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsTextsHeaderText}>
-              <p>
-                As{' '}
-                <strong>
-                  {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
-                </strong>{' '}
-                abertas<br /> estão distribuídas da seguinte forma:
-              </p>
-              <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
+              {tabDetail.openCases ? (
+                <>
+                  {sumValues(tabDetail.openCases) > 0 ? (
+                    <p>
+                      As <strong>{sumValues(tabDetail.openCases)} vistas</strong> abertas
+                      <br /> estão distribuídas da seguinte forma:
+                    </p>
+                  ) : (
+                    <p>Não há vistas abertas.</p>
+                  )}
+
+                  <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
+                </>
+              ) : (
+                <Spinner size="medium" />
+              )}
             </div>
           </div>
           <OpenCasesList

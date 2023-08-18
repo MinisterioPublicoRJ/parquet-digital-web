@@ -17,6 +17,7 @@ import {
   componentWrapperCollections,
   deskButtonsCollectionPhrase,
   deskButtonsCollections,
+  spinnerWrapper
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -266,7 +267,6 @@ function YourDesk() {
       </div>
   )}*/
 
-  
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -305,21 +305,24 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsTextsHeaderText}>
-              {tabDetail.openCases ? (
-                <>
-                  {sumValues(tabDetail.openCases) > 0 ? (
+              {tabDetail.openCases && !loading ? (
+                sumValues(tabDetail.openCases) > 0 ? (
+                  <>
                     <p>
                       As <strong>{sumValues(tabDetail.openCases)} vistas</strong> abertas
                       <br /> estão distribuídas da seguinte forma:
                     </p>
-                  ) : (
-                    <p>Não há vistas abertas.</p>
-                  )}
-
-                  <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
-                </>
+                    <div className={openCasesChartsWrapper}>
+                      {renderCharts(tabDetail.openCases)}
+                    </div>
+                  </>
+                ) : (
+                  <p>Não há vistas abertas.</p>
+                )
               ) : (
-                <Spinner size="medium" />
+                <div className={spinnerWrapper}>
+                  <Spinner size="medium" />
+                </div>
               )}
             </div>
           </div>

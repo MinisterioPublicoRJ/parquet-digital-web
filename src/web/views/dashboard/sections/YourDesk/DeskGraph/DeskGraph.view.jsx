@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel, VictoryStack } from 'victory';
 
 import { deskCasesChartOuter, deskCasesChartGraph } from './DeskGraph.module.css';
 
@@ -15,20 +15,21 @@ const propTypes = {
   ).isRequired,
 };
 
-
 function DeskGraph({ data }) {
-  /* 
-    Remove os dados do gráfico onde y = 0 e usa o método reverse para colocar 
-    as categorias em modo crescente de dias de vistas abertas.
-  */
-  const datahWithoutZeros = data.filter(({y}) => y > 0).reverse();
+  // Método reverse para deixar os dados do gráfico em ordem crescente de dias.
+  const reverseData = data.reverse();
 
+  // Preenche as barras que possuem valor zero (y = 0).
+  const maxDaysView = reverseData.reduce((total, days) => days.y > total ? days.y : total, 0);
+  const fillerData = reverseData.map((chartData) => (
+    chartData.y === 0 ? { x: chartData.x, y: maxDaysView } : { x: chartData.x, y: 0 }
+  ));
 
   return (
     <div className={deskCasesChartOuter}>
       <div className={deskCasesChartGraph}>
         <VictoryChart 
-          height={datahWithoutZeros.length === 2 ? 50 : 70} 
+          height={70} 
           padding={{ top: 10, bottom: 10, left: 100, right: 0 }}
         >
           <VictoryAxis
@@ -39,25 +40,30 @@ function DeskGraph({ data }) {
               axis: { stroke: 'none' },
             }}
           />
-
-          <VictoryBar
-            horizontal
-            data={datahWithoutZeros}
-            barWidth={18}
-            style={{
-              data: {
-                fill: ({ datum }) => datum.color,
-              },
-              labels: {
-                fill: ({ datum }) => datum.color,
-                fontWeight: 700,
-                fontSize: '16px',
-                fontFamily: 'Roboto',
-              },
-            }}
-            labelComponent={<VictoryLabel textAnchor="end" dx={-10} />}
-            labels={({ datum }) => `${datum.y} vistas`}
-          />
+          <VictoryStack horizontal>
+            <VictoryBar
+              data={reverseData}
+              barWidth={18}
+              style={{
+                data: {
+                  fill: ({ datum }) => datum.color,
+                },
+                labels: {
+                  fill: ({ datum }) => datum.color,
+                  fontWeight: 700,
+                  fontSize: '16px',
+                  fontFamily: 'Roboto',
+                },
+              }}
+              labelComponent={<VictoryLabel textAnchor="end" dx={-10} />}
+              labels={({ datum }) => datum.y > 0  ? `${datum.y} vistas` : null}
+            />
+            <VictoryBar
+              data={fillerData}
+              barWidth={18}
+              style={{ data: { fill: '#F4F5FA' } }}
+            />
+          </VictoryStack>
         </VictoryChart>
       </div>
     </div>

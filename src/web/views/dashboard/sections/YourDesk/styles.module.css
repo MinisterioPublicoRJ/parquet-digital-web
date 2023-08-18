@@ -27,18 +27,24 @@
 }
 
 .deskButtonsTextsHeaderText{
+  width: 100%;
   text-align: right;
   color: #374354;
   font-weight: 400;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-end;
   font-size: 0.875rem;
-  margin: 0 auto;
 }
 
 .deskButtonsTextsHeaderText p{
   margin: 0;
+}
+
+.spinnerWrapper {
+  width: 100%;
+  text-align: center;
 }
 
 .deskTabs {

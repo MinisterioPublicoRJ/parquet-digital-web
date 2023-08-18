@@ -266,14 +266,7 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
-  /*if (loading && !tabDetail[activeTab]) {
-    return (
-      <div className={deskButtonsCollections}>
-        <Spinner size="small" />
-      </div>
-  )}*/
-    
-    
+  
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -347,17 +340,23 @@ function YourDesk() {
               </div>
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics, index) => (
-                <MetricsProsecutions
-                  key={`metric-${index}`}
-                  metrics={metrics}
-                  dbName={dbNames[index]}
-                  tab={activeTab}
-                  tabTitle={[BUTTON_TEXTS[activeTab]]}
-                  error={!tabDetail[activeTab] && !loading}
-                  isBeingDeveloped={currentOffice.tipo === 7}
-                />
-              ))}
+              {loading ?(
+                <Spinner size="medium" />
+              ) : (
+              <>
+                {metricsArray.map((metrics, index) => (
+                  <MetricsProsecutions
+                    key={`metric-${index}`}
+                    metrics={metrics}
+                    dbName={dbNames[index]}
+                    tab={activeTab}
+                    tabTitle={[BUTTON_TEXTS[activeTab]]}
+                    error={!tabDetail[activeTab] && !loading}
+                    isBeingDeveloped={currentOffice.tipo === 7}
+                  />
+                ))}
+              </>
+              )}
             </div>
           </div>
           {collectionTable}

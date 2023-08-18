@@ -21,7 +21,6 @@ import {
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import MetricsProsecutions from './MetricsProsecutions/MetricsProsecutions.view';
-//import GenericTab from './GenericTab';
 import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';

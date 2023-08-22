@@ -343,7 +343,12 @@ function YourDesk() {
               </div>
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics, index) => (
+            {metricsArray && !loading ? (
+                (!metricsArray && !loading) ? (
+                  <p>Não há vistas metricas.</p>
+                ) : (
+              <>
+                {metricsArray.map((metrics, index) => (
                 <MetricsProsecutions
                   key={`metric-${index}`}
                   metrics={metrics}
@@ -353,7 +358,14 @@ function YourDesk() {
                   error={!tabDetail[activeTab] && !loading}
                   isBeingDeveloped={currentOffice.tipo === 7}
                 />
-              ))}
+                ))}
+              </>
+              )
+              ) : (
+                <div className={spinnerWrapper}>
+                  <Spinner size="medium" />
+                </div>
+              )}
             </div>
           </div>
           {collectionTable}

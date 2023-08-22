@@ -25,7 +25,6 @@ import MetricsProsecutions from './MetricsProsecutions/MetricsProsecutions.view'
 import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
-import Api from '../../../../api';
 import TablesTutela from '../TablesTutela';
 import MainInvestigated from '../MainInvestigated';
 import ProcessListCriminal from '../ProcessListCriminal';
@@ -45,7 +44,7 @@ import {
 import { MAIN_DATA } from './OpenCasesList/openCasesConstants';
 
 function YourDesk() {
-  const { currentOffice, buildRequestParams } = useAppContext();
+  const { currentOffice, buildRequestParams, Api } = useAppContext();
   const [docsQuantity, setDocsQuantity] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buttonListControl, setButtonListControl] = useState(false);
@@ -344,7 +343,12 @@ function YourDesk() {
               </div>
             </div>
             <div className={deskButtonsCollectionPhrase}>
-              {metricsArray.map((metrics, index) => (
+            {metricsArray && !loading ? (
+                (!metricsArray && !loading) ? (
+                  <p>Não há vistas metricas.</p>
+                ) : (
+              <>
+                {metricsArray.map((metrics, index) => (
                 <MetricsProsecutions
                   key={`metric-${index}`}
                   metrics={metrics}
@@ -354,7 +358,14 @@ function YourDesk() {
                   error={!tabDetail[activeTab] && !loading}
                   isBeingDeveloped={currentOffice.tipo === 7}
                 />
-              ))}
+                ))}
+              </>
+              )
+              ) : (
+                <div className={spinnerWrapper}>
+                  <Spinner size="medium" />
+                </div>
+              )}
             </div>
           </div>
           {collectionTable}

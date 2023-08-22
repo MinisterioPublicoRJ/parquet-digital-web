@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Api from '../../../../../api';
 import { CustomTable, Spinner, Pagination } from '../../../../../components';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { highlightJSX } from '../../../../../utils';
@@ -25,7 +24,7 @@ const defaultProps = {
 }
 
 function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDetail, searchString,}) {
-  const { buildRequestParams } = useAppContext();
+  const { buildRequestParams, Api } = useAppContext();
   // eslint-disable-next-line no-shadow
   const [ongoingInvestigationsListData, setOngoingInvestigationsListData] = useState([]);
   const [loading, setLoading] = useState(true);

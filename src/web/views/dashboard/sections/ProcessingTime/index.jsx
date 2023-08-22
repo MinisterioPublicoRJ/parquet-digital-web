@@ -18,7 +18,6 @@ import {
   colorGreen,
   colorPurple,
 } from './styles.module.css';
-import Api from '../../../../api';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import ProcessingTimeChart from './ProcessingTimeChart';
@@ -40,7 +39,7 @@ const getCategoryByType = ({ tipo }) => {
 };
 
 function ProcessingTime() {
-  const { currentOffice, buildRequestParams } = useAppContext();
+  const { currentOffice, buildRequestParams, Api } = useAppContext();
   const [processingTime, setProcessingTime] = useState({});
   const [chartData, setChartData] = useState(null);
   const mainCategory = getCategoryByType(currentOffice);

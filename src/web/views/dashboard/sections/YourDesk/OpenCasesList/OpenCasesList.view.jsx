@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
-import Api from '../../../../../api';
+import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import { Modal, SearchBox } from '../../../../../components/layoutPieces';
 import { highlightJSX } from '../../../../../utils';
@@ -31,6 +31,7 @@ const propTypes = {
 };
 
 function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
+  const { Api } = useAppContext();
   const [activeTab, setActiveTab] = useState('under20');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByTab, setTotalPagesByTab] = useState({});

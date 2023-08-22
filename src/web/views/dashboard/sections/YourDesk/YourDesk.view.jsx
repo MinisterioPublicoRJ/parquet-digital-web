@@ -17,11 +17,11 @@ import {
   componentWrapperCollections,
   deskButtonsCollectionPhrase,
   deskButtonsCollections,
+  spinnerWrapper
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
 import MetricsProsecutions from './MetricsProsecutions/MetricsProsecutions.view';
-//import GenericTab from './GenericTab';
 import InfoBoxYourDesk from './InfoBoxsYourDesk';
 import ControlButton from './ControlButton';
 import OpenCasesList from './OpenCasesList/OpenCasesList.view';
@@ -212,9 +212,7 @@ function YourDesk() {
     if (!data) return;
 
     const cleanData = cleanChartData(data);
-    const categories = Object.keys(data);
-    const sum = Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0;
-    return <DeskGraph data={cleanData} totalSum={sum} />;
+    return <DeskGraph data={cleanData} />;
   }
 
   /**
@@ -225,18 +223,11 @@ function YourDesk() {
    */
   function cleanChartData(data) {
     const categories = Object.keys(data);
-    const cleanData = {};
-
-    // for each category I make and object with the data from all categories and the right colors to use
-    // then I push all 3 objects to an array
-    categories.reverse().forEach((cat) => {
-      const categoryChart = {
-        x: cat,
-        y: data[cat],
-        color: MAIN_DATA[cat][0],
-      };
-      cleanData[cat] = categoryChart;
-    });
+    const cleanData = categories.map((cat) => ({
+      x: cat,
+      y: data[cat],
+      color: MAIN_DATA[cat][0],
+    }));
     return cleanData;
   }
 
@@ -267,14 +258,7 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
-  /*if (loading && !tabDetail[activeTab]) {
-    return (
-      <div className={deskButtonsCollections}>
-        <Spinner size="small" />
-      </div>
-  )}*/
-    
-    
+ 
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -313,14 +297,25 @@ function YourDesk() {
               ))}
             </div>
             <div className={deskButtonsTextsHeaderText}>
-              <p>
-                As{' '}
-                <strong>
-                  {Boolean(tabDetail.openCases) ? sumValues(tabDetail.openCases) : 0} vistas
-                </strong>{' '}
-                abertas<br /> estão distribuídas da seguinte forma:
-              </p>
-              <div className={openCasesChartsWrapper}>{renderCharts(tabDetail.openCases)}</div>
+              {tabDetail.openCases && !loading ? (
+                sumValues(tabDetail.openCases) > 0 ? (
+                  <>
+                    <p>
+                      As <strong>{sumValues(tabDetail.openCases)} vistas</strong> abertas
+                      <br /> estão distribuídas da seguinte forma:
+                    </p>
+                    <div className={openCasesChartsWrapper}>
+                      {renderCharts(tabDetail.openCases)}
+                    </div>
+                  </>
+                ) : (
+                  <p>Não há vistas abertas.</p>
+                )
+              ) : (
+                <div className={spinnerWrapper}>
+                  <Spinner size="medium" />
+                </div>
+              )}
             </div>
           </div>
           <OpenCasesList

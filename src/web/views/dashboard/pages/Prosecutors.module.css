@@ -3,29 +3,23 @@
   display: grid;
   grid-template-columns: var(--navbarWidth) 2fr 1fr;
   grid-template-rows: repeat(3, minmax(0, 1fr));
-  grid-template-areas: 
-  "navbar today alerts"
-  "navbar desk alerts"
-  "navbar desk alerts"
-  ; 
+  grid-template-areas:
+    'navbar today alerts'
+    'navbar desk alerts'
+    'navbar desk alerts';
   row-gap: 1rem;
 }
 
-/* TABLETS */
-@media (min-width: 481px) and (max-width: 1025px) {
+/* MOBILE */
+@media (max-width: 768px) {
   .baseGrid {
-    /* 252 = sum of all rows + 4 grid gaps of 3vh */
-    height: calc(252vh + var(--bodyVerticalPadding));
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: 33vh 66vh 50vh 50vh 40vh;
-  }
-}
-
-/* PHONES */
-@media (max-width: 480px) {
-  .baseGrid {
-    height: 400vh;
-    grid-template-columns: 100%;
-    grid-template-rows: repeat(8, minmax(0, 1fr));
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+      'navbar' 
+      'today' 
+      'desk'
+      'alerts';
   }
 }

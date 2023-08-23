@@ -55,7 +55,6 @@ function YourDesk() {
   const [metricsArray, setMetrics] = useState([]);
 
   const [dbNames, setDBNames] = useState([]);
-  //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
 
@@ -77,7 +76,7 @@ function YourDesk() {
   }
 
   function getButtons() {
-    let buttons, deskButtons, collectionButtons;
+    let deskButtons, collectionButtons;
     switch (currentOffice.tipo) {
       case 1:
         deskButtons = TUTELA_DESK_BUTTONS;
@@ -176,6 +175,8 @@ function YourDesk() {
     try {
       casesDetails = await Api.getOpenCasesDetails(buildRequestParams());
       updatedState.openCases = casesDetails;
+      console.log(casesDetails)
+
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState.openCases = false;

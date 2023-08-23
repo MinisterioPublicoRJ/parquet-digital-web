@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { MAIN_DATA, TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
+import { TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import { Modal, SearchBox } from '../../../../../components/layoutPieces';
@@ -27,12 +27,13 @@ const propTypes = {
     under20: PropTypes.number,
     between20And30: PropTypes.number,
     over30: PropTypes.number,
+    allDate: PropTypes.number,
   }).isRequired,
 };
 
 function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const { Api } = useAppContext();
-  const [activeTab, setActiveTab] = useState('under20');
+  const [activeTab, setActiveTab] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByTab, setTotalPagesByTab] = useState({});
   const [searchString, setSearchString] = useState(null);
@@ -46,7 +47,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   useEffect(() => {
     if (!chartData) return;
 
-    if (Object.keys(chartData).length) {
+    if (Object.keys(chartData)) {
       setTotalPagesByTab(calcTotalPagesByTab(chartData));
     }
     if (Object.keys(chartData).length) {
@@ -143,10 +144,11 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
         currentPage,
         searchString,
       );
+      console.log(res)
     } catch (e) {
       error = true;
     } finally {
-      let newCurrentPageState = { ...tabDetails[activeTab] };
+      let newCurrentPageState = { ...tabDetails[activeTab], };
       const totPages = totalPagesByTab;
       totPages[activeTab] = res ? res.pages : null;
       if (res) newCurrentPageState = generateButtons(res.procedures);
@@ -204,21 +206,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
    * @return {json}      same keys as chartData, each key has again same keys as
    *                     chartData and point to an object with x/y/color values
    */
-  function cleanChartData(data) {
-    const categories = Object.keys(data);
-    const cleanData = {};
 
-    // for each category I make and object with the data from all categories and the right colors to use
-    // then I push all 3 objects to an array
-    categories.forEach((cat) => {
-      const categoryChart = {
-          x: cat,
-          y: data[cat],
-          color:  MAIN_DATA[cat][0]};
-      cleanData[cat] = categoryChart;
-    });
-    return cleanData;
-  }
 
   /**
    * Triggered by buttonPress, updates the state
@@ -231,15 +219,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     setCurrentPage(1);
   }
 
-  /**
-   * Cleans chartData prop data, then draws PieChart buttons
-   * @param  {[type]} data chartData prop
-   * @return {Array}      JSX for PieChart buttons
-   */
-  function renderCharts(data) {
-    const cleanData = cleanChartData(data);
-    const categories = Object.keys(data);
-  }
 
   const onSearch = (searchStr) => {
     setSearchString(searchStr);
@@ -259,6 +238,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const emptyTab = !chartData[activeTab];
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
+  console.log(categories.length)
 
   return (
     <>

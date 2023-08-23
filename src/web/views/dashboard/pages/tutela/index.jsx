@@ -1,27 +1,27 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 
-import {tutelaGrid} from './Tutela.module.css';
-import {baseGrid} from '../Prosecutors.module.css';
+import { tutelaGrid } from './Tutela.module.css';
+import { baseGrid } from '../Prosecutors.module.css';
 
-import {YourDesk, Alerts, TablesTutela, Today, PerformanceRadar} from '../../sections';
+import { YourDesk, Alerts, Today } from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
+import NavbarLeft from '../../../../components/navbarLeft';
 
 function Tutela() {
   return (
-    <div className={[baseGrid, tutelaGrid].join(' ')}>
-        <ErrorBoundary> 
-          <Today />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <YourDesk />
-        </ErrorBoundary>
-        <ErrorBoundary> 
-          <Alerts />
-        </ErrorBoundary>
-        {/* <ErrorBoundary> 
-          <TablesTutela />
-        </ErrorBoundary> */}
+    <div className={baseGrid}>
+      <ErrorBoundary>
+        <NavbarLeft />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Today />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <YourDesk />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Alerts />
+      </ErrorBoundary>
     </div>
   );
 }

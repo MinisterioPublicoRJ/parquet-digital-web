@@ -1,7 +1,6 @@
 .navBarLeftContent {
-  position: fixed;
-  inset: 0px;
-  width: 2.8125rem;
+  grid-area: navbar;
+  width: var(--navbarWidth);
   background-color: var(--loginBlue);
   transition: 0.3s;
   display: flex;
@@ -10,7 +9,6 @@
   align-items: flex-start;
   overflow: hidden;
   z-index: 100;
-  height: 100vh;
 }
 
 .navBarLeftContent:hover {

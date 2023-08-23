@@ -1,16 +1,17 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+
 import { useAppContext } from '../../../../../core/app/App.context';
 import { abbrevName, capitalizeTitle } from '../../../../utils';
-import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
+import InDevelopmentToday from '../../../../components/layoutPieces/InDevelopmentToday';
+import PromotronGif from '../../../../assets/gifs/promotron.gif';
+
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual from '../UserManual/UserManual.view';
 import Introduction from '../Introduction';
 import MapaTron from '../MapaTron/Mapatron.view';
-import NavbarLeft from '../../../../components/navbarLeft';
+
 import {
   todayOuter,
   todayContent,
@@ -19,10 +20,9 @@ import {
   todayRobotPic,
   todayBtn,
 } from './Today.module.css';
-import InDevelopmentToday from '../../../../components/layoutPieces/InDevelopmentToday';
 
 function Today() {
-  const { user, buildRequestParams, currentOffice, logout, Api } = useAppContext();
+  const { user, buildRequestParams, currentOffice, Api } = useAppContext();
 
   /* STATE */
   const [todayPercent, setTodayPercent] = useState(null);
@@ -157,9 +157,9 @@ function Today() {
       ) : null}
       {currentOffice.tipo === 7 ? (
         <p>
-          Seja bem-vindo ao Parquet Digital, ferramenta de auxílio que proporciona uma visão 
-          ampla do acervo da sua Promotoria de Justiça. 
-          Na barra lateral é possível acessar o manual de uso e a nota metodológica. Boa navegação!
+          Seja bem-vindo ao Parquet Digital, ferramenta de auxílio que proporciona uma visão ampla
+          do acervo da sua Promotoria de Justiça. Na barra lateral é possível acessar o manual de
+          uso e a nota metodológica. Boa navegação!
         </p>
       ) : null}
       {collectionAnalysis && !loading && (
@@ -187,7 +187,6 @@ function Today() {
 
   return (
     <article className={todayOuter}>
-      <NavbarLeft />
       <div className={userArea}>
         <MainTitle value={assembleGreeting()} glueToTop />
       </div>
@@ -206,7 +205,9 @@ function Today() {
             <OfficeSelector close={setModalType} />
           </Modal>
         )}
-        <div className={todayTextArea}>{currentOffice.tipo === 7 ? <InDevelopmentToday /> : todayText}</div>
+        <div className={todayTextArea}>
+          {currentOffice.tipo === 7 ? <InDevelopmentToday /> : todayText}
+        </div>
       </div>
       {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (
         <>
@@ -231,7 +232,7 @@ function Today() {
             <Introduction />
           </Modal>
         )}
-        <img height="110%" width='300px' src={PromotronGif} alt="robô-promoton" />
+        <img height="110%" width="300px" src={PromotronGif} alt="robô-promoton" />
       </div>
     </article>
   );

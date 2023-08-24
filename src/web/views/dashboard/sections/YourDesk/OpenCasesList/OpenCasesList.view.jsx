@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
+import { TABLE_COLUMNS, TAB_MATCHER} from './openCasesConstants';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import { Modal, SearchBox } from '../../../../../components/layoutPieces';
@@ -136,6 +136,8 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   async function getOpenCasesList() {
     let error = false;
     let res;
+  
+
     try {
       setTabLoading(true);
       res = await Api.getOpenCasesList(
@@ -144,7 +146,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
         currentPage,
         searchString,
       );
-      console.log(res)
     } catch (e) {
       error = true;
     } finally {
@@ -238,7 +239,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const emptyTab = !chartData[activeTab];
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
-  console.log(categories.length)
 
   return (
     <>
@@ -246,9 +246,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       <SearchBox onSearch={onSearch}  />
       <div className={boxFilters}>
       <p>Filtrar Tabela:</p>
-        {LABELS.map((text, i) => (
-        <button onClick={() => handleChangeActiveTab(categories[i-1])} type='button' key={text}>
-          <p>{text}</p>
+        {categories.map((text, i) => (
+        <button onClick={() => handleChangeActiveTab(categories[i])} type='button' key={text}>
+          <p>{[LABELS[i]]}</p>
         </button>
         ))}
          {searchString &&

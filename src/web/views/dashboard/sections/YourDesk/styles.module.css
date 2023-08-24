@@ -40,6 +40,7 @@
 
 .deskButtonsTextsHeaderText p{
   margin: 0;
+  padding: 2px;
 }
 
 .spinnerWrapper {
@@ -140,8 +141,9 @@ div .deskButtonsCollectionPhrase{
 .openCasesChartsWrapper {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0;
+  width: 100%;
 }
 .deskButtonsTextsHeader{
   display: flex;

@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   grid-area: desk;
-  margin-left: 28px;
+  margin-left: 20px;
+  padding-bottom: var(--horizontalPadding);
 }
 .deskControlers {
   display: flex;
@@ -40,6 +41,7 @@
 
 .deskButtonsTextsHeaderText p{
   margin: 0;
+  padding: 2px;
 }
 
 .spinnerWrapper {
@@ -140,8 +142,9 @@ div .deskButtonsCollectionPhrase{
 .openCasesChartsWrapper {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0;
+  width: 100%;
 }
 .deskButtonsTextsHeader{
   display: flex;

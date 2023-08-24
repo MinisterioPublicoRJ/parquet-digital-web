@@ -9,8 +9,9 @@
   grid-area: today;
   position: relative;
   overflow: hidden;
-  margin-left: 28px;
+  margin-left: 20px;
   height: 30vh;
+  padding-top: var(--horizontalPadding);
 }
 
 .todayContent {

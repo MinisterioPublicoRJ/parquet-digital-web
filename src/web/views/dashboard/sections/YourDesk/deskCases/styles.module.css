@@ -8,7 +8,7 @@
 }
 
 .deskCasesChartGraph {
-  width: 50%;
+  width: 80%;
 }
 
 .deskCasesChartSubs {
@@ -50,9 +50,7 @@
 
 /* PHONES */
 @media (max-width: 480px) {
-  .deskCasesChartGraph {
-  }
-
+  
   .deskCasesChartSubs {
     align-items: center;
   }

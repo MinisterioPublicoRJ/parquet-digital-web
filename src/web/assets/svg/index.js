@@ -43,6 +43,17 @@ export { default as ProcessingTimeHeader } from './ProcessingTimeHeader';
 export { default as PigCAVL } from './pigCavlIcon';
 export { default as PainelCOVID } from './painelCovid';
 export { default as Impropriety } from './impropriety';
+export { default as MobileMenu } from './MobileMenu';
+export { default as ParquetDigitalLogo } from './ParquetDigitalLogo';
+export { default as AlertsIcon } from './AlertsIcon';
+export { default as CloseIcon } from './CloseIcon';
+export { default as LogoutIcon } from './LogoutIcon';
+export { default as UserManualIcon } from './UserManualIcon';
+export { default as InfoIcon } from './InfoIcon';
+export { default as EditNoteIcon } from './EditNoteIcon';
+export { default as SpeedIcon } from './SpeedIcon';
+export { default as RadarDePerfomanceIcon } from './radarDePerformance';
+export { default as IndicadoresDeSucessoIcon } from './indicadoresDeSucesso';
 
 
 

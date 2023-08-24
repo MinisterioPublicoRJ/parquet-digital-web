@@ -25,6 +25,7 @@ function DeskGraph({ data }) {
     chartData.y === 0 ? { x: chartData.x, y: maxDaysView } : { x: chartData.x, y: 0 }
   ));
 
+
   return (
     <div className={deskCasesChartOuter}>
       <div className={deskCasesChartGraph}>
@@ -55,8 +56,9 @@ function DeskGraph({ data }) {
                   fontFamily: 'Roboto',
                 },
               }}
-              labelComponent={<VictoryLabel textAnchor="start" dx={-80} />}
+              labelComponent={<VictoryLabel textAnchor="start" dx={-90} />}
               labels={({ datum }) => datum.y >= 0  ? `${datum.y} vistas` : null}
+              
             />
             <VictoryBar
               data={fillerData}

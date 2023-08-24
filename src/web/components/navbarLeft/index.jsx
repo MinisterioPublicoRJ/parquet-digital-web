@@ -1,28 +1,42 @@
 import React, { useState } from 'react';
+import { useAppContext } from '../../../core/app/App.context';
+
 import UserManual from '../../views/dashboard/sections/UserManual/UserManual.view';
 import Introduction from '../../views/dashboard/sections/Introduction';
 import MethodologicalNote from '../../views/dashboard/sections/MethodologicalNote/MethodologicalNote.view';
+import ProcessingTime from '../../views/dashboard/sections/ProcessingTime';
+import PerformanceRadar from '../../views/dashboard/sections/PerformanceRadar';
+import SuccessIndicators from '../../views/dashboard/sections/SuccessIndicators';
+
 import { Modal } from '../layoutPieces';
-import UserManualIcon from '../../assets/svg/UserManualIcon';
-import InfoIcon from '../../assets/svg/InfoIcon';
-import EditNoteIcon from '../../assets/svg/EditNoteIcon';
-import SpeedIcon from '../../assets/svg/SpeedIcon';
-import LogoutIcon from '../../assets/svg/LogoutIcon';
-import RadarDePerfomanceIcon from '../../assets/svg/radarDePerformance';
-import IndicadoresDeSucessoIcon from '../../assets/svg/indicadoresDeSucesso';
+
+import {
+  AlertsIcon,
+  CloseIcon,
+  ParquetDigitalLogo,
+  MobileMenu,
+  LogoutIcon,
+  UserManualIcon,
+  InfoIcon,
+  EditNoteIcon,
+  SpeedIcon,
+  RadarDePerfomanceIcon,
+  IndicadoresDeSucessoIcon
+} from '../../assets';
 
 import {
   navbar,
   navbarList,
   navbarListItem,
   navbarLogout,
+  mobileNavbarWrapper,
   mobileNavbar,
   openMobileNav,
+  mobileNavbarClose,
+  mobileNavBtn,
+  mobileAlertsBtn,
+  mobileLogo,
 } from './navBarLeft.module.css';
-import { useAppContext } from '../../../core/app/App.context';
-import ProcessingTime from '../../views/dashboard/sections/ProcessingTime';
-import PerformanceRadar from '../../views/dashboard/sections/PerformanceRadar';
-import SuccessIndicators from '../../views/dashboard/sections/SuccessIndicators';
 
 function NavbarLeft() {
   const [modalType, setModalType] = useState(false);
@@ -40,10 +54,23 @@ function NavbarLeft() {
 
   return (
     <div className={`${navbar} ${mobile && openMobileNav}`}>
-      <div className={mobileNavbar}>
-        <button type="button" onClick={() => setMobile(!mobile)}>
-          Abrir
-        </button>
+      <div className={mobileNavbarWrapper}>
+        <div className={mobileNavbar}>
+          <button className={mobileNavBtn} type="button" onClick={() => setMobile(true)}>
+            <MobileMenu />
+          </button>
+          <div className={mobileLogo}>
+            <ParquetDigitalLogo />
+          </div>
+          <button className={mobileAlertsBtn} type="button">
+            <AlertsIcon />
+          </button>
+          <div className={mobileNavbarClose}>
+            <button type="button" onClick={() => setMobile(false)}>
+              <CloseIcon />
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className={navbarList}>

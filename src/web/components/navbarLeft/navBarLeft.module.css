@@ -15,7 +15,7 @@
   width: 14rem;
 }
 
-.mobileNavbar {
+.mobileNavbarWrapper {
   display: none;
 }
 
@@ -64,7 +64,7 @@
 @media (max-width: 768px) {
   .navbar {
     width: 100%;
-    height: 4rem;
+    height: 5rem;
   }
 
   .navbar:hover {
@@ -72,22 +72,77 @@
   }
 
   .navbarList {
-    margin-top: 1rem;
+    margin-top: 0;
     flex: 1;
   }
 
+  .navbarListItem {
+    padding: 0.5rem;
+    border-top: 1px solid var(--blueGray);
+    justify-content: space-between;
+  }
+
+  .navbarListItem:last-child {
+    border-bottom: 1px solid var(--blueGray);
+  }
+
+  .navbarListItem p {
+    order: 1;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .navbarListItem button {
+    order: 2;
+  }
+
   .navbarLogout {
-    width: 100vw;
+    width: 100%;
     margin: 0;
   }
 
-  .mobileNavbar {
-    display: block;
-    align-self: end;
+  .mobileNavbarWrapper {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
     padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .mobileNavbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobileNavbar button,
+  .mobileNavbarClose button {
+    background-color: transparent;
+    border: none;
+  }
+  
+  .mobileNavbarClose {
+    display: none;
   }
 
   .openMobileNav {
     height: 100vh;
+    overflow-y: scroll;
   }  
+
+  .openMobileNav .mobileNavbarClose {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .openMobileNav .mobileNavBtn {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+  }
+
+  .openMobileNav .mobileAlertsBtn {
+    display: none;
+  }
 }

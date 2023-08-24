@@ -1,5 +1,6 @@
 .deskCasesChartOuter {
   display: flex;
+  justify-content: flex-end;
 }
 
 .deskCasesChartGraph {

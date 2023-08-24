@@ -24,7 +24,7 @@ function SuccessIndicatorsChart({ data, color }) {
   };
 
   const chartConfig = {
-    domain: { x: [1, 1.1], y: [0, 1] },
+    // domain: { x: [1, 1.1], y: [0, 1] },
     domainPadding: 0,
     height: 10,
     horizontal: true,

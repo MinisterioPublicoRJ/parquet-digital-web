@@ -2,7 +2,9 @@
   grid-area: alerts;
   display: flex;
   flex-direction: column;
-  margin-left: -50px;
+  margin-left: 20px;
+  padding: var(--horizontalPadding) var(--verticalPadding);
+  padding-left: 0;
 }
 
 .alertsHeader {

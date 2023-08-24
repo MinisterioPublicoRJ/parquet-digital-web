@@ -1,40 +1,32 @@
-.navBarLeftContent {
-  position: fixed;
-  inset: 0px;
-  width: 2.8125rem;
+.navbar {
+  grid-area: navbar;
+  width: var(--navbarWidth);
   background-color: var(--loginBlue);
+  z-index: 100;
   transition: 0.3s;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: flex-start;
   overflow: hidden;
-  z-index: 100;
-  height: 100vh;
 }
 
-.navBarLeftContent:hover {
-  width: 14.0rem;
+.navbar:hover {
+  width: 14rem;
 }
 
-.navBarLeftContent button {
-  border: none;
-  background-color: transparent;
+.mobileNavbarWrapper {
+  display: none;
 }
 
-.topButtonDiv {
+.navbarList {
   display: flex;
   flex-direction: column;
+  width: 100%;
   margin-top: 3.25rem;
-  width: 100vw;
 }
 
-.logOutPositionDiv {
-  width: 100vw;
-  margin: 0 0 2.9375rem 0.2rem;
-}
-
-.userManualDiv {
+.navbarListItem {
   display: flex;
   color: var(--white);
   background: transparent;
@@ -42,22 +34,7 @@
   cursor: pointer;
 }
 
-.notaMetodologicaDiv,
-.infosDiv,
-.tempoTramitacaoDiv,
-.logOutButtonDiv {
-  display: flex;
-  color: var(--white);
-  background: transparent;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.userManualDiv p,
-.notaMetodologicaDiv p,
-.infosDiv p,
-.tempoTramitacaoDiv p,
-.logOutButtonDiv p {
+.navbarListItem p {
   position: relative;
   display: block;
   white-space: nowrap;
@@ -65,12 +42,107 @@
   margin-left: 0.7rem;
 }
 
-.userManualDiv:hover,
-.notaMetodologicaDiv:hover,
-.infosDiv:hover,
-.tempoTramitacaoDiv:hover,
-.logOutButtonDiv:hover {
+
+.navbarListItem button {
+  border: none;
+  background-color: transparent;
+}
+
+.navbarListItem:hover {
   color: var(--loginBlue);
   background-color: var(--lightBlue);
   transition: all 0.3s;
+}
+
+.navbarLogout {
+  width: 100vw;
+  margin: 12.3rem 0 2.9375rem 0.2rem;
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%;
+    height: 5rem;
+  }
+
+  .navbar:hover {
+    width: 100%;
+  }
+
+  .navbarList {
+    margin-top: 0;
+    flex: 1;
+  }
+
+  .navbarListItem {
+    padding: 0.5rem;
+    border-top: 1px solid var(--blueGray);
+    justify-content: space-between;
+  }
+
+  .navbarListItem:last-child {
+    border-bottom: 1px solid var(--blueGray);
+  }
+
+  .navbarListItem p {
+    order: 1;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .navbarListItem button {
+    order: 2;
+  }
+
+  .navbarLogout {
+    width: 100%;
+    margin: 0;
+  }
+
+  .mobileNavbarWrapper {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .mobileNavbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobileNavbar button,
+  .mobileNavbarClose button {
+    background-color: transparent;
+    border: none;
+  }
+  
+  .mobileNavbarClose {
+    display: none;
+  }
+
+  .openMobileNav {
+    height: 100vh;
+    overflow-y: scroll;
+  }  
+
+  .openMobileNav .mobileNavbarClose {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .openMobileNav .mobileNavBtn {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+  }
+
+  .openMobileNav .mobileAlertsBtn {
+    display: none;
+  }
 }

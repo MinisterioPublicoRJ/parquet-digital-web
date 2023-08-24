@@ -30,7 +30,7 @@ function DeskGraph({ data }) {
       <div className={deskCasesChartGraph}>
         <VictoryChart 
           height={70} 
-          padding={{ top: 2, bottom: 2, left: 100, right: 0 }}
+          padding={{ top: 0, bottom: 0, left: 100, right: 0 }}
         >
           <VictoryAxis
             dependentAxis

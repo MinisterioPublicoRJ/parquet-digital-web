@@ -53,7 +53,6 @@ function YourDesk() {
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
   const [metricsArray, setMetrics] = useState([]);
-
   const [dbNames, setDBNames] = useState([]);
   //const [collectionTable, setCollectionTable] = useState();
   const collectionTable = getCollectionTable();
@@ -300,7 +299,7 @@ function YourDesk() {
                 sumValues(tabDetail.openCases) > 0 ? (
                   <>
                     <p>
-                      As <strong>{sumValues(tabDetail.openCases)} vistas</strong> abertas
+                      As <strong>{tabDetail.openCases.allDate} vistas</strong> abertas
                       <br /> estão distribuídas da seguinte forma:
                     </p>
                     <div className={openCasesChartsWrapper}>

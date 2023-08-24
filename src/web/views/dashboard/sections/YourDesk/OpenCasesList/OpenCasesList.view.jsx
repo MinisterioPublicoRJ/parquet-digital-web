@@ -136,7 +136,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   async function getOpenCasesList() {
     let error = false;
     let res;
-  
 
     try {
       setTabLoading(true);
@@ -174,6 +173,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       setTabLoading(false);
     }
   }
+
 
   function handlePageClick(page) {
     if (page < 1 || page > totalPagesByTab[activeTab]) return;
@@ -239,6 +239,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const emptyTab = !chartData[activeTab];
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
+
 
   return (
     <>

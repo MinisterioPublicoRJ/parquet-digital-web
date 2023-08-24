@@ -49,7 +49,6 @@ function NavbarLeft() {
   const [hoverRadar, setHoverRadar] = useState(false);
   const [hoverIndicadores, setHoverIndicadores] = useState(false);
   const [hover, setHover] = useState(false);
-
   const [mobile, setMobile] = useState(false);
 
   return (

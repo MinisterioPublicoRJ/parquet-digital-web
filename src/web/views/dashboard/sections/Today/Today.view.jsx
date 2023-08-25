@@ -6,6 +6,7 @@ import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import InDevelopmentToday from '../../../../components/layoutPieces/InDevelopmentToday';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
+import RoboResponsivo from '../../../../assets/svg/roboResponsivo';
 
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual from '../UserManual/UserManual.view';
@@ -19,6 +20,7 @@ import {
   userArea,
   todayRobotPic,
   todayBtn,
+  roboResponsivo,
 } from './Today.module.css';
 
 function Today() {
@@ -187,6 +189,9 @@ function Today() {
 
   return (
     <article className={todayOuter}>
+      <div className={roboResponsivo}>
+        <RoboResponsivo  />
+      </div>
       <div className={userArea}>
         <MainTitle value={assembleGreeting()} glueToTop />
       </div>

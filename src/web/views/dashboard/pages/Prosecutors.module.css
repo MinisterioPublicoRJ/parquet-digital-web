@@ -44,21 +44,4 @@
   .alerts {
     display: none;
   }
-
-  .baseGrid.showOnlyAlerts {
-    grid-template-rows: repeat(2, auto);
-    grid-template-areas:
-    'navbar'
-    'alerts';
-  }
-
-  .baseGrid.showOnlyAlerts .alerts {
-    display: flex;
-    justify-content: center;
-  }
-
-  .baseGrid.showOnlyAlerts .today,
-  .baseGrid.showOnlyAlerts .desk {
-    display: none;
-  }
 }

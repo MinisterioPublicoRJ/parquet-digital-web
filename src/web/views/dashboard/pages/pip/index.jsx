@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
   baseGrid,
   navbar,
   today,
   desk,
-  alerts,
-  showOnlyAlerts
+  alerts
 } from '../Prosecutors.module.css';
 
 import { Alerts, Today, YourDesk } from '../../sections';
@@ -14,13 +13,11 @@ import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
 import NavbarLeft from '../../../../components/navbarLeft';
 
 function Pip() {
-  const [onlyAlerts, setOnlyAlerts] = useState(false);
-
   return (
-    <div className={`${baseGrid} ${onlyAlerts && showOnlyAlerts}`}>
+    <div className={baseGrid}>
       <div className={navbar}>
         <ErrorBoundary>
-          <NavbarLeft onlyAlerts={onlyAlerts} setOnlyAlerts={setOnlyAlerts} />
+          <NavbarLeft />
         </ErrorBoundary>
       </div>
       <div className={today}>

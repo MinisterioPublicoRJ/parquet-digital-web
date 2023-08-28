@@ -27,7 +27,6 @@
 .alerts {
   grid-area: alerts;
   display: flex;
-  justify-content: center;
 }
 
 /* MOBILE */
@@ -55,6 +54,7 @@
 
   .baseGrid.showOnlyAlerts .alerts {
     display: flex;
+    justify-content: center;
   }
 
   .baseGrid.showOnlyAlerts .today,

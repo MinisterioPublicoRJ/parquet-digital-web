@@ -60,11 +60,3 @@
   width: 64%;
   display: flex;
 }
-
-/* PHONES */
-@media (max-width: 480px) {
-  .alertsWrapper {
-    /*overflow-y: scroll;
-    width: 100%; */
-  }
-}

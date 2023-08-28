@@ -1,6 +1,7 @@
 .navbar {
   grid-area: navbar;
   width: var(--navbarWidth);
+  height: 100vh;
   background-color: var(--loginBlue);
   z-index: 100;
   transition: 0.3s;
@@ -15,7 +16,7 @@
   width: 14rem;
 }
 
-.mobileNavbarWrapper {
+.mobileNavbar {
   display: none;
 }
 
@@ -42,7 +43,6 @@
   margin-left: 0.7rem;
 }
 
-
 .navbarListItem button {
   border: none;
   background-color: transparent;
@@ -68,7 +68,7 @@
   }
 
   .navbar:hover {
-    width: 100%;
+    width: inherit;
   }
 
   .navbarList {
@@ -101,48 +101,57 @@
     margin: 0;
   }
 
-  .mobileNavbarWrapper {
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
+  .mobileNavbar {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 3rem 6fr 3rem;
+    align-items: center;
     padding: 1rem;
     box-sizing: border-box;
   }
 
-  .mobileNavbar {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .mobileNavbar button,
-  .mobileNavbarClose button {
+  .mobileNavbar button {
     background-color: transparent;
     border: none;
+  }
+
+  .mobileLogo {
+    justify-self: center;
   }
   
   .mobileNavbarClose {
     display: none;
   }
 
-  .openMobileNav {
+  .extendNavbar {
     height: 100vh;
     overflow-y: scroll;
-  }  
-
-  .openMobileNav .mobileNavbarClose {
-    display: flex;
-    justify-content: flex-end;
   }
 
-  .openMobileNav .mobileNavBtn {
+  .extendNavbar .mobileAlertsBtn,
+  .openAlerts .mobileAlertsBtn {
+    display: none;
+  }
+
+  .extendNavbar .mobileNavbarClose,
+  .openAlerts .mobileNavbarClose {
+    display: block;
+    animation: displayTransition 0.3s backwards ease-in-out;
+  }
+
+  .extendNavbar .mobileNavBtn,
+  .openAlerts .mobileNavBtn {
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;
   }
+}
 
-  .openMobileNav .mobileAlertsBtn {
-    display: none;
+@keyframes displayTransition {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

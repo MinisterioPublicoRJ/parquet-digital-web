@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useAppContext } from '../../../core/app/App.context';
 
-import UserManual from '../../views/dashboard/sections/UserManual/UserManual.view';
-import Introduction from '../../views/dashboard/sections/Introduction';
-import MethodologicalNote from '../../views/dashboard/sections/MethodologicalNote/MethodologicalNote.view';
-import ProcessingTime from '../../views/dashboard/sections/ProcessingTime';
-import PerformanceRadar from '../../views/dashboard/sections/PerformanceRadar';
-import SuccessIndicators from '../../views/dashboard/sections/SuccessIndicators';
+import {
+  UserManual,
+  Introduction,
+  MethodologicalNote,
+  ProcessingTime,
+  PerformanceRadar,
+  SuccessIndicators
+} from '../../views/dashboard/sections';
 
 import { Modal } from '../layoutPieces';
 
@@ -29,16 +32,21 @@ import {
   navbarList,
   navbarListItem,
   navbarLogout,
-  mobileNavbarWrapper,
   mobileNavbar,
-  openMobileNav,
+  extendNavbar,
+  openAlerts,
   mobileNavbarClose,
   mobileNavBtn,
   mobileAlertsBtn,
-  mobileLogo,
+  mobileLogo
 } from './navBarLeft.module.css';
 
-function NavbarLeft() {
+const propTypes = {
+  onlyAlerts: PropTypes.bool.isRequired,
+  setOnlyAlerts: PropTypes.func.isRequired
+}
+
+function NavbarLeft({ onlyAlerts, setOnlyAlerts }) {
   const [modalType, setModalType] = useState(false);
   const { currentOffice } = useAppContext();
   const { logout } = useAppContext();
@@ -49,28 +57,35 @@ function NavbarLeft() {
   const [hoverRadar, setHoverRadar] = useState(false);
   const [hoverIndicadores, setHoverIndicadores] = useState(false);
   const [hover, setHover] = useState(false);
-
-  const [mobile, setMobile] = useState(false);
+  const [activeMobileNav, setActiveMobileNav] = useState(false);
 
   return (
-    <div className={`${navbar} ${mobile && openMobileNav}`}>
-      <div className={mobileNavbarWrapper}>
-        <div className={mobileNavbar}>
-          <button className={mobileNavBtn} type="button" onClick={() => setMobile(true)}>
-            <MobileMenu />
-          </button>
-          <div className={mobileLogo}>
-            <ParquetDigitalLogo />
-          </div>
-          <button className={mobileAlertsBtn} type="button">
-            <AlertsIcon />
-          </button>
-          <div className={mobileNavbarClose}>
-            <button type="button" onClick={() => setMobile(false)}>
-              <CloseIcon />
-            </button>
-          </div>
+    <div
+      className={`${navbar} ${activeMobileNav && extendNavbar} ${onlyAlerts && openAlerts}`}
+    >
+      <div className={mobileNavbar}>
+        <button className={mobileNavBtn} type="button" onClick={() => setActiveMobileNav(true)}>
+          <MobileMenu />
+        </button>
+
+        <div className={mobileLogo}>
+          <ParquetDigitalLogo />
         </div>
+
+        <button className={mobileAlertsBtn} type="button" onClick={() => setOnlyAlerts(true)}>
+          <AlertsIcon />
+        </button>
+
+        <button
+          className={mobileNavbarClose}
+          type="button"
+          onClick={() => {
+            setActiveMobileNav(false)
+            setOnlyAlerts(false)
+          }}
+        >
+          <CloseIcon />
+        </button>
       </div>
 
       <div className={navbarList}>
@@ -249,5 +264,7 @@ function NavbarLeft() {
     </div>
   );
 }
+
+NavbarLeft.propTypes = propTypes;
 
 export default NavbarLeft;

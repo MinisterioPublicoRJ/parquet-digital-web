@@ -47,9 +47,9 @@ export function AppStoreInitializer() {
   const loginWithJwtToken = async (token) => {
     try {
       const {loggedUser, orgaoSelecionado} = await Api.loginWithJwtCredentials(token);
-      setUser(loggedUser);
-      setCurrentOffice(orgaoSelecionado);
       setApi(ApiCreator(loggedUser.token));
+      setCurrentOffice(orgaoSelecionado);
+      setUser(loggedUser);
     } catch (e) {
       if (!e.response) {
         setIsServerDown(true);
@@ -78,8 +78,9 @@ export function AppStoreInitializer() {
   const loginWithSCACredentials = async (username, password) => {    
     try {        
       const {loggedUser, orgaoSelecionado} = await Api.loginWithSCACredentials(username, password);
-      setUser(loggedUser);
+      setApi(ApiCreator(loggedUser.token));
       setCurrentOffice(orgaoSelecionado);
+      setUser(loggedUser);
       const storageUser = { timestamp: new Date(), userObj: loggedUser};
       window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
       window.localStorage.setItem('current_office', JSON.stringify(orgaoSelecionado));

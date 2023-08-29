@@ -238,7 +238,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const emptyTab = !chartData[activeTab];
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(tabDetails);
-  // const allCategories = categories.push(' ')
 
   return (
     <>

@@ -71,20 +71,16 @@ import { formatDateObjForBackend } from '../../web/utils/formatters';
 
 function ApiCreator(jwtToken) {
   const axiosInstance = axios.create({
-    baseURL: BASE_URL,
-    params: { 
-      jwt: jwtToken
-    },
+    baseURL: BASE_URL
   });
 
   const addHeaders = (config) => {
-    if (jwtToken) {
+    if (jwtToken){
       // eslint-disable-next-line no-param-reassign
       config.headers.common.Authorization = `Bearer ${jwtToken}`;
     }
     return config;
   }
-
   axiosInstance.interceptors.request.use(addHeaders, (error) => Promise.reject(error));
 
   // axios bug not allowing params and other configs being changed after creating instance

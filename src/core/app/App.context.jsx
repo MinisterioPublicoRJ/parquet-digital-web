@@ -1,4 +1,4 @@
-import React, { useEffect,createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import ApiCreator from '../api/Api';
 // eslint-disable-next-line import/no-cycle
 import { AlertsContext } from '../../web/views/dashboard/sections/Alerts/alertsContext';
@@ -13,7 +13,6 @@ export const useAppContext = () => useContext(AppContext);
 
 
 export function AppStoreInitializer() {
-
   const [Api, setApi] = useState(ApiCreator());
   const [user, setUser] = useState(null);
   const [autoLoginFailed, setAutoLoginFailed] = useState(false);
@@ -44,7 +43,21 @@ export function AppStoreInitializer() {
     return storedDate > limitDate;
   };
 
- 
+
+  const loginWithJwtToken = async (token) => {
+    try {
+      const {loggedUser, orgaoSelecionado} = await Api.loginWithJwtCredentials(token);
+      setApi(ApiCreator(loggedUser.token));
+      setCurrentOffice(orgaoSelecionado);
+      setUser(loggedUser);
+    } catch (e) {
+      if (!e.response) {
+        setIsServerDown(true);
+      } else {
+        // setUserError(true);
+      }
+    }
+  };
 
   const loginWithStoredUser = (storedUser, storedOffice) => {
     if (isStoredUserValid(storedUser)) {
@@ -65,8 +78,9 @@ export function AppStoreInitializer() {
   const loginWithSCACredentials = async (username, password) => {    
     try {        
       const {loggedUser, orgaoSelecionado} = await Api.loginWithSCACredentials(username, password);
-      setUser(loggedUser);
+      setApi(ApiCreator(loggedUser.token));
       setCurrentOffice(orgaoSelecionado);
+      setUser(loggedUser);
       const storageUser = { timestamp: new Date(), userObj: loggedUser};
       window.localStorage.setItem('sca_token', JSON.stringify(storageUser));
       window.localStorage.setItem('current_office', JSON.stringify(orgaoSelecionado));
@@ -74,33 +88,13 @@ export function AppStoreInitializer() {
       setScaLoginFailed(true);
       /* CORS error in the browser makes response opaque - can't distinguish between network error or status  !=ok in browser
         https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed */
-     if (!e.response) {
+ /*      if (!e.response) {
         setIsServerDown(true);
       } else {
         setScaLoginFailed(true);
-      }
+      } */
     }
   };
-
-  const loginWithJwtToken = async (token) => {
-    try {
-      const {loggedUser, orgaoSelecionado} = await Api.loginWithJwtCredentials(token);
-      setUser(loggedUser);
-      setCurrentOffice(orgaoSelecionado);
-      setApi(ApiCreator(loggedUser.token));
-    } catch (e) {
-      if (!e.response) {
-        setIsServerDown(true);
-      } else {
-        // setUserError(true);
-      }
-    }
-  };
-  useEffect(() => {
-    loginWithJwtToken();
-    loginWithSCACredentials();
-  }, []);
-
 
   // add backend integration when available
   const logout = () => {
@@ -125,7 +119,6 @@ export function AppStoreInitializer() {
     window.localStorage.setItem('current_office', JSON.stringify(newOffice));
   };
 
- 
   return {
     Api,
     appHasCrashed,

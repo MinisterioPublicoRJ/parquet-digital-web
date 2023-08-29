@@ -168,7 +168,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           },
         });
       }
-     
       setTotalPagesByTab(totPages);
       setTabLoading(false);
     }
@@ -281,7 +280,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
         {searchString &&
           !tabLoading &&
-          categories &&
+          tabDetails[activeTab] &&
           tabDetails[activeTab] &&
           !tabDetails[activeTab][currentPage] && (
             <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>

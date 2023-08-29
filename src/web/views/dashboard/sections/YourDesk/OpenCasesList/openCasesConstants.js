@@ -12,12 +12,6 @@ export const TAB_MATCHER = {
   over30: 'trinta_mais',
 };
 
-export const LABELS = {
-  allDate:'Todas as vistas',
-  under20:'Até 20 dias',
-  over30:'20 a 30 dias',
-  between20And30: '+30 dias',
-};
 
 export const TABLE_COLUMNS = {
   Alertas: 'alertTag',

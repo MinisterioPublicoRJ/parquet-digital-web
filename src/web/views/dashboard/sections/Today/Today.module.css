@@ -14,6 +14,9 @@
   padding-top: var(--horizontalPadding);
 }
 
+.roboResponsivo{
+  display: none;
+}
 .todayContent {
   display: flex;
   flex-direction: column;
@@ -180,17 +183,35 @@
   .todayRobotPic {
     height: 70%;
   }
-
+  .todayOuter{
+    padding: 0px;
+    height: 60vh;
+  }
   .todayContent {
     width: 60%;
+  }
+  .todayRobotPic {
+    display: block;
+  }
+  .todayRobotPic img{
+    width: 100%;
   }
 }
 
+/* PHONES */
 @media (max-width: 480px) {
   .todayRobotPic {
-    height: 40%;
+    display: none;
   }
   .todayContent {
-    width: 60%;
+    width: 80%;
+  }
+  .todayOuter{
+    padding: 0px;
+    height: 60vh;
+    width: 80%;
+  }
+  .roboResponsivo{
+    display: block;
   }
 }

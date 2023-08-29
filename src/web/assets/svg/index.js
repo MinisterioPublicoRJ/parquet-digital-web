@@ -54,6 +54,7 @@ export { default as EditNoteIcon } from './EditNoteIcon';
 export { default as SpeedIcon } from './SpeedIcon';
 export { default as RadarDePerfomanceIcon } from './radarDePerformance';
 export { default as IndicadoresDeSucessoIcon } from './indicadoresDeSucesso';
+export { default as RoboResponsivo } from './roboResponsivo';
 
 
 

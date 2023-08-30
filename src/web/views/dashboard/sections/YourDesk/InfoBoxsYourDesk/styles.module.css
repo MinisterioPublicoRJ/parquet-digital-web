@@ -7,7 +7,7 @@
   .controlButtonOuter{
     margin-left: 4px;
     width: 130px;
-    height: 100px;
+    height: 98px;
     border-radius: 5px; 
     display: flex;
     text-transform: uppercase;
@@ -19,7 +19,7 @@
   span .deskButtonsVistas{
     font-size: 40px;
     width: 135px;
-    height: 100px;
+    height: 98px;
     background-color: #EEEEEE;
     color: #ACACAC;
   }
@@ -29,7 +29,7 @@
     font-size: var(--spotlightSize);
   }
  .controlButtonOuter p{
-   margin-top: 3px;
+   margin-top: -3px;
    font-size: 12px;
   }
   .controlButtonOuter:nth-child(2){
@@ -44,7 +44,7 @@
     flex-direction: column;
     justify-content: center;
     width: 180px;
-    height: 100px;
+    height: 98px;
     text-align: center;
     border: 0.5px #EEEEEE solid;
     flex-direction: column;
@@ -84,5 +84,10 @@
       height: 100%;
       margin: 3px;
     }
+    .controlButtonOuter:nth-child(1){
+      width: 100%;
+    }
   }
+
+  
   

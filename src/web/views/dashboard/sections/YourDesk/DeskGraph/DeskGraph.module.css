@@ -5,12 +5,14 @@
 
 .deskCasesChartGraph {
   width: 100%;
-  height: 80px;
+  height: 70px;
 }
 
 /* PHONES */
 @media (max-width: 480px) {
   .deskCasesChartGraph {
-    display: none;
+    width: 100%;
+    height: 100%;
   }
+  
 }

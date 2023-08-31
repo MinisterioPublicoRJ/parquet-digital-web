@@ -234,7 +234,7 @@ function cavlConstructor(alert, orgao, cpf, token) {
         Os valores do contrato
         <strong>{` ${contrato} `}</strong>
         {`${single ? 'item: ' : 'itens: '}`}
-        <strong>{` ${item.substring(0, 40).toLowerCase()}... `}</strong>
+        <strong>{` ${item?.substring(0, 40).toLowerCase()}... `}</strong>
         apresentaram possíveis sobrepreços.
       </span>
     );
@@ -284,7 +284,7 @@ function compConstructor(alert, orgao, cpf, token) {
       <span>
         Os valores do contrato
         <strong>{` ${contrato} `}</strong>,{`${single ? 'item: ' : 'itens: '}`}
-        <strong>{` ${item.substring(0, 40).toLowerCase()}... `}</strong>
+        <strong>{` ${item?.substring(0, 40).toLowerCase()}... `}</strong>
         possivelmente ensejam a atenção do MPRJ.
       </span>
     );

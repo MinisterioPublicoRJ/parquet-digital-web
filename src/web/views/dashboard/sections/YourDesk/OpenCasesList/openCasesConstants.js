@@ -5,9 +5,11 @@ export const MAIN_DATA = {
   between20And30: ['#F8BD6C'],
 };
 
+
+// this constant matches the front end name to the corresponding back end url 
 export const TAB_MATCHER = {
+  allDate: 'full',
   under20: 'ate_vinte',
-  allDate: 'soma_full',
   between20And30: 'vinte_trinta',
   over30: 'trinta_mais',
 };

@@ -33,7 +33,7 @@ const propTypes = {
 
 function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const { Api } = useAppContext();
-  const [activeTab, setActiveTab] = useState('');
+  const [activeTab, setActiveTab] = useState('full');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByTab, setTotalPagesByTab] = useState({});
   const [searchString, setSearchString] = useState(null);
@@ -139,6 +139,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
     try {
       setTabLoading(true);
+      console.log('activetAb', activeTab);
       res = await Api.getOpenCasesList(
         buildRequestParams(),
         TAB_MATCHER[activeTab],
@@ -184,6 +185,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
 
   useEffect(() => {
+    console.log('using effect, activeTab: ', activeTab);
     if (!chartData) return;
     const hasItems = chartData[activeTab];
     if (hasItems && tabDetails[activeTab]) {
@@ -197,6 +199,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }, [activeTab, chartData, currentPage, tabDetails]);
 
   useEffect(() => {
+    console.log('searchingstring, activeTab:', activeTab);
     getOpenCasesList();
   }, [searchString]);
 
@@ -237,8 +240,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const emptyTab = !chartData[activeTab];
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData)
-
-  console.log(categories)
 
   return (
     <>

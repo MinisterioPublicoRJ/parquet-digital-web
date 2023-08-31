@@ -316,11 +316,13 @@ function YourDesk() {
               )}
             </div>
           </div>
+          {!!tabDetail.openCases &&
           <OpenCasesList
-            buildRequestParams={buildRequestParams}
-            chartData={tabDetail.openCases}
-            isLoading={!tabDetail.openCases && loading}
-          />
+          buildRequestParams={buildRequestParams}
+          chartData={tabDetail.openCases}
+          isLoading={!tabDetail.openCases && loading}
+        />}
+          
         </div>
         <div className={`${componentWrapper} ${activeTab === 'collection' ? ' ' : hide}`}>
           <div className={componentWrapperCollections}>

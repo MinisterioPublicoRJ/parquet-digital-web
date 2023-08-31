@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { TABLE_COLUMNS, TAB_MATCHER} from './openCasesConstants';
+import { TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import { Modal, SearchBox } from '../../../../../components/layoutPieces';
@@ -43,6 +43,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
+  const [emptyTab, setEmptyTab] = useState(!chartData[activeTab]);
 
   useEffect(() => {
     if (!chartData) return;
@@ -149,17 +150,39 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     } catch (e) {
       error = true;
     } finally {
-      let newCurrentPageState = { ...tabDetails[activeTab], };
+      let newCurrentPageState = { ...tabDetails[activeTab] };
       const totPages = totalPagesByTab;
       totPages[activeTab] = res ? res.pages : null;
       if (res) newCurrentPageState = generateButtons(res.procedures);
       newCurrentPageState.searchString = searchString;
       if (error) newCurrentPageState = undefined;
+      console.log(
+        '\n\nNEWCURRPAGSTAT',
+        newCurrentPageState,
+        'tabDetails currentPage',
+        tabDetails,
+        '!tabDetailscurentPa',
+      );
+      console.log('\n\n\n\n\nboool tabDetails[activeTab]', Boolean(tabDetails[activeTab]));
+      if (tabDetails[activeTab]) console.log('!curpage:', !tabDetails[activeTab][currentPage]);
+
+      if (!tabDetails[activeTab]) {
+        setTabDetails({
+          ...tabDetails,
+          [activeTab]: {
+            ...tabDetails[activeTab],
+            [currentPage]: newCurrentPageState,
+            searchString,
+          },
+        });
+      }
+
       if (
         tabDetails[activeTab] &&
         (tabDetails[activeTab].searchString !== searchString ||
           newCurrentPageState !== tabDetails[activeTab][currentPage])
       ) {
+        console.log('settin tab detail');
         setTabDetails({
           ...tabDetails,
           [activeTab]: {
@@ -171,9 +194,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       }
       setTotalPagesByTab(totPages);
       setTabLoading(false);
+      setEmptyTab(false);
     }
   }
-
 
   function handlePageClick(page) {
     if (page < 1 || page > totalPagesByTab[activeTab]) return;
@@ -210,7 +233,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
    *                     chartData and point to an object with x/y/color values
    */
 
-
   /**
    * Triggered by buttonPress, updates the state
    * @param  {string} tabName the name of the next active tab,
@@ -218,6 +240,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
    * @return {void}
    */
   function handleChangeActiveTab(tabName) {
+    console.log('\n\n\ntabName: ', tabName, 'activeTAB:', activeTab);
     setActiveTab(tabName);
     setCurrentPage(1);
   }
@@ -231,42 +254,43 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     setNumeroExterno(numExterno);
     if (event) setSelectedElement(event.target);
     setIsProcessDetailOpen((prevState) => !prevState);
-  }
+  };
 
   if (isLoading || !chartData) {
     return <Spinner size="large" />;
   }
 
-  const emptyTab = !chartData[activeTab];
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
-  const categories = Object.keys(chartData)
+  const categories = Object.keys(chartData);
+
+  console.log('Emptytab', emptyTab, 'tabLoadin', tabLoading, 'tabDetails', tabDetails);
 
   return (
     <>
-    <div className={allBoxFilters}>
-      <SearchBox onSearch={onSearch}  />
-      <div className={boxFilters}>
-      <p>Filtrar Tabela:</p>
-        {categories.map((text, i) => (
-        <button onClick={() => handleChangeActiveTab(categories[i])} type='button' key={text}>
-          <p>{[LABELS[i]]}</p>
-        </button>
-        ))}
-         {searchString &&
-          !tabLoading &&
-          tabDetails[activeTab] &&
-          !tabDetails[activeTab][currentPage] && (
-            <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
-              <p className={noOpenCases}> Nenhuma vista aberta com os parâmetros pesquisados</p>
-              <CustomTable
-                data={Array(20).fill({ content: '' })}
-                columns={TABLE_COLUMNS}
-                showHeader
-              />
-            </div>
-          )}
+      <div className={allBoxFilters}>
+        <SearchBox onSearch={onSearch} />
+        <div className={boxFilters}>
+          <p>Filtrar Tabela:</p>
+          {categories.map((text, i) => (
+            <button onClick={() => handleChangeActiveTab(categories[i])} type="button" key={text}>
+              <p>{[LABELS[i]]}</p>
+            </button>
+          ))}
+          {searchString &&
+            !tabLoading &&
+            tabDetails[activeTab] &&
+            !tabDetails[activeTab][currentPage] && (
+              <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
+                <p className={noOpenCases}> Nenhuma vista aberta com os parâmetros pesquisados</p>
+                <CustomTable
+                  data={Array(20).fill({ content: '' })}
+                  columns={TABLE_COLUMNS}
+                  showHeader
+                />
+              </div>
+            )}
+        </div>
       </div>
-    </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab &&
@@ -274,11 +298,11 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
           tabDetails[activeTab] &&
           tabDetails[activeTab][currentPage] && (
             <CustomTable
-              data={tabDetails[activeTab][currentPage]}
-              columns={TABLE_COLUMNS}
-              showHeader
-              searchString={searchString}
-            />
+                data={tabDetails[activeTab][currentPage]}
+                columns={TABLE_COLUMNS}
+                showHeader
+                searchString={searchString}
+              />
           )}
 
         {searchString &&

@@ -56,6 +56,11 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     }
   }, [chartData]);
 
+  useEffect(() => {
+   if(Object.keys(tabDetails).length && typeof tabDetails[activeTab] === 'undefined') getOpenCasesList();
+  }, [tabDetails]);
+
+
   function initializeTabDetails(chart) {
     const details = {};
     const categories = Object.keys(chart);
@@ -165,8 +170,13 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       );
       console.log('\n\n\n\n\nboool tabDetails[activeTab]', Boolean(tabDetails[activeTab]));
       if (tabDetails[activeTab]) console.log('!curpage:', !tabDetails[activeTab][currentPage]);
+      console.log('tabdetails before if: ', tabDetails[activeTab]);
+      console.log('TABDETAILS TYPE OF', typeof tabDetails[activeTab]);
 
-      if (!tabDetails[activeTab]) {
+      if (typeof tabDetails === 'object' && typeof tabDetails[activeTab] === 'undefined') {
+        console.log('\n\n\n\n\ninside first if , tabdetails0', tabDetails);
+        if (Object.keys(tabDetails).length){   
+        console.log('\n\n\ninside setting tab details\n\n\n');
         setTabDetails({
           ...tabDetails,
           [activeTab]: {
@@ -175,6 +185,8 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             searchString,
           },
         });
+
+        }
       }
 
       if (
@@ -293,16 +305,19 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
+        ói nóis em cima
         {!emptyTab &&
           !tabLoading &&
           tabDetails[activeTab] &&
           tabDetails[activeTab][currentPage] && (
+            <>ói nóis em baixo
             <CustomTable
                 data={tabDetails[activeTab][currentPage]}
                 columns={TABLE_COLUMNS}
                 showHeader
                 searchString={searchString}
               />
+          </>
           )}
 
         {searchString &&

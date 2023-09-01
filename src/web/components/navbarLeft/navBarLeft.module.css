@@ -1,8 +1,10 @@
 .navbar {
   grid-area: navbar;
   width: var(--navbarWidth);
+  height: 100vh;
   background-color: var(--loginBlue);
-  z-index: 100;
+  position: fixed;
+  z-index: 10;
   transition: 0.3s;
   display: flex;
   justify-content: space-between;
@@ -15,55 +17,18 @@
   width: 14rem;
 }
 
-.mobileNavbarWrapper {
+.mobileNavbar {
   display: none;
 }
 
-.navbarList {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 3.25rem;
-}
-
-.navbarListItem {
-  display: flex;
-  color: var(--white);
-  background: transparent;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.navbarListItem p {
-  position: relative;
-  display: block;
-  white-space: nowrap;
-  text-align: center;
-  margin-left: 0.7rem;
-}
-
-
-.navbarListItem button {
-  border: none;
-  background-color: transparent;
-}
-
-.navbarListItem:hover {
-  color: var(--loginBlue);
-  background-color: var(--lightBlue);
-  transition: all 0.3s;
-}
-
-.navbarLogout {
-  width: 100vw;
-  margin: 12.3rem 0 2.9375rem 0.2rem;
-}
-
-
 /* MOBILE */
 @media (max-width: 768px) {
+  .navbarWrapper {
+    position: relative;
+  }
+
   .navbar {
-    width: 100%;
+    width: 100vw;
     height: 5rem;
   }
 
@@ -71,78 +36,78 @@
     width: 100%;
   }
 
-  .navbarList {
-    margin-top: 0;
-    flex: 1;
-  }
-
-  .navbarListItem {
-    padding: 0.5rem;
-    border-top: 1px solid var(--blueGray);
-    justify-content: space-between;
-  }
-
-  .navbarListItem:last-child {
-    border-bottom: 1px solid var(--blueGray);
-  }
-
-  .navbarListItem p {
-    order: 1;
-    font-weight: 400;
-    text-transform: uppercase;
-  }
-
-  .navbarListItem button {
-    order: 2;
-  }
-
-  .navbarLogout {
-    width: 100%;
-    margin: 0;
-  }
-
-  .mobileNavbarWrapper {
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
+  .mobileNavbar {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 3rem 6fr 3rem;
+    align-items: center;
     padding: 1rem;
     box-sizing: border-box;
+    z-index: 100;
   }
 
-  .mobileNavbar {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .mobileNavbar button,
-  .mobileNavbarClose button {
+  .mobileNavbar button {
     background-color: transparent;
     border: none;
   }
-  
-  .mobileNavbarClose {
+
+  .mobileLogo {
+    justify-self: center;
+  }
+
+  .navbarListWrapper {
     display: none;
   }
 
-  .openMobileNav {
-    height: 100vh;
-    overflow-y: scroll;
-  }  
-
-  .openMobileNav .mobileNavbarClose {
+  .mobilePortalWrapper {
+    position: fixed;
+    top: auto;
+    z-index: 10;
+    height: 100%;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
   }
 
-  .openMobileNav .mobileNavBtn {
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
+  .mobilePortalWrapper .mobileNavbar {
+    width: 100vw;
+    background-color: var(--loginBlue);
+    position: relative;
   }
 
-  .openMobileNav .mobileAlertsBtn {
-    display: none;
+  .mobilePortalWrapper .mobileLogo {
+    grid-column: 2
+  }
+
+  .mobilePortalWrapper .alertsMobile {
+    background-color: white;
+    width: 100vw;
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  .animationStartRight {
+    animation: toRight 0.8s forwards;
+  }
+
+  .animationStartLeft {
+    animation: toLeft 0.8s forwards;
+  }
+}
+
+@keyframes toRight {
+  from {
+    transform: translate3d(-1000px, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes toLeft {
+  from {
+    transform: translate3d(1000px, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }

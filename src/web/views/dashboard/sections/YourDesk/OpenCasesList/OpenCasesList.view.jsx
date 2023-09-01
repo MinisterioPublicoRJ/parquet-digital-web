@@ -18,6 +18,7 @@ import {
   emptyAlert,
   allBoxFilters,
   boxFilters,
+  openCasesEmptyTableSearchString,
 } from './styles.module.css';
 
 const propTypes = {
@@ -145,7 +146,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
     try {
       setTabLoading(true);
-      console.log('activetAb', activeTab);
       res = await Api.getOpenCasesList(
         buildRequestParams(),
         TAB_MATCHER[activeTab],
@@ -161,22 +161,8 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       if (res) newCurrentPageState = generateButtons(res.procedures);
       newCurrentPageState.searchString = searchString;
       if (error) newCurrentPageState = undefined;
-      console.log(
-        '\n\nNEWCURRPAGSTAT',
-        newCurrentPageState,
-        'tabDetails currentPage',
-        tabDetails,
-        '!tabDetailscurentPa',
-      );
-      console.log('\n\n\n\n\nboool tabDetails[activeTab]', Boolean(tabDetails[activeTab]));
-      if (tabDetails[activeTab]) console.log('!curpage:', !tabDetails[activeTab][currentPage]);
-      console.log('tabdetails before if: ', tabDetails[activeTab]);
-      console.log('TABDETAILS TYPE OF', typeof tabDetails[activeTab]);
-
       if (typeof tabDetails === 'object' && typeof tabDetails[activeTab] === 'undefined') {
-        console.log('\n\n\n\n\ninside first if , tabdetails0', tabDetails);
         if (Object.keys(tabDetails).length){   
-        console.log('\n\n\ninside setting tab details\n\n\n');
         setTabDetails({
           ...tabDetails,
           [activeTab]: {
@@ -185,7 +171,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             searchString,
           },
         });
-
         }
       }
 
@@ -194,7 +179,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
         (tabDetails[activeTab].searchString !== searchString ||
           newCurrentPageState !== tabDetails[activeTab][currentPage])
       ) {
-        console.log('settin tab detail');
         setTabDetails({
           ...tabDetails,
           [activeTab]: {
@@ -220,7 +204,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
 
   useEffect(() => {
-    console.log('using effect, activeTab: ', activeTab);
     if (!chartData) return;
     const hasItems = chartData[activeTab];
     if (hasItems && tabDetails[activeTab]) {
@@ -234,7 +217,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }, [activeTab, chartData, currentPage, tabDetails]);
 
   useEffect(() => {
-    console.log('searchingstring, activeTab:', activeTab);
     getOpenCasesList();
   }, [searchString]);
 
@@ -252,13 +234,12 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
    * @return {void}
    */
   function handleChangeActiveTab(tabName) {
-    console.log('\n\n\ntabName: ', tabName, 'activeTAB:', activeTab);
     setActiveTab(tabName);
     setCurrentPage(1);
   }
 
   const onSearch = (searchStr) => {
-    setSearchString(searchStr);
+      setSearchString(searchStr);
   };
 
   const handleProcessDetail = (numMprj, numExterno, event) => {
@@ -275,8 +256,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
 
-  console.log('Emptytab', emptyTab, 'tabLoadin', tabLoading, 'tabDetails', tabDetails);
-
   return (
     <>
       <div className={allBoxFilters}>
@@ -288,65 +267,36 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
               <p>{[LABELS[i]]}</p>
             </button>
           ))}
-          {searchString &&
-            !tabLoading &&
-            tabDetails[activeTab] &&
-            !tabDetails[activeTab][currentPage] && (
-              <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
-                <p className={noOpenCases}> Nenhuma vista aberta com os parâmetros pesquisados</p>
-                <CustomTable
-                  data={Array(20).fill({ content: '' })}
-                  columns={TABLE_COLUMNS}
-                  showHeader
-                />
-              </div>
-            )}
         </div>
       </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
-        ói nóis em cima
         {!emptyTab &&
-          !tabLoading &&
           tabDetails[activeTab] &&
-          tabDetails[activeTab][currentPage] && (
-            <>ói nóis em baixo
+          tabDetails[activeTab][currentPage] ? (
             <CustomTable
                 data={tabDetails[activeTab][currentPage]}
                 columns={TABLE_COLUMNS}
                 showHeader
-                searchString={searchString}
               />
-          </>
-          )}
-
-        {searchString &&
-          !tabLoading &&
-          tabDetails[activeTab] &&
-          tabDetails[activeTab] &&
-          !tabDetails[activeTab][currentPage] && (
+          ):(
             <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
-              <p className={noOpenCases}> Nenhuma vista aberta com os parâmetros pesquisados</p>
-              <CustomTable
-                data={Array(20).fill({ content: '' })}
-                columns={TABLE_COLUMNS}
-                showHeader
-              />
-            </div>
-          )}
-
-        {emptyTab && (
-          // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
-          <>
-            <p className={noOpenCases}> Nenhuma vista aberta até o momento</p>
+              {tabLoading && <Spinner size="medium" />}
+            <p className={noOpenCases}> Nenhuma vista aberta </p>
             <CustomTable
               data={Array(20).fill({ content: '' })}
               columns={TABLE_COLUMNS}
               showHeader
             />
-          </>
-        )}
+          </div>
+          )}
 
+         {searchString && (
+            <div className={`${openCasesEmptyTableSearchString}`}>
+              <div><p> Nenhuma vista aberta com os parâmetros pesquisados</p></div>
+            </div>
+          )}
+           
         {!emptyTab && (
           <Pagination
             totalPages={totalPagesByTab[activeTab] || 0}
@@ -354,7 +304,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             currentPage={currentPage}
           />
         )}
-
         {isProcessDetailOpen && (
           <Modal withExitButton close={handleProcessDetail} previousElement={selectedElement}>
             <ProcessDetail

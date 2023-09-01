@@ -9,7 +9,9 @@
   overflow: hidden;
   position: relative;
 }
-
+.openCasesEmptyTableSearchString{
+  text-align: center;
+}
 .noOpenCases {
   position: absolute;
   width: 240px;

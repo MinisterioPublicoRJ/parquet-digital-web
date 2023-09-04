@@ -7,6 +7,7 @@
 }
 .deskControlers {
   display: flex;
+  
 }
 .deskButtonsInactive{
   display: flex;
@@ -37,10 +38,12 @@
   justify-content: space-between;
   align-items: flex-end;
   font-size: 0.875rem;
+  margin-top: -10px;
 }
 
 .deskButtonsTextsHeaderText p{
   margin: 0;
+  margin-top: 5px;
   padding: 2px;
 }
 
@@ -51,7 +54,6 @@
 
 .deskTabs {
   display: flex;
-  flex: 1;
   flex-direction: column;
   overflow: hidden;
   padding: 0 0 0 0;
@@ -112,7 +114,7 @@ div .deskButtonsCollectionPhrase{
 
 .yourCollectionButtons div:nth-child(1){
   width: 130px;
-  height: 100px;
+  height: 98px;
   background-color: #FAFAFA;
   color: #ACACAC;
   margin-left: 0px;
@@ -128,8 +130,8 @@ div .deskButtonsCollectionPhrase{
 }
 .yourCollectionButtons div:nth-child(3){
   width: 130px;
-  height: 102px;
-  margin-left: 0px;
+  height: 98px;
+  margin-left: 2px;
   background-color: #FAFAFA;
   color: #ACACAC;
 }
@@ -165,13 +167,34 @@ div .deskButtonsCollectionPhrase{
 @media (max-width: 480px) {
   .deskHeader {
     display: flex;
-    height: 25vh;
     flex-direction: column;
   }
-
-  .deskTabs {
+  .deskButtonsTextsHeaderText{
     display: flex;
     flex-direction: column;
-    height: 75vh;
+    justify-content: center;
+    align-items: center;
   }
+
+  .deskButtonsTextsHeader{
+    display: flex;
+    height: 60vh;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .deskControlers {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .deskButtonsInactive{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .deskButtonsTextsHeaderText p{
+    display: none;
+  }
+
 }

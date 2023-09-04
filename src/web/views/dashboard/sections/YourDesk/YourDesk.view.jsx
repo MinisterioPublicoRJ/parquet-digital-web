@@ -53,10 +53,9 @@ function YourDesk() {
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
   const [metricsArray, setMetrics] = useState([]);
-
   const [dbNames, setDBNames] = useState([]);
-  //const [collectionTable, setCollectionTable] = useState();
-  const collectionTable = getCollectionTable();
+  const [collectionTable, setCollectionTable] = useState(getCollectionTable);
+ // const collectionTable = getCollectionTable();
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
 
   useEffect(() => {
@@ -155,7 +154,6 @@ function YourDesk() {
         tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
         metricsArray.push(tabData.metrics);
       }
-
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState[tabName] = undefined;
@@ -301,7 +299,7 @@ function YourDesk() {
                 sumValues(tabDetail.openCases) > 0 ? (
                   <>
                     <p>
-                      As <strong>{sumValues(tabDetail.openCases)} vistas</strong> abertas
+                      As <strong>{tabDetail.openCases.allDate} vistas</strong> abertas
                       <br /> estão distribuídas da seguinte forma:
                     </p>
                     <div className={openCasesChartsWrapper}>
@@ -318,11 +316,13 @@ function YourDesk() {
               )}
             </div>
           </div>
+          {!!tabDetail.openCases &&
           <OpenCasesList
-            buildRequestParams={buildRequestParams}
-            chartData={tabDetail.openCases}
-            isLoading={!tabDetail.openCases && loading}
-          />
+          buildRequestParams={buildRequestParams}
+          chartData={tabDetail.openCases}
+          isLoading={!tabDetail.openCases && loading}
+        />}
+          
         </div>
         <div className={`${componentWrapper} ${activeTab === 'collection' ? ' ' : hide}`}>
           <div className={componentWrapperCollections}>

@@ -27,6 +27,7 @@ function LoginControler({ children, errorBoundary: ErrorBoundary, errorScreen: E
   function onFormSubmit() {
     loginWithSCACredentials(username, password);
   }
+  
 
   return (
     <LoginProvider store={loginStore}>

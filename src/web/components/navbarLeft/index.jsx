@@ -17,6 +17,7 @@ import {
   animationStartRight,
   animationStartLeft,
 } from './navBarLeft.module.css';
+
 import NavbarList from './navbarList/NavbarList';
 
 function NavbarLeft() {

@@ -53,12 +53,12 @@
 }
 @media (max-width: 480px) {
   .controlButtonActive {
-    width: 100%;
+    width: 200px;
     height: 40px;
     margin: 3px;
   }
   .controlButtonInactive {
-    width: 100%;
+    width: 200px;
     height: 40px;
     margin: 3px;
   }

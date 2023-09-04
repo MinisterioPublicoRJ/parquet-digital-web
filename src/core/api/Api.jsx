@@ -64,7 +64,7 @@ import {
   radarCompareTransform,
   snakeToCamelTransform,
   alertOverlayTransform,
-  processDetailTransform
+  processDetailTransform,
 } from './transforms';
 
 import { formatDateObjForBackend } from '../../web/utils/formatters';
@@ -153,6 +153,7 @@ function ApiCreator(jwtToken) {
     const { data } = await axiosInstance.get(OPEN_CASES_DETAILS_URL({ orgao, cpf }));
 
     return openCasesDetailsTransform(data);
+
   }
 
   async function getIntegratedDeskDocs({ orgao, cpf, docType }) {
@@ -179,8 +180,11 @@ function ApiCreator(jwtToken) {
     return openInvestigationsDetailsTransform(data);
   }
 
+ 
   async function getOpenCasesList({ orgao, cpf }, list, page, searchString) {
     const params = {};
+    let url_end = list;
+    if (!url_end) url_end = 'full';
 
     if (searchString) {
       params.search_string = searchString;
@@ -190,8 +194,8 @@ function ApiCreator(jwtToken) {
       params.page = page;
     }
 
-    const { data } = await axiosInstance.get(OPEN_CASES_LIST({ orgao, cpf, list }), { params });
-
+    const { data } = await axiosInstance.get(OPEN_CASES_LIST({ orgao, cpf, url_end }), { params });
+    
     return openCasesListTransform(data);
   }
 
@@ -410,7 +414,7 @@ function ApiCreator(jwtToken) {
     getRadarCompareData,
     getAlertOverlayData,
     getProcessDetail,
-    sendOmbudsmanEmail
+    sendOmbudsmanEmail,
   };
 }
 

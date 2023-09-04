@@ -10,7 +10,6 @@ export const TODAY_OUTLIERS = t(`${BASE_URL}/outliers/\${orgao}`);
 export const TODAY_ENTRIES = t(`${BASE_URL}/entradas/\${orgao}/\${cpf}`);
 
 export const OPEN_CASES_DETAILS_URL = t(`${BASE_URL}/suamesa/detalhe/vistas/\${orgao}/\${cpf}`);
-
 export const DESK_INTEGRATED = t(
   `${BASE_URL}/suamesa/documentos/\${orgao}?tipo=\${docType}&cpf=\${cpf}`,
 );
@@ -25,8 +24,11 @@ export const OPEN_INVESTIGATIONS_DETAILS_URL = t(
   `${BASE_URL}/suamesa/detalhe/investigacoes/\${orgao}`,
 );
 
-export const OPEN_CASES_LIST = t(`${BASE_URL}/suamesa/lista/vistas/\${orgao}/\${cpf}/\${list}?`);
+export const OPEN_CASES_LIST = t(`${BASE_URL}/suamesa/lista/vistas/\${orgao}/\${cpf}/\${url_end}`);
 
+export const ONGOING_INVESTIGATIONS_LIST = t(
+  `${BASE_URL}/lista/investigacoes/\${orgao}?page=\${page}`,
+);
 export const RADAR_DATA = t(`${BASE_URL}/radar/\${orgao}`);
 export const PIP_RADAR_URL = t(`${BASE_URL}/pip/radar-performance/\${orgao}`);
 export const CRIMINAL_RADAR_URL = t(`${BASE_URL}/pip/radar-criminal-performance/\${orgao}`);
@@ -40,9 +42,7 @@ export const MISCONDUCT_ALERT = t(`${BASE_URL}/alertas/improb_admin/\${orgao}`);
 
 export const PROCESSING_TIME_DATA = t(`${BASE_URL}/tempo-tramitacao/\${orgao}?version=1.1`);
 export const PROCESSES_LIST = t(`${BASE_URL}/lista/processos/\${orgao}?page=\${page}`);
-export const ONGOING_INVESTIGATIONS_LIST = t(
-  `${BASE_URL}/lista/investigacoes/\${orgao}?page=\${page}`,
-);
+
 
 export const SUCCESS_INDICATORS = t(`${BASE_URL}/pip/indicadores-sucesso/\${orgao}`);
 export const PIP__URL = t(`${BASE_URL}/pip/aproveitamentos/\${orgao}`);

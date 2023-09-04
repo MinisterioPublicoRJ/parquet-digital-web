@@ -4,6 +4,7 @@
   grid-area: desk;
   margin-left: 20px;
   padding-bottom: var(--horizontalPadding);
+  width: 100%;
 }
 .deskControlers {
   display: flex;
@@ -57,6 +58,8 @@
   flex-direction: column;
   overflow: hidden;
   padding: 0 0 0 0;
+  height: 100%;
+  width: 100%;
 }
 
 .componentWrapper {

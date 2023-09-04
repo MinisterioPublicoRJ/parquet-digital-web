@@ -10,16 +10,38 @@
   row-gap: 1rem;
 }
 
+.navbar {
+  grid-area: navbar;
+  z-index: 100;
+}
+
+.today {
+  grid-area: today;
+}
+
+.desk {
+  grid-area: desk;
+  display: flex;
+}
+
+.alerts {
+  grid-area: alerts;
+  display: flex;
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
   .baseGrid {
     height: auto;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(1, auto);
+    grid-template-rows: var(--navbarMobileWidth) repeat(3, auto);
     grid-template-areas:
       'navbar' 
       'today' 
-      'desk'
-      'alerts';
+      'desk';
+  }
+
+  .alerts {
+    display: none;
   }
 }

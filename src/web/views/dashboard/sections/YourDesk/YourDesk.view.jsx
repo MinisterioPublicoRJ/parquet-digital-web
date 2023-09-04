@@ -54,8 +54,8 @@ function YourDesk() {
   const [tabDetail, setTabDetail] = useState({});
   const [metricsArray, setMetrics] = useState([]);
   const [dbNames, setDBNames] = useState([]);
-  //const [collectionTable, setCollectionTable] = useState();
-  const collectionTable = getCollectionTable();
+  const [collectionTable, setCollectionTable] = useState(getCollectionTable);
+ // const collectionTable = getCollectionTable();
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
 
   useEffect(() => {

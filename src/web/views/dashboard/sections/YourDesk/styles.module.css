@@ -5,9 +5,8 @@
   margin-left: 20px;
   padding-bottom: var(--horizontalPadding);
 }
-.deskControlers {
+.deskControlers  {
   display: flex;
-  
 }
 .deskButtonsInactive{
   display: flex;
@@ -175,7 +174,9 @@ div .deskButtonsCollectionPhrase{
     justify-content: center;
     align-items: center;
   }
-
+  .deskOuter{
+    margin: 0px;
+  }
   .deskButtonsTextsHeader{
     display: flex;
     height: 60vh;
@@ -186,6 +187,7 @@ div .deskButtonsCollectionPhrase{
   .deskControlers {
     display: flex;
     justify-content: space-around;
+    width: 100%;
   }
 
   .deskButtonsInactive{
@@ -195,6 +197,9 @@ div .deskButtonsCollectionPhrase{
   }
   .deskButtonsTextsHeaderText p{
     display: none;
+  }
+  .deskHeader h2{
+    margin-left: 20px;
   }
 
 }

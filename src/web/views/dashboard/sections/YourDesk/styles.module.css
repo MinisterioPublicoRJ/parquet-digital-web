@@ -109,6 +109,7 @@ div .deskButtonsCollectionPhrase{
   color: #374354;
   max-width: 48%;
   font-size: var(--smallFont);
+  margin-top: -12px;
 }
 
 .yourCollectionButtons div:nth-child(1){
@@ -122,6 +123,11 @@ div .deskButtonsCollectionPhrase{
   background-color: #FAFAFA;
   color: #ACACAC;
 
+}
+.deskControlersAndMetrics{
+  display: flex;
+  justify-content: space-between;
+  height: 7vh;
 }
 .componentWrapperCollections{
   display: flex;

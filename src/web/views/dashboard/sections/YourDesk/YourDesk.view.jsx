@@ -13,11 +13,12 @@ import {
   deskButtonsTextsHeaderText,
   deskButtonsInactive,
   deskButtonsActive,
-  deskControlersAndMetrics,
+  openCasesChartsWrapper,
   componentWrapperCollections,
   deskButtonsCollectionPhrase,
   deskButtonsCollections,
   spinnerWrapper,
+  deskControlersAndMetrics,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -273,7 +274,9 @@ function YourDesk() {
               />
             ))}
           </div>
-          <div className={deskButtonsCollectionPhrase}>
+          <div 
+          className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
+          >
             {metricsArray && !loading ? (
               !metricsArray && !loading ? (
                 <p>Não há vistas metricas.</p>
@@ -320,6 +323,27 @@ function YourDesk() {
                   error={!docsQuantity[buttonTitle] && !loading}
                 />
               ))}
+            </div>
+            <div className={deskButtonsTextsHeaderText}>
+              {tabDetail.openCases && !loading ? (
+                sumValues(tabDetail.openCases) > 0 ? (
+                  <>
+                    <p>
+                      As <strong>{tabDetail.openCases.allDate} vistas</strong> abertas
+                      <br /> estão distribuídas da seguinte forma:
+                    </p>
+                    <div className={openCasesChartsWrapper}>
+                      {renderCharts(tabDetail.openCases)}
+                    </div>
+                  </>
+                ) : (
+                  <p>Não há vistas abertas.</p>
+                )
+              ) : (
+                <div className={spinnerWrapper}>
+                  <Spinner size="medium" />
+                </div>
+              )}
             </div>
           </div>
           {!!tabDetail.openCases && (

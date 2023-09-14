@@ -114,7 +114,11 @@ div .deskButtonsCollectionPhrase{
   font-size: var(--smallFont);
   margin-top: -12px;
 }
-
+.deskControlersAndMetrics{
+  display: flex;
+  justify-content: space-between;
+  height: 7vh;
+}
 .yourCollectionButtons div:nth-child(1){
   width: 130px;
   height: 98px;

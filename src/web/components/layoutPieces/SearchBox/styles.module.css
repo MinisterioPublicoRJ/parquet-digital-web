@@ -17,6 +17,10 @@
     width: 100%;
     background-color: #f8f9fb;
 }
+.SearchBoxOuter button{
+    border: 0;
+    background-color: transparent;
+}
 
 .SearchBoxOuter input:focus {
     box-shadow: 0 0 0 0;

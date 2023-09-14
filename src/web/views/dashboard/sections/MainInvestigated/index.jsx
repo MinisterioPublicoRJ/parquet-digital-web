@@ -28,7 +28,7 @@ function MainInvestigated() {
   const [apiError, setApiError] = useState(false);
   const [totalPages, setTotalPages] = useState();
   const [page, setPage] = useState(1);
-  const [searchString, setSearchString] = useState(null);
+  const [searchString, setSearchString] = useState('');
   const [investigatedProfile, setInvestigatedProfile] = useState();
   const [selectedElement, setSelectedElement] = useState({});
   const tableTopDivRef = useRef() ;
@@ -145,12 +145,13 @@ function MainInvestigated() {
    * Function that fetches the main investigated data
    * @return {void}
    */
-  async function getMainInvestigated() {
 
+  useEffect(() => {
+  const  getMainInvestigated = async() => {
     let response;
     setLoading(true);
     try {
-      response = await Api.getMainInvestigated(buildRequestParams(), searchString, page);
+      response = await Api.getMainInvestigated(buildRequestParams(), searchString, page, totalPages);
       setTableData(cleanData(response.investigated));
       setTotalPages(response.pages);
     } catch (e) {
@@ -158,14 +159,14 @@ function MainInvestigated() {
     } finally {
       setLoading(false);
     }
-  }
+  }; 
+  getMainInvestigated()
+}, [searchString, page, totalPages]);
 
-  function onUpdate() {
-    getMainInvestigated();
-  }
 
   const onSearch = (searchStr) => {
     setSearchString(searchStr);
+    
   }
 
   function handlePageClick(nextPage) {
@@ -177,7 +178,6 @@ function MainInvestigated() {
     setPage(nextPage);
   }
 
-  useEffect(onUpdate, [searchString, page, totalPages]);
 
   function render() {
     if (loading || apiError) {

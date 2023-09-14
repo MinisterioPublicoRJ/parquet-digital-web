@@ -44,7 +44,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
-  const [emptyTab, setEmptyTab] = useState(!chartData[activeTab]);
+  const [emptyTab, setEmptyTab] = useState(!chartData);
 
   useEffect(() => {
     if (!chartData) return;
@@ -58,9 +58,9 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }, [chartData]);
 
   useEffect(() => {
-   if(Object.keys(tabDetails).length && typeof tabDetails[activeTab] === 'undefined') getOpenCasesList();
+    if (Object.keys(tabDetails).length && typeof tabDetails[activeTab] === 'undefined')
+      getOpenCasesList();
   }, [tabDetails]);
-
 
   function initializeTabDetails(chart) {
     const details = {};
@@ -162,15 +162,15 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       newCurrentPageState.searchString = searchString;
       if (error) newCurrentPageState = undefined;
       if (typeof tabDetails === 'object' && typeof tabDetails[activeTab] === 'undefined') {
-        if (Object.keys(tabDetails).length){   
-        setTabDetails({
-          ...tabDetails,
-          [activeTab]: {
-            ...tabDetails[activeTab],
-            [currentPage]: newCurrentPageState,
-            searchString,
-          },
-        });
+        if (Object.keys(tabDetails).length) {
+          setTabDetails({
+            ...tabDetails,
+            [activeTab]: {
+              ...tabDetails[activeTab],
+              [currentPage]: newCurrentPageState,
+              searchString,
+            },
+          });
         }
       }
 
@@ -239,7 +239,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   }
 
   const onSearch = (searchStr) => {
-      setSearchString(searchStr);
+    setSearchString(searchStr);
   };
 
   const handleProcessDetail = (numMprj, numExterno, event) => {
@@ -252,7 +252,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   if (isLoading || !chartData) {
     return <Spinner size="large" />;
   }
-
+ 
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
 
@@ -271,39 +271,32 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
-        {!emptyTab &&
-          tabDetails[activeTab] &&
-          tabDetails[activeTab][currentPage] ? (
-            <CustomTable
-                data={tabDetails[activeTab][currentPage]}
-                columns={TABLE_COLUMNS}
-                showHeader
-              />
-          ):(
-            <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
-              {tabLoading && <Spinner size="medium" />}
-            <p className={noOpenCases}> Nenhuma vista aberta </p>
+        {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] ? (
+          <CustomTable
+            data={tabDetails[activeTab][currentPage]}
+            columns={TABLE_COLUMNS}
+            showHeader
+          />
+        ) : (
+          <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
+            {tabLoading && <Spinner size="medium" />}
+            <p className={noOpenCases}> Nenhuma vista aberta no momento </p>
             <CustomTable
               data={Array(20).fill({ content: '' })}
               columns={TABLE_COLUMNS}
               showHeader
             />
           </div>
-          )}
-
-         {searchString && (
-            <div className={`${openCasesEmptyTableSearchString}`}>
-              <div><p> Nenhuma vista aberta com os parâmetros pesquisados</p></div>
-            </div>
-          )}
-           
-        {!emptyTab && (
+        )}
+        
+        {!emptyTab &&(
           <Pagination
             totalPages={totalPagesByTab[activeTab] || 0}
             handlePageClick={(page) => handlePageClick(page)}
             currentPage={currentPage}
           />
-        )}
+        )} 
+        
         {isProcessDetailOpen && (
           <Modal withExitButton close={handleProcessDetail} previousElement={selectedElement}>
             <ProcessDetail

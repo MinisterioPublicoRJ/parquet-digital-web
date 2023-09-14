@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
@@ -13,16 +14,21 @@ function SearchBox({ onSearch }) {
     e.preventDefault();
     onSearch(searchInput.current.value);
   }
-
+  function handleSearchInput(e) {
+    e.preventDefault();
+    onSearch('');
+  }
+  
   return (
     <div className={SearchBoxOuter}>
-      <SearchIcon />
+      <button onClick={handleSearchButtonClick} type='button'>
+        <SearchIcon />
+      </button>
       <input
         type="text"
         className={SearchBoxInput}
-        onClick={handleSearchButtonClick}
-        onKeyUp={handleSearchButtonClick}
         placeholder="Pesquisar na lista"
+        onClick={handleSearchInput}
         ref={searchInput}
       />
     </div>

@@ -6,9 +6,8 @@
   padding-bottom: var(--horizontalPadding);
   width: 100%;
 }
-.deskControlers {
+.deskControlers  {
   display: flex;
-  
 }
 .deskButtonsInactive{
   display: flex;
@@ -113,6 +112,7 @@ div .deskButtonsCollectionPhrase{
   color: #374354;
   max-width: 48%;
   font-size: var(--smallFont);
+  margin-top: -12px;
 }
 
 .yourCollectionButtons div:nth-child(1){
@@ -126,6 +126,11 @@ div .deskButtonsCollectionPhrase{
   background-color: #FAFAFA;
   color: #ACACAC;
 
+}
+.deskControlersAndMetrics{
+  display: flex;
+  justify-content: space-between;
+  height: 7vh;
 }
 .componentWrapperCollections{
   display: flex;
@@ -178,7 +183,9 @@ div .deskButtonsCollectionPhrase{
     justify-content: center;
     align-items: center;
   }
-
+  .deskOuter{
+    margin: 0px;
+  }
   .deskButtonsTextsHeader{
     display: flex;
     height: 60vh;
@@ -189,6 +196,7 @@ div .deskButtonsCollectionPhrase{
   .deskControlers {
     display: flex;
     justify-content: space-around;
+    width: 100%;
   }
 
   .deskButtonsInactive{
@@ -198,6 +206,9 @@ div .deskButtonsCollectionPhrase{
   }
   .deskButtonsTextsHeaderText p{
     display: none;
+  }
+  .deskHeader h2{
+    margin-left: 20px;
   }
 
 }

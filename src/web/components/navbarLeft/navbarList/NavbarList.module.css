@@ -71,5 +71,6 @@
 
   .navbarLogout {
     margin: 0;
+    width: auto;
   }
 }

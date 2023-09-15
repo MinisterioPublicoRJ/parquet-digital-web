@@ -60,3 +60,24 @@
   width: 64%;
   display: flex;
 }
+
+.spinnerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .alertsWrapper {
+    padding: 1.5rem;
+    margin: 0;
+  }
+
+  .alertsTotalStyle {
+    border-radius: 12px;
+    padding: 0.2rem 0.6rem;
+    margin-right: 1rem;
+  }
+}

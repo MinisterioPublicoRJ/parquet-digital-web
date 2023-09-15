@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Alerts } from '../../views/dashboard/sections';
@@ -12,7 +12,8 @@ import {
   navbarListWrapper,
   mobileNavbar,
   mobileNavbarClose,
-  alertsMobile,
+  mobileNavContent,
+  mobileAlerts,
   mobilePortalWrapper,
   animationStartRight,
   animationStartLeft,
@@ -27,6 +28,28 @@ function NavbarLeft() {
     const portalType = event.currentTarget.id;
     setMobilePortal({ isOpen: true, type: portalType });
   };
+
+
+  /* 
+    Desabilita o scroll da página quando o portal mobile é aberto.
+  */
+  const disabledBodyScrolling = () => {
+    document.body.style.height = "100vh";
+    document.body.style.overflow = "hidden";
+  }
+
+  const defaultBodyScrolling = () => {
+    document.body.style.height = "auto";
+    document.body.style.overflow = "auto";
+  }
+
+  useEffect(() => {
+    if (mobilePortal.isOpen) {
+      disabledBodyScrolling();
+    } else {
+      defaultBodyScrolling();
+    }
+  }, [mobilePortal.isOpen]);
 
   return (
     <div className={navbarWrapper}>
@@ -71,16 +94,14 @@ function NavbarLeft() {
                 <CloseIcon />
               </button>
             </div>
-            {mobilePortal.type === 'navbar-list' && <NavbarList />}
-            {mobilePortal.type === 'alerts' && (
-              <div className={alertsMobile}>
-                <Alerts />
-              </div>
-            )}
+
+            <div className={mobileNavContent}>
+              {mobilePortal.type === 'navbar-list' && <NavbarList />}
+              {mobilePortal.type === 'alerts' && <div className={mobileAlerts}><Alerts /></div>}
+            </div>
           </div>,
           document.getElementById('mobile-portal'),
         )}
-      <div id="mobile-portal" />
     </div>
   );
 }

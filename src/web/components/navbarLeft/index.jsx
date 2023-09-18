@@ -22,22 +22,24 @@ import {
 import NavbarList from './navbarList/NavbarList';
 
 function NavbarLeft() {
-  const [mobilePortal, setMobilePortal] = useState({ isOpen: false, type: '' });
+  const mobilePortalClosed = { isOpen: false, type: '' };
+  const [mobilePortal, setMobilePortal] = useState(mobilePortalClosed);
 
-  const handleClick = (event) => {
+  const openMobilePortal = (event) => {
     const portalType = event.currentTarget.id;
     setMobilePortal({ isOpen: true, type: portalType });
   };
 
-
   /* 
-    Desabilita o scroll da página quando o portal mobile é aberto.
+    Para desabilitar o scroll da página inicial quando o portal mobile é aberto,
+    mantendo o scroll apenas dentro do portal.
   */
   const disabledBodyScrolling = () => {
     document.body.style.height = "100vh";
     document.body.style.overflow = "hidden";
   }
 
+  // Para voltar os valores padrões da página inicial.
   const defaultBodyScrolling = () => {
     document.body.style.height = "auto";
     document.body.style.overflow = "auto";
@@ -55,7 +57,7 @@ function NavbarLeft() {
     <div className={navbarWrapper}>
       <div className={navbar}>
         <div className={mobileNavbar}>
-          <button type="button" id="navbar-list" onClick={handleClick}>
+          <button type="button" id="navbar-list" onClick={openMobilePortal}>
             <MobileMenu />
           </button>
 
@@ -63,7 +65,7 @@ function NavbarLeft() {
             <ParquetDigitalLogo />
           </div>
 
-          <button type="button" id="alerts" onClick={handleClick}>
+          <button type="button" id="alerts" onClick={openMobilePortal}>
             <AlertsIcon />
           </button>
         </div>
@@ -87,9 +89,7 @@ function NavbarLeft() {
               <button
                 className={mobileNavbarClose}
                 type="button"
-                onClick={() => {
-                  setMobilePortal(false);
-                }}
+                onClick={() => setMobilePortal(mobilePortalClosed)}
               >
                 <CloseIcon />
               </button>

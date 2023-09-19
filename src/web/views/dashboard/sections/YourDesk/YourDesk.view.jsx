@@ -19,6 +19,8 @@ import {
   deskButtonsCollections,
   spinnerWrapper,
   deskControlersAndMetrics,
+  openCasesChartsWrapperWeb,
+  openCasesChartsWrapperResponsive,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -30,6 +32,7 @@ import TablesTutela from '../TablesTutela';
 import MainInvestigated from '../MainInvestigated';
 import ProcessListCriminal from '../ProcessListCriminal';
 import DeskGraph from './DeskGraph/DeskGraph.view';
+import DeskGraphResponsive from './DeskGraphResponsive/DeskGraphResponsive.view';
 
 import {
   PIP_DESK_BUTTONS,
@@ -211,7 +214,14 @@ function YourDesk() {
     if (!data) return;
 
     const cleanData = cleanChartData(data);
-    return <DeskGraph data={cleanData} />;
+    return <DeskGraph data={cleanData}/>  
+  }
+
+  function renderChartsResponsive(data) {
+    if (!data) return;
+
+    const cleanData = cleanChartData(data);
+    return <DeskGraphResponsive data={cleanData}/>
   }
 
   /**
@@ -333,7 +343,12 @@ function YourDesk() {
                       <br /> estão distribuídas da seguinte forma:
                     </p>
                     <div className={openCasesChartsWrapper}>
-                      {renderCharts(tabDetail.openCases)}
+                      <div className={openCasesChartsWrapperWeb}>
+                        {renderCharts(tabDetail.openCases)}
+                      </div>
+                      <div className={openCasesChartsWrapperResponsive}>
+                        {renderChartsResponsive(tabDetail.openCases)}
+                      </div>
                     </div>
                   </>
                 ) : (

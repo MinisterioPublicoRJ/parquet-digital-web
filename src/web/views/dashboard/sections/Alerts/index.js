@@ -15,6 +15,7 @@ import {
   alertsTotalStyle,
   alertsBodyWrapper,
   alertsBody,
+  spinnerWrapper
 } from './styles.module.css';
 
 function Alerts() {
@@ -186,7 +187,7 @@ function Alerts() {
               </Modal>
             )}
 
-            {loading && <Spinner size="large" />}
+            {loading && <div className={spinnerWrapper}><Spinner size="large" /></div>}
             {alertsError && 'Não existem alertas para exibir.'}
             {alerts &&
               Object.keys(alerts).map((type) => (
@@ -197,7 +198,7 @@ function Alerts() {
                   openDialogBox={openDialogBox}
                 />
               ))}
-          </div>
+          </div> 
         </div>
       </article>
   );

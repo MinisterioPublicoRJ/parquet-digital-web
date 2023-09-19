@@ -32,7 +32,6 @@
 /* MOBILE */
 @media (max-width: 768px) {
   .baseGrid {
-    height: auto;
     grid-template-columns: 1fr;
     grid-template-rows: var(--navbarMobileWidth) repeat(3, auto);
     grid-template-areas:

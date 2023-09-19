@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Alerts } from '../../views/dashboard/sections';
@@ -12,7 +12,8 @@ import {
   navbarListWrapper,
   mobileNavbar,
   mobileNavbarClose,
-  alertsMobile,
+  mobileNavContent,
+  mobileAlerts,
   mobilePortalWrapper,
   animationStartRight,
   animationStartLeft,
@@ -21,18 +22,42 @@ import {
 import NavbarList from './navbarList/NavbarList';
 
 function NavbarLeft() {
-  const [mobilePortal, setMobilePortal] = useState({ isOpen: false, type: '' });
+  const mobilePortalClosed = { isOpen: false, type: '' };
+  const [mobilePortal, setMobilePortal] = useState(mobilePortalClosed);
 
-  const handleClick = (event) => {
+  const openMobilePortal = (event) => {
     const portalType = event.currentTarget.id;
     setMobilePortal({ isOpen: true, type: portalType });
   };
+
+  /* 
+    Para desabilitar o scroll da página inicial quando o portal mobile é aberto,
+    mantendo o scroll apenas dentro do portal.
+  */
+  const disabledBodyScrolling = () => {
+    document.body.style.height = "100vh";
+    document.body.style.overflow = "hidden";
+  }
+
+  // Para voltar os valores padrões da página inicial.
+  const defaultBodyScrolling = () => {
+    document.body.style.height = "auto";
+    document.body.style.overflow = "auto";
+  }
+
+  useEffect(() => {
+    if (mobilePortal.isOpen) {
+      disabledBodyScrolling();
+    } else {
+      defaultBodyScrolling();
+    }
+  }, [mobilePortal.isOpen]);
 
   return (
     <div className={navbarWrapper}>
       <div className={navbar}>
         <div className={mobileNavbar}>
-          <button type="button" id="navbar-list" onClick={handleClick}>
+          <button type="button" id="navbar-list" onClick={openMobilePortal}>
             <MobileMenu />
           </button>
 
@@ -40,7 +65,7 @@ function NavbarLeft() {
             <ParquetDigitalLogo />
           </div>
 
-          <button type="button" id="alerts" onClick={handleClick}>
+          <button type="button" id="alerts" onClick={openMobilePortal}>
             <AlertsIcon />
           </button>
         </div>
@@ -64,23 +89,19 @@ function NavbarLeft() {
               <button
                 className={mobileNavbarClose}
                 type="button"
-                onClick={() => {
-                  setMobilePortal(false);
-                }}
+                onClick={() => setMobilePortal(mobilePortalClosed)}
               >
                 <CloseIcon />
               </button>
             </div>
-            {mobilePortal.type === 'navbar-list' && <NavbarList />}
-            {mobilePortal.type === 'alerts' && (
-              <div className={alertsMobile}>
-                <Alerts />
-              </div>
-            )}
+
+            <div className={mobileNavContent}>
+              {mobilePortal.type === 'navbar-list' && <NavbarList />}
+              {mobilePortal.type === 'alerts' && <div className={mobileAlerts}><Alerts /></div>}
+            </div>
           </div>,
           document.getElementById('mobile-portal'),
         )}
-      <div id="mobile-portal" />
     </div>
   );
 }

@@ -1,10 +1,10 @@
 .selectorOuter {
+  position: relative;
   top: calc(-24vh + 2 * var(--bodyVerticalPadding));
   left: calc(-25.5vw + var(--bodyHorizontalPadding));
   background-color: rgb(0 0 0 / 14%);
   display: flex;
   height: 100%;
-  position: relative;
   width: 100%;
  /* it needs to be this high because of the Performance Radar graph labels :/ */
   z-index: 100;
@@ -15,18 +15,20 @@
   background-color: var(--lightBlue);
   border-radius: 5px;
   width: calc(50vw - 5vw);
- height: calc(55vh - 2 * var(--bodyVerticalPadding) - 3vh);
+  height: calc(55vh - 2 * var(--bodyVerticalPadding) - 3vh);
   overflow: hidden;
 }
+
 .inputOrgaoSelect::-webkit-input-placeholder{ /* Chrome, Safari, Opera */
   color: var(--dark);
 }
+
 .inputOrgaoSelect::-moz-placeholder { /* Firefox 18- */
   color: var(--dark);
 }
 
 .inputOrgaoSelect {
-  width: 26%;
+  /* width: 26%; */
   margin-top: 0px;
   border-top: transparent;
   border-left: transparent;
@@ -36,26 +38,32 @@
   border: 0 none;
   outline: 0;
   color: var(--dark);
-  font-size: 15px;
-  margin-left: -40px;
-  margin-top: 5px;
+  font-size: 0.938rem;
+  margin-left: -2.5rem;
+  margin-top: 0.313rem;
 }
 
 .selectorHeader > h2 {
   color: var(--dark);
   font-weight: 900;
   letter-spacing: 0.5px;
-  font-size: 25px;
-  margin-left: -30px;
+  font-size: 1.563rem;
 }
 
 .selectorHeader {
   align-items: center;
   display: flex;
   height: 20%;
-  padding: 0 1.5vw;
+  padding: 1rem;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.selectorSearchbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .selectorListWrapper {
@@ -81,7 +89,7 @@
 }
 
 .selectorListWrapper li {
-  margin: 10px 0px 2px 0;
+  margin: 0.625rem 0px 0.125rem 0;
   color: #154763 ;
 
 }
@@ -90,3 +98,35 @@
   color: var(--primary);
   font-size: var(--smallFont);
 }
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .selectorOuter {
+    top: 0;
+    left: 0;
+    margin: 1rem;
+  }
+
+  .selectorModal {
+    width: calc(100vw - 1rem * 2);
+    height: 80vh;
+    border-radius: 15px;
+  }
+
+  .selectorHeader {
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0.2rem 0;
+  }
+
+  .selectorHeader > h2 {
+    font-size:  1.3rem;
+    margin: 0;
+  }
+
+  .inputOrgaoSelect {
+    width: 100%;
+    margin: 0;
+  }
+} 

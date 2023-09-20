@@ -206,7 +206,7 @@ function Today() {
           {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
         {modalType === 'officeSelector' && (
-          <Modal unpositioned close={setModalType}>
+          <Modal unpositioned exitButtonInMobile close={setModalType}>
             <OfficeSelector close={setModalType} />
           </Modal>
         )}

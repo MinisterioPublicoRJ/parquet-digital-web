@@ -1,13 +1,12 @@
-import { snakeToCamel, formatPercentage, abbrevName } from '../../utils';
+import {formatPercentage, abbrevName } from '../../utils';
 
 function metricsTransform(metrics) {
   const transformedMetrics = {};
   Object.keys(metrics).forEach(key => {
-    transformedMetrics[snakeToCamel(key)] = metrics[key];
+    transformedMetrics[key] = metrics[key];
   });
-  return transformedMetrics;
+  return transformedMetrics[0];
 }
-
 function rankingsTransform(rankArray) {
   return rankArray.map(rankObj => {
     const cleanData = rankObj.data.map(item => ({

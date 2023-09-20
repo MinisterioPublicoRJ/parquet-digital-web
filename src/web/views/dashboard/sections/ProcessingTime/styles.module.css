@@ -168,3 +168,11 @@
     font-size: calc(var(--defaultFontSize) * 1.4);
   }
 }
+
+
+@media (max-width: 768px) {
+  .pageTramitacao {
+    overflow-y: scroll;
+    height: 70vh;
+  }
+}

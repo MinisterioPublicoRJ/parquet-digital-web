@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel, VictoryStack } from 'victory';
 
-import { deskCasesChartOuter, deskCasesChartGraph } from './DeskGraph.module.css';
+import { deskCasesChartOuter, deskCasesChartGraph } from './DeskGraphResponsive.module.css';
 
 const propTypes = {
   data: PropTypes.arrayOf(
@@ -15,7 +15,7 @@ const propTypes = {
   ).isRequired,
 };
 
-function DeskGraph({ data }) {
+function DeskGraphResponsive({ data }) {
   // Método reverse para deixar os dados do gráfico em ordem crescente de dias.
   const reverseData = data.reverse();
 
@@ -56,9 +56,7 @@ function DeskGraph({ data }) {
                   fontFamily: 'Roboto',
                 },
               }}
-              labelComponent={<VictoryLabel textAnchor="start" dx={-90} />}
-              labels={({ datum }) => datum.y >= 0  ? `${datum.y} vistas` : null}
-              
+              labelComponent={<VictoryLabel textAnchor="start" dx={-90} />}              
             />
             <VictoryBar
               data={fillerData}
@@ -72,5 +70,5 @@ function DeskGraph({ data }) {
   );
 }
 
-DeskGraph.propTypes = propTypes;
-export default DeskGraph;
+DeskGraphResponsive.propTypes = propTypes;
+export default DeskGraphResponsive;

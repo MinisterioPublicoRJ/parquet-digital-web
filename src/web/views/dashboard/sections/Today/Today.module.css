@@ -9,10 +9,14 @@
   grid-area: today;
   position: relative;
   overflow: hidden;
-  margin-left: 28px;
+  margin-left: 20px;
   height: 30vh;
+  padding-top: var(--horizontalPadding);
 }
 
+.roboResponsivo{
+  display: none;
+}
 .todayContent {
   display: flex;
   flex-direction: column;
@@ -178,18 +182,37 @@
 @media (min-width: 481px) and (max-width: 1025px) {
   .todayRobotPic {
     height: 70%;
+    display: flex;
+    top: -60px
   }
-
+  .todayOuter{
+    padding: 0px;
+    height: 60vh;
+  }
   .todayContent {
     width: 60%;
+  }
+
+  .todayRobotPic img{
+    width: 80%;
+    height: 70%;
   }
 }
 
+/* PHONES */
 @media (max-width: 480px) {
   .todayRobotPic {
-    height: 40%;
+    display: none;
   }
   .todayContent {
-    width: 60%;
+    width: 100%;
+  }
+  .todayOuter{
+    padding: 0px;
+    height: 40vh;
+    width: 80%;
+  }
+  .roboResponsivo{
+    display: block;
   }
 }

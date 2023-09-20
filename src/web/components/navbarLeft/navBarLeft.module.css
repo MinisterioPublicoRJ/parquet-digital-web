@@ -1,76 +1,119 @@
-.navBarLeftContent {
-  position: fixed;
-  inset: 0px;
-  width: 2.8125rem;
+.navbar {
+  grid-area: navbar;
+  width: var(--navbarWidth);
+  height: 100vh;
   background-color: var(--loginBlue);
+  position: fixed;
+  z-index: 10;
   transition: 0.3s;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: flex-start;
   overflow: hidden;
-  z-index: 100;
-  height: 100vh;
 }
 
-.navBarLeftContent:hover {
-  width: 14.0rem;
+.navbar:hover {
+  width: 14rem;
 }
 
-.navBarLeftContent button {
-  border: none;
-  background-color: transparent;
+.mobileNavbar {
+  display: none;
 }
 
-.topButtonDiv {
-  display: flex;
-  flex-direction: column;
-  margin-top: 3.25rem;
-  width: 100vw;
+/* MOBILE */
+@media (max-width: 768px) {
+  .navbarWrapper {
+    position: relative;
+  }
+
+  .navbar {
+    width: 100vw;
+    height: 5rem;
+  }
+
+  .navbar:hover {
+    width: 100%;
+  }
+
+  .mobileNavbar {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 3rem 6fr 3rem;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    z-index: 100;
+  }
+
+  .mobileNavbar button {
+    background-color: transparent;
+    border: none;
+  }
+
+  .mobileLogo {
+    justify-self: center;
+  }
+
+  .navbarListWrapper {
+    display: none;
+  }
+
+  .mobilePortalWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .mobilePortalWrapper .mobileNavbar {
+    width: 100vw;
+    background-color: var(--loginBlue);
+    z-index: 100;
+  }
+
+  .mobilePortalWrapper .mobileLogo {
+    grid-column: 2
+  }
+
+  .mobileNavContent {
+    position: fixed;
+    top: var(--navbarMobileWidth);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--navbarMobileWidth));
+    overflow: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .animationStartRight {
+    animation: toRight 0.8s forwards;
+  }
+
+  .animationStartLeft {
+    animation: toLeft 0.8s forwards;
+  }
 }
 
-.logOutPositionDiv {
-  width: 100vw;
-  margin: 0 0 2.9375rem 0.2rem;
+@keyframes toRight {
+  from {
+    transform: translate3d(-1000px, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-.userManualDiv {
-  display: flex;
-  color: var(--white);
-  background: transparent;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.notaMetodologicaDiv,
-.infosDiv,
-.tempoTramitacaoDiv,
-.logOutButtonDiv {
-  display: flex;
-  color: var(--white);
-  background: transparent;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.userManualDiv p,
-.notaMetodologicaDiv p,
-.infosDiv p,
-.tempoTramitacaoDiv p,
-.logOutButtonDiv p {
-  position: relative;
-  display: block;
-  white-space: nowrap;
-  text-align: center;
-  margin-left: 0.7rem;
-}
-
-.userManualDiv:hover,
-.notaMetodologicaDiv:hover,
-.infosDiv:hover,
-.tempoTramitacaoDiv:hover,
-.logOutButtonDiv:hover {
-  color: var(--loginBlue);
-  background-color: var(--lightBlue);
-  transition: all 0.3s;
+@keyframes toLeft {
+  from {
+    transform: translate3d(1000px, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }

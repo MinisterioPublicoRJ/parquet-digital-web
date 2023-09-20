@@ -16,6 +16,7 @@
   --danger: #f86c72;
   --white: #ffffff;
   --gray: #b5b5b5;
+  --blueGray: #8998AC;
   --grayLight: #e8e8e8;
   --grayLinks: #cecece;
   --grayTexts: #b3b3b3;
@@ -38,7 +39,7 @@
   /* FONTS */
   --defaultFont: Roboto;
   --titleFont: Roboto;
-  --defaultFontSize: clamp(0.813rem, 1.4vh, 1.25rem);
+  --defaultFontSize: clamp(0.8125rem, 1.4vh, 1.25rem);
 
   --titleFontSize: calc(var(--defaultFontSize) * 2);
   --titleFont: Roboto;

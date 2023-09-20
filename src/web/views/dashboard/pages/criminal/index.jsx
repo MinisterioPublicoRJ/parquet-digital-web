@@ -1,28 +1,40 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 
-import {criminalGrid} from './Criminal.module.css';
-import {baseGrid} from '../Prosecutors.module.css';
+import {
+  baseGrid,
+  navbar,
+  today,
+  desk,
+  alerts
+} from '../Prosecutors.module.css';
 
-import {YourDesk, Alerts, ProcessingTime, Today, PerformanceRadar, ProcessListCriminal} from '../../sections';
-import ProcessList from '../../sections/TablesTutela/ProcessList'
+import { YourDesk, Alerts, Today } from '../../sections';
 import ErrorBoundary from '../../../../errorBoundary/ErrorBoundary';
+import NavbarLeft from '../../../../components/navbarLeft';
 
 function Criminal() {
   return (
-    <div className={[baseGrid, criminalGrid].join(' ')}>
-       <ErrorBoundary> 
+    <div className={baseGrid}>
+      <div className={navbar}>
+        <ErrorBoundary>
+          <NavbarLeft />
+        </ErrorBoundary>
+      </div>
+      <div className={today}>
+        <ErrorBoundary>
           <Today />
         </ErrorBoundary>
-         <ErrorBoundary>
+      </div>
+      <div className={desk}>
+        <ErrorBoundary>
           <YourDesk />
-        </ErrorBoundary> 
-        <ErrorBoundary> 
+        </ErrorBoundary>
+      </div>
+      <div className={alerts}>
+        <ErrorBoundary>
           <Alerts />
         </ErrorBoundary>
-        {/* <ErrorBoundary> 
-          <ProcessListCriminal />
-        </ErrorBoundary> */}
+      </div>
     </div>
   );
 }

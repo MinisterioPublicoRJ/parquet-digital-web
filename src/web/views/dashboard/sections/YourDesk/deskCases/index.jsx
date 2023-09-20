@@ -26,6 +26,7 @@ const propTypes = {
       color: PropTypes.string,
     }),
     over30: PropTypes.shape({ x: PropTypes.string, y: PropTypes.number, color: PropTypes.string }),
+    allDate: PropTypes.shape({ x: PropTypes.string, y: PropTypes.number, color: PropTypes.string }),
   }).isRequired,
   name: PropTypes.string.isRequired,
 };

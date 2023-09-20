@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: column;
   grid-area: desk;
-  margin-left: 28px;
+  margin-left: 20px;
+  padding-bottom: var(--horizontalPadding);
+  width: 100%;
 }
-.deskControlers {
+.deskControlers  {
   display: flex;
 }
 .deskButtonsInactive{
@@ -36,10 +38,13 @@
   justify-content: space-between;
   align-items: flex-end;
   font-size: 0.875rem;
+  margin-top: -10px;
 }
 
 .deskButtonsTextsHeaderText p{
   margin: 0;
+  margin-top: 5px;
+  padding: 2px;
 }
 
 .spinnerWrapper {
@@ -49,10 +54,11 @@
 
 .deskTabs {
   display: flex;
-  flex: 1;
   flex-direction: column;
   overflow: hidden;
   padding: 0 0 0 0;
+  height: 100%;
+  width: 100%;
 }
 
 .componentWrapper {
@@ -106,11 +112,22 @@ div .deskButtonsCollectionPhrase{
   color: #374354;
   max-width: 48%;
   font-size: var(--smallFont);
+  margin-top: 33px;
 }
-
+.deskButtonsCollectionPhrase p{
+  line-height: 13px;
+}
+.deskButtonsCollectionPhrase > div p{
+  line-height: 13px;
+}
+.deskControlersAndMetrics{
+  display: flex;
+  justify-content: space-between;
+  height: 7vh;
+}
 .yourCollectionButtons div:nth-child(1){
   width: 130px;
-  height: 100px;
+  height: 98px;
   background-color: #FAFAFA;
   color: #ACACAC;
   margin-left: 0px;
@@ -120,14 +137,19 @@ div .deskButtonsCollectionPhrase{
   color: #ACACAC;
 
 }
+.deskControlersAndMetrics{
+  display: flex;
+  justify-content: space-between;
+  height: 7vh;
+}
 .componentWrapperCollections{
   display: flex;
   justify-content: space-between;
 }
 .yourCollectionButtons div:nth-child(3){
   width: 130px;
-  height: 102px;
-  margin-left: 0px;
+  height: 98px;
+  margin-left: 2px;
   background-color: #FAFAFA;
   color: #ACACAC;
 }
@@ -140,8 +162,12 @@ div .deskButtonsCollectionPhrase{
 .openCasesChartsWrapper {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0;
+  width: 100%;
+}
+.openCasesChartsWrapperResponsive{
+  display: none;
 }
 .deskButtonsTextsHeader{
   display: flex;
@@ -157,18 +183,65 @@ div .deskButtonsCollectionPhrase{
     justify-content: space-between;
     justify-content: center;
   }
+
 }
 /* PHONES */
 @media (max-width: 480px) {
   .deskHeader {
     display: flex;
-    height: 25vh;
     flex-direction: column;
   }
-
-  .deskTabs {
+  .deskButtonsTextsHeaderText{
     display: flex;
     flex-direction: column;
-    height: 75vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .deskOuter{
+    margin: 0px;
+  }
+  .deskButtonsTextsHeader{
+    display: grid;
+    height: 65vh;
+    grid-template-columns: 2fr;
+    flex-wrap: wrap;
+  }
+  .deskControlers {
+    display: flex;
+    width: 100%;
+  }
+  .deskControlers > div {
+    width: 100%;
+  }
+  .deskButtonsInactive{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .deskButtonsTextsHeaderText p{
+    display: none;
+  }
+  .deskHeader h2{
+    margin-left: 20px;
+  }
+  .openCasesChartsWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .openCasesChartsWrapperWeb{
+    display: none;
+  }
+  .openCasesChartsWrapperResponsive{
+    display: block;
+  }
+.deskControlersAndMetrics{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  }
+div .deskButtonsCollectionPhrase{
+  max-width: 100%;
+  margin-top: 0px;
   }
 }

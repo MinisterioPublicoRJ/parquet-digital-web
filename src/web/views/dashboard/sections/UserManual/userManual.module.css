@@ -84,15 +84,50 @@
   margin-bottom: -3px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 700px) {
   .glossaryWrapper{
     max-height: 100vh;
     display: flex;
     flex-direction: column;
-    
   }
   .glossaryIntroSubtitle{
     width: 100%;
   }
-  
+}
+
+@media (min-width:700px) and (max-width: 879px) {
+  .glossaryIntro p {
+    font-size: .8rem;
+  }
+  .glossaryIntro h2 {
+    font-size: 1.6rem;
+  }
+  .glossaryIntroSubtitle p{
+    font-size: .7rem;
+  }
+  .promotronIcon svg{
+    width: 30vw;
+  }
+}
+
+@media (max-width: 540px) {
+  .glossaryWrapper{
+    width: 80vw;
+  }
+  .promotronIcon{
+    padding: 0 1rem;
+  }
+  .promotronIcon svg{
+    width: 100%;
+  }
+  .glossaryIntro h2 {
+    font-size: 1.6rem;
+    padding: 0px 10px 0px 36px;
+  }
+}
+
+@media (max-width: 400px) {
+  .glossaryIntro p {
+    font-size: .8rem;
+  }
 }

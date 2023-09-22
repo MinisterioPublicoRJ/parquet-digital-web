@@ -18,7 +18,6 @@ import {
   emptyAlert,
   allBoxFilters,
   boxFilters,
-  openCasesEmptyTableSearchString,
 } from './styles.module.css';
 
 const propTypes = {

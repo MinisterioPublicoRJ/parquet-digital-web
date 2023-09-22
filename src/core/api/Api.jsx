@@ -156,15 +156,13 @@ function ApiCreator(jwtToken) {
 
   }
 
-  async function getIntegratedDeskDocs({ orgao, cpf, docType }) {
-    const { data } = await axiosInstance.get(DESK_INTEGRATED({ orgao, cpf, docType }));
-
+  async function getIntegratedDeskDocs({ orgao, cpf, docType, type  }) {
+    const { data } = await axiosInstance.get(DESK_INTEGRATED({ orgao, cpf, docType, type }));
     return deskIntegratedTransform(data);
   }
 
   async function getIntegratedDeskDetails({ orgao, cpf, docType, type }) {
     const { data } = await axiosInstance.get(DESK_DETAIL_INTEGRATED({ orgao, cpf, docType, type }));
-
     return deskTabTransform(data);
   }
 
@@ -371,8 +369,8 @@ function ApiCreator(jwtToken) {
     return alertOverlayTransform(type, data);
   }
 
-  async function getProcessDetail({ orgao, numDoc }) {
-    const { data } = await axiosInstance.get(PROCESS_DETAIL({ num_doc: numDoc, orgao }));
+  async function getProcessDetail({ orgao, num_doc }) {
+    const { data } = await axiosInstance.get(PROCESS_DETAIL({ orgao, num_doc }));
     return processDetailTransform(data);
   }
 

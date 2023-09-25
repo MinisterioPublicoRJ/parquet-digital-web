@@ -11,13 +11,13 @@
   background-color: #bddff0;
 }
 
-.glossaryIntroSection{
+.glossaryIntroSection {
   display: flex;
   flex-direction: column;
 }
 
 .glossaryIntro h2 {
-  font-size: 2rem;
+  font-size: var(--modal-title-font-size);
   font-family: var(--defaultFont);
   font-weight: 900;
   letter-spacing: 0px;
@@ -27,15 +27,15 @@
   margin-bottom: 0px;
 }
 .glossaryIntro p {
-  font-size: 15px;
+  font-size: var(--modal-default-font-size);
   font-family: var(--defaultFont);
   letter-spacing: 0px;
   color: #3b3b3b;
   padding: 0px 20px 0px 36px;
   max-width: 430px;
 }
-.glossaryIntroSubtitle p{
-  font-size: 15px;
+.glossaryIntroSubtitle p {
+  font-size: var(--modal-default-font-size);
   font-family: var(--defaultFont);
   letter-spacing: 0px;
   color: #374354;
@@ -58,6 +58,7 @@
 .glossaryIntroSubtitle {
   font-weight: bold;
   width: 13vw;
+  width: 100%;
   height: 25px;
   margin-left: 30px;
   border-radius: 1px;
@@ -85,49 +86,30 @@
 }
 
 @media (max-width: 700px) {
-  .glossaryWrapper{
+  .glossaryWrapper {
     max-height: 100vh;
     display: flex;
     flex-direction: column;
   }
-  .glossaryIntroSubtitle{
-    width: 100%;
-  }
 }
 
-@media (min-width:700px) and (max-width: 879px) {
-  .glossaryIntro p {
-    font-size: .8rem;
-  }
-  .glossaryIntro h2 {
-    font-size: 1.6rem;
-  }
-  .glossaryIntroSubtitle p{
-    font-size: .7rem;
-  }
-  .promotronIcon svg{
+@media (min-width: 700px) and (max-width: 879px) {
+  .promotronIcon svg {
     width: 30vw;
   }
 }
 
 @media (max-width: 540px) {
-  .glossaryWrapper{
+  .glossaryWrapper {
     width: 80vw;
   }
-  .promotronIcon{
+  .promotronIcon {
     padding: 0 1rem;
   }
-  .promotronIcon svg{
+  .promotronIcon svg {
     width: 100%;
   }
   .glossaryIntro h2 {
-    font-size: 1.6rem;
     padding: 0px 10px 0px 36px;
-  }
-}
-
-@media (max-width: 400px) {
-  .glossaryIntro p {
-    font-size: .8rem;
   }
 }

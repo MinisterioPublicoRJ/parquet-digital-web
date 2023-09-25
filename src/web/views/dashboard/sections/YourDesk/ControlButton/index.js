@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from '../../../../../components';
-import { useAppContext } from '../../../../../../core/app/App.context';
 
 import {
   controlButtonOuter,

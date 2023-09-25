@@ -12,9 +12,8 @@
   box-shadow: inset 0px 0px 0px 0px var(--lightGray);
   border: 1px solid var(--lightGray);
   display: flex;
-  width: 50%;
-  min-width: 730px;
-  min-height: 450px;
+  width: 70%;
+  min-height: 440px;
 }
 .loginImagesBanner{
   display: flex;
@@ -44,7 +43,7 @@
   line-height: 1.5;
 }
 .loginBanner{
-  padding: 25px;
+  padding: 30px;
 }
 .loginImageBanner span{
   background-color: #FFCE99;
@@ -138,11 +137,35 @@
 
 /* PHONES */
 @media (max-width: 480px) {
+  .loginWrapper{
+    width: 100%;
+  }
   .loginInner {
     display: flex;
     flex-direction: column ;
+    width: 80%;
   }
   .loginFormArea{
     width: 100%;
+  }
+  .loginBanner{
+    padding: 5px;
+  }
+  .loginImageBanner{
+    border-radius: 15px;
+    width: 90%;
+    padding: 15px;
+  }
+  .logoGadgBanner{
+    display: none;
+  }
+  .roboGadgBanner{
+    display: none;
+  }
+  .loginInput{
+    width: 90%;
+  }
+  .loginSubmitBtn{
+    width: 90%;
   }
 }

@@ -2,7 +2,6 @@
   /* FONTS */
   --defaultFont: Roboto;
 
-  
   --defaultFontSize: clamp(12px, 1.5vh, 18px);
   --titleFontSize: calc(var(--defaultFontSize) * 2);
   --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);
@@ -10,8 +9,13 @@
   --smallFont: clamp(10px, 1.2vh, 14px);
 
   /* SPACING */
-
   --unavailableContentPadding: 0.5vh 4vw;
+  --verticalPadding: 2.5rem;
+  --horizontalPadding:  1.1rem;
+
+  /* WIDTHS */
+  --navbarWidth: 2.8125rem;
+  --navbarMobileWidth: 5rem;
 
 /* COLORS */
   /* From our design system's page on Notion */
@@ -23,7 +27,6 @@
   --lightGray: #CFCFCF;
   --mediumGray: #B4B4B4;
   --darkWelcome: #4a4a4a;
-
 
   /* Alertas */
   --colorFailure: #F86C72;
@@ -50,7 +53,6 @@ body {
   margin: 0;
   color: var(--dark);
   font-size: var(--defaultFontSize);
-  padding: var(--bodyVerticalPadding) var(--bodyHorizontalPadding);
 }
 
 /*.appOuter {

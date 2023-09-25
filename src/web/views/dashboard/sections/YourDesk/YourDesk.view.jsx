@@ -17,7 +17,10 @@ import {
   componentWrapperCollections,
   deskButtonsCollectionPhrase,
   deskButtonsCollections,
-  spinnerWrapper
+  spinnerWrapper,
+  deskControlersAndMetrics,
+  openCasesChartsWrapperWeb,
+  openCasesChartsWrapperResponsive,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -29,6 +32,7 @@ import TablesTutela from '../TablesTutela';
 import MainInvestigated from '../MainInvestigated';
 import ProcessListCriminal from '../ProcessListCriminal';
 import DeskGraph from './DeskGraph/DeskGraph.view';
+import DeskGraphResponsive from './DeskGraphResponsive/DeskGraphResponsive.view';
 
 import {
   PIP_DESK_BUTTONS,
@@ -53,10 +57,9 @@ function YourDesk() {
   const [activeTab, setActiveTab] = useState('desk');
   const [tabDetail, setTabDetail] = useState({});
   const [metricsArray, setMetrics] = useState([]);
-
   const [dbNames, setDBNames] = useState([]);
-  //const [collectionTable, setCollectionTable] = useState();
-  const collectionTable = getCollectionTable();
+  const [collectionTable, setCollectionTable] = useState(getCollectionTable);
+  // const collectionTable = getCollectionTable();
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
 
   useEffect(() => {
@@ -155,7 +158,6 @@ function YourDesk() {
         tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
         metricsArray.push(tabData.metrics);
       }
-
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState[tabName] = undefined;
@@ -212,7 +214,14 @@ function YourDesk() {
     if (!data) return;
 
     const cleanData = cleanChartData(data);
-    return <DeskGraph data={cleanData} />;
+    return <DeskGraph data={cleanData}/>  
+  }
+
+  function renderChartsResponsive(data) {
+    if (!data) return;
+
+    const cleanData = cleanChartData(data);
+    return <DeskGraphResponsive data={cleanData}/>
   }
 
   /**
@@ -258,21 +267,50 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
- 
+
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
         <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
-        <div className={deskControlers}>
-          {buttonListControl.map((buttonTitle) => (
-            <ControlButton
-              key={BUTTON_TEXTS[buttonTitle]}
-              isButton={!buttonTitle.includes('closedCases')}
-              buttonPressed={() => handleChangeActiveTab(buttonTitle)}
-              isActive={activeTab === buttonTitle}
-              text={BUTTON_TEXTS[buttonTitle]}
-            />
-          ))}
+        <div className={deskControlersAndMetrics}>
+          <div className={deskControlers}>
+            {buttonListControl.map((buttonTitle) => (
+              <ControlButton
+                key={BUTTON_TEXTS[buttonTitle]}
+                isButton={!buttonTitle.includes('closedCases')}
+                buttonPressed={() => handleChangeActiveTab(buttonTitle)}
+                isActive={activeTab === buttonTitle}
+                text={BUTTON_TEXTS[buttonTitle]}
+              />
+            ))}
+          </div>
+          <div 
+          className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
+          >
+            {metricsArray && !loading ? (
+              !metricsArray && !loading ? (
+                <p>Não há vistas metricas.</p>
+              ) : (
+                <>
+                  {metricsArray.map((metrics, index) => (
+                    <MetricsProsecutions
+                      key={`metric-${index}`}
+                      metrics={metrics}
+                      dbName={dbNames[index]}
+                      tab={activeTab}
+                      tabTitle={[BUTTON_TEXTS[activeTab]]}
+                      error={!tabDetail[activeTab] && !loading}
+                      isBeingDeveloped={currentOffice.tipo === 7}
+                    />
+                  ))}
+                </>
+              )
+            ) : (
+              <div className={spinnerWrapper}>
+                <Spinner size="medium" />
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className={deskTabs}>
@@ -301,11 +339,16 @@ function YourDesk() {
                 sumValues(tabDetail.openCases) > 0 ? (
                   <>
                     <p>
-                      As <strong>{sumValues(tabDetail.openCases)} vistas</strong> abertas
+                      As <strong>{tabDetail.openCases.allDate} vistas</strong> abertas
                       <br /> estão distribuídas da seguinte forma:
                     </p>
                     <div className={openCasesChartsWrapper}>
-                      {renderCharts(tabDetail.openCases)}
+                      <div className={openCasesChartsWrapperWeb}>
+                        {renderCharts(tabDetail.openCases)}
+                      </div>
+                      <div className={openCasesChartsWrapperResponsive}>
+                        {renderChartsResponsive(tabDetail.openCases)}
+                      </div>
                     </div>
                   </>
                 ) : (
@@ -318,11 +361,13 @@ function YourDesk() {
               )}
             </div>
           </div>
-          <OpenCasesList
-            buildRequestParams={buildRequestParams}
-            chartData={tabDetail.openCases}
-            isLoading={!tabDetail.openCases && loading}
-          />
+          {!!tabDetail.openCases && (
+            <OpenCasesList
+              buildRequestParams={buildRequestParams}
+              chartData={tabDetail.openCases}
+              isLoading={!tabDetail.openCases && loading}
+            />
+          )}
         </div>
         <div className={`${componentWrapper} ${activeTab === 'collection' ? ' ' : hide}`}>
           <div className={componentWrapperCollections}>
@@ -341,31 +386,6 @@ function YourDesk() {
                   />
                 ))}
               </div>
-            </div>
-            <div className={deskButtonsCollectionPhrase}>
-            {metricsArray && !loading ? (
-                (!metricsArray && !loading) ? (
-                  <p>Não há vistas metricas.</p>
-                ) : (
-              <>
-                {metricsArray.map((metrics, index) => (
-                <MetricsProsecutions
-                  key={`metric-${index}`}
-                  metrics={metrics}
-                  dbName={dbNames[index]}
-                  tab={activeTab}
-                  tabTitle={[BUTTON_TEXTS[activeTab]]}
-                  error={!tabDetail[activeTab] && !loading}
-                  isBeingDeveloped={currentOffice.tipo === 7}
-                />
-                ))}
-              </>
-              )
-              ) : (
-                <div className={spinnerWrapper}>
-                  <Spinner size="medium" />
-                </div>
-              )}
             </div>
           </div>
           {collectionTable}

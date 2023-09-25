@@ -64,27 +64,23 @@ import {
   radarCompareTransform,
   snakeToCamelTransform,
   alertOverlayTransform,
-  processDetailTransform
+  processDetailTransform,
 } from './transforms';
 
 import { formatDateObjForBackend } from '../../web/utils/formatters';
 
 function ApiCreator(jwtToken) {
   const axiosInstance = axios.create({
-    baseURL: BASE_URL,
-    params: { 
-      jwt: jwtToken
-    },
+    baseURL: BASE_URL
   });
 
   const addHeaders = (config) => {
-    if (jwtToken) {
+    if (jwtToken){
       // eslint-disable-next-line no-param-reassign
       config.headers.common.Authorization = `Bearer ${jwtToken}`;
     }
     return config;
   }
-
   axiosInstance.interceptors.request.use(addHeaders, (error) => Promise.reject(error));
 
   // axios bug not allowing params and other configs being changed after creating instance
@@ -157,17 +153,16 @@ function ApiCreator(jwtToken) {
     const { data } = await axiosInstance.get(OPEN_CASES_DETAILS_URL({ orgao, cpf }));
 
     return openCasesDetailsTransform(data);
+
   }
 
-  async function getIntegratedDeskDocs({ orgao, cpf, docType }) {
-    const { data } = await axiosInstance.get(DESK_INTEGRATED({ orgao, cpf, docType }));
-
+  async function getIntegratedDeskDocs({ orgao, cpf, docType, type  }) {
+    const { data } = await axiosInstance.get(DESK_INTEGRATED({ orgao, cpf, docType, type }));
     return deskIntegratedTransform(data);
   }
 
   async function getIntegratedDeskDetails({ orgao, cpf, docType, type }) {
     const { data } = await axiosInstance.get(DESK_DETAIL_INTEGRATED({ orgao, cpf, docType, type }));
-
     return deskTabTransform(data);
   }
 
@@ -183,8 +178,11 @@ function ApiCreator(jwtToken) {
     return openInvestigationsDetailsTransform(data);
   }
 
+ 
   async function getOpenCasesList({ orgao, cpf }, list, page, searchString) {
     const params = {};
+    let url_end = list;
+    if (!url_end) url_end = 'full';
 
     if (searchString) {
       params.search_string = searchString;
@@ -194,8 +192,8 @@ function ApiCreator(jwtToken) {
       params.page = page;
     }
 
-    const { data } = await axiosInstance.get(OPEN_CASES_LIST({ orgao, cpf, list }), { params });
-
+    const { data } = await axiosInstance.get(OPEN_CASES_LIST({ orgao, cpf, url_end }), { params });
+    
     return openCasesListTransform(data);
   }
 
@@ -371,8 +369,8 @@ function ApiCreator(jwtToken) {
     return alertOverlayTransform(type, data);
   }
 
-  async function getProcessDetail({ orgao, numDoc }) {
-    const { data } = await axiosInstance.get(PROCESS_DETAIL({ num_doc: numDoc, orgao }));
+  async function getProcessDetail({ orgao, num_doc }) {
+    const { data } = await axiosInstance.get(PROCESS_DETAIL({ orgao, num_doc }));
     return processDetailTransform(data);
   }
 
@@ -414,7 +412,7 @@ function ApiCreator(jwtToken) {
     getRadarCompareData,
     getAlertOverlayData,
     getProcessDetail,
-    sendOmbudsmanEmail
+    sendOmbudsmanEmail,
   };
 }
 

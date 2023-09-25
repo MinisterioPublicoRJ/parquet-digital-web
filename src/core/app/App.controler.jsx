@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { ThemeProvider } from 'mapasteca-web';
 import { AppProvider, AppStoreInitializer } from './App.context';
 import { AlertsContextCreator } from '../../web/views/dashboard/sections/Alerts/alertsContext';

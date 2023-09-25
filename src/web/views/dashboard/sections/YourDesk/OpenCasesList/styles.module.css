@@ -9,7 +9,9 @@
   overflow: hidden;
   position: relative;
 }
-
+.openCasesEmptyTableSearchString{
+  text-align: center;
+}
 .noOpenCases {
   position: absolute;
   width: 240px;
@@ -144,4 +146,39 @@
 }
 .boxFilters button:nth-child(2){
   color: var(--grayPagination);
+}
+
+@media (min-width: 1780px) {
+  .allBoxFilters{
+    margin-top: 20px;
+  }
+}
+/* PHONES */
+@media (max-width: 480px) {
+  .allBoxFilters {
+    display: flex;
+    flex-direction: column;
+  }
+  .boxFilters{
+    display: flex;
+    justify-content: space-between;
+    max-width: 100vw;
+  }
+  .boxFilters p{
+    font-size: 11px;
+  }
+  .boxFilters button{
+    width: 66px;
+    height: 50px;
+    border-radius: 80%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+}
+
+@media (min-width: 1780px) {
+  .allBoxFilters{
+    margin-top: 20px;
+  }
 }

@@ -3,45 +3,39 @@ import React from 'react';
 import { formatPercentage } from '../../../../../utils';
 import { useAppContext } from '../../../../../../core/app/App.context';
 
-function openInvestigationsMetrics({ variacaoAcervo }) {
-  const formattedVariation = formatPercentage(Math.abs(variacaoAcervo));
+function courtCasesMetrics({
+  nr_acoes_ultimos_60_dias,
+  variacao_60_dias,
+  nr_acoes_60_dias_anterior,
+  nr_acoes_12_meses_atual,
+  variacao_12_meses,
+  nr_acoes_12_meses_anterior,
+  variacao_30_dias,
+}) {
+ 
+  const monthVariation = formatPercentage(Math.abs(variacao_60_dias));
+  const yearVariation = formatPercentage(Math.abs(variacao_12_meses));
+  const formattedVariation = formatPercentage(Math.abs(variacao_30_dias));
   return (
-    <>
-      {variacaoAcervo ? (
-        <p>
+    <p>
+       {variacao_30_dias ? (
+        <strong>
           Seu acervo
           <strong>{` ${
-            variacaoAcervo > 0 ? 'aumentou' : 'diminuiu'
+            variacao_30_dias > 0 ? 'aumentou' : 'diminuiu'
           } ${formattedVariation} `}</strong>
           nos últimos 30 dias.
-        </p>
+        </strong>
       ) : (
-        <p>
+        <strong>
           Seu acervo <strong>não aumentou ou diminuiu</strong> nos últimos 30 dias.
-        </p>  
+        </strong>  
       )}
-    </>
-  );
-}
-
-function courtCasesMetrics({
-  nrAcoesUltimos60Dias,
-  variacao60Dias,
-  nrAcoes60DiasAnterior,
-  nrAcoes12MesesAtual,
-  variacao12Meses,
-  nrAcoes12MesesAnterior,
-}) {
-
-  const monthVariation = formatPercentage(Math.abs(variacao60Dias));
-  const yearVariation = formatPercentage(Math.abs(variacao12Meses));
-  return (
-    <div>
-      {nrAcoesUltimos60Dias ? (
+      {nr_acoes_ultimos_60_dias ? (
         <strong>
           Você ajuizou
           <strong>
-            {` ${nrAcoesUltimos60Dias} ${nrAcoesUltimos60Dias === 1 ? 'ação' : 'ações'} `}
+            {` ${nr_acoes_ultimos_60_dias} ${nr_acoes_ultimos_60_dias === 1 ? 'ação' : 'ações'} `}
           </strong>
           nos últimos 60 dias.{' '}
         </strong>
@@ -57,7 +51,7 @@ function courtCasesMetrics({
           <strong>
             <span>
               Houve{' '}
-              {variacao60Dias >= 0
+              {variacao_60_dias >= 0
                 ? ` aumento de ${monthVariation} `
                 : ` redução de ${monthVariation} `}
             </span>
@@ -65,10 +59,10 @@ function courtCasesMetrics({
         )}
       </>{' '}
       com relação ao mesmo período anterior, quando{' '}
-      {nrAcoes60DiasAnterior ? (
+      {nr_acoes_60_dias_anterior ? (
         <strong>
           <span>
-            {` ${nrAcoes60DiasAnterior} ${nrAcoes60DiasAnterior === 1 ? 'ação' : 'ações'}.`}{' '}
+            {` ${nr_acoes_60_dias_anterior} ${nr_acoes_60_dias_anterior === 1 ? 'ação' : 'ações'}.`}{' '}
           </span>
           foram ajuizadas
         </strong>
@@ -79,10 +73,10 @@ function courtCasesMetrics({
         No último ano, você ajuizou
         <strong>
           <span>
-            {` ${nrAcoes12MesesAtual} ${nrAcoes12MesesAtual === 1 ? 'ação' : 'ações'}`},{' '}
-            {variacao12Meses ? (
+            {` ${nr_acoes_12_meses_atual} ${nr_acoes_12_meses_atual === 1 ? 'ação' : 'ações'}`},{' '}
+            {variacao_12_meses ? (
               <strong>
-                com {variacao12Meses >= 0 ? `aumento` : `redução`} de {yearVariation}
+                com {variacao_12_meses >= 0 ? `aumento` : `redução`} de {yearVariation}
               </strong>
               ) : (
               <strong>não houve aumento nem redução</strong>
@@ -91,37 +85,37 @@ function courtCasesMetrics({
         </strong>{' '}
         em comparação com o ano anterior em que
         <strong>
-          <span>{` ${nrAcoes12MesesAnterior} ${
-            nrAcoes12MesesAnterior === 1 ? 'ação foi ajuizada.' : 'ações foram ajuizadas.'
+          <span>{` ${nr_acoes_12_meses_anterior} ${
+            nr_acoes_12_meses_anterior === 1 ? 'ação foi ajuizada.' : 'ações foram ajuizadas.'
           } `}</span>
         </strong>
       </p>
-    </div>
+    </p>
   );
 }
 
 function inquiriesMetrics({
-  nrDocumentosDistintosAtual,
-  nrAberturasVistaAtual,
-  nrAproveitamentosAtual,
-  variacaoAproveitamentos,
+  nr_documentos_distintos_atual,
+  nr_aberturas_vista_atual,
+  nr_aproveitamentos_atual,
+  variacao_aproveitamentos,
 }) {
-  const formattedVariation = formatPercentage(Math.abs(variacaoAproveitamentos));
+  const formattedVariation = formatPercentage(Math.abs(variacao_aproveitamentos));
   return (
     <>
-      {nrDocumentosDistintosAtual ? (
+      {nr_documentos_distintos_atual ? (
         <p>
-          <strong>{` ${nrDocumentosDistintosAtual} ${
-            nrDocumentosDistintosAtual === 1 ? 'inquérito passou' : 'inquéritos passaram'
+          <strong>{` ${nr_documentos_distintos_atual} ${
+            nr_documentos_distintos_atual === 1 ? 'inquérito passou' : 'inquéritos passaram'
           } por você `}</strong>
           neste mês, com
-          <strong>{` ${nrAberturasVistaAtual} ${
-            nrAberturasVistaAtual === 1 ? 'abertura' : 'aberturas'
+          <strong>{` ${nr_aberturas_vista_atual} ${
+            nr_aberturas_vista_atual === 1 ? 'abertura' : 'aberturas'
           } de vista`}</strong>
           . Você aproveitou
           <strong>
-            {` ${nrAproveitamentosAtual} ${
-              nrAproveitamentosAtual === 1 ? 'caso' : 'casos'
+            {` ${nr_aproveitamentos_atual} ${
+              nr_aproveitamentos_atual === 1 ? 'caso' : 'casos'
             } para denúncias, cautelares e arquivamentos. `}
             {!formattedVariation || formattedVariation === '0%' ? (
               <span>
@@ -131,7 +125,7 @@ function inquiriesMetrics({
             ) : (
               <strong>
                 {` ${
-                  variacaoAproveitamentos > 0 ? 'Aumento' : 'Redução'
+                  variacao_aproveitamentos > 0 ? 'Aumento' : 'Redução'
                 } de ${formattedVariation} `}
               </strong>
             )}
@@ -150,23 +144,23 @@ function inquiriesMetrics({
 }
 
 function picsMetrics({
-  nrDocumentosDistintosAtual,
+  nr_documentos_distintos_atual,
   nrInstauradosAtual,
-  nrAberturasVistaAtual,
-  nrAproveitamentosAtual,
-  variacaoAberturasVista,
+  nr_aberturas_vista_atual,
+  nr_aproveitamentos_atual,
+  variacao_aberturas_vista,
 }) {
-  const formattedVariation = formatPercentage(Math.abs(variacaoAberturasVista));
+  const formattedVariation = formatPercentage(Math.abs(variacao_aberturas_vista));
   return (
     <>
       <p>
-        {nrDocumentosDistintosAtual ? (
+        {nr_documentos_distintos_atual ? (
           <span>
             {' '}
             Constatei que
             <strong>
-              {` ${nrDocumentosDistintosAtual} ${
-                nrDocumentosDistintosAtual === 1 ? 'PIC passou' : 'PICs passaram'
+              {` ${nr_documentos_distintos_atual} ${
+                nr_documentos_distintos_atual === 1 ? 'PIC passou' : 'PICs passaram'
               } por você `}
             </strong>
           </span>
@@ -186,14 +180,14 @@ function picsMetrics({
           <strong>nenhum foi instaurado</strong>
         )}{' '}
         nesse período.
-        {nrAberturasVistaAtual === 1
+        {nr_aberturas_vista_atual === 1
           ? ' Foi 1 abertura '
-          : ` Foram ${nrAberturasVistaAtual} aberturas `}
+          : ` Foram ${nr_aberturas_vista_atual} aberturas `}
         de vista,{' '}
-        {nrAproveitamentosAtual ? (
+        {nr_aproveitamentos_atual ? (
           <span>
-            e você aproveitou <strong>{nrAproveitamentosAtual}</strong>{' '}
-            {nrAproveitamentosAtual === 1 ? 'caso para' : `casos para`}
+            e você aproveitou <strong>{nr_aproveitamentos_atual}</strong>{' '}
+            {nr_aproveitamentos_atual === 1 ? 'caso para' : `casos para`}
           </span>
           ) : (
           <span>você não aproveitou nenhum caso para</span>
@@ -206,7 +200,7 @@ function picsMetrics({
         ) : (
           <span>
             <strong>{`${
-              variacaoAberturasVista > 0 ? ' Aumento' : ' Diminuição'
+              variacao_aberturas_vista > 0 ? ' Aumento' : ' Diminuição'
             } de ${formattedVariation} `}</strong>{' '}
             nos últimos 30 dias.
           </span>
@@ -222,8 +216,6 @@ export default function MetricsProsecutions({ metrics, dbName }) {
 
   if (!metrics) return null
   switch (dbName) {
-    case 'tutela_investigacoes':
-      return openInvestigationsMetrics(metrics);
     case 'tutela_processos':
       return courtCasesMetrics(metrics);
     case 'pip_inqueritos':

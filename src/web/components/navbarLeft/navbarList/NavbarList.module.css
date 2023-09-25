@@ -1,0 +1,76 @@
+.navbarList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 3.25rem;
+  background-color: var(--loginBlue);
+}
+
+.navbarListItem {
+  display: flex;
+  color: var(--white);
+  background: transparent;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navbarListItem p {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+  text-align: center;
+  margin-left: 0.7rem;
+}
+
+.navbarListItem button {
+  border: none;
+  background-color: transparent;
+}
+
+.navbarListItem:hover {
+  color: var(--loginBlue);
+  background-color: var(--lightBlue);
+  transition: all 0.3s;
+}
+
+.navbarLogout {
+  width: 100vw;
+  margin: 12.3rem 0 2.9375rem 0.2rem;
+  background-color: var(--loginBlue);
+}
+
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .navbarList {
+    margin-top: 0;
+    flex: 1;
+  }
+
+  .navbarListItem {
+    padding: 0.5rem;
+    border-top: 1px solid var(--blueGray);
+    justify-content: space-between;
+  }
+
+  .navbarListItem:last-child {
+    border-bottom: 1px solid var(--blueGray);
+  }
+
+  .navbarListItem p {
+    order: 1;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .navbarListItem button {
+    order: 2;
+    margin-right: 0.7rem
+  }
+
+  .navbarLogout {
+    margin: 0;
+    width: auto;
+  }
+}

@@ -24,13 +24,13 @@
 }
 
 .ptHeaderContent h2 {
-  font-size: calc(var(--titleFontSize) * 0.8);
+  font-size: var(--modal-default-font-size);
   text-transform: uppercase;
   margin: 0;
 }
 
 .ptHeaderContent p {
-  font-size: calc(var(--defaultFontSize) * 1.1);
+  font-size: var(--modal-default-font-size);
   margin-top: 3px;
 }
 
@@ -75,12 +75,12 @@
 }
 
 .ptLegendsHighlight {
-  font-size: var(--defaultFontSize);
+  font-size: var(--modal-default-font-size);
   margin-bottom: 6px;
 }
 
 .ptLegendsHighlight span:first-child {
-  font-size: calc(var(--defaultFontSize) * 1.6);
+  font-size: var(--modal-default-font-size);
   margin-right: 7px;
 }
 
@@ -100,79 +100,41 @@
   color: var(--pt-purple);
 }
 
-/* TABLETS AND SMALL SCREENS */
-@media (min-width: 481px) and (max-width: 1025px) {
+
+/* TABLETS AND PHONES */
+@media (max-width: 768px) {
+  .pageTramitacao {
+    width: 80vw;
+    height: 80vh;
+    overflow: scroll;
+  }
+
+  .ptHeader {
+    gap: 0;
+  }
+
+  .ptHeader svg {
+    display: none;
+  }
+
   .ptGraph {
     flex-direction: column;
-    padding: 0;
   }
 
   .ptGraphWrapper {
-    height: 300px;
+    width: 100%;
+    height: 200px;
   }
 
   .ptGraphLabels {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    width: 65%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
   }
 
   .ptLegends {
     height: auto;
-  }
-
-  .ptHeader p {
-    width: 80%;
-  }
-}
-
-/* PHONES */
-@media (max-width: 480px) {
-  .ptHeader {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .ptHeaderContent h2 {
-    font-size: calc(var(--titleFontSize) * 0.6);
-  }
-
-  .ptHeaderContent p {
-    font-size: var(--defaultFontSize);
-  }
-
-  .ptGraph {
-    flex-direction: column;
-    padding: 0;
-  }
-
-  .ptGraphWrapper {
-    width: 100%;
-    height: 210px;
-  }
-
-  .ptGraphLabels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    width: 100%;
-    padding-left: 50px;
-  }
-
-  .ptLegends {
-    width: 40%;
-  }
-
-  .ptLegendsHighlight span:first-child {
-    font-size: calc(var(--defaultFontSize) * 1.4);
-  }
-}
-
-
-@media (max-width: 768px) {
-  .pageTramitacao {
-    overflow-y: scroll;
-    height: 70vh;
-  }
+  } 
 }

@@ -8,6 +8,7 @@ import {
   selectorModal,
   inputOrgaoSelect,
   selectorHeader,
+  selectorSearchbox,
   selectorListWrapper,
 } from './OfficeSelector.module.css';
 
@@ -55,13 +56,16 @@ function OfficeSelector() {
       <div className={selectorModal}>
         <div className={selectorHeader}>
           <h2>Selecione a Promotoria:</h2>
-          <input
-            placeholder="Pesquisar..."
-            type="text"
-            onChange={handleChange}
-            className={inputOrgaoSelect}
-          />
-          <Search className="search" />
+
+          <div className={selectorSearchbox}>
+            <input
+              placeholder="Pesquisar..."
+              type="text"
+              onChange={handleChange}
+              className={inputOrgaoSelect}
+            />
+            <Search />
+          </div>
         </div>
         <div className={selectorListWrapper}>
           <ul>

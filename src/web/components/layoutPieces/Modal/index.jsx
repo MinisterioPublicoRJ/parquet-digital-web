@@ -8,6 +8,7 @@ import {
   modalInnerWrapper,
   modalUnpositioned,
   modalClose,
+  modalCloseMobile,
 } from './Modal.module.css';
 
 const propTypes = {
@@ -15,6 +16,7 @@ const propTypes = {
   previousElement: PropTypes.node,
   unpositioned: PropTypes.bool,
   withExitButton: PropTypes.bool,
+  exitButtonInMobile: PropTypes.bool,
   transparent: PropTypes.bool,
   close: PropTypes.func.isRequired,
   inner: PropTypes.bool,
@@ -26,6 +28,7 @@ const defaultProps = {
   previousElement: undefined,
   unpositioned: undefined,
   withExitButton: undefined,
+  exitButtonInMobile: undefined,
   transparent: undefined,
   inner: false,
 };
@@ -67,18 +70,36 @@ export default function Modal({
   close,
   previousElement,
   withExitButton,
+  exitButtonInMobile,
   inner,
   unpositioned,
   transparent,
 }) {
   useEffect(() => {
     document.querySelector(`.${modalOuter}`).focus();
+    disabledBodyScrolling();
   }, []);
 
   function handleClose() {
     if (previousElement) previousElement.focus();
+    defaultBodyScrolling();
     close();
   }
+
+  /* 
+    Para desabilitar o scroll da página inicial quando o modal é aberto,
+    mantendo o scroll apenas dentro do modal.
+  */
+  const disabledBodyScrolling = () => {
+    document.body.style.height = '100vh';
+    document.body.style.overflow = 'hidden';
+  };
+
+  // Para voltar os valores padrões da página inicial, quando o modal é fechado.
+  const defaultBodyScrolling = () => {
+    document.body.style.height = 'auto';
+    document.body.style.overflow = 'auto';
+  };
 
   const modalContent = (
     <div
@@ -96,8 +117,13 @@ export default function Modal({
         className={[modalInnerWrapper, unpositioned ? modalUnpositioned : null].join(' ')}
       >
         {children}
-        {withExitButton && (
-          <button type="button" className={modalClose} aria-label="Fechar" onClick={handleClose}>
+        {(withExitButton || exitButtonInMobile) && (
+          <button
+            type="button"
+            className={`${modalClose} ${exitButtonInMobile ? modalCloseMobile : null}`}
+            aria-label="Fechar"
+            onClick={handleClose}
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         )}

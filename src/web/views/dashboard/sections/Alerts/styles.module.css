@@ -1,4 +1,5 @@
 .alertsWrapper {
+  width: 100%;
   grid-area: alerts;
   display: flex;
   flex-direction: column;
@@ -14,13 +15,13 @@
 
 .alertsTotalStyle {
   align-items: center;
+  justify-content: center;
   background-color: var(--danger);
   border-radius: 20px;
   color: var(--white);
   display: flex;
   font-weight: bold;
   height: var(--sectionTitleFontSize);
-  justify-content: center;
   min-width: calc(2 * var(--defaultFontSize));
   padding: 1px 5px;
 }
@@ -73,6 +74,7 @@
   .alertsWrapper {
     padding: 1.5rem;
     margin: 0;
+    box-sizing: border-box;
   }
 
   .alertsTotalStyle {

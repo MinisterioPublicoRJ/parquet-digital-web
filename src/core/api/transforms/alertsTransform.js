@@ -1,5 +1,4 @@
 export default function alertsTransform(data) {
-  console.log(data)
   return data.map((alert) => ({
       alertCode: alert.sigla,
       description: alert.descricao,

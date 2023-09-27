@@ -71,7 +71,7 @@ function Alerts() {
     }
     return [alertsTotal, errorAlertsTotal];
   }
-
+  // alerta de improbidade administrativa
   async function loadMisconductAlert() {
     let misconductAlertList = [];
     let misconductListError = false;
@@ -91,7 +91,6 @@ function Alerts() {
 
     const apiError = errorAlertsCount || (errorAlerts && misconductListError );
     const fullList = alertList.concat(misconductAlertList );
-    console.log(fullList, "Sou toda a lista")
     const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 
     setAlerts(cleanList);

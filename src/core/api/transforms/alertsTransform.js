@@ -1,4 +1,5 @@
 export default function alertsTransform(data) {
+  console.log(data)
   return data.map((alert) => ({
       alertCode: alert.sigla,
       description: alert.descricao,
@@ -13,5 +14,9 @@ export default function alertsTransform(data) {
       daysPassed: alert.dias_passados,
       alertIdGate: alert.id_alerta,
       alertId: alert.alrt_key,
+      contrato: alert.contratacao,
+      iditem: alert.id_item,
+      contrato_iditem: alert.contrato_id_item,
+      item: alert.item,
     }));
 }

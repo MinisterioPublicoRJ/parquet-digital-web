@@ -18,8 +18,6 @@ import {
   CRIMINAL_RADAR_URL,
   ALERTS_LIST,
   TOTAL_ALERTS_LIST,
-  HIRES_ALERTS,
-  CAVL_ALERTS,
   MISCONDUCT_ALERT,
   PROCESSING_TIME_DATA,
   PROCESSES_LIST,
@@ -53,8 +51,6 @@ import {
   radarCriminalTransform,
   alertsTransform,
   totalAlertsTransform,
-  hiresAlertsTransform,
-  cavlAlertsTransform,
   misconductAlertsTransform,
   processingTimeTransform,
   processListTransform,
@@ -224,18 +220,7 @@ function ApiCreator(jwtToken) {
     return totalAlertsTransform(data);
   }
 
-  async function getHiresAlerts({ orgao }) {
-    const { data } = await axiosInstance.get(HIRES_ALERTS({ orgao }));
-
-    return hiresAlertsTransform(data);
-  }
-
-  async function getCavlAlerts({ orgao }) {
-    const { data } = await axiosInstance.get(CAVL_ALERTS({ orgao }));
-
-    return cavlAlertsTransform(data);
-  }
-
+ 
   async function getMisconductAlert({ orgao }) {
     const { data } = await axiosInstance.get(MISCONDUCT_ALERT({ orgao }));
 
@@ -397,8 +382,6 @@ function ApiCreator(jwtToken) {
     getRadarDataCriminal,
     getAlerts,
     getAlertsCount,
-    getHiresAlerts,
-    getCavlAlerts,
     getMisconductAlert,
     getProcessingTimeData,
     getProcessList,

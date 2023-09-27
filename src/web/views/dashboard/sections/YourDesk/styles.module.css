@@ -118,9 +118,7 @@ div .deskButtonsCollectionPhrase{
 .deskButtonsCollectionPhrase p{
   line-height: 13px;
 }
-.deskButtonsCollectionPhrase > div p{
-  line-height: 13px;
-}
+
 .deskControlersAndMetrics{
   display: flex;
   justify-content: space-between;
@@ -206,9 +204,8 @@ div .deskButtonsCollectionPhrase{
     margin: 0px;
   }
   .deskButtonsTextsHeader{
-    display: grid;
+    display: flex;
     height: 65vh;
-    grid-template-columns: 2fr;
     flex-wrap: wrap;
   }
   .deskControlers {
@@ -220,8 +217,9 @@ div .deskButtonsCollectionPhrase{
   }
   .deskButtonsInactive{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
+    margin-top: -200px;
   }
   .deskButtonsTextsHeaderText p{
     display: none;
@@ -240,16 +238,33 @@ div .deskButtonsCollectionPhrase{
   .openCasesChartsWrapperResponsive{
     display: block;
   }
-.deskControlersAndMetrics{
+ .deskControlersAndMetrics{
   display: flex;
   flex-direction: column;
   text-align: center;
+  max-width: 98%;
   }
-div .deskButtonsCollectionPhrase{
+  div .deskButtonsCollectionPhrase{
   max-width: 100%;
   margin-top: 0px;
   }
-
+  .deskButtonsCollectionPhrase p{
+    line-height: 18px;
+    font-size: 1rem;
+  }
+  .yourCollectionButtons div{
+    margin: 2px;
+    width: 84%;
+  }
+  .yourCollectionButtons div:nth-child(1){
+    width: 100%;
+  }
+  .yourCollectionButtons div:nth-child(2){
+    width: 100%;
+  }
+  .yourCollectionButtons div:nth-child(3){
+    width: 100%;
+  }
 }
 @media (min-width: 1900) {
 .yourCollectionButtons div:nth-child(1){

@@ -115,13 +115,12 @@ export default function individualAlertFormatter(alert, cpf, token, orgao) {
     case 'COMP':
       return compConstructor(alert, orgao, cpf, token);
 
-    /*case 'COMP_PROD':
-      return cavlConstructor(alert, orgao, cpf, token);*/
+    case 'COMP_PROD':
+      return cavlConstructor(alert, orgao, cpf, token);
 
     case 'COVD':
       return cavlConstructor(alert, orgao, cpf, token);
 
-    
     //indicadores de saneamento
     //case 'ISPS':
       //return ispsConstructor(alert, orgao, cpf, token);
@@ -207,7 +206,7 @@ function iimpConstructor(alert, orgao, cpf, token) {
 }
 
 function cavlConstructor(alert, orgao, cpf, token) {
-  const { contrato_iditem, contrato, item, iditem, dropdown, alertCode, count, alertId } = alert;
+  const { contrato_iditem, contrato, item, iditem,description, dropdown, alertCode, count, alertId } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -229,7 +228,7 @@ function cavlConstructor(alert, orgao, cpf, token) {
   } else {
     actions = [
       OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
-      COMPRAS({ compId: contrato_iditem, contrato }),
+      COMPRAS({ compId: contrato_iditem, contrato, description }),
       DELETE,
     ];
     const single = count === 1;
@@ -238,7 +237,7 @@ function cavlConstructor(alert, orgao, cpf, token) {
         Os valores do contrato
         <strong>{` ${contrato} `}</strong>
         {`${single ? 'item: ' : 'itens: '}`}
-        <strong>{` ${item?.substring(0, 40).toLowerCase()}... `}</strong>
+        <strong>{` ${description?.substring(0, 40).toLowerCase()}... `}</strong>
         apresentaram possíveis sobrepreços.
       </span>
     );
@@ -256,7 +255,7 @@ function cavlConstructor(alert, orgao, cpf, token) {
 }
 
 function compConstructor(alert, orgao, cpf, token) {
-  const { contrato_iditem, contrato, item, iditem, dropdown, alertCode, count, alertId } = alert;
+  const { contrato_iditem, contrato, item, iditem, description, dropdown, alertCode, count, alertId } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -280,15 +279,15 @@ function compConstructor(alert, orgao, cpf, token) {
   } else {
     actions = [
       OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
-      COMPRAS_COVID({ compId: contrato_iditem, contrato }),
+      COMPRAS_COVID({ compId: contrato_iditem, contrato, description }),
       DELETE,
     ];
     const single = count === 1;
     message = (
       <span>
         Os valores do contrato
-        <strong>{` ${contrato} `}</strong>,{`${single ? 'item: ' : 'itens: '}`}
-        <strong>{` ${item?.substring(0, 40).toLowerCase()}... `}</strong>
+        <strong>{` ${contrato} `}</strong> {`${single ? 'item: ' : 'itens: '}`}
+        <strong>{` ${description?.substring(0, 40).toLowerCase()}... `}</strong>
         possivelmente ensejam a atenção do MPRJ.
       </span>
     );

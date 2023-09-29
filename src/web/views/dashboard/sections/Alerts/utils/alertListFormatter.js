@@ -6,9 +6,9 @@ export default function alertListFormatter(list, countList, cpf, token, orgao) {
   availableTypes.forEach((type) => {
     const allAlertsOfType = list
       .filter((alert) => alert.alertCode === type)
-      .map((alert) => individualAlertFormatter(alert, cpf, token, orgao));
+      .map((alert) => individualAlertFormatter(alert, cpf, token, orgao))
     typedAlerts[type] = allAlertsOfType;
-  
+   
   });
 
   return typedAlerts;

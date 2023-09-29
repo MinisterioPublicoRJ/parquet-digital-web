@@ -36,8 +36,6 @@ export const CRIMINAL_RADAR_URL = t(`${BASE_URL}/pip/radar-criminal-performance/
 
 export const ALERTS_LIST = t(`${BASE_URL}/alertas/\${orgao}`);
 export const TOTAL_ALERTS_LIST = t(`${BASE_URL}/alertas/list/\${orgao}`);
-export const HIRES_ALERTS = t(`${BASE_URL}/alertas/compras/\${orgao}`);
-export const CAVL_ALERTS = t(`${BASE_URL}/alertas/compras_produtos/\${orgao}`);
 
 export const MISCONDUCT_ALERT = t(`${BASE_URL}/alertas/improb_admin/\${orgao}`);
 

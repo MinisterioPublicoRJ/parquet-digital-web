@@ -13,5 +13,9 @@ export default function alertsTransform(data) {
       daysPassed: alert.dias_passados,
       alertIdGate: alert.id_alerta,
       alertId: alert.alrt_key,
+      contrato: alert.num_externo,
+      iditem: alert.id_item,
+      contrato_iditem: alert.contrato_id_item,
+      item: alert.item,
     }));
 }

@@ -71,29 +71,7 @@ function Alerts() {
     }
     return [alertsTotal, errorAlertsTotal];
   }
-
-  async function loadHiresAlerts() {
-    let hiresAlertList = [];
-    let hiresListError = false;
-    try {
-      hiresAlertList = await Api.getHiresAlerts(buildRequestParams());
-    } catch (e) {
-      hiresListError = true;
-    }
-    return [hiresAlertList, hiresListError];
-  }
-  
-  async function loadCavlAlerts() {
-    let cavlAlertList = [];
-    let cavlListError = false;
-    try {
-      cavlAlertList = await Api.getCavlAlerts(buildRequestParams());
-    } catch (e) {
-      cavlListError = true;
-    }
-    return [cavlAlertList, cavlListError];
-  }
-
+  // alerta de improbidade administrativa
   async function loadMisconductAlert() {
     let misconductAlertList = [];
     let misconductListError = false;
@@ -108,14 +86,11 @@ function Alerts() {
   async function loadComponent() {
     const [alertList, errorAlerts] = await loadAlerts();
     const [alertsCount, errorAlertsCount] = await loadAlertCount();
-    const [hiresAlertList, errorHiresList] = await loadHiresAlerts();
-    const [cavlAlertList, errorCavlList] = await loadCavlAlerts();
     const [misconductAlertList, misconductListError] = await loadMisconductAlert();
     const { cpf, token, orgao } = buildRequestParams();
 
-    const apiError = errorAlertsCount || (errorAlerts && errorHiresList && errorCavlList && misconductListError );
-    const fullList = alertList.concat(cavlAlertList, hiresAlertList, misconductAlertList );
-
+    const apiError = errorAlertsCount || (errorAlerts && misconductListError );
+    const fullList = alertList.concat(misconductAlertList );
     const cleanList = !apiError ? alertListFormatter(fullList, alertsCount, cpf, token, orgao) : [];
 
     setAlerts(cleanList);

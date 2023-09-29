@@ -286,7 +286,7 @@ function compConstructor(alert, orgao, cpf, token) {
     message = (
       <span>
         Os valores do contrato
-        <strong>{` ${contrato} `}</strong>,{`${single ? 'item: ' : 'itens: '}`}
+        <strong>{` ${contrato} `}</strong> {`${single ? 'item: ' : 'itens: '}`}
         <strong>{` ${description?.substring(0, 40).toLowerCase()}... `}</strong>
         possivelmente ensejam a atenção do MPRJ.
       </span>

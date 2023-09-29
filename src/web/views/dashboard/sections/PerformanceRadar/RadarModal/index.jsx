@@ -93,7 +93,7 @@ function RadarModal({ compareData }) {
       <div className={ radarModalOuter }>
         <div className={ radarModalMain }>
           <div className={ radarModalMainHeader }>
-            <h1>Comparativo de Peformance</h1>
+            <h1>Comparativo de Performance</h1>
             <p>
               Análise comparativa dos perfis de performance de promotorias de mesma atuação. Ao
               selecionar uma promotoria na lista a direito é possível realizar o comparativo entre

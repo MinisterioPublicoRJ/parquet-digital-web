@@ -23,7 +23,7 @@
   padding: 1.0rem 2.25rem 1rem 2.25rem;
 }
 .introductionInfo p{
-  font-size: 1rem;
+  font-size: var(--modal-default-font-size);
   font-family: var(--defaultFont);
   letter-spacing: 0px;
   color: #3b3b3b;
@@ -39,7 +39,7 @@
   font-weight: bold;
 }
 .introductionIntro h2 {
-  font-size: 2rem;
+  font-size: var(--modal-title-font-size);
   font-family: var(--defaultFont);
   font-weight: 900;
   letter-spacing: 0px;
@@ -48,7 +48,7 @@
   margin-bottom: 0px;
 }
 .introductionIntro p {
-  font-size: 0.938rem;
+  font-size: var(--modal-default-font-size);
   font-family: var(--defaultFont);
   letter-spacing: 0px;
   color: #3b3b3b;
@@ -70,5 +70,25 @@
   }  
   .introductionIntro{
     height: 41vh;
+  }
+}
+
+@media (max-width: 850px) {
+  .introOuter{
+    min-height: 75vh;
+    width: 80vw;
+  }
+  .introductionIntro{
+    height: 60vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .introductionInfo{
+    overflow-y: auto;
+  }
+  .promotronIcon img {
+    display: none;
   }
 }

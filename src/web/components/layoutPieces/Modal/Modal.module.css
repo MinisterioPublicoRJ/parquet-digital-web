@@ -47,3 +47,22 @@ button.modalClose {
   background-color: transparent;
   border: none;
 }
+
+.modalCloseMobile {
+  display: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .modalOuter {
+    overflow-y: scroll;
+  }
+
+  .modalCloseMobile {
+    display: block;
+  }
+
+  .modalInnerWrapper.modalUnpositioned{
+    position: relative;
+  }
+}

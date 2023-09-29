@@ -11,8 +11,6 @@ export { default as pipRadarTransform } from './pipRadarTransform';
 export { default as radarCriminalTransform } from './radarCriminalTransform';
 export { default as alertsTransform } from './alertsTransform';
 export { default as totalAlertsTransform } from './totalAlertsTransform';
-export { default as hiresAlertsTransform } from './hiresAlertsTransform';
-export { default as cavlAlertsTransform } from './cavlAlertsTransform';
 export { default as misconductAlertsTransform } from './misconductAlertsTransform';
 export { default as processingTimeTransform } from './processingTimeTransform';
 export { default as processListTransform } from './processListTransform';

@@ -147,6 +147,12 @@
 .boxFilters button:nth-child(2){
   color: var(--grayPagination);
 }
+
+@media (min-width: 1780px) {
+  .allBoxFilters{
+    margin-top: 20px;
+  }
+}
 /* PHONES */
 @media (max-width: 480px) {
   .allBoxFilters {
@@ -169,4 +175,10 @@
     justify-content: space-around;
   }
 
+}
+
+@media (min-width: 1780px) {
+  .allBoxFilters{
+    margin-top: 20px;
+  }
 }

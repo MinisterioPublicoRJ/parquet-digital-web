@@ -5,6 +5,7 @@
   margin-left: 20px;
   padding-bottom: var(--horizontalPadding);
   width: 100%;
+  margin-top: -8px;
 }
 .deskControlers  {
   display: flex;
@@ -183,7 +184,11 @@ div .deskButtonsCollectionPhrase{
     justify-content: space-between;
     justify-content: center;
   }
-
+}
+@media (min-width: 1780px) {
+  .yourCollectionButtons div:nth-child(1){
+   height: 120px;
+  }
 }
 /* PHONES */
 @media (max-width: 480px) {
@@ -243,5 +248,12 @@ div .deskButtonsCollectionPhrase{
 div .deskButtonsCollectionPhrase{
   max-width: 100%;
   margin-top: 0px;
+  }
+
+}
+@media (min-width: 1900) {
+.yourCollectionButtons div:nth-child(1){
+  height: 119px;
+
   }
 }

@@ -215,7 +215,6 @@ export default function MetricsProsecutions({ metrics, dbName }) {
   const type = currentOffice ? currentOffice.tipo : undefined;
 
   if (!metrics) return null
-  console.log(metrics)
   switch (dbName) {
     case 'tutela_processos':
       return courtCasesMetrics(metrics);

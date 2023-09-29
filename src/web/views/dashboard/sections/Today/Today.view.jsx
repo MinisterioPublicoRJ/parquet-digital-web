@@ -206,7 +206,7 @@ function Today() {
           {currentOffice.nomeOrgao && <span>{abbrevName(currentOffice.nomeOrgao)}</span>}
         </button>
         {modalType === 'officeSelector' && (
-          <Modal unpositioned close={setModalType}>
+          <Modal unpositioned exitButtonInMobile close={setModalType}>
             <OfficeSelector close={setModalType} />
           </Modal>
         )}
@@ -237,7 +237,7 @@ function Today() {
             <Introduction />
           </Modal>
         )}
-        <img height="110%" width="300px" src={PromotronGif} alt="robô-promoton" />
+        <img width="250px" src={PromotronGif} alt="robô-promoton" />
       </div>
     </article>
   );

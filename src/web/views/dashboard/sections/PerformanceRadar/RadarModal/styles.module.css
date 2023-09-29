@@ -2,8 +2,8 @@
   position: relative;
   height: 70vh;
   width: 55vw;
-  display: grid;
-  /*margin: 0 20px;*/
+  display: grid; 
+  /* margin: 0 20px; */
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: 100%;
 }
@@ -176,4 +176,41 @@ div .radarModalMainSubtitlesItem:before {
 
 .radarModalMainSubtitlesItem:nth-child(2):before {
   background-color: #c43a31;
+}
+
+@media (max-width:747px) {
+  .radarModalMinGraph{
+    justify-content: center;
+    align-items: center;
+  }
+  .radarModalMinSubtitles{
+    justify-content: center;
+    align-items: center;
+  }
+  .radarModalMainSubtitlesItem{
+    font-size: clamp(0.6rem, 1.5vw, 1rem);
+  }
+  .radarModalOuter{
+    font-size: var(--modal-default-font-size);
+    width: 90vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+  .radarModalMenu{
+    border-radius: 0;
+  } 
+}
+
+@media (min-width:747px) and (max-width:1130px) {
+  .radarModalOuter{
+    width: 80vw;
+  }
+  .radarModalMain{
+    overflow-y: scroll;
+  }
+  .radarModalMenu h3 {
+    font-size: min(1.2vw, 1.2rem);
+  }
 }

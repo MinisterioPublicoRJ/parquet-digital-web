@@ -59,6 +59,9 @@
       width: 130px;
       height: 120px;
     }
+    .controlButtonOuter:nth-child(1){
+      height: 120px;
+    }
   }
   /* PHONES */
   @media (max-width: 998px) {

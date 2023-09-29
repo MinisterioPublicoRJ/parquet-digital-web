@@ -211,6 +211,8 @@ function ApiCreator(jwtToken) {
 
   async function getAlerts({ orgao }) {
     const { data } = await axiosInstance.get(ALERTS_LIST({ orgao }));
+    console.log(data);
+
     return alertsTransform(data);
   }
 
@@ -223,7 +225,7 @@ function ApiCreator(jwtToken) {
  
   async function getMisconductAlert({ orgao }) {
     const { data } = await axiosInstance.get(MISCONDUCT_ALERT({ orgao }));
-
+   
     return misconductAlertsTransform(data);
   }
 

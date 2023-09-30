@@ -3,7 +3,7 @@ import React from 'react'
 /**
  * formats from float to integer percentage
  * @param  {number} float a float smaller than zero (like 0.657)
- * @return {string}       the float turned into percentage + symbol (66%)
+ * @return {string} the float turned into percentage + symbol (66%)
  */
 export function formatPercentage(float) {
   return `${(float * 100).toFixed(0)}%`;
@@ -11,8 +11,8 @@ export function formatPercentage(float) {
 
 /**
  * formats from date obj to YYYY-MM-DD
- * @param  {date} dateObj [description]
- * @return {string}         YYYY-MM-DD
+ * @param  {date}   dateObj [description]
+ * @return {string} YYYY-MM-DD
  */
 export function formatDateObjForBackend(dateObj) {
   return dateObj.toISOString().substr(0, 10);
@@ -40,8 +40,8 @@ export const leftPad = (w, len, char) => {
 /**
  * takes in a single word and capitalizes its first letter. Can be used for sentences,
  * but only the first word will have its firts letter capitalized
- * @param  {string} word   a word or sentence
- * @return {string}        same word or sentence but with the first letter uppercased
+ * @param  {string} word :- a word or sentence
+ * @return {string} same word or sentence but with the first letter uppercased
  */
 export function capitalizeWord(word) {
   return word.charAt(0).toLocaleUpperCase() + word.substring(1);
@@ -51,7 +51,7 @@ export function capitalizeWord(word) {
  * gives title-style capitalization to a sentence (a.k.a. every word in it gets a capital letter)
  * note that it will remove any uppercasing that is in the middle as well, "normalizing" the string
  * @param  {string} sentence sentence or single word
- * @return {string}          same sentence but with every word capitalized
+ * @return {string} same sentence but with every word capitalized
  */
 export function capitalizeTitle(sentence) {
   const lowercaseWords = sentence.toLocaleLowerCase().split(' ');

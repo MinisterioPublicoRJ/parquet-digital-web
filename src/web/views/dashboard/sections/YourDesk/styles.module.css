@@ -205,7 +205,7 @@ div .deskButtonsCollectionPhrase{
   }
   .deskButtonsTextsHeader{
     display: flex;
-    height: 70vh;
+    height: 40vh;
     flex-wrap: wrap;
   }
   .deskControlers {
@@ -219,7 +219,7 @@ div .deskButtonsCollectionPhrase{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    margin-top: -200px;
+
   }
   .deskButtonsTextsHeaderText p{
     display: none;
@@ -249,6 +249,7 @@ div .deskButtonsCollectionPhrase{
     margin-top: 0px;
     text-align: left;
     margin-left: 14px;
+    display: none;
   }
   .deskButtonsCollectionPhrase p{
     line-height: 18px;

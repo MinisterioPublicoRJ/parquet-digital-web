@@ -154,6 +154,7 @@ function ApiCreator(jwtToken) {
 
   async function getIntegratedDeskDocs({ orgao, cpf, docType, type  }) {
     const { data } = await axiosInstance.get(DESK_INTEGRATED({ orgao, cpf, docType, type }));
+    console.log(data);
     return deskIntegratedTransform(data);
   }
 
@@ -211,8 +212,7 @@ function ApiCreator(jwtToken) {
 
   async function getAlerts({ orgao }) {
     const { data } = await axiosInstance.get(ALERTS_LIST({ orgao }));
-    console.log(data);
-
+  
     return alertsTransform(data);
   }
 

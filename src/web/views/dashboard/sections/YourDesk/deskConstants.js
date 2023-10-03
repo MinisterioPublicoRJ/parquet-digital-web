@@ -1,6 +1,6 @@
-export const PIP_DESK_BUTTONS = ['openCases', 'closedCasesT', 'closedCasesC'];
+export const PIP_DESK_BUTTONS = ['openCases', 'newDocs', 'closedCasesP'];
 
-export const TUTELA_DESK_BUTTONS = ['openCases', 'closedCasesT', 'closedCasesC',];
+export const TUTELA_DESK_BUTTONS = ['openCases', 'newDocs', 'closedCasesT'];
 
 export const CRIMINAL_DESK_BUTTONS = ['openCases','newDocs', 'closedCasesC']; 
 
@@ -16,8 +16,8 @@ export const CONTROL_BUTTONS = ['desk', 'collection', ];
 export const BUTTON_TEXTS = {
   openCases: `Total de vistas\nabertas`,
   closedCasesP: `finalizados últimos 30 dias`,
-  closedCasesT: `Documentos novos últimos 30 dias`,
-  closedCasesC: `Documentos finalizados últimos 30 dias`,
+  closedCasesT: `finalizados últimos 30 dias`,
+  closedCasesC: `finalizados últimos 30 dias`,
   openInvestigations: `investigações\nem curso`,
   courtCases: `Número de processos\nem juízo`,
   criminalCourtCases: `Número de processos\nem juízo`,
@@ -31,15 +31,15 @@ export const BUTTON_TEXTS = {
 
 export const BUTTON_DICT = {
   openCases: 'vistas',
+  newDocs: 'novos',
+  closedCasesP: 'pip_finalizados',
   pics: 'pip_pics',
   inquiries: 'pip_inqueritos',
   aisps: 'pip_aisp',
   openInvestigations: 'tutela_investigacoes',
   courtCases: 'tutela_processos',
   criminalCourtCases: 'criminal_processos',
-  newDocs: 'novos',
   closedCasesC: 'criminal_finalizados',
-  closedCasesP: 'pip_finalizados',
   closedCasesT: 'tutela_finalizados',
   collection: 'pip_pics'
 };

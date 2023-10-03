@@ -154,7 +154,6 @@ function ApiCreator(jwtToken) {
 
   async function getIntegratedDeskDocs({ orgao, cpf, docType, type  }) {
     const { data } = await axiosInstance.get(DESK_INTEGRATED({ orgao, cpf, docType, type }));
-    console.log(data);
     return deskIntegratedTransform(data);
   }
 

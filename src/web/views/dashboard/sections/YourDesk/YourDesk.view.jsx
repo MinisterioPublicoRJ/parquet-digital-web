@@ -119,7 +119,6 @@ function YourDesk() {
     setLoading(true);
     try {
       docQt = await Api.getIntegratedDeskDocs({ ...buildRequestParams(), docType: dbName });
-      console.log(docQt, "Eu depois de limpo");
       updatedState[docName] = docQt;
       setDocsQuantity((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {

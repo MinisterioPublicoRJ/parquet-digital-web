@@ -44,6 +44,7 @@ import {
   BUTTON_TEXTS,
   BUTTON_DICT,
   CONTROL_BUTTONS,
+  CRONTROL_BUTTON_TEXTS,
 } from './deskConstants';
 import { MAIN_DATA } from './OpenCasesList/openCasesConstants';
 
@@ -80,7 +81,7 @@ function YourDesk() {
   }
 
   function getButtons() {
-    let buttons, deskButtons, collectionButtons;
+    let deskButtons, collectionButtons;
     switch (currentOffice.tipo) {
       case 1:
         deskButtons = TUTELA_DESK_BUTTONS;
@@ -276,11 +277,11 @@ function YourDesk() {
           <div className={deskControlers}>
             {buttonListControl.map((buttonTitle) => (
               <ControlButton
-                key={BUTTON_TEXTS[buttonTitle]}
-                isButton={!buttonTitle.includes('closedCases')}
+                key={CRONTROL_BUTTON_TEXTS[buttonTitle]}
+                isButton={CRONTROL_BUTTON_TEXTS[buttonTitle]}
                 buttonPressed={() => handleChangeActiveTab(buttonTitle)}
                 isActive={activeTab === buttonTitle}
-                text={BUTTON_TEXTS[buttonTitle]}
+                text={CRONTROL_BUTTON_TEXTS[buttonTitle]}
               />
             ))}
           </div>

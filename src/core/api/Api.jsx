@@ -30,8 +30,9 @@ import {
   INVESTIGATED_PROFILE_URL,
   RADAR_COMPARE_TUTELA,
   RADAR_COMPARE_PIP,
+  RADAR_COMPARE_CRIMINAL,
   ALERT_OVERLAY_DATA, 
-  PROCESS_DETAIL,
+  PROCESS_DETAIL
 } from './endpoints';
 
 import {
@@ -205,7 +206,7 @@ function ApiCreator(jwtToken) {
 
   async function getRadarDataCriminal({ orgao }) {
     const { data } = await axiosInstance.get(CRIMINAL_RADAR_URL({ orgao }));
-
+    console.log(data, "Sou radar criminal");
     return radarCriminalTransform(data);
   }
 
@@ -341,13 +342,23 @@ function ApiCreator(jwtToken) {
   }
 
   async function getRadarCompareData({ orgao, organType }) {
-    const endpoint =
-      organType === 1 ? RADAR_COMPARE_TUTELA({ orgao }) : RADAR_COMPARE_PIP({ orgao });
-    const { data } = await axiosInstance.get(endpoint);
+    const endpoint = organType 
+    let res = {}
+    console.log(endpoint)
 
+      if( organType === 1){
+        res = await axiosInstance.get(RADAR_COMPARE_TUTELA({ orgao }))
+      }
+      if (organType === 2){
+        res = await axiosInstance.get(RADAR_COMPARE_PIP({ orgao }))
+      }
+      if (organType === 7){
+        res = await axiosInstance.get(RADAR_COMPARE_CRIMINAL({ orgao }))
+      }
+    const { data } = await axiosInstance.get(res);
+    console.log(data)
     return radarCompareTransform(data);
   }
-
   async function getAlertOverlayData(docDk, type) {
     const params = { tipo: type.toLocaleLowerCase() };
 

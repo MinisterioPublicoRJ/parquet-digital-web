@@ -53,6 +53,7 @@ function PerformanceRadar() {
   async function getPerformanceData() {
     let res = {};
     const { tipo } = currentOffice;
+   
     try {
       // tutela
       if (tipo === 1) {
@@ -66,6 +67,7 @@ function PerformanceRadar() {
         // criminal
         res = await Api.getRadarDataCriminal(buildRequestParams());
       }
+      console.log(res);
     } catch (e) {
       setError(true);
     } finally {

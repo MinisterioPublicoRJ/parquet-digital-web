@@ -32,7 +32,7 @@ export const ONGOING_INVESTIGATIONS_LIST = t(
 );
 export const RADAR_DATA = t(`${BASE_URL}/radar/\${orgao}`);
 export const PIP_RADAR_URL = t(`${BASE_URL}/pip/radar-performance/\${orgao}`);
-export const CRIMINAL_RADAR_URL = t(`${BASE_URL}/pip/radar-criminal-performance/\${orgao}`);
+export const CRIMINAL_RADAR_URL = t(`${BASE_URL}/criminal/radar-criminal-performance/\${orgao}`);
 
 export const ALERTS_LIST = t(`${BASE_URL}/alertas/\${orgao}`);
 export const TOTAL_ALERTS_LIST = t(`${BASE_URL}/alertas/list/\${orgao}`);

@@ -67,7 +67,6 @@ function PerformanceRadar() {
         // criminal
         res = await Api.getRadarDataCriminal(buildRequestParams());
       }
-      console.log(res);
     } catch (e) {
       setError(true);
     } finally {
@@ -240,7 +239,7 @@ function PerformanceRadar() {
             </div>
             <div className={`${radarSubtitlesItem} ${radarSubtitlesItemMPData}`}>Perfil do MP</div>
             <button type="button" onClick={handleCompareButton}
-              className={currentOffice.tipo === 7 ? `${radarSubtitlesItemCriminal}` : `${radarSubtitlesItem} `}>
+              className= {radarSubtitlesItem} >
               <RadarArrow height={20} width={20} />
               Comparativo
             </button>

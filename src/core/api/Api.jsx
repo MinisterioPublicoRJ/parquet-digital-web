@@ -206,7 +206,6 @@ function ApiCreator(jwtToken) {
 
   async function getRadarDataCriminal({ orgao }) {
     const { data } = await axiosInstance.get(CRIMINAL_RADAR_URL({ orgao }));
-    console.log(data, "Sou radar criminal");
     return radarCriminalTransform(data);
   }
 

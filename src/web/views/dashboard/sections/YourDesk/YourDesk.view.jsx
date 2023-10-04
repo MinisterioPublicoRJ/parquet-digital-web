@@ -215,14 +215,14 @@ function YourDesk() {
     if (!data) return;
 
     const cleanData = cleanChartData(data);
-    return <DeskGraph data={cleanData}/>  
+    return <DeskGraph data={cleanData} />;
   }
 
   function renderChartsResponsive(data) {
     if (!data) return;
 
     const cleanData = cleanChartData(data);
-    return <DeskGraphResponsive data={cleanData}/>
+    return <DeskGraphResponsive data={cleanData} />;
   }
 
   /**
@@ -233,11 +233,16 @@ function YourDesk() {
    */
   function cleanChartData(data) {
     const categories = Object.keys(data);
-    const cleanData = categories.map((cat) => ({
-      x: cat,
-      y: data[cat],
-      color: MAIN_DATA[cat][0],
-    }));
+    const chartCategories = categories.slice(1);
+
+    const cleanData = chartCategories.map((cat) => {
+      return {
+        x: cat,
+        y: data[cat],
+        color: MAIN_DATA[cat][0],
+      };
+    });
+
     return cleanData;
   }
 
@@ -285,8 +290,8 @@ function YourDesk() {
               />
             ))}
           </div>
-          <div 
-          className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
+          <div
+            className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
           >
             {metricsArray && !loading ? (
               !metricsArray && !loading ? (

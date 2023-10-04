@@ -11,7 +11,6 @@ export default function radarCompareTransform(raw) {
 
 function formatpercentiles(organData) {
   const percentileKeys = Object.keys(organData).filter((key) => key.includes('perc_'));
-  console.log(percentileKeys)
   return percentileKeys.map((key) => {
     const y = organData[key] * 100;
     let x;

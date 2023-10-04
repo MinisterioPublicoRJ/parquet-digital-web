@@ -8,8 +8,7 @@ import {
   radarSubtitles,
   radarSubtitlesItem,
   radarSubtitlesItemYourData,
-  radarSubtitlesItemMPData,
-  radarSubtitlesItemCriminal,
+  radarSubtitlesItemMPData
 } from './styles.module.css';
 import RadarGraph from './RadarGraph';
 import { useAppContext } from '../../../../../core/app/App.context';

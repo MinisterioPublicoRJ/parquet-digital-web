@@ -62,7 +62,7 @@ export const INVESTIGATED_PROFILE_URL = t(
 
 export const RADAR_COMPARE_TUTELA = t(`${BASE_URL}/comparador-radares/\${orgao}`);
 export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}`);
-export const RADAR_COMPARE_CRIMINAL = t(`${BASE_URL}/criminal/comparador-radares/\${orgao}`);
+export const RADAR_COMPARE_CRIMINAL = t(`${BASE_URL}/criminal/criminal-comparador-radares/\${orgao}`);
 
 
 export const PRCR_ACTION_GENERATE_DOC = t(

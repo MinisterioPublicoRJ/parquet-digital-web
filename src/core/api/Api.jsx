@@ -340,24 +340,25 @@ function ApiCreator(jwtToken) {
     return investigatedProfileTransform(data);
   }
 
-  async function getRadarCompareData({ orgao, organType }) {
-    const endpoint = organType 
-    let res = {}
-    console.log(endpoint)
+   
+    async function getRadarCompareData({ orgao, organType }) {
+      let endpoint
+      if(organType === 1){
+         endpoint = RADAR_COMPARE_TUTELA({ orgao });
+      }
+      if(organType === 2){
+        endpoint = RADAR_COMPARE_PIP({ orgao });
+      }
+      if(organType === 7){
+        endpoint = RADAR_COMPARE_CRIMINAL({orgao});
+        console.log(endpoint);
+      }
+      // const endpoint = organType === 1 ? RADAR_COMPARE_TUTELA({ orgao }) : RADAR_COMPARE_PIP({ orgao });
+      const { data } = await axiosInstance.get(endpoint);
+  
+      return radarCompareTransform(data);
+    }
 
-      if( organType === 1){
-        res = await axiosInstance.get(RADAR_COMPARE_TUTELA({ orgao }))
-      }
-      if (organType === 2){
-        res = await axiosInstance.get(RADAR_COMPARE_PIP({ orgao }))
-      }
-      if (organType === 7){
-        res = await axiosInstance.get(RADAR_COMPARE_CRIMINAL({ orgao }))
-      }
-    const { data } = await axiosInstance.get(res);
-    console.log(data)
-    return radarCompareTransform(data);
-  }
   async function getAlertOverlayData(docDk, type) {
     const params = { tipo: type.toLocaleLowerCase() };
 

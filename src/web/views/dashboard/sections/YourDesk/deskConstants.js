@@ -6,7 +6,7 @@ export const CRIMINAL_DESK_BUTTONS = ['openCases','newDocs', 'closedCasesC'];
 
 export const PIP_COLLECTION_BUTTONS = ['pics', 'inquiries', 'aisps'];
 
-export const TUTELA_COLLECTION_BUTTONS = [ 'openInvestigations','courtCases'];
+export const TUTELA_COLLECTION_BUTTONS = ['courtCases', 'openInvestigations'];
 
 export const CRIMINAL_COLLECTION_BUTTONS = ['criminalCourtCases' ]; 
 

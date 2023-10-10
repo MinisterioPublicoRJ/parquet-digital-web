@@ -206,7 +206,7 @@ function iimpConstructor(alert, orgao, cpf, token) {
 }
 
 function cavlConstructor(alert, orgao, cpf, token) {
-  const { contrato_iditem, contrato, item, iditem,description, dropdown, alertCode, count, alertId } = alert;
+  const { num_doc, contrato, item, iditem,description, dropdown, alertCode, count, alertId } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
@@ -228,7 +228,7 @@ function cavlConstructor(alert, orgao, cpf, token) {
   } else {
     actions = [
       OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
-      COMPRAS({ compId: contrato_iditem, contrato, description }),
+      COMPRAS({ compId: num_doc, contrato, description }),
       DELETE,
     ];
     const single = count === 1;
@@ -255,13 +255,13 @@ function cavlConstructor(alert, orgao, cpf, token) {
 }
 
 function compConstructor(alert, orgao, cpf, token) {
-  const { contrato_iditem, contrato, item, iditem, description, dropdown, alertCode, count, alertId } = alert;
+  const { num_doc, contrato, item, iditem, description, dropdown, alertCode, count, alertId } = alert;
   const key = alertId ? alertId : `${alertCode}-dropdown`;
   let message;
   let actions = [];
   if (dropdown) {
     actions = [GENERATE_CSV(PROCESSES_LIST_GENERATE_DOC({ alertId, alertCode, orgao, token }))];
-    COMPRAS_COVID({ compId: contrato_iditem, contrato });
+    COMPRAS_COVID({ compId: num_doc, contrato });
 
     const single = count === 1;
     message = (
@@ -279,7 +279,7 @@ function compConstructor(alert, orgao, cpf, token) {
   } else {
     actions = [
       OUVIDORIA_COMPRAS(LINK_ACTION_OUVIDORIA({ alertId, alertCode, orgao, token })),
-      COMPRAS_COVID({ compId: contrato_iditem, contrato, description }),
+      COMPRAS_COVID({ compId: num_doc, contrato, description }),
       DELETE,
     ];
     const single = count === 1;

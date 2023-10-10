@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-
 import {
   radarModalOuter,
   radarModalMain,
@@ -96,7 +95,7 @@ function RadarModal({ compareData }) {
             <h1>Comparativo de Performance</h1>
             <p>
               Análise comparativa dos perfis de performance de promotorias de mesma atuação. Ao
-              selecionar uma promotoria na lista a direito é possível realizar o comparativo entre
+              selecionar uma promotoria na lista a direita é possível realizar o comparativo entre
               os itens dispostos no radar da atuação.
             </p>
           </div>

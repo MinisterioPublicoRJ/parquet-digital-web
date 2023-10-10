@@ -32,7 +32,7 @@ export const ONGOING_INVESTIGATIONS_LIST = t(
 );
 export const RADAR_DATA = t(`${BASE_URL}/radar/\${orgao}`);
 export const PIP_RADAR_URL = t(`${BASE_URL}/pip/radar-performance/\${orgao}`);
-export const CRIMINAL_RADAR_URL = t(`${BASE_URL}/pip/radar-criminal-performance/\${orgao}`);
+export const CRIMINAL_RADAR_URL = t(`${BASE_URL}/criminal/radar-criminal-performance/\${orgao}`);
 
 export const ALERTS_LIST = t(`${BASE_URL}/alertas/\${orgao}`);
 export const TOTAL_ALERTS_LIST = t(`${BASE_URL}/alertas/list/\${orgao}`);
@@ -62,6 +62,8 @@ export const INVESTIGATED_PROFILE_URL = t(
 
 export const RADAR_COMPARE_TUTELA = t(`${BASE_URL}/comparador-radares/\${orgao}`);
 export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}`);
+export const RADAR_COMPARE_CRIMINAL = t(`${BASE_URL}/criminal/criminal-comparador-radares/\${orgao}`);
+
 
 export const PRCR_ACTION_GENERATE_DOC = t(
   `${BASE_URL}/documentos/minuta-prescricao/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,

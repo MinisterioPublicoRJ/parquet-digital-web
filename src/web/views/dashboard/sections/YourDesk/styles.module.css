@@ -225,8 +225,9 @@ div .deskButtonsCollectionPhrase {
   }
   .deskButtonsTextsHeader {
     display: flex;
-    height: 40vh;
+    height: 51vh;
     flex-wrap: wrap;
+    width: 100%;
   }
   .deskControlers {
     display: flex;

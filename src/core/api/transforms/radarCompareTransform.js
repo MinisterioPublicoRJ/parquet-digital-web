@@ -43,11 +43,14 @@ function formatpercentiles(organData) {
         x = 'instaurations';
         break;
       case 'perc_alegacoesfinais':
-        x = 'arguments';
+        x = 'closingArguments';
         break
       case 'perc_audiencia':
-        x = 'audience'
+        x = 'hearings'
         break
+      case 'perc_recurso':
+        x = 'appeals';
+        break;
       default:
         x = '';
     }

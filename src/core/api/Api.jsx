@@ -351,9 +351,7 @@ function ApiCreator(jwtToken) {
       }
       if(organType === 7){
         endpoint = RADAR_COMPARE_CRIMINAL({orgao});
-        console.log(endpoint);
       }
-      // const endpoint = organType === 1 ? RADAR_COMPARE_TUTELA({ orgao }) : RADAR_COMPARE_PIP({ orgao });
       const { data } = await axiosInstance.get(endpoint);
   
       return radarCompareTransform(data);

@@ -13,7 +13,13 @@ export const PIP_CATEGORIES = [
   'precautionary',
   'complaints',
 ];
-
+export const CRIMINAL_CATEGORIES = [
+  'complaints',
+  'appeal',
+  'agreements',
+  'audience',
+  'arguments'
+];
 
 
 // used to change Victory's aut generated label positioning for the axis

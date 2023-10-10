@@ -36,4 +36,8 @@
     display: flex;
     flex-direction: column;
   }
+  .mainInvestigatedOuter {
+    margin-top: -200px;
+  }
+  
 }

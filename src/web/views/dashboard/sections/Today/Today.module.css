@@ -207,10 +207,14 @@
   }
   .todayContent {
     width: 100%;
+    font-size: 1rem;
+  }
+  .todayContent > button {
+    font-size: 1rem;
   }
   .todayOuter{
     padding: 0px;
-    height: 40vh;
+    height: 50vh;
     width: 80%;
   }
   .roboResponsivo{

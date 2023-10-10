@@ -239,7 +239,6 @@ div .deskButtonsCollectionPhrase {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-
   }
   .deskHeader h2 {
     margin-left: 20px;
@@ -263,16 +262,18 @@ div .deskButtonsCollectionPhrase {
   }
   .yourCollectionButtons div {
     margin: 2px;
-    width: 84%;
+    margin-left: 3px;
+    margin-right: 3px;
+
   }
   .yourCollectionButtons div:nth-child(1) {
-    width: 100%;
+    width: 96%;
   }
   .yourCollectionButtons div:nth-child(2) {
-    width: 100%;
+    width: 96%;
   }
   .yourCollectionButtons div:nth-child(3) {
-    width: 100%;
+    width: 96%;
   }
 }
 @media (min-width: 1900) {

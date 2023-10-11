@@ -3,7 +3,6 @@ import axios from 'axios';
 import {
   BASE_URL,
   SCA_LOGIN,
-  TOKEN_LOGIN,
   TODAY_OUT,
   TODAY_OUTLIERS,
   TODAY_ENTRIES,
@@ -80,17 +79,6 @@ function ApiCreator(jwtToken) {
   }
   axiosInstance.interceptors.request.use(addHeaders, (error) => Promise.reject(error));
 
-  // axios bug not allowing params and other configs being changed after creating instance
-  // function addHeaders() {
-  //   axiosInstance.defaults.headers.common.Authorization = `Bearer ${jwtToken}`;
-
-  //   axiosInstance = axios.create({
-  //     baseURL: BASE_URL, 
-  //     params: {jwt: jwtToken}
-  //   });
-
-  //   axiosInstance.defaults.params = {jwt: jwtToken};
-  // }
 
   async function loginWithSCACredentials(username, password) {
     const formData = new FormData();
@@ -105,15 +93,7 @@ function ApiCreator(jwtToken) {
     return scaUserTransform(data);
   }
 
-  async function loginWithJwtCredentials(token) {
-    const formData = new FormData();
-    formData.set('jwt', token);
 
-    const { data } = await axiosInstance.post(TOKEN_LOGIN, formData);
-    // axiosInstance.defaults.params = { jwt: token };
-
-    return jwtUserTransform(data);
-  }
 
   /**
    * fetches percentage info for the Today page from the backend
@@ -377,7 +357,7 @@ function ApiCreator(jwtToken) {
   return {
     addHeaders,
     loginWithSCACredentials,
-    loginWithJwtCredentials,
+    // loginWithJwtCredentials,
     getTodayOutData,
     getTodayOutliersData,
     getTodayEntriesData,

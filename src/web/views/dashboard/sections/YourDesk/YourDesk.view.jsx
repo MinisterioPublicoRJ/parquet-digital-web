@@ -293,9 +293,10 @@ function YourDesk() {
           <div
             className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
           >
-            {metricsArray && !loading ? (
-              !metricsArray && !loading ? (
-                <p>Não há vistas metricas.</p>
+              {!metricsArray && !loading ? (
+                <div className={spinnerWrapper}>
+                  <Spinner size="medium" />
+                </div>
               ) : (
                 <>
                   {metricsArray.map((metrics, index) => (
@@ -310,12 +311,7 @@ function YourDesk() {
                     />
                   ))}
                 </>
-              )
-            ) : (
-              <div className={spinnerWrapper}>
-                <Spinner size="medium" />
-              </div>
-            )}
+              )}
           </div>
         </div>
       </div>
@@ -392,7 +388,11 @@ function YourDesk() {
                   />
                 ))}
               </div>
+              {!metricsArray && (
+              <p>Não existem nétricas para essa promotoria</p>
+              )}
             </div>
+            
           </div>
           {collectionTable}
         </div>

@@ -273,7 +273,7 @@ function YourDesk() {
     return <Spinner size="large" />;
   }
  
- // const hasNoMetrics = metricsArray
+ // const hasNoMetrics is filled if no metrics value  is returned
  const hasNoMetrics = metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria' : '';
 
 
@@ -317,7 +317,7 @@ function YourDesk() {
                   ))}
                 </>
               )}
-              {hasNoMetrics}
+              {!loading && hasNoMetrics}
             </div>
           </div>
         </div>

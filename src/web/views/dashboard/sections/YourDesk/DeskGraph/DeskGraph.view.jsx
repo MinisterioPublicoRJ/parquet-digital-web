@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel, VictoryStack } from 'victory';
+import {
+  VictoryAxis,
+  VictoryBar,
+  VictoryChart,
+  VictoryContainer,
+  VictoryLabel,
+  VictoryStack,
+} from 'victory';
 
 import { deskCasesChartOuter, deskCasesChartGraph } from './DeskGraph.module.css';
 
@@ -20,18 +27,19 @@ function DeskGraph({ data }) {
   const reverseData = data.reverse();
 
   // Preenche as barras que possuem valor zero (y = 0).
-  const maxDaysView = reverseData.reduce((total, days) => days.y > total ? days.y : total, 0);
-  const fillerData = reverseData.map((chartData) => (
-    chartData.y === 0 ? { x: chartData.x, y: maxDaysView } : { x: chartData.x, y: 0 }
-  ));
-
+  const maxDaysView = reverseData.reduce((total, days) => (days.y > total ? days.y : total), 0);
+  const fillerData = reverseData.map((chartData) =>
+    chartData.y === 0 ? { x: chartData.x, y: maxDaysView } : { x: chartData.x, y: 0 },
+  );
 
   return (
     <div className={deskCasesChartOuter}>
       <div className={deskCasesChartGraph}>
-        <VictoryChart 
-          height={80} 
-          padding={{ top: 0, bottom: 4, left: 100, right: 0 }}
+        <VictoryChart
+          width={300}
+          height={80}
+          padding={{ top: 15, bottom: 15, left: 100, right: 0 }}
+          containerComponent={<VictoryContainer responsive={false} />}
         >
           <VictoryAxis
             dependentAxis
@@ -44,7 +52,7 @@ function DeskGraph({ data }) {
           <VictoryStack horizontal>
             <VictoryBar
               data={reverseData}
-              barWidth={18}
+              barWidth={15}
               style={{
                 data: {
                   fill: ({ datum }) => datum.color,
@@ -52,19 +60,14 @@ function DeskGraph({ data }) {
                 labels: {
                   fill: ({ datum }) => datum.color,
                   fontWeight: 700,
-                  fontSize: '16px',
+                  fontSize: '14px',
                   fontFamily: 'Roboto',
                 },
               }}
-              labelComponent={<VictoryLabel textAnchor="start" dx={-90} />}
-              labels={({ datum }) => datum.y >= 0  ? `${datum.y} vistas` : null}
-              
+              labelComponent={<VictoryLabel textAnchor="start" dx={-70} />}
+              labels={({ datum }) => (datum.y >= 0 ? `${datum.y} vistas` : null)}
             />
-            <VictoryBar
-              data={fillerData}
-              barWidth={18}
-              style={{ data: { fill: '#F4F5FA' } }}
-            />
+            <VictoryBar data={fillerData} barWidth={15} style={{ data: { fill: '#F4F5FA' } }} />
           </VictoryStack>
         </VictoryChart>
       </div>

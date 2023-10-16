@@ -90,6 +90,15 @@
     .controlButtonOuter:nth-child(1){
       width: 100%;
     }
+    .controlButtonOuter:nth-child(2){
+      width: 47%;
+    }
+    .controlButtonOuter:nth-child(3){
+      width: 50%;
+    }
+    .controlButtonInner {
+      font-size: 2.5rem ;
+    }
   }
 
   

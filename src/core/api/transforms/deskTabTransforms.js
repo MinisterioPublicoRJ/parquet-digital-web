@@ -9,10 +9,8 @@ function metricsTransform(metrics) {
 
 
 export default function deskTabTransform(raw) {
-  const map = {};
   const metrics = metricsTransform(raw.metrics);
   return {
-    map,
     metrics,
   };
   

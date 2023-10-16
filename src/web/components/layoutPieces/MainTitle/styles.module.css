@@ -8,3 +8,8 @@
 .mainTitleGlued {
   margin-top: 0;
 }
+@media (max-width: 480px) {
+  .mainTitle {
+    font-size: 1.45rem;
+  }
+}

@@ -3,7 +3,6 @@ import t from 'lodash.template';
 export const BASE_URL = `${process.env.REACT_APP_BASE_URL}/dominio`;
 
 export const SCA_LOGIN = `/token/login-promotron/`;
-export const TOKEN_LOGIN = `/token/login/`;
 
 export const TODAY_OUT = t(`${BASE_URL}/saidas/\${orgao}`);
 export const TODAY_OUTLIERS = t(`${BASE_URL}/outliers/\${orgao}`);
@@ -32,7 +31,7 @@ export const ONGOING_INVESTIGATIONS_LIST = t(
 );
 export const RADAR_DATA = t(`${BASE_URL}/radar/\${orgao}`);
 export const PIP_RADAR_URL = t(`${BASE_URL}/pip/radar-performance/\${orgao}`);
-export const CRIMINAL_RADAR_URL = t(`${BASE_URL}/pip/radar-criminal-performance/\${orgao}`);
+export const CRIMINAL_RADAR_URL = t(`${BASE_URL}/criminal/radar-criminal-performance/\${orgao}`);
 
 export const ALERTS_LIST = t(`${BASE_URL}/alertas/\${orgao}`);
 export const TOTAL_ALERTS_LIST = t(`${BASE_URL}/alertas/list/\${orgao}`);
@@ -44,9 +43,6 @@ export const PROCESSES_LIST = t(`${BASE_URL}/lista/processos/\${orgao}?page=\${p
 
 
 export const SUCCESS_INDICATORS = t(`${BASE_URL}/pip/indicadores-sucesso/\${orgao}`);
-export const PIP__URL = t(`${BASE_URL}/pip/aproveitamentos/\${orgao}`);
-export const PIP_MONTH_OPPENINGS_URL = t(`${BASE_URL}/pip/aberturas-mensal/\${orgao}/\${cpf}`);
-export const PIP_INVESTIGATIONS_URL = t(`${BASE_URL}/pip/aisp/investigacoes/\${orgao}`);
 
 export const PIP_MAIN_INVESTIGATIONS_URL = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
@@ -62,7 +58,9 @@ export const INVESTIGATED_PROFILE_URL = t(
 
 export const RADAR_COMPARE_TUTELA = t(`${BASE_URL}/comparador-radares/\${orgao}`);
 export const RADAR_COMPARE_PIP = t(`${BASE_URL}/pip/comparador-radares/\${orgao}`);
+export const RADAR_COMPARE_CRIMINAL = t(`${BASE_URL}/criminal/criminal-comparador-radares/\${orgao}`);
 
+// Alterar função para passar no cabeçalho não jwt
 export const PRCR_ACTION_GENERATE_DOC = t(
   `${BASE_URL}/documentos/minuta-prescricao/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
 );

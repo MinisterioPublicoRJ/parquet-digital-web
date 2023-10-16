@@ -92,7 +92,7 @@
 }
 
 .alertBadgeRightContainer {
-  align-items: center;
+  align-items: left;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -103,7 +103,7 @@
 }
 
 .alertBadgeRightContainer > span {
-  align-items: center;
+  align-items: left;
   display: flex;
   flex: 1;
   flex-direction: column;

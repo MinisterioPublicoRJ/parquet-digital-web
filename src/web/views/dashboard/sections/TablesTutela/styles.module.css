@@ -95,6 +95,7 @@
 .mainTableTutelasOuterBoxSearch{
   display: flex;
   justify-content: space-between;
+  margin-top: 42px;
  
 }
 .mainTableTutelasOuterBoxSearch h2{

@@ -218,6 +218,8 @@ export default function MetricsProsecutions({ metrics, dbName }) {
   switch (dbName) {
     case 'tutela_processos':
       return courtCasesMetrics(metrics);
+    case 'tutela_investigacoes':
+      return inquiriesMetrics(metrics);
     case 'pip_inqueritos':
       return inquiriesMetrics(metrics);
     case 'pip_pics':

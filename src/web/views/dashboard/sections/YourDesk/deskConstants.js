@@ -6,7 +6,7 @@ export const CRIMINAL_DESK_BUTTONS = ['openCases','newDocs', 'closedCasesC'];
 
 export const PIP_COLLECTION_BUTTONS = ['pics', 'inquiries', 'aisps'];
 
-export const TUTELA_COLLECTION_BUTTONS = ['courtCases', 'openInvestigations'];
+export const TUTELA_COLLECTION_BUTTONS = ['openInvestigations','courtCases'];
 
 export const CRIMINAL_COLLECTION_BUTTONS = ['criminalCourtCases' ]; 
 
@@ -22,8 +22,8 @@ export const BUTTON_TEXTS = {
   closedCasesP: `finalizados últimos 30 dias`,
   closedCasesT: `finalizados últimos 30 dias`,
   closedCasesC: `finalizados últimos 30 dias`,
-  openInvestigations: `investigações\nem curso`,
-  courtCases: `Número de processos\nem juízo`,
+  openInvestigations: `Número de processos\nem juízo`,
+  courtCases: `investigações\nem curso`,
   criminalCourtCases: `Número de processos\nem juízo`,
   pics: 'Número de PICS',
   inquiries: 'Número de inquéritos',

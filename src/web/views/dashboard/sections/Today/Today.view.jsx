@@ -72,7 +72,6 @@ function Today() {
     let res;
     try {
       res = await Api.getTodayOutData(buildRequestParams());
-      console.log(res)
 
       setTodayPercent(res ? `${(res * 100).toFixed(0)}%` : '0%');
     } catch (e) {
@@ -96,7 +95,6 @@ function Today() {
       );
       phrase = analyzeCollection(primQ, terQ, acervoQtd);
       groupNameRes = NOMES_PROMOTORIAS[cod];
-      console.log(phrase, groupNameRes)
 
       setgroupName(groupNameRes);
       setCollectionAnalysis(phrase);
@@ -140,7 +138,6 @@ function Today() {
           ? { dayType: amount < lout || amount > hout ? ' atípico ' : 'típico', amount }
           : 'empty',
       );
-      console.log( hout, lout,)
     } catch (e) {
       setApiError((prevCount) => prevCount + 1);
     }

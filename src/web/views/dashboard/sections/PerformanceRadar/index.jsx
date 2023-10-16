@@ -8,8 +8,7 @@ import {
   radarSubtitles,
   radarSubtitlesItem,
   radarSubtitlesItemYourData,
-  radarSubtitlesItemMPData,
-  radarSubtitlesItemCriminal,
+  radarSubtitlesItemMPData
 } from './styles.module.css';
 import RadarGraph from './RadarGraph';
 import { useAppContext } from '../../../../../core/app/App.context';
@@ -53,6 +52,7 @@ function PerformanceRadar() {
   async function getPerformanceData() {
     let res = {};
     const { tipo } = currentOffice;
+   
     try {
       // tutela
       if (tipo === 1) {
@@ -238,8 +238,8 @@ function PerformanceRadar() {
             </div>
             <div className={`${radarSubtitlesItem} ${radarSubtitlesItemMPData}`}>Perfil do MP</div>
             <button type="button" onClick={handleCompareButton}
-              className={currentOffice.tipo === 7 ? `${radarSubtitlesItemCriminal}` : `${radarSubtitlesItem} `}>
-              <RadarArrow height={20} width={20} />
+              className= {radarSubtitlesItem} >
+              <RadarArrow height={16} width={20} />
               Comparativo
             </button>
           </figcaption>

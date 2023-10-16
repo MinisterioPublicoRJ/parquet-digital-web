@@ -15,7 +15,7 @@ export default function alertsTransform(data) {
       alertId: alert.alrt_key,
       contrato: alert.num_externo,
       iditem: alert.id_item,
-      contrato_iditem: alert.contrato_id_item,
+      num_doc: alert.num_doc,
       item: alert.item,
     }));
 }

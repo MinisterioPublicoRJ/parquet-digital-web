@@ -7,29 +7,29 @@
   width: 100%;
   margin-top: -8px;
 }
-.deskControlers  {
+
+.deskControlers {
   display: flex;
 }
-.deskButtonsInactive{
+.deskButtonsInactive {
   display: flex;
 }
-.deskButtonsTextsHeader{
+.deskButtonsTextsHeader {
   display: flex;
   height: 100px;
   justify-content: space-between;
   margin-top: 5px;
 }
-.deskButtonsActive{
+.deskButtonsActive {
   display: flex;
   margin-left: -3px;
-
 }
-.deskButtonsCollections{
+.deskButtonsCollections {
   display: flex;
   justify-content: space-between;
 }
 
-.deskButtonsTextsHeaderText{
+.deskButtonsTextsHeaderText {
   width: 100%;
   text-align: right;
   color: #374354;
@@ -42,7 +42,7 @@
   margin-top: -10px;
 }
 
-.deskButtonsTextsHeaderText p{
+.deskButtonsTextsHeaderText p {
   margin: 0;
   margin-top: 5px;
   padding: 2px;
@@ -70,89 +70,84 @@
 .hide {
   display: none;
 }
-.deskButtonsVistas{
+.deskButtonsVistas {
   font-size: 40px;
-} 
-.openCasesChartsWrapperLabel{
+}
+.openCasesChartsWrapperLabel {
   display: flex;
   justify-content: space-around;
 }
-.openCasesChartsWrapperLabel div:nth-child(2n){
+.openCasesChartsWrapperLabel div:nth-child(2n) {
   margin-left: 23px;
 }
-.openCasesChartsWrapperLabel div:nth-child(n){
+.openCasesChartsWrapperLabel div:nth-child(n) {
   margin-left: 13px;
 }
-.openCasesChartsWrapperLabel div:nth-child(1){
-  background-color:rgb(40, 167, 224);
+.openCasesChartsWrapperLabel div:nth-child(1) {
+  background-color: rgb(40, 167, 224);
   width: 17px;
   height: 17px;
 }
-.openCasesChartsWrapperLabel div:nth-child(2){
-  color:rgb(40, 167, 224);
+.openCasesChartsWrapperLabel div:nth-child(2) {
+  color: rgb(40, 167, 224);
 }
-.openCasesChartsWrapperLabel div:nth-child(3){
-  background-color:rgb(248, 189, 108);
+.openCasesChartsWrapperLabel div:nth-child(3) {
+  background-color: rgb(248, 189, 108);
   width: 17px;
   height: 17px;
 }
-.openCasesChartsWrapperLabel div:nth-child(4){
-  color:rgb(248, 189, 108);
-
+.openCasesChartsWrapperLabel div:nth-child(4) {
+  color: rgb(248, 189, 108);
 }
-.openCasesChartsWrapperLabel div:nth-child(5){
-  background-color:rgb(248, 108, 114);
+.openCasesChartsWrapperLabel div:nth-child(5) {
+  background-color: rgb(248, 108, 114);
   width: 17px;
   height: 17px;
 }
-.openCasesChartsWrapperLabel div:nth-child(6){
-  color:rgb(248, 108, 114);
-
+.openCasesChartsWrapperLabel div:nth-child(6) {
+  color: rgb(248, 108, 114);
 }
-div .deskButtonsCollectionPhrase{
+div .deskButtonsCollectionPhrase {
   color: #374354;
   max-width: 48%;
   font-size: var(--smallFont);
   margin-top: 33px;
 }
-.deskButtonsCollectionPhrase p{
+.deskButtonsCollectionPhrase p {
   line-height: 13px;
 }
-.deskButtonsCollectionPhrase > div p{
-  line-height: 13px;
-}
-.deskControlersAndMetrics{
+
+.deskControlersAndMetrics {
   display: flex;
   justify-content: space-between;
   height: 7vh;
 }
-.yourCollectionButtons div:nth-child(1){
+.yourCollectionButtons div:nth-child(1) {
   width: 130px;
   height: 98px;
-  background-color: #FAFAFA;
-  color: #ACACAC;
+  background-color: #fafafa;
+  color: #acacac;
   margin-left: 0px;
 }
-.yourCollectionButtons div:nth-child(2){
-  background-color: #FAFAFA;
-  color: #ACACAC;
-
+.yourCollectionButtons div:nth-child(2) {
+  background-color: #fafafa;
+  color: #acacac;
 }
-.deskControlersAndMetrics{
+.deskControlersAndMetrics {
   display: flex;
   justify-content: space-between;
   height: 7vh;
 }
-.componentWrapperCollections{
+.componentWrapperCollections {
   display: flex;
   justify-content: space-between;
 }
-.yourCollectionButtons div:nth-child(3){
+.yourCollectionButtons div:nth-child(3) {
   width: 130px;
   height: 98px;
   margin-left: 2px;
-  background-color: #FAFAFA;
-  color: #ACACAC;
+  background-color: #fafafa;
+  color: #acacac;
 }
 
 .componentWrapper .deskButtonsTextsHeader .deskButtonsCollectionPhrase {
@@ -167,16 +162,16 @@ div .deskButtonsCollectionPhrase{
   padding: 0;
   width: 100%;
 }
-.openCasesChartsWrapperResponsive{
+.openCasesChartsWrapperResponsive {
   display: none;
 }
-.deskButtonsTextsHeader{
+.deskButtonsTextsHeader {
   display: flex;
   height: 100px;
   justify-content: space-between;
 }
 @media (max-width: 1200px) {
-  .deskButtonsTextsHeader{
+  .deskButtonsTextsHeader {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -186,30 +181,54 @@ div .deskButtonsCollectionPhrase{
   }
 }
 @media (min-width: 1780px) {
-  .yourCollectionButtons div:nth-child(1){
-   height: 120px;
+  .yourCollectionButtons div:nth-child(1) {
+    height: 120px;
   }
 }
+/* Tablets */
+@media (max-width: 820px) {
+  .deskOuter {
+    margin: 0px;
+  }
+
+  .deskButtonsTextsHeaderText p {
+    display: none;
+  }
+
+  .openCasesChartsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .openCasesChartsWrapperWeb {
+    display: none;
+  }
+
+  .openCasesChartsWrapperResponsive {
+    display: block;
+    width: 100%;
+  }
+}
+
 /* PHONES */
 @media (max-width: 480px) {
   .deskHeader {
     display: flex;
     flex-direction: column;
   }
-  .deskButtonsTextsHeaderText{
+  .deskButtonsTextsHeaderText {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 0;
   }
-  .deskOuter{
-    margin: 0px;
-  }
-  .deskButtonsTextsHeader{
-    display: grid;
-    height: 65vh;
-    grid-template-columns: 2fr;
+  .deskButtonsTextsHeader {
+    display: flex;
+    height: 51vh;
     flex-wrap: wrap;
+    width: 100%;
   }
   .deskControlers {
     display: flex;
@@ -218,42 +237,49 @@ div .deskButtonsCollectionPhrase{
   .deskControlers > div {
     width: 100%;
   }
-  .deskButtonsInactive{
+  .deskButtonsInactive {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
   }
-  .deskButtonsTextsHeaderText p{
-    display: none;
-  }
-  .deskHeader h2{
+  .deskHeader h2 {
     margin-left: 20px;
   }
-  .openCasesChartsWrapper{
+  .deskControlersAndMetrics {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    max-width: 98%;
   }
-  .openCasesChartsWrapperWeb{
+  div .deskButtonsCollectionPhrase {
+    max-width: 100%;
+    margin-top: 0px;
+    text-align: left;
+    margin-left: 14px;
     display: none;
   }
-  .openCasesChartsWrapperResponsive{
-    display: block;
+  .deskButtonsCollectionPhrase p {
+    line-height: 18px;
+    font-size: 1rem;
   }
-.deskControlersAndMetrics{
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  }
-div .deskButtonsCollectionPhrase{
-  max-width: 100%;
-  margin-top: 0px;
-  }
+  .yourCollectionButtons div {
+    margin: 2px;
+    margin-left: 3px;
+    margin-right: 3px;
 
+  }
+  .yourCollectionButtons div:nth-child(1) {
+    width: 96%;
+  }
+  .yourCollectionButtons div:nth-child(2) {
+    width: 96%;
+  }
+  .yourCollectionButtons div:nth-child(3) {
+    width: 96%;
+  }
 }
 @media (min-width: 1900) {
-.yourCollectionButtons div:nth-child(1){
-  height: 119px;
-
+  .yourCollectionButtons div:nth-child(1) {
+    height: 119px;
   }
 }

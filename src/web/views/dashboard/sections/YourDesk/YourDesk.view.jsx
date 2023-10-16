@@ -56,13 +56,12 @@ function YourDesk() {
   const [deskButtonList, setDeskButtonList] = useState(false);
   const [collectionButtonList, setCollectionButtonList] = useState(false);
   const [activeTab, setActiveTab] = useState('desk');
-  const [tabDetail, setTabDetail] = useState({});
-  const [metricsArray, setMetrics] = useState([]);
+  const [tabDetail, setTabDetail] = useState([]);
+  const [metricsArray, setMetricsArray] = useState([]);
   const [dbNames, setDBNames] = useState([]);
   const [collectionTable, setCollectionTable] = useState(getCollectionTable);
-  // const collectionTable = getCollectionTable();
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
-
+  
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
@@ -143,32 +142,32 @@ function YourDesk() {
         tempDBNames.push('pip_inqueritos');
       }
       if (currentOffice.tipo === 7) {
-        //tempDBNames.push('pip_pics');
-        //tempDBNames.push('pip_inqueritos');
+        tempDBNames.push('criminal_processos');
+        tempDBNames.push('criminal_finalizados');
       }
       setDBNames(tempDBNames);
     }
 
-    //const dbName = BUTTON_DICT[tabName];
     let tabData;
     let updatedState = {};
     setLoading(true);
-
     try {
       for (const dbName of tempDBNames) {
-        tabData = await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
-        metricsArray.push(tabData.metrics);
+        tabData = await await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
+        metricsArray.push(tabData.metrics)
       }
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
-      updatedState[tabName] = undefined;
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } finally {
       setLoading(false);
     }
   }
 
-  /**
+  
+
+ 
+ /**
    * Loads the data used in the OpenCases tab
    * @return {void} saves details to the state
    */
@@ -215,14 +214,14 @@ function YourDesk() {
     if (!data) return;
 
     const cleanData = cleanChartData(data);
-    return <DeskGraph data={cleanData}/>  
+    return <DeskGraph data={cleanData} />;
   }
 
   function renderChartsResponsive(data) {
     if (!data) return;
 
     const cleanData = cleanChartData(data);
-    return <DeskGraphResponsive data={cleanData}/>
+    return <DeskGraphResponsive data={cleanData} />;
   }
 
   /**
@@ -233,11 +232,16 @@ function YourDesk() {
    */
   function cleanChartData(data) {
     const categories = Object.keys(data);
-    const cleanData = categories.map((cat) => ({
-      x: cat,
-      y: data[cat],
-      color: MAIN_DATA[cat][0],
-    }));
+    const chartCategories = categories.slice(1);
+
+    const cleanData = chartCategories.map((cat) => {
+      return {
+        x: cat,
+        y: data[cat],
+        color: MAIN_DATA[cat][0],
+      };
+    });
+
     return cleanData;
   }
 
@@ -268,6 +272,10 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
+ 
+ // const hasNoMetrics = metricsArray
+ const hasNoMetrics = metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria' : '';
+
 
   return (
     <article className={deskOuter}>
@@ -285,13 +293,16 @@ function YourDesk() {
               />
             ))}
           </div>
-          <div 
-          className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
+          <div
+            className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
           >
-            {metricsArray && !loading ? (
-              !metricsArray && !loading ? (
-                <p>Não há vistas metricas.</p>
-              ) : (
+            {loading &&(
+              <div className={spinnerWrapper}>
+               <Spinner size="medium" />
+             </div>
+            )}
+          <div>
+            {metricsArray && (
                 <>
                   {metricsArray.map((metrics, index) => (
                     <MetricsProsecutions
@@ -305,12 +316,9 @@ function YourDesk() {
                     />
                   ))}
                 </>
-              )
-            ) : (
-              <div className={spinnerWrapper}>
-                <Spinner size="medium" />
-              </div>
-            )}
+              )}
+              {hasNoMetrics}
+            </div>
           </div>
         </div>
       </div>

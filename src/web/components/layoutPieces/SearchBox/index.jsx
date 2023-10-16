@@ -18,10 +18,16 @@ function SearchBox({ onSearch }) {
     e.preventDefault();
     onSearch('');
   }
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      onSearch(searchInput.current.value);
+    }
+  }
   
   return (
     <div className={SearchBoxOuter}>
-      <button onClick={handleSearchButtonClick} type='button'>
+      <button onClick={handleSearchButtonClick} type="button">
         <SearchIcon />
       </button>
       <input
@@ -29,7 +35,9 @@ function SearchBox({ onSearch }) {
         className={SearchBoxInput}
         placeholder="Pesquisar na lista"
         onClick={handleSearchInput}
+        onMouseLeave={handleSearchInput}
         ref={searchInput}
+        onKeyDown={handleKeyDown}
       />
     </div>
   );

@@ -1,5 +1,11 @@
 // just the names of the categories for each tipe of organ
-export const TUTELA_CATEGORIES = ['archives', 'tac', 'instaurations', 'rejections', 'actions'];
+export const TUTELA_CATEGORIES = [
+  'archives',
+  'tac',
+  'instaurations',
+  'rejections',
+  'actions'
+];
 export const PIP_CATEGORIES = [
   'archives',
   'agreements',
@@ -7,6 +13,14 @@ export const PIP_CATEGORIES = [
   'precautionary',
   'complaints',
 ];
+export const CRIMINAL_CATEGORIES = [
+  'complaints',
+  'appeal',
+  'agreements',
+  'audience',
+  'arguments'
+];
+
 
 // used to change Victory's aut generated label positioning for the axis
 export const NORTH_LABEL_PROPS = {

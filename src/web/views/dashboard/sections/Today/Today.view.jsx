@@ -72,6 +72,7 @@ function Today() {
     let res;
     try {
       res = await Api.getTodayOutData(buildRequestParams());
+      console.log(res)
 
       setTodayPercent(res ? `${(res * 100).toFixed(0)}%` : '0%');
     } catch (e) {
@@ -95,6 +96,7 @@ function Today() {
       );
       phrase = analyzeCollection(primQ, terQ, acervoQtd);
       groupNameRes = NOMES_PROMOTORIAS[cod];
+      console.log(phrase, groupNameRes)
 
       setgroupName(groupNameRes);
       setCollectionAnalysis(phrase);
@@ -138,6 +140,7 @@ function Today() {
           ? { dayType: amount < lout || amount > hout ? ' atípico ' : 'típico', amount }
           : 'empty',
       );
+      console.log( hout, lout,)
     } catch (e) {
       setApiError((prevCount) => prevCount + 1);
     }
@@ -147,7 +150,6 @@ function Today() {
 
   const todayText = (
     <>
-      {apiError === 3 && !currentOffice.tipo === 7 && <p>Sem dados para exibir.</p>}
       {loading && <Spinner size="large" />}
       {todayPercent && !loading ? (
         <p>
@@ -157,13 +159,7 @@ function Today() {
           {todayPercent > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
         </p>
       ) : null}
-      {currentOffice.tipo === 7 ? (
-        <p>
-          Seja bem-vindo ao Parquet Digital, ferramenta de auxílio que proporciona uma visão ampla
-          do acervo da sua Promotoria de Justiça. Na barra lateral é possível acessar o manual de
-          uso e a nota metodológica. Boa navegação!
-        </p>
-      ) : null}
+     
       {collectionAnalysis && !loading && (
         <p>
           Você sabia que seu acervo é

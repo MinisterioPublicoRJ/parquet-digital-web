@@ -143,7 +143,7 @@
   .loginInner {
     display: flex;
     flex-direction: column ;
-    width: 80%;
+    width: 100%;
   }
   .loginFormArea{
     width: 100%;

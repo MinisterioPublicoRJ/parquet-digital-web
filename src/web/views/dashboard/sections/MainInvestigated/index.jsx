@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useRef } from 'react';
 import { SearchBox } from '../../../../components/layoutPieces';
-
 import {
   mainInvestigatedOuter,
   mainInvestigatedTableWrapper,
@@ -21,6 +20,7 @@ import {
 } from '../../../../components';
 import { highlightJSX } from '../../../../utils';
 
+
 function MainInvestigated() {
   const { buildRequestParams, currentOffice, Api } = useAppContext();
   const [loading, setLoading] = useState(true);
@@ -32,6 +32,7 @@ function MainInvestigated() {
   const [investigatedProfile, setInvestigatedProfile] = useState();
   const [selectedElement, setSelectedElement] = useState({});
   const tableTopDivRef = useRef() ;
+
   /**
    * uses representanteDk number to remove an investigated from the list, updates the state
    * @param  {number} representanteDk investigated "id"
@@ -147,11 +148,15 @@ function MainInvestigated() {
    */
 
   useEffect(() => {
+    setPage(1);
+  }, [searchString]);
+  
+  useEffect(() => {
   const  getMainInvestigated = async() => {
     let response;
     setLoading(true);
     try {
-      response = await Api.getMainInvestigated(buildRequestParams(), searchString, page, totalPages);
+      response = await Api.getMainInvestigated(buildRequestParams(), page, totalPages, searchString);
       setTableData(cleanData(response.investigated));
       setTotalPages(response.pages);
     } catch (e) {
@@ -161,12 +166,10 @@ function MainInvestigated() {
     }
   }; 
   getMainInvestigated()
-}, [searchString, page, totalPages]);
-
+}, [page, totalPages, searchString]);
 
   const onSearch = (searchStr) => {
     setSearchString(searchStr);
-    
   }
 
   function handlePageClick(nextPage) {

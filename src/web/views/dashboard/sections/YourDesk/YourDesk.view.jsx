@@ -119,7 +119,6 @@ function YourDesk() {
     setLoading(true);
     try {
       docQt = await Api.getIntegratedDeskDocs({ ...buildRequestParams(), docType: dbName });
-      updatedState[docName] = docQt;
       setDocsQuantity((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState[docName] = undefined;
@@ -164,9 +163,7 @@ function YourDesk() {
     }
   }
 
-  
-
- 
+   
  /**
    * Loads the data used in the OpenCases tab
    * @return {void} saves details to the state

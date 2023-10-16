@@ -155,7 +155,6 @@ function YourDesk() {
       for (const dbName of tempDBNames) {
         tabData = await await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
         metricsArray.push(tabData.metrics)
-        console.log(tabData);
       }
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
@@ -275,8 +274,7 @@ function YourDesk() {
   }
  
  // const hasNoMetrics = metricsArray
- const hasNoMetrics = metricsArray.metrics == undefined ? 'Não existem métricas para esta promotoria' : '';
- console.log(metricsArray, typeof(metricsArray));
+ const hasNoMetrics = metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria' : '';
 
 
   return (

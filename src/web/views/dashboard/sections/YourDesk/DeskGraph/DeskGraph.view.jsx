@@ -64,7 +64,7 @@ function DeskGraph({ data }) {
                   fontFamily: 'Roboto',
                 },
               }}
-              labelComponent={<VictoryLabel textAnchor="start" dx={-60} />}
+              labelComponent={<VictoryLabel textAnchor="start" dx={-70} />}
               labels={({ datum }) => (datum.y >= 0 ? `${datum.y} vistas` : null)}
             />
             <VictoryBar data={fillerData} barWidth={15} style={{ data: { fill: '#F4F5FA' } }} />

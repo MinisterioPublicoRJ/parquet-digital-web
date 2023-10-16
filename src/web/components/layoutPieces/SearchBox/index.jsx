@@ -30,6 +30,7 @@ function SearchBox({ onSearch }) {
         placeholder="Pesquisar na lista"
         onClick={handleSearchInput}
         ref={searchInput}
+        // onKeyUp={handleSearchButtonClick}
       />
     </div>
   );

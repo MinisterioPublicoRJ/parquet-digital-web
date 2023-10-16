@@ -96,6 +96,9 @@
     .controlButtonOuter:nth-child(3){
       width: 50%;
     }
+    .controlButtonInner {
+      font-size: 2.5rem ;
+    }
   }
 
   

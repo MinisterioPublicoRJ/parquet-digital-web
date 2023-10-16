@@ -102,7 +102,6 @@ function ProcessList({ isActive, setInvestigatedProfile, setProcessDetail, searc
       setLoading(true);
       try {
         const response = await Api.getProcessList(buildRequestParams(), page, searchString);
-        console.log(response);
         const buttonList = generateButtons(response.data);
         setProcessListData(buttonList);
         setTotalPages(response.pages);

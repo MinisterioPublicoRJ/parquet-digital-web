@@ -239,7 +239,7 @@ function PerformanceRadar() {
             <div className={`${radarSubtitlesItem} ${radarSubtitlesItemMPData}`}>Perfil do MP</div>
             <button type="button" onClick={handleCompareButton}
               className= {radarSubtitlesItem} >
-              <RadarArrow height={20} width={20} />
+              <RadarArrow height={16} width={20} />
               Comparativo
             </button>
           </figcaption>

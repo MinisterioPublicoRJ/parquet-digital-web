@@ -100,3 +100,9 @@
 .mainTableTutelasOuterBoxSearch h2{
   margin-top: 30px;
 }
+@media (max-width: 480px) {
+  .processListOuter {
+    position: relative;
+
+  }
+}

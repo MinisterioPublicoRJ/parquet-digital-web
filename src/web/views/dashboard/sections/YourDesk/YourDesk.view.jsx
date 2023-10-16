@@ -119,6 +119,7 @@ function YourDesk() {
     setLoading(true);
     try {
       docQt = await Api.getIntegratedDeskDocs({ ...buildRequestParams(), docType: dbName });
+      updatedState[docName] = docQt;
       setDocsQuantity((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
       updatedState[docName] = undefined;
@@ -273,7 +274,6 @@ function YourDesk() {
  // const hasNoMetrics is filled if no metrics value  is returned
  const hasNoMetrics = metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria' : '';
 
-
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -299,7 +299,7 @@ function YourDesk() {
              </div>
             )}
           <div>
-            {metricsArray && (
+            {metricsArray && !hasNoMetrics && (
                 <>
                   {metricsArray.map((metrics, index) => (
                     <MetricsProsecutions

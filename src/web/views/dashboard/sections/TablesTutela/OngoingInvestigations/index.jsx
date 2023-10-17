@@ -107,6 +107,7 @@ function OngoingInvestigations({isActive, setInvestigatedProfile, setProcessDeta
           page,
           searchString,
         );
+
         const buttonList = generateButtons(response.data);
         setOngoingInvestigationsListData(buttonList);
         setTotalPages(response.pages);

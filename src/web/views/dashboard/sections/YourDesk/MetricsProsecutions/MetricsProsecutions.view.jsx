@@ -213,7 +213,7 @@ function picsMetrics({
 export default function MetricsProsecutions({ metrics, dbName }) {
   const { currentOffice } = useAppContext();
   const type = currentOffice ? currentOffice.tipo : undefined;
-
+  
   if (!metrics) return null;
   switch (dbName) {
     case 'tutela_processos':
@@ -224,9 +224,9 @@ export default function MetricsProsecutions({ metrics, dbName }) {
       return inquiriesMetrics(metrics);
     case 'pip_pics':
       return picsMetrics(metrics);      
-    case 'pip_inqueritos':
+    case 'criminal_processos':
       return inquiriesMetrics(metrics);
-    case 'pip_pics':
+    case 'criminal_finalizados':
       return picsMetrics(metrics);
     default:
       return null;

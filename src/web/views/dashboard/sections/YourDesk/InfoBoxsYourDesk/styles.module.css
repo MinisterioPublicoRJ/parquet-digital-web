@@ -55,8 +55,8 @@ span .deskButtonsVistas {
   color: #acacac;
 }
 
-/* Para telas menores do que 768px - Tablets */
-@media (max-width: 768px) {
+/* Para telas menores do que 1040px - Tablets e Laptops */
+@media (max-width: 1040px) {
   .controlButtonOuter {
     display: flex;
     width: 100%;

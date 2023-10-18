@@ -170,19 +170,8 @@ div .deskButtonsCollectionPhrase {
   justify-content: space-between;
 }
 
-/* Para telas menores do que 1024px */
-@media (max-width: 1024px) {
-  .deskButtonsTextsHeader {
-    flex-direction: column;
-    height: auto;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
-}
-
-/* Para telas menores do que 768px - Tablets */
-@media (max-width: 768px) {
+/* Para telas menores do que 1040px - Tablets e Laptops */
+@media (max-width: 1040px) {
   .deskOuter {
     margin: 0px;
   }
@@ -211,6 +200,7 @@ div .deskButtonsCollectionPhrase {
 
   .deskButtonsCollectionPhrase p {
     line-height: 18px;
+    font-size: 0.8rem;
   }
 
   .deskButtonsCollections {
@@ -243,6 +233,22 @@ div .deskButtonsCollectionPhrase {
     display: block;
     width: 100%;
   }
+
+  .deskButtonsTextsHeaderText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    height: 5rem;
+  }
+
+  .deskButtonsTextsHeader {
+    display: flex;
+    height: auto;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 }
 
 /* Para telas menores do que 480px - Mobile */
@@ -250,19 +256,6 @@ div .deskButtonsCollectionPhrase {
   .deskHeader {
     display: flex;
     flex-direction: column;
-  }
-  .deskButtonsTextsHeaderText {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0;
-  }
-  .deskButtonsTextsHeader {
-    display: flex;
-    height: auto;
-    flex-wrap: wrap;
-    width: 100%;
   }
   .deskControlers {
     display: flex;
@@ -295,5 +288,9 @@ div .deskButtonsCollectionPhrase {
     flex-direction: column;
     text-align: center;
     max-width: 98%;
+  }
+
+  .deskButtonsTextsHeaderText {
+    height: auto;
   }
 }

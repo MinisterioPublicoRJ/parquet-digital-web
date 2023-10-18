@@ -86,6 +86,7 @@
   background-color: transparent;
   padding: 0;
   text-align: left;
+  display: flex;
 }
 
 .selectorListWrapper li {

@@ -318,7 +318,7 @@ function ispsConstructor(alert, orgao, cpf, token) {
         Há
         <strong> {`${count}`} </strong>
         {`${single ? 'indicador' : 'indicadores'}`} de cobertura de Saneamento Básico em
-        <strong> vermelho </strong> na sua região
+        <strong> vermelho </strong> na sua região.
       </span>
     );
   } else {
@@ -575,7 +575,7 @@ function ic1aConstructor(
           {" "}sem prorrogação{' '}
         </strong>
         há
-        <strong> mais de 1 ano</strong>.
+        <strong> mais de 1 ano.</strong>.
       </span>
     );
   } else {
@@ -589,7 +589,7 @@ function ic1aConstructor(
         O inquérito civil
         <strong>{` ${docNum} `}</strong>
         está sem prorrogação há
-        <strong> mais de 1 ano</strong>.
+        <strong> mais de 1 ano.</strong>.
       </span>
     );
   }
@@ -619,7 +619,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
       <span>
         Há{" "}
         {single ? 'uma notícia de fato há mais de ' : `${count} notícias de fato há mais de `}
-        <strong>30 dias sem finalização, autuação ou prorrogação</strong>
+        <strong>30 dias sem finalização, autuação ou prorrogação.</strong>
       </span>
     );
   } else {
@@ -662,7 +662,7 @@ function nf120Constructor(
       <span>
         Há{" "}
         {single ? 'uma notícia de fato há mais de ' : `${count} notícias de fato há mais de `}
-        <strong>120 dias sem finalização, autuação ou prorrogação</strong>
+        <strong>120 dias sem finalização, autuação ou prorrogação.</strong>
       </span>
     );
   } else {
@@ -832,7 +832,7 @@ function prcrConstructor(
             com todos os seus
             <strong> crimes </strong>
             possivelmente
-            <strong> prescritos </strong>
+            <strong> prescritos. </strong>
           </span>
         );
         break;
@@ -842,7 +842,7 @@ function prcrConstructor(
             <strong>Há</strong>
             {single ? ' um procedimento ' : ` ${count}  procedimentos `}
             em que possivelmente todos os crimes
-            <strong> prescreverão em menos de 90 dias </strong>
+            <strong> prescreverão em menos de 90 dias. </strong>
           </span>
         );
         break;
@@ -862,7 +862,7 @@ function prcrConstructor(
             <strong>Há</strong>
             {single ? ' um procedimento ' : ` ${count}  procedimentos `}
             com um crime que
-            <strong> possivelmente prescreverá em menos de 90 dias </strong>
+            <strong> possivelmente prescreverá em menos de 90 dias. </strong>
           </span>
         );
         break;

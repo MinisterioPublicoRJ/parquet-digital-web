@@ -11,7 +11,6 @@ export function AppProvider({ alertsStore, store, children }) {
 
 export const useAppContext = () => useContext(AppContext);
 
-
 export function AppStoreInitializer() {
   const [Api, setApi] = useState(ApiCreator());
   const [user, setUser] = useState(null);

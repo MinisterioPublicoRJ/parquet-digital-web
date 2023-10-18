@@ -7,7 +7,6 @@
   .controlButtonOuter{
     margin-left: 4px;
     width: 130px;
-    height: 98px;
     border-radius: 5px; 
     display: flex;
     text-transform: uppercase;
@@ -29,7 +28,7 @@
     font-size: var(--spotlightSize);
   }
  .controlButtonOuter p{
-   margin-top: -3px;
+   margin-top: 0px;
    font-size: 12px;
   }
   .controlButtonOuter:nth-child(2){
@@ -44,7 +43,6 @@
     flex-direction: column;
     justify-content: center;
     width: 180px;
-    height: 98px;
     text-align: center;
     border: 0.5px #EEEEEE solid;
     flex-direction: column;

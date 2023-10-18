@@ -272,7 +272,7 @@ function YourDesk() {
   }
  
  // const hasNoMetrics is filled if no metrics value  is returned
- const hasNoMetrics = metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria' : '';
+ const hasNoMetrics = metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria.' : '';
 
   return (
     <article className={deskOuter}>
@@ -293,7 +293,7 @@ function YourDesk() {
           <div
             className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
           >
-            {loading &&(
+            {loading && (metricsArray[0] == undefined) && (
               <div className={spinnerWrapper}>
                <Spinner size="medium" />
              </div>

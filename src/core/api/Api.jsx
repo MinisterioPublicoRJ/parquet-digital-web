@@ -30,13 +30,12 @@ import {
   RADAR_COMPARE_TUTELA,
   RADAR_COMPARE_PIP,
   RADAR_COMPARE_CRIMINAL,
-  ALERT_OVERLAY_DATA, 
-  PROCESS_DETAIL
+  ALERT_OVERLAY_DATA,
+  PROCESS_DETAIL,
 } from './endpoints';
 
 import {
   scaUserTransform,
-  jwtUserTransform,
   todayOutTransform,
   todayOutliersTransform,
   todayEntriesTransform,
@@ -67,33 +66,30 @@ import { formatDateObjForBackend } from '../../web/utils/formatters';
 
 function ApiCreator(jwtToken) {
   const axiosInstance = axios.create({
-    baseURL: BASE_URL
+    baseURL: BASE_URL,
   });
 
   const addHeaders = (config) => {
-    if (jwtToken){
+    if (jwtToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers.common.Authorization = `Bearer ${jwtToken}`;
     }
     return config;
-  }
+  };
   axiosInstance.interceptors.request.use(addHeaders, (error) => Promise.reject(error));
-
 
   async function loginWithSCACredentials(username, password) {
     const formData = new FormData();
     formData.set('username', username);
     formData.set('password', password);
-  
+
     const { data } = await axiosInstance.post(SCA_LOGIN, formData);
-    
+
     // const { token, cpf, orgao_selecionado } = data;
     // axiosInstance.defaults.params = { jwt: token };
 
     return scaUserTransform(data);
   }
-
-
 
   /**
    * fetches percentage info for the Today page from the backend
@@ -130,10 +126,9 @@ function ApiCreator(jwtToken) {
     const { data } = await axiosInstance.get(OPEN_CASES_DETAILS_URL({ orgao, cpf }));
 
     return openCasesDetailsTransform(data);
-
   }
 
-  async function getIntegratedDeskDocs({ orgao, cpf, docType, type  }) {
+  async function getIntegratedDeskDocs({ orgao, cpf, docType, type }) {
     const { data } = await axiosInstance.get(DESK_INTEGRATED({ orgao, cpf, docType, type }));
     return deskIntegratedTransform(data);
   }
@@ -155,7 +150,6 @@ function ApiCreator(jwtToken) {
     return openInvestigationsDetailsTransform(data);
   }
 
- 
   async function getOpenCasesList({ orgao, cpf }, list, page, searchString) {
     const params = {};
     let url_end = list;
@@ -170,7 +164,7 @@ function ApiCreator(jwtToken) {
     }
 
     const { data } = await axiosInstance.get(OPEN_CASES_LIST({ orgao, cpf, url_end }), { params });
-    
+
     return openCasesListTransform(data);
   }
 
@@ -191,7 +185,7 @@ function ApiCreator(jwtToken) {
 
   async function getAlerts({ orgao }) {
     const { data } = await axiosInstance.get(ALERTS_LIST({ orgao }));
-  
+
     return alertsTransform(data);
   }
 
@@ -201,10 +195,9 @@ function ApiCreator(jwtToken) {
     return totalAlertsTransform(data);
   }
 
- 
   async function getMisconductAlert({ orgao }) {
     const { data } = await axiosInstance.get(MISCONDUCT_ALERT({ orgao }));
-   
+
     return misconductAlertsTransform(data);
   }
 
@@ -320,22 +313,21 @@ function ApiCreator(jwtToken) {
     return investigatedProfileTransform(data);
   }
 
-   
-    async function getRadarCompareData({ orgao, organType }) {
-      let endpoint
-      if(organType === 1){
-         endpoint = RADAR_COMPARE_TUTELA({ orgao });
-      }
-      if(organType === 2){
-        endpoint = RADAR_COMPARE_PIP({ orgao });
-      }
-      if(organType === 7){
-        endpoint = RADAR_COMPARE_CRIMINAL({orgao});
-      }
-      const { data } = await axiosInstance.get(endpoint);
-  
-      return radarCompareTransform(data);
+  async function getRadarCompareData({ orgao, organType }) {
+    let endpoint;
+    if (organType === 1) {
+      endpoint = RADAR_COMPARE_TUTELA({ orgao });
     }
+    if (organType === 2) {
+      endpoint = RADAR_COMPARE_PIP({ orgao });
+    }
+    if (organType === 7) {
+      endpoint = RADAR_COMPARE_CRIMINAL({ orgao });
+    }
+    const { data } = await axiosInstance.get(endpoint);
+
+    return radarCompareTransform(data);
+  }
 
   async function getAlertOverlayData(docDk, type) {
     const params = { tipo: type.toLocaleLowerCase() };
@@ -357,7 +349,6 @@ function ApiCreator(jwtToken) {
   return {
     addHeaders,
     loginWithSCACredentials,
-    // loginWithJwtCredentials,
     getTodayOutData,
     getTodayOutliersData,
     getTodayEntriesData,

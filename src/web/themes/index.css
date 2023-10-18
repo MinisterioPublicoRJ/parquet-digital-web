@@ -55,30 +55,6 @@
   /* MODAL FONT-SIZES */
   --modal-default-font-size: clamp(0.8rem, 1.5vw, 1rem);
   --modal-title-font-size: clamp(1rem, 2.2vw, 2rem);
-
-  /* --defaultTitleProcessing: Rockwell; */
-  /* --subtitleProcessing: MyriadPro-Regular; */
-  /* --titleParagraphToday: 1.8vh; */
-
-  /* --spotlightFont: Nunito Sans; */
-  /* --spotlightWeight: 700; */
-
-  /* --spotlightSubtitleSize: 0; */
-
-  /* --spotilightActiveSize: calc(var(--spotlightSize) * 1.5); */
-
-  /* --subtitleFont: Roboto Slab; */
-  /* --subtitleWeight: regular; */
-
-  /* --linkSize: calc(var(--defaultFontSize) * 1); */
-
-  /* SIZING */
-  /* --pagePadding: 2.5vh; */
-  /* --pageMargin: 2.5vh; */
-
-  /* --dashboardAreaMargin: 2vh; */
-
-  /* --elementPadding: 1.5vh; */
 }
 
 /* TABLETS */

@@ -35,7 +35,7 @@
 
 .navbarLogout {
   width: 100vw;
-  margin: 12.3rem 0 2.9375rem 0.2rem;
+  margin-top: 12.3rem;
   background-color: var(--loginBlue);
 }
 
@@ -71,6 +71,7 @@
 
   .navbarLogout {
     margin: 0;
-    width: auto;
+    position: absolute;
+    bottom: 0;
   }
 }

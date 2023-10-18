@@ -7,9 +7,7 @@ function Robot() {
       width="307"
       height="246"
       fill="none"
-      // viewBox= width 100vh height 100vh
-      viewBox="0 0 307 246"
-      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 307 230"
     >
       <path
         fill="#BDDFF0"

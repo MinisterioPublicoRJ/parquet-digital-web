@@ -177,9 +177,9 @@
   color: var(--white);
 }
 
-/* .todayRobotPicTablet{
+.todayRobotPicTablet{
   display: none;
-} */
+}
 
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 768px) {
@@ -189,7 +189,6 @@
     box-sizing: border-box;
   }
   .userArea {
-    /* background-color: green; */
     width: 60%;
   }
   .userArea h1{
@@ -198,43 +197,25 @@
   .todayRobotPic {
     height:120%;
     display: flex;
-    top: 0;
     margin-right: 1rem;
-    /* background-color: red; */
-    /* align-self: flex-end; */
-  }
-  .todayRobotPic svg{
-    object-fit: cover;
   }
   .todayContent {
-
     width: 60%;
     height: 100%;
     font-size: clamp(.8rem, 1.5vw, 1rem);
-    /* background-color: pink; */
   }
   .todayRobotGif{
     display: none;
-    /* display: flex;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;  */
   }
   .todayRobotPicTablet{
-    display: flex;
-    justify-content: flex-end; 
-    align-items: flex-end;     
+    display: flex;    
     width: 100%;           
-    height:100%;         
-    /* background-color: blueviolet;         */
+    height:15.375rem;     
   }
   .todayRobotPicTablet svg{
-    display: block;
-    object-fit: cover;     
+    display: block;   
     width: 100%;           
     height: 100%;
-    /* background-color: blue; */
-    /* padding-top: 2.5rem;  */
   }
 }
 

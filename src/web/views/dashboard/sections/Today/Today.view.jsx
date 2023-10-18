@@ -241,7 +241,7 @@ function Today() {
             <Introduction />
           </Modal>
         )}
-        {/* <img width="250px" src={PromotronGif} alt="robô-promoton" className={todayRobotGif}/> */}
+        <img width="250px" src={PromotronGif} alt="robô-promoton" className={todayRobotGif}/>
         <div className={todayRobotPicTablet}>
           <Robot />
         </div>

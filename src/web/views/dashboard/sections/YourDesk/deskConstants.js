@@ -2,15 +2,15 @@ export const PIP_DESK_BUTTONS = ['openCases', 'newDocs', 'closedCasesP'];
 
 export const TUTELA_DESK_BUTTONS = ['openCases', 'newDocs', 'closedCasesT'];
 
-export const CRIMINAL_DESK_BUTTONS = ['openCases','newDocs', 'closedCasesC']; 
+export const CRIMINAL_DESK_BUTTONS = ['openCases', 'newDocs', 'closedCasesC'];
 
 export const PIP_COLLECTION_BUTTONS = ['pics', 'inquiries', 'aisps'];
 
-export const TUTELA_COLLECTION_BUTTONS = ['openInvestigations','courtCases'];
+export const TUTELA_COLLECTION_BUTTONS = ['openInvestigations', 'courtCases'];
 
-export const CRIMINAL_COLLECTION_BUTTONS = ['criminalCourtCases' ]; 
+export const CRIMINAL_COLLECTION_BUTTONS = ['criminalCourtCases'];
 
-export const CONTROL_BUTTONS = ['desk', 'collection', ];
+export const CONTROL_BUTTONS = ['desk', 'collection',];
 
 export const CRONTROL_BUTTON_TEXTS = {
   desk: `Sua mesa`,
@@ -31,9 +31,23 @@ export const BUTTON_TEXTS = {
   newDocs: 'Documentos novos últimos 30 dias',
 };
 
+export const BUTTON_COLORS = {
+  openCases: "white",
+  closedCasesP: "green",
+  closedCasesT: "green",
+  closedCasesC: "green",
+  openInvestigations: "gray",
+  courtCases: "gray",
+  criminalCourtCases: "gray",
+  pics: "gray",
+  inquiries: "gray",
+  aisps: "gray",
+  newDocs: "blue",
+};
+
 export const BUTTON_DICT = {
   openCases: 'vistas',
-  newDocs: 'novos', 
+  newDocs: 'novos',
   closedCasesP: 'pip_finalizados',
   closedCasesC: 'criminal_finalizados',
   closedCasesT: 'tutela_finalizados',

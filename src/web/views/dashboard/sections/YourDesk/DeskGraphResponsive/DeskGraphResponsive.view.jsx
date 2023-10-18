@@ -23,7 +23,7 @@ const legend = {
 
 const responsiveSizes = {
   chartHeight: { tablet: 90, mobile: 140 },
-  chartPadding: { tablet: 10, mobile: 0 },
+  chartPadding: { tablet: 10, mobile: 15 },
   legendFontSize: { tablet: 10, mobile: 20 },
   legendAlign: { tablet: 240, mobile: 80 },
   legendGutter: { tablet: 8, mobile: 20 },

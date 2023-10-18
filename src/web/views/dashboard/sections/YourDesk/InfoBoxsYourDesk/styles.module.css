@@ -1,105 +1,82 @@
 :root {
-    --buttonBase: 156;
-    --buttonSize: calc(var(--buttonBase) * var(--widthScale));
-    --activeButtonSize: calc(var(--buttonSize) * 1.2);
-  }
-  
-  .controlButtonOuter{
-    margin-left: 4px;
-    width: 130px;
-    height: 98px;
-    border-radius: 5px; 
+  --buttonBase: 156;
+  --buttonSize: calc(var(--buttonBase) * var(--widthScale));
+  --activeButtonSize: calc(var(--buttonSize) * 1.2);
+}
+
+.controlButtonOuter {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 8.125rem;
+  height: 6.125rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: default;
+  border: 0.5px #eeeeee solid;
+}
+
+span .deskButtonsVistas {
+  font-size: 40px;
+  width: 135px;
+  height: 98px;
+  background-color: #eeeeee;
+  color: #acacac;
+}
+
+.controlButtonOuter p {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.controlButtonInner {
+  font-weight: 900;
+  font-size: var(--spotlightSize);
+}
+
+.white {
+  width: 11.125rem;
+  background-color: var(--white);
+  color: #154763;
+}
+
+.green {
+  background-color: #71d0a4;
+  color: var(--white);
+}
+
+.blue {
+  background-color: #71a2d0;
+  color: var(--white);
+}
+
+.gray {
+  background-color: #fafafa;
+  color: #acacac;
+}
+
+/* Para telas menores do que 768px - Tablets */
+@media (max-width: 768px) {
+  .controlButtonOuter {
     display: flex;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: default;
-    flex-direction: column;
-    border: 0.5px #EEEEEE solid;
-  }
-  span .deskButtonsVistas{
-    font-size: 40px;
-    width: 135px;
-    height: 98px;
-    background-color: #EEEEEE;
-    color: #ACACAC;
-  }
-  .controlButtonInner {
-    margin-top: 15px ;
-    font-weight: 900;
-    font-size: var(--spotlightSize);
-  }
- .controlButtonOuter p{
-   margin-top: -3px;
-   font-size: 12px;
-  }
-  .controlButtonOuter:nth-child(2){
-    background-color: #71A2D0;
-    color: var(--white);
-  }
- .controlButtonOuter:nth-child(1){
-    display: flex;
-    align-items: center;
-    background-color: var(--white);
-    color: #154763;
-    flex-direction: column;
-    justify-content: center;
-    width: 180px;
-    height: 98px;
-    text-align: center;
-    border: 0.5px #EEEEEE solid;
-    flex-direction: column;
-    
- }
- .controlButtonOuter:nth-child(3){
-    background-color: #71D0A4;
-    color: var(--white);
-  }
-  @media (min-width: 1780px) {
-    .controlButtonOuter{
-      width: 130px;
-      height: 120px;
-    }
-    .controlButtonOuter:nth-child(1){
-      height: 120px;
-    }
-  }
-  /* PHONES */
-  @media (max-width: 998px) {
-    .controlButtonActive {
-      width: 100%;
-      height: 100%;
-      margin: 3px;
-    }
-    .controlButtonInactive {
-      width: 100%;
-      height: 100%;
-      margin: 3px;
-    }
-  }
-  @media (max-width: 480px) {
-    .controlButtonActive {
-      width: 100%;
-      height: 100%;
-      margin: 3px;
-    }
-    .controlButtonInactive {
-      width: 100%;
-      height: 100%;
-      margin: 3px;
-    }
-    .controlButtonOuter:nth-child(1){
-      width: 100%;
-    }
-    .controlButtonOuter:nth-child(2){
-      width: 47%;
-    }
-    .controlButtonOuter:nth-child(3){
-      width: 50%;
-    }
-    .controlButtonInner {
-      font-size: 2.5rem ;
-    }
+    width: 100%;
+    height: auto;
+    padding: 1.5rem;
+    margin-left: 0;
+    box-sizing: border-box;
   }
 
-  
-  
+  .controlButtonInner {
+    margin: 0;
+  }
+
+  .controlButtonInner {
+    font-size: 2.5rem;
+  }
+
+  .controlButtonOuter p {
+    margin-top: 0;
+    font-size: 0.9rem;
+  }
+}

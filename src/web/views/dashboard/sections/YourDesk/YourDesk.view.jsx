@@ -12,7 +12,6 @@ import {
   desk,
   deskButtonsTextsHeaderText,
   deskButtonsInactive,
-  deskButtonsActive,
   openCasesChartsWrapper,
   componentWrapperCollections,
   deskButtonsCollectionPhrase,
@@ -45,6 +44,7 @@ import {
   BUTTON_DICT,
   CONTROL_BUTTONS,
   CRONTROL_BUTTON_TEXTS,
+  BUTTON_COLORS,
 } from './deskConstants';
 import { MAIN_DATA } from './OpenCasesList/openCasesConstants';
 
@@ -61,7 +61,7 @@ function YourDesk() {
   const [dbNames, setDBNames] = useState([]);
   const [collectionTable, setCollectionTable] = useState(getCollectionTable);
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
-  
+
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
@@ -153,8 +153,11 @@ function YourDesk() {
     setLoading(true);
     try {
       for (const dbName of tempDBNames) {
-        tabData = await await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
-        metricsArray.push(tabData.metrics)
+        tabData = await await Api.getIntegratedDeskDetails({
+          ...buildRequestParams(),
+          docType: dbName,
+        });
+        metricsArray.push(tabData.metrics);
       }
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
@@ -164,8 +167,7 @@ function YourDesk() {
     }
   }
 
-   
- /**
+  /**
    * Loads the data used in the OpenCases tab
    * @return {void} saves details to the state
    */
@@ -270,14 +272,16 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
- 
- // const hasNoMetrics is filled if no metrics value  is returned
- const hasNoMetrics = metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria' : '';
+
+  // const hasNoMetrics is filled if no metrics value  is returned
+  const hasNoMetrics =
+    metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria' : '';
 
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
         <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
+
         <div className={deskControlersAndMetrics}>
           <div className={deskControlers}>
             {buttonListControl.map((buttonTitle) => (
@@ -290,16 +294,17 @@ function YourDesk() {
               />
             ))}
           </div>
+
           <div
             className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
           >
-            {loading &&(
+            {loading && (
               <div className={spinnerWrapper}>
-               <Spinner size="medium" />
-             </div>
+                <Spinner size="medium" />
+              </div>
             )}
-          <div>
-            {metricsArray && !hasNoMetrics && (
+            <div>
+              {metricsArray && !hasNoMetrics && (
                 <>
                   {metricsArray.map((metrics, index) => (
                     <MetricsProsecutions
@@ -319,17 +324,14 @@ function YourDesk() {
           </div>
         </div>
       </div>
+
       <div className={deskTabs}>
         <div
           className={`${componentWrapper} ${
             activeTab === 'openCases' || activeTab === 'desk' ? '' : hide
           }`}
         >
-          <div
-            className={`${deskButtonsTextsHeader} ${
-              activeTab === 'collection' ? deskButtonsInactive : deskButtonsActive
-            }`}
-          >
+          <div className={`${deskButtonsTextsHeader}`}>
             <div className={deskButtonsInactive}>
               {deskButtonList.map((buttonTitle) => (
                 <InfoBoxYourDesk
@@ -337,6 +339,7 @@ function YourDesk() {
                   text={BUTTON_TEXTS[buttonTitle]}
                   number={docsQuantity[buttonTitle]}
                   error={!docsQuantity[buttonTitle] && !loading}
+                  color={BUTTON_COLORS[buttonTitle]}
                 />
               ))}
             </div>
@@ -389,6 +392,7 @@ function YourDesk() {
                     text={BUTTON_TEXTS[buttonTitle]}
                     number={docsQuantity[buttonTitle]}
                     error={!docsQuantity[buttonTitle] && !loading}
+                    color={BUTTON_COLORS[buttonTitle]}
                   />
                 ))}
               </div>

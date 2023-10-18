@@ -12,11 +12,7 @@ import {
 
 import { Modal } from '../../layoutPieces';
 
-import {
-  navbarList,
-  navbarListItem,
-  navbarLogout
-} from './NavbarList.module.css';
+import { navbarList, navbarListItem, navbarLogout } from './NavbarList.module.css';
 
 import {
   LogoutIcon,
@@ -151,24 +147,24 @@ function NavbarList() {
             <p>Indicadores de Sucesso</p>
           </div>
         ) : null}
-      </div>
 
-      <div className={navbarLogout}>
-        <div
-          className={navbarListItem}
-          onMouseOver={() => setHoverLogout(true)}
-          onFocus={() => setHoverLogout(true)}
-          onMouseOut={() => setHoverLogout(false)}
-          onBlur={() => setHoverLogout(false)}
-          onClick={logout}
-          onKeyUp={() => setHoverLogout(true)}
-          role="button"
-          tabIndex={-1}
-        >
-          <button type="button">
-            {hoverLogout ? <LogoutIcon fill="#154763" /> : <LogoutIcon />}
-          </button>
-          <p>Sair</p>
+        <div className={navbarLogout}>
+          <div
+            className={navbarListItem}
+            onMouseOver={() => setHoverLogout(true)}
+            onFocus={() => setHoverLogout(true)}
+            onMouseOut={() => setHoverLogout(false)}
+            onBlur={() => setHoverLogout(false)}
+            onClick={logout}
+            onKeyUp={() => setHoverLogout(true)}
+            role="button"
+            tabIndex={-1}
+          >
+            <button type="button">
+              {hoverLogout ? <LogoutIcon fill="#154763" /> : <LogoutIcon />}
+            </button>
+            <p>Sair</p>
+          </div>
         </div>
       </div>
 

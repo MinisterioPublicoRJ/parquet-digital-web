@@ -12,13 +12,12 @@ function courtCasesMetrics({
   nr_acoes_12_meses_anterior,
   variacao_30_dias,
 }) {
- 
   const monthVariation = formatPercentage(Math.abs(variacao_60_dias));
   const yearVariation = formatPercentage(Math.abs(variacao_12_meses));
   const formattedVariation = formatPercentage(Math.abs(variacao_30_dias));
   return (
     <p>
-       {variacao_30_dias ? (
+      {variacao_30_dias ? (
         <strong>
           Seu acervo
           <strong>{` ${
@@ -29,7 +28,7 @@ function courtCasesMetrics({
       ) : (
         <strong>
           Seu acervo <strong>não aumentou ou diminuiu</strong> nos últimos 30 dias.
-        </strong>  
+        </strong>
       )}
       {nr_acoes_ultimos_60_dias ? (
         <strong>
@@ -66,7 +65,7 @@ function courtCasesMetrics({
           </span>
           foram ajuizadas
         </strong>
-        ) : (
+      ) : (
         <strong>nenhuma ação foi ajuizada.</strong>
       )}
       <p>
@@ -78,7 +77,7 @@ function courtCasesMetrics({
               <strong>
                 com {variacao_12_meses >= 0 ? `aumento` : `redução`} de {yearVariation}
               </strong>
-              ) : (
+            ) : (
               <strong>não houve aumento nem redução</strong>
             )}
           </span>
@@ -176,7 +175,7 @@ function picsMetrics({
               nrInstauradosAtual === 1 ? 'foi instaurado' : 'foram instaurados'
             } por você `}
           </strong>
-          ) : (
+        ) : (
           <strong>nenhum foi instaurado</strong>
         )}{' '}
         nesse período.
@@ -189,7 +188,7 @@ function picsMetrics({
             e você aproveitou <strong>{nr_aproveitamentos_atual}</strong>{' '}
             {nr_aproveitamentos_atual === 1 ? 'caso para' : `casos para`}
           </span>
-          ) : (
+        ) : (
           <span>você não aproveitou nenhum caso para</span>
         )}{' '}
         <strong>denúncias, cautelares e arquivamentos.</strong>
@@ -213,17 +212,23 @@ function picsMetrics({
 export default function MetricsProsecutions({ metrics, dbName }) {
   const { currentOffice } = useAppContext();
   const type = currentOffice ? currentOffice.tipo : undefined;
-  
+
   if (!metrics) return null;
   switch (dbName) {
     case 'tutela_processos':
       return courtCasesMetrics(metrics);
     case 'tutela_investigacoes':
       return inquiriesMetrics(metrics);
+    case 'tutela_finalizados':
+      return inquiriesMetrics(metrics);
     case 'pip_inqueritos':
       return inquiriesMetrics(metrics);
     case 'pip_pics':
-      return picsMetrics(metrics);      
+      return picsMetrics(metrics);
+    case 'pip_finalizados':
+      return picsMetrics(metrics);
+    case 'pip_aisp':
+      return picsMetrics(metrics);
     case 'criminal_processos':
       return inquiriesMetrics(metrics);
     case 'criminal_finalizados':

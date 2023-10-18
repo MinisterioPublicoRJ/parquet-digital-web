@@ -1,7 +1,7 @@
 .navbarList {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vh;
   margin-top: 3.25rem;
   background-color: var(--loginBlue);
 }
@@ -34,9 +34,16 @@
 }
 
 .navbarLogout {
-  width: 100vw;
-  margin: 12.3rem 0 2.9375rem 0.2rem;
   background-color: var(--loginBlue);
+  position: absolute;
+  bottom: 0;
+  position: absolute;
+}
+.navbarLogout:hover{
+  color: var(--loginBlue);
+  background-color: var(--lightBlue);
+  transition: all 0.3s;
+  width: 100%;
 }
 
 
@@ -46,6 +53,7 @@
   .navbarList {
     margin-top: 0;
     flex: 1;
+    width: 100%;
   }
 
   .navbarListItem {
@@ -71,6 +79,15 @@
 
   .navbarLogout {
     margin: 0;
-    width: auto;
+    position: absolute;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
+  .navbarLogout:hover{
+    color: var(--loginBlue);
+    background-color: var(--lightBlue);
+    transition: all 0.3s;
+    width: 100%;
   }
 }

@@ -46,7 +46,7 @@
   justify-content: space-between;
   align-items: flex-end;
   font-size: 0.875rem;
-  margin-top: -10px;
+  margin-top: -20px;
 }
 
 .deskButtonsTextsHeaderText p {
@@ -63,7 +63,6 @@
 .deskTabs {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   padding: 0 0 0 0;
   height: 100%;
   width: 100%;
@@ -130,11 +129,11 @@ div .deskButtonsCollectionPhrase {
   color: #374354;
   max-width: 48%;
   font-size: var(--smallFont);
-  margin-top: 33px;
+  margin-top: 19px;
 }
 
 .deskButtonsCollectionPhrase p {
-  line-height: 13px;
+  line-height: 12px;
 }
 
 .deskControlersAndMetrics {
@@ -167,7 +166,7 @@ div .deskButtonsCollectionPhrase {
 
 .deskButtonsTextsHeader {
   display: flex;
-  height: 100px;
+  height: 85px;
   justify-content: space-between;
 }
 
@@ -208,6 +207,10 @@ div .deskButtonsCollectionPhrase {
     margin: 0;
     font-size: 1rem;
     max-width: 100%;
+  }
+
+  .deskButtonsCollectionPhrase p {
+    line-height: 18px;
   }
 
   .deskButtonsCollections {

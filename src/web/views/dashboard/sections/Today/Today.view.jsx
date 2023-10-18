@@ -7,6 +7,7 @@ import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import InDevelopmentToday from '../../../../components/layoutPieces/InDevelopmentToday';
 import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import RoboResponsivo from '../../../../assets/svg/roboResponsivo';
+import Robot from '../../../../assets/svg/Robot';
 
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual from '../UserManual/UserManual.view';
@@ -19,9 +20,12 @@ import {
   todayTextArea,
   userArea,
   todayRobotPic,
+  todayRobotPicTablet,
+  todayRobotGif,
   todayBtn,
   roboResponsivo,
 } from './Today.module.css';
+
 
 function Today() {
   const { user, buildRequestParams, currentOffice, Api } = useAppContext();
@@ -230,7 +234,10 @@ function Today() {
             <Introduction />
           </Modal>
         )}
-        <img width="250px" src={PromotronGif} alt="robô-promoton" />
+        <img width="250px" src={PromotronGif} alt="robô-promoton" className={todayRobotGif}/>
+        <div className={todayRobotPicTablet}>
+          <Robot />
+        </div>
       </div>
     </article>
   );

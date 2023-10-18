@@ -12,6 +12,7 @@ import {
   desk,
   deskButtonsTextsHeaderText,
   deskButtonsInactive,
+  deskButtonsActive,
   openCasesChartsWrapper,
   componentWrapperCollections,
   deskButtonsCollectionPhrase,
@@ -275,7 +276,7 @@ function YourDesk() {
 
   // const hasNoMetrics is filled if no metrics value  is returned
   const hasNoMetrics =
-    metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria' : '';
+    metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria.' : '';
 
   return (
     <article className={deskOuter}>
@@ -298,7 +299,7 @@ function YourDesk() {
           <div
             className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
           >
-            {loading && (
+            {loading && metricsArray[0] == undefined && (
               <div className={spinnerWrapper}>
                 <Spinner size="medium" />
               </div>
@@ -331,7 +332,11 @@ function YourDesk() {
             activeTab === 'openCases' || activeTab === 'desk' ? '' : hide
           }`}
         >
-          <div className={`${deskButtonsTextsHeader}`}>
+          <div
+            className={`${deskButtonsTextsHeader} ${
+              activeTab === 'collection' ? deskButtonsInactive : deskButtonsActive
+            }`}
+          >
             <div className={deskButtonsInactive}>
               {deskButtonList.map((buttonTitle) => (
                 <InfoBoxYourDesk

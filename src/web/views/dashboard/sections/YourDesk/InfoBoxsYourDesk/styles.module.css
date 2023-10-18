@@ -9,7 +9,6 @@
   justify-content: center;
   flex-direction: column;
   width: 8.125rem;
-  height: 6.125rem;
   border-radius: 5px;
   text-transform: uppercase;
   text-align: center;
@@ -36,7 +35,7 @@ span .deskButtonsVistas {
 }
 
 .white {
-  width: 11.125rem;
+  width: 11.25rem;
   background-color: var(--white);
   color: #154763;
 }
@@ -66,7 +65,33 @@ span .deskButtonsVistas {
     margin-left: 0;
     box-sizing: border-box;
   }
+}
 
+/* PHONES */
+@media (max-width: 998px) {
+  .controlButtonActive {
+    width: 100%;
+    height: 100%;
+    margin: 3px;
+  }
+  .controlButtonInactive {
+    width: 100%;
+    height: 100%;
+    margin: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .controlButtonActive {
+    width: 100%;
+    height: 100%;
+    margin: 3px;
+  }
+  .controlButtonInactive {
+    width: 100%;
+    height: 100%;
+    margin: 3px;
+  }
   .controlButtonInner {
     margin: 0;
   }

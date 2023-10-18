@@ -293,7 +293,7 @@ function YourDesk() {
           <div
             className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
           >
-            {loading &&(
+            {loading && (metricsArray[0] == undefined) && (
               <div className={spinnerWrapper}>
                <Spinner size="medium" />
              </div>

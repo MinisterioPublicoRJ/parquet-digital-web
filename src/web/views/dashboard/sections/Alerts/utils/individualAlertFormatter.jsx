@@ -575,7 +575,7 @@ function ic1aConstructor(
           {" "}sem prorrogação{' '}
         </strong>
         há
-        <strong> mais de 1 ano.</strong>.
+        <strong> mais de 1 ano.</strong>
       </span>
     );
   } else {
@@ -983,7 +983,7 @@ function gateConstructor(alert, orgao, cpf, token) {
       <span>
         Há{' '}
         <strong>{single ? 'um documento com nova IT' : `${count} documentos com novas ITs`}</strong>
-        do <strong> GATE </strong>.
+        {' '}do<strong> GATE </strong>.
       </span>
     );
   } else {

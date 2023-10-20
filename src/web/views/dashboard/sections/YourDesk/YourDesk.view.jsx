@@ -21,6 +21,8 @@ import {
   deskControlersAndMetrics,
   openCasesChartsWrapperWeb,
   openCasesChartsWrapperResponsive,
+  componentWrappeTableError,
+  noOpenCases,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -45,6 +47,7 @@ import {
   BUTTON_DICT,
   CONTROL_BUTTONS,
   CRONTROL_BUTTON_TEXTS,
+  BUTTON_COLORS,
 } from './deskConstants';
 import { MAIN_DATA } from './OpenCasesList/openCasesConstants';
 
@@ -61,7 +64,7 @@ function YourDesk() {
   const [dbNames, setDBNames] = useState([]);
   const [collectionTable, setCollectionTable] = useState(getCollectionTable);
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
-  
+
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
@@ -153,8 +156,11 @@ function YourDesk() {
     setLoading(true);
     try {
       for (const dbName of tempDBNames) {
-        tabData = await await Api.getIntegratedDeskDetails({ ...buildRequestParams(), docType: dbName });
-        metricsArray.push(tabData.metrics)
+        tabData = await await Api.getIntegratedDeskDetails({
+          ...buildRequestParams(),
+          docType: dbName,
+        });
+        metricsArray.push(tabData.metrics);
       }
       setTabDetail((prevState) => ({ ...prevState, ...updatedState }));
     } catch (e) {
@@ -164,8 +170,7 @@ function YourDesk() {
     }
   }
 
-   
- /**
+  /**
    * Loads the data used in the OpenCases tab
    * @return {void} saves details to the state
    */
@@ -270,14 +275,16 @@ function YourDesk() {
   if (loading && !deskButtonList && !buttonListControl) {
     return <Spinner size="large" />;
   }
- 
- // const hasNoMetrics is filled if no metrics value  is returned
- const hasNoMetrics = metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria.' : '';
+
+  // const hasNoMetrics is filled if no metrics value  is returned
+  const hasNoMetrics =
+    metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria.' : '';
 
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
         <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
+
         <div className={deskControlersAndMetrics}>
           <div className={deskControlers}>
             {buttonListControl.map((buttonTitle) => (
@@ -290,16 +297,17 @@ function YourDesk() {
               />
             ))}
           </div>
+
           <div
             className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
           >
-            {loading && (metricsArray[0] == undefined) && (
+            {loading && metricsArray[0] == undefined && (
               <div className={spinnerWrapper}>
-               <Spinner size="medium" />
-             </div>
+                <Spinner size="medium" />
+              </div>
             )}
-          <div>
-            {metricsArray && !hasNoMetrics && (
+            <div>
+              {metricsArray && !hasNoMetrics && (
                 <>
                   {metricsArray.map((metrics, index) => (
                     <MetricsProsecutions
@@ -319,6 +327,7 @@ function YourDesk() {
           </div>
         </div>
       </div>
+
       <div className={deskTabs}>
         <div
           className={`${componentWrapper} ${
@@ -337,6 +346,7 @@ function YourDesk() {
                   text={BUTTON_TEXTS[buttonTitle]}
                   number={docsQuantity[buttonTitle]}
                   error={!docsQuantity[buttonTitle] && !loading}
+                  color={BUTTON_COLORS[buttonTitle]}
                 />
               ))}
             </div>
@@ -367,13 +377,17 @@ function YourDesk() {
               )}
             </div>
           </div>
-          {!!tabDetail.openCases && (
-            <OpenCasesList
-              buildRequestParams={buildRequestParams}
-              chartData={tabDetail.openCases}
-              isLoading={!tabDetail.openCases && loading}
-            />
+          {!!tabDetail.openCases && !loading && (
+            <div className={componentWrappeTableError}>
+              <OpenCasesList
+                buildRequestParams={buildRequestParams}
+                chartData={tabDetail.openCases}
+                isLoading={!tabDetail.openCases && loading}
+              />
+              <p> Nenhuma vista aberta no momento.</p>
+            </div>
           )}
+          
         </div>
         <div className={`${componentWrapper} ${activeTab === 'collection' ? ' ' : hide}`}>
           <div className={componentWrapperCollections}>
@@ -389,6 +403,7 @@ function YourDesk() {
                     text={BUTTON_TEXTS[buttonTitle]}
                     number={docsQuantity[buttonTitle]}
                     error={!docsQuantity[buttonTitle] && !loading}
+                    color={BUTTON_COLORS[buttonTitle]}
                   />
                 ))}
               </div>

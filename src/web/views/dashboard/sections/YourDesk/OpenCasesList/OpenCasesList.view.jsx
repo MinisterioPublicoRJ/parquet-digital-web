@@ -44,7 +44,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
   const [emptyTab, setEmptyTab] = useState(!chartData);
-
+  
   useEffect(() => {
     if (!chartData) return;
 
@@ -254,7 +254,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
  
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
-
+  // console.log(tabDetails);
   return (
     <>
       <div className={allBoxFilters}>
@@ -270,22 +270,12 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
-        {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] ? (
+        {tabDetails && !emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
           <CustomTable
             data={tabDetails[activeTab][currentPage]}
             columns={TABLE_COLUMNS}
             showHeader
           />
-        ) : (
-          <div className={`${openCasesTableWrapper} ${openCasesEmptyTable}`}>
-            {tabLoading && <Spinner size="medium" />}
-            <p className={noOpenCases}> Nenhuma vista aberta no momento </p>
-            <CustomTable
-              data={Array(20).fill({ content: '' })}
-              columns={TABLE_COLUMNS}
-              showHeader
-            />
-          </div>
         )}
         
         {!emptyTab &&(

@@ -21,6 +21,8 @@ import {
   deskControlersAndMetrics,
   openCasesChartsWrapperWeb,
   openCasesChartsWrapperResponsive,
+  componentWrappeTableError,
+  noOpenCases,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -375,13 +377,17 @@ function YourDesk() {
               )}
             </div>
           </div>
-          {!!tabDetail.openCases && (
-            <OpenCasesList
-              buildRequestParams={buildRequestParams}
-              chartData={tabDetail.openCases}
-              isLoading={!tabDetail.openCases && loading}
-            />
+          {!!tabDetail.openCases && !loading && (
+            <div className={componentWrappeTableError}>
+              <OpenCasesList
+                buildRequestParams={buildRequestParams}
+                chartData={tabDetail.openCases}
+                isLoading={!tabDetail.openCases && loading}
+              />
+              <p> Nenhuma vista aberta no momento.</p>
+            </div>
           )}
+          
         </div>
         <div className={`${componentWrapper} ${activeTab === 'collection' ? ' ' : hide}`}>
           <div className={componentWrapperCollections}>

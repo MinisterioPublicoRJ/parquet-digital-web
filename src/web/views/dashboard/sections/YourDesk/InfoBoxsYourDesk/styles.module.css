@@ -93,7 +93,90 @@ span .deskButtonsVistas {
     margin: 3px;
   }
   .controlButtonInner {
-    margin: 0;
+    margin-top: 15px ;
+    font-weight: 900;
+    font-size: var(--spotlightSize);
+  }
+ .controlButtonOuter p{
+   margin-top: 0px;
+   font-size: 12px;
+  }
+  .controlButtonOuter:nth-child(2){
+    background-color: #71A2D0;
+    color: var(--white);
+  }
+ .controlButtonOuter:nth-child(1){
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    color: #154763;
+    flex-direction: column;
+    justify-content: center;
+    width: 180px;
+    text-align: center;
+    border: 0.5px #EEEEEE solid;
+    flex-direction: column;
+    
+ }
+ .controlButtonOuter:nth-child(3){
+    background-color: #71D0A4;
+    color: var(--white);
+  }
+  @media (min-width: 481px) and (max-width: 1200px) {
+   
+    .controlButtonOuter:nth-child(1){
+      height: 120px;
+    }
+    .controlButtonOuter:nth-child(1){
+      width: 100%;
+    }
+    .controlButtonOuter:nth-child(2){
+      width: 100%;
+    }
+    .controlButtonOuter:nth-child(3){
+      width: 100%;
+    }
+    .controlButtonInner {
+      font-size: 2.0rem;
+    }
+
+  }
+  /* PHONES */
+  @media (max-width: 998px) {
+    .controlButtonActive {
+      width: 100%;
+      height: 100%;
+      margin: 3px;
+    }
+    .controlButtonInactive {
+      width: 100%;
+      height: 100%;
+      margin: 3px;
+    }
+  }
+  @media (max-width: 480px) {
+    .controlButtonActive {
+      width: 100%;
+      height: 100%;
+      margin: 3px;
+    }
+    .controlButtonInactive {
+      width: 100%;
+      height: 100%;
+      margin: 3px;
+    }
+    .controlButtonOuter:nth-child(1){
+      width: 100%;
+    }
+    .controlButtonOuter:nth-child(2){
+      width: 47%;
+    }
+    .controlButtonOuter:nth-child(3){
+      width: 50%;
+    }
+    .controlButtonInner {
+      font-size: 1.8rem ;
+    }
   }
 
   .controlButtonInner {

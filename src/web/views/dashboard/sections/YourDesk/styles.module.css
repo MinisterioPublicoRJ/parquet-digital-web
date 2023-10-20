@@ -28,6 +28,9 @@
   display: flex;
   justify-content: space-between;
 }
+.componentWrappeTableError {
+  text-align: center;
+}
 
 .deskButtonsTextsHeaderText {
   width: 100%;
@@ -171,10 +174,15 @@ div .deskButtonsCollectionPhrase {
   .deskButtonsTextsHeader {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    align-items: center;
+    height: 35vh;
     justify-content: space-between;
-    justify-content: center;
+    width: 100%;
+  }
+  div .deskButtonsCollectionPhrase {
+    display: none;
+  }
+  .componentWrapperCollections{
+    height: 20vh;
   }
 }
 @media (min-width: 1780px) {
@@ -278,5 +286,24 @@ div .deskButtonsCollectionPhrase {
 @media (min-width: 1900) {
   .yourCollectionButtons div:nth-child(1) {
     height: 119px;
+  }
+}
+@media (min-width: 481px) and (max-width: 1200px){
+  .deskButtonsInactive {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .yourCollectionButtons div{
+    width: 100%;
+  }
+  .yourCollectionButtons div:nth-child(1){
+    width: 100%;
+  }
+  .yourCollectionButtons div:nth-child(2){
+    width: 100%;
+  }
+  .yourCollectionButtons div:nth-child(3){
+    width: 100%;
   }
 }

@@ -52,14 +52,24 @@
     background-color: #71D0A4;
     color: var(--white);
   }
-  @media (min-width: 1780px) {
-    .controlButtonOuter{
-      width: 130px;
-      height: 120px;
-    }
+  @media (min-width: 481px) and (max-width: 1200px) {
+   
     .controlButtonOuter:nth-child(1){
       height: 120px;
     }
+    .controlButtonOuter:nth-child(1){
+      width: 100%;
+    }
+    .controlButtonOuter:nth-child(2){
+      width: 100%;
+    }
+    .controlButtonOuter:nth-child(3){
+      width: 100%;
+    }
+    .controlButtonInner {
+      font-size: 2.0rem;
+    }
+
   }
   /* PHONES */
   @media (max-width: 998px) {
@@ -95,7 +105,7 @@
       width: 50%;
     }
     .controlButtonInner {
-      font-size: 2.5rem ;
+      font-size: 1.8rem ;
     }
   }
 

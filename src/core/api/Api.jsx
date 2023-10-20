@@ -69,10 +69,13 @@ function ApiCreator(jwtToken) {
     baseURL: BASE_URL,
   });
 
+   
   const addHeaders = (config) => {
     if (jwtToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers.common.Authorization = `Bearer ${jwtToken}`;
+      
+      
     }
     return config;
   };

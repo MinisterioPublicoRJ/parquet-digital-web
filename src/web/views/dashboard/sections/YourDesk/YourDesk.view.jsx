@@ -47,6 +47,7 @@ import {
   BUTTON_DICT,
   CONTROL_BUTTONS,
   CRONTROL_BUTTON_TEXTS,
+  BUTTON_COLORS,
 } from './deskConstants';
 import { MAIN_DATA } from './OpenCasesList/openCasesConstants';
 
@@ -283,6 +284,7 @@ function YourDesk() {
     <article className={deskOuter}>
       <div className={deskHeader}>
         <SectionTitle value="SELECIONE SUA VISUALIZAÇÃO:" glueToTop />
+
         <div className={deskControlersAndMetrics}>
           <div className={deskControlers}>
             {buttonListControl.map((buttonTitle) => (
@@ -295,6 +297,7 @@ function YourDesk() {
               />
             ))}
           </div>
+
           <div
             className={`${deskButtonsCollectionPhrase} ${activeTab === 'collection' ? ' ' : hide}`}
           >
@@ -324,6 +327,7 @@ function YourDesk() {
           </div>
         </div>
       </div>
+
       <div className={deskTabs}>
         <div
           className={`${componentWrapper} ${
@@ -342,6 +346,7 @@ function YourDesk() {
                   text={BUTTON_TEXTS[buttonTitle]}
                   number={docsQuantity[buttonTitle]}
                   error={!docsQuantity[buttonTitle] && !loading}
+                  color={BUTTON_COLORS[buttonTitle]}
                 />
               ))}
             </div>
@@ -398,6 +403,7 @@ function YourDesk() {
                     text={BUTTON_TEXTS[buttonTitle]}
                     number={docsQuantity[buttonTitle]}
                     error={!docsQuantity[buttonTitle] && !loading}
+                    color={BUTTON_COLORS[buttonTitle]}
                   />
                 ))}
               </div>

@@ -432,7 +432,7 @@ function dntjConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
       <span>
         Há
         {single ? ' um processo civil ' : ` ${count} processos cíveis  `}
-        no TJRJ <strong> há mais de 120 dias </strong>.
+        no TJRJ <strong> há mais de 120 dias.</strong>
       </span>
     );
   } else {
@@ -588,7 +588,7 @@ function ic1aConstructor(
         O inquérito civil
         <strong>{` ${docNum} `}</strong>
         está sem prorrogação há
-        <strong> mais de 1 ano.</strong>.
+        <strong> mais de 1 ano.</strong>
       </span>
     );
   }
@@ -627,7 +627,7 @@ function nf30Constructor({ dropdown, alertCode, count, docNum, date, alertId }, 
       <span>
         A notícia de fato <strong>{` ${docNum} `}</strong>
         está há mais de 30 dias
-        <strong> sem finalização, autuação ou prorrogação.</strong>.
+        <strong> sem finalização, autuação ou prorrogação.</strong>
       </span>
     );
   }
@@ -670,7 +670,7 @@ function nf120Constructor(
       <span>
         A notícia de fato <strong>{` ${docNum} `}</strong>
         está há mais de 120 dias
-        <strong> sem finalização, autuação ou prorrogação.</strong>.
+        <strong> sem finalização, autuação ou prorrogação.</strong>
       </span>
     );
   }
@@ -906,7 +906,7 @@ function prcrConstructor(
             possivelmente
             <strong> prescreverão </strong>
             em menos de
-            <strong> 90 dias </strong>
+            <strong> 90 dias. </strong>
           </span>
         );
         break;
@@ -1115,7 +1115,7 @@ function ctacConstructor(
     ];
     message = (
       <span>
-        No documento <strong>{`${docNum}`}</strong> houve
+        No documento <strong>{`${docNum}`}</strong> houve{" "}
         <strong>celebração de TAC que ainda não foi comunicado ao CSMP.</strong>
       </span>
     );

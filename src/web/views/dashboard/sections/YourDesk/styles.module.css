@@ -193,11 +193,7 @@ div .deskButtonsCollectionPhrase {
   }
  
 }
-@media (min-width: 1780px) {
-  .yourCollectionButtons div:nth-child(1) {
-    height: 120px;
-  }
-}
+
 /* Tablets */
 @media (max-width: 820px) {
   .deskOuter {

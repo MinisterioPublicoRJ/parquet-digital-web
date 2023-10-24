@@ -186,6 +186,7 @@ div .deskButtonsCollectionPhrase {
   .componentWrapperCollections{
     height: 20vh;
   }
+  
 }
 @media (min-width: 1780px) {
   .yourCollectionButtons div:nth-child(1) {

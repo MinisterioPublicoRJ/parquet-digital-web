@@ -21,7 +21,6 @@
 .desk {
   grid-area: desk;
   display: flex;
-
 }
 
 .alerts {
@@ -43,4 +42,10 @@
   .alerts {
     display: none;
   }
+}
+
+@media (max-width: 768px) {
+.desk {
+  display: inline;
+ }
 }

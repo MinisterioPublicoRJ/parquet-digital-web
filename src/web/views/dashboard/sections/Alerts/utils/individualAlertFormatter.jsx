@@ -521,8 +521,7 @@ function pa1aConstructor(
         <strong>{` ${count} `}</strong>
         <strong>{`${
           single ? 'procedimento administrativo aberto' : 'procedimentos administrativos abertos'
-        } há mais de 1 ano`}</strong>
-        .
+        } há mais de 1 ano`}</strong>.
       </span>
     );
   } else {
@@ -740,7 +739,7 @@ function ouviConstructor(alert, orgao, token) {
     message = (
       <span>
         <strong>{`Há ${single ? 'um expediente' : `${count} expedientes`}`}</strong>
-        <strong>{` de Ouvidoria pendente de recebimento`}</strong>.
+        <span>{` de Ouvidoria pendente de recebimento`}.</span>
       </span>
     );
   } else {
@@ -983,7 +982,7 @@ function gateConstructor(alert, orgao, cpf, token) {
       <span>
         Há{' '}
         <strong>{single ? 'um documento com nova IT' : `${count} documentos com novas ITs`}</strong>
-        {' '}do<strong> GATE </strong>.
+        {' '}do GATE.
       </span>
     );
   } else {
@@ -1032,7 +1031,7 @@ function dt2iConstructor({ dropdown, alertCode, count, docNum, alertId }, orgao,
         O processo
         <strong>{` ${docNum}`}</strong>
         possui
-        <strong> movimentações na segunda instância</strong>.
+        <strong> movimentações na segunda instância.</strong>
       </span>
     );
   }
@@ -1166,7 +1165,7 @@ function pppvConstructor(
       <span>
         O procedimento preparatório {``}
         <strong>{`${docNum}`}</strong> {``}
-        está com o<strong> prazo próximo de vencer.</strong>.
+        está com o<strong> prazo próximo de vencer.</strong>
       </span>
     );
   }
@@ -1213,7 +1212,7 @@ function ppfpConstructor(
       <span>
         O procedimento preparatório
         <strong>{` ${docNum} `}</strong>
-        está <strong> fora do prazo</strong>.
+        está <strong>fora do prazo.</strong>
       </span>
     );
   }

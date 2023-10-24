@@ -7,7 +7,6 @@
     'navbar today alerts'
     'navbar desk alerts'
     'navbar desk alerts';
-  row-gap: 1rem;
 }
 
 .navbar {
@@ -43,4 +42,10 @@
   .alerts {
     display: none;
   }
+}
+
+@media (max-width: 768px) {
+.desk {
+  display: inline;
+ }
 }

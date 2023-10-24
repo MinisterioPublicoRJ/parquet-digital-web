@@ -270,14 +270,13 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       </div>
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
-        {tabDetails && !emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
+        {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
           <CustomTable
             data={tabDetails[activeTab][currentPage]}
             columns={TABLE_COLUMNS}
             showHeader
           />
         )}
-        
         {!emptyTab &&(
           <Pagination
             totalPages={totalPagesByTab[activeTab] || 0}

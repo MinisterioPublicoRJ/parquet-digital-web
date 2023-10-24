@@ -19,3 +19,8 @@
   letter-spacing: 2px;
   text-transform: uppercase;
 }
+@media (max-width: 768px) {
+.sectionTitleGlued {
+  margin-top: 5px;
+}
+}

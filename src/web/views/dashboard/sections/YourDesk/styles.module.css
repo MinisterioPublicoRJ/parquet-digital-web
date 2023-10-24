@@ -176,7 +176,6 @@ div .deskButtonsCollectionPhrase {
   .deskButtonsTextsHeader {
     display: flex;
     flex-direction: column;
-    height: 35vh;
     justify-content: space-between;
     width: 100%;
   }
@@ -187,6 +186,12 @@ div .deskButtonsCollectionPhrase {
     height: 20vh;
   }
   
+}
+@media (min-width:820px) and (max-width: 1200px) {
+  .deskButtonsTextsHeader p{
+   margin-top: 20px;
+  }
+ 
 }
 @media (min-width: 1780px) {
   .yourCollectionButtons div:nth-child(1) {
@@ -335,4 +340,5 @@ div .deskButtonsCollectionPhrase {
   .yourCollectionButtons div:nth-child(3){
     width: 100%;
   }
+ 
 }

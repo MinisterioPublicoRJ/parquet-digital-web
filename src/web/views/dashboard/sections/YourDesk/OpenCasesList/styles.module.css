@@ -146,6 +146,13 @@
     margin-top: 20px;
   }
 }
+
+@media (min-width:820px) and (max-width: 1200px) {
+  .allBoxFilters{
+   margin-top: 83px;
+  }
+ 
+}
 /* PHONES */
 @media (max-width: 480px) {
   .allBoxFilters {

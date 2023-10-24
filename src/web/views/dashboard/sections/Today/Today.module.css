@@ -180,22 +180,28 @@
 .todayRobotPicTablet{
   display: none;
 }
-
+@media (min-width: 768px) and (max-width: 1300px) {
+  .todayOuter{
+    height: 100%;
+    padding: 0;
+  }
+}
 /* TABLETS */
 @media (min-width: 481px) and (max-width: 768px) {
   .todayOuter{
-    height: 20vh;
+    height: 100%;
     padding: 0 2rem 0 0;
     box-sizing: border-box;
   }
   .userArea {
     width: 60%;
+    margin-top: 8px;
   }
   .userArea h1{
     font-size: clamp(1.3rem, 2vw, 1.5rem);
   }
   .todayRobotPic {
-    height:120%;
+    height: 120%;
     display: flex;
     margin-right: 1rem;
   }
@@ -203,6 +209,7 @@
     width: 60%;
     height: 100%;
     font-size: clamp(.8rem, 1.5vw, 1rem);
+    margin-bottom: 10px;
   }
   .todayRobotGif{
     display: none;
@@ -233,7 +240,7 @@
   }
   .todayOuter{
     padding: 0px;
-    height: 58vh;
+    height: 100%;
     width: 80%;
   }
   .roboResponsivo{

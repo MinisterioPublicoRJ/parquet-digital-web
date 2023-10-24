@@ -45,11 +45,6 @@
   .tdStyle {
     width: 100%;
   }
-  .tHeadStyle tr {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .tBodyStyle td {
     min-width: 45%;
   }

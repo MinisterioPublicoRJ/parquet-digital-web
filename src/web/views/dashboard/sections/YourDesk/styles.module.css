@@ -176,7 +176,6 @@ div .deskButtonsCollectionPhrase {
   .deskButtonsTextsHeader {
     display: flex;
     flex-direction: column;
-    height: 35vh;
     justify-content: space-between;
     width: 100%;
   }
@@ -188,11 +187,13 @@ div .deskButtonsCollectionPhrase {
   }
   
 }
-@media (min-width: 1780px) {
-  .yourCollectionButtons div:nth-child(1) {
-    height: 120px;
+@media (min-width:820px) and (max-width: 1200px) {
+  .deskButtonsTextsHeader p{
+   margin-top: 20px;
   }
+ 
 }
+
 /* Tablets */
 @media (max-width: 820px) {
   .deskOuter {
@@ -335,4 +336,5 @@ div .deskButtonsCollectionPhrase {
   .yourCollectionButtons div:nth-child(3){
     width: 100%;
   }
+ 
 }

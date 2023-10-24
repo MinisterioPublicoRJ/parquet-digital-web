@@ -279,7 +279,6 @@ function YourDesk() {
   // const hasNoMetrics is filled if no metrics value  is returned
   const hasNoMetrics =
     metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria.' : '';
-
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -355,7 +354,7 @@ function YourDesk() {
                 sumValues(tabDetail.openCases) > 0 ? (
                   <>
                     <p>
-                      As <strong>{tabDetail.openCases.allDate} vistas</strong> abertas
+                      As <strong>{docsQuantity.openCases} vistas</strong> abertas
                       <br /> estão distribuídas da seguinte forma:
                     </p>
                     <div className={openCasesChartsWrapper}>

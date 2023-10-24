@@ -15,7 +15,7 @@
 .deskButtonsInactive {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  column-gap: 0.5rem;
+  column-gap: 0.2rem;
 }
 
 .deskButtonsTextsHeader {
@@ -33,7 +33,7 @@
 .deskButtonsCollections {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  column-gap: 0.5rem;
+  column-gap: 0.2rem;
 }
 .componentWrappeTableError {
   text-align: center;
@@ -67,7 +67,7 @@
   display: flex;
   flex-direction: column;
   padding: 0 0 0 0;
-  height: 100%;
+  height: 82%;
   width: 100%;
 }
 

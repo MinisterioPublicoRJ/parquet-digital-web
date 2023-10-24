@@ -7,7 +7,6 @@
     'navbar today alerts'
     'navbar desk alerts'
     'navbar desk alerts';
-  row-gap: 1rem;
 }
 
 .navbar {
@@ -22,6 +21,7 @@
 .desk {
   grid-area: desk;
   display: flex;
+
 }
 
 .alerts {

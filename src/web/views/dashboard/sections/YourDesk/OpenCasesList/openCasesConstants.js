@@ -23,3 +23,10 @@ export const TABLE_COLUMNS = {
   Classe: 'classe',
 };
 
+export const TABLE_COLUMNS_MOBILE = {
+  MPRJ: 'numeroMprj',
+  'Nº Externo': 'numeroExterno',
+  'Último Andamento no MP': 'dtAbertura',
+  Classe: 'classe',
+};
+

@@ -12,8 +12,9 @@
 .openCasesEmptyTableSearchString{
   text-align: center;
 }
-
-
+.customTableMobile{
+  display: none;
+}
 .processDetailBtn {
   color: #8998ac;
   font-size: var(--smallFont);
@@ -153,6 +154,7 @@
   }
  
 }
+
 /* PHONES */
 @media (max-width: 480px) {
   .allBoxFilters {
@@ -174,11 +176,15 @@
     display: flex;
     justify-content: space-around;
   }
-
-}
-
-@media (min-width: 1780px) {
-  .allBoxFilters{
-    margin-top: 20px;
+  .customTableMobile{
+    display: block;
   }
+  .customTableWeb{
+    display: none;
+  }
+  .openCasesTableWrapper th:first-child {
+    width: 13vw;
+  }
+
 }
+

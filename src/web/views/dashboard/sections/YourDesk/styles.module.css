@@ -182,14 +182,15 @@ div .deskButtonsCollectionPhrase {
   div .deskButtonsCollectionPhrase {
     display: none;
   }
-  .componentWrapperCollections{
-    height: 20vh;
-  }
   
 }
-@media (min-width:820px) and (max-width: 1200px) {
+
+@media (min-width:768px) and (max-width: 1200px) {
   .deskButtonsTextsHeader p{
    margin-top: 20px;
+  }
+  .deskOuter{
+    margin-top: -36px;
   }
  
 }

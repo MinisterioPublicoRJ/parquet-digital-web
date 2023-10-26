@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Roboresponsivo({ width, height }) {
+export default function RoboResponsivo() {
   return (
     <svg
       width="117"

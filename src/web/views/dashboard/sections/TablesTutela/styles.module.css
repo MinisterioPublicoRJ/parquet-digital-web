@@ -45,12 +45,14 @@
   flex-direction: column;
   height: 100%;
   margin-top: -14px;
+  overflow-y: auto;
 }
 
 .tablesTutelaHeader {
   display: flex;
   flex: 1;
   flex-direction: row;
+  margin-right: 54px;
 }
 
 .tablesTutelaHeader button {
@@ -98,12 +100,24 @@
   margin-top: 42px;
  
 }
-.mainTableTutelasOuterBoxSearch h2{
-  margin-top: 30px;
+@media (min-width: 480px) and (max-width: 1200px) {
+  .processListOuter {
+    position: relative;
+  }
 }
+
+
 @media (max-width: 480px) {
   .processListOuter {
     position: relative;
 
+  }
+  .mainTableTutelasOuterBoxSearch{
+    display: flex;
+    flex-direction: column;
+   
+  }
+  .tablesTutelaHeader {
+    margin-right: 0px;
   }
 }

@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 
 import { TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
 import { useAppContext } from '../../../../../../core/app/App.context';
-import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
+import {
+  Spinner,
+  CustomTable,
+  Pagination,
+  ProcessDetail,
+} from '../../../../../components';
 import { Modal, SearchBox } from '../../../../../components/layoutPieces';
 import { highlightJSX } from '../../../../../utils';
 
 import {
   openCasesTableWrapper,
   openCasesEmptyTable,
-  noOpenCases,
   processDetailBtn,
   alertTagWrapper,
   alertTag,
@@ -44,7 +48,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
   const [emptyTab, setEmptyTab] = useState(!chartData);
-  
+
   useEffect(() => {
     if (!chartData) return;
 
@@ -251,7 +255,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   if (isLoading || !chartData) {
     return <Spinner size="large" />;
   }
- 
+
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
   // console.log(tabDetails);
@@ -277,14 +281,14 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             showHeader
           />
         )}
-        {!emptyTab &&(
+        {!emptyTab && (
           <Pagination
             totalPages={totalPagesByTab[activeTab] || 0}
             handlePageClick={(page) => handlePageClick(page)}
             currentPage={currentPage}
           />
-        )} 
-        
+        )}
+
         {isProcessDetailOpen && (
           <Modal withExitButton close={handleProcessDetail} previousElement={selectedElement}>
             <ProcessDetail

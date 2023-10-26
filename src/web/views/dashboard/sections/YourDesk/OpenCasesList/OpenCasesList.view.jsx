@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 
 import { TABLE_COLUMNS, TAB_MATCHER, TABLE_COLUMNS_MOBILE } from './openCasesConstants';
 import { useAppContext } from '../../../../../../core/app/App.context';
-import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
+import {
+  Spinner,
+  CustomTable,
+  Pagination,
+  ProcessDetail,
+} from '../../../../../components';
 import { Modal, SearchBox } from '../../../../../components/layoutPieces';
 import { highlightJSX } from '../../../../../utils';
 

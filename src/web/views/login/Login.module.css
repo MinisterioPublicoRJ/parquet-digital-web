@@ -1,171 +1,184 @@
-.loginWrapper {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: 100vh;
+:root {
+  --login-gray: #cacaca;
+  --login-light-gray: #faeceb;
+  --login-light-blue: #71a2d0;
+  --responsive-font-md: clamp(0.85rem, 1vw, 1rem);
+  --responsive-font-lg: clamp(1rem, 1.5vw, 1.25rem);
 }
 
 .loginInner {
-  align-items: center;
-  border-radius: 15px;
-  box-shadow: inset 0px 0px 0px 0px var(--lightGray);
-  border: 1px solid var(--lightGray);
-  display: flex;
-  width: 70%;
-  min-height: 440px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4fr 1fr;
+  place-items: center;
+  background-color: var(--loginBlue);
+  min-height: 100vh; /* In case svh doesn't work */
+  min-height: 100svh;
 }
-.loginImagesBanner{
-  display: flex;
-  justify-content: space-between;
-}
-.logoGadgBanner{
-  width: 120px;
-  height: 50px;
-  margin-top: 100px;
-  margin-left: 20px;
-}
-.roboGadgBanner{
-  height: 149px;
-  width: 200px;
-}
-.loginImageBanner {
-  display: flex;
-  height: 100%;
-  flex: 1;
-  background-color: #154763;
-  color: #FCFCFC;
-  flex-direction: column;
-  font-size: 14px;
-  border-radius: 15px 0px 0px 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
-}
-.loginBanner{
-  padding: 30px;
-}
-.loginImageBanner span{
-  background-color: #FFCE99;
-  color: #154763;
-}
+
 .loginFormArea {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 85%;
-  justify-content: center;
+  width: 100%;
+  padding: 1.75rem;
+  box-sizing: border-box;
 }
 
 .loginParquetHeader {
-  text-transform: uppercase;
-  font-weight: 900;
-  color: var(--loginBlue);
-  font-size: var(--titleFontSize);
+  display: flex;
+  justify-content: center;
 }
 
 .loginInput {
-  border: 1px solid var(--lightGray);
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid var(--login-gray);
+  color: var(--login-gray);
+  background-color: transparent;
   border-radius: 7px;
-  box-sizing: border-box;
-  color: #505050;
-  /* font-family: var(--defaultFont); */
-  height: 40px;
-  padding: 0 18px 0 18px;
   text-align: center;
-  width: 70%;
-  margin-top: 20px;
+  margin-top: 1.25rem;
+  font-family: var(--defaultFont);
+  font-size: var(--responsive-font-md);
 }
-/* Removes ugly dark border on Chrome */
+
+.loginInput::placeholder {
+  color: var(--login-gray);
+}
+
 .loginInput:focus {
-  outline: none;
-  color: var(--darkGray);
+  outline: 2px solid var(--login-gray);
 }
 
 .loginSubmitBtn {
-  background-color: var(--lightGray);
-  border: none;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid var(--login-gray);
+  color: var(--loginBlue);
+  background-color: var(--login-light-gray);
   border-radius: 7px;
-  color: var(--darkGray);
-  height: 40px;
-  text-transform: uppercase;
-  width: 70%;
-  margin-top: 20px;
-}
-
-.loginSubmitBtn:hover {
-  background-color: var(--pt-blue);
-}
-
-/* Chrome, Firefox, Opera, Safari 10.1+ */
-::placeholder {
-  color: var(--lightGray);
-  opacity: 1;
+  text-align: center;
+  margin-top: 1.25rem;
+  font-family: var(--defaultFont);
+  font-size: var(--responsive-font-md);
 }
 
 .greetings {
-  margin-top: 10px;
-  color: #8a8a8a;
+  margin-top: 0.6rem;
+  color: var(--login-gray);
   font-family: var(--defaultFont);
-  font-size: 12px;
+  font-size: var(--responsive-font-md);
 }
 
 .greetings strong {
-  display: block;
   text-align: center;
+  display: block;
 }
 
-/* TABLETS */
-@media (min-width: 481px) and (max-width: 1025px) {
-  .loginInner {
-    display: flex;
-    flex-direction: column ;
-  }
-  .loginFormArea{
-    width: 100%;
-  }
-  .loginImageBanner{
-    border-radius: 15px 15px 0px 0px;
+.loginTip {
+  color: var(--login-light-blue);
+  text-align: center;
+  opacity: 0.8;
+  font-size: var(--responsive-font-sm);
+}
 
-  }
-  .loginImagesBanner{
-    display: none;
+.loginInfoArea {
+  display: none;
+}
+
+.loginInnerLogoFooter img {
+  max-width: 100%;
+}
+
+.loginFooter {
+  display: none;
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+  .loginFormArea {
+    width: auto;
   }
 }
 
-/* PHONES */
-@media (max-width: 480px) {
-  .loginWrapper{
-    width: 100%;
-  }
-  .loginInner {
+/* Laptop and Desktop */
+@media (min-width: 1024px) {
+  .loginWrapper {
     display: flex;
-    flex-direction: column ;
-    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    min-height: 100vh;
+    background: url(../../assets/svg/background-login.svg) no-repeat;
+    background-size: cover;
+    background-position: center;
   }
-  .loginFormArea{
-    width: 100%;
+
+  .loginInner {
+    width: min(1200px, 70vw);
+    height: min(500px, 50vw);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    min-height: auto;
+    border-radius: 7px;
   }
-  .loginBanner{
-    padding: 5px;
+
+  .loginFormArea {
+    width: 19rem;
+    max-width: 100%;
+    padding: 3rem 0;
+    box-sizing: border-box;
   }
-  .loginImageBanner{
-    border-radius: 15px;
-    width: 90%;
-    padding: 15px;
+
+  .loginParquetHeader {
+    justify-content: start;
   }
-  .logoGadgBanner{
+
+  .loginInput {
+    text-align: left;
+    padding: 0 0.6rem;
+    box-sizing: border-box;
+  }
+
+  .loginInfoArea {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 2rem;
+    padding-right: 1rem;
+  }
+
+  .loginInfoAreaText {
+    max-width: min(30rem, 90%);
+    color: #fff;
+    font-size: var(--responsive-font-lg);
+    line-height: 32px;
+  }
+
+  .loginInfoAreaText a {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .loginInnerLogoFooter {
     display: none;
   }
-  .roboGadgBanner{
-    display: none;
+
+  .loginFooter {
+    width: min(1200px, 70vw);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  .loginInput{
-    width: 90%;
+
+  .loginFooter p {
+    width: 100%;
+    text-align: center;
+    color: var(--loginBlue);
   }
-  .loginSubmitBtn{
-    width: 90%;
+
+  .loginFooter img {
+    padding-right: 1rem;
   }
 }

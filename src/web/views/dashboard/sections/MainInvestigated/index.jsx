@@ -147,9 +147,7 @@ function MainInvestigated() {
    * @return {void}
    */
 
-  useEffect(() => {
-    setPage(1);
-  }, [searchString]);
+
   
   useEffect(() => {
   const  getMainInvestigated = async() => {
@@ -157,6 +155,7 @@ function MainInvestigated() {
     setLoading(true);
     try {
       response = await Api.getMainInvestigated(buildRequestParams(), page, totalPages, searchString);
+      console.log(response)
       setTableData(cleanData(response.investigated));
       setTotalPages(response.pages);
     } catch (e) {

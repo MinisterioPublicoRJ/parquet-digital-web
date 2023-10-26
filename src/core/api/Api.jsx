@@ -75,7 +75,6 @@ function ApiCreator(jwtToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers.common.Authorization = `Bearer ${jwtToken}`;
       
-      
     }
     return config;
   };
@@ -242,16 +241,8 @@ function ApiCreator(jwtToken) {
     return successIndicatorsTransform(data);
   }
 
-  async function getMainInvestigated({ orgao, cpf }, searchString, page) {
+  async function getMainInvestigated({ orgao, cpf }) {
     const params = {};
-
-    if (searchString) {
-      params.search_string = searchString;
-    }
-
-    if (page) {
-      params.page = page;
-    }
 
     const { data } = await axiosInstance.get(PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }), {
       params,

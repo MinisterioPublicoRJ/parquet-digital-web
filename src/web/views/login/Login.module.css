@@ -2,7 +2,6 @@
   --login-gray: #cacaca;
   --login-light-gray: #faeceb;
   --login-light-blue: #71a2d0;
-  --login-bg-blue: #eaf5fa;
   --responsive-font-md: clamp(0.85rem, 1vw, 1rem);
   --responsive-font-lg: clamp(1rem, 1.5vw, 1.25rem);
 }
@@ -109,7 +108,9 @@
     align-items: center;
     gap: 1rem;
     min-height: 100vh;
-    background-color: var(--login-bg-blue);
+    background: url(../../assets/svg/background-login.svg) no-repeat;
+    background-size: cover;
+    background-position: center;
   }
 
   .loginInner {
@@ -119,7 +120,6 @@
     grid-template-rows: 1fr;
     min-height: auto;
     border-radius: 7px;
-    box-shadow: 0px 0px 4px 1px #0005;
   }
 
   .loginFormArea {

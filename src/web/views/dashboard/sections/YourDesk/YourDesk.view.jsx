@@ -278,7 +278,7 @@ function YourDesk() {
 
   // const hasNoMetrics is filled if no metrics value  is returned
   const hasNoMetrics =
-    metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria.' : '';
+    metricsArray[0] == undefined || !metricsArray ? 'Em breve serão disponibilizadas métricas para essa promotoria.' : '';
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -306,7 +306,7 @@ function YourDesk() {
               </div>
             )}
             <div>
-              {metricsArray && !hasNoMetrics && (
+               {metricsArray && !hasNoMetrics && (
                 <>
                   {metricsArray.map((metrics, index) => (
                     <MetricsProsecutions
@@ -316,12 +316,13 @@ function YourDesk() {
                       tab={activeTab}
                       tabTitle={[BUTTON_TEXTS[activeTab]]}
                       error={!tabDetail[activeTab] && !loading}
-                      isBeingDeveloped={currentOffice.tipo === 7}
                     />
                   ))}
                 </>
               )}
+              <>
               {!loading && hasNoMetrics}
+              </>
             </div>
           </div>
         </div>

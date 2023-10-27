@@ -20,6 +20,7 @@ import { useLoginContext } from '../../../core/login/Login.context';
 import { ParquetDigitalLogo, LoginPromotron } from '../../assets/svg';
 import GADGLogo from '../../assets/imgs/gadg_logo.png';
 import GADGLogoColorfull from '../../assets/imgs/gadg_logo_colorfull.png';
+import PDF_TODAS_PRMOTORIAS from './parquet_promotorias.pdf';
 
 function Login() {
   const { scaLoginFailed, userExpired } = useAppContext();
@@ -72,7 +73,7 @@ function Login() {
         <div className={loginInfoArea}>
           <p className={loginInfoAreaText}>
             O Parquet Digital encontra-se em período de expansão. Para saber se sua promotoria está
-            contemplada <a href="/">clique aqui</a>.
+            contemplada <a href={PDF_TODAS_PRMOTORIAS}>clique aqui</a>.
           </p>
           <LoginPromotron />
         </div>

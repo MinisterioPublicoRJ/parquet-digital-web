@@ -20,7 +20,10 @@ function courtCasesMetrics({
       {variacao_30_dias ? (
         <span>
           Seu acervo
-          <span>{` ${variacao_30_dias > 0 ? 'aumentou' : 'diminuiu'} ${formattedVariation} `}</span>
+          <span>
+            {` ${variacao_30_dias > 0 ? 'aumentou' : 'diminuiu'} `}{' '}
+            <strong> {formattedVariation} </strong>
+          </span>
           nos últimos 30 dias.
         </span>
       ) : (
@@ -28,12 +31,12 @@ function courtCasesMetrics({
       )}
       {nr_acoes_ultimos_60_dias ? (
         <span>
-          No último ano, você ajuizou
-          {` ${nr_acoes_ultimos_60_dias} ${nr_acoes_ultimos_60_dias === 1 ? 'ação' : 'ações'} `}
+          No último ano, você ajuizou <strong> {nr_acoes_ultimos_60_dias} </strong>
+          {` ${nr_acoes_ultimos_60_dias === 1 ? 'ação' : 'ações'} `}
           nos últimos 60 dias.{' '}
         </span>
       ) : (
-        <span> Você não ajuizou nenhuma ação nos últimos 60 dias. </span>
+        <span> Você não ajuizou <strong>nenhuma</strong> ação nos últimos 60 dias. </span>
       )}
       <>
         {!monthVariation || monthVariation === '0%' ? (
@@ -49,22 +52,22 @@ function courtCasesMetrics({
       {nr_acoes_60_dias_anterior ? (
         <span>
           <span>
-            {` ${nr_acoes_60_dias_anterior} ${
-              nr_acoes_60_dias_anterior === 1 ? 'ação foi ajuizada' : 'ações foram ajuizadas'
-            }.`}
+            <strong>{nr_acoes_60_dias_anterior}</strong>
+            {` ${nr_acoes_60_dias_anterior === 1 ? 'ação foi ajuizada' : 'ações foram ajuizadas'}.`}
           </span>
         </span>
       ) : (
-        <span>nenhuma ação foi ajuizada.</span>
+        <span><strong>nenhuma</strong> ação foi ajuizada.</span>
       )}
       <p>
         No último ano, você ajuizou
         <span>
           <span>
-            {` ${nr_acoes_12_meses_atual} ${nr_acoes_12_meses_atual === 1 ? 'ação' : 'ações'}`},{' '}
+            <strong> {nr_acoes_12_meses_atual} </strong>
+            {`${nr_acoes_12_meses_atual === 1 ? 'ação' : 'ações'}`},{' '}
             {variacao_12_meses ? (
               <span>
-                com {variacao_12_meses >= 0 ? `aumento` : `redução`} de {yearVariation}
+                com {variacao_12_meses >= 0 ? `aumento` : `redução`} de <strong>{yearVariation} </strong>
               </span>
             ) : (
               <span>não houve aumento nem redução</span>
@@ -73,11 +76,14 @@ function courtCasesMetrics({
         </span>{' '}
         em comparação com o ano anterior em que{' '}
         {nr_acoes_12_meses_anterior > 0 ? (
-          <span>{` ${nr_acoes_12_meses_anterior} ${
-            nr_acoes_12_meses_anterior === 1 ? 'ação foi ajuizada.' : 'ações foram ajuizadas.'
-          } `}</span>
+          <span>
+            <strong> {nr_acoes_12_meses_anterior} </strong>
+            {`${
+              nr_acoes_12_meses_anterior === 1 ? 'ação foi ajuizada.' : 'ações foram ajuizadas.'
+            } `}
+          </span>
         ) : (
-          <span>nenhuma ação foi ajuizada. </span>
+          <span><strong>nenhuma</strong> ação foi ajuizada. </span>
         )}
       </p>
     </p>
@@ -96,12 +102,14 @@ function inquiriesMetrics({
       <span>Este mês,</span>
       {nr_documentos_distintos_atual ? (
         <span>
-          <span>{` ${nr_documentos_distintos_atual} ${
+          <strong> {nr_documentos_distintos_atual} </strong>
+          <span>{`${
             nr_documentos_distintos_atual === 1 ? 'inquérito passou' : 'inquéritos passaram'
           } por você, `}</span>{' '}
           com
           <span>
-            {` ${nr_aberturas_vista_atual} ${
+            <strong> {nr_aberturas_vista_atual}</strong>
+            {` ${
               nr_aberturas_vista_atual === 1 ? 'abertura' : 'aberturas'
             } de vista`}
             .{' '}
@@ -110,13 +118,14 @@ function inquiriesMetrics({
             {nr_aproveitamentos_atual > 0 ? (
               <span>
                 Você aproveitou
-                {` ${nr_aproveitamentos_atual} ${
+                <strong> {nr_aproveitamentos_atual} </strong>
+                {`${
                   nr_aproveitamentos_atual === 1 ? 'caso' : 'casos'
                 } para denúncias, cautelares e arquivamentos. `}
               </span>
             ) : (
               <span>
-                Você não aproveitou nenhum caso para denúncias, cautelares e arquivamentos.{' '}
+                Você não aproveitou <strong>nenhum</strong> caso para denúncias, cautelares e arquivamentos.{' '}
               </span>
             )}
             {!formattedVariation || formattedVariation === '0%' ? (
@@ -124,7 +133,7 @@ function inquiriesMetrics({
             ) : (
               <span>
                 {' '}
-                {` ${variacao_aproveitamentos > 0 ? 'Aumento' : 'Redução'}`} de {formattedVariation}
+                {` ${variacao_aproveitamentos > 0 ? 'Aumento' : 'Redução'}`} de <strong>{formattedVariation}</strong>
               </span>
             )}
           </span>{' '}
@@ -157,27 +166,27 @@ function picsMetrics({
             {' '}
             Este mês,
             <span>
-              {` ${nr_documentos_distintos_atual} ${
-                nr_documentos_distintos_atual === 1 ? 'PIC passou' : 'PICs passaram'
-              } por você, `}
+              <strong> {nr_documentos_distintos_atual} </strong>
+              {`${nr_documentos_distintos_atual === 1 ? 'PIC passou' : 'PICs passaram'} por você, `}
             </span>
           </span>
         ) : (
-          <span>Este mês, nenhum PIC passou por você, </span>
+          <span>Este mês, <strong>nenhum</strong> PIC passou por você, </span>
         )}
         {nrInstauradosAtual ? (
-          <strong>
-            {` ${nrInstauradosAtual} ${
+          <span>
+            <strong> {nrInstauradosAtual} </strong> 
+            {`${
               nrInstauradosAtual === 1 ? 'foi instaurado' : 'foram instaurados'
             } por você `}
-          </strong>
+          </span>
         ) : (
-          <span>nenhum foi instaurado. </span>
+          <span> <strong>nenhum</strong> foi instaurado. </span>
         )}
         {nr_aberturas_vista_atual ? (
           <span>
             {`${nr_aberturas_vista_atual === 1 ? 'Foi' : 'Foram'} `}
-            <span>{nr_aberturas_vista_atual}</span> abertura de vistas.{' '}
+            <strong>{nr_aberturas_vista_atual}</strong> abertura de vistas.{' '}
           </span>
         ) : (
           <span>Não foram abertas vistas. </span>
@@ -188,9 +197,9 @@ function picsMetrics({
             {nr_aproveitamentos_atual === 1 ? 'caso para' : `casos para`}
           </span>
         ) : (
-          <span>Você não aproveitou nenhum caso para</span>
+          <span>Você não aproveitou <strong>nenhum</strong> caso para</span>
         )}{' '}
-        <span>denúncias, cautelares e arquivamentos.</span>
+        <span>denúncias, cautelares e arquivamentos. </span>
         {!formattedVariation || formattedVariation === '0%' ? (
           <span>
             Não houve <span>aumento nem redução</span> nos últimos 30 dias.

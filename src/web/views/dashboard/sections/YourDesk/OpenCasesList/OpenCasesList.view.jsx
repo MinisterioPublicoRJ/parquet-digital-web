@@ -39,7 +39,7 @@ const propTypes = {
 
 function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const { Api } = useAppContext();
-  const [activeTab, setActiveTab] = useState('full');
+  const [activeTab, setActiveTab] = useState('allDate');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByTab, setTotalPagesByTab] = useState({});
   const [searchString, setSearchString] = useState(null);

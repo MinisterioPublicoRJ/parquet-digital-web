@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
+import { TABLE_COLUMNS, TAB_MATCHER, TABLE_COLUMNS_MOBILE } from './openCasesConstants';
 import { useAppContext } from '../../../../../../core/app/App.context';
-import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
+import {
+  Spinner,
+  CustomTable,
+  Pagination,
+  ProcessDetail,
+} from '../../../../../components';
 import { Modal, SearchBox } from '../../../../../components/layoutPieces';
 import { highlightJSX } from '../../../../../utils';
 
 import {
   openCasesTableWrapper,
   openCasesEmptyTable,
-  noOpenCases,
   processDetailBtn,
   alertTagWrapper,
   alertTag,
@@ -18,6 +22,9 @@ import {
   emptyAlert,
   allBoxFilters,
   boxFilters,
+  customTableWeb,
+  customTableMobile,
+  noOpenCases
 } from './styles.module.css';
 
 const propTypes = {
@@ -33,7 +40,7 @@ const propTypes = {
 
 function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const { Api } = useAppContext();
-  const [activeTab, setActiveTab] = useState('full');
+  const [activeTab, setActiveTab] = useState('allDate');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesByTab, setTotalPagesByTab] = useState({});
   const [searchString, setSearchString] = useState(null);
@@ -43,8 +50,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
-  const [emptyTab, setEmptyTab] = useState(!chartData);
-  
+
   useEffect(() => {
     if (!chartData) return;
 
@@ -189,7 +195,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       }
       setTotalPagesByTab(totPages);
       setTabLoading(false);
-      setEmptyTab(false);
     }
   }
 
@@ -251,10 +256,10 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   if (isLoading || !chartData) {
     return <Spinner size="large" />;
   }
- 
+
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
-  // console.log(tabDetails);
+  const emptyTab = !chartData[activeTab];
   return (
     <>
       <div className={allBoxFilters}>
@@ -271,20 +276,45 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
-          <CustomTable
-            data={tabDetails[activeTab][currentPage]}
-            columns={TABLE_COLUMNS}
-            showHeader
-          />
+          <>
+            <div className={customTableWeb}>
+              <CustomTable
+                data={tabDetails[activeTab][currentPage]}
+                columns={TABLE_COLUMNS}
+                showHeader
+              />
+            </div>
+            <div className={customTableMobile}>
+              <CustomTable
+                data={tabDetails[activeTab][currentPage]}
+                columns={TABLE_COLUMNS_MOBILE}
+                showHeader
+              />
+            </div>
+          </>
         )}
-        {!emptyTab &&(
+        
+
+        {emptyTab && (
+          // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
+          <>
+            <p className={noOpenCases}> Nenhuma vista aberta até o momento</p>
+            <CustomTable
+              data={Array(20).fill({ content: '' })}
+              columns={TABLE_COLUMNS}
+              showHeader
+            />
+          </>
+        )}
+
+        {!emptyTab && (
           <Pagination
             totalPages={totalPagesByTab[activeTab] || 0}
             handlePageClick={(page) => handlePageClick(page)}
             currentPage={currentPage}
           />
-        )} 
-        
+        )}
+
         {isProcessDetailOpen && (
           <Modal withExitButton close={handleProcessDetail} previousElement={selectedElement}>
             <ProcessDetail

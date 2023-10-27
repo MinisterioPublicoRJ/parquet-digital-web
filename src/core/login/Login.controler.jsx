@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import { useAppContext } from '../app/App.context';
 import { LoginProvider, LoginStoreInitializer } from './Login.context';

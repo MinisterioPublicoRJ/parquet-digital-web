@@ -12,7 +12,18 @@
 .openCasesEmptyTableSearchString{
   text-align: center;
 }
+.customTableMobile{
+  display: none;
+}
 
+.noOpenCases {
+  position: absolute;
+  width: 240px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .processDetailBtn {
   color: #8998ac;
@@ -153,6 +164,7 @@
   }
  
 }
+
 /* PHONES */
 @media (max-width: 480px) {
   .allBoxFilters {
@@ -165,20 +177,24 @@
     max-width: 100vw;
   }
   .boxFilters p{
-    font-size: 11px;
+    font-size: 10px;
   }
+ 
   .boxFilters button{
     width: 70px;
-    height: 41px;
-    border-radius: 33%;
+    height: 35px;
     display: flex;
     justify-content: space-around;
   }
-
-}
-
-@media (min-width: 1780px) {
-  .allBoxFilters{
-    margin-top: 20px;
+  .customTableMobile{
+    display: block;
   }
+  .customTableWeb{
+    display: none;
+  }
+  .openCasesTableWrapper th:first-child {
+    width: 13vw;
+  }
+
 }
+

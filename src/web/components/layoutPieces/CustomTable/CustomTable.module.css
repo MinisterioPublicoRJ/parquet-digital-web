@@ -53,4 +53,7 @@
     text-align: left;
     width: 45%;
   }
+  .thStyle {
+    font-size: 9px;
+  }
 }

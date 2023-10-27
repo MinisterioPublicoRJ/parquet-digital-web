@@ -35,7 +35,6 @@ function SearchBox({ onSearch }) {
         className={SearchBoxInput}
         placeholder="Pesquisar na lista"
         onClick={handleSearchInput}
-        onMouseLeave={handleSearchInput}
         ref={searchInput}
         onKeyDown={handleKeyDown}
       />

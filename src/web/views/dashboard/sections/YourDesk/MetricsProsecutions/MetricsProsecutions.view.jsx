@@ -197,7 +197,7 @@ function picsMetrics({
           </span>
         ) : (
           <span>
-            {`${variacao_aberturas_vista > 0 ? ' Aumento' : ' Diminuição'}`}
+            {`${variacao_aberturas_vista > 0 ? ' Aumento ' : ' Diminuição '}`}
             de <strong>{formattedVariation}</strong> nos últimos 30 dias.{' '}
           </span>
         )}

@@ -278,7 +278,7 @@ function YourDesk() {
 
   // const hasNoMetrics is filled if no metrics value  is returned
   const hasNoMetrics =
-    metricsArray[0] == undefined ? 'Não existem métricas para esta promotoria.' : '';
+    metricsArray[0] == undefined || !metricsArray ? 'Em breve serão disponibilizadas métricas para essa promotoria.' : '';
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -321,11 +321,7 @@ function YourDesk() {
                 </>
               )}
               <>
-              {currentOffice.tipo === 7 ?(
-                <p>Em breve serão disponibilizadas métricas para essa promotoria.</p>
-              ):(
-                !loading && hasNoMetrics
-              )}
+              {!loading && hasNoMetrics}
               </>
             </div>
           </div>

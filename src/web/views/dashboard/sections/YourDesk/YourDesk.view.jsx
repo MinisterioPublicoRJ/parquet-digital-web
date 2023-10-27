@@ -306,7 +306,7 @@ function YourDesk() {
               </div>
             )}
             <div>
-              {metricsArray && !hasNoMetrics && (
+               {metricsArray && !hasNoMetrics && (
                 <>
                   {metricsArray.map((metrics, index) => (
                     <MetricsProsecutions
@@ -316,12 +316,17 @@ function YourDesk() {
                       tab={activeTab}
                       tabTitle={[BUTTON_TEXTS[activeTab]]}
                       error={!tabDetail[activeTab] && !loading}
-                      isBeingDeveloped={currentOffice.tipo === 7}
                     />
                   ))}
                 </>
               )}
-              {!loading && hasNoMetrics}
+              <>
+              {currentOffice.tipo === 7 ?(
+                <p>Em breve serão disponibilizadas métricas para essa promotoria.</p>
+              ):(
+                !loading && hasNoMetrics
+              )}
+              </>
             </div>
           </div>
         </div>

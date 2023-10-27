@@ -23,7 +23,8 @@ import {
   allBoxFilters,
   boxFilters,
   customTableWeb,
-  customTableMobile
+  customTableMobile,
+  noOpenCases
 } from './styles.module.css';
 
 const propTypes = {
@@ -49,7 +50,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
   const [tabDetails, setTabDetails] = useState({});
   const [selectedElement, setSelectedElement] = useState({});
   const [tabLoading, setTabLoading] = useState(false);
-  const [emptyTab, setEmptyTab] = useState(!chartData);
 
   useEffect(() => {
     if (!chartData) return;
@@ -195,7 +195,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       }
       setTotalPagesByTab(totPages);
       setTabLoading(false);
-      setEmptyTab(false);
     }
   }
 
@@ -260,6 +259,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
+  const emptyTab = !chartData[activeTab];
   return (
     <>
       <div className={allBoxFilters}>
@@ -293,6 +293,20 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
             </div>
           </>
         )}
+        
+
+        {emptyTab && (
+          // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table
+          <>
+            <p className={noOpenCases}> Nenhuma vista aberta até o momento</p>
+            <CustomTable
+              data={Array(20).fill({ content: '' })}
+              columns={TABLE_COLUMNS}
+              showHeader
+            />
+          </>
+        )}
+
         {!emptyTab && (
           <Pagination
             totalPages={totalPagesByTab[activeTab] || 0}

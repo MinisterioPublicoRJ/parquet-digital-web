@@ -15,6 +15,16 @@
 .customTableMobile{
   display: none;
 }
+
+.noOpenCases {
+  position: absolute;
+  width: 240px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .processDetailBtn {
   color: #8998ac;
   font-size: var(--smallFont);

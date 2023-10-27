@@ -62,43 +62,43 @@ export const RADAR_COMPARE_CRIMINAL = t(`${BASE_URL}/criminal/criminal-comparado
 
 // Alterar função para passar no cabeçalho não jwt
 export const PRCR_ACTION_GENERATE_DOC = t(
-  `${BASE_URL}/documentos/minuta-prescricao/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+  `${BASE_URL}/documentos/minuta-prescricao/\${orgao}/\${cpf}/\${docDk}`,
 );
 export const COMPRAS_ACTION_OUVIDORIA = t(
-  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}/\${alertId}?jwt=\${token}`,
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}/\${alertId}?`,
 );
 export const LINK_ACTION_OUVIDORIA = t(
-  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}/\${alertId}?jwt=\${token}`,
+  `${BASE_URL}/alertas/ouvidoria/\${orgao}/\${alertCode}/\${alertId}`,
 );
 export const ABR1_ALERT_ACTION = t(
-  `${BASE_URL}/documentos/procedimentos-csmp/\${orgao}/\${cpf}?jwt=\${token}`,
+  `${BASE_URL}/documentos/procedimentos-csmp/\${orgao}/\${cpf}`,
 );
 export const ALERT_OVERLAY_DATA = t(`${BASE_URL}/alertas/overlay/\${docDk}`);
 export const CTAC_ACTION_GENERATE_DOC = t(
-  `${BASE_URL}/documentos/comunicacao-tac/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+  `${BASE_URL}/documentos/comunicacao-tac/\${orgao}/\${cpf}/\${docDk}`,
 );
 export const IC1A_ACTION_GENERATE_DOC = t(
-  `${BASE_URL}/documentos/prorrogacao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+  `${BASE_URL}/documentos/prorrogacao-ic/\${orgao}/\${cpf}/\${docDk}`,
 );
 export const PA1A_ACTION_GENERATE_DOC = t(
-  `${BASE_URL}/documentos/prorrogacao-pa/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+  `${BASE_URL}/documentos/prorrogacao-pa/\${orgao}/\${cpf}/\${docDk}`,
 );
 export const PPFP_ACTION_EXTEND = t(
-  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}`,
 );
 export const PPFP_ACTION_CONVERT = t(
-  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}`,
 );
 export const PPPV_ACTION_EXTEND = t(
-  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+  `${BASE_URL}/documentos/prorrogacao-pp/\${orgao}/\${cpf}/\${docDk}`,
 );
 export const PPPV_ACTION_CONVERT = t(
-  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}?jwt=\${token}`,
+  `${BASE_URL}/documentos/instauracao-ic/\${orgao}/\${cpf}/\${docDk}`,
 );
 export const UNSENT_OCCURRENCE_LIST = t(
-  `${BASE_URL}/documentos/ros-ausentes/\${dpNumber}?jwt=\${token}`,
+  `${BASE_URL}/documentos/ros-ausentes/\${dpNumber}`,
 );
 export const PROCESSES_LIST_GENERATE_DOC = t(
-  `${BASE_URL}/alertas/baixar/\${orgao}?tipo_alerta=\${alertCode}&jwt=\${token}`,
+  `${BASE_URL}/alertas/baixar/\${orgao}?tipo_alerta=\${alertCode}`,
 );
 export const PROCESS_DETAIL = t(`${BASE_URL}/painel-doc/\${orgao}/\${num_doc}`);

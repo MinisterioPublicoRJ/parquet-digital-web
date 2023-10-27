@@ -156,7 +156,7 @@ function MainInvestigated() {
     let response;
     setLoading(true);
     try {
-      response = await Api.getMainInvestigated(buildRequestParams(), page, totalPages, searchString);
+      response = await Api.getMainInvestigated(buildRequestParams(), searchString, page, totalPages);
       setTableData(cleanData(response.investigated));
       setTotalPages(response.pages);
     } catch (e) {

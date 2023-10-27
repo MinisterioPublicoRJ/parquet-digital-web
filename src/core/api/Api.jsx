@@ -75,7 +75,6 @@ function ApiCreator(jwtToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers.common.Authorization = `Bearer ${jwtToken}`;
       
-      
     }
     return config;
   };

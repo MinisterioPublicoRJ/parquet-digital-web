@@ -157,7 +157,8 @@ function picsMetrics({
             {' '}
             Este mês,
             <span>
-              {` ${nr_documentos_distintos_atual} ${
+              <strong> {nr_documentos_distintos_atual} </strong>
+              {`${
                 nr_documentos_distintos_atual === 1 ? 'PIC passou' : 'PICs passaram'
               } por você, `}
             </span>
@@ -177,7 +178,7 @@ function picsMetrics({
         {nr_aberturas_vista_atual ? (
           <span>
             {`${nr_aberturas_vista_atual === 1 ? 'Foi' : 'Foram'} `}
-            <span>{nr_aberturas_vista_atual}</span> abertura de vistas.{' '}
+            <strong>{nr_aberturas_vista_atual}</strong> abertura de vistas.{' '}
           </span>
         ) : (
           <span>Não foram abertas vistas. </span>

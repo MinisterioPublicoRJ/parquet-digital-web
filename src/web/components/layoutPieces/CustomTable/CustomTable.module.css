@@ -41,6 +41,7 @@
   .tableStyle {
     table-layout: fixed;
     width: 100vw;
+    display: flex;
   }
   .tdStyle {
     width: 100%;
@@ -50,7 +51,6 @@
   }
 
   .tBodyStyle th {
-    text-align: left;
     width: 45%;
   }
   .thStyle {

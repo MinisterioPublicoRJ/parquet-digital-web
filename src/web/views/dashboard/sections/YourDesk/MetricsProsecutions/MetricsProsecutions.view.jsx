@@ -104,15 +104,15 @@ function inquiriesMetrics({
     <>
       {nr_documentos_distintos_atual ? (
         <p>
-          <strong>{` ${nr_documentos_distintos_atual} ${
+          <span>{` ${nr_documentos_distintos_atual} ${
             nr_documentos_distintos_atual === 1 ? 'inquérito passou' : 'inquéritos passaram'
-          } por você `}</strong>
+          } por você `}</span>
           neste mês, com
-          <strong>{` ${nr_aberturas_vista_atual} ${
+          <span>{` ${nr_aberturas_vista_atual} ${
             nr_aberturas_vista_atual === 1 ? 'abertura' : 'aberturas'
-          } de vista`}</strong>
+          } de vista`}</span>
           . Você aproveitou
-          <strong>
+          <span>
             {` ${nr_aproveitamentos_atual} ${
               nr_aproveitamentos_atual === 1 ? 'caso' : 'casos'
             } para denúncias, cautelares e arquivamentos. `}
@@ -122,14 +122,12 @@ function inquiriesMetrics({
                 Não houve <strong>aumento nem redução</strong>{' '}
               </span>
             ) : (
-              <strong>
-                {` ${
-                  variacao_aproveitamentos > 0 ? 'Aumento' : 'Redução'
-                } de ${formattedVariation} `}
-              </strong>
+              <span>
+                {` ${variacao_aproveitamentos > 0 ? 'Aumento' : 'Redução'}`} de <strong>{formattedVariation}</strong>
+              </span>
             )}
-          </strong>
-          nos últimos 30 dias.
+          </span>
+          {" "}dos inquéritos nos últimos 30 dias comparado ao mês anterior. 
         </p>
       ) : (
         <p>
@@ -156,19 +154,18 @@ function picsMetrics({
         {nr_documentos_distintos_atual ? (
           <span>
             {' '}
-            Constatei que
-            <strong>
+            Este mês,
+            <span>
               {` ${nr_documentos_distintos_atual} ${
-                nr_documentos_distintos_atual === 1 ? 'PIC passou' : 'PICs passaram'
-              } por você `}
-            </strong>
+                nr_documentos_distintos_atual === 1 ? 'PIC passou' : 'PICs passara'
+              } por você, `}
+            </span>
           </span>
         ) : (
           <span>
-            <strong>Nenhum PIC</strong> passou por você{' '}
+            <span>Este mês, nenhum PIC passou por você, </span>{' '}
           </span>
         )}
-        neste mês,{' '}
         {nrInstauradosAtual ? (
           <strong>
             {` ${nrInstauradosAtual} ${
@@ -176,32 +173,34 @@ function picsMetrics({
             } por você `}
           </strong>
         ) : (
-          <strong>nenhum foi instaurado</strong>
-        )}{' '}
-        nesse período.
-        {nr_aberturas_vista_atual === 1
-          ? ' Foi 1 abertura '
-          : ` Foram ${nr_aberturas_vista_atual} aberturas `}
-        de vista,{' '}
+          <span>nenhum foi instaurado.</span>
+        )}
+        {nr_aberturas_vista_atual ? (
+          <span>
+            {`${
+              nr_aberturas_vista_atual === 1 ? 'Foi uma' : 'Foram'} `}<span>{nr_aberturas_vista_atual}</span> abertura de vistas.
+          </span>
+        ) : (
+          <span>Não foram abertas vistas.{' '}</span>
+        )}
         {nr_aproveitamentos_atual ? (
           <span>
             e você aproveitou <strong>{nr_aproveitamentos_atual}</strong>{' '}
             {nr_aproveitamentos_atual === 1 ? 'caso para' : `casos para`}
           </span>
         ) : (
-          <span>você não aproveitou nenhum caso para</span>
+          <span>Você não aproveitou nenhum caso para</span>
         )}{' '}
-        <strong>denúncias, cautelares e arquivamentos.</strong>
+        <span>denúncias, cautelares e arquivamentos.</span>
         {!formattedVariation || formattedVariation === '0%' ? (
           <span>
-            Não houve <strong>aumento nem redução</strong> nos últimos 30 dias.
+            Não houve <span>aumento nem redução</span> nos últimos 30 dias.
           </span>
         ) : (
           <span>
-            <strong>{`${
-              variacao_aberturas_vista > 0 ? ' Aumento' : ' Diminuição'
-            } de ${formattedVariation} `}</strong>{' '}
-            nos últimos 30 dias.
+            <span>{`${
+              variacao_aberturas_vista > 0 ? ' Aumento' : ' Diminuição'}`} de {' '}
+              <strong>{formattedVariation}</strong></span>{' '} nos últimos 30 dias.
           </span>
         )}
       </p>

@@ -42,3 +42,11 @@
 .mainCriminalOuterBoxSearch h2{
   margin-top: 30px;
 }
+
+@media (max-width: 480px) {
+  .mainCriminalOuterBoxSearch{
+    display: flex;
+    flex-direction: column;
+   
+  }
+}

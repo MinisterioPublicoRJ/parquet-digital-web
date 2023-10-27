@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { TABLE_COLUMNS, TAB_MATCHER } from './openCasesConstants';
+import { TABLE_COLUMNS, TAB_MATCHER, TABLE_COLUMNS_MOBILE } from './openCasesConstants';
 import { useAppContext } from '../../../../../../core/app/App.context';
 import {
   Spinner,
@@ -22,6 +22,8 @@ import {
   emptyAlert,
   allBoxFilters,
   boxFilters,
+  customTableWeb,
+  customTableMobile
 } from './styles.module.css';
 
 const propTypes = {
@@ -258,7 +260,6 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
 
   const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
-  // console.log(tabDetails);
   return (
     <>
       <div className={allBoxFilters}>
@@ -275,11 +276,22 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
-          <CustomTable
-            data={tabDetails[activeTab][currentPage]}
-            columns={TABLE_COLUMNS}
-            showHeader
-          />
+          <>
+            <div className={customTableWeb}>
+              <CustomTable
+                data={tabDetails[activeTab][currentPage]}
+                columns={TABLE_COLUMNS}
+                showHeader
+              />
+            </div>
+            <div className={customTableMobile}>
+              <CustomTable
+                data={tabDetails[activeTab][currentPage]}
+                columns={TABLE_COLUMNS_MOBILE}
+                showHeader
+              />
+            </div>
+          </>
         )}
         {!emptyTab && (
           <Pagination

@@ -241,8 +241,16 @@ function ApiCreator(jwtToken) {
     return successIndicatorsTransform(data);
   }
 
-  async function getMainInvestigated({ orgao, cpf }) {
+  async function getMainInvestigated({ orgao, cpf }, searchString, page) {
     const params = {};
+
+    if (searchString) {
+      params.search_string = searchString;
+    }
+
+    if (page) {
+      params.page = page;
+    }
 
     const { data } = await axiosInstance.get(PIP_MAIN_INVESTIGATIONS_URL({ orgao, cpf }), {
       params,

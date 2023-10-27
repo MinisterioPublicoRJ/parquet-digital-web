@@ -31,7 +31,7 @@ function courtCasesMetrics({
       )}
       {nr_acoes_ultimos_60_dias ? (
         <span>
-          No último ano, você ajuizou <strong>{nr_acoes_ultimos_60_dias} </strong>
+          No último ano, você ajuizou <strong> {nr_acoes_ultimos_60_dias} </strong>
           {` ${nr_acoes_ultimos_60_dias === 1 ? 'ação' : 'ações'} `}
           nos últimos 60 dias.{' '}
         </span>
@@ -63,7 +63,7 @@ function courtCasesMetrics({
         No último ano, você ajuizou
         <span>
           <span>
-            <strong>{nr_acoes_12_meses_atual} </strong>
+            <strong> {nr_acoes_12_meses_atual} </strong>
             {`${nr_acoes_12_meses_atual === 1 ? 'ação' : 'ações'}`},{' '}
             {variacao_12_meses ? (
               <span>

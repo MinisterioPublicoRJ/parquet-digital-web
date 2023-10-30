@@ -17,6 +17,7 @@
 .roboResponsivo{
   display: none;
 }
+
 .todayContent {
   display: flex;
   flex-direction: column;
@@ -208,11 +209,6 @@
   }
   .todayRobotGif{
     display: none;
-  }
-  .todayRobotPicTablet{
-    display: flex;    
-    width: 100%;           
-    height:15.375rem;     
   }
   .todayRobotPicTablet svg{
     display: block;   

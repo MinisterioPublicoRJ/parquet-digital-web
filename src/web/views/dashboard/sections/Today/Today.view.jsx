@@ -5,9 +5,10 @@ import { abbrevName, capitalizeTitle } from '../../../../utils';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import InDevelopmentToday from '../../../../components/layoutPieces/InDevelopmentToday';
-import PromotronGif from '../../../../assets/gifs/promotron.gif';
+// import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import RoboResponsivo from '../../../../assets/svg/roboResponsivo';
 import Robot from '../../../../assets/svg/Robot';
+import PromotronResumeOfTheDay from '../../../../assets/svg/PromotonResumeOfTheDay';
 
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual from '../UserManual/UserManual.view';
@@ -21,11 +22,10 @@ import {
   userArea,
   todayRobotPic,
   todayRobotPicTablet,
-  todayRobotGif,
+  // todayRobotGif,
   todayBtn,
   roboResponsivo,
 } from './Today.module.css';
-
 
 function Today() {
   const { user, buildRequestParams, currentOffice, Api } = useAppContext();
@@ -116,15 +116,19 @@ function Today() {
    */
   function analyzeCollection(lower, higher, amount) {
     if (amount < lower) {
-      return 'razoavelmente menor que os';
-    }
+      return 'razoavelmente menor que'
+    };
 
     if (amount > higher) {
-      return 'razoavelmente maior que os';
-    }
+      return 'razoavelmente maior que'
+    };
 
-    return 'de volume regular comparado aos';
-  }
+    return 'de volume regular comparado com'
+  };
+
+ 
+
+  
 
   /**
    * loads/reloads info an calls formatters for third sentence data
@@ -160,13 +164,12 @@ function Today() {
           {todayPercent > 0.5 && <span style={{ fontWeight: 'bold' }}>Parabéns!</span>}
         </p>
       ) : null}
-     
+
       {collectionAnalysis && !loading && (
         <p>
-          Você sabia que seu acervo é
-          <span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
-          dos seus colegas das
-          <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span>
+          Você sabia que seu acervo é<span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
+          outras promotorias da mesma atibuição.
+          {/* <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span> */}
         </p>
       )}
       {entriesData && entriesData.dayType && !loading && (
@@ -187,7 +190,7 @@ function Today() {
   return (
     <article className={todayOuter}>
       <div className={roboResponsivo}>
-        <RoboResponsivo  />
+        <RoboResponsivo />
       </div>
       <div className={userArea}>
         <MainTitle value={assembleGreeting()} glueToTop />
@@ -234,7 +237,7 @@ function Today() {
             <Introduction />
           </Modal>
         )}
-        <img width="250px" src={PromotronGif} alt="robô-promoton" className={todayRobotGif}/>
+        <PromotronResumeOfTheDay />
         <div className={todayRobotPicTablet}>
           <Robot />
         </div>

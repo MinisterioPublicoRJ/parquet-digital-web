@@ -59,11 +59,7 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
 
         return (
           <React.Fragment key={`row${rowN}-${columns[key]}`}>
-            {isPhone && (
-              <th scope="row" key={`${columns[key]}-${rowN}`} className={thStyle}>
-                {key}
-              </th>
-            )}
+       
             <td
               title={currentTitle}
               className={tdStyle}
@@ -90,7 +86,7 @@ function CustomTable({ data, columns, showHeader }) {
   const isPhone = window.innerWidth <= 480;
   return (
     <table className={tableStyle}>
-      {showHeader && !isPhone && generateHeader(columns)}
+      {showHeader && generateHeader(columns)}
       <tbody className={tBodyStyle}>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
     </table>
   );

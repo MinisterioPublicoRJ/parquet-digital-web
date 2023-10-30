@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 
 import { TABLE_COLUMNS, TAB_MATCHER, TABLE_COLUMNS_MOBILE } from './openCasesConstants';
 import { useAppContext } from '../../../../../../core/app/App.context';
-import {
-  Spinner,
-  CustomTable,
-  Pagination,
-  ProcessDetail,
-} from '../../../../../components';
+import { Spinner, CustomTable, Pagination, ProcessDetail } from '../../../../../components';
 import { Modal, SearchBox } from '../../../../../components/layoutPieces';
 import { highlightJSX } from '../../../../../utils';
 
@@ -23,8 +18,7 @@ import {
   allBoxFilters,
   boxFilters,
   customTableWeb,
-  customTableMobile,
-  noOpenCases
+  noOpenCases,
 } from './styles.module.css';
 
 const propTypes = {
@@ -257,7 +251,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     return <Spinner size="large" />;
   }
 
-  const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
+  const LABELS = ['Vistas totais', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
   const emptyTab = !chartData[activeTab];
   return (
@@ -276,24 +270,14 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
-          <>
-            <div className={customTableWeb}>
-              <CustomTable
-                data={tabDetails[activeTab][currentPage]}
-                columns={TABLE_COLUMNS}
-                showHeader
-              />
-            </div>
-            <div className={customTableMobile}>
-              <CustomTable
-                data={tabDetails[activeTab][currentPage]}
-                columns={TABLE_COLUMNS_MOBILE}
-                showHeader
-              />
-            </div>
-          </>
+          <div className={customTableWeb}>
+            <CustomTable
+              data={tabDetails[activeTab][currentPage]}
+              columns={TABLE_COLUMNS}
+              showHeader
+            />
+          </div>
         )}
-        
 
         {emptyTab && (
           // Fills an array with 20 empty lines (ES6 JavaScript) and insert the array with empty lines in the table

@@ -17,7 +17,9 @@
   grid-template-columns: repeat(3, auto);
   column-gap: 0.2rem;
 }
-
+.noMetrics{
+  margin-top: 50px;
+}
 .deskButtonsTextsHeader {
   display: flex;
   height: 100px;
@@ -133,10 +135,6 @@ div .deskButtonsCollectionPhrase {
   max-width: 48%;
   font-size: var(--smallFont);
   margin-top: -7px;
-}
-
-.deskButtonsCollectionPhrase p {
-  line-height: 12px;
 }
 
 .deskControlersAndMetrics {

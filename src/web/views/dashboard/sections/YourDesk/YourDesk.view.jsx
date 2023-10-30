@@ -22,6 +22,7 @@ import {
   openCasesChartsWrapperWeb,
   openCasesChartsWrapperResponsive,
   componentWrappeTableError,
+  noMetrics,
   noOpenCases,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
@@ -320,9 +321,9 @@ function YourDesk() {
                   ))}
                 </>
               )}
-              <>
-              {!loading && hasNoMetrics}
-              </>
+              <div className={noMetrics}>
+                {!loading && hasNoMetrics}
+              </div>
             </div>
           </div>
         </div>

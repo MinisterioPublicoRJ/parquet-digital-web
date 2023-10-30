@@ -251,7 +251,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
     return <Spinner size="large" />;
   }
 
-  const LABELS = ['Todas as vistas', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
+  const LABELS = ['Vistas totais', 'Até 20 dias', '20 a 30 dias', '+30 dias'];
   const categories = Object.keys(chartData);
   const emptyTab = !chartData[activeTab];
   return (

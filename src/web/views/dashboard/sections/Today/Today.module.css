@@ -128,7 +128,6 @@
   position: absolute;
   right: 0;
   z-index: 0;
-  margin-top: 6px;
 }
 
 .todayRobotPic button {
@@ -238,8 +237,9 @@
     padding: 0px;
     height: 100%;
     width: 80%;
+    margin-top: 20px;
   }
   .roboResponsivo{
-    display: block;
+    display: none;
   }
 }

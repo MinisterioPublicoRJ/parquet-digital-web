@@ -12,9 +12,6 @@
 .openCasesEmptyTableSearchString{
   text-align: center;
 }
-.customTableMobile{
-  display: none;
-}
 
 .noOpenCases {
   position: absolute;
@@ -185,12 +182,6 @@
     height: 35px;
     display: flex;
     justify-content: space-around;
-  }
-  .customTableMobile{
-    display: block;
-  }
-  .customTableWeb{
-    display: none;
   }
   .openCasesTableWrapper th:first-child {
     width: 13vw;

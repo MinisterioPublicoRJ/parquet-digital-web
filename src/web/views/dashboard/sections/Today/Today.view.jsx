@@ -5,9 +5,10 @@ import { abbrevName, capitalizeTitle } from '../../../../utils';
 import NOMES_PROMOTORIAS from '../../../../utils/nomesPromotorias';
 import { MainTitle, Modal, Spinner } from '../../../../components/layoutPieces';
 import InDevelopmentToday from '../../../../components/layoutPieces/InDevelopmentToday';
-import PromotronGif from '../../../../assets/gifs/promotron.gif';
+// import PromotronGif from '../../../../assets/gifs/promotron.gif';
 import RoboResponsivo from '../../../../assets/svg/roboResponsivo';
 import Robot from '../../../../assets/svg/Robot';
+import PromotronUserManual from '../../../../assets/svg/promotronUserManual';
 
 import OfficeSelector from './officeSelector/OfficeSelector.view';
 import UserManual from '../UserManual/UserManual.view';
@@ -21,7 +22,7 @@ import {
   userArea,
   todayRobotPic,
   todayRobotPicTablet,
-  todayRobotGif,
+  // todayRobotGif,
   todayBtn,
   roboResponsivo,
 } from './Today.module.css';
@@ -165,8 +166,8 @@ function Today() {
         <p>
           Você sabia que seu acervo é
           <span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
-          dos seus colegas das
-          <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span>
+          dos seus colegas da mesma atibuição.
+          {/* <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span> */}
         </p>
       )}
       {entriesData && entriesData.dayType && !loading && (
@@ -234,7 +235,7 @@ function Today() {
             <Introduction />
           </Modal>
         )}
-        <img width="250px" src={PromotronGif} alt="robô-promoton" className={todayRobotGif}/>
+        <PromotronUserManual />
         <div className={todayRobotPicTablet}>
           <Robot />
         </div>

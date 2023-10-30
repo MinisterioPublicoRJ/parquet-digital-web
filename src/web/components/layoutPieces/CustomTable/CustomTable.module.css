@@ -31,7 +31,7 @@
   text-overflow: ellipsis;
   text-transform: capitalize;
   text-align: center;
-  
+
 }
 
 
@@ -40,20 +40,23 @@
 @media (max-width: 480px) {
   .tableStyle {
     table-layout: fixed;
-    width: 100vw;
-    display: flex;
-  }
-  .tdStyle {
     width: 100%;
   }
+
   .tBodyStyle td {
     min-width: 45%;
   }
 
-  .tBodyStyle th {
-    width: 45%;
-  }
   .thStyle {
     font-size: 9px;
+    text-align: left;
   }
+  .tHeadStyle{
+    width: 100vw;
+    display: inherit;
+  }
+  .tdStyle{
+    text-align: left;
+  }
+
 }

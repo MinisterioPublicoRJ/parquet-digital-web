@@ -60,11 +60,14 @@ function Login() {
           </button>
 
           <div className={greetings}>
-            {userExpired && <strong>Sua sessão expirou</strong>}
-            {scaLoginFailed && <strong>Verifique se a senha e usuário estão corretos</strong>}
-            {scaLoginFailed && <strong>e se a sua Promotoria está contemplada.</strong>}
-            {scaLoginFailed && <strong>Em caso de dúvidas, leia as orientações.</strong>}
-            {/*         {autoLoginFailed && <strong>Houve algum erro ao tentar acessar com as informações armazenadas no navegador.</strong>} */}
+            {userExpired && <strong>Sua sessão expirou. </strong>}
+            {scaLoginFailed && (
+              <strong>
+                Verifique se a senha e usuário estão corretos e se a sua Promotoria está
+                contemplada. Em caso de dúvidas, leia as orientações.
+              </strong>
+            )}
+            {/* autoLoginFailed && <strong>Houve algum erro ao tentar acessar com as informações armazenadas no navegador.</strong>} */}
           </div>
 
           <p className={loginTip}>Para acessar use o login e senha do SCA MPRJ</p>

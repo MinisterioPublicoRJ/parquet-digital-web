@@ -17,7 +17,7 @@ const propTypes = {
   text: PropTypes.string.isRequired,
   loading: PropTypes.bool,
   error: PropTypes.bool,
-  color: PropTypes.oneOf("white", "blue", "green", "gray")
+  color: PropTypes.oneOf(["white", "blue", "green", "gray"])
 };
 
 const defaultProps = {

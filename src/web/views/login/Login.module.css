@@ -66,11 +66,7 @@
   color: var(--login-gray);
   font-family: var(--defaultFont);
   font-size: var(--responsive-font-md);
-}
-
-.greetings strong {
   text-align: center;
-  display: block;
 }
 
 .loginTip {
@@ -115,7 +111,7 @@
 
   .loginInner {
     width: min(1200px, 70vw);
-    height: min(500px, 50vw);
+    height: min(max(500px, auto), 50vw);
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     min-height: auto;

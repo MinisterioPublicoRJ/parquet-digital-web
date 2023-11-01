@@ -140,11 +140,9 @@ function inquiriesMetrics({
           dos inquéritos nos últimos 30 dias comparado ao mês anterior.
         </span>
       ) : (
-        <p>
-          {' '}
-          Não há
-          <span> novos inquéritos</span>.
-        </p>
+        <span>
+          {" "}não há novos inquéritos.
+        </span>
       )}
     </>
   );

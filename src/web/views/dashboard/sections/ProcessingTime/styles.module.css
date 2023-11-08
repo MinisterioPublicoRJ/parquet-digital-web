@@ -24,9 +24,11 @@
 }
 
 .ptHeaderContent h2 {
-  font-size: var(--modal-default-font-size);
+  color: var(--darkBlueModal);
+  font-size: var(--modal-title-font-size);
   text-transform: uppercase;
   margin: 0;
+  font-weight: 900;
 }
 
 .ptHeaderContent p {
@@ -36,6 +38,7 @@
 
 .ptGraph {
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 10px;
 }
@@ -45,6 +48,14 @@
   height: 340px;
 }
 
+.ptGraphSeparator{
+  width: 5px;
+  height: 50vh;
+  border: 2px var(--grayDivisor);
+  border-right-style: dashed;
+  align-self: center;
+  margin-right: 10rem;
+}
 .ptGraphLabels {
   width: 35%;
 }
@@ -77,6 +88,7 @@
 .ptLegendsHighlight {
   font-size: var(--modal-default-font-size);
   margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .ptLegendsHighlight span:first-child {

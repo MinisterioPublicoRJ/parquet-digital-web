@@ -8,6 +8,8 @@ import {
   ptHeaderImage,
   ptGraph,
   ptGraphWrapper,
+  ptGraphSeparator,
+  ptGraphLabels,
   ptGraphLabels,
   ptLegends,
   ptLegendsIcon,
@@ -151,7 +153,7 @@ function ProcessingTime() {
             labelCompliment={isBetter ? 'Muito bom' : ''}
           />
         </div>
-
+        <div className={ptGraphSeparator} />
         <div className={ptGraphLabels}>
           <div className={ptLegends}>
             <div className={ptLegendsIcon}>

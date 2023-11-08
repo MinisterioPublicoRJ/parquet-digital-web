@@ -11,6 +11,7 @@
   --secondary: #b5b5b5;
   --dark: #3b3b3b;
   --darkBlue: #374354;
+  --darkBlueModal: #154763;
   --success: #71d0a4;
   --warning: #f8bd6c;
   --danger: #f86c72;
@@ -18,6 +19,7 @@
   --gray: #b5b5b5;
   --blueGray: #8998AC;
   --grayLight: #e8e8e8;
+  --grayDivisor: #cccc;
   --grayLinks: #cecece;
   --grayTexts: #b3b3b3;
   --grayTooltip: #555;
@@ -53,8 +55,10 @@
   --spotlightSize: calc(var(--defaultFontSize) * 2);
 
   /* MODAL FONT-SIZES */
-  --modal-default-font-size: clamp(0.8rem, 1.5vw, 1rem);
-  --modal-title-font-size: clamp(1rem, 2.2vw, 2rem);
+  /* --modal-default-font-size: clamp(0.9rem, 1.5vw, .8rem); */
+  --modal-default-font-size: clamp(0.8rem, 1.5vw, .8rem);
+  /* --modal-title-font-size: clamp(1rem, 2.2vw, 2rem);  */
+  --modal-title-font-size: clamp(1rem, 2.2vw, 1.3rem);
 }
 
 /* TABLETS */

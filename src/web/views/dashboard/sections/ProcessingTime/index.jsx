@@ -10,14 +10,20 @@ import {
   ptGraphWrapper,
   ptGraphSeparator,
   ptGraphLabels,
-  ptGraphLabels,
+  ptGraphLabelsTitle,
+  ptGraphLabelsTitleText,
+  ptLegendsWrapper,
   ptLegends,
   ptLegendsIcon,
   ptLegendsText,
   ptLegendsHighlight,
+  ptLegendsHighlightEmpty,
+  ptLegendsCurrentTraffic,
   colorTurquoise,
   colorPink,
-  colorGreen,
+  colorModalGreen,
+  colorModalBlue,
+  colorModalYellow,
   colorPurple,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
@@ -25,7 +31,7 @@ import { SectionTitle, Spinner } from '../../../../components';
 import ProcessingTimeChart from './ProcessingTimeChart';
 import { PT_PIE_COLORS } from '../../../../themes/chartThemes';
 
-import { PinAzul, PinVermelho, MarkMind, Markfaster, MarkSlower, ProcessingTimeHeader } from '../../../../assets';
+import { PinVermelho, PinBranco, PinAmarelo, MarkMind, Markfaster, MarkSlower, ProcessingTimeHeader } from '../../../../assets';
 
 import processTypeDict from './processingTimeConstants';
 
@@ -155,64 +161,97 @@ function ProcessingTime() {
         </div>
         <div className={ptGraphSeparator} />
         <div className={ptGraphLabels}>
-          <div className={ptLegends}>
-            <div className={ptLegendsIcon}>
-              <PinAzul width={pinSize.width} height={pinSize.height} />
-            </div>
-            <div className={ptLegendsText}>
-              <span className={`${ptLegendsHighlight} ${colorTurquoise}`}>
-                <span>{categoryProcessingTime.orgaoData.min.toFixed(0)}</span>
-                <span>{` dias`}</span>
-              </span>
-              trânsito mais rápido da sua promotoria
-            </div>
+          <div className={ptGraphLabelsTitle}> 
+              <h3 className={ptGraphLabelsTitleText}> Referente ao pacote </h3>
           </div>
-          <div className={ptLegends}>
-            <div className={ptLegendsIcon}>
-              <PinVermelho width={pinSize.width} height={pinSize.height} />
+          <div className={ptLegendsWrapper}>
+            <div className={ptLegends}>
+              <div className={ptLegendsIcon}>
+                <MarkSlower width={pinSize.width} height={pinSize.height} />
+              </div>
+              <div className={ptLegendsText}>
+                <span className={`${ptLegendsHighlight} ${colorModalGreen}`}>
+                  <span>{categoryProcessingTime.pacoteData.max.toFixed(0)}</span>
+                </span>
+                trânsito mais lento 
+                <span className={`${ptLegendsHighlight}`}>
+                  do seu pacote
+                </span>
+              </div>
             </div>
-            <div className={ptLegendsText}>
-              <span className={`${ptLegendsHighlight} ${colorPink}`}>
-                <span>{categoryProcessingTime.orgaoData.max.toFixed(0)}</span>
-                <span>{` dias`}</span>
-              </span>
-              trânsito mais lento da sua promotoria
+            <div className={ptLegends}>
+              <div className={ptLegendsIcon}>
+                <MarkMind width={pinSize.width} height={pinSize.height} />
+              </div>
+              <div className={ptLegendsText}>
+                <span className={`${ptLegendsHighlight} ${colorModalBlue}`}>
+                  <span>{categoryProcessingTime.pacoteData.average.toFixed(0)}</span>
+                </span>
+                trânsito médio 
+                <span className={`${ptLegendsHighlight}`}>
+                  do seu pacote
+                </span>
+              </div>
             </div>
+            <div className={ptLegends}>
+              <div className={ptLegendsIcon}>
+                <Markfaster width={pinSize.width} height={pinSize.height} />
+              </div>
+              <div className={ptLegendsText}>
+                <span className={`${ptLegendsHighlight} ${colorPurple}`}>
+                  <span>{categoryProcessingTime.pacoteData.min.toFixed(0)}</span>
+                </span>
+                trânsito mais rápido               
+                <span className={`${ptLegendsHighlight}`}>
+                  do seu pacote
+                </span>
+              </div>
+            </div>
+            
+            
           </div>
-          <div className={ptLegends}>
-            <div className={ptLegendsIcon}>
-              <Markfaster width={pinSize.width} height={pinSize.height} />
-            </div>
-            <div className={ptLegendsText}>
-              <span className={`${ptLegendsHighlight} ${colorGreen}`}>
-                <span>{categoryProcessingTime.pacoteData.min.toFixed(0)}</span>
-                <span>{` dias`}</span>
-              </span>
-              trânsito mais rápido do grupo
-            </div>
+          <div className={ptGraphLabelsTitle}> 
+              <h3 className={ptGraphLabelsTitleText}> Referente a sua promotoria </h3>
           </div>
-          <div className={ptLegends}>
-            <div className={ptLegendsIcon}>
-              <MarkMind width={pinSize.width} height={pinSize.height} />
+          <div className={ptLegendsWrapper}>
+            <div className={ptLegends}>
+              <div className={ptLegendsIcon}>
+                <PinVermelho width={pinSize.width} height={pinSize.height} />
+              </div>
+              <div className={ptLegendsText}>
+                <span className={`${ptLegendsHighlight} ${colorPink}`}>
+                  <span>{categoryProcessingTime.orgaoData.max.toFixed(0)}</span>
+                </span>
+                  trânsito mais lento 
+                <span className={`${ptLegendsHighlight}`}>
+                  da sua promotoria
+                </span>
+              </div>
             </div>
-            <div className={ptLegendsText}>
-              <span className={`${ptLegendsHighlight} ${colorPurple}`}>
-                <span>{categoryProcessingTime.pacoteData.average.toFixed(0)}</span>
-                <span>{` dias`}</span>
-              </span>
-              trânsito médio do seu grupo
+            <div className={ptLegends}>
+              <div className={ptLegendsIcon}>
+                <PinAmarelo width={pinSize.width} height={pinSize.height} />
+              </div>
+              <div className={ptLegendsText}>
+                <span className={`${ptLegendsHighlight} ${colorModalYellow}`}>
+                  <span>{categoryProcessingTime.orgaoData.min.toFixed(0)}</span>
+                </span>
+                trânsito mais rápido 
+                <span className={`${ptLegendsHighlight}`}>
+                  da sua promotoria
+                </span>
+              </div>
             </div>
-          </div>
-          <div className={ptLegends}>
-            <div className={ptLegendsIcon}>
-              <MarkSlower width={pinSize.width} height={pinSize.height} />
-            </div>
-            <div className={ptLegendsText}>
-              <span className={`${ptLegendsHighlight} ${colorPink}`}>
-                <span>{categoryProcessingTime.pacoteData.max.toFixed(0)}</span>
-                <span>{` dias`}</span>
-              </span>
-              trânsito mais lento do seu grupo
+            <div className={ptLegends}>
+              <div className={ptLegendsIcon}>
+                <PinBranco width={pinSize.width} height={pinSize.height} />
+              </div>
+              <div className={ptLegendsText}>
+                trânsito atual 
+                <span className={`${ptLegendsHighlight}`}>
+                  da sua promotoria
+                </span>
+              </div>
             </div>
           </div>
         </div>

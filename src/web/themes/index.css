@@ -33,8 +33,11 @@
   --pt-turquoise: #56e8e1;
   --pt-pink: #ff0086;
   --pt-green: #42dca7;
-  --pt-purple: #6d86ec;
   --pt-blue: #bddff0;
+  --pt-purple: #8A63D3;
+  --pt-modalBlue: #51B0E4;
+  --pt-modalGreen: #61B965;
+  --pt-modalYellow: #F8BD6C;
 
   --shadowColor: rgba(0, 0, 0, 0.3);
 
@@ -55,9 +58,7 @@
   --spotlightSize: calc(var(--defaultFontSize) * 2);
 
   /* MODAL FONT-SIZES */
-  /* --modal-default-font-size: clamp(0.9rem, 1.5vw, .8rem); */
   --modal-default-font-size: clamp(0.8rem, 1.5vw, .8rem);
-  /* --modal-title-font-size: clamp(1rem, 2.2vw, 2rem);  */
   --modal-title-font-size: clamp(1rem, 2.2vw, 1.3rem);
 }
 

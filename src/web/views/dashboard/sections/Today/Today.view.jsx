@@ -117,19 +117,15 @@ function Today() {
    */
   function analyzeCollection(lower, higher, amount) {
     if (amount < lower) {
-      return 'razoavelmente menor que'
-    };
+      return 'razoavelmente menor que';
+    }
 
     if (amount > higher) {
-      return 'razoavelmente maior que'
-    };
+      return 'razoavelmente maior que';
+    }
 
-    return 'de volume regular comparado com'
-  };
-
- 
-
-  
+    return 'de volume regular comparado com';
+  }
 
   /**
    * loads/reloads info an calls formatters for third sentence data
@@ -168,8 +164,9 @@ function Today() {
 
       {collectionAnalysis && !loading && (
         <p>
-          Você sabia que seu acervo é<span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
-          outras promotorias da mesma atibuição.
+          Você sabia que seu acervo é
+          <span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
+          outras promotorias da mesma atribuição.
           {/* <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span> */}
         </p>
       )}

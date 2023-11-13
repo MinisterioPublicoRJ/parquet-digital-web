@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function pinVermelho({ width, height }) {
+export default function pinVermelho({ x, y, width, height }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,6 +8,8 @@ export default function pinVermelho({ width, height }) {
       height={height || '20.836'}
       fill="none"
       viewBox="0 0 26 33"
+      x={x - 15}
+      y={y - 15}
     >
       <path
         fill="#FF0186"

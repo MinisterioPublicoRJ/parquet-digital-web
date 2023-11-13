@@ -1,13 +1,14 @@
-import React from "react";
+import React from 'react';
 
-export default function pinAmarelo({width, height}) {
+export default function pinAmarelo({ x, y, width, height }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={width || '27.168'}
       height={height || '20.836'}
-      fill="none"
       viewBox="0 0 33 33"
+      x={x - 15}
+      y={y - 15}
     >
       <path
         fill="#F8BD6C"

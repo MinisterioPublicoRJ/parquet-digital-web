@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
+import { useAppContext } from '../../../../../core/app/App.context';
+import { SectionTitle, Spinner } from '../../../../components';
+import ProcessingTimeChart from './ProcessingTimeChart';
+import { PT_PIE_COLORS } from '../../../../themes/chartThemes';
+// import processTypeDict from './processingTimeConstants';
+
 import {
   pageTramitacao,
   spinnerWrapper,
@@ -17,23 +23,22 @@ import {
   ptLegendsIcon,
   ptLegendsText,
   ptLegendsHighlight,
-  ptLegendsHighlightEmpty,
-  ptLegendsCurrentTraffic,
-  colorTurquoise,
   colorPink,
   colorModalGreen,
   colorModalBlue,
   colorModalYellow,
   colorPurple,
 } from './styles.module.css';
-import { useAppContext } from '../../../../../core/app/App.context';
-import { SectionTitle, Spinner } from '../../../../components';
-import ProcessingTimeChart from './ProcessingTimeChart';
-import { PT_PIE_COLORS } from '../../../../themes/chartThemes';
 
-import { PinVermelho, PinBranco, PinAmarelo, MarkMind, Markfaster, MarkSlower, ProcessingTimeHeader } from '../../../../assets';
-
-import processTypeDict from './processingTimeConstants';
+import {
+  PinVermelho,
+  PinBranco,
+  PinAmarelo,
+  MarkMind,
+  Markfaster,
+  MarkSlower,
+  ProcessingTimeHeader,
+} from '../../../../assets';
 
 const getCategoryByType = ({ tipo }) => {
   switch (tipo) {
@@ -52,6 +57,7 @@ function ProcessingTime() {
   const [chartData, setChartData] = useState(null);
   const mainCategory = getCategoryByType(currentOffice);
   const [loading, setLoading] = useState(true);
+
   const cleanChartData = (raw) => {
     const organAvg = Number(raw.orgaoData.average).toFixed(0);
     const { min, max, average } = raw.pacoteData;
@@ -77,9 +83,9 @@ function ProcessingTime() {
     ];
 
     const points = [
-      { x: 2, y: average, type: 'min', label: max },
-      { x: 1, y: max - average, type: 'average', label: max - average },
-      { x: 0, y: 0, type: 'max', label: 0 },
+      { x: 0, y: (max - halfMaxAvg) / max, type: 'max' },
+      { x: 1, y: (halfMaxAvg - halfMinAvg) / max, type: 'average' },
+      { x: 2, y: 0, type: 'min' },
     ];
 
     const pointerPosition = [
@@ -87,7 +93,18 @@ function ProcessingTime() {
       { x: 0, y: (max - organAvg) / max },
     ];
 
-    setChartData({ pieData, points, domain, organAvg, pointerPosition });
+    const { min: minProsecutor, max: maxProsecutor, average: avarageProsecutor } = raw.orgaoData;
+
+    // calculating the points exactly between the values
+    const halfMinAvgProsecutor = (avarageProsecutor - minProsecutor) / 2;
+    const halfMaxAvgProsecutor = (maxProsecutor - avarageProsecutor) / 2;
+
+    const pins = [
+      { x: 0, y: (maxProsecutor - halfMaxAvgProsecutor) / maxProsecutor, type: 'max' },
+      { x: 1, y: halfMinAvgProsecutor / maxProsecutor, type: 'min' },
+    ];
+
+    setChartData({ pieData, points, pins, domain, organAvg, pointerPosition });
   };
 
   useEffect(() => {
@@ -106,20 +123,21 @@ function ProcessingTime() {
     loadData();
   }, []);
 
-  if (!chartData || loading && !currentOffice.tipo === 7) {
+  if (!chartData || (loading && !currentOffice.tipo === 7)) {
     return (
       <article className={pageTramitacao}>
         {loading ? (
           <div className={spinnerWrapper}>
             <Spinner size="large" />
           </div>
-        ) : <p>Gráfico em desenvolvimento para essa promotoria</p>}
+        ) : (
+          <p>Gráfico em desenvolvimento para essa promotoria</p>
+        )}
       </article>
     );
   }
 
-  
-  const typeDisplayableName = processTypeDict[mainCategory];
+  // const typeDisplayableName = processTypeDict[mainCategory];
   const categoryProcessingTime = processingTime[mainCategory];
   const isBetter =
     categoryProcessingTime.orgaoData.average <= categoryProcessingTime.pacoteData.average;
@@ -133,11 +151,7 @@ function ProcessingTime() {
           <SectionTitle value="tempo de tramitação" glueToTop />
           <p>
             Avaliei que o período de tramitação de processos na sua promotoria
-            <strong>
-              {isBetter
-                ? ` está mais rápido `
-                : ` está mais lento `}
-            </strong>
+            <strong>{isBetter ? ` está mais rápido ` : ` está mais lento `}</strong>
             que a média da casa entre aquelas de mesma atribuição.
             {'\n'}
             {isBetter && <strong>Muito Bom!</strong>}
@@ -153,6 +167,7 @@ function ProcessingTime() {
           <ProcessingTimeChart
             data={chartData.pieData}
             points={chartData.points}
+            pins={chartData.pins}
             domain={chartData.domain}
             labelText={chartData.organAvg}
             pointerPosition={chartData.pointerPosition}
@@ -161,8 +176,8 @@ function ProcessingTime() {
         </div>
         <div className={ptGraphSeparator} />
         <div className={ptGraphLabels}>
-          <div className={ptGraphLabelsTitle}> 
-              <h3 className={ptGraphLabelsTitleText}> Referente ao pacote </h3>
+          <div className={ptGraphLabelsTitle}>
+            <h3 className={ptGraphLabelsTitleText}> Referente ao pacote </h3>
           </div>
           <div className={ptLegendsWrapper}>
             <div className={ptLegends}>
@@ -170,15 +185,14 @@ function ProcessingTime() {
                 <MarkSlower width={pinSize.width} height={pinSize.height} />
               </div>
               <div className={ptLegendsText}>
-                <span className={`${ptLegendsHighlight} ${colorModalGreen}`}>
+                <span className={`${ptLegendsHighlight} ${colorPurple}`}>
                   <span>{categoryProcessingTime.pacoteData.max.toFixed(0)}</span>
                 </span>
-                trânsito mais lento 
-                <span className={`${ptLegendsHighlight}`}>
-                  do seu pacote
-                </span>
+                trânsito mais lento
+                <span className={ptLegendsHighlight}>do seu pacote</span>
               </div>
             </div>
+
             <div className={ptLegends}>
               <div className={ptLegendsIcon}>
                 <MarkMind width={pinSize.width} height={pinSize.height} />
@@ -187,47 +201,44 @@ function ProcessingTime() {
                 <span className={`${ptLegendsHighlight} ${colorModalBlue}`}>
                   <span>{categoryProcessingTime.pacoteData.average.toFixed(0)}</span>
                 </span>
-                trânsito médio 
-                <span className={`${ptLegendsHighlight}`}>
-                  do seu pacote
-                </span>
+                trânsito médio
+                <span className={ptLegendsHighlight}>do seu pacote</span>
               </div>
             </div>
+
             <div className={ptLegends}>
               <div className={ptLegendsIcon}>
                 <Markfaster width={pinSize.width} height={pinSize.height} />
               </div>
               <div className={ptLegendsText}>
-                <span className={`${ptLegendsHighlight} ${colorPurple}`}>
+                <span className={`${ptLegendsHighlight} ${colorModalGreen}`}>
                   <span>{categoryProcessingTime.pacoteData.min.toFixed(0)}</span>
                 </span>
-                trânsito mais rápido               
-                <span className={`${ptLegendsHighlight}`}>
-                  do seu pacote
-                </span>
+                trânsito mais rápido
+                <span className={ptLegendsHighlight}>do seu pacote</span>
               </div>
             </div>
-            
-            
           </div>
-          <div className={ptGraphLabelsTitle}> 
-              <h3 className={ptGraphLabelsTitleText}> Referente a sua promotoria </h3>
+
+          <div className={ptGraphLabelsTitle}>
+            <h3 className={ptGraphLabelsTitleText}> Referente a sua promotoria </h3>
           </div>
+
           <div className={ptLegendsWrapper}>
             <div className={ptLegends}>
               <div className={ptLegendsIcon}>
                 <PinVermelho width={pinSize.width} height={pinSize.height} />
               </div>
+
               <div className={ptLegendsText}>
                 <span className={`${ptLegendsHighlight} ${colorPink}`}>
                   <span>{categoryProcessingTime.orgaoData.max.toFixed(0)}</span>
                 </span>
-                  trânsito mais lento 
-                <span className={`${ptLegendsHighlight}`}>
-                  da sua promotoria
-                </span>
+                trânsito mais lento
+                <span className={ptLegendsHighlight}>da sua promotoria</span>
               </div>
             </div>
+
             <div className={ptLegends}>
               <div className={ptLegendsIcon}>
                 <PinAmarelo width={pinSize.width} height={pinSize.height} />
@@ -236,21 +247,18 @@ function ProcessingTime() {
                 <span className={`${ptLegendsHighlight} ${colorModalYellow}`}>
                   <span>{categoryProcessingTime.orgaoData.min.toFixed(0)}</span>
                 </span>
-                trânsito mais rápido 
-                <span className={`${ptLegendsHighlight}`}>
-                  da sua promotoria
-                </span>
+                trânsito mais rápido
+                <span className={ptLegendsHighlight}>da sua promotoria</span>
               </div>
             </div>
+
             <div className={ptLegends}>
               <div className={ptLegendsIcon}>
                 <PinBranco width={pinSize.width} height={pinSize.height} />
               </div>
               <div className={ptLegendsText}>
-                trânsito atual 
-                <span className={`${ptLegendsHighlight}`}>
-                  da sua promotoria
-                </span>
+                trânsito atual
+                <span className={ptLegendsHighlight}>da sua promotoria</span>
               </div>
             </div>
           </div>

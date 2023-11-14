@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { ThemeProvider } from 'mapasteca-web';
 import { AppProvider, AppStoreInitializer } from './App.context';
 import { AlertsContextCreator } from '../../web/views/dashboard/sections/Alerts/alertsContext';
 
@@ -22,11 +21,9 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
   
   return (
     <AppProvider alertsStore={alertsStore} store={appStore}>
-      <ThemeProvider>
         <ErrorBoundary hasError={appHasCrashed} setError={setAppHasCrashed} errorScreen={<ErrorScreen />}>
           { children }
         </ErrorBoundary>
-      </ThemeProvider>
     </AppProvider>
   );
 }

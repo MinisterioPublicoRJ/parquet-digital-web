@@ -41,7 +41,8 @@
     "spaced-comment": "warn", 
     "import/no-cycle": "warn",
     "react/jsx-curly-brace-presence": "warn",
-    "import/no-named-as-default": 0
+    "import/no-named-as-default": 0,
+    
   },
   "env": {
     "browser": true

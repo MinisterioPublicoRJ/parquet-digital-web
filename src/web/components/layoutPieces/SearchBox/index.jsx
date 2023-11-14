@@ -27,7 +27,7 @@ function SearchBox({ onSearch }) {
   
   return (
     <div className={SearchBoxOuter}>
-      <button onClick={handleSearchButtonClick} type="button">
+      <button onClick={handleSearchButtonClick} type="button" >
         <SearchIcon />
       </button>
       <input

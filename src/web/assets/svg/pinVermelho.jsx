@@ -7,8 +7,8 @@ export default function pinVermelho({ x, y, width, height }) {
       width={width || '25'}
       height={height || '20.836'}
       viewBox="0 0 25 33"
-      x={x - 15}
-      y={y - 15}
+      x={x ? x - 15 : null}
+      y={y ? y - 15 : null}
     >
       <path
         fill="#FF0186"

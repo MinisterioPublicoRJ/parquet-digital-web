@@ -4,10 +4,9 @@ export default function pinVermelho({ x, y, width, height }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={width || '27.168'}
+      width={width || '25'}
       height={height || '20.836'}
-      fill="none"
-      viewBox="0 0 26 33"
+      viewBox="0 0 25 33"
       x={x - 15}
       y={y - 15}
     >

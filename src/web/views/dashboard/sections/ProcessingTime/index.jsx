@@ -98,7 +98,7 @@ function ProcessingTime() {
     loadData();
   }, []);
 
-  if (!chartData || loading && !currentOffice.tipo === 7) {
+  if (!chartData || loading && !currentOffice.tipo === 3) {
     return (
       <article className={pageTramitacao}>
         {loading ? (

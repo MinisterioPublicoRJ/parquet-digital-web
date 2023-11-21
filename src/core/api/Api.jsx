@@ -323,7 +323,7 @@ function ApiCreator(jwtToken) {
     if (organType === 2) {
       endpoint = RADAR_COMPARE_PIP({ orgao });
     }
-    if (organType === 7) {
+    if (organType === 3) {
       endpoint = RADAR_COMPARE_CRIMINAL({ orgao });
     }
     const { data } = await axiosInstance.get(endpoint);

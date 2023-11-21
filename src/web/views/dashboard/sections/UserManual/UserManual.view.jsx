@@ -54,7 +54,7 @@ function UserManual() {
                 Acessar Manual
               </button>
             )}
-             {tipo === 7 && (
+             {tipo === 3 && (
               <button
                 type="button"
                 onClick={(event) => {

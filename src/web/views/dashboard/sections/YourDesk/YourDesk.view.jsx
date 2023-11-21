@@ -94,7 +94,7 @@ function YourDesk() {
         deskButtons = PIP_DESK_BUTTONS;
         collectionButtons = PIP_COLLECTION_BUTTONS;
         break;
-      case 7:
+      case 3:
         deskButtons = CRIMINAL_DESK_BUTTONS;
         collectionButtons = CRIMINAL_COLLECTION_BUTTONS;
         break;
@@ -145,9 +145,13 @@ function YourDesk() {
         tempDBNames.push('pip_pics');
         tempDBNames.push('pip_inqueritos');
       }
-      if (currentOffice.tipo === 7) {
+      if (currentOffice.tipo === 3) {
         tempDBNames.push('criminal_processos');
         tempDBNames.push('criminal_finalizados');
+      }
+      if (currentOffice.tipo === 4) {
+        tempDBNames.push('tutela_investigacoes');
+        tempDBNames.push('tutela_processos');
       }
       setDBNames(tempDBNames);
     }
@@ -201,8 +205,10 @@ function YourDesk() {
       case 2:
         return <MainInvestigated />;
         break;
-      case 7:
+      case 3:
         return <ProcessListCriminal />;
+      case 4:
+        return <TablesTutela />;
         break;
       default:
         return 0;

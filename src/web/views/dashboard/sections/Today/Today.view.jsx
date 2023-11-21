@@ -209,7 +209,7 @@ function Today() {
           </Modal>
         )}
         <div className={todayTextArea}>
-          {currentOffice.tipo === 7 ? <InDevelopmentToday /> : todayText}
+          {currentOffice.tipo === 3 && 4 ? <InDevelopmentToday /> : todayText}
         </div>
       </div>
       {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (

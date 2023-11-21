@@ -62,7 +62,7 @@ function PerformanceRadar() {
         // pip
         res = await Api.getPipRadarData(buildRequestParams());
       }
-      if (tipo === 7) {
+      if (tipo === 3) {
         // criminal
         res = await Api.getRadarDataCriminal(buildRequestParams());
       }

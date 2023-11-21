@@ -58,8 +58,8 @@
   --spotlightSize: calc(var(--defaultFontSize) * 2);
 
   /* MODAL FONT-SIZES */
-  --modal-default-font-size: clamp(0.8rem, 1.5vw, 1rem);
-  --modal-title-font-size: clamp(1rem, 2.2vw, 2rem);
+  --modal-default-font-size: clamp(0.8rem, 1vw, 1rem);
+  --modal-title-font-size: clamp(1rem, 2vw, 2rem);
 }
 
 /* TABLETS */

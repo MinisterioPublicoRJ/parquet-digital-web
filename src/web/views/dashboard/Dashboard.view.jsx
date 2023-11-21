@@ -9,7 +9,6 @@ function Dashboard() {
   const { firstLogin } = user;
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
-  console.log(currentOffice, "Oiiii")
   if (!user) {
     return <Spinner size="large" />;
   }

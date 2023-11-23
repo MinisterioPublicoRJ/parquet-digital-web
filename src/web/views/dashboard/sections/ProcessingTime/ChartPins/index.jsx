@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MarkMind, Markfaster, MarkSlower } from '../../../../../assets/svg';
+import { PinVermelho, PinAmarelo } from '../../../../../assets/svg';
 
 // This props are supplied by Victory itself
 // https://formidable.com/open-source/victory/docs/common-props/#labelcomponent
@@ -11,19 +11,16 @@ const proptypes = {
   datum: PropTypes.shape({ type: PropTypes.string }).isRequired,
 };
 
-const ChartPoints = ({ x, y, datum }) => {
+function ChartPins({ x, y, datum }) {
   const { type } = datum;
   let point;
 
   switch (type) {
     case 'min':
-      point = <Markfaster width="26" height="26" x={x} y={y} />;
-      break;
-    case 'average':
-      point = <MarkMind width="26" height="26" x={x} y={y} />;
+      point = <PinAmarelo width="25" height="25" x={x} y={y} />;
       break;
     case 'max':
-      point = <MarkSlower width="26" height="26" x={x} y={y} />;
+      point = <PinVermelho width="25" height="25" x={x} y={y} />;
       break;
     default:
       point = null;
@@ -31,7 +28,7 @@ const ChartPoints = ({ x, y, datum }) => {
   }
 
   return point;
-};
+}
 
-ChartPoints.proptypes = proptypes;
-export default ChartPoints;
+ChartPins.proptypes = proptypes;
+export default ChartPins;

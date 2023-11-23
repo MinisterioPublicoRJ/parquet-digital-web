@@ -2,7 +2,7 @@
 const darkBlue = '#374354';
 const gray = '#b5b5b5';
 
-export const PT_PIE_COLORS = ['#42DCA7', '#6D86EC', '#A256BA'];
+export const PT_PIE_COLORS = ['#61B965', '#51B0E4', '#8A63D3'];
 
 const CHART_THEME = {
   polarAxis: {

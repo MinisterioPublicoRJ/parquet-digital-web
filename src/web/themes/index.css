@@ -11,28 +11,33 @@
   --secondary: #b5b5b5;
   --dark: #3b3b3b;
   --darkBlue: #374354;
+  --darkBlueModal: #154763;
   --success: #71d0a4;
   --warning: #f8bd6c;
   --danger: #f86c72;
   --white: #ffffff;
   --gray: #b5b5b5;
-  --blueGray: #8998AC;
+  --blueGray: #8998ac;
   --grayLight: #e8e8e8;
+  --grayDivisor: #cccc;
   --grayLinks: #cecece;
   --grayTexts: #b3b3b3;
   --grayTooltip: #555;
   --darkWelcome: #4a4a4a;
   --lightBlue: #bddff0;
   --grayPagination: #8998ac;
-  --grayAlternative: #B4B4B4;
+  --grayAlternative: #b4b4b4;
   --lightGray: #c4c4c4;
   --loginBlue: #154763;
 
   --pt-turquoise: #56e8e1;
   --pt-pink: #ff0086;
   --pt-green: #42dca7;
-  --pt-purple: #6d86ec;
   --pt-blue: #bddff0;
+  --pt-purple: #8a63d3;
+  --pt-modalBlue: #51b0e4;
+  --pt-modalGreen: #61b965;
+  --pt-modalYellow: #f8bd6c;
 
   --shadowColor: rgba(0, 0, 0, 0.3);
 
@@ -48,13 +53,13 @@
   --smallTitleFontSize: calc(var(--defaultFontSize) * 1.1);
 
   --smallFont: clamp(0.75rem, 1.2vh, 1rem);
-  --sectionTitleFontSize:  clamp(0.938rem, 1.2vh, 1rem);
+  --sectionTitleFontSize: clamp(0.938rem, 1.2vh, 1rem);
   --featuredNumberFontSize: calc(var(--defaultFontSize) * 1.2);
   --spotlightSize: calc(var(--defaultFontSize) * 2);
 
   /* MODAL FONT-SIZES */
-  --modal-default-font-size: clamp(0.8rem, 1.5vw, 1rem);
-  --modal-title-font-size: clamp(1rem, 2.2vw, 2rem);
+  --modal-default-font-size: clamp(0.8rem, 1vw, 1rem);
+  --modal-title-font-size: clamp(1rem, 2vw, 2rem);
 }
 
 /* TABLETS */

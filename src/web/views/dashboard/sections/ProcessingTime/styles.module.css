@@ -1,7 +1,7 @@
 .pageTramitacao {
   display: flex;
   flex-direction: column;
-  max-width: 833px;
+  max-width: 58rem;
   overflow: hidden;
   min-height: 100px;
 }
@@ -18,15 +18,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 200px;
+  gap: 12.5rem;
   padding: 24px 6px 6px 24px;
   background-color: var(--lightBlue);
 }
 
+.ptHeaderImage {
+  margin-right: 2.5rem;
+}
+
 .ptHeaderContent h2 {
-  font-size: var(--modal-default-font-size);
+  color: var(--darkBlueModal);
+  font-size: calc(var(--modal-title-font-size) * 0.75);
   text-transform: uppercase;
   margin: 0;
+  font-weight: 900;
 }
 
 .ptHeaderContent p {
@@ -36,51 +42,69 @@
 
 .ptGraph {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px;
 }
 
 .ptGraphWrapper {
-  width: 65%;
-  height: 340px;
+  height: 15rem;
+  flex: 1;
+}
+
+.ptGraphSeparator {
+  width: 5px;
+  height: 50vh;
+  border: 2px var(--grayDivisor);
+  border-right-style: dashed;
+  align-self: center;
+  margin-right: 2rem;
 }
 
 .ptGraphLabels {
-  width: 35%;
+  width: 56%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.ptLegendsWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: flex-start;
+  column-gap: 0.5rem;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+}
+
+.ptGraphLabelsTitleText {
+  font-weight: 600;
+  text-transform: none;
 }
 
 .ptLegends {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20%;
-  margin-bottom: 20px;
+  gap: 0.5rem;
+  align-items: flex-end;
 }
 
 .ptLegendsIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
+  align-self: flex-start;
 }
 
 .ptLegendsText {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  flex: 5;
   color: var(--grayTexts);
-  font-size: var(--smallFont);
-  margin-left: 10px;
+  font-size: calc(var(--modal-default-font-size) * 0.8);
 }
 
 .ptLegendsHighlight {
-  font-size: var(--modal-default-font-size);
-  margin-bottom: 6px;
+  font-weight: 700;
+  font-size: calc(var(--modal-default-font-size) * 0.8);
 }
 
 .ptLegendsHighlight span:first-child {
-  font-size: var(--modal-default-font-size);
+  font-size: 1.2rem;
   margin-right: 7px;
 }
 
@@ -100,13 +124,24 @@
   color: var(--pt-purple);
 }
 
+.colorModalGreen {
+  color: var(--pt-modalGreen);
+}
+
+.colorModalBlue {
+  color: var(--pt-modalBlue);
+}
+
+.colorModalYellow {
+  color: var(--pt-modalYellow);
+}
 
 /* TABLETS AND PHONES */
 @media (max-width: 768px) {
   .pageTramitacao {
     width: 80vw;
     height: 80vh;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 
   .ptHeader {
@@ -119,22 +154,59 @@
 
   .ptGraph {
     flex-direction: column;
+    height: auto;
   }
 
   .ptGraphWrapper {
     width: 100%;
-    height: 200px;
+    height: 15rem;
+    flex: initial;
   }
 
   .ptGraphLabels {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    flex-wrap: wrap;
+  }
+
+  .ptGraphSeparator {
+    display: none;
+  }
+
+  .ptGraphLabelsTitleText {
+    margin-left: 1rem;
+  }
+
+  .ptLegendsWrapper {
+    margin-left: 1rem;
+  }
+
+  .ptLegendsHighlight {
+    font-weight: 700;
+  }
+
+  .ptLegendsText,
+  .ptLegendsHighlight {
+    font-size: var(--modal-default-font-size);
+  }
+}
+
+@media (max-width: 475px) {
+  .ptGraph {
+    padding: 1rem;
+    height: 100%;
+  }
+
+  .ptLegendsWrapper {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    place-items: center;
   }
 
   .ptLegends {
     height: auto;
-  } 
+    width: 60%;
+  }
+
+  .ptLegendsWrapper {
+    flex-direction: column;
+  }
 }

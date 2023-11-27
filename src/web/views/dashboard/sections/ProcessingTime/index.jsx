@@ -124,7 +124,7 @@ function ProcessingTime() {
   }, []);
 
   // eslint-disable-next-line no-constant-condition
-  /* if (!chartData || loading && currentOffice.tipo === 3 || 4) {
+  if (!chartData || loading && currentOffice.tipo === 4) {
     return (
       <article className={pageTramitacao}>
         {loading ? (
@@ -136,7 +136,7 @@ function ProcessingTime() {
         )}
       </article>
     );
-  } */
+  } 
 
   // const typeDisplayableName = processTypeDict[mainCategory];
   const categoryProcessingTime = processingTime[mainCategory];

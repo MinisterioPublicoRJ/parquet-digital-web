@@ -107,7 +107,7 @@ function NavbarList() {
           <p>Radar de Perfomance</p>
         </div>
 
-        {currentOffice.tipo !== 3 && 4 ? (
+        {currentOffice.tipo !== 3 || 4 ? (
           <div
             className={navbarListItem}
             onMouseOver={() => setHoverTempoTramitacao(true)}

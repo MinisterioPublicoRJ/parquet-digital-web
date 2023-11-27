@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import React, { useState, useEffect } from 'react';
 
 import { useAppContext } from '../../../../../core/app/App.context';
@@ -209,7 +210,7 @@ function Today() {
           </Modal>
         )}
         <div className={todayTextArea}>
-          {currentOffice.tipo === 3 && 4 ? <InDevelopmentToday /> : todayText}
+          {currentOffice.tipo === 3 || 4 ? <InDevelopmentToday /> : todayText}
         </div>
       </div>
       {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (

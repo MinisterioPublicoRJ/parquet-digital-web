@@ -4,7 +4,7 @@ export const TUTELA_DESK_BUTTONS = ['openCases', 'newDocs', 'closedCasesT'];
 
 export const CRIMINAL_DESK_BUTTONS = ['openCases', 'newDocs', 'closedCasesC'];
 
-export const GENERALIST_DESK_BUTTONS = ['openCases', 'newDocs', 'closedCasesC'];
+export const GENERALIST_DESK_BUTTONS = ['openCases', 'newDocs', 'closedCasesG'];
 
 export const PIP_COLLECTION_BUTTONS = ['pics', 'inquiries', 'aisps'];
 
@@ -12,7 +12,7 @@ export const TUTELA_COLLECTION_BUTTONS = ['courtCases', 'openInvestigationsT'];
 
 export const CRIMINAL_COLLECTION_BUTTONS = ['criminalCourtCases'];
 
-export const GENERALIST_COLLECTION_BUTTONS = ['courtCases','openInvestigationsG', 'factualNews'];
+export const GENERALIST_COLLECTION_BUTTONS = ['courtCasesG','openInvestigationsG', 'factualNews'];
 
 export const CONTROL_BUTTONS = ['desk', 'collection',];
 
@@ -26,6 +26,7 @@ export const BUTTON_TEXTS = {
   closedCasesP: `finalizados últimos 30 dias`,
   closedCasesT: `finalizados últimos 30 dias`,
   closedCasesC: `finalizados últimos 30 dias`,
+  closedCasesG:`finalizados últimos 30 dias`,
   courtCases: `Número de processos\nem juízo`,
   openInvestigationsT: `Investigações\nem curso`,
   criminalCourtCases: `Número de processos\nem juízo`,
@@ -34,16 +35,18 @@ export const BUTTON_TEXTS = {
   aisps: 'Na sua área de atribuição',
   newDocs: 'Documentos novos últimos 30 dias',
   factualNews: 'Notícias de fato',
-  generalistCourtCases: `Número de processos\nem juízo`,
+  courtCasesG: `Número de processos\nem juízo`,
   openInvestigationsG: 'Investigações\nem curso'
 
 };
 
 export const BUTTON_COLORS = {
   openCases: "white",
+  newDocs: "blue",
   closedCasesP: "green",
   closedCasesT: "green",
   closedCasesC: "green",
+  closedCasesG: "green",
   openInvestigationsT: "gray",
   openInvestigationsG: "gray",
   courtCases: "gray",
@@ -51,8 +54,8 @@ export const BUTTON_COLORS = {
   pics: "gray",
   inquiries: "gray",
   aisps: "gray",
-  newDocs: "blue",
   factualNews: "gray",
+  courtCasesG: 'gray',
 };
 
 export const BUTTON_DICT = {
@@ -61,14 +64,14 @@ export const BUTTON_DICT = {
   closedCasesP: 'pip_finalizados',
   closedCasesC: 'criminal_finalizados',
   closedCasesT: 'tutela_finalizados',
-  closedCasesG: 'generalista_finalizados',
+  closedCasesG: '',
+  openInvestigationsT: 'tutela_investigacoes',
+  openInvestigationsG: 'generalista_investigacoes',
+  courtCases: 'tutela_processos',
+  criminalCourtCases: 'criminal_processos',
   pics: 'pip_pics',
   inquiries: 'pip_inqueritos',
   aisps: 'pip_aisp',
-  openInvestigationsT: 'tutela_investigacoes',
-  courtCases: 'tutela_processos',
-  criminalCourtCases: 'criminal_processos',
-  generalistaCourtCases: '',
   factualNews: '',
-  openInvestigationsG: ''
+  courtCasesG:''
 };

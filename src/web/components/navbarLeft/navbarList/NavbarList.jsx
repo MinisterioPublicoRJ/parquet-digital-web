@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import React, { useState } from 'react';
 import { useAppContext } from '../../../../core/app/App.context';
 
@@ -106,7 +107,7 @@ function NavbarList() {
           <p>Radar de Perfomance</p>
         </div>
 
-        {currentOffice.tipo !== 3 ? (
+        {currentOffice.tipo !== 3 && 4 ? (
           <div
             className={navbarListItem}
             onMouseOver={() => setHoverTempoTramitacao(true)}

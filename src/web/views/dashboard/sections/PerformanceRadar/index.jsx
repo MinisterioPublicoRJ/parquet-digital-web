@@ -66,6 +66,10 @@ function PerformanceRadar() {
         // criminal
         res = await Api.getRadarDataCriminal(buildRequestParams());
       }
+      if (tipo === 4) {
+        // criminal
+        res = await Api.getRadarDataCriminal(buildRequestParams());
+      }
     } catch (e) {
       setError(true);
     } finally {

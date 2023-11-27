@@ -44,6 +44,8 @@ import {
   TUTELA_COLLECTION_BUTTONS,
   CRIMINAL_DESK_BUTTONS,
   CRIMINAL_COLLECTION_BUTTONS,
+  GENERALIST_DESK_BUTTONS,
+  GENERALIST_COLLECTION_BUTTONS,
   BUTTON_TEXTS,
   BUTTON_DICT,
   CONTROL_BUTTONS,
@@ -65,7 +67,7 @@ function YourDesk() {
   const [dbNames, setDBNames] = useState([]);
   const [collectionTable, setCollectionTable] = useState(getCollectionTable);
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
-
+  console.log(currentOffice.tipo)
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();
@@ -97,6 +99,10 @@ function YourDesk() {
       case 3:
         deskButtons = CRIMINAL_DESK_BUTTONS;
         collectionButtons = CRIMINAL_COLLECTION_BUTTONS;
+        break;
+      case 4:
+        deskButtons = GENERALIST_DESK_BUTTONS;
+        collectionButtons = GENERALIST_COLLECTION_BUTTONS;
         break;
       default:
         break;
@@ -150,9 +156,10 @@ function YourDesk() {
         tempDBNames.push('criminal_finalizados');
       }
       if (currentOffice.tipo === 4) {
-        tempDBNames.push('tutela_investigacoes');
-        tempDBNames.push('tutela_processos');
+        tempDBNames.push('');
+        tempDBNames.push('');
       }
+      
       setDBNames(tempDBNames);
     }
 
@@ -285,7 +292,9 @@ function YourDesk() {
 
   // const hasNoMetrics is filled if no metrics value  is returned
   const hasNoMetrics =
-    metricsArray[0] == undefined || !metricsArray ? 'Em breve serão disponibilizadas métricas para essa promotoria.' : '';
+    metricsArray[0] == undefined || !metricsArray
+      ? 'Em breve serão disponibilizadas métricas para essa promotoria.'
+      : '';
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>
@@ -313,7 +322,7 @@ function YourDesk() {
               </div>
             )}
             <div>
-               {metricsArray && !hasNoMetrics && (
+              {metricsArray && !hasNoMetrics && (
                 <>
                   {metricsArray.map((metrics, index) => (
                     <MetricsProsecutions
@@ -327,9 +336,7 @@ function YourDesk() {
                   ))}
                 </>
               )}
-              <div className={noMetrics}>
-                {!loading && hasNoMetrics}
-              </div>
+              <div className={noMetrics}>{!loading && hasNoMetrics}</div>
             </div>
           </div>
         </div>

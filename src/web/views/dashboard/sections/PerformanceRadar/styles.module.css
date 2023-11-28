@@ -35,7 +35,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .radarSubtitles button {
@@ -63,7 +63,7 @@
   position: relative;
   padding-top: 1.5vh;
   font-family: var(--defaultFont);
-  font-size: var(--smallFont);
+  font-size: var(--defaultFontSize);
   line-height: 12px;
   color: var(--dark);
 }

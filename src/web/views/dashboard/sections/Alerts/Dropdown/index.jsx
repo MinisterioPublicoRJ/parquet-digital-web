@@ -1,6 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/jsx-no-bind */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import AlertBadge from '../AlertBadge';
@@ -9,9 +7,12 @@ import { useAlertsContext } from '../alertsContext';
 import individualAlertFormatter from '../utils/individualAlertFormatter';
 
 import {
-  dropdownBtn,
+  dropdownAlerts,
+  openDropdown,
+  closeDropdown,
   boxBtnDropdown,
   showMoreAlerts,
+  teste,
 } from './styles.module.css';
 
 const propTypes = {
@@ -21,7 +22,6 @@ const propTypes = {
 };
 
 function Dropdown({ type, setOverlay, openDialogBox }) {
-  
   const { alerts, handleAlertAction } = useAlertsContext();
   const { buildRequestParams } = useAppContext();
   const { orgao, token } = buildRequestParams();
@@ -47,21 +47,20 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
   }
 
   return (
-    <div className={ boxBtnDropdown }>
-      <button
-        className={ dropdownBtn }
-        type="button"
-        onClick={() => setIsOpen((prevState) => !prevState)}
-      >
+    <div className={boxBtnDropdown}>
+      <div className={teste}>
         <AlertBadge
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...headerAlert}
           customKey={headerAlert.key}
           count={alertsList.length}
           isOpen={isOpen}
+          setIsOpen={() => setIsOpen((prevState) => !prevState)}
           hideHover
         />
-      </button>
-      <div style={!isOpen ? { display: 'none' } : {}}>
+      </div>
+
+      <div className={`${dropdownAlerts} ${isOpen && openDropdown} ${!isOpen && closeDropdown}`}>
         {visibleAlertsList.map((alert) => {
           const {
             actions,
@@ -72,8 +71,9 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
             message,
             isDeleted,
             docDk,
-            docNum
+            docNum,
           } = alert;
+
           return (
             <AlertBadge
               handleDeletion={(alertKey, undo) => handleAlertAction(type, alertKey, undo)}
@@ -113,7 +113,7 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
             onClick={() => {
               setVisibleAlerts((prevValue) => prevValue + 30);
             }}
-            className={ showMoreAlerts }
+            className={showMoreAlerts}
           >
             MOSTRAR +30 ALERTAS
           </button>

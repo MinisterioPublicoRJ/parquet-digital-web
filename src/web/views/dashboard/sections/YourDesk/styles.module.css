@@ -326,14 +326,5 @@ div .deskButtonsCollectionPhrase {
   .yourCollectionButtons div{
     width: 100%;
   }
-  .yourCollectionButtons div:nth-child(1){
-    width: 100%;
-  }
-  .yourCollectionButtons div:nth-child(2){
-    width: 100%;
-  }
-  .yourCollectionButtons div:nth-child(3){
-    width: 100%;
-  }
  
 }

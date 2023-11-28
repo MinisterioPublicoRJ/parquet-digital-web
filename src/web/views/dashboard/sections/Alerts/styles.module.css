@@ -68,11 +68,10 @@
   justify-content: center;
 }
 
-
 /* MOBILE */
 @media (max-width: 768px) {
   .alertsWrapper {
-    padding: 1.5rem;
+    padding: 1rem 0.5rem 1rem 1rem;
     margin: 0;
     box-sizing: border-box;
   }
@@ -81,5 +80,9 @@
     border-radius: 12px;
     padding: 0.2rem 0.6rem;
     margin-right: 1rem;
+  }
+
+  .alertsTotalStyle span {
+    margin-right: 0;
   }
 }

@@ -1,10 +1,12 @@
-/* eslint-disable react/jsx-props-no-spreading, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-import React from 'react';
+/* eslint-disable no-alert */
+
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './AlertActionButtons';
 
 import {
   alertBadgeOuterContainer,
+  openDropdownBtn,
   alertBadgeHoverContainer,
   deleteConfirmation,
   alertBadgeLeftContainer,
@@ -14,9 +16,14 @@ import {
   alertBadgeArrowOpen,
   alertBadgeCountWrapper,
   alertBadgeDownloadNumbers,
+  openMobileDropdownBtn,
   isDeletedStyle,
   doDelete,
   undoDelete,
+  showContainerInMobile,
+  hoverMobile,
+  openArrow,
+  closeArrow
 } from './styles.module.css';
 
 const propTypes = {
@@ -39,6 +46,7 @@ const propTypes = {
   openDialogBox: PropTypes.func,
   count: PropTypes.number,
   isOpen: PropTypes.bool,
+  setIsOpen: PropTypes.func,
   isDeleted: PropTypes.bool,
   docDk: PropTypes.number,
 };
@@ -49,6 +57,7 @@ const defaultProps = {
   onDeletion: () => null,
   count: null,
   isOpen: false,
+  setIsOpen: () => null,
   isDeleted: false,
   openDialogBox: () => null,
   actions: [],
@@ -67,11 +76,15 @@ function AlertBadge(alert) {
     setOverlay,
     count,
     isOpen,
+    setIsOpen,
     isDeleted,
     docDk,
-    type, 
+    type,
     docNum
   } = alert;
+
+  const [showHoverMobile, setShowHoverMobile] = useState(false);
+
   // in case we got something from the backend that we don't know how to handle yet
   if (!message) {
     return null;
@@ -105,8 +118,8 @@ function AlertBadge(alert) {
         return handleDeletion(key);
       case 'download':
         return handleLinks(alertAction);
-        case 'overlay':
-          return setOverlay(type, String(docDk), docNum);
+      case 'overlay':
+        return setOverlay(type, String(docDk), docNum);
       case 'overlay_iimp':
         return setOverlay('OVERLAY_IIMP', String(docDk));
       case 'link':
@@ -121,9 +134,26 @@ function AlertBadge(alert) {
   const showHover = !hideHover && actions[1];
 
   return (
-    <div className={ alertBadgeOuterContainer }>
+    <div className={`${alertBadgeOuterContainer} ${showHoverMobile && showContainerInMobile}`}>
+      {!showHover && (
+        <button
+          type="button"
+          className={openDropdownBtn}
+          aria-label="Open Alerts Dropdown"
+          onClick={setIsOpen}
+        />
+      )}
+
       {showHover && !isDeleted && (
-        <div className={ alertBadgeHoverContainer }>
+        <div className={alertBadgeHoverContainer}>
+          <button
+            className={hoverMobile}
+            type="button"
+            onClick={() => setShowHoverMobile(false)}
+          >
+            <span className={`${alertBadgeArrow} ${closeArrow}`} />
+          </button>
+
           {actions.map((alertAction) => (
             <ActionButtons
               key={`${customKey}-${alertAction.actionType}-${alertAction.text}`}
@@ -134,46 +164,64 @@ function AlertBadge(alert) {
           ))}
         </div>
       )}
+
       {!hideHover && isDeleted && (
-        <div className={`${ deleteConfirmation } ${isDeleted ? `${ isDeletedStyle }` : ''}`}>
-          <button type="button" className={ doDelete } onClick={() => handleDeletion(customKey)}>
+        <div className={`${deleteConfirmation} ${isDeleted ? `${isDeletedStyle}` : ''}`}>
+          <button type="button" className={doDelete} onClick={() => handleDeletion(customKey)}>
             x
           </button>
           <button
             type="button"
-            className={ undoDelete }
+            className={undoDelete}
             onClick={() => handleDeletion(customKey, true)}
           >
             Desfazer
           </button>
         </div>
       )}
-      <div className={ alertBadgeLeftContainer } style={{ backgroundColor }}>
+
+      <div className={alertBadgeLeftContainer} style={{ backgroundColor }}>
         {icon}
       </div>
-      <div className={ alertBadgeRightContainer }>
+
+      <div className={alertBadgeRightContainer}>
         <span>{message}</span>
-        <div className={ alertBadgeSmallButtons }>
+
+        <div className={alertBadgeSmallButtons}>
           {!showHover && actions[0] && (
             <>
-              <div
+              <button
+                type="button"
                 onClick={() => {
                   handleActionPress(actions[0]);
                 }}
-                className={ alertBadgeDownloadNumbers }
-                style={{ backgroundColor: '#2DE288' }}
-                type="button"
+                className={alertBadgeDownloadNumbers}
               >
                 {actions[0].text}
-              </div>
-              <div className={ alertBadgeCountWrapper } style={{ backgroundColor }}>
-                <span className={`${ alertBadgeArrow } ${isOpen && `${ alertBadgeArrowOpen }`}`} />
+              </button>
+
+              <button type="button" className={alertBadgeCountWrapper} style={{ backgroundColor }}>
+                <span className={`${alertBadgeArrow} ${isOpen && alertBadgeArrowOpen}`} />
                 {count}
-              </div>
+              </button>
+
+              <button type='button' className={openMobileDropdownBtn} onClick={setIsOpen}>
+                <span className={`${alertBadgeArrow} ${isOpen && alertBadgeArrowOpen}`} />
+              </button>
             </>
           )}
         </div>
       </div>
+
+      {showHover && (
+        <button
+          className={hoverMobile}
+          type="button"
+          onClick={() => setShowHoverMobile(true)}
+        >
+          <span className={`${alertBadgeArrow} ${openArrow}`} />
+        </button>
+      )}
     </div>
   );
 }

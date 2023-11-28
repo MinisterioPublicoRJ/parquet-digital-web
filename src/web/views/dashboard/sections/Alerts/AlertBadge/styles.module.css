@@ -1,18 +1,18 @@
 .alertBadgeOuterContainer {
   background-color: white;
-  border-radius: 7px;
+  border-radius: 0.4375rem;
   box-shadow: 0px 3px 8px #00000029;
   color: var(--dark);
   display: flex;
   font-family: var(--defaultFont);
   font-weight: 500;
-  font-size: 13px;
-  line-height: 18px;
-  margin: 1vh;
-  min-height: 90px;
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  min-height: 5.625rem;
   overflow: hidden;
   position: relative;
-  margin-left: 1.2vh;
 }
 
 .alertBadgeHoverContainer {
@@ -26,16 +26,7 @@
   top: 0;
   transition: 0.5s ease;
   width: 0;
-}
-
-.alertBadgeHoverContainer :first-child {
-  z-index: 1;
-  margin-left: 0;
-}
-
-.alertBadgeOuterContainer:hover .alertBadgeHoverContainer {
-  width: 100%;
-  left: 0;
+  z-index: 10;
 }
 
 .deleteConfirmation {
@@ -116,18 +107,28 @@
   align-self: flex-end;
 }
 
-.alertBadgeCountWrapper, .alertBadgeDownloadNumbers {
+.alertBadgeCountWrapper,
+.alertBadgeDownloadNumbers {
   align-self: flex-end;
-  align-items: center;
-  border-radius: 4px;
-  color: var(--white);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(1.2 * var(--smallFont));
+  border-radius: 0.25rem;
+  color: var(--white);
   font-weight: bold;
   font-size: var(--smallFont);
-  height: calc(1.2 * var(--smallFont));
-  justify-content: center;
-  padding: 2px 5px;
-  margin-left: 5px;
+  padding: 0.125rem 0.3125rem;
+  padding: 0.6rem 0.5rem;
+  margin-left: 0.3125rem;
+  border: none;
+  box-sizing: border-box;
+  font-family: var(--defaultFont);
+}
+
+.alertBadgeDownloadNumbers {
+  z-index: 100;
+  background-color: #2de288;
 }
 
 .alertBadgeArrow {
@@ -135,9 +136,9 @@
   display: inline-block;
   width: 0;
   height: 0;
-  border-left: calc(0.5 * var(--smallFont)) solid transparent;
-  border-right: calc(0.5 * var(--smallFont)) solid transparent;
-  border-top-width: calc(0.5 * var(--smallFont));
+  border-left: calc(0.4 * var(--smallFont)) solid transparent;
+  border-right: calc(0.4 * var(--smallFont)) solid transparent;
+  border-top-width: calc(0.4 * var(--smallFont));
   border-top-style: solid;
   border-top-color: white;
   margin-right: 5px;
@@ -145,25 +146,102 @@
   margin-bottom: 1px;
 }
 
-.alertBadgeArrowOpen {
-  transform: rotate(180deg);
+.openMobileDropdownBtn {
+  display: none;
+}
+
+.openDropdownBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.hoverMobile {
+  display: none;
+}
+
+/* Only in desktop */
+@media (min-width: 769px) {
+  .alertBadgeOuterContainer:hover .alertBadgeHoverContainer {
+    width: 100%;
+    left: 0;
+  }
+
+  .alertBadgeArrowOpen {
+    transform: rotate(180deg);
+  }
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
-  .alertBadgeSmallButtons {
-    width: 100%;
-    justify-content: space-between; 
+  .alertBadgeOuterContainer {
+    margin-bottom: 1.2rem;
   }
 
-  .alertBadgeCountWrapper, .alertBadgeDownloadNumbers {
+  .alertBadgeSmallButtons {
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  .alertBadgeCountWrapper,
+  .alertBadgeDownloadNumbers {
     margin-left: 0;
-    padding: 6px 12px;
+    padding: 0.8rem 1rem;
   }
 
   .alertBadgeRightContainer {
     align-items: flex-start;
     font-size: 0.75rem;
     gap: 0.6rem;
+  }
+
+  .openMobileDropdownBtn {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 0 0.5rem;
+  }
+
+  .openMobileDropdownBtn .alertBadgeArrow {
+    border-top-color: #8b8888;
+    transform: scale(1.6);
+    margin: 0;
+  }
+
+  .openMobileDropdownBtn .alertBadgeArrowOpen {
+    transform: scale(1.6) rotate(180deg);
+  }
+
+  .hoverMobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8ea;
+    border-radius: 0 0.4375rem 0.4375rem 0;
+    border: none;
+    border-left: 1px solid #e3e4ea;
+  }
+
+  .alertBadgeArrow.openArrow {
+    border-top-color: #8b8888;
+    transform: scale(1.6) rotate(90deg);
+  }
+
+  .alertBadgeArrow.closeArrow {
+    border-top-color: #8b8888;
+    transform: scale(1.6) rotate(-90deg);
+  }
+
+  .showContainerInMobile .alertBadgeHoverContainer {
+    width: 100%;
+    left: 0;
   }
 }

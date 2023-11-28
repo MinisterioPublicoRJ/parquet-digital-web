@@ -34,21 +34,25 @@
   margin-top: 2.5vh;
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
+  align-items: center;
+  gap: 1rem;
 }
 
 .radarSubtitles button {
   border: none;
-  background-color: #29a2f2;
+  background-color: var(--pt-blue);
+  font-weight: 600;
   height: 30px;
-  padding: 4px;
-  padding-bottom: 6px;
+  padding: 1rem;
   border-radius: 5px;
-  margin-top: -4px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 .radarSubtitles button:hover {
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .radarSubtitles button svg {
@@ -59,7 +63,7 @@
   position: relative;
   padding-top: 1.5vh;
   font-family: var(--defaultFont);
-  font-size: var(--defaultFontSize);
+  font-size: var(--smallFont);
   line-height: 12px;
   color: var(--dark);
 }

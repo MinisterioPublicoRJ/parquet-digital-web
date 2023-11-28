@@ -67,7 +67,6 @@ function YourDesk() {
   const [dbNames, setDBNames] = useState([]);
   const [collectionTable, setCollectionTable] = useState(getCollectionTable);
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
-  console.log(currentOffice.tipo)
   useEffect(() => {
     getOpenCasesDetails();
     getButtons();

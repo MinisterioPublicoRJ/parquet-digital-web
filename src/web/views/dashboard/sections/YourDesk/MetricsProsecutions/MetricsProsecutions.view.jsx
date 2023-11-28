@@ -222,7 +222,7 @@ export default function MetricsProsecutions({ metrics, dbName }) {
   switch (dbName) {
     case 'tutela_processos':
       return courtCasesMetrics(metrics);
-    case 'tutela_investigacoes':
+    case '':
       return inquiriesMetrics(metrics);
     case 'tutela_finalizados':
       return inquiriesMetrics(metrics);

@@ -52,6 +52,22 @@ button.modalClose {
   display: none;
 }
 
+.modalCloseAnimated{
+  opacity: 0;
+  animation: delayCloseButton 1s forwards linear;
+  animation-delay: 2s;
+}
+
+@keyframes delayCloseButton {
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
   .modalOuter {

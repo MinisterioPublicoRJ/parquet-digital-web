@@ -3,12 +3,14 @@ import { Pip, Tutela, AlternativeWelcome, Criminal, Generalist } from './pages';
 import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
 import Introduction from './sections/Introduction';
+import NewParquetModal from './sections/NewParquetModal';
 
 function Dashboard() {
   const { user, currentOffice } = useAppContext();
   const { firstLogin } = user;
   const type = currentOffice ? currentOffice.tipo : undefined;
   const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
+  const [modalNewParquet, setModalNewParquet] = useState(!firstLogin);
   
   if (!user) {
     return <Spinner size="large" />;
@@ -32,10 +34,15 @@ function Dashboard() {
 
   return (
     <>
-      {isIntroOpen && (
-        <Modal transparent unpositioned close={() => setIsIntroOpen()}>
+      {/* {isIntroOpen && (
+        <Modal transparent withExitButton unpositioned close={() => setIsIntroOpen()}>
           <Introduction close={() => setIsIntroOpen()} type={currentOffice.tipo} />
         </Modal>
+      )} */}
+      {modalNewParquet && (
+        <Modal transparent withExitButton close={() => setModalNewParquet()}>
+        <NewParquetModal type={currentOffice.tipo} />
+      </Modal>
       )}
       {renderPage()}
     </>

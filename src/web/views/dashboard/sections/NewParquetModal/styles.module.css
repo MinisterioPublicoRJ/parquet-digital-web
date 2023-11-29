@@ -1,18 +1,27 @@
 .newParquetModalWrapper{
-    height: 80vh;
+    height: 87vh;
+    overflow-y: scroll;
+    background-color: transparent;
+    border: transparent;
+    border-radius: 30px;
+    
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    border: transparent;
+    outline: transparent;
+}
+.newParquetModalImg{
+    width: 100%; 
 }
 
-.newParquetModalImg{
-    height: 100%;
-}
 
 @media (max-width: 500px) {
     .newParquetModalWrapper{
         height: 100%;
 
     }
-
     .newParquetModalImg{
-        max-width: 100%;
+        width: 100%; 
     }
 }

@@ -59,4 +59,3 @@ export { default as IndicadoresDeSucessoIcon } from './indicadoresDeSucesso';
 export { default as RoboResponsivo } from './roboResponsivo';
 
 
-

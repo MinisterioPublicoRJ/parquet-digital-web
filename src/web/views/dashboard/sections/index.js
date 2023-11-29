@@ -8,6 +8,7 @@ export { default as MainInvestigated } from './MainInvestigated';
 export { default as PerformanceRadar } from './PerformanceRadar';
 export { YourDesk } from './YourDesk';
 export { default as Introduction } from './Introduction';
+export { default as NewParquetModal } from './NewParquetModal/index';
 export { default as UserManual } from './UserManual/UserManual.view';
 export { default as MapaTron } from './MapaTron/Mapatron.view';
 export { default as MethodologicalNote } from './MethodologicalNote/MethodologicalNote.view'

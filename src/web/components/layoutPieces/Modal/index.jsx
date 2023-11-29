@@ -9,6 +9,7 @@ import {
   modalUnpositioned,
   modalClose,
   modalCloseMobile,
+  modalCloseAnimated
 } from './Modal.module.css';
 
 const propTypes = {
@@ -120,7 +121,7 @@ export default function Modal({
         {(withExitButton || exitButtonInMobile) && (
           <button
             type="button"
-            className={`${modalClose} ${exitButtonInMobile ? modalCloseMobile : null}`}
+            className={`${modalClose} ${exitButtonInMobile ? modalCloseMobile : null} ${modalCloseAnimated}`} 
             aria-label="Fechar"
             onClick={handleClose}
           >

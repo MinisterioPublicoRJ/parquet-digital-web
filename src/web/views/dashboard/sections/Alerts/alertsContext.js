@@ -38,12 +38,7 @@ export const AlertsContextCreator = (buildRequestParams, Api) => {
 
     setAlerts((prevValue) => ({ ...prevValue, [type]: newList }));
 
-
-    try {
-      Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
-    } catch (error) {
-      console.error(error);
-    }
+    Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
 
     return newList;
   }
@@ -57,11 +52,7 @@ export const AlertsContextCreator = (buildRequestParams, Api) => {
     });
     setAlerts((prevValue) => ({ ...prevValue, [type]: newList }));
 
-    try {
-      Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
-    } catch (error) {
-      console.error(error);
-    }
+    Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
 
     return newList;
   }

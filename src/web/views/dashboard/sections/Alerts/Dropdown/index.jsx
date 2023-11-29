@@ -6,14 +6,7 @@ import { useAppContext } from '../../../../../../core/app/App.context';
 import { useAlertsContext } from '../alertsContext';
 import individualAlertFormatter from '../utils/individualAlertFormatter';
 
-import {
-  dropdownAlerts,
-  openDropdown,
-  closeDropdown,
-  boxBtnDropdown,
-  showMoreAlerts,
-  teste,
-} from './styles.module.css';
+import { dropdownAlerts, openDropdown, boxBtnDropdown, showMoreAlerts } from './styles.module.css';
 
 const propTypes = {
   type: PropTypes.string.isRequired,
@@ -48,17 +41,15 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
 
   return (
     <div className={boxBtnDropdown}>
-      <div className={teste}>
-        <AlertBadge
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...headerAlert}
-          customKey={headerAlert.key}
-          count={alertsList.length}
-          isOpen={isOpen}
-          setIsOpen={() => setIsOpen((prevState) => !prevState)}
-          hideHover
-        />
-      </div>
+      <AlertBadge
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...headerAlert}
+        customKey={headerAlert.key}
+        count={alertsList.length}
+        isOpen={isOpen}
+        setIsOpen={() => setIsOpen((prevState) => !prevState)}
+        hideHover
+      />
 
       <div className={`${dropdownAlerts} ${isOpen && openDropdown}`}>
         {visibleAlertsList.map((alert) => {

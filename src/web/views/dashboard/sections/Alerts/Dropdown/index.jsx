@@ -60,7 +60,7 @@ function Dropdown({ type, setOverlay, openDialogBox }) {
         />
       </div>
 
-      <div className={`${dropdownAlerts} ${isOpen && openDropdown} ${!isOpen && closeDropdown}`}>
+      <div className={`${dropdownAlerts} ${isOpen && openDropdown}`}>
         {visibleAlertsList.map((alert) => {
           const {
             actions,

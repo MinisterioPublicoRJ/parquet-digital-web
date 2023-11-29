@@ -7,11 +7,6 @@
   z-index: -100;
 }
 
-.teste {
-  position: relative;
-  z-index: 100;
-}
-
 @keyframes fade {
   0% {
     opacity: 0;

@@ -1,19 +1,18 @@
 import { createContext, useContext, useState } from 'react';
-import Api from '../../../../../core/api/Api';
+// import Api from '../../../../../core/api/Api';
 
 export const AlertsContext = createContext();
 
 export const useAlertsContext = () => useContext(AlertsContext);
 
 
-export const AlertsContextCreator = (buildRequestParams) => {
+export const AlertsContextCreator = (buildRequestParams, Api) => {
   // const { buildRequestParams } = useAuth();
   // const { buildRequestParams } = useAppContext();
 
   const [alerts, setAlerts] = useState(undefined);
   const [alertCount, setAlertCount] = useState(undefined);
   const [alertsError, setAlertsError] = useState(false);
-
 
   function handleAlertAction(type, alertKey, undo) {
     if (undo) {
@@ -36,8 +35,16 @@ export const AlertsContextCreator = (buildRequestParams) => {
       }
       return alert;
     });
-    setAlerts((prevValue) => ({...prevValue, [type]: newList}));
-    Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
+
+    setAlerts((prevValue) => ({ ...prevValue, [type]: newList }));
+
+
+    try {
+      Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
+    } catch (error) {
+      console.error(error);
+    }
+
     return newList;
   }
 
@@ -48,15 +55,21 @@ export const AlertsContextCreator = (buildRequestParams) => {
       }
       return alert;
     });
-    setAlerts((prevValue) => ({...prevValue, [type]: newList}));
-    Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
+    setAlerts((prevValue) => ({ ...prevValue, [type]: newList }));
+
+    try {
+      Api.undoRemoveAlert({ ...buildRequestParams(), alertId: alertKey });
+    } catch (error) {
+      console.error(error);
+    }
+
     return newList;
   }
 
   function removeAlert(type, alertKey) {
     if (!alertKey) return null;
     const newList = alerts[type].filter(({ key }) => key !== alertKey);
-    setAlerts(prevValue =>( {...prevValue, [type]:newList}));
+    setAlerts(prevValue => ({ ...prevValue, [type]: newList }));
     setAlertCount(prevValue => prevValue - 1);
     return newList;
   }

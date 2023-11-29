@@ -127,7 +127,7 @@
 }
 
 .alertBadgeDownloadNumbers {
-  z-index: 100;
+  z-index: 10;
   background-color: #2de288;
 }
 

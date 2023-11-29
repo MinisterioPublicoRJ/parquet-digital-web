@@ -10,7 +10,7 @@ function Dashboard() {
   const { firstLogin, firstLoginToday } = user;
   const type = currentOffice ? currentOffice.tipo : undefined;
   // const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
-  const [modalNewParquet, setModalNewParquet] = useState(!firstLoginToday);
+  const [modalNewParquet, setModalNewParquet] = useState(firstLoginToday);
   
   if (!user) {
     return <Spinner size="large" />;

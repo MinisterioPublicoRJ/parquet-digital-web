@@ -55,7 +55,7 @@ button.modalClose {
 .modalCloseAnimated{
   opacity: 0;
   animation: delayCloseButton 1s forwards linear;
-  animation-delay: 2s;
+  animation-delay: 1s;
 }
 
 @keyframes delayCloseButton {

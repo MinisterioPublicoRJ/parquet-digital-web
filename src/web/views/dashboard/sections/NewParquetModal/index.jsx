@@ -1,6 +1,6 @@
 import React from 'react';
 
-import newParquetImg from '../../../../assets/svg/janela_inicial_informacoes.svg'
+import newParquetImg from '../../../../assets/svg/modal_new_Informacoes.svg'
 import {
   newParquetModalWrapper,
   newParquetModalImg

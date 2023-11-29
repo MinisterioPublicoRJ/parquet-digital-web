@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Pip, Tutela, AlternativeWelcome, Criminal, Generalist } from './pages';
 import { Spinner, Modal } from '../../components';
 import { useAppContext } from '../../../core/app/App.context';
-import Introduction from './sections/Introduction';
+// import Introduction from './sections/Introduction';
 import NewParquetModal from './sections/NewParquetModal';
 
 function Dashboard() {
   const { user, currentOffice } = useAppContext();
-  const { firstLogin } = user;
+  const { firstLogin, firstLoginToday } = user;
   const type = currentOffice ? currentOffice.tipo : undefined;
-  const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
-  const [modalNewParquet, setModalNewParquet] = useState(!firstLogin);
+  // const [isIntroOpen, setIsIntroOpen] = useState(firstLogin);
+  const [modalNewParquet, setModalNewParquet] = useState(firstLoginToday);
   
   if (!user) {
     return <Spinner size="large" />;

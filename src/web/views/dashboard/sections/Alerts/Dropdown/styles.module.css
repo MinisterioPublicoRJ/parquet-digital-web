@@ -3,13 +3,8 @@
   height: 0;
   overflow: hidden;
   margin-left: 1.2rem;
-  transition: all 0.5s ease;
+  transition: all 0.5s ease-in-out;
   z-index: -100;
-}
-
-.teste {
-  position: relative;
-  z-index: 100;
 }
 
 @keyframes fade {
@@ -38,33 +33,6 @@
   animation-fill-mode: forwards;
   animation-timing-function: linear, cubic-bezier(0.23, 1, 0.32, 1);
   animation-delay: 100ms, 0;
-}
-
-@keyframes fade_reverse {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes slide_reverse {
-  0% {
-    transform: translateX(0);
-    height: auto;
-  }
-  100% {
-    transform: translateX(-20px);
-    height: 0;
-  }
-}
-
-.closeDropdown {
-  animation-name: fade_reverse, slide_reverse;
-  animation-duration: 500ms, 500ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear, cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .container-dropdow {

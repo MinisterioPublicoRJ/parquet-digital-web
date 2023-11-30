@@ -2,14 +2,13 @@ import React, { useEffect } from 'react';
 import { AppProvider, AppStoreInitializer } from './App.context';
 import { AlertsContextCreator } from '../../web/views/dashboard/sections/Alerts/alertsContext';
 
-
 function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: ErrorScreen }) {
   const appStore = AppStoreInitializer();
-  
-  const { appHasCrashed, setAppHasCrashed, buildRequestParams } = appStore;
-  
-  const alertsStore = AlertsContextCreator(buildRequestParams);
- 
+
+  const { appHasCrashed, setAppHasCrashed, buildRequestParams, Api } = appStore;
+
+  const alertsStore = AlertsContextCreator(buildRequestParams, Api);
+
   function onMount() {
     const token = window.localStorage.getItem('access_token');
     const scaToken = window.localStorage.getItem('sca_token');
@@ -18,12 +17,16 @@ function AppControler({ children, errorBoundary: ErrorBoundary, errorScreen: Err
     appStore.loginWithToken(token, scaToken, storedOffice);
   }
   useEffect(onMount, []);
-  
+
   return (
     <AppProvider alertsStore={alertsStore} store={appStore}>
-        <ErrorBoundary hasError={appHasCrashed} setError={setAppHasCrashed} errorScreen={<ErrorScreen />}>
-          { children }
-        </ErrorBoundary>
+      <ErrorBoundary
+        hasError={appHasCrashed}
+        setError={setAppHasCrashed}
+        errorScreen={<ErrorScreen />}
+      >
+        {children}
+      </ErrorBoundary>
     </AppProvider>
   );
 }

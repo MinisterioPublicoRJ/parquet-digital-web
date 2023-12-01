@@ -111,8 +111,8 @@ export default function MetricsProsecutions({ metrics, dbName }) {
     variacao_aproveitamentos,
   }) {
     const formattedVariation = formatPercentage(Math.abs(variacao_aproveitamentos));
-    const names = dbName;
-    console.log(names);
+    const namesProsecutorMetrics = dbName;
+
     return (
       <>
         {nr_documentos_distintos_atual ? (
@@ -156,7 +156,7 @@ export default function MetricsProsecutions({ metrics, dbName }) {
           </span>
         ) : (
           <>
-            {names === 'tutela_investigacoes' ? (
+            {namesProsecutorMetrics === 'tutela_investigacoes' ? (
               <p> Não existem métricas para investigações em curso no momento. </p>
             ) : (
               <span>

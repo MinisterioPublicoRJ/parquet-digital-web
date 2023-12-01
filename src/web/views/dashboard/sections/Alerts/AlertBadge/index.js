@@ -200,7 +200,7 @@ function AlertBadge(alert) {
                 {actions[0].text}
               </button>
 
-              <button type="button" className={alertBadgeCountWrapper} style={{ backgroundColor }}>
+              <button type="button" className={alertBadgeCountWrapper} onClick={setIsOpen} style={{ backgroundColor }}>
                 <span className={`${alertBadgeArrow} ${isOpen && alertBadgeArrowOpen}`} />
                 {count}
               </button>

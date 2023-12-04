@@ -290,8 +290,7 @@ function YourDesk() {
   }
 
   // const hasNoMetrics is filled if no metrics value  is returned
-  const hasNoMetrics =
-    metricsArray[0] == undefined || !metricsArray
+  const hasNoMetrics = metricsArray[0] == undefined || !metricsArray || dbNames === 'tutela_investigacoes'
       ? 'Em breve serão disponibilizadas métricas para essa promotoria.'
       : '';
   return (

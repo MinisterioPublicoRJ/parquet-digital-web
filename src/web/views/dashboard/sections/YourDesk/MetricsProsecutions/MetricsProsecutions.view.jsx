@@ -112,6 +112,7 @@ export default function MetricsProsecutions({ metrics, dbName }) {
   }) {
     const formattedVariation = formatPercentage(Math.abs(variacao_aproveitamentos));
     const namesProsecutorMetrics = dbName;
+    console.log(namesProsecutorMetrics);
 
     return (
       <>
@@ -156,16 +157,12 @@ export default function MetricsProsecutions({ metrics, dbName }) {
           </span>
         ) : (
           <>
-            {namesProsecutorMetrics === 'tutela_investigacoes' ? (
-              <p> Não existem métricas para investigações em curso no momento. </p>
-            ) : (
-              <span>
-                {' '}
-                Não há novos inquéritos, você não teve abertura de vistas, não aproveitou{' '}
-                <strong>nenhum</strong> caso para denúncias, cautelares, e arquivamentos,{' '}
-                não houve<strong> aumento</strong> nem <strong>redução</strong> nos últimos 30 dias.
-              </span>
-            )}
+            <span>
+              {' '}
+              Não há novos inquéritos, você não teve abertura de vistas, não aproveitou{' '}
+              <strong>nenhum</strong> caso para denúncias, cautelares, e arquivamentos, não houve
+              <strong> aumento</strong> nem <strong>redução</strong> nos últimos 30 dias.
+            </span>
           </>
         )}
       </>
@@ -246,11 +243,11 @@ export default function MetricsProsecutions({ metrics, dbName }) {
     );
   }
 
-  if (!metrics) return null;
+  if (!metrics || dbName === '') return <p style={{marginTop: '50px' }}>Não existem métricas de investigações em curso no momento.</p>;
   switch (dbName) {
     case 'tutela_processos':
       return courtCasesMetrics(metrics);
-    case 'tutela_investigacoes':
+    case '':
       return inquiriesMetrics(metrics);
     case 'tutela_finalizados':
       return inquiriesMetrics(metrics);

@@ -290,9 +290,10 @@ function YourDesk() {
   }
 
   // const hasNoMetrics is filled if no metrics value  is returned
-  const hasNoMetrics = metricsArray[0] == undefined || !metricsArray || dbNames === 'tutela_investigacoes'
+  const hasNoMetrics = metricsArray[0] == undefined || !metricsArray
       ? 'Em breve serão disponibilizadas métricas para essa promotoria.'
       : '';
+     
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>

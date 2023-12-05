@@ -35,9 +35,8 @@ export default function MetricsProsecutions({ metrics, dbName }) {
         )}
         {nr_acoes_ultimos_60_dias ? (
           <span>
-            No último ano, você ajuizou <strong> {nr_acoes_ultimos_60_dias} </strong>
+            Nos últimos 60 dias, você ajuizou <strong> {nr_acoes_ultimos_60_dias} </strong>
             {` ${nr_acoes_ultimos_60_dias === 1 ? 'ação' : 'ações'} `}
-            nos últimos 60 dias.{' '}
           </span>
         ) : (
           <span>
@@ -111,9 +110,6 @@ export default function MetricsProsecutions({ metrics, dbName }) {
     variacao_aproveitamentos,
   }) {
     const formattedVariation = formatPercentage(Math.abs(variacao_aproveitamentos));
-    const namesProsecutorMetrics = dbName;
-    console.log(namesProsecutorMetrics);
-
     return (
       <>
         {nr_documentos_distintos_atual ? (
@@ -156,14 +152,12 @@ export default function MetricsProsecutions({ metrics, dbName }) {
             dos inquéritos nos últimos 30 dias comparado ao mês anterior.
           </span>
         ) : (
-          <>
-            <span>
-              {' '}
-              Não há novos inquéritos, você não teve abertura de vistas, não aproveitou{' '}
-              <strong>nenhum</strong> caso para denúncias, cautelares, e arquivamentos, não houve
-              <strong> aumento</strong> nem <strong>redução</strong> nos últimos 30 dias.
-            </span>
-          </>
+          <span>
+            {' '}
+            Não há novos inquéritos, você não teve abertura de vistas, não aproveitou{' '}
+            <strong>nenhum</strong> caso para denúncias, cautelares, e arquivamentos, não houve
+            <strong> aumento</strong> nem <strong>redução</strong> nos últimos 30 dias.
+          </span>
         )}
       </>
     );
@@ -242,13 +236,16 @@ export default function MetricsProsecutions({ metrics, dbName }) {
       </>
     );
   }
+  function tutelaInvestigationsMetrics() {
+    return <p style={{ marginTop: "20px"}}>Não existem métricas de investigações em curso no momento.</p>;
+  }
 
-  if (!metrics || dbName === '') return <p style={{marginTop: '50px' }}>Não existem métricas de investigações em curso no momento.</p>;
+  if (!metrics) return null;
   switch (dbName) {
     case 'tutela_processos':
       return courtCasesMetrics(metrics);
-    case '':
-      return inquiriesMetrics(metrics);
+    case 'tutela_investigacoes':
+      return tutelaInvestigationsMetrics(metrics);
     case 'tutela_finalizados':
       return inquiriesMetrics(metrics);
     case 'pip_inqueritos':

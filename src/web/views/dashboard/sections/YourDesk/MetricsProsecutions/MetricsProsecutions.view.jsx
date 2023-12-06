@@ -28,7 +28,7 @@ export default function MetricsProsecutions({ metrics, dbName }) {
               {` ${variacao_30_dias > 0 ? 'aumentou' : 'diminuiu'} `}{' '}
               <strong> {formattedVariation} </strong>
             </span>
-            nos últimos 30 dias
+            nos últimos 30 dias.
           </span>
         ) : (
           <span> Seu acervo não aumentou ou diminuiu nos últimos 30 dias. </span>

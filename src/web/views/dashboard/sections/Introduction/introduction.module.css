@@ -10,7 +10,7 @@
   width: 75vw;
   background-color: #ffffff;
 }
-.introductionIntro{
+.introductionIntro {
   height: 28vh;
   background-color: #bddff0;
   width: 100%;
@@ -19,10 +19,10 @@
   justify-content: space-around;
   margin: 0 auto;
 }
-.introductionInfo{
-  padding: 1.0rem 2.25rem 1rem 2.25rem;
+.introductionInfo {
+  padding: 1rem 2.25rem 1rem 2.25rem;
 }
-.introductionInfo p{
+.introductionInfo p {
   font-size: var(--modal-default-font-size);
   font-family: var(--defaultFont);
   letter-spacing: 0px;
@@ -58,37 +58,39 @@
 }
 
 .highlighted {
-  background: #AFE0F1;
+  background: #afe0f1;
 }
 
 @media (max-width: 1024px) {
-  .introOuter{
+  .introOuter {
     display: flex;
     flex-direction: column;
     height: 85vh;
-
-  }  
-  .introductionIntro{
+  }
+  .introductionIntro {
     height: 41vh;
   }
 }
 
 @media (max-width: 850px) {
-  .introOuter{
+  .introOuter {
     min-height: 75vh;
     width: 80vw;
   }
-  .introductionIntro{
+  .introductionIntro {
     height: 60vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
   }
-  .introductionInfo{
+  .introductionInfo {
     overflow-y: auto;
   }
   .promotronIcon img {
     display: none;
   }
+}
+
+.introductionSubtitle {
 }

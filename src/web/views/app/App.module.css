@@ -11,35 +11,35 @@
   /* SPACING */
   --unavailableContentPadding: 0.5vh 4vw;
   --verticalPadding: 2.5rem;
-  --horizontalPadding:  1.1rem;
+  --horizontalPadding: 1.1rem;
 
   /* WIDTHS */
   --navbarWidth: 2.8125rem;
   --navbarMobileWidth: 5rem;
 
-/* COLORS */
+  /* COLORS */
   /* From our design system's page on Notion */
 
   /* Paleta Primária */
   --colorMprj: #374354;
-  --colorThemeBlue: #BDDFF0;
-  --colorSolidBlue: #28A7E0;
-  --lightGray: #CFCFCF;
-  --mediumGray: #B4B4B4;
+  --colorThemeBlue: #bddff0;
+  --colorSolidBlue: #28a7e0;
+  --lightGray: #cfcfcf;
+  --mediumGray: #b4b4b4;
   --darkWelcome: #4a4a4a;
 
   /* Alertas */
-  --colorFailure: #F86C72;
-  --colorWarning: #F8BD6C;
-  --colorSuccess: #71D0A4;
-  --colorAdm: #5C6FD9;
+  --colorFailure: #f86c72;
+  --colorWarning: #f8bd6c;
+  --colorSuccess: #71d0a4;
+  --colorAdm: #5c6fd9;
   --colorCsi: #192440;
-  --colorVistas: #28A7E0;
+  --colorVistas: #28a7e0;
 
   /* Gráficos */
-  --colorIdentidade: #CA63F1;
-  --colorOfficeProfile: #6D00FC;
-  --colorParquetProfile: #FF0000;
+  --colorIdentidade: #ca63f1;
+  --colorOfficeProfile: #6d00fc;
+  --colorParquetProfile: #ff0000;
 
   /* Login */
   --darkGray: #505050;
@@ -54,11 +54,6 @@ body {
   color: var(--dark);
   font-size: var(--defaultFontSize);
 }
-
-/*.appOuter {
-  height: 100vh;
-  width: 100vw;
-}*/
 
 h3 {
   font-size: var(--defaultFontSize);
@@ -96,4 +91,4 @@ div::-webkit-scrollbar-thumb:window-inactive {
 div {
   scrollbar-width: thin;
   scrollbar-color: #8998ac transparent;
-} 
+}

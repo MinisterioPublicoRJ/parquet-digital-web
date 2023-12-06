@@ -9,7 +9,6 @@ import {
   tablesTutelaHeader,
   tablesTutelaButtonInactive,
   tablesTutelaBody,
-  searchBoxContainer,
   mainTableTutelasOuterBoxSearch,
 } from './styles.module.css';
 
@@ -24,20 +23,20 @@ function TablesTutela() {
   const setInvestigatedProfile = (representanteDk, event) => {
     setSelectedElement(event?.target);
     setRepDk(representanteDk);
-  }
+  };
 
   const setProcessDetail = (docuNrMp, docuNrExterno, event) => {
     setSelectedElement(event?.target);
     setExtDocNum(docuNrExterno);
     setMpDocNum(docuNrMp);
-  }
+  };
 
   const onSearch = (searchStr) => {
     setSearchString(searchStr);
   };
 
   return (
-    <div className={`${tablesTutelaOuter} ${searchBoxContainer}`}>
+    <div className={`${tablesTutelaOuter}`}>
       <div className={mainTableTutelasOuterBoxSearch}>
         <div className={tablesTutelaHeader}>
           <button

@@ -24,7 +24,6 @@ import {
   todayRobotPic,
   todayRobotPicTablet,
   // todayRobotGif,
-  todayRoboWeb,
   todayBtn,
   roboResponsivo,
 } from './Today.module.css';
@@ -236,9 +235,7 @@ function Today() {
             <Introduction />
           </Modal>
         )}
-        <div className={todayRoboWeb}>
-          <PromotronResumeOfTheDay />
-        </div>
+        <PromotronResumeOfTheDay />
       </div>
     </article>
   );

@@ -8,6 +8,9 @@
   margin-top: -8px;
 }
 
+.desk {
+}
+
 .deskControlers {
   display: flex;
 }
@@ -17,7 +20,7 @@
   grid-template-columns: repeat(3, auto);
   column-gap: 0.2rem;
 }
-.noMetrics{
+.noMetrics {
   margin-top: 50px;
 }
 .deskButtonsTextsHeader {
@@ -180,17 +183,15 @@ div .deskButtonsCollectionPhrase {
   div .deskButtonsCollectionPhrase {
     display: none;
   }
-  
 }
 
-@media (min-width:768px) and (max-width: 1200px) {
-  .deskButtonsTextsHeader p{
-   margin-top: 20px;
+@media (min-width: 768px) and (max-width: 1200px) {
+  .deskButtonsTextsHeader p {
+    margin-top: 20px;
   }
-  .deskOuter{
+  .deskOuter {
     margin-top: -36px;
   }
- 
 }
 
 /* Tablets */
@@ -317,14 +318,13 @@ div .deskButtonsCollectionPhrase {
     height: auto;
   }
 }
-@media (min-width: 481px) and (max-width: 1200px){
+@media (min-width: 481px) and (max-width: 1200px) {
   .deskButtonsInactive {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
-  .yourCollectionButtons div{
+  .yourCollectionButtons div {
     width: 100%;
   }
- 
 }

@@ -11,9 +11,7 @@ import {
   mobileLogo,
   navbarListWrapper,
   mobileNavbar,
-  mobileNavbarClose,
   mobileNavContent,
-  mobileAlerts,
   mobilePortalWrapper,
   animationStartRight,
   animationStartLeft,
@@ -35,15 +33,15 @@ function NavbarLeft() {
     mantendo o scroll apenas dentro do portal.
   */
   const disabledBodyScrolling = () => {
-    document.body.style.height = "100vh";
-    document.body.style.overflow = "hidden";
-  }
+    document.body.style.height = '100vh';
+    document.body.style.overflow = 'hidden';
+  };
 
   // Para voltar os valores padrões da página inicial.
   const defaultBodyScrolling = () => {
-    document.body.style.height = "auto";
-    document.body.style.overflow = "auto";
-  }
+    document.body.style.height = 'auto';
+    document.body.style.overflow = 'auto';
+  };
 
   useEffect(() => {
     if (mobilePortal.isOpen) {
@@ -86,18 +84,18 @@ function NavbarLeft() {
                 <ParquetDigitalLogo />
               </div>
 
-              <button
-                className={mobileNavbarClose}
-                type="button"
-                onClick={() => setMobilePortal(mobilePortalClosed)}
-              >
+              <button type="button" onClick={() => setMobilePortal(mobilePortalClosed)}>
                 <CloseIcon />
               </button>
             </div>
 
             <div className={mobileNavContent}>
               {mobilePortal.type === 'navbar-list' && <NavbarList />}
-              {mobilePortal.type === 'alerts' && <div className={mobileAlerts}><Alerts /></div>}
+              {mobilePortal.type === 'alerts' && (
+                <div>
+                  <Alerts />
+                </div>
+              )}
             </div>
           </div>,
           document.getElementById('mobile-portal'),

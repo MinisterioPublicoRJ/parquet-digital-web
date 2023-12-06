@@ -23,11 +23,11 @@
   position: relative;
 }
 
-.modalInnerWrapper.modalUnpositioned{
+.modalInnerWrapper.modalUnpositioned {
   position: unset;
 }
 
-.modalInnerWrapper > * {  
+.modalInnerWrapper > * {
   border: 1px solid #707070;
   border-radius: 15px;
   background-color: white;
@@ -35,7 +35,7 @@
 
 button.modalClose {
   text-align: center;
-  position: absolute;  
+  position: absolute;
   color: #ffffff;
   font-size: 5em;
   bottom: -0.9em;
@@ -52,18 +52,18 @@ button.modalClose {
   display: none;
 }
 
-.modalCloseAnimated{
+.modalCloseAnimated {
   opacity: 0;
   animation: delayCloseButton 1s forwards linear;
   animation-delay: 1s;
 }
 
 @keyframes delayCloseButton {
-  0%{
+  0% {
     opacity: 0;
   }
 
-  100%{
+  100% {
     opacity: 1;
   }
 }
@@ -78,7 +78,10 @@ button.modalClose {
     display: block;
   }
 
-  .modalInnerWrapper.modalUnpositioned{
+  .modalInnerWrapper.modalUnpositioned {
     position: relative;
   }
+}
+
+.modalTransparent {
 }

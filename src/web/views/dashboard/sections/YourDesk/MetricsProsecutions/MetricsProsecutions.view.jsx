@@ -36,7 +36,7 @@ export default function MetricsProsecutions({ metrics, dbName }) {
         {nr_acoes_ultimos_60_dias ? (
           <span>
             Nos últimos 60 dias, você ajuizou <strong> {nr_acoes_ultimos_60_dias} </strong>
-            {` ${nr_acoes_ultimos_60_dias === 1 ? 'ação' : 'ações'} `}
+            {` ${nr_acoes_ultimos_60_dias === 1 ? 'ação.' : 'ações.'} `}
           </span>
         ) : (
           <span>

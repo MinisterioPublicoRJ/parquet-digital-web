@@ -167,7 +167,7 @@ function Today() {
         <p>
           Você sabia que seu acervo é
           <span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
-          outras promotorias da mesma atribuição.
+          outras promotorias da mesma atribuição?
           {/* <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span> */}
         </p>
       )}

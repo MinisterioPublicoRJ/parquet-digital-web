@@ -161,7 +161,7 @@
 }
 
 .processAlertsList .alertWrapper:first-child {
-  margin-left: -1.2vh;
+  margin: 0;
 }
 
 .processAlertsList:nth-child(3n + 0) {

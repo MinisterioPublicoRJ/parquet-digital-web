@@ -60,6 +60,7 @@ import {
   snakeToCamelTransform,
   alertOverlayTransform,
   processDetailTransform,
+  deleteAlertsTransform,
 } from './transforms';
 
 import { formatDateObjForBackend } from '../../web/utils/formatters';
@@ -69,12 +70,10 @@ function ApiCreator(jwtToken) {
     baseURL: BASE_URL,
   });
 
-   
   const addHeaders = (config) => {
     if (jwtToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers.common.Authorization = `Bearer ${jwtToken}`;
-      
     }
     return config;
   };
@@ -273,11 +272,14 @@ function ApiCreator(jwtToken) {
     return data;
   }
 
-  async function removeAlert({ orgao, token, alertId }) {
+  async function removeAlert({ token, orgao, type, key }) {
     const formData = new FormData();
     formData.set('jwt', token);
 
-    const { data } = await axiosInstance.post(DELETE_ALERT({ orgao, alertId }), formData);
+    const { data } = await axiosInstance.post(
+      DELETE_ALERT({ token, orgao, type, key }),
+      formData,
+    );
     return data;
   }
 

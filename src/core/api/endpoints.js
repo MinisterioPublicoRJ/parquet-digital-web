@@ -16,7 +16,7 @@ export const DESK_INTEGRATED = t(
 
 export const DESK_DETAIL_INTEGRATED = t(
   `${BASE_URL}/suamesa/documentos-detalhe/\${orgao}?tipo=\${docType}&cpf=\${cpf}`,
-  
+
 );
 export const COURT_CASES_DETAILS_URL = t(`${BASE_URL}/suamesa/detalhe/processos/\${orgao}`);
 
@@ -50,7 +50,7 @@ export const PIP_MAIN_INVESTIGATIONS_URL = t(
 export const PIP_MAIN_INVESTIGATIONS_URL_ACTION = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
 );
-export const DELETE_ALERT = t(`${BASE_URL}/alertas/dispensar/\${orgao}/\${alertId}`);
+export const DELETE_ALERT = t(`${BASE_URL}/alertas/dispensar/\${orgao}/\${key}/\${type}`);
 export const UNDO_DELETE_ALERT = t(`${BASE_URL}/alertas/retornar/\${orgao}/\${alertId}`);
 export const INVESTIGATED_PROFILE_URL = t(
   `${BASE_URL}/pip/principais-investigados-lista/\${representanteDk}`,

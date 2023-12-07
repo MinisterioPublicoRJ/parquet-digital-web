@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "history": "^5.0.0",
+    "latest-version": "^7.0.0",
     "lodash.template": "^4.5.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

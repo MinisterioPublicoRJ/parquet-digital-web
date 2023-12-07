@@ -28,19 +28,19 @@ export const AlertsContextCreator = (buildRequestParams, Api) => {
     }
   }
 
-  function dismissAlert(type, alertKey) {
+  function dismissAlert(type, key) {
     const newList = alerts[type].map((alert) => {
-      if (alert.key === alertKey) {
+      if (alert.key === key) {
         return { ...alert, isDeleted: true };
       }
       return alert;
     });
-
     setAlerts((prevValue) => ({ ...prevValue, [type]: newList }));
 
-    Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
+    Api.removeAlert({ ...buildRequestParams(), type, key });
 
     return newList;
+  
   }
 
   function restoreAlert(type, alertKey) {

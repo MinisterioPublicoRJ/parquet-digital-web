@@ -1,7 +1,6 @@
 .mainTitle {
   color: var(--darkBlue);
   font-family: var(--titleFont);
-  font-size: var(--titleFontSize);
   font-weight: 200;
 }
 

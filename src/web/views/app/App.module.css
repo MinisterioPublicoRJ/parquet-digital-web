@@ -2,11 +2,11 @@
   /* FONTS */
   --defaultFont: Roboto;
 
-  --defaultFontSize: clamp(13px, 1.5vw, 18px);
+  --defaultFontSize: clamp(12px, 0.830rem, 18px);
   --titleFontSize: calc(var(--defaultFontSize) * 2);
-  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.4);
+  --sectionTitleFontSize: calc(var(--defaultFontSize) * 1.2);
   --TitleTextFontSize: calc(var(--defaultFontSize) * 1.2);
-  --smallFont: clamp(10px, 1.2vh, 14px);
+  --smallFont: clamp(11px, 1.2vh, 14px);
 
   /* SPACING */
   --unavailableContentPadding: 0.5vh 4vw;
@@ -56,13 +56,16 @@ body {
 }
 
 h3 {
-  font-size: var(--defaultFontSize);
   font-weight: 400;
   text-transform: uppercase;
+}
+h2 {
+  font-size: var(--sectionTitleFontSize) ;
 }
 
 button {
   cursor: pointer;
+  
 }
 
 /* Let's get this party started */

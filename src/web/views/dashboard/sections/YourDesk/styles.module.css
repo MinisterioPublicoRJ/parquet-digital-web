@@ -136,7 +136,7 @@
 div .deskButtonsCollectionPhrase {
   color: #374354;
   max-width: 48%;
-  font-size: var(--smallFont);
+  font-size: clamp(12px, 1.2vh, 14px);
   margin-top: -7px;
 }
 

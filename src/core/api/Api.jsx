@@ -70,12 +70,10 @@ function ApiCreator(jwtToken) {
     baseURL: BASE_URL,
   });
 
-   
   const addHeaders = (config) => {
     if (jwtToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers.common.Authorization = `Bearer ${jwtToken}`;
-      
     }
     return config;
   };
@@ -274,15 +272,15 @@ function ApiCreator(jwtToken) {
     return data;
   }
 
-  async function removeAlert({ token, orgao, alertId, alertCode }) {
+  async function removeAlert({ token, orgao, alertId, alertType }) {
     const formData = new FormData();
     formData.set('jwt', token);
-    formData.set('orgao', orgao);
-    formData.set('alertId', alertId);
-    formData.set('alertCode', alertCode);
 
-    const { data } = await axiosInstance.post(DELETE_ALERT({ token, orgao, alertId, alertCode }), formData);
-    
+    const { data } = await axiosInstance.post(
+      DELETE_ALERT({ token, orgao, alertId, alertType }),
+      formData,
+    );
+
     return deleteAlertsTransform(data);
   }
 

@@ -38,7 +38,7 @@ export const AlertsContextCreator = (buildRequestParams, Api) => {
 
     setAlerts((prevValue) => ({ ...prevValue, [type]: newList }));
 
-    Api.removeAlert({ ...buildRequestParams(), alertId: alertKey });
+    Api.removeAlert({ ...buildRequestParams(), alertId: alertKey, alertType: type });
 
     return newList;
   }

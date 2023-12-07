@@ -272,16 +272,15 @@ function ApiCreator(jwtToken) {
     return data;
   }
 
-  async function removeAlert({ token, orgao, alertId, alertType }) {
+  async function removeAlert({ token, orgao, type, key }) {
     const formData = new FormData();
     formData.set('jwt', token);
 
     const { data } = await axiosInstance.post(
-      DELETE_ALERT({ token, orgao, alertId, alertType }),
+      DELETE_ALERT({ token, orgao, type, key }),
       formData,
     );
-
-    return deleteAlertsTransform(data);
+    return data;
   }
 
   async function undoRemoveAlert({ orgao, token, alertId }) {

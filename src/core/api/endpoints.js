@@ -50,7 +50,7 @@ export const PIP_MAIN_INVESTIGATIONS_URL = t(
 export const PIP_MAIN_INVESTIGATIONS_URL_ACTION = t(
   `${BASE_URL}/pip/principais-investigados/\${orgao}/\${cpf}`,
 );
-export const DELETE_ALERT = t(`${BASE_URL}/alertas/dispensar/\${orgao}/\${alertId}/\${alertType}`);
+export const DELETE_ALERT = t(`${BASE_URL}/alertas/dispensar/\${orgao}/\${key}/\${type}`);
 export const UNDO_DELETE_ALERT = t(`${BASE_URL}/alertas/retornar/\${orgao}/\${alertId}`);
 export const INVESTIGATED_PROFILE_URL = t(
   `${BASE_URL}/pip/principais-investigados-lista/\${representanteDk}`,

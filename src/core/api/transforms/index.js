@@ -22,6 +22,7 @@ export { default as snakeToCamelTransform } from './snakeToCamelTransform';
 export { default as prescribedCrimeTransform } from './prescribedCrimeTransform';
 export { default as alertOverlayTransform } from './alertOverlayTransform';
 export { default as processDetailTransform } from './processDetailTransform';
+export { default as deleteAlertsTransform } from './deleteAlertTransform';
 
 /* eslint-disable camelcase */
 export const todayOutTransform = ({ percent_rank }) => percent_rank;

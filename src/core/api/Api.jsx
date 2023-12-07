@@ -60,6 +60,7 @@ import {
   snakeToCamelTransform,
   alertOverlayTransform,
   processDetailTransform,
+  deleteAlertsTransform,
 } from './transforms';
 
 import { formatDateObjForBackend } from '../../web/utils/formatters';
@@ -273,12 +274,16 @@ function ApiCreator(jwtToken) {
     return data;
   }
 
-  async function removeAlert({ orgao, token, alertId }) {
+  async function removeAlert({ token, orgao, alertId, alertCode }) {
     const formData = new FormData();
     formData.set('jwt', token);
+    formData.set('orgao', orgao);
+    formData.set('alertId', alertId);
+    formData.set('alertCode', alertCode);
 
-    const { data } = await axiosInstance.post(DELETE_ALERT({ orgao, alertId }), formData);
-    return data;
+    const { data } = await axiosInstance.post(DELETE_ALERT({ token, orgao, alertId, alertCode }), formData);
+    
+    return deleteAlertsTransform(data);
   }
 
   async function undoRemoveAlert({ orgao, token, alertId }) {

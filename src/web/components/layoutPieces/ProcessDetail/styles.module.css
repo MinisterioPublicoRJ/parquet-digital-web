@@ -10,10 +10,10 @@
   font-size: calc(1.3 * var(--defaultFontSize));
   margin: 0 0 10px 0;
 }
-.spanProcessAlertsList{
+.spanProcessAlertsList {
   color: red;
 }
-.alertWrapperTextEmpty{
+.alertWrapperTextEmpty {
   margin-left: 10px;
 }
 .processDetailHeader {
@@ -161,7 +161,7 @@
 }
 
 .processAlertsList .alertWrapper:first-child {
-  margin-left: -1.2vh;
+  margin: 0;
 }
 
 .processAlertsList:nth-child(3n + 0) {
@@ -170,4 +170,7 @@
 
 .processAlertsList::-webkit-scrollbar {
   height: 4px;
+}
+
+.processDetailHeaderRight {
 }

@@ -21,9 +21,7 @@ import {
   deskControlersAndMetrics,
   openCasesChartsWrapperWeb,
   openCasesChartsWrapperResponsive,
-  componentWrappeTableError,
   noMetrics,
-  noOpenCases,
 } from './styles.module.css';
 import { useAppContext } from '../../../../../core/app/App.context';
 import { SectionTitle, Spinner } from '../../../../components';
@@ -158,7 +156,7 @@ function YourDesk() {
         tempDBNames.push('');
         tempDBNames.push('');
       }
-      
+
       setDBNames(tempDBNames);
     }
 
@@ -290,10 +288,11 @@ function YourDesk() {
   }
 
   // const hasNoMetrics is filled if no metrics value  is returned
-  const hasNoMetrics = metricsArray[0] == undefined || !metricsArray
+  const hasNoMetrics =
+    metricsArray[0] == undefined || !metricsArray
       ? 'Em breve serão disponibilizadas métricas para essa promotoria.'
       : '';
-     
+
   return (
     <article className={deskOuter}>
       <div className={deskHeader}>

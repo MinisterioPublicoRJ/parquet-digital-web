@@ -7,6 +7,9 @@
   z-index: -100;
 }
 
+.boxBtnDropdown {
+}
+
 @keyframes fade {
   0% {
     opacity: 0;

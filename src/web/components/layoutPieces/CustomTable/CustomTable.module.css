@@ -1,8 +1,8 @@
 .tableStyle {
   color: var(--grayPagination);
-  font-size: var(--smallFont);
   table-layout: fixed;
   width: 100%;
+  font-size: clamp(12px, 1.2vh, 14px);
 }
 
 .tBodyStyle tr:nth-child(even) {

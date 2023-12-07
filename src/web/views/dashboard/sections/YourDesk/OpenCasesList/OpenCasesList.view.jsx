@@ -17,7 +17,6 @@ import {
   emptyAlert,
   allBoxFilters,
   boxFilters,
-  customTableWeb,
   noOpenCases,
 } from './styles.module.css';
 
@@ -270,7 +269,7 @@ function OpenCasesList({ isLoading, buildRequestParams, chartData }) {
       <div className={`${openCasesTableWrapper} ${emptyTab ? openCasesEmptyTable : ''}`}>
         {tabLoading && <Spinner size="medium" />}
         {!emptyTab && tabDetails[activeTab] && tabDetails[activeTab][currentPage] && (
-          <div className={customTableWeb}>
+          <div>
             <CustomTable
               data={tabDetails[activeTab][currentPage]}
               columns={TABLE_COLUMNS}

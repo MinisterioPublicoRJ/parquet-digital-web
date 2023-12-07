@@ -16,7 +16,6 @@ import {
   ptGraphWrapper,
   ptGraphSeparator,
   ptGraphLabels,
-  ptGraphLabelsTitle,
   ptGraphLabelsTitleText,
   ptLegendsWrapper,
   ptLegends,
@@ -124,7 +123,7 @@ function ProcessingTime() {
   }, []);
 
   // eslint-disable-next-line no-constant-condition
-  if (!chartData || loading && currentOffice.tipo === 4) {
+  if (!chartData || (loading && currentOffice.tipo === 4)) {
     return (
       <article className={pageTramitacao}>
         {loading ? (
@@ -136,7 +135,7 @@ function ProcessingTime() {
         )}
       </article>
     );
-  } 
+  }
 
   // const typeDisplayableName = processTypeDict[mainCategory];
   const categoryProcessingTime = processingTime[mainCategory];
@@ -177,7 +176,7 @@ function ProcessingTime() {
         </div>
         <div className={ptGraphSeparator} />
         <div className={ptGraphLabels}>
-          <div className={ptGraphLabelsTitle}>
+          <div>
             <h3 className={ptGraphLabelsTitleText}> Referente ao pacote </h3>
           </div>
           <div className={ptLegendsWrapper}>
@@ -221,7 +220,7 @@ function ProcessingTime() {
             </div>
           </div>
 
-          <div className={ptGraphLabelsTitle}>
+          <div>
             <h3 className={ptGraphLabelsTitleText}> Referente a sua promotoria </h3>
           </div>
 

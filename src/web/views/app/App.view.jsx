@@ -1,12 +1,11 @@
 import React from 'react';
-
-import { appOuter } from './App.module.css';
 import Router from '../../router/Router';
-import "../../themes/index.css";
+import '../../themes/index.css';
+import root  from './App.module.css';
 
 export function AppView() {
   return (
-    <div className={appOuter}>
+    <div className={root}>
       <Router />
     </div>
   );

@@ -24,7 +24,6 @@ import {
   todayRobotPic,
   todayRobotPicTablet,
   // todayRobotGif,
-  todayRoboWeb,
   todayBtn,
   roboResponsivo,
 } from './Today.module.css';
@@ -167,7 +166,7 @@ function Today() {
         <p>
           Você sabia que seu acervo é
           <span style={{ fontWeight: 'bold' }}>{` ${collectionAnalysis} `}</span>
-          outras promotorias da mesma atribuição.
+          outras promotorias da mesma atribuição?
           {/* <span style={{ fontWeight: 'bold' }}>{` ${groupName}?`}</span> */}
         </p>
       )}
@@ -210,7 +209,7 @@ function Today() {
           </Modal>
         )}
         <div className={todayTextArea}>
-          {currentOffice.tipo === 4 ? <InDevelopmentToday /> : todayText}
+          {currentOffice.tipo === 3 ? <InDevelopmentToday /> : todayText}
         </div>
       </div>
       {currentOffice.tipo === 2 && !currentOffice.isSpecialized ? (
@@ -236,9 +235,7 @@ function Today() {
             <Introduction />
           </Modal>
         )}
-        <div className={todayRoboWeb}>
-          <PromotronResumeOfTheDay />
-        </div>
+        <PromotronResumeOfTheDay />
       </div>
     </article>
   );

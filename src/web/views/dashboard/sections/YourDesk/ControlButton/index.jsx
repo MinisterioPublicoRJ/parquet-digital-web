@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Spinner } from '../../../../../components';
 
 import {
-  controlButtonOuter,
   controlButtonInner,
   controlButtonInactive,
   controlButtonActive,
@@ -23,7 +22,6 @@ const defaultProps = {
 };
 
 function ControlButton({ isActive, text, isButton, loading, buttonPressed }) {
-
   let fill;
   if (isButton) {
     if (isActive) {
@@ -33,11 +31,7 @@ function ControlButton({ isActive, text, isButton, loading, buttonPressed }) {
           className={`${controlButtonInner} ${controlButtonActive}`}
           onClick={() => buttonPressed()}
         >
-          {loading ? (
-            <Spinner size="small" />
-          ) : (
-            text
-          )}
+          {loading ? <Spinner size="small" /> : text}
         </button>
       );
     } else {
@@ -47,17 +41,13 @@ function ControlButton({ isActive, text, isButton, loading, buttonPressed }) {
           className={`${controlButtonInner} ${controlButtonInactive}`}
           onClick={() => buttonPressed()}
         >
-          {loading ? (
-            <Spinner size="small" />
-          ) : (
-          text
-          )}
+          {loading ? <Spinner size="small" /> : text}
         </button>
       );
     }
-  } 
+  }
 
-  return <div className={controlButtonOuter}>{fill}</div>;
+  return <div>{fill}</div>;
 }
 
 ControlButton.propTypes = propTypes;

@@ -5,11 +5,10 @@ import {
   controlButtonOuter,
   controlButtonInner,
   deskButtonsVistas,
-  deskTextParagrap,
   gray,
   white,
   blue,
-  green
+  green,
 } from './styles.module.css';
 
 const propTypes = {
@@ -17,23 +16,22 @@ const propTypes = {
   text: PropTypes.string.isRequired,
   loading: PropTypes.bool,
   error: PropTypes.bool,
-  color: PropTypes.oneOf(["white", "blue", "green", "gray"])
+  color: PropTypes.oneOf(['white', 'blue', 'green', 'gray']),
 };
 
 const defaultProps = {
   error: false,
   number: 0,
   loading: false,
-  color: "white"
+  color: 'white',
 };
 
 function MainButton({ number, text, loading, error, color }) {
-
   const cssColors = {
     green,
     white,
     blue,
-    gray
+    gray,
   };
 
   return (
@@ -43,7 +41,7 @@ function MainButton({ number, text, loading, error, color }) {
       ) : (
         <div className={controlButtonInner}>
           {text === 'Total de vistas abertas' ? (
-            <span className={deskTextParagrap}>{error ? 0 : number}</span>
+            <span>{error ? 0 : number}</span>
           ) : (
             <span className={deskButtonsVistas}>{error ? 0 : number}</span>
           )}

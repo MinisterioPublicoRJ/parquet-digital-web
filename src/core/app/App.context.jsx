@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
 import ApiCreator from '../api/Api';
-// eslint-disable-next-line import/no-cycle
 import { AlertsContext } from '../../web/views/dashboard/sections/Alerts/alertsContext';
 
 const AppContext = createContext();

@@ -1,7 +1,6 @@
-/* eslint-disable no-prototype-builtins */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { investigatedProfileDetailsStyle } from '../InvestigatedProfile.module.css';
+import { profileDetails, flexRow } from './ProfileDetails.module.css';
 
 const propTypes = {
   perfil: PropTypes.shape({
@@ -11,42 +10,43 @@ const propTypes = {
     cpf: PropTypes.string,
     nm_mae: PropTypes.string,
     nm_pesj: PropTypes.string,
-    cnpj: PropTypes.string
+    cnpj: PropTypes.string,
   }).isRequired,
 };
 
 function ProfileDetails({ perfil }) {
   let details = null;
   if (Object.prototype.hasOwnProperty.call(perfil, 'cpf')) {
-    const birthdate = perfil.dt_nasc ? new Date(perfil.dt_nasc) : null;
+    const birthday = perfil.dt_nasc ? new Date(perfil.dt_nasc) : null;
     details = (
       <>
         <p>
           <strong>Nome:</strong>
-          <br />
-          {perfil.nm_investigado}
+          <span>{perfil.nm_investigado}</span>
         </p>
-        <p>
-          <span>
+
+        <div className={flexRow}>
+          <p>
             <strong>Data de Nascimento:</strong>
-            <br />
-            {birthdate ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(birthdate) : null}
-          </span>
-          <span>
+            <span>
+              {birthday ? Intl.DateTimeFormat('pt-br', { timeZone: 'UTC' }).format(birthday) : null}
+            </span>
+          </p>
+
+          <p>
             <strong>RG:</strong>
-            <br />
-            {perfil.rg}
-          </span>
-          <span>
+            <span>{perfil.rg}</span>
+          </p>
+
+          <p>
             <strong>CPF:</strong>
-            <br />
-            {perfil.cpf}
-          </span>
-        </p>
+            <span>{perfil.cpf}</span>
+          </p>
+        </div>
+
         <p>
           <strong>Mãe:</strong>
-          <br />
-          {perfil.nm_mae}
+          <span>{perfil.nm_mae}</span>
         </p>
       </>
     );
@@ -55,19 +55,17 @@ function ProfileDetails({ perfil }) {
       <>
         <p>
           <strong>Nome:</strong>
-          <br />
-          {perfil.nm_pesj}
+          <span>{perfil.nm_pesj}</span>
         </p>
         <p>
           <strong>CNPJ:</strong>
-          <br />
-          {perfil.cnpj}
+          <span>{perfil.cnpj}</span>
         </p>
       </>
     );
   }
 
-  return <div className={investigatedProfileDetailsStyle}>{details}</div>;
+  return <div className={profileDetails}>{details}</div>;
 }
 
 ProfileDetails.propTypes = propTypes;

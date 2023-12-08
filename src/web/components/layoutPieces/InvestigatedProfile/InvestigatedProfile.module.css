@@ -1,38 +1,43 @@
-.investigatedProfileOuterStyle {
+.investigatedProfileOuter {
   -webkit-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
   -moz-box-shadow: inset 0px 0px 0px 0px #cfcfcf;
   box-shadow: inset 0px 0px 0px 0px #cfcfcf;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   width: 70vw;
-  height: 70vh;
+  height: 80vh;
   position: relative;
-  padding: 0px 16px;
 }
 
-.investigatedProfileHeaderStyle {
-  width: calc(100% + 32px);
+.investigatedProfileHeader {
+  width: 100%;
   background-color: var(--pt-blue);
   box-sizing: border-box;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  margin: -80px 0px 0px -16px;
   align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 8px 0px 0px 16px;
+  padding: 1rem 1rem 0 1rem;
 }
 
-.investigatedProfileHeaderStyle h2 {
+.investigatedProfileHeader h2 {
   width: 100%;
   margin: 0;
 }
 
-.similarProfilesListStyle {
+.investigatedProfileHeader.titleOnly {
+  padding-bottom: 1rem;
+}
+
+.errorMessage {
+  padding: 1rem;
+}
+
+.similarProfilesList {
   width: 100%;
   display: flex;
   overflow: scroll;
@@ -43,13 +48,13 @@
   transition: all 1s;
 }
 
-.similarProfilesListStyle span {
+.similarProfilesList span {
   width: 33%;
   display: inline-block;
   vertical-align: top;
 }
 
-.similarProfilesListStyle::-webkit-scrollbar {
+.similarProfilesList::-webkit-scrollbar {
   height: 4px;
 }
 
@@ -59,7 +64,7 @@
   overflow-y: hidden;
 }
 
-.similarProfilesListStyle button {
+.similarProfilesList button {
   font-size: var(--smallFont);
   min-width: 33%;
   height: 98%;
@@ -71,7 +76,7 @@
   cursor: pointer;
 }
 
-.similarProfilesArrowStyle {
+.similarProfilesArrow {
   opacity: 1;
   display: inline-block;
   border-width: var(--selectorArrowSize);
@@ -85,37 +90,39 @@
   transition: transform 1s;
 }
 
-.similarProfilesArrowRotatedStyle {
+.similarProfilesArrowRotated {
   transform: rotate(-180deg) translateY(4px);
 }
 
-.similarProfilesBtnStyle {
+.similarProfilesBtn {
   cursor: default;
   border-radius: 4px;
   background-color: transparent;
   border: 0;
-  padding: 2px 4px;
+  /* padding: 2px 4px; */
+  padding: 0.5rem;
+  margin-left: 1rem;
   font-weight: bold;
   height: min-content;
   padding-left: 0;
   cursor: pointer;
 }
 
-.investigatedProfileTableWrapperStyle {
+.investigatedProfileTableWrapper {
   overflow-y: auto;
   width: 100%;
   flex: 4;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  padding: 0 1rem;
 }
 
-.investigatedProfileTableWrapperStyle table {
+.investigatedProfileTableWrapper table {
   justify-self: flex-start;
 }
 
-
-td button.investigatedProfileBtnStyle {
+td button.investigatedProfileBtn {
   color: #8998ac;
   font-size: var(--smallFont);
   width: 100%;
@@ -128,37 +135,51 @@ td button.investigatedProfileBtnStyle {
   text-decoration: underline;
 }
 
-.similarProfilesListStyle button.current {
+.similarProfilesList button.current {
   background-color: #bddff0;
 }
 
-.investigatedProfileHeaderStyle .investigatedProfileDetailsStyle {
+.investigatedProfileHeader .investigatedProfileDetails {
   flex: 4;
 }
 
-.investigatedProfileDetailsStyle {
+.investigatedProfileDetails {
   color: #8998ac;
 }
 
-.investigatedProfileDetailsStyle span {
+.investigatedProfileDetails span {
   width: 33%;
   display: inline-block;
   vertical-align: top;
 }
 
-.investigatedProfileDetailsStyle strong {
+.investigatedProfileDetails strong {
   color: var(--darkBlue);
 }
 
-.similarProfilesListStyle button.currentStyle {
+.similarProfilesList button.current {
   background-color: var(--lightBlue);
 }
 
-.investigatedProfileDetailsStyle {
+.investigatedProfileDetails {
   color: var(--grayPagination);
 }
 
-spinner .investigatedSpinnerStyle {
-  justify-self: center;
-  align-self: center;
+.spinnerWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .investigatedProfileOuter {
+    width: 90vw;
+    height: 85vh;
+  }
+
+  .hideInMobile {
+    display: none;
+  }
 }

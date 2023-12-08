@@ -19,21 +19,19 @@
 }
 
 .thStyle {
-  padding: 10px;
+  padding: 0.62rem;
   font-weight: 400;
   text-align: center;
 }
 
 .tdStyle {
-  padding: 5px;
+  padding: 0.31rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: capitalize;
   text-align: center;
-
 }
-
 
 /* PHONES */
 
@@ -43,20 +41,22 @@
     width: 100%;
   }
 
-  .tBodyStyle td {
-    min-width: 45%;
+  .tableStyle td button {
+    font-size: 0.7rem;
   }
 
   .thStyle {
-    font-size: 9px;
-    text-align: left;
-  }
-  .tHeadStyle{
-    width: 100vw;
-    display: inherit;
-  }
-  .tdStyle{
-    text-align: left;
+    font-size: 0.56rem;
+    text-align: center;
   }
 
+  .tHeadStyle {
+    width: 100vw;
+  }
+
+  .tdStyle {
+    text-align: center;
+    min-width: 45%;
+    font-size: 0.56rem;
+  }
 }

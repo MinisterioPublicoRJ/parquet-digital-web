@@ -38,11 +38,10 @@ function generateHeader(headerPropArray) {
  * creates a row for every object in the dataset and orders it's cells to make sure they respect the column theme
  * @param  {json} dataUnit whatever data we want to add to the table
  * @param  {json} columns  a dict containing pretty names and field names
- * @param  {bool} isPhone  true if width <= 480px
  * @param  {number} rowN   number of the current row
  * @return {node}          JSX for the table body
  */
-function generateRow(dataUnit, columns, isPhone, rowN) {
+function generateRow(dataUnit, columns, rowN) {
   const sections = Object.keys(columns);
 
   return (
@@ -50,27 +49,27 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
       {sections.map((key) => {
         let currentTitle = dataUnit[columns[key]];
 
-        while (currentTitle?.props && currentTitle.props.children && typeof (currentTitle.props.children) === 'object') {
+        while (
+          currentTitle?.props &&
+          currentTitle.props.children &&
+          typeof currentTitle.props.children === 'object'
+        ) {
           const [title] = currentTitle.props.children;
           currentTitle = title;
         }
 
-        if (typeof (currentTitle?.props?.children) !== 'undefined') currentTitle = currentTitle.props.children;
+        if (typeof currentTitle?.props?.children !== 'undefined') {
+          currentTitle = currentTitle.props.children;
+        }
 
         return (
           <React.Fragment key={`row${rowN}-${columns[key]}`}>
-       
-            <td
-              title={currentTitle}
-              className={tdStyle}
-              key={columns[key]}
-            >
+            <td title={currentTitle} className={tdStyle} key={columns[key]}>
               {dataUnit[columns[key]]}
             </td>
           </React.Fragment>
-        )
-      }
-      )}
+        );
+      })}
     </tr>
   );
 }
@@ -83,11 +82,12 @@ function generateRow(dataUnit, columns, isPhone, rowN) {
  * @constructor
  */
 function CustomTable({ data, columns, showHeader }) {
-  const isPhone = window.innerWidth <= 480;
   return (
     <table className={tableStyle}>
       {showHeader && generateHeader(columns)}
-      <tbody className={tBodyStyle}>{data.map((processo, i) => generateRow(processo, columns, isPhone, i))}</tbody>
+      <tbody className={tBodyStyle}>
+        {data.map((processo, i) => generateRow(processo, columns, i))}
+      </tbody>
     </table>
   );
 }

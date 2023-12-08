@@ -105,7 +105,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: var(--grayPagination)
+  color: var(--grayPagination);
 }
 
 .boxFilters {
@@ -117,7 +117,6 @@
   height: 1.8rem;
   margin-top: 20px;
   font-size: 12px;
-
 }
 
 .boxFilters button {
@@ -132,11 +131,11 @@
 }
 
 .boxFilters button:nth-child(2) {
-  border: 0.5px #EEEEEE solid;
+  border: 0.5px #eeeeee solid;
 }
 
 .boxFilters button:nth-child(3) {
-  background-color: #28A7E0;
+  background-color: #28a7e0;
   color: var(--white);
 }
 
@@ -165,11 +164,10 @@
   }
 }
 
-@media (min-width:820px) and (max-width: 1200px) {
+@media (min-width: 820px) and (max-width: 1200px) {
   .allBoxFilters {
     margin-top: 83px;
   }
-
 }
 
 /* PHONES */
@@ -198,9 +196,6 @@
 
   .openCasesTableWrapper td:first-child,
   .openCasesTableWrapper th:first-child {
-    width: 15vw;
-
+    width: 10vw;
   }
-
-
 }

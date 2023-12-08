@@ -1,0 +1,36 @@
+.profileDetails {
+  width: 65%;
+}
+
+.profileDetails strong {
+  display: block;
+  color: var(--darkBlue);
+}
+
+.profileDetails span {
+  color: var(--grayPagination);
+}
+
+.flexRow {
+  width: 100%;
+  display: flex;
+}
+
+.flexRow > * {
+  flex-basis: 100%;
+}
+
+@media (max-width: 768px) {
+  .profileDetails {
+    width: 100%;
+  }
+
+  .flexRow {
+    flex-wrap: wrap;
+    column-gap: 1rem;
+  }
+
+  .flexRow > * {
+    flex-basis: auto;
+  }
+}

@@ -73,5 +73,5 @@ export const BUTTON_DICT = {
   inquiries: 'pip_inqueritos',
   aisps: 'pip_aisp',
   factualNews: '',
-  courtCasesG:''
+  courtCasesG:'generalista_processos'
 };

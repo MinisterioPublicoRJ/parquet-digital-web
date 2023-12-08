@@ -49,28 +49,27 @@ function generateRow(dataUnit, columns, rowN) {
       {sections.map((key) => {
         let currentTitle = dataUnit[columns[key]];
 
-        while (currentTitle?.props && currentTitle.props.children && typeof (currentTitle.props.children) === 'object') {
+        while (
+          currentTitle?.props &&
+          currentTitle.props.children &&
+          typeof currentTitle.props.children === 'object'
+        ) {
           const [title] = currentTitle.props.children;
           currentTitle = title;
         }
 
-        if (typeof (currentTitle?.props?.children) !== 'undefined') {
+        if (typeof currentTitle?.props?.children !== 'undefined') {
           currentTitle = currentTitle.props.children;
-        };
+        }
 
         return (
           <React.Fragment key={`row${rowN}-${columns[key]}`}>
-            <td
-              title={currentTitle}
-              className={tdStyle}
-              key={columns[key]}
-            >
+            <td title={currentTitle} className={tdStyle} key={columns[key]}>
               {dataUnit[columns[key]]}
             </td>
           </React.Fragment>
-        )
-      }
-      )}
+        );
+      })}
     </tr>
   );
 }
